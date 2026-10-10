@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-treehouse-build-3",
+      "title": "Creaky Plank Groove (build phase)",
+      "idea": "creaking-wood dusk groove with a kid's whistle",
+      "request": "creaking-wood dusk groove with a kid's whistle",
+      "mood": "the build phase",
+      "bpm": 80,
+      "key": "A major",
+      "seed": 801230,
+      "model": "fast",
+      "duration": 92.18,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back dusk treehouse groove, creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit, wind-in-leaves shaker, a kid's whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty drum machine, back-garden treehouse at dusk daydream, good-humoured, 80 bpm, glass harmonica pad and tiny bells, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"creaking-wood dusk groove with a kid's whistle\" (the build phase): 80 bpm in A major. The prompt describes laid back dusk treehouse groove with creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit and wind-in-leaves shaker; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802230,
+          "reason": "harsh: 3.0% above 6 kHz"
+        }
+      ],
+      "takes": [
+        801230
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.45,
+        "peak_dbfs": -3.03,
+        "silence_s": 0.15,
+        "brightness_pct": 0.76,
+        "boominess_pct": 8.69,
+        "onsets_per_s": 4.39,
+        "seam_db": 7.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-treehouse-build-3/greytide-treehouse-build-3.mp3",
+        "notes": "greytide-treehouse-build-3/notes.md",
+        "recipe": "greytide-treehouse-build-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Creaky Plank Groove"
+        ],
+        "take_files": [
+          "greytide-treehouse-build-3/greytide-treehouse-build-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-treehouse-build-2",
       "title": "Rope Ladder Shuffle (build phase)",
       "idea": "creaking-wood dusk groove with a kid's whistle",
