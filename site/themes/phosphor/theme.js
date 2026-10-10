@@ -363,6 +363,8 @@ NOBODY.themes.phosphor = (function () {
     } catch (e) { return null; }
   };
   TH.catalogue = function () {}; TH.playing = function () {}; TH.scheme = function () {};
-  TH.state = function () { return { barrel: glass && glass.classList.contains('barrel'), tower: TH.towerState() }; };
+  // the widget slot (12.0, issue #28): the CRT mounts nothing in the transmitter card; the text progress bar is the bar
+  TH.widget = function () { return null; };
+  TH.state = function () { return { widget: null, barrel: glass && glass.classList.contains('barrel'), tower: TH.towerState() }; };
   return TH;
 })();

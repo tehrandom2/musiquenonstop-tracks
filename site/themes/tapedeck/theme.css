@@ -1,0 +1,341 @@
+/* nobody fm, theme "tapedeck": a cassette on a painting desk at night. design: docs/site-design.md section 12.0
+   (the contract) and section 12.14 (this look). dark only: one lamp is on. the skeleton (station.css) carries the
+   layout; this file is the tokens, the faces, the warm light and the cassette's colours. */
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../../vendor/barlow-condensed-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../../vendor/barlow-condensed-800.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Permanent Marker";
+  src: url("../../vendor/permanent-marker.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../../vendor/plex-mono-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #120d0a;
+  --bg-2: #1b130e;
+  --wood: #2a1c12;
+  --shell: #2a2119;
+  --paper: #f1e8d3;
+  --cream: #d8c9af;
+  --dim: #b9a98f;
+  --faint: #9c8c70;
+  --ink: #2a2118;
+  --orange: #e2553b;   --orange-rgb: 226 85 59;
+  --red: #6e1c0f;
+  --orange-text: #ee6a50; /* the orange, lifted for text: 5.3:1 on the card (12.0 legibility) */
+  --lamp: #ffb45f;     --lamp-rgb: 255 180 95;
+  --teal: #8fd6cf;     --teal-rgb: 143 214 207;
+  --gold: #dca834;
+  --line: rgb(255 255 255 / .1);
+  --warn: var(--teal);
+  --glow-lamp: 0 0 10px rgb(var(--lamp-rgb) / .45);
+  --gutter: 24px;
+  --gap: 12px;
+  --chw: .6;
+  --big: 0px;
+  /* data text is 16 px or more on desktop (12.0, legibility); `big` adds 2 px */
+  --fs: calc(clamp(16px, calc((100vw - 48px) / 100 / .6), 18px) + var(--big));
+  --lh: 1.3;
+  --row: calc(var(--fs) * var(--lh));
+  --print-fs: calc(16px + var(--big));
+  --beat: 0;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --hand: "Permanent Marker", "Comic Sans MS", cursive;
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+}
+/* the second scheme (12.0): the cheat code and `amber` turn the tape over. side B is the cool side: the lamp goes
+   teal, the orange goes teal, and the warnings go warm. */
+:root[data-phosphor="amber"] {
+  --lamp: #8fd6cf;     --lamp-rgb: 143 214 207;
+  --orange: #2f9e94;   --orange-rgb: 47 158 148;
+  --orange-text: #8fd6cf;
+  --red: #0f3d3a;
+  --gold: #8fd6cf;
+  --warn: #ffb45f;
+}
+:root[data-big="1"] { --big: 2px; }
+@media (max-width: 900px) {
+  :root {
+    --gutter: 12px;
+    --gap: 10px;
+    --fs: calc(max(15px, calc((100vw - 24px) / 40 / .6)) + var(--big));
+    --print-fs: calc(15px + var(--big));
+  }
+}
+
+html { background: var(--bg); }
+body {
+  background:
+    radial-gradient(70% 50% at 92% -6%, rgb(var(--lamp-rgb) / .22), transparent 60%),
+    linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 70%);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: var(--fs);
+  line-height: var(--lh);
+}
+.noscript { font-family: system-ui, sans-serif; color: var(--dim); padding: 1em; }
+
+/* the picture behind everything: a canvas of warm bars and the lamp breathing (12.14) */
+.viz { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; opacity: .9; }
+
+/* text treatments */
+.mid, .mid * { color: var(--dim); }
+.dim, .dim * { color: var(--faint); }
+.hot { color: var(--paper); }
+.amber, .amber * { color: var(--warn); }
+.amber-dim { color: rgb(var(--teal-rgb) / .6); }
+.ok { color: var(--teal); }
+.fail { color: var(--orange-text); }
+.struck { color: var(--orange-text); text-decoration: line-through; text-decoration-color: rgb(var(--orange-rgb) / .7); }
+.inv { background: var(--cream); color: var(--ink); }
+.inv-amber { background: var(--lamp); color: var(--ink); }
+.label, .page h2 > span:first-child {
+  font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .12em; text-transform: uppercase; color: var(--lamp);
+}
+.print, .print * { font-family: var(--mono); font-size: var(--print-fs); line-height: 1.4; color: var(--dim); }
+
+/* buttons: small pills in the condensed face; the brackets are gone, the hover is the lamp. */
+.bk { font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .1em; text-transform: uppercase; color: var(--cream);
+  border: 1px solid var(--line); border-radius: 8px; padding: .1em 1ch; background: rgb(255 255 255 / .08); line-height: 1.5; transition: border-color .2s, color .2s; }
+.bk::before, .bk::after { content: none; }
+.bk:hover, .bk:focus-visible { border-color: var(--lamp); color: var(--lamp); }
+.bare:hover, .bare:focus-visible { color: var(--lamp); }
+/* a dimmed button keeps a readable word (5.9:1 on the pill); only its edge goes quiet (12.0, legibility) */
+.bk.dimmed { color: var(--dim); border-color: rgb(255 255 255 / .05); }
+.bk.amber-btn { color: var(--lamp); border-color: rgb(var(--lamp-rgb) / .4); }
+.bk.amber-btn:hover, .bk.amber-btn:focus-visible { background: rgb(var(--lamp-rgb) / .14); }
+/* the chip's edge is darker than the card, never a bright hairline under the word: a small box is mostly edge (12.0, legibility) */
+.chip { font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .12em; text-transform: uppercase; color: var(--teal); border: 1px solid #0b0805; background: rgb(0 0 0 / .25); border-radius: 999px; padding: 0 1ch; }
+.chip.off { color: var(--dim); }
+.chip.tuning, .chip.dead { color: var(--lamp); }
+
+/* the cursor: a cream block, steps(2) blink at 530 ms; the lamp's colour while tuning or after an error. */
+.cursor { display: inline-block; width: .6ch; height: 1.1em; vertical-align: text-bottom; background: var(--cream); animation: blink 530ms steps(2, start) infinite; }
+.cursor.steady { animation: none; }
+.cursor.dimcur { background: var(--faint); animation: none; }
+.amber-cursor .cursor, .cursor.amber-c { background: var(--lamp); }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* the lamp switching on (the boot) and off (the reboot): #power is the lamp's glow at the top right corner */
+#power { position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0;
+  background: radial-gradient(60% 45% at 92% -6%, rgb(var(--lamp-rgb) / .55), transparent 70%); }
+#power.on { opacity: 1; }
+#power.fade { transition: opacity 400ms ease-out; opacity: 0; }
+
+/* the glass: the page over the desk. it fades in with the lamp and out for a reboot. */
+.glass { position: fixed; inset: 0; z-index: 1; opacity: 1; transition: opacity 400ms ease-out; }
+.glass.off { opacity: 0; }
+.glass.closing { transition: opacity 350ms ease-in; opacity: 0; }
+.glass.bloom-on::after { content: ""; position: fixed; inset: 0; pointer-events: none; background: rgb(var(--lamp-rgb) / .14); animation: bloomfade 300ms ease-out forwards; z-index: 13; }
+@keyframes bloomfade { from { opacity: 1; } to { opacity: 0; } }
+#main { gap: var(--gap); }
+
+/* cards: the wooden shelf (12.14). a warm gradient, a hairline, a soft drop shadow; the playing card gets the lamp. */
+.card {
+  position: relative;
+  padding: calc(var(--row) * .45) 1.5ch;
+  background: linear-gradient(180deg, #291c12, #1b130d); /* opaque: text never sits on the moving desk (12.0 legibility) */
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgb(0 0 0 / .45);
+  transition: border-color .4s, box-shadow .4s;
+}
+body.is-playing .transmitter { border-color: var(--lamp); box-shadow: 0 0 0 3px rgb(var(--lamp-rgb) / .18), 0 12px 30px rgb(0 0 0 / .45); }
+
+/* boot: the deck's own card (12.14) */
+.boot { margin: 6vh auto 0; min-height: 0; padding-bottom: calc(var(--row) * 1.2); }
+.boot-lines { color: var(--cream); }
+.boot-lines .amber { color: var(--lamp); }
+.banner { margin: calc(var(--row) * .8) 0 0 4ch; padding-left: 0; min-height: 72px; display: flex; align-items: center; white-space: pre; overflow: visible;
+  font-family: var(--display); font-weight: 800; font-size: clamp(34px, 6vw, 64px); line-height: .95; letter-spacing: .02em; text-transform: uppercase; color: var(--paper); text-shadow: 0 4px 0 var(--red), 0 0 24px rgb(var(--lamp-rgb) / .35); }
+.boot-tag { padding-left: 4ch; margin-top: calc(var(--row) * .6); }
+#bootTagline { font-family: var(--hand); font-size: 18px; color: var(--lamp); }
+#bootFreq { font-family: var(--display); font-weight: 700; color: var(--teal); font-size: var(--fs); letter-spacing: .1em; }
+.boot-wait { padding-left: 4ch; font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .14em; text-transform: uppercase; color: var(--cream); }
+@media (max-width: 900px) {
+  .banner, .boot-tag, .boot-wait { padding-left: 0; margin-left: 0; }
+  .boot-wait { white-space: normal; }
+}
+
+/* header: the literal spaces of the markup vanish in a flex row; the gaps are the layout */
+.header { padding-top: calc(var(--row) * .5); padding-bottom: calc(var(--row) * .5); }
+.header .row { align-items: center; }
+.header .left { display: inline-flex; align-items: center; gap: 2ch; white-space: normal; }
+.header .right { display: inline-flex; align-items: center; gap: 2.5ch; white-space: normal; }
+.header .hot-name { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: .04em; text-transform: uppercase; color: var(--paper); text-shadow: 0 2px 0 var(--red); line-height: 1; }
+.header .tagline-h { font-family: var(--hand); font-size: var(--fs); color: var(--lamp); white-space: pre; }
+.header #hdrFreq { font-family: var(--display); font-weight: 700; color: var(--teal); font-size: var(--fs); letter-spacing: .1em; }
+.header .up { color: var(--dim); white-space: pre; }
+.header .up #uptime { color: var(--cream); }
+.header #hdrTime { color: var(--cream); }
+.hdr-rail { display: inline-block; width: 12ch; height: 3px; vertical-align: middle; background: rgb(255 255 255 / .12); border-radius: 2px; overflow: hidden; }
+.hdr-rail i { display: block; height: 100%; width: 0; background: var(--lamp); }
+
+/* transmitter (12.14): the cassette sits at the right of the card on a desk, everything else in the left column */
+.transmitter { display: grid; grid-template-columns: minmax(0, 1fr) 30ch; column-gap: 2ch; }
+.transmitter > * { grid-column: 1; min-width: 0; }
+.transmitter > .tx-widget.cassette { grid-column: 2; grid-row: 2 / span 9; align-self: center; margin: 0; }
+.transmitter > .row:first-child { align-items: center; }
+.cassette svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 18px rgb(0 0 0 / .65)); transform: rotate(-2.2deg); transition: transform .5s ease, opacity .4s; }
+body.is-playing .cassette svg { transform: rotate(-1deg) translateY(-4px); }
+.tuning-state .cassette svg { transform: rotate(-4deg) translateY(-18px); opacity: .55; }
+.cassette .shell { fill: var(--shell); stroke: #0b0805; stroke-width: 3; }
+.cassette .screw { fill: #0d0905; opacity: .9; }
+.cassette .paper { fill: var(--paper); }
+.cassette .art { fill: var(--orange); }
+.cassette .art-stripe { fill: var(--gold); }
+.cassette .art-frame { fill: none; stroke: var(--ink); stroke-opacity: .5; }
+.cassette .side { font-family: var(--mono); font-size: 14px; fill: #5d4f3a; }
+.cassette .title { font-family: var(--hand); fill: var(--ink); }
+.cassette .sub { font-family: var(--mono); font-size: 14px; fill: #5d4f3a; }
+.cassette .rule { stroke: var(--ink); stroke-opacity: .4; }
+.cassette .window { fill: #17110c; }
+.cassette .well { fill: #3a2e22; stroke: #0b0805; stroke-width: 2; }
+.cassette .tape { fill: #0e0906; stroke: #5a4632; stroke-width: 1; }
+.cassette .hub { fill: var(--paper); }
+.cassette .spoke { stroke: var(--ink); stroke-width: 4; }
+.cassette .axle { fill: #17110c; }
+.reel { transform-box: fill-box; transform-origin: center; }
+body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.vol { display: inline-flex; align-items: center; gap: 1ch; }
+.vol svg { width: 36px; height: 36px; display: block; overflow: visible; }
+.vol .knob-body { fill: #3a2e22; stroke: #0b0805; stroke-width: 2; }
+.vol .knob-tick { stroke: var(--faint); stroke-width: 2; stroke-linecap: round; }
+.vol .knob-tick.lit { stroke: var(--lamp); }
+.vol .knob-pointer { stroke: var(--paper); stroke-width: 3; stroke-linecap: round; }
+.vol.muted .knob-pointer { stroke: var(--orange); }
+.vol .vol-text { font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.np-slug { font-family: var(--display); font-weight: 800; font-size: 24px; letter-spacing: .03em; text-transform: uppercase; color: var(--paper); line-height: 1.1; }
+.np-slug:hover, .np-slug:focus-visible { color: var(--lamp); }
+.tuning-state .np-slug { color: var(--lamp); }
+.readout { color: var(--cream); margin-top: 2px; }
+.readout .mark { color: var(--lamp); }
+.readout.tuning #readoutText { color: var(--lamp); }
+.progress { display: flex; align-items: center; gap: 1.5ch; min-height: var(--row); }
+.progress .rail { position: relative; flex: 1 1 auto; height: 4px; border-radius: 2px; background: rgb(255 255 255 / .14); }
+.progress .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 2px; background: var(--lamp); }
+.progress .head { position: absolute; top: 50%; left: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--paper); box-shadow: 0 2px 4px rgb(0 0 0 / .6); }
+.progress .time { flex: 0 0 auto; white-space: pre; font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .08em; color: var(--dim); }
+.dial { position: relative; height: calc(var(--row) * 2.4); overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.dial .dial-strip { position: absolute; left: 0; top: 0; white-space: pre; color: var(--cream); will-change: transform; }
+.dial .dial-strip .labels { margin-left: -1.5ch; color: var(--faint); }
+.dial.locked .dial-strip, .dial.locked .dial-strip .labels { color: var(--lamp); }
+.dial::after { content: ""; position: absolute; left: 50%; top: 0; height: calc(var(--row) * 1.6); width: 2px; background: var(--orange); box-shadow: 0 0 6px rgb(var(--orange-rgb) / .8); }
+.dial .dial-read { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .1em; color: var(--lamp); }
+#spectrum { height: calc(var(--row) * 4.5); }
+.baseline .ghost-tag { color: var(--warn); }
+.scope { display: flex; align-items: center; gap: 1ch; margin-top: calc(var(--row) * .3); white-space: normal; }
+.scope canvas { flex: 1 1 auto; height: var(--row); display: block; min-width: 0; }
+.scope .scope-label { flex: 0 0 auto; }
+.deadair .deadair-text { color: var(--cream); }
+.tower-wrap { height: calc(var(--row) * 10); }
+.tower { align-items: flex-start; }
+.tower .cassette { width: min(60%, 26ch); margin: 0 auto; }
+.tower .cassette svg { transform: rotate(-2.2deg); }
+.tower .cassette .reel { animation: spin 7s linear infinite; }
+.reread { color: var(--dim); }
+
+/* catalogue: the tape shelf. rows are typed in mono; the playing row carries the lamp on its left edge. */
+.cat-controls .bare { color: var(--dim); }
+.cat-row { position: relative; box-sizing: border-box; color: var(--dim); padding: 0 1ch; border-radius: 6px; border-left: 2px solid transparent; }
+.cat-row.playing { color: var(--paper); background: rgb(var(--lamp-rgb) / .08); border-left-color: var(--lamp); }
+.cat-row.playing .mark { color: var(--lamp); }
+/* a played row keeps the row colour; its `.` mark and the state word say it played (12.0, legibility) */
+.cat-row.played { color: var(--dim); }
+.cat-row.played .mark { color: var(--faint); }
+.cat-row.tuning { color: var(--lamp); }
+.cat-row .plus { color: var(--faint); visibility: hidden; }
+.cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: var(--lamp); }
+.cat-row:hover, .cat-row.hl { color: var(--paper); background: rgb(255 255 255 / .05); border-left-color: var(--teal); }
+.cat-row:hover *, .cat-row.hl * { color: var(--paper); }
+.cat-row:hover .mark, .cat-row.hl .mark { color: var(--lamp); }
+.cat-row .slug-link { text-decoration: none; }
+.cat-row:hover .slug-link { text-decoration: underline; text-decoration-color: rgb(var(--lamp-rgb) / .6); }
+.cat-head .sort:hover { color: var(--lamp); }
+
+/* terminal: the liner notes typed on the desk */
+.log .line { color: var(--dim); }
+.log .err { color: var(--warn); }
+.log .err.blink { animation: errblink 300ms steps(2, start) 1; }
+@keyframes errblink { 0%, 100% { background: rgb(var(--teal-rgb) / .2); } 50% { background: none; } }
+.log .amber { color: var(--lamp); }
+.prompt-row .ps1 { color: var(--lamp); }
+#cmd { color: var(--paper); }
+.hint-row .hints button { color: var(--teal); }
+
+/* footer: the counter is a tape counter, three digits of cream on black */
+.footer .odo-row { gap: 3ch; padding: calc(var(--row) * .6) 0; }
+.odometer { gap: 2px; border: 1px solid #0b0805; border-radius: 4px; background: #17110c; padding: 2px; box-shadow: inset 0 2px 6px rgb(0 0 0 / .8); }
+.drum { background: #241a12; border-left: 0; border-radius: 2px; }
+.drum .reel span { font-family: var(--display); font-weight: 700; font-size: var(--fs); color: var(--paper); }
+
+/* pages: a liner-notes card that slides out of the shelf */
+.page:not([hidden]) { animation: slideIn 420ms cubic-bezier(.2, .9, .3, 1) both; }
+@keyframes slideIn { from { transform: translateY(18px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes riseIn { from { transform: translateX(-50%) translateY(24px); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+.page h2 { margin: var(--row) 0 calc(var(--row) * .2); align-items: baseline; }
+.page .page-title { display: block; font-family: var(--hand); font-size: 26px; margin: calc(var(--row) * .3) 0; color: var(--paper); text-transform: none; }
+.page .why-text { color: var(--cream); }
+.page .catview { border-left: 1px solid var(--line); }
+.gb-form input { color: var(--paper); caret-color: var(--lamp); border-bottom: 1px solid var(--line); }
+.gb-form input:focus { border-bottom-color: var(--lamp); }
+.gb-entry .gb-line { color: var(--cream); }
+.gb-entry .gb-tag { color: var(--lamp); }
+
+/* help overlay */
+.overlay { padding: calc(var(--row) * .6) 2ch; background: #1b130d; }
+.overlay:not([hidden]) { animation: riseIn 420ms cubic-bezier(.2, .9, .3, 1) both; }
+.help-head .label { color: var(--paper); }
+.help-body .help-list .bk { color: var(--cream); }
+
+/* phone (40 columns): the cassette goes above the readout, smaller; the four fat buttons are pills */
+@media (max-width: 900px) {
+  .header-page .left { white-space: pre; gap: 1ch; } /* the skeleton's 390 px page header (12.0): playing: <slug...>  <time>  [chip] */
+  .transmitter { display: block; }
+  .transmitter > .tx-widget.cassette { width: 62%; margin: calc(var(--row) * .4) auto 0; }
+  .header .hot-name { font-size: 17px; }
+  .header .right { gap: 1.5ch; }
+  .np-slug { font-size: 18px; }
+  .vol svg { width: 30px; height: 30px; }
+  .vol .vol-text { display: none; }
+  .footer-buttons .left { line-height: calc(var(--row) * 1.4); }
+  .fat { padding: calc(var(--row) * .6) 0 calc(var(--row) * .2); }
+  .fat .bk { padding: .25em 1.6ch; min-width: 7ch; font-size: var(--fs); color: var(--paper); border-color: rgb(var(--lamp-rgb) / .4); background: rgb(var(--lamp-rgb) / .08); }
+  .cat-row .plus { visibility: visible; }
+  .footer .odo-row { gap: 2ch; }
+}
+@media (hover: none) {
+  .cat-row .plus { visibility: visible; }
+}
+
+/* reduced motion (12.8): the reels stop, the slides stop; the data still moves. */
+@media (prefers-reduced-motion: reduce) {
+  body.is-playing .cassette .reel, .tower .cassette .reel { animation: none; }
+  .cassette svg, .card { transition: none; }
+  .cursor { animation: none; }
+  .drum .reel { transition: none; }
+  .page:not([hidden]), .overlay:not([hidden]) { animation: none; }
+}
