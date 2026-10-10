@@ -534,6 +534,82 @@
       }
     },
     {
+      "slug": "greytide-schooldesk-build-1",
+      "title": "Clock Ticks Slowly (build phase)",
+      "idea": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",
+      "request": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",
+      "mood": "the build phase",
+      "bpm": 84,
+      "key": "F major",
+      "seed": 801310,
+      "model": "fast",
+      "duration": 91.92,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back bored-lesson groove, clock ticks, pencil taps and ruler twangs as a drum kit, a tune hummed under the breath used as an instrument, plinky toy keyboard, fuzzy round bass, dusty drum machine, last-lesson-of-the-day daydream, good-humoured, 84 bpm, a hummed melody and a plinky recorder-like synth, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"bored-lesson groove with clock ticks, pencil taps and a hummed tune\" (the build phase): 84 bpm in F major. The prompt describes laid back bored-lesson groove with clock ticks, pencil taps and ruler twangs as a drum kit and a tune hummed under the breath used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802310,
+          "reason": "not kept"
+        }
+      ],
+      "takes": [
+        801310
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -17.58,
+        "peak_dbfs": -1.74,
+        "silence_s": 0.1,
+        "brightness_pct": 1.42,
+        "boominess_pct": 8.59,
+        "onsets_per_s": 2.98,
+        "seam_db": 0.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-schooldesk-build-1/greytide-schooldesk-build-1.mp3",
+        "notes": "greytide-schooldesk-build-1/notes.md",
+        "recipe": "greytide-schooldesk-build-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.14,
+        "decoded_lufs": -17.58,
+        "failed": [
+          "loudness"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Clock Ticks Slowly"
+        ],
+        "take_files": [
+          "greytide-schooldesk-build-1/greytide-schooldesk-build-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sandpit-wave-5",
       "title": "Sandcastle Slow Jam (wave)",
       "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
