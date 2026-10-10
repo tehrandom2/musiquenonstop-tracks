@@ -13919,6 +13919,78 @@
       }
     },
     {
+      "slug": "shoosting-61-monolith",
+      "title": "Monolith",
+      "idea": "Brutalist industrial techno",
+      "request": "Brutalist industrial techno",
+      "mood": "",
+      "bpm": 118,
+      "key": "C major",
+      "seed": 100061,
+      "model": "fast",
+      "duration": 175.38,
+      "date": "2026-09-30",
+      "rendered_at": "2026-09-30T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Brutalist industrial techno, 118 bpm, enormous distorted kick drum, single low detuned synth note hammered in a slow rhythm, harsh white noise snares, dissonant metallic drones, huge empty reverb space, oppressive and monumental, very few elements each one massive, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-30 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Brutalist industrial techno\": 118 bpm in C major. The prompt describes brutalist industrial techno with enormous distorted kick drum, single low detuned synth note hammered in a slow rhythm and harsh white noise snares; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100061
+      ],
+      "numbers": {
+        "tempo_bpm": 116.5,
+        "lufs": -17.25,
+        "peak_dbfs": -3.24,
+        "silence_s": 0.55,
+        "brightness_pct": 1.27,
+        "boominess_pct": 69.06,
+        "onsets_per_s": 4.23,
+        "seam_db": -44.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-61-monolith/shoosting-61-monolith.mp3",
+        "notes": "shoosting-61-monolith/notes.md",
+        "recipe": "shoosting-61-monolith/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.82,
+        "decoded_lufs": -17.25,
+        "failed": [
+          "loudness",
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-61-monolith/shoosting-61-monolith.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-60-graft",
       "title": "Graft",
       "idea": "Dark melodic techno",

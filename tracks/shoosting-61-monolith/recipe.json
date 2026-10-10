@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-61-monolith",
+  "title": "Monolith",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Brutalist industrial techno, 118 bpm, enormous distorted kick drum, single low detuned synth note hammered in a slow rhythm, harsh white noise snares, dissonant metallic drones, huge empty reverb space, oppressive and monumental, very few elements each one massive, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 118,
+  "keyscale": "C major",
+  "timesignature": "4",
+  "duration": 175.38,
+  "seed": 100061,
+  "dit_caption": "Brutalist industrial techno, 118 bpm, enormous distorted kick drum, single low detuned synth note hammered in a slow rhythm, harsh white noise snares, dissonant metallic drones, huge empty reverb space, oppressive and monumental, very few elements each one massive, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 175.38,
+    "peak_dbfs": -3.24,
+    "lufs": -17.25
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 116.5,
+      "lufs": -17.25,
+      "peak_dbfs": -3.24,
+      "silence_s": 0.55,
+      "brightness_pct": 1.27,
+      "boominess_pct": 69.06,
+      "onsets_per_s": 4.23,
+      "seam_db": -44.1
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "silence",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
