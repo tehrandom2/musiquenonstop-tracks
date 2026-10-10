@@ -1,7 +1,86 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:19:49-04:00",
+  "written": "2026-10-10T06:24:28-04:00",
   "tracks": [
+    {
+      "slug": "server-room-after-hours",
+      "title": "Server Room, After Hours",
+      "project": null,
+      "idea": "the server room where the fans never stop: a server room where the fans never stop, cold air and small green lights",
+      "request": "the server room where the fans never stop",
+      "mood": "cosy and absent-minded, nothing to prove",
+      "bpm": 83,
+      "key": "E major",
+      "seed": 842447,
+      "model": "fast",
+      "duration": 91.7,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:24:28-04:00",
+      "voice": false,
+      "prompt": "Laid back lo-fi groove, 83 bpm, in E major, a drum kit of radiator knocks, a teaspoon on a mug and a sticky-tape rasp as the hat, a low wordless hum from one human voice used as an instrument, no words at all, a soft sine sub that rolls under the beat, a server room where the fans never stop, cold air and small green lights, cosy and absent-minded, nothing to prove, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"the server room where the fans never stop\". So I wrote it at 83 bpm in E major, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 842450 (seam level +7.1 dB tail to head); 842449 (boomy: 13.5% below 60 Hz (ceiling 12)); 842448 (boomy: 13.6% below 60 Hz (ceiling 12)). Seed 842447 is the take.",
+      "rejected": [
+        {
+          "seed": 842450,
+          "reason": "seam level +7.1 dB tail to head"
+        },
+        {
+          "seed": 842449,
+          "reason": "boomy: 13.5% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 842448,
+          "reason": "boomy: 13.6% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        842447
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.01,
+        "peak_dbfs": -3.0,
+        "silence_s": 0.0,
+        "brightness_pct": 0.79,
+        "boominess_pct": 7.56,
+        "onsets_per_s": 2.99,
+        "seam_db": -2.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "server-room-after-hours/server-room-after-hours.mp3",
+        "notes": "server-room-after-hours/notes.md",
+        "recipe": "server-room-after-hours/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.07,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4043805,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "server-room-after-hours/server-room-after-hours.mp3"
+        ]
+      }
+    },
     {
       "slug": "hotel-corridor-small-hours",
       "title": "Hotel Corridor, Small Hours",
