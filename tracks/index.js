@@ -384,6 +384,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-bathroom-build-5",
+      "title": "Loo Roll Dub (build phase)",
+      "idea": "echoey tiled-room dub with dripping percussion and melodica",
+      "request": "echoey tiled-room dub with dripping percussion and melodica",
+      "mood": "the build phase",
+      "bpm": 80,
+      "key": "C minor",
+      "seed": 801350,
+      "model": "fast",
+      "duration": 94.54,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back echoey tiled-room dub, dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit, spring reverb and tape echo, plinky melodica used as an instrument, fuzzy round bass, dusty rimshot drum machine, steamy bathroom daydream, good-humoured, 80 bpm, bubbling synth arpeggio and rimshots, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"echoey tiled-room dub with dripping percussion and melodica\" (the build phase): 80 bpm in C minor. The prompt describes laid back echoey tiled-room dub with dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit and spring reverb and tape echo; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800350,
+          "reason": "tempo 95 vs asked 80"
+        },
+        {
+          "seed": 700350,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801350
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.43,
+        "peak_dbfs": -1.89,
+        "silence_s": 0.35,
+        "brightness_pct": 1.5,
+        "boominess_pct": 11.63,
+        "onsets_per_s": 3.38,
+        "seam_db": 1.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bathroom-build-5/greytide-bathroom-build-5.mp3",
+        "notes": "greytide-bathroom-build-5/notes.md",
+        "recipe": "greytide-bathroom-build-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.33,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Loo Roll Dub"
+        ],
+        "take_files": [
+          "greytide-bathroom-build-5/greytide-bathroom-build-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bathroom-build-4",
       "title": "Soap Dish Shuffle (build phase)",
       "idea": "echoey tiled-room dub with dripping percussion and melodica",
