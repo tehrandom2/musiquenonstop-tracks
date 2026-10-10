@@ -85,6 +85,7 @@ NOBODY.themes.phosphor = (function () {
     if (defs) { defs.remove(); defs = null; }
     glass.classList.remove('barrel', 'dip', 'opening', 'closing');
     TH.towerStop();
+    if (hideHost) { hideHost.remove(); hideHost = null; }
     if (tower && tower.renderer) { try { tower.renderer.dispose(); } catch (e) {} tower = null; el('tower').textContent = ''; }
     el('towerStatic').textContent = '';
   };
@@ -239,6 +240,8 @@ NOBODY.themes.phosphor = (function () {
     scene.add(light);
     scene.add(new THREE.AmbientLight(0xffffff, 0.15));
     host.replaceChildren(effect.domElement);
+    // one renderer at a time: moving the tower between hosts (dead air, the hidden mode) must not leak a GL context
+    if (tower) { if (tower.raf) cancelAnimationFrame(tower.raf); try { tower.renderer.dispose(); tower.renderer.forceContextLoss(); } catch (e) {} }
     tower = { renderer: renderer, effect: effect, scene: scene, camera: camera, rig: rig, host: host, raf: 0, last: 0 };
     return true;
   }
@@ -261,8 +264,30 @@ NOBODY.themes.phosphor = (function () {
       return 'ascii';
     } catch (e) { return 'static'; }
   };
-  TH.towerStop = function () { if (tower && tower.raf) { cancelAnimationFrame(tower.raf); tower.raf = 0; } };
+  TH.towerStop = function () {
+    // the hidden mode's tower is the picture while the interface is away: dead air ending does not stop it (issue #52)
+    if (hideHost && tower && tower.host === hideHost.querySelector('.tower') && document.body.classList.contains('ui-hidden')) return;
+    if (tower && tower.raf) { cancelAnimationFrame(tower.raf); tower.raf = 0; }
+  };
   TH.towerState = function () { return tower && tower.raf ? 'three.js AsciiEffect rendering' : 'static ASCII drawing'; };
+  /* ---- hidden mode (12.0, issue #52): the glass keeps its scanlines and rolling bar; nothing else on it moves, so the dead-air tower
+     is mounted behind them for as long as the interface is away, and handed back to dead air (if it is on) when it returns ---- */
+  let hideHost = null;
+  TH.hidden = function (on) {
+    if (on) {
+      if (!hideHost) {
+        hideHost = document.createElement('div'); hideHost.className = 'tower-wrap hide-tower'; hideHost.setAttribute('aria-hidden', 'true');
+        const t = document.createElement('div'); t.className = 'tower';
+        const p = document.createElement('pre'); p.className = 'tower-static';
+        hideHost.appendChild(t); hideHost.appendChild(p);
+        glass.insertBefore(hideHost, glass.firstChild);
+      }
+      TH.towerStart(hideHost.querySelector('.tower'), hideHost.querySelector('.tower-static'), ctx.phone());
+    } else {
+      TH.towerStop();
+      if (ctx.wantsTower()) TH.towerStart(el('tower'), el('towerStatic'), ctx.phone());
+    }
+  };
   // the libraries may arrive after dead air began
   TH.libsReady = function () { if (ctx && ctx.wantsTower()) TH.towerStart(el('tower'), el('towerStatic'), ctx.phone()); };
 

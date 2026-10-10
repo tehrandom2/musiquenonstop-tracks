@@ -339,3 +339,7 @@ body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
   .drum .reel { transition: none; }
   .page:not([hidden]), .overlay:not([hidden]) { animation: none; }
 }
+
+/* hidden mode (12.0, issue #52): the desk's bars and the lamp stay; the title is the hand-lettered label's face */
+:root { --hide-ink: var(--lamp); --hide-ink2: var(--orange); --hide-face: var(--hand); }
+body.ui-hidden .viz { opacity: 1; }

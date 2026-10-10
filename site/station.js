@@ -377,6 +377,7 @@
     el.progress.hidden = false; el.dial.hidden = true;
     A.tuning = false;
     TH().transition('tuning', 'playing', { slug: t.slug });
+    hideHint(t.title || t.slug);
     el.readout.classList.add('typing');
     // the typing finishes within 2 s whatever the prompt's length, or on any key (issue #43)
     S.readoutTyper = V.type(el.readoutText, t.prompt || t.idea || '', typingSpeed(t.prompt || t.idea || '', 60));
@@ -872,6 +873,7 @@
     ['q', 'queue the highlighted'], ['s  r', 'shuffle / repeat one'], ['- =  m', 'volume down / up / mute'], ['0..9', 'seek to 0 % .. 90 %'],
     ['left right', 'seek 5 s'], ['i', "this track's page"], ['c', 'copy the permalink'], ['/', 'find'], ['g', 'guestbook'], ['esc', 'back to the transmitter']
   ];
+  HELP_KEYS.push(['`', 'hide the interface (v: bars)']);
   const HELP_CMDS = [
     'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10', 'list [words]    find <words>   info [slug]',
     'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     remix [slug]   request <words>', 'guestbook   sign   count   uptime   dial <MHz>',
@@ -1202,6 +1204,7 @@
     if (name === S.theme) { T.print('theme: ' + name + '. already.', 'mid'); return; }
     if (S.themeSwitching) { T.print('the theme is still changing.', 'mid'); return; }
     S.themeSwitching = true;
+    if (HIDE.on) st.hideUi(false);
     try { localStorage.setItem('nobody.theme', name); } catch (e) {}
     const link = document.getElementById('themeCss');
     const was = pageKind();
@@ -1265,6 +1268,115 @@
     T.printScroll(lines);
   };
 
+  /* ---------------- hidden mode (issue #52, design 12.0): ` takes the interface away, the scene stays ---------------- */
+  // one class on the body (`ui-hidden`) fades #screen; the theme's scene is outside it (or in the glass beside it) and keeps going.
+  // `v` toggles the visualizer over the scene (remembered), ` or Escape brings the interface back, the deck is never touched.
+  const HIDE = { on: false, viz: true, canvas: null, g: null, raf: 0, title: null, ink: '#ffffff', ink2: '#ffffff', idle: 0, two: null, tapAt: 0 };
+  try { HIDE.viz = localStorage.getItem('nobody.hideviz') !== '0'; } catch (e) {}
+  function hideEls() {
+    if (HIDE.canvas) return;
+    HIDE.canvas = document.createElement('canvas'); HIDE.canvas.id = 'hideViz'; HIDE.canvas.setAttribute('aria-hidden', 'true');
+    HIDE.title = document.createElement('div'); HIDE.title.id = 'hideTitle'; HIDE.title.setAttribute('aria-hidden', 'true');
+    HIDE.g = HIDE.canvas.getContext('2d');
+    document.body.appendChild(HIDE.canvas); document.body.appendChild(HIDE.title);
+  }
+  // the title (or a one-word state) fades in and out over the scene, in the theme's own face, no box
+  function hideHint(text) {
+    if (!HIDE.on || !HIDE.title) return;
+    HIDE.title.textContent = text;
+    HIDE.title.classList.remove('show'); void HIDE.title.offsetWidth; HIDE.title.classList.add('show');
+  }
+  function hideDraw() {
+    HIDE.raf = requestAnimationFrame(hideDraw);
+    const cv = HIDE.canvas, g = HIDE.g, d = Math.min(window.devicePixelRatio || 1, 1.5);
+    const w = Math.round(innerWidth * d), h = Math.round(innerHeight * d);
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+    g.clearRect(0, 0, w, h);
+    const N = phone() ? 24 : 48, bw = w / N, v = A.v64, top = h * 0.45;
+    const gr = g.createLinearGradient(0, h, 0, h - top); gr.addColorStop(0, HIDE.ink2); gr.addColorStop(1, HIDE.ink);
+    g.fillStyle = gr; g.globalAlpha = 0.6;
+    for (let i = 0; i < N; i++) {
+      const raw = v ? v[Math.min(63, Math.floor(Math.pow(i / N, 1.4) * 64))] : 0;
+      const bh = Math.max(2, Math.pow(Math.max(0.02, raw), 0.9) * top);
+      g.fillRect(i * bw + bw * 0.14, h - bh, bw * 0.72, bh);
+    }
+    g.globalAlpha = 1;
+  }
+  function hideVizSync() {
+    const run = HIDE.on && HIDE.viz;
+    if (run && !HIDE.raf) HIDE.raf = requestAnimationFrame(hideDraw);
+    if (!run && HIDE.raf) { cancelAnimationFrame(HIDE.raf); HIDE.raf = 0; if (HIDE.g) HIDE.g.clearRect(0, 0, HIDE.canvas.width, HIDE.canvas.height); }
+    document.body.classList.toggle('no-hideviz', !HIDE.viz);
+  }
+  function hideCursorWake() {
+    if (!HIDE.on) return;
+    document.body.classList.remove('cursor-idle');
+    clearTimeout(HIDE.idle);
+    HIDE.idle = setTimeout(function () { document.body.classList.add('cursor-idle'); }, 2000);
+  }
+  st.hideUi = function (want) {
+    if (!S.onAir) return;
+    const on = want == null ? !HIDE.on : !!want;
+    if (on === HIDE.on) return;
+    hideEls();
+    HIDE.on = on;
+    document.body.classList.toggle('ui-hidden', on);
+    const th = TH();
+    if (on) {
+      st.help(false);
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      const cs = getComputedStyle(document.documentElement);
+      HIDE.ink = cs.getPropertyValue('--hide-ink').trim() || '#ffffff';
+      HIDE.ink2 = cs.getPropertyValue('--hide-ink2').trim() || HIDE.ink;
+      hideCursorWake();
+    } else {
+      clearTimeout(HIDE.idle); document.body.classList.remove('cursor-idle');
+    }
+    hideVizSync();
+    if (th && th.hidden) th.hidden(on);
+    if (on) { const t = S.tracks.find(function (x) { return x.slug === S.current; }); hideHint(t ? (t.title || t.slug) : 'nobody fm'); }
+  };
+  st.hideViz = function (want) {
+    HIDE.viz = want == null ? !HIDE.viz : !!want;
+    try { localStorage.setItem('nobody.hideviz', HIDE.viz ? '1' : '0'); } catch (e) {}
+    hideVizSync();
+  };
+  st.hidden = function () { return HIDE.on; };
+  // the keys of this mode; returns true when the key is spent. what opens an input, a page or an overlay is dead while the interface is away
+  function hideKey(e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return false;
+    const k = e.key;
+    if (k === '`' || k === '~') { st.hideUi(); return true; }
+    if (!HIDE.on) return false;
+    if (k === 'Escape') { st.hideUi(false); return true; }
+    if (k === 'v' || k === 'V') { st.hideViz(); return true; }
+    if ('/:?gicqjk'.indexOf(k) >= 0 || k === 'Tab' || k === 'Enter') return true;
+    // play and the volume keep working; with no interface their answer is one word over the scene
+    if (k === ' ' || k === '-' || k === '=' || k === '+' || k === 'm') {
+      setTimeout(function () { hideHint(k === ' ' ? (deck.paused ? 'paused' : 'on air') : k === 'm' ? (SY.muted ? 'muted' : 'volume ' + SY.volume) : 'volume ' + SY.volume); }, 0);
+    }
+    return false;
+  }
+  // a phone has no backtick: two fingers, tapped twice
+  function hideTouch() {
+    document.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 2) HIDE.two = { t: e.timeStamp, x: e.touches[0].clientX, y: e.touches[0].clientY };
+      else if (e.touches.length > 2) HIDE.two = null;
+    }, { passive: true });
+    document.addEventListener('touchmove', function (e) {
+      if (HIDE.two && Math.abs(e.touches[0].clientX - HIDE.two.x) + Math.abs(e.touches[0].clientY - HIDE.two.y) > 30) HIDE.two = null;
+    }, { passive: true });
+    document.addEventListener('touchend', function (e) {
+      if (!HIDE.two || e.touches.length) return;
+      // the event's own clock, so a busy main thread (a software-rendered scene) cannot turn a quick tap into a slow one
+      const now = e.timeStamp, quick = now - HIDE.two.t < 350;
+      HIDE.two = null;
+      if (!quick) { HIDE.tapAt = 0; return; }
+      if (now - HIDE.tapAt < 500) { HIDE.tapAt = 0; st.hideUi(); } else HIDE.tapAt = now;
+    }, { passive: true });
+    document.addEventListener('mousemove', hideCursorWake, { passive: true });
+  }
+
   /* ---------------- keys (4.2), the cheat code (4.5) ---------------- */
   function inInput(e) { const t = e.target; return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable); }
   document.addEventListener('keydown', function (e) {
@@ -1277,6 +1389,7 @@
       if (S.konami.join(',') === KONAMI.join(',')) { S.konami = []; cheat(); return; }
     }
     if (inInput(e)) return;
+    if (hideKey(e)) { e.preventDefault(); return; }
     if (!el.help.hidden) { if (e.key === '?' || e.key === 'Escape') { e.preventDefault(); st.help(false); } return; }
     if (e.ctrlKey || e.metaKey) return;
     const k = e.key;
@@ -1354,6 +1467,7 @@
     el.readout.addEventListener('touchend', function (e) { const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 50 && Math.abs(dy) < 40) { if (dx < 0) next(); else prev(); } });
     el.cmd.addEventListener('focus', function () { if (phone()) setTimeout(function () { el.promptRow.scrollIntoView({ block: 'center' }); }, 300); });
     window.addEventListener('resize', relayout);
+    hideTouch();
     // any key finishes a typing effect (issue #43); captured, so a key typed into the terminal counts too
     document.addEventListener('keydown', finishTypers, true);
   }

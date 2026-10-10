@@ -392,3 +392,6 @@ button { border-radius: 3px; }
   .drum .reel { transition: none; }
   .page:not([hidden]), .overlay:not([hidden]) { animation: none; }
 }
+
+/* hidden mode (12.0, issue #52): the scene is the picture; the bars are the cyan to magenta of the analyser's own gradient */
+:root { --hide-ink: var(--magenta); --hide-ink2: var(--cyan); --hide-face: var(--display); }

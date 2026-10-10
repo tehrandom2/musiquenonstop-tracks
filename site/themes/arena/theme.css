@@ -334,3 +334,6 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
   .drum .reel { transition: none; }
   .page:not([hidden]), .overlay:not([hidden]) { animation: none; }
 }
+
+/* hidden mode (12.0, issue #52): the stage and its beam are the picture; the bars take the track's hue */
+:root { --hide-ink: var(--accent-hot); --hide-ink2: var(--accent-2); --hide-face: var(--display); }

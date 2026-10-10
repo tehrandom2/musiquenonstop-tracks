@@ -318,3 +318,12 @@ body {
   .cursor { animation: none; }
   .drum .reel { transition: none; }
 }
+
+/* hidden mode (12.0, issue #52): the glass keeps its scanlines and rolling bar; the ASCII tower of dead air turns in the middle
+   (theme.js mounts it, only while hidden), the bars are the phosphor's own green */
+:root { --hide-ink: var(--p1); --hide-ink2: var(--p1-dim); }
+.hide-tower {
+  position: absolute; left: 50%; top: 42%; width: min(70vw, 720px); height: min(56vh, 460px); transform: translate(-50%, -50%);
+  opacity: 0; pointer-events: none; transition: opacity 400ms ease-out; z-index: 1;
+}
+body.ui-hidden .hide-tower { opacity: 1; }
