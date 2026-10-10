@@ -3,6 +3,82 @@
   "written": "2026-10-10T06:10:00-04:00",
   "tracks": [
     {
+      "slug": "arcade-after-slow-light",
+      "title": "Arcade After, Slow Light",
+      "idea": "an arcade after closing, one machine still attracting moths: an arcade after closing with one machine still glowing and moths around it",
+      "request": "an arcade after closing, one machine still attracting moths",
+      "mood": "playful and a little nostalgic",
+      "bpm": 100,
+      "key": "A major",
+      "seed": 447801,
+      "model": "fast",
+      "duration": 93.34,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:09:37-04:00",
+      "voice": false,
+      "prompt": "Warm unhurried downtempo groove, 100 bpm, in A major, a drum kit of coin-slot ticks, joystick clicks and a button-mash flutter as the hat, a chip-synth arpeggio used as an instrument, a soft sine sub that rolls under the beat, an arcade after closing with one machine still glowing and moths around it, playful and a little nostalgic, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"an arcade after closing, one machine still attracting moths\". \"games, arcade, retro\" I took as: coin-slot ticks and joystick clicks as the kit, a chip-synth arpeggio used as an instrument. So I wrote it at 100 bpm in A major, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 447798 (boomy: 24.1% below 60 Hz (ceiling 12) and others); 447799 (harsh: 2.8% above 6 kHz (ceiling 2.5) and others); 447800 (harsh: 3.1% above 6 kHz (ceiling 2.5) and others). Seed 447801 is the take.",
+      "rejected": [
+        {
+          "seed": 447798,
+          "reason": "boomy: 24.1% below 60 Hz (ceiling 12); onset rate 4.7/s outside 0.3-4.5"
+        },
+        {
+          "seed": 447799,
+          "reason": "harsh: 2.8% above 6 kHz (ceiling 2.5); seam level +8.9 dB tail to head"
+        },
+        {
+          "seed": 447800,
+          "reason": "harsh: 3.1% above 6 kHz (ceiling 2.5); boomy: 22.8% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        447801
+      ],
+      "numbers": {
+        "tempo_bpm": 98.5,
+        "lufs": -16.0,
+        "peak_dbfs": -2.55,
+        "silence_s": 0.05,
+        "brightness_pct": 2.31,
+        "boominess_pct": 11.45,
+        "onsets_per_s": 3.46,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "arcade-after-slow-light/arcade-after-slow-light.mp3",
+        "notes": "arcade-after-slow-light/notes.md",
+        "recipe": "arcade-after-slow-light/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -16.39,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "arcade-after-slow-light/arcade-after-slow-light.mp3"
+        ]
+      }
+    },
+    {
       "slug": "lighthouse-keeper-s-after-hours",
       "title": "Lighthouse Keeper's, After Hours",
       "idea": "a lighthouse keeper's kitchen at dawn: a lighthouse keeper's kitchen at dawn with the first grey light on the window",
