@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-treehouse-wave-2",
+      "title": "Rope Ladder Shuffle (wave)",
+      "idea": "creaking-wood dusk groove with a kid's whistle",
+      "request": "creaking-wood dusk groove with a kid's whistle",
+      "mood": "the wave phase",
+      "bpm": 79,
+      "key": "D major",
+      "seed": 801225,
+      "model": "fast",
+      "duration": 92.6,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back dusk treehouse groove, creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit, wind-in-leaves shaker, a kid's whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty drum machine, back-garden treehouse at dusk daydream, good-humoured, 79 bpm, a plinky toy xylophone and slow creaks, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"creaking-wood dusk groove with a kid's whistle\" (the wave phase): 79 bpm in D major. The prompt describes laid back dusk treehouse groove with creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit and wind-in-leaves shaker; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802225,
+          "reason": "busy: 5.1 onsets/s"
+        }
+      ],
+      "takes": [
+        801225
+      ],
+      "numbers": {
+        "tempo_bpm": 77.2,
+        "lufs": -16.43,
+        "peak_dbfs": -1.79,
+        "silence_s": 0.1,
+        "brightness_pct": 2.15,
+        "boominess_pct": 21.08,
+        "onsets_per_s": 4.19,
+        "seam_db": 3.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-treehouse-wave-2/greytide-treehouse-wave-2.mp3",
+        "notes": "greytide-treehouse-wave-2/notes.md",
+        "recipe": "greytide-treehouse-wave-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Rope Ladder Shuffle"
+        ],
+        "take_files": [
+          "greytide-treehouse-wave-2/greytide-treehouse-wave-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-treehouse-wave-1",
       "title": "Dusk In The Branches (wave)",
       "idea": "creaking-wood dusk groove with a kid's whistle",
