@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-sandpit-wave-3",
+      "title": "Hose Drip Daydream (wave)",
+      "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "request": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "mood": "the wave phase",
+      "bpm": 83,
+      "key": "F major",
+      "seed": 802535,
+      "model": "fast",
+      "duration": 90.85,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back hot lazy afternoon groove, bucket taps, spade scrapes and a dripping hose as a drum kit, buzzing bee-like synth, a far-off ice-cream-van chime used as an instrument, soft steel-drum-like plucks, fuzzy round bass, dusty shaker drum machine, sunny sandpit daydream, good-humoured, 83 bpm, steel-drum-like plucks and a warm organ, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"hot lazy afternoon groove with bees, a hose and a far-off ice-cream van\" (the wave phase): 83 bpm in F major. The prompt describes laid back hot lazy afternoon groove with bucket taps, spade scrapes and a dripping hose as a drum kit and buzzing bee-like synth; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801535,
+          "reason": "busy: 4.5 onsets/s"
+        }
+      ],
+      "takes": [
+        802535
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.39,
+        "peak_dbfs": -2.01,
+        "silence_s": 0.0,
+        "brightness_pct": 1.17,
+        "boominess_pct": 14.54,
+        "onsets_per_s": 3.52,
+        "seam_db": 0.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sandpit-wave-3/greytide-sandpit-wave-3.mp3",
+        "notes": "greytide-sandpit-wave-3/notes.md",
+        "recipe": "greytide-sandpit-wave-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.13,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Hose Drip Daydream"
+        ],
+        "take_files": [
+          "greytide-sandpit-wave-3/greytide-sandpit-wave-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sandpit-wave-2",
       "title": "Ice Cream Van Far Away (wave)",
       "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
