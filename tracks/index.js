@@ -13919,6 +13919,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-53-drill-press",
+      "title": "Drill Press",
+      "idea": "Hard electro house",
+      "request": "Hard electro house",
+      "mood": "",
+      "bpm": 130,
+      "key": "A# minor",
+      "seed": 100053,
+      "model": "fast",
+      "duration": 177.9,
+      "date": "2026-09-30",
+      "rendered_at": "2026-09-30T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Hard electro house, 130 bpm, pounding four-on-the-floor kick, grinding buzzsaw synth bass chopped into a syncopated one-bar riff, pumping compressor breathing between kicks, crisp offbeat hi-hats, short noise risers into each section, raw mechanical repetitive hook, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-30 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Hard electro house\": 130 bpm in A# minor. The prompt describes hard electro house with pounding four-on-the-floor kick, grinding buzzsaw synth bass chopped into a syncopated one-bar riff and pumping compressor breathing between kicks; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100053
+      ],
+      "numbers": {
+        "tempo_bpm": 128.0,
+        "lufs": -17.24,
+        "peak_dbfs": -2.75,
+        "silence_s": 0.2,
+        "brightness_pct": 1.82,
+        "boominess_pct": 66.73,
+        "onsets_per_s": 4.1,
+        "seam_db": -8.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-53-drill-press/shoosting-53-drill-press.mp3",
+        "notes": "shoosting-53-drill-press/notes.md",
+        "recipe": "shoosting-53-drill-press/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.11,
+        "decoded_lufs": -17.24,
+        "failed": [
+          "loudness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-53-drill-press/shoosting-53-drill-press.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-52-bandsaw",
       "title": "Bandsaw",
       "idea": "Dirty electro house",
