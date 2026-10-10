@@ -3,6 +3,82 @@
   "written": "2026-10-10T06:07:16-04:00",
   "tracks": [
     {
+      "slug": "lighthouse-keeper-s-after-hours",
+      "title": "Lighthouse Keeper's, After Hours",
+      "idea": "a lighthouse keeper's kitchen at dawn: a lighthouse keeper's kitchen at dawn with the first grey light on the window",
+      "request": "a lighthouse keeper's kitchen at dawn",
+      "mood": "warm and a little sleepy, good-humoured",
+      "bpm": 88,
+      "key": "Bb major",
+      "seed": 222457,
+      "model": "fast",
+      "duration": 92.54,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:07:02-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 88 bpm, in Bb major, a drum kit of spoon taps, pan lid clinks and a kettle-whistle blip, a soft music-box celesta used as an instrument, a soft sine sub that rolls under the beat, a lighthouse keeper's kitchen at dawn with the first grey light on the window, warm and a little sleepy, good-humoured, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a lighthouse keeper's kitchen at dawn\". \"a kitchen, coffee, cooking\" I took as: found kitchen objects as the drum kit, a warm major key, a morning mood clause. So I wrote it at 88 bpm in Bb major, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 222455 (boomy: 20.7% below 60 Hz (ceiling 12)); 222454 (boomy: 14.6% below 60 Hz (ceiling 12)). Seed 222457 is the take, but it did not clear every gate: boomy: 16.7% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 222455,
+          "reason": "boomy: 20.7% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 222454,
+          "reason": "boomy: 14.6% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        222457,
+        222456
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.01,
+        "peak_dbfs": -2.05,
+        "silence_s": 0.35,
+        "brightness_pct": 0.57,
+        "boominess_pct": 16.7,
+        "onsets_per_s": 2.48,
+        "seam_db": -1.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "lighthouse-keeper-s-after-hours/lighthouse-keeper-s-after-hours.mp3",
+        "notes": "lighthouse-keeper-s-after-hours/notes.md",
+        "recipe": "lighthouse-keeper-s-after-hours/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.84,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boomy: 16.7% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "lighthouse-keeper-s-after-hours/lighthouse-keeper-s-after-hours.mp3",
+          "lighthouse-keeper-s-after-hours/lighthouse-keeper-s-after-hours-take2.mp3"
+        ]
+      }
+    },
+    {
       "slug": "last-tram-last-call",
       "title": "Last Tram, Last Call",
       "idea": "the last tram, rain on the roof, nobody else aboard: the last tram at night with rain on the roof and nobody else aboard",
