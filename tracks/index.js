@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-desk-wave-3",
+      "title": "Wet Palette Boogie (wave)",
+      "idea": "woozy tape-warped analog synth funk",
+      "request": "woozy tape-warped analog synth funk",
+      "mood": "the wave phase",
+      "bpm": 93,
+      "key": "G minor",
+      "seed": 801035,
+      "model": "fast",
+      "duration": 89.92,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back woozy analog synth funk, brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit, tape-warped detuned synthesizers drifting slightly out of tune, vocoder lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine with loose swing, lamp-lit painting desk daydream, good-humoured, 93 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"woozy tape-warped analog synth funk\" (the wave phase): 93 bpm in G minor. The prompt describes laid back woozy analog synth funk with brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit and tape-warped detuned synthesizers drifting slightly out of tune; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800035,
+          "reason": "harsh: 3.8% above 6 kHz; busy: 5.2 onsets/s"
+        },
+        {
+          "seed": 630006,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801035
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.41,
+        "peak_dbfs": -1.4,
+        "silence_s": 0.1,
+        "brightness_pct": 1.48,
+        "boominess_pct": 6.83,
+        "onsets_per_s": 3.95,
+        "seam_db": 0.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-desk-wave-3/greytide-desk-wave-3.mp3",
+        "notes": "greytide-desk-wave-3/notes.md",
+        "recipe": "greytide-desk-wave-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.21,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Wet Palette Boogie"
+        ],
+        "take_files": [
+          "greytide-desk-wave-3/greytide-desk-wave-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-desk-wave-2",
       "title": "Primer Coat Groove (wave)",
       "idea": "woozy tape-warped analog synth funk",
