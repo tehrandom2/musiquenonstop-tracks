@@ -458,6 +458,92 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-desk-build-1",
+      "title": "Tape Wobble Funk (build phase)",
+      "idea": "woozy tape-warped analog synth funk",
+      "request": "woozy tape-warped analog synth funk",
+      "mood": "the build phase",
+      "bpm": 85,
+      "key": "D minor",
+      "seed": 803010,
+      "model": "fast",
+      "duration": 93.19,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back woozy analog synth funk, brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit, tape-warped detuned synthesizers drifting slightly out of tune, vocoder lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine with loose swing, lamp-lit painting desk daydream, good-humoured, 85 bpm, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"woozy tape-warped analog synth funk\" (the build phase): 85 bpm in D minor. The prompt describes laid back woozy analog synth funk with brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit and tape-warped detuned synthesizers drifting slightly out of tune; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802010,
+          "reason": "not kept"
+        },
+        {
+          "seed": 630001,
+          "reason": "superseded by the #443 render"
+        },
+        {
+          "seed": 800010,
+          "reason": "10.3s of near-silence"
+        },
+        {
+          "seed": 801010,
+          "reason": "boomy: 45% below 60 Hz"
+        }
+      ],
+      "takes": [
+        803010
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -16.45,
+        "peak_dbfs": -2.4,
+        "silence_s": 0.1,
+        "brightness_pct": 0.78,
+        "boominess_pct": 8.84,
+        "onsets_per_s": 2.79,
+        "seam_db": -0.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-desk-build-1/greytide-desk-build-1.mp3",
+        "notes": "greytide-desk-build-1/notes.md",
+        "recipe": "greytide-desk-build-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Tape Wobble Funk"
+        ],
+        "take_files": [
+          "greytide-desk-build-1/greytide-desk-build-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-couch-wave-5",
       "title": "Afternoon Repeat (wave)",
       "idea": "daytime-television muzak gone sour",
