@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-sandpit-build-1",
+      "title": "Bucket And Spade Shuffle (build phase)",
+      "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "request": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "mood": "the build phase",
+      "bpm": 74,
+      "key": "C major",
+      "seed": 802510,
+      "model": "fast",
+      "duration": 94.94,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back hot lazy afternoon groove, bucket taps, spade scrapes and a dripping hose as a drum kit, buzzing bee-like synth, a far-off ice-cream-van chime used as an instrument, soft steel-drum-like plucks, fuzzy round bass, dusty shaker drum machine, sunny sandpit daydream, good-humoured, 74 bpm, a tinkling toy music-box chime and lazy bongos, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"hot lazy afternoon groove with bees, a hose and a far-off ice-cream van\" (the build phase): 74 bpm in C major. The prompt describes laid back hot lazy afternoon groove with bucket taps, spade scrapes and a dripping hose as a drum kit and buzzing bee-like synth; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801510,
+          "reason": "harsh: 4.9% above 6 kHz"
+        }
+      ],
+      "takes": [
+        802510
+      ],
+      "numbers": {
+        "tempo_bpm": 73.0,
+        "lufs": -16.46,
+        "peak_dbfs": -2.4,
+        "silence_s": 0.1,
+        "brightness_pct": 0.75,
+        "boominess_pct": 12.4,
+        "onsets_per_s": 3.17,
+        "seam_db": 1.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sandpit-build-1/greytide-sandpit-build-1.mp3",
+        "notes": "greytide-sandpit-build-1/notes.md",
+        "recipe": "greytide-sandpit-build-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.46,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Bucket And Spade Shuffle"
+        ],
+        "take_files": [
+          "greytide-sandpit-build-1/greytide-sandpit-build-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-carseat-wave-5",
       "title": "Nearly Home (wave)",
       "idea": "night-drive groove with indicator ticks and a radio between stations",
