@@ -13919,6 +13919,78 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-68-sleaze-engine",
+      "title": "Sleaze Engine",
+      "idea": "Industrial dance rock",
+      "request": "Industrial dance rock",
+      "mood": "",
+      "bpm": 118,
+      "key": "E minor",
+      "seed": 400068,
+      "model": "best",
+      "duration": 177.21,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Industrial dance rock, late-eighties sleazy party music for a warehouse: a rubbery sequenced funk bassline, a cheap distorted drum machine with a gated snare the size of the room, clanging sheet-metal hits and cowbell, chugging muted fuzz guitar, and a collage of sampled shouts, whoops and barked single words cut up and thrown around the stereo field like a rowdy bar crowd. Dirty, overdriven, tape-saturated, lecherous and funny, built to dance to.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Industrial dance rock\": 118 bpm in E minor, one of the tracks the machine chose for itself, on the best tier. The prompt describes industrial dance rock; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400068
+      ],
+      "numbers": {
+        "tempo_bpm": 116.5,
+        "lufs": -17.48,
+        "peak_dbfs": -2.99,
+        "silence_s": 0.7,
+        "brightness_pct": 0.48,
+        "boominess_pct": 38.59,
+        "onsets_per_s": 2.03,
+        "seam_db": -40.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-68-sleaze-engine/shoosting-68-sleaze-engine.mp3",
+        "notes": "shoosting-68-sleaze-engine/notes.md",
+        "recipe": "shoosting-68-sleaze-engine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -17.48,
+        "failed": [
+          "loudness",
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-68-sleaze-engine/shoosting-68-sleaze-engine.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-67-sawtooth-heart",
       "title": "Sawtooth Heart",
       "idea": "Electro house with a broken heart",
