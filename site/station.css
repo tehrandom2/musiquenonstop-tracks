@@ -77,10 +77,11 @@ button:focus { outline: 0; }
 /* transmitter */
 .transmitter { position: relative; }
 .np-row .meta { flex: 0 0 auto; }
-/* the readout wraps the whole prompt; it is never truncated (issue #43) */
 .readout {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+  max-height: calc(var(--row) * 2);
+  overflow: hidden;
   min-height: var(--row);
 }
 .progress { cursor: pointer; margin-top: calc(var(--row) * .5); }
@@ -207,16 +208,13 @@ button:focus { outline: 0; }
 @media (max-width: 900px) {
   .tagline-h, .header .up, #shuffleLabel { display: none; }
   .np-row { flex-direction: column; align-items: flex-start; gap: 0; }
-  /* the page header at 390 px: `playing: <slug...>  <time>  [chip]`; the name and the small bar go, the slug gets an ellipsis, the chip is never overlapped (issue #43) */
-  .header-page .left { white-space: pre; display: flex; align-items: baseline; min-width: 0; overflow: hidden; }
-  .header-page .left > * { flex: 0 0 auto; }
-  .header-page #stationName2, .header-page #hdrBar, .header-page #hdrBack { display: none; }
-  .header-page #hdrSlug { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .header-page .left { white-space: pre; }
   .footer-buttons { flex-wrap: wrap; }
   .footer-buttons .left { white-space: normal; flex: 1 1 100%; line-height: calc(var(--row) * 1.2); }
   .footer-buttons .right { flex: 1 1 100%; text-align: left; }
   .fat { display: flex; justify-content: space-around; padding: calc(var(--row) * .5) 0 calc(var(--row) * .25); margin-top: calc(var(--row) * .5); }
   .fat .bk { font-size: calc(var(--fs) * 1.1); padding: 0 1ch; min-width: 8ch; text-align: center; }
+  .readout { max-height: calc(var(--row) * 2); }
   #spectrum { height: calc(var(--row) * 4); }
   .terminal .log { height: calc(var(--row) * 3); }
   .cat-rows { max-height: none; }

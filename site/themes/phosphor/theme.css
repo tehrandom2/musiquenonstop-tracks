@@ -26,27 +26,21 @@
   --p1-ghost: #0C3A1B;
   --hot: #D9FFE0;
   --p3: #FFB000;
-  /* struck seeds still read at 4.5:1 on the glass (12.0, legibility); the old #9A6A00 was 4.3:1 */
-  --p3-dim: #B27B00;
+  --p3-dim: #9A6A00;
   --p1-rgb: 65 255 106;
   --p3-rgb: 255 176 0;
   --gutter: 24px;
   /* the design wrote 0.44 em per character; VT323 advances 0.49 em in Chrome, so the budget uses 0.5 */
   --chw: 0.5;
-  --big: 0px;
-  --fs: calc(clamp(16px, calc((100vw - 48px) / 100 / var(--chw)), 22px) + var(--big));
+  --fs: clamp(16px, calc((100vw - 48px) / 100 / var(--chw)), 22px);
   --lh: 1.15;
   --row: calc(var(--fs) * var(--lh));
-  --print-fs: calc(16px + var(--big));
-  /* the bloom (3.2), after issue #43: body text carries one soft 2 px glow; the full three-layer bloom stays on the station name,
-     the playing row and the --hot marks (--bloom-full), the amber one on warnings */
-  --bloom: 0 0 2px rgb(var(--p1-rgb) / .6);
-  --bloom-full: 0 0 2px var(--p1), 0 0 6px rgb(var(--p1-rgb) / .55), 0 0 14px rgb(var(--p1-rgb) / .25);
-  --bloom-mid: 0 0 2px rgb(var(--p1-rgb) / .45);
+  --print-fs: 14px;
+  --bloom: 0 0 2px var(--p1), 0 0 6px rgb(var(--p1-rgb) / .55), 0 0 14px rgb(var(--p1-rgb) / .25);
+  --bloom-mid: 0 0 2px var(--p1-mid), 0 0 6px rgb(var(--p1-rgb) / .55);
   --bloom-hot: 0 0 2px var(--hot), 0 0 8px rgb(var(--p1-rgb) / .7), 0 0 16px rgb(var(--p1-rgb) / .35);
   --bloom-amber: 0 0 2px var(--p3), 0 0 6px rgb(var(--p3-rgb) / .55), 0 0 14px rgb(var(--p3-rgb) / .25);
 }
-:root[data-big="1"] { --big: 2px; }
 /* the second phosphor (3.1): the cheat code and `amber` swap the ramp, warnings turn green. */
 :root[data-phosphor="amber"] {
   --p1: #FFB000;
@@ -62,8 +56,8 @@
 @media (max-width: 900px) {
   :root {
     --gutter: 16px;
-    --fs: calc(max(15px, calc((100vw - 32px) / 40 / var(--chw))) + var(--big));
-    --print-fs: calc(15px + var(--big));
+    --fs: calc((100vw - 32px) / 40 / var(--chw));
+    --print-fs: 12px;
   }
 }
 
@@ -81,9 +75,8 @@ body {
 
 /* text treatments */
 .mid, .mid * { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
-/* the dim tier of text is told by the missing glow, not by a darker green: --p1-dim stays for borders and the progress track (12.0, legibility) */
-.dim, .dim * { color: var(--p1-mid); text-shadow: none; }
-.ghost { color: var(--p1-mid); text-shadow: none; }
+.dim, .dim * { color: var(--p1-dim); text-shadow: none; }
+.ghost { color: var(--p1-ghost); text-shadow: none; }
 .hot { color: var(--hot); text-shadow: var(--bloom-hot); }
 .amber, .amber * { color: var(--p3); text-shadow: var(--bloom-amber); }
 .amber-dim { color: var(--p3-dim); text-shadow: none; }
@@ -108,7 +101,7 @@ body {
   text-shadow: none;
 }
 .bk:hover::before, .bk:hover::after, .bk:focus-visible::before, .bk:focus-visible::after { color: var(--glass); text-shadow: none; }
-.bk.dimmed { color: var(--p1-mid); text-shadow: none; }
+.bk.dimmed { color: var(--p1-dim); text-shadow: none; }
 .bk.dimmed::before, .bk.dimmed::after { color: var(--p1-dim); text-shadow: none; }
 .bk.amber-btn { color: var(--p3); text-shadow: var(--bloom-amber); }
 .bk.amber-btn::before, .bk.amber-btn::after { color: var(--p3-dim); text-shadow: none; }
@@ -182,18 +175,16 @@ body {
   inset: 0;
   pointer-events: none;
   mix-blend-mode: multiply;
-  background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0) 0 2px, rgb(0 0 0 / .10) 2px 3px);
+  background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0) 0 2px, rgb(0 0 0 / .18) 2px 3px);
   z-index: 10;
 }
-/* the scanlines stop at the catalogue and the prompt row (12.0, legibility): both sit above the overlay on their own glass */
-.catalogue, .prompt-row { position: relative; z-index: 11; background: var(--glass); }
 .rollbar {
   position: absolute;
   left: 0; right: 0;
   top: -140px;
   height: 140px;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgb(var(--p1-rgb) / 0), rgb(var(--p1-rgb) / .04) 50%, rgb(var(--p1-rgb) / 0));
+  background: linear-gradient(to bottom, rgb(var(--p1-rgb) / 0), rgb(var(--p1-rgb) / .06) 50%, rgb(var(--p1-rgb) / 0));
   animation: roll 9s linear infinite;
   z-index: 11;
 }
@@ -221,15 +212,14 @@ body {
 
 /* header (2.2) */
 .header .hot-name { color: var(--hot); text-shadow: var(--bloom-hot); }
-.banner { text-shadow: var(--bloom-full); }
 .header .up { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
 
 /* transmitter (2.2, 2.3, 5.2, 5.3) */
 .transmitter .vol { color: var(--p1); }
-.np-row .np-slug { color: var(--p1); text-shadow: var(--bloom-full); }
+.np-row .np-slug { color: var(--p1); }
 .readout.tuning #readoutText { color: var(--p3); text-shadow: var(--bloom-amber); }
 .progress { white-space: pre; overflow: hidden; }
-.progress .trk { color: var(--p1-mid); text-shadow: none; }
+.progress .trk { color: var(--p1-dim); text-shadow: none; }
 .dial { color: var(--p3); text-shadow: var(--bloom-amber); overflow: hidden; }
 .baseline .ghost-tag { color: var(--p3); text-shadow: var(--bloom-amber); }
 .scope { color: var(--p1); overflow: hidden; }
@@ -249,12 +239,11 @@ body {
   color: var(--p1-mid);
   text-shadow: var(--bloom-mid);
 }
-.cat-row.playing { color: var(--p1); text-shadow: var(--bloom-full); }
+.cat-row.playing { color: var(--p1); text-shadow: var(--bloom); }
 .cat-row.playing .mark { color: var(--hot); text-shadow: var(--bloom-hot); }
-/* a played row keeps the row colour and loses the glow; its `.` mark and the state word say it played (12.0, legibility) */
-.cat-row.played { color: var(--p1-mid); text-shadow: none; }
+.cat-row.played { color: var(--p1-dim); text-shadow: none; }
 .cat-row.tuning { color: var(--p3); text-shadow: var(--bloom-amber); }
-.cat-row .plus { color: var(--p1-mid); text-shadow: none; visibility: hidden; }
+.cat-row .plus { color: var(--p1-dim); text-shadow: none; visibility: hidden; }
 .cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: inherit; }
 .cat-row:hover *, .cat-row.hl * { color: var(--glass) !important; text-shadow: none !important; }
 .cat-row .slug-link { text-decoration: none; }
@@ -304,11 +293,6 @@ body {
 }
 @media (hover: none) {
   .cat-row .plus { visibility: visible; }
-}
-
-/* the page header at 390 px (station.css hides the name and the bar; the slug keeps the data colour with its ellipsis) */
-@media (max-width: 900px) {
-  .header-page #hdrSlug { color: var(--p1); }
 }
 
 /* reduced motion (ADR 0002): the bar, the flicker, the scramble stop; typing stays, at 10x. */

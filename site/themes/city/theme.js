@@ -31,11 +31,10 @@ function makeCityScene(THREE, P) {
   /* ---- the renderer, the scene, the camera ---- */
   let renderer, scene, camera, composer, bloom, chroma, canvas, W = 2, H = 2, pr = 1;
   const clock = { last: 0, t: 0 };
-  // bloom far lower than 12.1 wrote (1.15 / .55 / .12) and lower again after issue #43: on a real GPU the playing tower's bloom at
-  // 1.0 / .5 / .18 was a white-magenta glare the size of a card behind the catalogue and the terminal (the software renderer of
-  // the harness never showed it). .55 / .4 / .5 keeps a halo on the bright blocks and nothing else lights up (departure, 12.13)
-  const settings = { fillers: 360, fog: 0.02, bloom: [0.55, 0.4, 0.5], bars: 64, flight: 900 };
-  const PHONE = { fillers: 120, fog: 0.03, bloom: [0.5, 0.35, 0.5], bars: 32, flight: 500 };
+  // bloom lower than 12.1 wrote (1.15 / .55 / .12): on the night sky those numbers washed the whole frame pink and smeared
+  // the block edges; .9 / .5 / .22 keeps the glow on the bright things and the cubes crisp (departure, noted in 12.13)
+  const settings = { fillers: 360, fog: 0.02, bloom: [1.0, 0.5, 0.18], bars: 64, flight: 900 };
+  const PHONE = { fillers: 120, fog: 0.03, bloom: [0.8, 0.4, 0.22], bars: 32, flight: 500 };
 
   const CHROMA = {
     uniforms: { tDiffuse: { value: null }, uAmount: { value: 0.0022 } },
@@ -70,7 +69,7 @@ function makeCityScene(THREE, P) {
     '  float fog = exp(-pow(d * uFog, 2.0)) * smoothstep(1.2, 4.5, d);',
     '  float playing = step(abs(aTower - uPlaying), 0.5);',
     '  float top = step(0.5, aTop) * step(aTop, 1.5);',
-    '  float gain = 1.0 + playing * uPulse * 0.7 * (1.0 + top);',
+    '  float gain = 1.0 + playing * uPulse * 1.6 * (1.0 + top);',
     '  float blink = mix(1.0, 0.5 + 0.5 * sin(uTime * 3.14159), step(1.5, aTop));',
     '  vCol = instanceColor * gain * blink;',
     '  vFade = fog * s;',
@@ -131,8 +130,7 @@ function makeCityScene(THREE, P) {
   const towers = []; // {slug, x, z, blocks, kind}
   let barCount = 64, barColors = [];
   const ribbonN = 160, ribbonWave = new Float32Array(ribbonN);
-  // side: how far the camera pans sideways so the playing tower sits beside the card column, not behind it (issue #43); 0 on the phone
-  const cam = { target: new THREE.Vector3(0, 2, 0), r: 24, h: 18, speed: 0.02, angle: 0.6, side: 0, sideNow: 0 };
+  const cam = { target: new THREE.Vector3(0, 2, 0), r: 24, h: 18, speed: 0.02, angle: 0.6 };
   const pose = { pos: new THREE.Vector3(), look: new THREE.Vector3() };
   let flight = null, tunnelUntil = 0, tunnelFade = 0, parallax = { x: 0, y: 0, tx: 0, ty: 0 };
   let bootT = null, deadBlocks = 0, deadAt = 0, pulse = 0, bass = 0, chromaAmt = 0.0022;
@@ -296,8 +294,6 @@ function makeCityScene(THREE, P) {
     const v = VIEWS[view] || VIEWS.home;
     C.view = view;
     cam.r = v.r; cam.h = v.h; cam.speed = reduced ? 0 : v.speed;
-    // on air the tower is panned to about 87 % of the width on desktop: the halo lands beside the cards, the cards' panels carry the rest
-    cam.side = (view === 'home' || view === 'page' || view === 'guestbook') && !C.phone ? v.r * 0.7 : 0;
     cam.target.copy(view === 'standby' || view === 'dead' ? new THREE.Vector3(0, 2, 0) : targetFor(C.playing));
     dead.visible = view === 'dead';
     filler.visible = view !== 'dead';
@@ -430,13 +426,11 @@ function makeCityScene(THREE, P) {
       if (k >= 1) { flight = null; C.flying = false; }
     } else { pose.pos.copy(tmpV); pose.look.copy(tmpP); }
     parallax.x += (parallax.tx - parallax.x) * 0.08; parallax.y += (parallax.ty - parallax.y) * 0.08;
-    cam.sideNow += (cam.side - cam.sideNow) * (dt / 0.6);
     camera.position.copy(pose.pos);
     camera.lookAt(pose.look);
     tmpR.set(1, 0, 0).applyQuaternion(camera.quaternion);
-    // the pan: camera and look-at move together along the camera's right axis, so the tower slides to the side of the frame
-    camera.position.addScaledVector(tmpR, parallax.x - cam.sideNow).addScaledVector(tmpU, parallax.y);
-    camera.lookAt(tmpP.copy(pose.look).addScaledVector(tmpR, -cam.sideNow));
+    camera.position.addScaledVector(tmpR, parallax.x).addScaledVector(tmpU, parallax.y);
+    camera.lookAt(pose.look);
     sky.position.copy(camera.position);
     gridUniforms.uCam.value.set(camera.position.x, camera.position.z);
 
@@ -653,7 +647,7 @@ NOBODY.themes.city = (function () {
     let front = null;
     for (let i = layers - 1; i >= 0; i--) {
       const s = document.createElement('span'); s.textContent = text; s.style.setProperty('--i', String(i));
-      if (i === 0) { s.className = 'front'; front = s; } else s.setAttribute('aria-hidden', 'true'); // the depth layers are decoration, not text
+      if (i === 0) { s.className = 'front'; front = s; }
       g.appendChild(s);
     }
     host.appendChild(g);
