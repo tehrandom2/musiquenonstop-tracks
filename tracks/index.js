@@ -458,6 +458,102 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-gamestore-wave-4",
+      "title": "Demo Disc Daydream (wave)",
+      "idea": "plastic-toy keyboard funk",
+      "request": "plastic-toy keyboard funk",
+      "mood": "the wave phase",
+      "bpm": 87,
+      "key": "D major",
+      "seed": 802445,
+      "model": "fast",
+      "duration": 94.62,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back plastic-toy keyboard funk, cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit, sparse kazoo-like lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine, closing-time game store daydream, sunny childlike melody going a little sour, good-humoured, 87 bpm, chiptune-flavoured toy synth bleeps and a wobbly organ, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"plastic-toy keyboard funk\" (the wave phase): 87 bpm in D major. The prompt describes laid back plastic-toy keyboard funk with cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit and sparse kazoo-like lead used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 803445,
+          "reason": "harsh: 2.8% above 6 kHz"
+        },
+        {
+          "seed": 700445,
+          "reason": "harsh: 2.6% above 6 kHz; superseded by the #443 render"
+        },
+        {
+          "seed": 701445,
+          "reason": "harsh: 2.9% above 6 kHz; superseded by the #443 render"
+        },
+        {
+          "seed": 702445,
+          "reason": "crest 18.0 dB, too peaky to match the loudness; superseded by the #443 render"
+        },
+        {
+          "seed": 800445,
+          "reason": "harsh: 4.0% above 6 kHz"
+        },
+        {
+          "seed": 801445,
+          "reason": "harsh: 3.4% above 6 kHz"
+        }
+      ],
+      "takes": [
+        802445
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.43,
+        "peak_dbfs": -1.87,
+        "silence_s": 0.15,
+        "brightness_pct": 1.67,
+        "boominess_pct": 4.38,
+        "onsets_per_s": 3.46,
+        "seam_db": -20.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-gamestore-wave-4/greytide-gamestore-wave-4.mp3",
+        "notes": "greytide-gamestore-wave-4/notes.md",
+        "recipe": "greytide-gamestore-wave-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.76,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Demo Disc Daydream"
+        ],
+        "take_files": [
+          "greytide-gamestore-wave-4/greytide-gamestore-wave-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-gamestore-wave-3",
       "title": "Clearance Bin Groove (wave)",
       "idea": "plastic-toy keyboard funk",
