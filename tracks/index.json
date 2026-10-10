@@ -534,6 +534,82 @@
       }
     },
     {
+      "slug": "greytide-schooldesk-build-5",
+      "title": "Ten Minutes To The Bell (build phase)",
+      "idea": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",
+      "request": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",
+      "mood": "the build phase",
+      "bpm": 86,
+      "key": "A minor",
+      "seed": 802350,
+      "model": "fast",
+      "duration": 90.32,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back bored-lesson groove, clock ticks, pencil taps and ruler twangs as a drum kit, a tune hummed under the breath used as an instrument, plinky toy keyboard, fuzzy round bass, dusty drum machine, last-lesson-of-the-day daydream, good-humoured, 86 bpm, a muted trumpet-like synth and a pencil-tap shuffle, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"bored-lesson groove with clock ticks, pencil taps and a hummed tune\" (the build phase): 86 bpm in A minor. The prompt describes laid back bored-lesson groove with clock ticks, pencil taps and ruler twangs as a drum kit and a tune hummed under the breath used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801350,
+          "reason": "harsh: 2.8% above 6 kHz"
+        }
+      ],
+      "takes": [
+        802350
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -16.44,
+        "peak_dbfs": -2.89,
+        "silence_s": 0.15,
+        "brightness_pct": 0.98,
+        "boominess_pct": 12.38,
+        "onsets_per_s": 3.27,
+        "seam_db": -2.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-schooldesk-build-5/greytide-schooldesk-build-5.mp3",
+        "notes": "greytide-schooldesk-build-5/notes.md",
+        "recipe": "greytide-schooldesk-build-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.41,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Ten Minutes To The Bell"
+        ],
+        "take_files": [
+          "greytide-schooldesk-build-5/greytide-schooldesk-build-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-schooldesk-build-4",
       "title": "Hummed Under The Breath (build phase)",
       "idea": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",

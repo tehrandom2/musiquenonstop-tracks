@@ -1,0 +1,64 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-schooldesk-build-5",
+  "title": "Ten Minutes To The Bell (build phase)",
+  "date": "2026-10-07",
+  "rendered_at": "2026-10-07T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Laid back bored-lesson groove, clock ticks, pencil taps and ruler twangs as a drum kit, a tune hummed under the breath used as an instrument, plinky toy keyboard, fuzzy round bass, dusty drum machine, last-lesson-of-the-day daydream, good-humoured, 86 bpm, a muted trumpet-like synth and a pencil-tap shuffle, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 86,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 90.32,
+  "seed": 802350,
+  "dit_caption": "Laid back bored-lesson groove, clock ticks, pencil taps and ruler twangs as a drum kit, a tune hummed under the breath used as an instrument, plinky toy keyboard, fuzzy round bass, dusty drum machine, last-lesson-of-the-day daydream, good-humoured, 86 bpm, a muted trumpet-like synth and a pencil-tap shuffle, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 90.32,
+    "peak_dbfs": -2.89,
+    "lufs": -16.44
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 84.5,
+      "lufs": -16.44,
+      "peak_dbfs": -2.89,
+      "silence_s": 0.15,
+      "brightness_pct": 0.98,
+      "boominess_pct": 12.38,
+      "onsets_per_s": 3.27,
+      "seam_db": -2.9
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": true,
+      "words": null
+    },
+    "failed": [
+      "boominess"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
