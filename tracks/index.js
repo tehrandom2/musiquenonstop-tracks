@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:11:37-04:00",
+  "written": "2026-10-10T06:12:13-04:00",
   "tracks": [
     {
       "slug": "arcade-after-slow-light",
@@ -13916,6 +13916,78 @@ window.NOBODY_INDEX = {
         ],
         "key_source": "estimated now (the source did not record one)",
         "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
+      "slug": "shoosting-71-brass-knuckles",
+      "title": "Brass Knuckles",
+      "idea": "Maximalist trap anthem",
+      "request": "Maximalist trap anthem",
+      "mood": "",
+      "bpm": 140,
+      "key": "G major",
+      "seed": 400071,
+      "model": "best",
+      "duration": 178.18,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Maximalist trap anthem, colossal detuned synth-brass fanfares stabbing like a marching band from the future, a sped-up, pitched-high soul singer sample chopped into a looping hook, booming distorted 808 bass slides, half-time drums with rattling triplet hi-hats and a snare like a gunshot, orchestral hits and glittering arpeggios. Every element is too loud and too bright on purpose. Triumphant, ridiculous, euphoric, stadium-sized, a victory lap.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Maximalist trap anthem\": 140 bpm in G major, one of the tracks the machine chose for itself, on the best tier. The prompt describes maximalist trap anthem; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400071
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -18.13,
+        "peak_dbfs": -2.9,
+        "silence_s": 0.15,
+        "brightness_pct": 2.92,
+        "boominess_pct": 26.76,
+        "onsets_per_s": 2.61,
+        "seam_db": -32.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-71-brass-knuckles/shoosting-71-brass-knuckles.mp3",
+        "notes": "shoosting-71-brass-knuckles/notes.md",
+        "recipe": "shoosting-71-brass-knuckles/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -18.13,
+        "failed": [
+          "loudness",
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-71-brass-knuckles/shoosting-71-brass-knuckles.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
       }
     },
     {
