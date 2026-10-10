@@ -86,6 +86,12 @@
   function phone() { return V.phone(); }
   function cols() { return V.cols(); }
   function content() { return phone() ? cols() - 2 : cols() - 4; }
+  // characters per second so a text of any length is typed within 2 s (issue #43); never slower than the design's rate
+  function typingSpeed(text, cps) { return Math.max(cps, Math.ceil(String(text).length / 1.8)); }
+  function finishTypers() {
+    if (S.readoutTyper && !S.readoutTyper.done) S.readoutTyper.finish();
+    if (S.whyTyper && !S.whyTyper.done) S.whyTyper.finish();
+  }
   function fmt(s) { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
   function hms(ms) { const s = Math.floor(ms / 1000); return String(Math.floor(s / 3600)).padStart(2, '0') + ':' + String(Math.floor(s / 60) % 60).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }
   function pad(s, n) { s = String(s == null ? '' : s); return s.length > n ? s.slice(0, n) : s.padEnd(n); }
@@ -369,7 +375,8 @@
     A.tuning = false;
     TH().transition('tuning', 'playing', { slug: t.slug });
     el.readout.classList.add('typing');
-    S.readoutTyper = V.type(el.readoutText, t.prompt || t.idea || '', 60);
+    // the typing finishes within 2 s whatever the prompt's length, or on any key (issue #43)
+    S.readoutTyper = V.type(el.readoutText, t.prompt || t.idea || '', typingSpeed(t.prompt || t.idea || '', 60));
     S.readoutTyper.promise.then(function (finished) { if (finished) el.readout.classList.remove('typing'); });
     document.title = 'nobody fm: ' + t.slug;
     mediaSession(t);
@@ -590,7 +597,8 @@
       b.className = 'cat-row ' + stt + (matches(t) ? '' : ' hidden-row');
       b.setAttribute('role', 'button'); b.tabIndex = -1; b.dataset.slug = t.slug;
       b.appendChild(span(r.num));
-      b.appendChild(span(stt === 'playing' || stt === 'tuning' ? '>' : ' ', 'mark'));
+      // a played row is told by its mark, not by a darker colour (issue #43)
+      b.appendChild(span(stt === 'playing' || stt === 'tuning' ? '>' : stt === 'played' ? '.' : ' ', 'mark'));
       b.appendChild(span(' '));
       const sl = span(r.slug, 'slug-link'); sl.title = 'open ' + t.slug;
       sl.addEventListener('click', function (e) { e.stopPropagation(); openTrack(t.slug); });
@@ -715,7 +723,7 @@
     const whyText = span(''); why.appendChild(whyText); const wc = span('', 'cursor'); why.appendChild(wc);
     p.appendChild(why);
     if (S.whyTyper) S.whyTyper.cancel();
-    S.whyTyper = V.type(whyText, t.why || '(nobody wrote a why for this one.)', 90);
+    S.whyTyper = V.type(whyText, t.why || '(nobody wrote a why for this one.)', typingSpeed(t.why || '', 90));
     S.whyTyper.promise.then(function () { wc.remove(); });
     const seedR = span(''); seedR.appendChild(span('seed ' + (t.seed != null ? t.seed : '-') + '   ', 'mid')); seedR.appendChild(button('copy', '', function () { st.copyPrompt(slug); }));
     p.appendChild(h2('PROMPT', seedR));
@@ -864,9 +872,9 @@
   const HELP_CMDS = [
     'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10', 'list [words]    find <words>   info [slug]',
     'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     remix [slug]   request <words>', 'guestbook   sign   count   uptime   dial <MHz>',
-    'amber   green   help   clear   reboot   home', 'theme [name]', '', 'a few others. nobody documents everything.'
+    'amber   green   help   clear   reboot   home', 'theme [name]   big   contrast', '', 'a few others. nobody documents everything.'
   ];
-  const HELP_WORDS = ['play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'cat', 'tree', 'seed', 'prompt', 'take', 'remix', 'request', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'clear', 'reboot', 'home'];
+  const HELP_WORDS = ['play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'cat', 'tree', 'seed', 'prompt', 'take', 'remix', 'request', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'clear', 'reboot', 'home'];
   function helpLines() {
     const out = [];
     const n = Math.max(HELP_KEYS.length, HELP_CMDS.length);
@@ -1232,6 +1240,27 @@
     T.print(whys[Math.floor(Math.random() * whys.length)]);
   };
   st.dance = function () { A.dance(); };
+  /* ---------------- legibility (issue #43, design 12.0): `big` and `contrast` ---------------- */
+  // `big` adds 2 px to the base size (html[data-big="1"], every theme adds --big to its --fs) and remembers it in this browser
+  st.big = function (a) {
+    const on = document.documentElement.dataset.big === '1';
+    const want = a === 'off' ? false : a === 'on' ? true : !on;
+    document.documentElement.dataset.big = want ? '1' : '';
+    try { localStorage.setItem('nobody.big', want ? '1' : ''); } catch (e) {}
+    relayout();
+    T.print(want ? 'big: +2 px. remembered. big again for normal.' + (phone() ? ' the phone clips the end of a long row.' : '') : 'big off. normal size.');
+  };
+  // `contrast` prints the measured ratio of every text box on this screen against the backgrounds behind it, worst first;
+  // an estimate from the page's own colours (the harness measures real pixels), so the viewer can check on their own screen
+  st.contrast = function () {
+    const rows = V.contrastReport();
+    if (!rows.length) { T.print('nothing to measure.', 'mid'); return; }
+    const bad = rows.filter(function (r) { return r.ratio < 4.5; });
+    const lines = ['contrast: ' + rows.length + ' text boxes on this screen, ' + bad.length + ' under 4.5:1 (an estimate from the page colours; the harness measures pixels).', pad('ratio', 8) + pad('px', 5) + 'text'];
+    rows.slice(0, 10).forEach(function (r) { lines.push(pad(r.ratio.toFixed(1) + ':1', 8) + pad(String(Math.round(r.size)), 5) + r.text.slice(0, phone() ? 22 : 60)); });
+    if (rows.length > 10) lines.push('... and ' + (rows.length - 10) + ' more, all at ' + rows[10].ratio.toFixed(1) + ':1 or better. clear to dismiss.');
+    T.printScroll(lines);
+  };
 
   /* ---------------- keys (4.2), the cheat code (4.5) ---------------- */
   function inInput(e) { const t = e.target; return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable); }
@@ -1286,6 +1315,7 @@
   }
 
   /* ---------------- clicks and taps (4.3) ---------------- */
+  function relayout() { A.resize(); drawCatHead(); renderRows(); drawVol(); drawProgress(); T.maxLines = phone() ? 3 : 6; if (TH() && TH().resize) TH().resize(); }
   function wire() {
     // the glass: a tap goes on air before anything else
     glass.addEventListener('pointerdown', function (e) { if (!S.onAir && (S.booted || bootTypers.length)) { goOnAir(e); } });
@@ -1320,7 +1350,9 @@
     el.readout.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
     el.readout.addEventListener('touchend', function (e) { const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 50 && Math.abs(dy) < 40) { if (dx < 0) next(); else prev(); } });
     el.cmd.addEventListener('focus', function () { if (phone()) setTimeout(function () { el.promptRow.scrollIntoView({ block: 'center' }); }, 300); });
-    window.addEventListener('resize', function () { A.resize(); drawCatHead(); renderRows(); drawVol(); drawProgress(); T.maxLines = phone() ? 3 : 6; });
+    window.addEventListener('resize', relayout);
+    // any key finishes a typing effect (issue #43); captured, so a key typed into the terminal counts too
+    document.addEventListener('keydown', finishTypers, true);
   }
 
   /* ---------------- the frame loop, the clock, 2 a.m. ---------------- */
@@ -1345,6 +1377,7 @@
   /* ---------------- start ---------------- */
   function init() {
     try { if (sessionStorage.getItem('nobody.phosphor') === 'amber') document.documentElement.dataset.phosphor = 'amber'; } catch (e) {}
+    try { if (localStorage.getItem('nobody.big') === '1') document.documentElement.dataset.big = '1'; } catch (e) {}
     T.init(el.log, el.cmd, el.cmdCursor);
     A.init(el.spectrum, el.baseline, el.scope);
     // the theme was chosen in the head of the page (?theme, then this browser's choice, then config.js)
