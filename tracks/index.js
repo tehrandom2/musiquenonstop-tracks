@@ -458,6 +458,86 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-pub-build-2",
+      "title": "Last Orders Shuffle (build phase)",
+      "idea": "wonky pub-piano and wheezy accordion shuffle",
+      "request": "wonky pub-piano and wheezy accordion shuffle",
+      "mood": "the build phase",
+      "bpm": 88,
+      "key": "G major",
+      "seed": 800920,
+      "model": "fast",
+      "duration": 92.93,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wonky honky-tonk groove, clinking glasses, beer-mat taps and foot stomps as a drum kit, slightly out-of-tune pub piano, wheezy accordion used as an instrument, fuzzy walking bass, dusty brushed drum machine, tipsy after-hours daydream, good-humoured, 88 bpm, banjo-like plucks and a wheezy harmonica-like lead, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wonky pub-piano and wheezy accordion shuffle\" (the build phase): 88 bpm in G major. The prompt describes laid back wonky honky-tonk groove with clinking glasses, beer-mat taps and foot stomps as a drum kit and slightly out-of-tune pub piano; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801920,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700920,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800920
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.44,
+        "peak_dbfs": -2.99,
+        "silence_s": 0.15,
+        "brightness_pct": 1.09,
+        "boominess_pct": 5.45,
+        "onsets_per_s": 2.37,
+        "seam_db": 8.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-pub-build-2/greytide-pub-build-2.mp3",
+        "notes": "greytide-pub-build-2/notes.md",
+        "recipe": "greytide-pub-build-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.5,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Last Orders Shuffle"
+        ],
+        "take_files": [
+          "greytide-pub-build-2/greytide-pub-build-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-pub-build-1",
       "title": "Wonky Pub Piano (build phase)",
       "idea": "wonky pub-piano and wheezy accordion shuffle",
