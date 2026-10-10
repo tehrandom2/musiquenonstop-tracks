@@ -384,6 +384,84 @@
       }
     },
     {
+      "slug": "greytide-bathroom-build-3",
+      "title": "Steamed Mirror Riddim (build phase)",
+      "idea": "echoey tiled-room dub with dripping percussion and melodica",
+      "request": "echoey tiled-room dub with dripping percussion and melodica",
+      "mood": "the build phase",
+      "bpm": 82,
+      "key": "E minor",
+      "seed": 800330,
+      "model": "fast",
+      "duration": 96.98,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back echoey tiled-room dub, dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit, spring reverb and tape echo, plinky melodica used as an instrument, fuzzy round bass, dusty rimshot drum machine, steamy bathroom daydream, good-humoured, 82 bpm, dripping tap clicks and a wandering melodica, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"echoey tiled-room dub with dripping percussion and melodica\" (the build phase): 82 bpm in E minor. The prompt describes laid back echoey tiled-room dub with dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit and spring reverb and tape echo; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801330,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700330,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800330
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.44,
+        "peak_dbfs": -2.66,
+        "silence_s": 0.2,
+        "brightness_pct": 1.14,
+        "boominess_pct": 8.27,
+        "onsets_per_s": 2.8,
+        "seam_db": -4.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bathroom-build-3/greytide-bathroom-build-3.mp3",
+        "notes": "greytide-bathroom-build-3/notes.md",
+        "recipe": "greytide-bathroom-build-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Steamed Mirror Riddim"
+        ],
+        "take_files": [
+          "greytide-bathroom-build-3/greytide-bathroom-build-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bathroom-build-2",
       "title": "Plughole Skank (build phase)",
       "idea": "echoey tiled-room dub with dripping percussion and melodica",
