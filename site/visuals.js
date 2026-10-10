@@ -229,5 +229,121 @@ NOBODY.vis = (function () {
     };
   };
 
+  /* ---- legibility (issue #43, design 12.0): every text box on the screen, its colour, its size, and what is behind it.
+     the harness samples the pixels behind each box from a screenshot with the text hidden; the terminal's `contrast`
+     command, which has no screenshot, composites the backgrounds of the box's ancestors instead and says so. ---- */
+  function lin(c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  V.luminance = function (rgb) { return 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]); };
+  V.ratio = function (l1, l2) { const a = Math.max(l1, l2), b = Math.min(l1, l2); return (a + 0.05) / (b + 0.05); };
+  // "rgb(r, g, b)" or "rgba(r, g, b, a)" -> [r, g, b, a]; anything else -> null
+  V.parseColor = function (s) {
+    const m = /rgba?\(\s*([\d.]+)[ ,]+([\d.]+)[ ,]+([\d.]+)(?:[ ,/]+([\d.]+%?))?\s*\)/.exec(s || '');
+    if (!m) return null;
+    let a = m[4] == null ? 1 : parseFloat(m[4]); if (/%$/.test(m[4] || '')) a /= 100;
+    return [+m[1], +m[2], +m[3], a];
+  };
+  V.over = function (top, under) { const a = top[3] == null ? 1 : top[3]; return [top[0] * a + under[0] * (1 - a), top[1] * a + under[1] * (1 - a), top[2] * a + under[2] * (1 - a), 1]; };
+  const LABELS = '.label, .chip, .page h2 > span:first-child, .boot-wait, .odo-label, .help-head .label';
+  function describe(e) {
+    const parts = [];
+    let a = e;
+    while (a && a !== document.body && parts.length < 4) {
+      if (a.id) { parts.unshift('#' + a.id); break; }
+      let s = a.tagName.toLowerCase();
+      const cls = [].slice.call(a.classList).filter(function (c) { return !/^hidden-row$/.test(c); }).slice(0, 3);
+      if (cls.length) s += '.' + cls.join('.');
+      const p = a.parentElement;
+      if (p && p.children.length > 1) s += ':nth-child(' + ([].indexOf.call(p.children, a) + 1) + ')';
+      parts.unshift(s); a = p;
+    }
+    return parts.join(' > ');
+  }
+  function clipRect(r, c) {
+    const x0 = Math.max(r.left, c.left), y0 = Math.max(r.top, c.top), x1 = Math.min(r.right, c.right), y1 = Math.min(r.bottom, c.bottom);
+    return x1 - x0 >= 1 && y1 - y0 >= 1 ? { left: x0, top: y0, right: x1, bottom: y1 } : null;
+  }
+  // every visible text box on the screen: {sel, text, color [r,g,b,a], gradient [[r,g,b]..] for clipped-gradient text, size, weight, kind, rects}
+  V.textBoxes = function () {
+    const out = [], byEl = new Map();
+    const view = { left: 0, top: 0, right: innerWidth, bottom: innerHeight };
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let n;
+    while ((n = walker.nextNode())) {
+      if (!n.nodeValue.trim()) continue;
+      const e = n.parentElement;
+      if (!e || e.closest('script, style, noscript, svg, canvas, .cursor, [hidden], .hidden-row, [aria-hidden="true"]')) continue;
+      const cs = getComputedStyle(e);
+      if (cs.visibility !== 'visible' || cs.display === 'none') continue;
+      let opacity = 1, a = e, clips = [];
+      while (a && a !== document.body) {
+        const s = a === e ? cs : getComputedStyle(a);
+        opacity *= parseFloat(s.opacity) || 0;
+        if (s.display === 'none' || s.visibility === 'hidden') { opacity = 0; break; }
+        if (a !== e && (s.overflowX !== 'visible' || s.overflowY !== 'visible')) clips.push(a.getBoundingClientRect());
+        a = a.parentElement;
+      }
+      if (opacity < 0.5) continue;
+      const range = document.createRange(); range.selectNodeContents(n);
+      let rects = [].slice.call(range.getClientRects()).map(function (r) { return { left: r.left, top: r.top, right: r.right, bottom: r.bottom }; });
+      clips.concat([view]).forEach(function (c) { rects = rects.map(function (r) { return clipRect(r, c); }).filter(Boolean); });
+      if (!rects.length) continue;
+      let entry = byEl.get(e);
+      if (!entry) {
+        let color = V.parseColor(cs.webkitTextFillColor) || V.parseColor(cs.color) || [255, 255, 255, 1];
+        let gradient = null;
+        if (color[3] === 0 && /text/.test(cs.webkitBackgroundClip || cs.backgroundClip)) {
+          gradient = (cs.backgroundImage.match(/rgba?\([^)]*\)/g) || []).map(V.parseColor).filter(Boolean);
+          e.dataset.cxGrad = '1';
+        }
+        entry = { sel: describe(e), text: '', color: color, gradient: gradient, size: parseFloat(cs.fontSize), weight: cs.fontWeight, family: (cs.fontFamily.split(',')[0] || '').replace(/"/g, ''),
+          kind: e.matches(LABELS) ? 'label' : 'data', rects: [] };
+        Object.defineProperty(entry, 'el', { value: e, enumerable: false });
+        byEl.set(e, entry); out.push(entry);
+      }
+      entry.text += (entry.text ? ' ' : '') + n.nodeValue.replace(/\s+/g, ' ').trim();
+      rects.forEach(function (r) { entry.rects.push({ x: Math.floor(r.left), y: Math.floor(r.top), w: Math.ceil(r.right) - Math.floor(r.left), h: Math.ceil(r.bottom) - Math.floor(r.top) }); });
+    }
+    out.forEach(function (b) { b.text = b.text.slice(0, 60); });
+    return out;
+  };
+  // what is behind an element, by compositing its ancestors' background colours (a background clipped to the content box counts
+  // only when the box sits inside it). a guess for the terminal; the harness measures the real pixels.
+  V.behindOf = function (e, box) {
+    const layers = [];
+    let a = e;
+    while (a) {
+      const s = getComputedStyle(a);
+      const c = V.parseColor(s.backgroundColor);
+      if (c && c[3] > 0) {
+        let covers = true;
+        if (/content-box/.test(s.backgroundClip)) {
+          const r = a.getBoundingClientRect();
+          const inner = { left: r.left + parseFloat(s.paddingLeft) + parseFloat(s.borderLeftWidth), top: r.top + parseFloat(s.paddingTop) + parseFloat(s.borderTopWidth), right: r.right - parseFloat(s.paddingRight) - parseFloat(s.borderRightWidth), bottom: r.bottom - parseFloat(s.paddingBottom) - parseFloat(s.borderBottomWidth) };
+          covers = box ? box.x >= inner.left - 1 && box.y >= inner.top - 1 && box.x + box.w <= inner.right + 1 && box.y + box.h <= inner.bottom + 1 : true;
+        }
+        if (covers) layers.push(c);
+      }
+      if (c && c[3] >= 0.99 && layers[layers.length - 1] === c) break;
+      a = a.parentElement;
+    }
+    let acc = V.parseColor(getComputedStyle(document.documentElement).backgroundColor) || [0, 0, 0, 1];
+    if (acc[3] < 1) acc = [0, 0, 0, 1];
+    for (let i = layers.length - 1; i >= 0; i--) acc = V.over(layers[i], acc);
+    return acc;
+  };
+  V.contrastReport = function () {
+    const boxes = V.textBoxes(), rows = [];
+    boxes.forEach(function (b) {
+      const behind = V.behindOf(b.el, b.rects[0]);
+      const lb = V.luminance(behind);
+      const cols = b.gradient && b.gradient.length ? b.gradient : [b.color];
+      let worst = Infinity;
+      cols.forEach(function (c) { const r = V.ratio(V.luminance(V.over(c, behind)), lb); if (r < worst) worst = r; });
+      rows.push({ sel: b.sel, text: b.text, size: b.size, kind: b.kind, ratio: worst });
+    });
+    rows.sort(function (a, b) { return a.ratio - b.ratio; });
+    return rows;
+  };
+
   return V;
 })();
