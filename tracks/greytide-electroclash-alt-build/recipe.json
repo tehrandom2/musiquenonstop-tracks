@@ -1,0 +1,65 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-electroclash-alt-build",
+  "title": "Plastic Tournament (build phase)",
+  "date": "2026-10-03",
+  "rendered_at": "2026-10-03T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Medieval electroclash, calm, 90 bpm, cheap drum machine groove, bubbly arpeggiated synth, shawm and lute counter-melody, quirky playful toy-soldier mood, light and loopable, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 90,
+  "keyscale": "A# minor",
+  "timesignature": "4",
+  "duration": 91.96,
+  "seed": 590007,
+  "dit_caption": "Medieval electroclash, calm, 90 bpm, cheap drum machine groove, bubbly arpeggiated synth, shawm and lute counter-melody, quirky playful toy-soldier mood, light and loopable, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 91.96,
+    "peak_dbfs": -3.47,
+    "lufs": -16.51
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 91.5,
+      "lufs": -16.51,
+      "peak_dbfs": -3.47,
+      "silence_s": 0.1,
+      "brightness_pct": 2.59,
+      "boominess_pct": 33.31,
+      "onsets_per_s": 3.38,
+      "seam_db": -1.1
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": true,
+      "seam": true,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

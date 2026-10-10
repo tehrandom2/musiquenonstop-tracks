@@ -1,83 +1,7 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-10T06:01:48-04:00",
+  "written": "2026-10-10T06:02:21-04:00",
   "tracks": [
-    {
-      "slug": "laundrette-midnight-number-nine",
-      "title": "Laundrette Midnight, Number Nine",
-      "idea": "a laundrette at midnight, the dryers still turning: a laundrette at midnight with the dryers still turning and the strip light buzzing",
-      "request": "a laundrette at midnight, the dryers still turning",
-      "mood": "tired and quiet, awake when nobody else is, never creepy",
-      "bpm": 76,
-      "key": "Bb minor",
-      "seed": 881938,
-      "model": "fast",
-      "duration": 88.86,
-      "date": "2026-10-10",
-      "rendered_at": "2026-10-10T06:01:48-04:00",
-      "voice": false,
-      "prompt": "Slow late-night groove, 76 bpm, in Bb minor, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a laundrette at midnight with the dryers still turning and the strip light buzzing, tired and quiet, awake when nobody else is, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
-      "lyrics": null,
-      "why": "You asked for \"a laundrette at midnight, the dryers still turning\". \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. So I wrote it at 76 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 881936 (boomy: 15.9% below 60 Hz (ceiling 12)); 881939 (harsh: 3.4% above 6 kHz (ceiling 2.5) and others); 881937 (harsh: 5.2% above 6 kHz (ceiling 2.5) and others). Seed 881938 is the take.",
-      "rejected": [
-        {
-          "seed": 881936,
-          "reason": "boomy: 15.9% below 60 Hz (ceiling 12)"
-        },
-        {
-          "seed": 881939,
-          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5); boomy: 19.4% below 60 Hz (ceiling 12)"
-        },
-        {
-          "seed": 881937,
-          "reason": "harsh: 5.2% above 6 kHz (ceiling 2.5); boomy: 24.5% below 60 Hz (ceiling 12)"
-        }
-      ],
-      "takes": [
-        881938
-      ],
-      "numbers": {
-        "tempo_bpm": 75.5,
-        "lufs": -16.05,
-        "peak_dbfs": -2.29,
-        "silence_s": 0.3,
-        "brightness_pct": 1.29,
-        "boominess_pct": 7.33,
-        "onsets_per_s": 2.51,
-        "seam_db": -1.0
-      },
-      "checks": {
-        "tempo": true,
-        "loudness": true,
-        "peak": true,
-        "silence": true,
-        "brightness": true,
-        "boominess": true,
-        "onsets": true,
-        "seam": true,
-        "words": null
-      },
-      "lineage": null,
-      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
-      "project": null,
-      "files": {
-        "mp3": "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3",
-        "notes": "laundrette-midnight-number-nine/notes.md",
-        "recipe": "laundrette-midnight-number-nine/recipe.json"
-      },
-      "extra": {
-        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
-        "profile": "mellow",
-        "seam_step_x": 0.01,
-        "decoded_lufs": -16.49,
-        "failed": [],
-        "words_not_ours": null,
-        "stripped": [],
-        "take_files": [
-          "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3"
-        ]
-      }
-    },
     {
       "slug": "the-roof-nobody-finds",
       "title": "The Roof Nobody Finds",
@@ -381,6 +305,154 @@
         "take_files": [
           "one-machine-still-turning/one-machine-still-turning.mp3"
         ]
+      }
+    },
+    {
+      "slug": "laundrette-midnight-number-nine",
+      "title": "Laundrette Midnight, Number Nine",
+      "idea": "a laundrette at midnight, the dryers still turning: a laundrette at midnight with the dryers still turning and the strip light buzzing",
+      "request": "a laundrette at midnight, the dryers still turning",
+      "mood": "tired and quiet, awake when nobody else is, never creepy",
+      "bpm": 76,
+      "key": "Bb minor",
+      "seed": 881938,
+      "model": "fast",
+      "duration": 88.86,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:01:48-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 76 bpm, in Bb minor, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a laundrette at midnight with the dryers still turning and the strip light buzzing, tired and quiet, awake when nobody else is, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a laundrette at midnight, the dryers still turning\". \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. So I wrote it at 76 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 881936 (boomy: 15.9% below 60 Hz (ceiling 12)); 881939 (harsh: 3.4% above 6 kHz (ceiling 2.5) and others); 881937 (harsh: 5.2% above 6 kHz (ceiling 2.5) and others). Seed 881938 is the take.",
+      "rejected": [
+        {
+          "seed": 881936,
+          "reason": "boomy: 15.9% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 881939,
+          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5); boomy: 19.4% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 881937,
+          "reason": "harsh: 5.2% above 6 kHz (ceiling 2.5); boomy: 24.5% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        881938
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -16.05,
+        "peak_dbfs": -2.29,
+        "silence_s": 0.3,
+        "brightness_pct": 1.29,
+        "boominess_pct": 7.33,
+        "onsets_per_s": 2.51,
+        "seam_db": -1.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3",
+        "notes": "laundrette-midnight-number-nine/notes.md",
+        "recipe": "laundrette-midnight-number-nine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.49,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3"
+        ]
+      }
+    },
+    {
+      "slug": "greytide-electroclash-alt-build",
+      "title": "Plastic Tournament (build phase)",
+      "idea": "medieval-electroclash",
+      "request": "medieval-electroclash",
+      "mood": "the build phase",
+      "bpm": 90,
+      "key": "A# minor",
+      "seed": 590007,
+      "model": "fast",
+      "duration": 91.96,
+      "date": "2026-10-03",
+      "rendered_at": "2026-10-03T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Medieval electroclash, calm, 90 bpm, cheap drum machine groove, bubbly arpeggiated synth, shawm and lute counter-melody, quirky playful toy-soldier mood, light and loopable, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-03 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"medieval-electroclash\" (the build phase): 90 bpm in A# minor. The prompt describes medieval electroclash with calm, cheap drum machine groove and bubbly arpeggiated synth; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        590007
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.51,
+        "peak_dbfs": -3.47,
+        "silence_s": 0.1,
+        "brightness_pct": 2.59,
+        "boominess_pct": 33.31,
+        "onsets_per_s": 3.38,
+        "seam_db": -1.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-electroclash-alt-build/greytide-electroclash-alt-build.mp3",
+        "notes": "greytide-electroclash-alt-build/notes.md",
+        "recipe": "greytide-electroclash-alt-build/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.16,
+        "decoded_lufs": -16.51,
+        "failed": [
+          "brightness",
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Plastic Tournament"
+        ],
+        "take_files": [
+          "greytide-electroclash-alt-build/greytide-electroclash-alt-build.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier tabletop game soundtrack"
       }
     }
   ]
