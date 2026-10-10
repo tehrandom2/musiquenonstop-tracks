@@ -458,6 +458,90 @@
       }
     },
     {
+      "slug": "greytide-gamestore-wave-2",
+      "title": "Shrinkwrap Funk (wave)",
+      "idea": "plastic-toy keyboard funk",
+      "request": "plastic-toy keyboard funk",
+      "mood": "the wave phase",
+      "bpm": 85,
+      "key": "G major",
+      "seed": 800425,
+      "model": "fast",
+      "duration": 92.86,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back plastic-toy keyboard funk, cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit, sparse kazoo-like lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine, closing-time game store daydream, sunny childlike melody going a little sour, good-humoured, 85 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"plastic-toy keyboard funk\" (the wave phase): 85 bpm in G major. The prompt describes laid back plastic-toy keyboard funk with cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit and sparse kazoo-like lead used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801425,
+          "reason": "not kept"
+        },
+        {
+          "seed": 650005,
+          "reason": "harsh: 2.6% above 6 kHz; superseded by the #443 render"
+        },
+        {
+          "seed": 651005,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800425
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -16.42,
+        "peak_dbfs": -2.49,
+        "silence_s": 1.3,
+        "brightness_pct": 1.46,
+        "boominess_pct": 11.57,
+        "onsets_per_s": 3.1,
+        "seam_db": 1.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-gamestore-wave-2/greytide-gamestore-wave-2.mp3",
+        "notes": "greytide-gamestore-wave-2/notes.md",
+        "recipe": "greytide-gamestore-wave-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.41,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "silence"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Shrinkwrap Funk"
+        ],
+        "take_files": [
+          "greytide-gamestore-wave-2/greytide-gamestore-wave-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-gamestore-wave-1",
       "title": "Toy Piano Fuzz (wave)",
       "idea": "plastic-toy keyboard funk",
