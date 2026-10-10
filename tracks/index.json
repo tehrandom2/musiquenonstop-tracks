@@ -1,7 +1,86 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-10T06:51:14-04:00",
+  "written": "2026-10-10T06:53:35-04:00",
   "tracks": [
+    {
+      "slug": "library-night-half-past",
+      "title": "Library Night, Half Past",
+      "project": null,
+      "idea": "a library the night before it closes for good: a library the night before it closes for good, lamps on and shelves half empty",
+      "request": "a library the night before it closes for good",
+      "mood": "tired and quiet, awake when nobody else is, never creepy",
+      "bpm": 87,
+      "key": "F minor",
+      "seed": 564002,
+      "model": "fast",
+      "duration": 94.74,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:53:35-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 87 bpm, in F minor, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a library the night before it closes for good, lamps on and shelves half empty, tired and quiet, awake when nobody else is, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a library the night before it closes for good\". \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. So I wrote it at 87 bpm in F minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 564004 (boomy: 21.7% below 60 Hz (ceiling 12)); 564003 (boomy: 20.6% below 60 Hz (ceiling 12)); 564001 (boomy: 12.2% below 60 Hz (ceiling 12) and others). Seed 564002 is the take.",
+      "rejected": [
+        {
+          "seed": 564004,
+          "reason": "boomy: 21.7% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 564003,
+          "reason": "boomy: 20.6% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 564001,
+          "reason": "boomy: 12.2% below 60 Hz (ceiling 12); seam level -8.6 dB tail to head"
+        }
+      ],
+      "takes": [
+        564002
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.0,
+        "peak_dbfs": -2.93,
+        "silence_s": 0.05,
+        "brightness_pct": 1.3,
+        "boominess_pct": 7.13,
+        "onsets_per_s": 2.68,
+        "seam_db": 2.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "library-night-half-past/library-night-half-past.mp3",
+        "notes": "library-night-half-past/notes.md",
+        "recipe": "library-night-half-past/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.11,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4178087,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "library-night-half-past/library-night-half-past.mp3"
+        ]
+      }
+    },
     {
       "slug": "lift-only-half-past",
       "title": "Lift Only, Half Past",
