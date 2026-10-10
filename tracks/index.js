@@ -13919,6 +13919,79 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-55-varnish",
+      "title": "Varnish",
+      "idea": "Slick electroclash house",
+      "request": "Slick electroclash house",
+      "mood": "",
+      "bpm": 126,
+      "key": "A minor",
+      "seed": 100055,
+      "model": "fast",
+      "duration": 173.34,
+      "date": "2026-09-30",
+      "rendered_at": "2026-09-30T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Slick electroclash house, 126 bpm, four-on-the-floor kick, glossy buzzing analog bass riff with slow resonant filter movement, pumping sidechain, robotic vocoder-like synth lead playing a simple two-note hook without words, dry drum machine claps and hats, cool detached swagger, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-30 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Slick electroclash house\": 126 bpm in A minor. The prompt describes slick electroclash house with four-on-the-floor kick, glossy buzzing analog bass riff with slow resonant filter movement and pumping sidechain; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100055
+      ],
+      "numbers": {
+        "tempo_bpm": 126.0,
+        "lufs": -17.96,
+        "peak_dbfs": -2.83,
+        "silence_s": 0.15,
+        "brightness_pct": 2.78,
+        "boominess_pct": 40.96,
+        "onsets_per_s": 5.34,
+        "seam_db": -32.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": false,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-55-varnish/shoosting-55-varnish.mp3",
+        "notes": "shoosting-55-varnish/notes.md",
+        "recipe": "shoosting-55-varnish/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -17.96,
+        "failed": [
+          "loudness",
+          "brightness",
+          "boominess",
+          "onsets",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-55-varnish/shoosting-55-varnish.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-54-nail-gun",
       "title": "Nail Gun",
       "idea": "Fidget electro house",

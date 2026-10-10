@@ -1,0 +1,68 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-55-varnish",
+  "title": "Varnish",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Slick electroclash house, 126 bpm, four-on-the-floor kick, glossy buzzing analog bass riff with slow resonant filter movement, pumping sidechain, robotic vocoder-like synth lead playing a simple two-note hook without words, dry drum machine claps and hats, cool detached swagger, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 126,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 173.34,
+  "seed": 100055,
+  "dit_caption": "Slick electroclash house, 126 bpm, four-on-the-floor kick, glossy buzzing analog bass riff with slow resonant filter movement, pumping sidechain, robotic vocoder-like synth lead playing a simple two-note hook without words, dry drum machine claps and hats, cool detached swagger, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 173.34,
+    "peak_dbfs": -2.83,
+    "lufs": -17.96
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 126.0,
+      "lufs": -17.96,
+      "peak_dbfs": -2.83,
+      "silence_s": 0.15,
+      "brightness_pct": 2.78,
+      "boominess_pct": 40.96,
+      "onsets_per_s": 5.34,
+      "seam_db": -32.9
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "brightness",
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
