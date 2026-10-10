@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-56-plank-walk",
+  "title": "Plank Walk",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Minimal electro house, 128 bpm, dry four-on-the-floor kick, fat compressed sawtooth bass walking up and down a four-note riff, exaggerated sidechain pump, almost nothing else in the mix, occasional metallic percussion hit, long hypnotic build that opens the filter and slams back in, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 128,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 172.51,
+  "seed": 100056,
+  "dit_caption": "Minimal electro house, 128 bpm, dry four-on-the-floor kick, fat compressed sawtooth bass walking up and down a four-note riff, exaggerated sidechain pump, almost nothing else in the mix, occasional metallic percussion hit, long hypnotic build that opens the filter and slams back in, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 172.51,
+    "peak_dbfs": -2.69,
+    "lufs": -16.94
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 127.0,
+      "lufs": -16.94,
+      "peak_dbfs": -2.69,
+      "silence_s": 0.1,
+      "brightness_pct": 3.43,
+      "boominess_pct": 33.87,
+      "onsets_per_s": 4.63,
+      "seam_db": -42.1
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
