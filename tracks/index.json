@@ -458,6 +458,84 @@
       }
     },
     {
+      "slug": "greytide-kitchen-build-5",
+      "title": "Pantry Cha-Cha (build phase)",
+      "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "request": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "mood": "the build phase",
+      "bpm": 96,
+      "key": "D major",
+      "seed": 800150,
+      "model": "fast",
+      "duration": 90.75,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wrong-footed lounge exotica, spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit, mellow vibraphone, cheesy electric organ with a straight face, melodica used as an instrument that wanders off the tune, fuzzy round bass, dusty bossa nova drum box, late-night kitchen daydream, good-humoured, 96 bpm, slide whistle, bongos and a muted trumpet-like synth, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wrong-footed lounge exotica with vibraphone and cheesy organ\" (the build phase): 96 bpm in D major. The prompt describes laid back wrong-footed lounge exotica with spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit and mellow vibraphone; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801150,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700150,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800150
+      ],
+      "numbers": {
+        "tempo_bpm": 95.0,
+        "lufs": -16.45,
+        "peak_dbfs": -3.2,
+        "silence_s": 0.35,
+        "brightness_pct": 0.16,
+        "boominess_pct": 2.05,
+        "onsets_per_s": 2.67,
+        "seam_db": 1.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-kitchen-build-5/greytide-kitchen-build-5.mp3",
+        "notes": "greytide-kitchen-build-5/notes.md",
+        "recipe": "greytide-kitchen-build-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.9,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Pantry Cha"
+        ],
+        "take_files": [
+          "greytide-kitchen-build-5/greytide-kitchen-build-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-kitchen-build-4",
       "title": "Casserole Exotica (build phase)",
       "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
