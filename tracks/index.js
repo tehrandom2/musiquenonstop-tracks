@@ -1,7 +1,84 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:26:56-04:00",
+  "written": "2026-10-10T06:29:24-04:00",
   "tracks": [
+    {
+      "slug": "canal-bicycle-slow-light",
+      "title": "Canal Bicycle, Slow Light",
+      "project": null,
+      "idea": "fog on the canal, a bicycle bell far off: fog on a canal with a bicycle bell far off",
+      "request": "fog on the canal, a bicycle bell far off",
+      "mood": "unhurried and a little wistful, never bleak",
+      "bpm": 83,
+      "key": "Eb major",
+      "seed": 502061,
+      "model": "fast",
+      "duration": 89.02,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:29:24-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 83 bpm, in Eb major, a drum kit of cardboard-tube thumps, a pencil-tin rattle and a zip-pull tick as the hat, a muted nylon guitar used as an instrument, a warm sine sub on a half-time pattern, fog on a canal with a bicycle bell far off, unhurried and a little wistful, never bleak, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"fog on the canal, a bicycle bell far off\". So I wrote it at 83 bpm in Eb major, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 502060 (passed, but outranked by the kept takes); 502063 (seam level +11.0 dB tail to head). Seed 502061 is the take.",
+      "rejected": [
+        {
+          "seed": 502060,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 502063,
+          "reason": "seam level +11.0 dB tail to head"
+        }
+      ],
+      "takes": [
+        502061,
+        502062
+      ],
+      "numbers": {
+        "tempo_bpm": 83.0,
+        "lufs": -16.05,
+        "peak_dbfs": -1.44,
+        "silence_s": 0.05,
+        "brightness_pct": 1.27,
+        "boominess_pct": 8.96,
+        "onsets_per_s": 3.12,
+        "seam_db": 3.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "canal-bicycle-slow-light/canal-bicycle-slow-light.mp3",
+        "notes": "canal-bicycle-slow-light/notes.md",
+        "recipe": "canal-bicycle-slow-light/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.63,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 3925806,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "canal-bicycle-slow-light/canal-bicycle-slow-light.mp3",
+          "canal-bicycle-slow-light/canal-bicycle-slow-light-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "bakery-before-number-nine",
       "title": "Bakery Before, Number Nine",
