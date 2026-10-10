@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-desk-wave-1",
+      "title": "Tape Wobble Funk (wave)",
+      "idea": "woozy tape-warped analog synth funk",
+      "request": "woozy tape-warped analog synth funk",
+      "mood": "the wave phase",
+      "bpm": 90,
+      "key": "D minor",
+      "seed": 801015,
+      "model": "fast",
+      "duration": 91.54,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back woozy analog synth funk, brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit, tape-warped detuned synthesizers drifting slightly out of tune, vocoder lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine with loose swing, lamp-lit painting desk daydream, good-humoured, 90 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"woozy tape-warped analog synth funk\" (the wave phase): 90 bpm in D minor. The prompt describes laid back woozy analog synth funk with brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit and tape-warped detuned synthesizers drifting slightly out of tune; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800015,
+          "reason": "not kept"
+        },
+        {
+          "seed": 630004,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801015
+      ],
+      "numbers": {
+        "tempo_bpm": 90.0,
+        "lufs": -16.42,
+        "peak_dbfs": -2.63,
+        "silence_s": 0.15,
+        "brightness_pct": 1.78,
+        "boominess_pct": 7.52,
+        "onsets_per_s": 2.74,
+        "seam_db": 3.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-desk-wave-1/greytide-desk-wave-1.mp3",
+        "notes": "greytide-desk-wave-1/notes.md",
+        "recipe": "greytide-desk-wave-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.89,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Tape Wobble Funk"
+        ],
+        "take_files": [
+          "greytide-desk-wave-1/greytide-desk-wave-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-desk-build-5",
       "title": "Lamp Hum Daydream (build phase)",
       "idea": "woozy tape-warped analog synth funk",
