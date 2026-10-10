@@ -13843,6 +13843,76 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-07-gravity-well",
+      "title": "Gravity Well",
+      "idea": "Heavy brostep dubstep",
+      "request": "Heavy brostep dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "A# minor",
+      "seed": 100007,
+      "model": "fast",
+      "duration": 178.38,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Heavy brostep dubstep, 140 bpm, half-time drop every 32 bars, deep growling sub bass with pitch-bent wubs, wide distorted synth layers, arena-scale aggressive but readable drop, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Heavy brostep dubstep\": 140 bpm in A# minor. The prompt describes heavy brostep dubstep with half-time drop every 32 bars, deep growling sub bass with pitch-bent wubs and wide distorted synth layers; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100007
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.57,
+        "peak_dbfs": -2.54,
+        "silence_s": 0.2,
+        "brightness_pct": 2.0,
+        "boominess_pct": 55.82,
+        "onsets_per_s": 3.67,
+        "seam_db": -47.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-07-gravity-well/shoosting-07-gravity-well.mp3",
+        "notes": "shoosting-07-gravity-well/notes.md",
+        "recipe": "shoosting-07-gravity-well/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.57,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-07-gravity-well/shoosting-07-gravity-well.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-06-prism-burst",
       "title": "Prism Burst",
       "idea": "Bright energetic dubstep",
