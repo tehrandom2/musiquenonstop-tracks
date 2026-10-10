@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-sill-wave-1",
+      "title": "Windowsill Chime Drift (wave)",
+      "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "request": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "mood": "the wave phase",
+      "bpm": 77,
+      "key": "G major",
+      "seed": 801615,
+      "model": "fast",
+      "duration": 88.48,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back airy drifting groove, wind chimes, rain-stick shakes and soft woodblock taps as a drum kit, wandering slide whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty shaker drum machine, sunny window-sill daydream, good-humoured, 77 bpm, kalimba and a breathy wooden flute-like synth, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wind-chime and rain-stick drift with a wandering slide whistle\" (the wave phase): 77 bpm in G major. The prompt describes laid back airy drifting groove with wind chimes, rain-stick shakes and soft woodblock taps as a drum kit and wandering slide whistle used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800615,
+          "reason": "harsh: 3.2% above 6 kHz; 6.7s of near-silence"
+        },
+        {
+          "seed": 700615,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801615
+      ],
+      "numbers": {
+        "tempo_bpm": 77.0,
+        "lufs": -16.47,
+        "peak_dbfs": -1.88,
+        "silence_s": 0.15,
+        "brightness_pct": 0.68,
+        "boominess_pct": 10.17,
+        "onsets_per_s": 2.93,
+        "seam_db": -0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sill-wave-1/greytide-sill-wave-1.mp3",
+        "notes": "greytide-sill-wave-1/notes.md",
+        "recipe": "greytide-sill-wave-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.47,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Windowsill Chime Drift"
+        ],
+        "take_files": [
+          "greytide-sill-wave-1/greytide-sill-wave-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sill-build-5",
       "title": "Pigeon Overhead (build phase)",
       "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
