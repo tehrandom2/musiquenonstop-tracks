@@ -458,6 +458,94 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-sill-build-4",
+      "title": "Net Curtain Breeze (build phase)",
+      "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "request": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "mood": "the build phase",
+      "bpm": 76,
+      "key": "C major",
+      "seed": 801640,
+      "model": "fast",
+      "duration": 86.98,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back airy drifting groove, wind chimes, rain-stick shakes and soft woodblock taps as a drum kit, wandering slide whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty shaker drum machine, sunny window-sill daydream, good-humoured, 76 bpm, ocarina-like lead and soft woodblocks, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wind-chime and rain-stick drift with a wandering slide whistle\" (the build phase): 76 bpm in C major. The prompt describes laid back airy drifting groove with wind chimes, rain-stick shakes and soft woodblock taps as a drum kit and wandering slide whistle used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800640,
+          "reason": "harsh: 2.6% above 6 kHz"
+        },
+        {
+          "seed": 700640,
+          "reason": "harsh: 2.7% above 6 kHz; superseded by the #443 render"
+        },
+        {
+          "seed": 701640,
+          "reason": "crest 18.3 dB, too peaky to match the loudness; superseded by the #443 render"
+        },
+        {
+          "seed": 702640,
+          "reason": "2.1s of near-silence; superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801640
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -17.47,
+        "peak_dbfs": -2.18,
+        "silence_s": 0.15,
+        "brightness_pct": 0.82,
+        "boominess_pct": 6.89,
+        "onsets_per_s": 2.58,
+        "seam_db": -1.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sill-build-4/greytide-sill-build-4.mp3",
+        "notes": "greytide-sill-build-4/notes.md",
+        "recipe": "greytide-sill-build-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -17.47,
+        "failed": [
+          "loudness"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Net Curtain Breeze"
+        ],
+        "take_files": [
+          "greytide-sill-build-4/greytide-sill-build-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sill-build-3",
       "title": "Cactus Daydream (build phase)",
       "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
