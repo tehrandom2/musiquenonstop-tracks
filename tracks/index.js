@@ -458,6 +458,87 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-desk-wave-2",
+      "title": "Primer Coat Groove (wave)",
+      "idea": "woozy tape-warped analog synth funk",
+      "request": "woozy tape-warped analog synth funk",
+      "mood": "the wave phase",
+      "bpm": 87,
+      "key": "A minor",
+      "seed": 801025,
+      "model": "fast",
+      "duration": 93.18,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back woozy analog synth funk, brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit, tape-warped detuned synthesizers drifting slightly out of tune, vocoder lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine with loose swing, lamp-lit painting desk daydream, good-humoured, 87 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"woozy tape-warped analog synth funk\" (the wave phase): 87 bpm in A minor. The prompt describes laid back woozy analog synth funk with brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit and tape-warped detuned synthesizers drifting slightly out of tune; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800025,
+          "reason": "not kept"
+        },
+        {
+          "seed": 630005,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801025
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -17.34,
+        "peak_dbfs": -2.17,
+        "silence_s": 0.15,
+        "brightness_pct": 1.16,
+        "boominess_pct": 17.77,
+        "onsets_per_s": 4.09,
+        "seam_db": -0.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-desk-wave-2/greytide-desk-wave-2.mp3",
+        "notes": "greytide-desk-wave-2/notes.md",
+        "recipe": "greytide-desk-wave-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.12,
+        "decoded_lufs": -17.34,
+        "failed": [
+          "loudness",
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Primer Coat Groove"
+        ],
+        "take_files": [
+          "greytide-desk-wave-2/greytide-desk-wave-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-desk-wave-1",
       "title": "Tape Wobble Funk (wave)",
       "idea": "woozy tape-warped analog synth funk",
