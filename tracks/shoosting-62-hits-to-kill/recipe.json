@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-62-hits-to-kill",
+  "title": "Hits to Kill",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Aggressive dark techno, 128 bpm, punishing overdriven kick, serrated distorted synth stabs answering each other, rumbling sub bass, rapid closed hi-hats, alarm-like siren lead, hostile and relentless, tight four-bar phrases with abrupt cuts and hard re-entries, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 128,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 177.78,
+  "seed": 100062,
+  "dit_caption": "Aggressive dark techno, 128 bpm, punishing overdriven kick, serrated distorted synth stabs answering each other, rumbling sub bass, rapid closed hi-hats, alarm-like siren lead, hostile and relentless, tight four-bar phrases with abrupt cuts and hard re-entries, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 177.78,
+    "peak_dbfs": -2.05,
+    "lufs": -16.84
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 127.0,
+      "lufs": -16.84,
+      "peak_dbfs": -2.05,
+      "silence_s": 0.1,
+      "brightness_pct": 2.2,
+      "boominess_pct": 47.72,
+      "onsets_per_s": 4.8,
+      "seam_db": -52.5
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
