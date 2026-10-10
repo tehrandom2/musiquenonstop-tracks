@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-65-last-plank",
+  "title": "Last Plank",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Dark ambient techno, 100 bpm, low pulsing analog bass drone, slow evolving cold synth pads, faint mechanical ticking percussion, occasional distant metallic hit, ominous and patient, no drums beyond a muted heartbeat kick, steady looping atmosphere with no drop, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 100,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 173.58,
+  "seed": 100065,
+  "dit_caption": "Dark ambient techno, 100 bpm, low pulsing analog bass drone, slow evolving cold synth pads, faint mechanical ticking percussion, occasional distant metallic hit, ominous and patient, no drums beyond a muted heartbeat kick, steady looping atmosphere with no drop, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 173.58,
+    "peak_dbfs": -1.8,
+    "lufs": -16.96
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 98.5,
+      "lufs": -16.96,
+      "peak_dbfs": -1.8,
+      "silence_s": 0.15,
+      "brightness_pct": 2.27,
+      "boominess_pct": 32.91,
+      "onsets_per_s": 5.4,
+      "seam_db": -51.2
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
