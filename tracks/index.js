@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-couch-wave-5",
+      "title": "Afternoon Repeat (wave)",
+      "idea": "daytime-television muzak gone sour",
+      "request": "daytime-television muzak gone sour",
+      "mood": "the wave phase",
+      "bpm": 95,
+      "key": "Bb major",
+      "seed": 800555,
+      "model": "fast",
+      "duration": 88.7,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back daytime-television muzak gone slightly sour, remote-button clicks and cushion pats as a drum kit, smooth electric piano, cheesy saxophone-like synth used as an instrument, game-show melody drifting out of tune, fuzzy round bass, dusty brushed drum machine, sofa daydream, warm and tired and good-humoured, 95 bpm, muted brass-like synth and finger snaps, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"daytime-television muzak gone sour\" (the wave phase): 95 bpm in Bb major. The prompt describes laid back daytime-television muzak gone slightly sour with remote-button clicks and cushion pats as a drum kit, smooth electric piano and cheesy saxophone-like synth used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801555,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700555,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800555
+      ],
+      "numbers": {
+        "tempo_bpm": 93.5,
+        "lufs": -16.42,
+        "peak_dbfs": -1.23,
+        "silence_s": 0.1,
+        "brightness_pct": 1.27,
+        "boominess_pct": 4.08,
+        "onsets_per_s": 2.56,
+        "seam_db": 0.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-couch-wave-5/greytide-couch-wave-5.mp3",
+        "notes": "greytide-couch-wave-5/notes.md",
+        "recipe": "greytide-couch-wave-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.38,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Afternoon Repeat"
+        ],
+        "take_files": [
+          "greytide-couch-wave-5/greytide-couch-wave-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-couch-wave-4",
       "title": "Sitcom Laugh Track Lounge (wave)",
       "idea": "daytime-television muzak gone sour",
