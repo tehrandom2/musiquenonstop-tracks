@@ -13843,6 +13843,79 @@
       }
     },
     {
+      "slug": "shoosting-34-overcharge",
+      "title": "Overcharge",
+      "idea": "Heavy brostep dubstep",
+      "request": "Heavy brostep dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "F major",
+      "seed": 100034,
+      "model": "fast",
+      "duration": 176.74,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Heavy brostep dubstep, 140 bpm, half-time drop every 32 bars, screaming distorted lead bass over a growling reese sub, rising risers into each drop, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Heavy brostep dubstep\": 140 bpm in F major. The prompt describes heavy brostep dubstep with half-time drop every 32 bars, screaming distorted lead bass over a growling reese sub and rising risers into each drop; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100034
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -17.64,
+        "peak_dbfs": -3.1,
+        "silence_s": 0.1,
+        "brightness_pct": 2.93,
+        "boominess_pct": 34.17,
+        "onsets_per_s": 5.35,
+        "seam_db": -43.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": false,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-34-overcharge/shoosting-34-overcharge.mp3",
+        "notes": "shoosting-34-overcharge/notes.md",
+        "recipe": "shoosting-34-overcharge/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 2.4,
+        "decoded_lufs": -17.64,
+        "failed": [
+          "loudness",
+          "brightness",
+          "boominess",
+          "onsets",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-34-overcharge/shoosting-34-overcharge.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-33-buckshot",
       "title": "Buckshot",
       "idea": "Riddim dubstep",
