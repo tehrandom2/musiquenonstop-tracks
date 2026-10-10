@@ -384,6 +384,79 @@
       }
     },
     {
+      "slug": "greytide-electroclash-alt-wave",
+      "title": "Plastic Tournament (wave)",
+      "idea": "medieval-electroclash",
+      "request": "medieval-electroclash",
+      "mood": "the wave phase",
+      "bpm": 132,
+      "key": "D minor",
+      "seed": 590008,
+      "model": "fast",
+      "duration": 90.95,
+      "date": "2026-10-03",
+      "rendered_at": "2026-10-03T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Medieval electroclash, 132 bpm, relentless pounding drum machine, buzzing acid synth line, trumpet fanfare samples, snare rolls like a marching band, distorted lute chords, urgent playful chaos, loopable, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-03 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"medieval-electroclash\" (the wave phase): 132 bpm in D minor. The prompt describes medieval electroclash with relentless pounding drum machine, buzzing acid synth line and trumpet fanfare samples; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        590008
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -17.16,
+        "peak_dbfs": -2.4,
+        "silence_s": 0.05,
+        "brightness_pct": 4.29,
+        "boominess_pct": 16.45,
+        "onsets_per_s": 2.94,
+        "seam_db": -0.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-electroclash-alt-wave/greytide-electroclash-alt-wave.mp3",
+        "notes": "greytide-electroclash-alt-wave/notes.md",
+        "recipe": "greytide-electroclash-alt-wave/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.22,
+        "decoded_lufs": -17.16,
+        "failed": [
+          "loudness",
+          "brightness",
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Plastic Tournament"
+        ],
+        "take_files": [
+          "greytide-electroclash-alt-wave/greytide-electroclash-alt-wave.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-electroclash-alt-build",
       "title": "Plastic Tournament (build phase)",
       "idea": "medieval-electroclash",
