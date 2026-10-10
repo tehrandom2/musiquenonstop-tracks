@@ -13843,6 +13843,78 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-40-blink",
+      "title": "Blink",
+      "idea": "Heavy brostep dubstep",
+      "request": "Heavy brostep dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "F major",
+      "seed": 100040,
+      "model": "fast",
+      "duration": 178.42,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Heavy brostep dubstep, 140 bpm, half-time drop every 32 bars, stuttering gated bass edits, abrupt silences before each drop, growling sub, funky syncopated wub pattern with a nasty swing, squelchy bass licks, lots of attitude, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Heavy brostep dubstep\": 140 bpm in F major. The prompt describes heavy brostep dubstep with half-time drop every 32 bars, stuttering gated bass edits and abrupt silences before each drop; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100040
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -17.13,
+        "peak_dbfs": -3.05,
+        "silence_s": 0.1,
+        "brightness_pct": 3.75,
+        "boominess_pct": 47.1,
+        "onsets_per_s": 4.21,
+        "seam_db": -36.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-40-blink/shoosting-40-blink.mp3",
+        "notes": "shoosting-40-blink/notes.md",
+        "recipe": "shoosting-40-blink/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 2.22,
+        "decoded_lufs": -17.13,
+        "failed": [
+          "loudness",
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-40-blink/shoosting-40-blink.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-39-wall-jump",
       "title": "Wall Jump",
       "idea": "Bright energetic dubstep",
