@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-74-tape-chewed",
+  "title": "Tape Chewed",
+  "date": "2026-10-01",
+  "rendered_at": "2026-10-01T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": "acestep-5Hz-lm-4B",
+    "offload_to_cpu": true,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "caption": "Lo-fi gospel beat, a cassette of a church organ and a small choir that is being chewed by the tape machine: wow and flutter, sagging pitch, dropouts and hiss. A heavy boom-bap kick and a cracking snare pump the whole sample down with every hit. Overdriven sub bass, chopped choir stabs retriggered like a sampler, and a distorted fuzz bass line that takes over in the second half. Nostalgic, woozy, warm, slowly falling apart.",
+  "lyrics": "",
+  "instrumental": false,
+  "bpm": 80,
+  "keyscale": "C major",
+  "timesignature": "4",
+  "duration": 177.31,
+  "seed": 400074,
+  "dit_caption": "Lo-fi gospel beat, a cassette of a church organ and a small choir that is being chewed by the tape machine: wow and flutter, sagging pitch, dropouts and hiss. A heavy boom-bap kick and a cracking snare pump the whole sample down with every hit. Overdriven sub bass, chopped choir stabs retriggered like a sampler, and a distorted fuzz bass line that takes over in the second half. Nostalgic, woozy, warm, slowly falling apart.",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 177.31,
+    "peak_dbfs": -2.37,
+    "lufs": -16.38
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 98.5,
+      "lufs": -16.38,
+      "peak_dbfs": -2.37,
+      "silence_s": 4.0,
+      "brightness_pct": 1.82,
+      "boominess_pct": 2.74,
+      "onsets_per_s": 3.5,
+      "seam_db": -46.1
+    },
+    "checks": {
+      "tempo": false,
+      "loudness": true,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": true,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "tempo",
+      "silence",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

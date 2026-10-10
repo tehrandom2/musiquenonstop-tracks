@@ -13919,6 +13919,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-74-tape-chewed",
+      "title": "Tape Chewed",
+      "idea": "Lo-fi gospel beat",
+      "request": "Lo-fi gospel beat",
+      "mood": "",
+      "bpm": 80,
+      "key": "C major",
+      "seed": 400074,
+      "model": "best",
+      "duration": 177.31,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Lo-fi gospel beat, a cassette of a church organ and a small choir that is being chewed by the tape machine: wow and flutter, sagging pitch, dropouts and hiss. A heavy boom-bap kick and a cracking snare pump the whole sample down with every hit. Overdriven sub bass, chopped choir stabs retriggered like a sampler, and a distorted fuzz bass line that takes over in the second half. Nostalgic, woozy, warm, slowly falling apart.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Lo-fi gospel beat\": 80 bpm in C major, one of the tracks the machine chose for itself, on the best tier. The prompt describes lo-fi gospel beat; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400074
+      ],
+      "numbers": {
+        "tempo_bpm": 98.5,
+        "lufs": -16.38,
+        "peak_dbfs": -2.37,
+        "silence_s": 4.0,
+        "brightness_pct": 1.82,
+        "boominess_pct": 2.74,
+        "onsets_per_s": 3.5,
+        "seam_db": -46.1
+      },
+      "checks": {
+        "tempo": false,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-74-tape-chewed/shoosting-74-tape-chewed.mp3",
+        "notes": "shoosting-74-tape-chewed/notes.md",
+        "recipe": "shoosting-74-tape-chewed/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -16.38,
+        "failed": [
+          "tempo",
+          "silence",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-74-tape-chewed/shoosting-74-tape-chewed.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-73-cut-to-ribbons",
       "title": "Cut to Ribbons",
       "idea": "Soul sample riddim",
