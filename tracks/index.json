@@ -13843,6 +13843,76 @@
       }
     },
     {
+      "slug": "shoosting-06-prism-burst",
+      "title": "Prism Burst",
+      "idea": "Bright energetic dubstep",
+      "request": "Bright energetic dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "F major",
+      "seed": 100006,
+      "model": "fast",
+      "duration": 177.62,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Bright energetic dubstep, 140 bpm, half-time drop every 32 bars, shimmering major-key synth stabs over growling wubby sub bass, uplifting arena energy, aggressive but readable drop, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Bright energetic dubstep\": 140 bpm in F major. The prompt describes bright energetic dubstep with half-time drop every 32 bars, shimmering major-key synth stabs over growling wubby sub bass and uplifting arena energy; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100006
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.57,
+        "peak_dbfs": -3.37,
+        "silence_s": 0.1,
+        "brightness_pct": 2.41,
+        "boominess_pct": 40.39,
+        "onsets_per_s": 3.85,
+        "seam_db": -51.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-06-prism-burst/shoosting-06-prism-burst.mp3",
+        "notes": "shoosting-06-prism-burst/notes.md",
+        "recipe": "shoosting-06-prism-burst/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.57,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-06-prism-burst/shoosting-06-prism-burst.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-05-black-static",
       "title": "Black Static",
       "idea": "Dark heavy dubstep",
