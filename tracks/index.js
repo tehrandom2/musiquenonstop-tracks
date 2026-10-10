@@ -1,7 +1,86 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:34:13-04:00",
+  "written": "2026-10-10T06:36:33-04:00",
   "tracks": [
+    {
+      "slug": "overnight-ferry-slow-light",
+      "title": "Overnight Ferry, Slow Light",
+      "project": null,
+      "idea": "the overnight ferry, engines through the hull: the overnight ferry with engines felt through the hull",
+      "request": "the overnight ferry, engines through the hull",
+      "mood": "unhurried and a little wistful, never bleak",
+      "bpm": 80,
+      "key": "C# minor",
+      "seed": 721001,
+      "model": "fast",
+      "duration": 92.74,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:36:33-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 80 bpm, in C# minor, a drum kit of brush-handle taps, jar-lid clinks and cutting-mat ticks as the hat, a muted nylon guitar used as an instrument, a round, tape-saturated bass in the mid range, played sparsely, the overnight ferry with engines felt through the hull, unhurried and a little wistful, never bleak, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"the overnight ferry, engines through the hull\". So I wrote it at 80 bpm in C# minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 721002 (boomy: 27.2% below 60 Hz (ceiling 12)); 721000 (onset rate 4.8/s outside 0.3-4.5); 720999 (tempo 127 vs asked 80 and others). Seed 721001 is the take.",
+      "rejected": [
+        {
+          "seed": 721002,
+          "reason": "boomy: 27.2% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 721000,
+          "reason": "onset rate 4.8/s outside 0.3-4.5"
+        },
+        {
+          "seed": 720999,
+          "reason": "tempo 127 vs asked 80; boomy: 24.8% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        721001
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.01,
+        "peak_dbfs": -1.42,
+        "silence_s": 0.0,
+        "brightness_pct": 1.97,
+        "boominess_pct": 8.61,
+        "onsets_per_s": 2.89,
+        "seam_db": -0.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "overnight-ferry-slow-light/overnight-ferry-slow-light.mp3",
+        "notes": "overnight-ferry-slow-light/notes.md",
+        "recipe": "overnight-ferry-slow-light/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.21,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4089789,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "overnight-ferry-slow-light/overnight-ferry-slow-light.mp3"
+        ]
+      }
+    },
     {
       "slug": "wash-from-left-on",
       "title": "Wash From, Left On",
