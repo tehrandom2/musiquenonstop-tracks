@@ -384,6 +384,86 @@
       }
     },
     {
+      "slug": "greytide-bathroom-wave-1",
+      "title": "Tile Echo Dub (wave)",
+      "idea": "echoey tiled-room dub with dripping percussion and melodica",
+      "request": "echoey tiled-room dub with dripping percussion and melodica",
+      "mood": "the wave phase",
+      "bpm": 83,
+      "key": "A minor",
+      "seed": 801315,
+      "model": "fast",
+      "duration": 91.17,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back echoey tiled-room dub, dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit, spring reverb and tape echo, plinky melodica used as an instrument, fuzzy round bass, dusty rimshot drum machine, steamy bathroom daydream, good-humoured, 83 bpm, rubber-duck squeaky toy melody and plunking keys, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"echoey tiled-room dub with dripping percussion and melodica\" (the wave phase): 83 bpm in A minor. The prompt describes laid back echoey tiled-room dub with dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit and spring reverb and tape echo; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800315,
+          "reason": "busy: 4.9 onsets/s"
+        },
+        {
+          "seed": 700315,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801315
+      ],
+      "numbers": {
+        "tempo_bpm": 83.0,
+        "lufs": -16.43,
+        "peak_dbfs": -2.1,
+        "silence_s": 0.35,
+        "brightness_pct": 1.43,
+        "boominess_pct": 5.43,
+        "onsets_per_s": 3.35,
+        "seam_db": 9.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bathroom-wave-1/greytide-bathroom-wave-1.mp3",
+        "notes": "greytide-bathroom-wave-1/notes.md",
+        "recipe": "greytide-bathroom-wave-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Tile Echo Dub"
+        ],
+        "take_files": [
+          "greytide-bathroom-wave-1/greytide-bathroom-wave-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bathroom-build-5",
       "title": "Loo Roll Dub (build phase)",
       "idea": "echoey tiled-room dub with dripping percussion and melodica",
