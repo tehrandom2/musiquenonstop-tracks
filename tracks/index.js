@@ -458,6 +458,90 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-picnic-wave-3",
+      "title": "Ant Parade Shuffle (wave)",
+      "idea": "sun-struck back-yard picnic with wrong-note nylon guitar and wheezy melodica",
+      "request": "sun-struck back-yard picnic with wrong-note nylon guitar and wheezy melodica",
+      "mood": "the wave phase",
+      "bpm": 87,
+      "key": "D major",
+      "seed": 803035,
+      "model": "fast",
+      "duration": 93.3,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back warm lazy summer-evening groove, egg shaker, cricket-like clicks and soft bongo taps as a drum kit, nylon guitar or ukulele played a bit wrong, wheezy melodica used as an instrument, woozy tape-warped synth underneath, fuzzy round bass, dusty drum machine, picnic blanket daydream, good-humoured, 87 bpm, a wheezy melodica that wanders and soft bongo taps, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"sun-struck back-yard picnic with wrong-note nylon guitar and wheezy melodica\" (the wave phase): 87 bpm in D major. The prompt describes laid back warm lazy summer-evening groove with egg shaker, cricket-like clicks and soft bongo taps as a drum kit and nylon guitar or ukulele played a bit wrong; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802035,
+          "reason": "busy: 4.9 onsets/s"
+        },
+        {
+          "seed": 701035,
+          "reason": "superseded by the #443 render"
+        },
+        {
+          "seed": 801035,
+          "reason": "harsh: 2.6% above 6 kHz"
+        }
+      ],
+      "takes": [
+        803035
+      ],
+      "numbers": {
+        "tempo_bpm": 84.8,
+        "lufs": -16.43,
+        "peak_dbfs": -3.49,
+        "silence_s": 0.25,
+        "brightness_pct": 1.61,
+        "boominess_pct": 19.0,
+        "onsets_per_s": 4.28,
+        "seam_db": 1.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-picnic-wave-3/greytide-picnic-wave-3.mp3",
+        "notes": "greytide-picnic-wave-3/notes.md",
+        "recipe": "greytide-picnic-wave-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.38,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Ant Parade Shuffle"
+        ],
+        "take_files": [
+          "greytide-picnic-wave-3/greytide-picnic-wave-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-picnic-wave-2",
       "title": "Lukewarm Lemonade (wave)",
       "idea": "sun-struck back-yard picnic with wrong-note nylon guitar and wheezy melodica",
