@@ -1,0 +1,64 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-sandpit-wave-4",
+  "title": "Bee On The Bucket (wave)",
+  "date": "2026-10-07",
+  "rendered_at": "2026-10-07T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Laid back hot lazy afternoon groove, bucket taps, spade scrapes and a dripping hose as a drum kit, buzzing bee-like synth, a far-off ice-cream-van chime used as an instrument, soft steel-drum-like plucks, fuzzy round bass, dusty shaker drum machine, sunny sandpit daydream, good-humoured, 75 bpm, a kazoo-like lead and soft hose-drip clicks, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 75,
+  "keyscale": "D major",
+  "timesignature": "4",
+  "duration": 92.61,
+  "seed": 801545,
+  "dit_caption": "Laid back hot lazy afternoon groove, bucket taps, spade scrapes and a dripping hose as a drum kit, buzzing bee-like synth, a far-off ice-cream-van chime used as an instrument, soft steel-drum-like plucks, fuzzy round bass, dusty shaker drum machine, sunny sandpit daydream, good-humoured, 75 bpm, a kazoo-like lead and soft hose-drip clicks, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 92.61,
+    "peak_dbfs": -2.88,
+    "lufs": -16.45
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 74.5,
+      "lufs": -16.45,
+      "peak_dbfs": -2.88,
+      "silence_s": 0.9,
+      "brightness_pct": 0.21,
+      "boominess_pct": 4.84,
+      "onsets_per_s": 3.33,
+      "seam_db": 0.6
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": true,
+      "onsets": true,
+      "seam": true,
+      "words": null
+    },
+    "failed": [
+      "silence"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

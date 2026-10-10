@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-sandpit-wave-4",
+      "title": "Bee On The Bucket (wave)",
+      "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "request": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "mood": "the wave phase",
+      "bpm": 75,
+      "key": "D major",
+      "seed": 801545,
+      "model": "fast",
+      "duration": 92.61,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back hot lazy afternoon groove, bucket taps, spade scrapes and a dripping hose as a drum kit, buzzing bee-like synth, a far-off ice-cream-van chime used as an instrument, soft steel-drum-like plucks, fuzzy round bass, dusty shaker drum machine, sunny sandpit daydream, good-humoured, 75 bpm, a kazoo-like lead and soft hose-drip clicks, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"hot lazy afternoon groove with bees, a hose and a far-off ice-cream van\" (the wave phase): 75 bpm in D major. The prompt describes laid back hot lazy afternoon groove with bucket taps, spade scrapes and a dripping hose as a drum kit and buzzing bee-like synth; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802545,
+          "reason": "seam step 4.6x"
+        }
+      ],
+      "takes": [
+        801545
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.45,
+        "peak_dbfs": -2.88,
+        "silence_s": 0.9,
+        "brightness_pct": 0.21,
+        "boominess_pct": 4.84,
+        "onsets_per_s": 3.33,
+        "seam_db": 0.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sandpit-wave-4/greytide-sandpit-wave-4.mp3",
+        "notes": "greytide-sandpit-wave-4/notes.md",
+        "recipe": "greytide-sandpit-wave-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.44,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "silence"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Bee On The Bucket"
+        ],
+        "take_files": [
+          "greytide-sandpit-wave-4/greytide-sandpit-wave-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sandpit-wave-3",
       "title": "Hose Drip Daydream (wave)",
       "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
