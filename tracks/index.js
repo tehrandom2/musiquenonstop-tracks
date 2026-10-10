@@ -13919,6 +13919,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-49-patient",
+      "title": "Patient",
+      "idea": "Chill wubby dubstep at half energy",
+      "request": "Chill wubby dubstep at half energy",
+      "mood": "",
+      "bpm": 70,
+      "key": "F major",
+      "seed": 100049,
+      "model": "fast",
+      "duration": 177.1,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Chill wubby dubstep at half energy, 70 bpm half-time feel, soft growling sub bass wobble kept low, long slow pads, unhurried, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Chill wubby dubstep at half energy\": 70 bpm in F major. The prompt describes chill wubby dubstep at half energy with soft growling sub bass wobble kept low, long slow pads and unhurried; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100049
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -15.9,
+        "peak_dbfs": -3.39,
+        "silence_s": 0.9,
+        "brightness_pct": 0.93,
+        "boominess_pct": 42.95,
+        "onsets_per_s": 2.39,
+        "seam_db": -31.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-49-patient/shoosting-49-patient.mp3",
+        "notes": "shoosting-49-patient/notes.md",
+        "recipe": "shoosting-49-patient/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -15.9,
+        "failed": [
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-49-patient/shoosting-49-patient.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-48-the-couch",
       "title": "The Couch",
       "idea": "Laid-back dubstep at half energy",

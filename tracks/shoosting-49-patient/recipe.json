@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-49-patient",
+  "title": "Patient",
+  "date": "2026-09-08",
+  "rendered_at": "2026-09-08T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Chill wubby dubstep at half energy, 70 bpm half-time feel, soft growling sub bass wobble kept low, long slow pads, unhurried, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 70,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 177.1,
+  "seed": 100049,
+  "dit_caption": "Chill wubby dubstep at half energy, 70 bpm half-time feel, soft growling sub bass wobble kept low, long slow pads, unhurried, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 177.1,
+    "peak_dbfs": -3.39,
+    "lufs": -15.9
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 139.0,
+      "lufs": -15.9,
+      "peak_dbfs": -3.39,
+      "silence_s": 0.9,
+      "brightness_pct": 0.93,
+      "boominess_pct": 42.95,
+      "onsets_per_s": 2.39,
+      "seam_db": -31.2
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "silence",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
