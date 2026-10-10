@@ -3,6 +3,80 @@
   "written": "2026-10-10T06:04:53-04:00",
   "tracks": [
     {
+      "slug": "last-tram-last-call",
+      "title": "Last Tram, Last Call",
+      "idea": "the last tram, rain on the roof, nobody else aboard: the last tram at night with rain on the roof and nobody else aboard",
+      "request": "the last tram, rain on the roof, nobody else aboard",
+      "mood": "damp and tired and quietly good-humoured, never creepy",
+      "bpm": 72,
+      "key": "C# minor",
+      "seed": 798336,
+      "model": "fast",
+      "duration": 90.54,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:04:28-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 72 bpm, in C# minor, a drum kit of rain-on-tin taps, a dripping-gutter click and a bus-door hiss as the hat, a soft music-box celesta used as an instrument, a soft sine sub that rolls under the beat, the last tram at night with rain on the roof and nobody else aboard, damp and tired and quietly good-humoured, never creepy, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"the last tram, rain on the roof, nobody else aboard\". \"rain\" I took as: rain as an instrument: tin taps and a gutter drip as the drum kit, minor key, slow, a damp mood clause. \"a bus shelter, public transport\" I took as: the hiss of a bus door as the hat, a place clause for a shelter after the last bus. So I wrote it at 72 bpm in C# minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 798338 (0.6s of near-silence); 798337 (seam level -5.8 dB tail to head). Seed 798336 is the take.",
+      "rejected": [
+        {
+          "seed": 798338,
+          "reason": "0.6s of near-silence"
+        },
+        {
+          "seed": 798337,
+          "reason": "seam level -5.8 dB tail to head"
+        }
+      ],
+      "takes": [
+        798336,
+        798339
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.01,
+        "peak_dbfs": -1.73,
+        "silence_s": 0.1,
+        "brightness_pct": 0.85,
+        "boominess_pct": 9.95,
+        "onsets_per_s": 2.77,
+        "seam_db": -2.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "last-tram-last-call/last-tram-last-call.mp3",
+        "notes": "last-tram-last-call/notes.md",
+        "recipe": "last-tram-last-call/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.1,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "last-tram-last-call/last-tram-last-call.mp3",
+          "last-tram-last-call/last-tram-last-call-take2.mp3"
+        ]
+      }
+    },
+    {
       "slug": "the-roof-nobody-finds",
       "title": "The Roof Nobody Finds",
       "idea": "pirate radio, the station that never stops: a tower-block roof at night with a coat-hanger aerial, tape hiss and heavy radio compression, a dub siren rewind at the drop",
