@@ -120,10 +120,16 @@ NOBODY.themes.phosphor = (function () {
       const avg = (t - t0) / (frames - 1);
       if (avg > 50) { glass.classList.remove('barrel'); TH.barrelDropped = true; }
     }
-    requestAnimationFrame(probe);
+    // the twelve frames are read once the glass has opened and the tube has warmed (issue #54): a one-off animation is not the machine
+    timers.push(setTimeout(function () { requestAnimationFrame(probe); }, 1200));
   }
-  /* ---- phosphor noise seed stepping, the 1 in 400 dip ---- */
+  /* ---- phosphor noise seed stepping, the 1 in 400 dip; the afterglow and the frame clock (issue #54) start here too ---- */
   function ambient() {
+    clock.frames = 0; clock.last = 0; clock.ms = 0;
+    // the sheen on the glass, a still layer after it in the body (not inside the barrel filter); removed with the overlays at dispose
+    const sheen = document.createElement('div'); sheen.className = 'sheen'; sheen.setAttribute('aria-hidden', 'true');
+    glass.parentNode.insertBefore(sheen, glass.nextSibling); overlays.push(sheen);
+    afterglow();
     if (reduced) return;
     const turb = document.getElementById('turb');
     let seed = 1;
@@ -142,6 +148,8 @@ NOBODY.themes.phosphor = (function () {
           glass.classList.add('opening');
           glass.classList.remove('off');
           power.classList.add('fade');
+          // the tube warms up (issue #54): a hot bloom at the centre and a degauss wobble, taken off by the clock, never left to a frozen animation
+          if (!reduced) { glass.classList.add('warm'); setTimeout(function () { glass.classList.remove('warm'); }, 800); }
           setTimeout(function () { glass.classList.remove('opening'); power.classList.remove('on', 'fade'); res(); }, 360);
         }, 40);
       });
@@ -306,9 +314,12 @@ NOBODY.themes.phosphor = (function () {
   }
   TH.frame = function (A_, S, now) {
     if (!A.ctx2d) return;
+    tick(now);
     cellSetup();
     const c = colours(), g = A.ctx2d, W = A.W, H = A.rows * A.cell.h;
-    g.clearRect(0, 0, W, H);
+    // persistence (issue #54): the last frame is not wiped but thinned to 45 %, so a falling bar leaves a two-frame trail on the glass
+    if (reduced) g.clearRect(0, 0, g.canvas.width, g.canvas.height);
+    else { g.shadowBlur = 0; g.globalCompositeOperation = 'destination-out'; g.fillStyle = 'rgb(0 0 0 / .55)'; g.fillRect(0, 0, g.canvas.width, g.canvas.height); g.globalCompositeOperation = 'source-over'; }
     const phone = V.phone();
     const labelCols = phone ? 10 : 24;
     const areaCols = Math.max(A.bands, A.totalCols - 2 - labelCols);
@@ -343,13 +354,27 @@ NOBODY.themes.phosphor = (function () {
   };
   function scopeText() {
     const scope = el('scope'); if (!scope) return;
+    // the line plus " scope" fills the band's content: 96 columns on desktop, 38 on the phone (the band pads 2ch and 1ch, issue #54)
     const cols = V.cols();
-    const n = Math.max(8, cols - 8);
+    const n = Math.max(8, cols - (V.phone() ? 8 : 10));
     const s = A.samples(n);
     const glyphs = ['_', '-', '~', '^', "'"];
     let line = '';
     for (let i = 0; i < n; i++) line += glyphs[Math.max(0, Math.min(4, Math.floor((s[i] + 1) / 2 * 5)))];
-    scope.textContent = line + ' scope';
+    setScope(scope, line, ' scope');
+  }
+  // the scope line and, under it, its afterimage from two frames ago (issue #54). the station never writes into #scope; the theme does,
+  // so the two children are the theme's and are rebuilt if anything else emptied the element.
+  const scopeRing = ['', '', ''];
+  function setScope(scope, line, label) {
+    let live = scope.firstChild, ghost = scope.lastChild;
+    if (!live || !live.classList || !live.classList.contains('scope-line')) {
+      scope.textContent = '';
+      live = span('', 'scope-line'); ghost = document.createElement('pre'); ghost.className = 'scope-ghost'; ghost.setAttribute('aria-hidden', 'true');
+      scope.appendChild(live); scope.appendChild(ghost);
+    }
+    live.textContent = line + label;
+    if (!reduced) { ghost.textContent = scopeRing[0]; scopeRing.shift(); scopeRing.push(line); }
   }
   function drawScope5(g, c, areaCols) {
     const n = areaCols, s = A.samples(n);
@@ -369,9 +394,113 @@ NOBODY.themes.phosphor = (function () {
       prev = row;
     }
     A.baselineText(true);
-    const scope = el('scope'); if (scope) scope.textContent = ' '.repeat(Math.max(0, V.cols() - 8)) + ' scope';
+    const scope = el('scope'); if (scope) setScope(scope, ' '.repeat(Math.max(0, V.cols() - (V.phone() ? 8 : 10))), ' scope');
   }
   TH.scopeRows = function (phone) { return A.mode === 'scope5' ? 5 : (phone ? 4 : 5); };
+
+  /* ---- the frame clock (issue #54): what the harness reads for the city, read here from the station's own frame calls ---- */
+  const clock = { frames: 0, last: 0, ms: 0 };
+  function tick(now) {
+    if (clock.last) { const dt = now - clock.last; clock.ms = clock.ms ? clock.ms + (dt - clock.ms) * 0.1 : dt; }
+    clock.last = now; clock.frames++;
+  }
+
+  /* ---- the afterglow (issue #54): phosphor persistence on text. a watched block gets a transparent copy of its own text laid over
+     it; when the text changes, the characters that changed are drawn --hot with the full bloom in that copy and the copy fades in
+     260 ms, so a typed character, a moving dial, a ticking clock or a resolving banner flares and cools the way a struck phosphor
+     does. one MutationObserver on the screen routes every change to its block; the terminal input, which mutates nothing, is read
+     on its input event. the copies are aria-hidden and never counted as text. off under prefers-reduced-motion. ---- */
+  const HOSTS = ['readout', 'bootLines', 'banner', 'bootTagline', 'bootWait', 'progress', 'dial', 'vol', 'npSlug', 'npMeta', 'chip', 'uptime', 'reread', 'hdrTime'];
+  const RUNS = 6; // flares per block at once: a resolving banner changes more characters than that, the rest wait for the next tick
+  const hosts = new Map(); // element -> { text, amber, layers: [{ div, anim }] }
+  // the copies carry their text in attributes drawn by ::before (the unchanged prefix, transparent) and ::after (the changed run, hot):
+  // pseudo-element text is not in textContent, so the station, the other themes and the harness read the block as before
+  function textOf(node) {
+    let s = '';
+    for (let c = node.firstChild; c; c = c.nextSibling) {
+      if (c.nodeType === 3) s += c.nodeValue;
+      else if (c.nodeType === 1 && !c.classList.contains('afterglow') && !c.classList.contains('cursor')) s += textOf(c);
+    }
+    return s;
+  }
+  function watch(host, amber) {
+    if (!host || hosts.has(host)) return hosts.get(host);
+    if (getComputedStyle(host).position === 'static') host.classList.add('afterglow-host');
+    const w = { text: textOf(host), amber: !!amber, layers: [] };
+    hosts.set(host, w);
+    return w;
+  }
+  function layer(host, w, i) {
+    let L = w.layers[i];
+    if (!L) {
+      const div = document.createElement('div');
+      div.className = 'afterglow' + (w.amber ? ' ag-amber' : '');
+      div.setAttribute('aria-hidden', 'true');
+      L = w.layers[i] = { div: div, anim: null };
+    }
+    // a block whose textContent the station just replaced has lost the copy; it goes back in
+    if (L.div.parentNode !== host) host.appendChild(L.div);
+    return L;
+  }
+  function flare(host, w, text) {
+    const old = w.text; w.text = text;
+    if (text === old || !text) return;
+    const runs = []; // [prefix, lit]
+    if (text.length === old.length) {
+      let i = 0;
+      while (i < text.length && runs.length < RUNS) {
+        if (text[i] === old[i]) { i++; continue; }
+        let j = i; while (j < text.length && text[j] !== old[j]) j++;
+        if (text.slice(i, j).trim()) runs.push([text.slice(0, i), text.slice(i, j)]);
+        i = j;
+      }
+    } else {
+      let p = 0; const m = Math.min(text.length, old.length);
+      while (p < m && text[p] === old[p]) p++;
+      let s = 0;
+      while (s < m - p && text[text.length - 1 - s] === old[old.length - 1 - s]) s++;
+      if (text.length - p - s <= 0) { if (text.length < old.length) return; s = 0; }
+      if (text.slice(p, text.length - s).trim()) runs.push([text.slice(0, p), text.slice(p, text.length - s)]);
+    }
+    if (!runs.length) return;
+    runs.forEach(function (r, i) {
+      const L = layer(host, w, i);
+      L.div.setAttribute('data-pre', r[0]); L.div.setAttribute('data-lit', r[1]);
+      if (L.anim) L.anim.cancel();
+      L.anim = L.div.animate([{ opacity: 1 }, { opacity: .85, offset: .3 }, { opacity: 0 }], { duration: 260, easing: 'ease-out', fill: 'forwards' });
+    });
+  }
+  function afterglow() {
+    if (reduced) return;
+    HOSTS.forEach(function (id) { watch(el(id)); });
+    const log = el('log'), cmd = el('cmd'), prompt = el('promptRow'), screen = el('screen');
+    const promptW = prompt && cmd ? watch(prompt) : null;
+    if (promptW) promptW.text = 'nobody> ';
+    const onInput = function () { flare(prompt, promptW, 'nobody> ' + cmd.value); };
+    if (promptW) cmd.addEventListener('input', onInput);
+    const lineWatch = function (line) {
+      if (!line.classList || !line.classList.contains('line') || line.classList.contains('print') || line.classList.contains('err')) return;
+      const w = watch(line, line.classList.contains('amber')); w.text = ''; flare(line, w, textOf(line));
+    };
+    const obs = new MutationObserver(function (records) {
+      for (let i = 0; i < records.length; i++) {
+        const r = records[i], t = r.target.nodeType === 3 ? r.target.parentElement : r.target;
+        if (!t || t.closest('.afterglow')) continue;
+        if (log && t === log) { r.addedNodes.forEach(lineWatch); continue; }
+        const host = t.closest('.afterglow-host, #readout, #reread');
+        const w = host && hosts.get(host);
+        if (w) flare(host, w, textOf(host));
+      }
+    });
+    if (screen) obs.observe(screen, { childList: true, characterData: true, subtree: true });
+    // dispose() empties `overlays` by calling remove() on each: the observer, the input listener and every copy go with it
+    overlays.push({ remove: function () {
+      obs.disconnect();
+      if (promptW) cmd.removeEventListener('input', onInput);
+      hosts.forEach(function (w, host) { w.layers.forEach(function (L) { if (L.anim) L.anim.cancel(); L.div.remove(); }); host.classList.remove('afterglow-host'); });
+      hosts.clear();
+    } });
+  }
 
   /* ---- the banner as a 512 px PNG for the media session artwork (4.2) ---- */
   TH.artwork = function () {
@@ -390,6 +519,7 @@ NOBODY.themes.phosphor = (function () {
   TH.catalogue = function () {}; TH.playing = function () {}; TH.scheme = function () {};
   // the widget slot (12.0, issue #28): the CRT mounts nothing in the transmitter card; the text progress bar is the bar
   TH.widget = function () { return null; };
-  TH.state = function () { return { widget: null, barrel: glass && glass.classList.contains('barrel'), tower: TH.towerState() }; };
+  // frames and ms are the station's frame calls while on air (the same read the harness prints for the city), afterglow the blocks watched
+  TH.state = function () { return { widget: null, barrel: glass && glass.classList.contains('barrel'), tower: TH.towerState(), frames: clock.frames, ms: +clock.ms.toFixed(1), afterglow: hosts.size }; };
   return TH;
 })();
