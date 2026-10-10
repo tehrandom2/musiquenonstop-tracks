@@ -13919,6 +13919,78 @@
       }
     },
     {
+      "slug": "shoosting-48-the-couch",
+      "title": "The Couch",
+      "idea": "Laid-back dubstep at half energy",
+      "request": "Laid-back dubstep at half energy",
+      "mood": "",
+      "bpm": 70,
+      "key": "F major",
+      "seed": 100048,
+      "model": "fast",
+      "duration": 172.87,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid-back dubstep at half energy, 70 bpm half-time feel, lazy growling sub bass wobble, warm dusty pads, slow head-nod groove, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Laid-back dubstep at half energy\": 70 bpm in F major. The prompt describes laid-back dubstep at half energy with lazy growling sub bass wobble, warm dusty pads and slow head-nod groove; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100048
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -15.62,
+        "peak_dbfs": -2.75,
+        "silence_s": 0.25,
+        "brightness_pct": 2.73,
+        "boominess_pct": 13.89,
+        "onsets_per_s": 5.36,
+        "seam_db": -45.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": false,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-48-the-couch/shoosting-48-the-couch.mp3",
+        "notes": "shoosting-48-the-couch/notes.md",
+        "recipe": "shoosting-48-the-couch/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 3.48,
+        "decoded_lufs": -15.62,
+        "failed": [
+          "brightness",
+          "boominess",
+          "onsets",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-48-the-couch/shoosting-48-the-couch.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-47-regrowing",
       "title": "Regrowing",
       "idea": "Chill wubby dubstep at half energy",

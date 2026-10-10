@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-48-the-couch",
+  "title": "The Couch",
+  "date": "2026-09-08",
+  "rendered_at": "2026-09-08T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Laid-back dubstep at half energy, 70 bpm half-time feel, lazy growling sub bass wobble, warm dusty pads, slow head-nod groove, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 70,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 172.87,
+  "seed": 100048,
+  "dit_caption": "Laid-back dubstep at half energy, 70 bpm half-time feel, lazy growling sub bass wobble, warm dusty pads, slow head-nod groove, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 172.87,
+    "peak_dbfs": -2.75,
+    "lufs": -15.62
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 138.0,
+      "lufs": -15.62,
+      "peak_dbfs": -2.75,
+      "silence_s": 0.25,
+      "brightness_pct": 2.73,
+      "boominess_pct": 13.89,
+      "onsets_per_s": 5.36,
+      "seam_db": -45.8
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
