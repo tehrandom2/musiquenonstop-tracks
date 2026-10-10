@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-carseat-build-3",
+      "title": "Streetlights Passing (build phase)",
+      "idea": "night-drive groove with indicator ticks and a radio between stations",
+      "request": "night-drive groove with indicator ticks and a radio between stations",
+      "mood": "the build phase",
+      "bpm": 84,
+      "key": "E minor",
+      "seed": 801430,
+      "model": "fast",
+      "duration": 89.1,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back night-drive groove, indicator ticks, windscreen-wiper swishes and seat-belt clicks as a drum kit, a radio drifting between stations, engine hum under warm pads, tape-warped electric piano used as an instrument, fuzzy round bass, dusty drum machine, back-seat streetlight daydream, good-humoured, 84 bpm, a vibraphone-like pluck and a drowsy organ, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"night-drive groove with indicator ticks and a radio between stations\" (the build phase): 84 bpm in E minor. The prompt describes laid back night-drive groove with indicator ticks, windscreen-wiper swishes and seat-belt clicks as a drum kit and a radio drifting between stations; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802430,
+          "reason": "not kept"
+        }
+      ],
+      "takes": [
+        801430
+      ],
+      "numbers": {
+        "tempo_bpm": 83.0,
+        "lufs": -16.44,
+        "peak_dbfs": -2.08,
+        "silence_s": 0.0,
+        "brightness_pct": 0.58,
+        "boominess_pct": 15.72,
+        "onsets_per_s": 2.88,
+        "seam_db": 3.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-carseat-build-3/greytide-carseat-build-3.mp3",
+        "notes": "greytide-carseat-build-3/notes.md",
+        "recipe": "greytide-carseat-build-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.37,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Streetlights Passing"
+        ],
+        "take_files": [
+          "greytide-carseat-build-3/greytide-carseat-build-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-carseat-build-2",
       "title": "Between Two Stations (build phase)",
       "idea": "night-drive groove with indicator ticks and a radio between stations",
