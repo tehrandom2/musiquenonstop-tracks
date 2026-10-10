@@ -1,0 +1,64 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-picnic-build-3",
+  "title": "Ant Parade Shuffle (build phase)",
+  "date": "2026-10-06",
+  "rendered_at": "2026-10-06T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Laid back warm lazy summer-evening groove, egg shaker, cricket-like clicks and soft bongo taps as a drum kit, nylon guitar or ukulele played a bit wrong, wheezy melodica used as an instrument, woozy tape-warped synth underneath, fuzzy round bass, dusty drum machine, picnic blanket daydream, good-humoured, 82 bpm, a wheezy melodica that wanders and soft bongo taps, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 82,
+  "keyscale": "D major",
+  "timesignature": "4",
+  "duration": 96.41,
+  "seed": 802030,
+  "dit_caption": "Laid back warm lazy summer-evening groove, egg shaker, cricket-like clicks and soft bongo taps as a drum kit, nylon guitar or ukulele played a bit wrong, wheezy melodica used as an instrument, woozy tape-warped synth underneath, fuzzy round bass, dusty drum machine, picnic blanket daydream, good-humoured, 82 bpm, a wheezy melodica that wanders and soft bongo taps, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 96.41,
+    "peak_dbfs": -2.87,
+    "lufs": -16.46
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 81.5,
+      "lufs": -16.46,
+      "peak_dbfs": -2.87,
+      "silence_s": 0.1,
+      "brightness_pct": 0.74,
+      "boominess_pct": 14.88,
+      "onsets_per_s": 3.32,
+      "seam_db": 1.1
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": true,
+      "words": null
+    },
+    "failed": [
+      "boominess"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
