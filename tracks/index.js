@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-gamestore-wave-1",
+      "title": "Toy Piano Fuzz (wave)",
+      "idea": "plastic-toy keyboard funk",
+      "request": "plastic-toy keyboard funk",
+      "mood": "the wave phase",
+      "bpm": 83,
+      "key": "C major",
+      "seed": 800415,
+      "model": "fast",
+      "duration": 90.08,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back plastic-toy keyboard funk, cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit, sparse kazoo-like lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine, closing-time game store daydream, sunny childlike melody going a little sour, good-humoured, 83 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"plastic-toy keyboard funk\" (the wave phase): 83 bpm in C major. The prompt describes laid back plastic-toy keyboard funk with cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit and sparse kazoo-like lead used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801415,
+          "reason": "harsh: 2.8% above 6 kHz"
+        },
+        {
+          "seed": 650004,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800415
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.42,
+        "peak_dbfs": -1.23,
+        "silence_s": 0.25,
+        "brightness_pct": 1.72,
+        "boominess_pct": 10.95,
+        "onsets_per_s": 3.25,
+        "seam_db": 1.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-gamestore-wave-1/greytide-gamestore-wave-1.mp3",
+        "notes": "greytide-gamestore-wave-1/notes.md",
+        "recipe": "greytide-gamestore-wave-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.54,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Toy Piano Fuzz"
+        ],
+        "take_files": [
+          "greytide-gamestore-wave-1/greytide-gamestore-wave-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-gamestore-build-5",
       "title": "Price Gun Shuffle (build phase)",
       "idea": "plastic-toy keyboard funk",
