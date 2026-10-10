@@ -1,0 +1,64 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-bed-build-3",
+  "title": "Pillow Fort Lullaby (build phase)",
+  "date": "2026-10-06",
+  "rendered_at": "2026-10-06T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Laid back sleepy lullaby groove, music-box plucks, felt-piano and soft pillow-thump kick, slow shaker and brushed drum machine, celesta used as an instrument, warm fuzzy round bass, tape hiss, duvet-warm bedroom daydream, good-humoured, 78 bpm, warm detuned pad and tiny bells, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 78,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 93.38,
+  "seed": 801230,
+  "dit_caption": "Laid back sleepy lullaby groove, music-box plucks, felt-piano and soft pillow-thump kick, slow shaker and brushed drum machine, celesta used as an instrument, warm fuzzy round bass, tape hiss, duvet-warm bedroom daydream, good-humoured, 78 bpm, warm detuned pad and tiny bells, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 93.38,
+    "peak_dbfs": -1.69,
+    "lufs": -16.46
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 78.0,
+      "lufs": -16.46,
+      "peak_dbfs": -1.69,
+      "silence_s": 0.1,
+      "brightness_pct": 0.85,
+      "boominess_pct": 21.29,
+      "onsets_per_s": 1.73,
+      "seam_db": -1.7
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": true,
+      "words": null
+    },
+    "failed": [
+      "boominess"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

@@ -384,6 +384,86 @@
       }
     },
     {
+      "slug": "greytide-bed-build-3",
+      "title": "Pillow Fort Lullaby (build phase)",
+      "idea": "sleepy music-box and soft fuzz bass",
+      "request": "sleepy music-box and soft fuzz bass",
+      "mood": "the build phase",
+      "bpm": 78,
+      "key": "F major",
+      "seed": 801230,
+      "model": "fast",
+      "duration": 93.38,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back sleepy lullaby groove, music-box plucks, felt-piano and soft pillow-thump kick, slow shaker and brushed drum machine, celesta used as an instrument, warm fuzzy round bass, tape hiss, duvet-warm bedroom daydream, good-humoured, 78 bpm, warm detuned pad and tiny bells, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"sleepy music-box and soft fuzz bass\" (the build phase): 78 bpm in F major. The prompt describes laid back sleepy lullaby groove with music-box plucks, felt-piano and soft pillow-thump kick and slow shaker and brushed drum machine; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800230,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700230,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801230
+      ],
+      "numbers": {
+        "tempo_bpm": 78.0,
+        "lufs": -16.46,
+        "peak_dbfs": -1.69,
+        "silence_s": 0.1,
+        "brightness_pct": 0.85,
+        "boominess_pct": 21.29,
+        "onsets_per_s": 1.73,
+        "seam_db": -1.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bed-build-3/greytide-bed-build-3.mp3",
+        "notes": "greytide-bed-build-3/notes.md",
+        "recipe": "greytide-bed-build-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.46,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Pillow Fort Lullaby"
+        ],
+        "take_files": [
+          "greytide-bed-build-3/greytide-bed-build-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bed-build-2",
       "title": "Counting Sheep Slowly (build phase)",
       "idea": "sleepy music-box and soft fuzz bass",
