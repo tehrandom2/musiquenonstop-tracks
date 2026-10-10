@@ -384,6 +384,86 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-bed-build-2",
+      "title": "Counting Sheep Slowly (build phase)",
+      "idea": "sleepy music-box and soft fuzz bass",
+      "request": "sleepy music-box and soft fuzz bass",
+      "mood": "the build phase",
+      "bpm": 72,
+      "key": "C major",
+      "seed": 800220,
+      "model": "fast",
+      "duration": 91.13,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back sleepy lullaby groove, music-box plucks, felt-piano and soft pillow-thump kick, slow shaker and brushed drum machine, celesta used as an instrument, warm fuzzy round bass, tape hiss, duvet-warm bedroom daydream, good-humoured, 72 bpm, soft toy xylophone and a breathy flute-like synth, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"sleepy music-box and soft fuzz bass\" (the build phase): 72 bpm in C major. The prompt describes laid back sleepy lullaby groove with music-box plucks, felt-piano and soft pillow-thump kick and slow shaker and brushed drum machine; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801220,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700220,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800220
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.47,
+        "peak_dbfs": -1.73,
+        "silence_s": 0.0,
+        "brightness_pct": 0.49,
+        "boominess_pct": 18.64,
+        "onsets_per_s": 1.59,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bed-build-2/greytide-bed-build-2.mp3",
+        "notes": "greytide-bed-build-2/notes.md",
+        "recipe": "greytide-bed-build-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.34,
+        "decoded_lufs": -16.47,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Counting Sheep Slowly"
+        ],
+        "take_files": [
+          "greytide-bed-build-2/greytide-bed-build-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bed-build-1",
       "title": "Duvet Fuzz (build phase)",
       "idea": "sleepy music-box and soft fuzz bass",
