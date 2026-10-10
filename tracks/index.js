@@ -458,6 +458,86 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-garage-build-3",
+      "title": "Borrowed Bass Fuzz (build phase)",
+      "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "request": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "mood": "the build phase",
+      "bpm": 86,
+      "key": "D major",
+      "seed": 801130,
+      "model": "fast",
+      "duration": 88.9,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back slacker garage-band groove, cardboard-box kick, tambourine and cowbell as a drum kit, wobbly cheap organ and tremolo guitar through a small amp used as instruments, fuzzy round bass, dusty drum machine played behind the beat, charmingly not very good, friendly, no shredding, good-humoured, 86 bpm, tremolo guitar chords that almost fit and handclaps, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar\" (the build phase): 86 bpm in D major. The prompt describes laid back slacker garage-band groove with cardboard-box kick, tambourine and cowbell as a drum kit and wobbly cheap organ and tremolo guitar through a small amp used as instruments; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802130,
+          "reason": "not kept"
+        },
+        {
+          "seed": 701130,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801130
+      ],
+      "numbers": {
+        "tempo_bpm": 85.5,
+        "lufs": -16.41,
+        "peak_dbfs": -1.38,
+        "silence_s": 0.05,
+        "brightness_pct": 2.56,
+        "boominess_pct": 10.21,
+        "onsets_per_s": 2.79,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-garage-build-3/greytide-garage-build-3.mp3",
+        "notes": "greytide-garage-build-3/notes.md",
+        "recipe": "greytide-garage-build-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.13,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "brightness"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Borrowed Bass Fuzz"
+        ],
+        "take_files": [
+          "greytide-garage-build-3/greytide-garage-build-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-garage-build-2",
       "title": "Drummer Is Late (build phase)",
       "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
