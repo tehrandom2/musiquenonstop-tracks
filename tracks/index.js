@@ -13919,6 +13919,76 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-50-brandee",
+      "title": "Brandee",
+      "idea": "Laid-back dubstep at half energy",
+      "request": "Laid-back dubstep at half energy",
+      "mood": "",
+      "bpm": 70,
+      "key": "A# minor",
+      "seed": 100050,
+      "model": "fast",
+      "duration": 174.05,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid-back dubstep at half energy, 70 bpm half-time feel, warm smooth sub bass wobble, sweet gentle synth melody, affectionate and calm, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Laid-back dubstep at half energy\": 70 bpm in A# minor. The prompt describes laid-back dubstep at half energy with warm smooth sub bass wobble, sweet gentle synth melody and affectionate and calm; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100050
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.01,
+        "peak_dbfs": -3.85,
+        "silence_s": 0.2,
+        "brightness_pct": 1.93,
+        "boominess_pct": 35.15,
+        "onsets_per_s": 3.45,
+        "seam_db": -44.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-50-brandee/shoosting-50-brandee.mp3",
+        "notes": "shoosting-50-brandee/notes.md",
+        "recipe": "shoosting-50-brandee/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -16.01,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-50-brandee/shoosting-50-brandee.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-49-patient",
       "title": "Patient",
       "idea": "Chill wubby dubstep at half energy",
