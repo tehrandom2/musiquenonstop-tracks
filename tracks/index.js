@@ -384,6 +384,80 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-electroclash-build",
+      "title": "Court Jester Electroclash (build phase)",
+      "idea": "medieval-electroclash",
+      "request": "medieval-electroclash",
+      "mood": "the build phase",
+      "bpm": 100,
+      "key": "A minor",
+      "seed": 590005,
+      "model": "fast",
+      "duration": 94.86,
+      "date": "2026-10-03",
+      "rendered_at": "2026-10-03T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Medieval electroclash, calm and cool, 100 bpm, deadpan analog drum machine, squelchy mono synth bass, harpsichord and lute melody, dry chilly pads, detached club-in-a-castle vibe, minimal and loopable, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-03 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"medieval-electroclash\" (the build phase): 100 bpm in A minor. The prompt describes medieval electroclash with calm and cool, deadpan analog drum machine and squelchy mono synth bass; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        590005
+      ],
+      "numbers": {
+        "tempo_bpm": 98.5,
+        "lufs": -14.84,
+        "peak_dbfs": -2.14,
+        "silence_s": 0.1,
+        "brightness_pct": 3.29,
+        "boominess_pct": 20.99,
+        "onsets_per_s": 4.72,
+        "seam_db": 2.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": false,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-electroclash-build/greytide-electroclash-build.mp3",
+        "notes": "greytide-electroclash-build/notes.md",
+        "recipe": "greytide-electroclash-build/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -14.84,
+        "failed": [
+          "loudness",
+          "brightness",
+          "boominess",
+          "onsets"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Court Jester Electroclash"
+        ],
+        "take_files": [
+          "greytide-electroclash-build/greytide-electroclash-build.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-electroclash-alt-wave",
       "title": "Plastic Tournament (wave)",
       "idea": "medieval-electroclash",

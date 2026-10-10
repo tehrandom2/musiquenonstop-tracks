@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-electroclash-build",
+  "title": "Court Jester Electroclash (build phase)",
+  "date": "2026-10-03",
+  "rendered_at": "2026-10-03T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Medieval electroclash, calm and cool, 100 bpm, deadpan analog drum machine, squelchy mono synth bass, harpsichord and lute melody, dry chilly pads, detached club-in-a-castle vibe, minimal and loopable, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 100,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 94.86,
+  "seed": 590005,
+  "dit_caption": "Medieval electroclash, calm and cool, 100 bpm, deadpan analog drum machine, squelchy mono synth bass, harpsichord and lute melody, dry chilly pads, detached club-in-a-castle vibe, minimal and loopable, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 94.86,
+    "peak_dbfs": -2.14,
+    "lufs": -14.84
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 98.5,
+      "lufs": -14.84,
+      "peak_dbfs": -2.14,
+      "silence_s": 0.1,
+      "brightness_pct": 3.29,
+      "boominess_pct": 20.99,
+      "onsets_per_s": 4.72,
+      "seam_db": 2.9
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": true,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "brightness",
+      "boominess",
+      "onsets"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
