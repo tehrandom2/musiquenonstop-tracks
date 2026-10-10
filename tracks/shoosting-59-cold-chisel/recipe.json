@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-59-cold-chisel",
+  "title": "Cold Chisel",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Industrial EBM techno, 120 bpm, pounding kick drum, grinding acid bassline with a harsh resonant squelch, sixteenth-note sequenced analog bass, metal-on-metal percussion, cold monochrome mood, relentless mechanical drive with a stripped breakdown of bass alone, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 120,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 176.45,
+  "seed": 100059,
+  "dit_caption": "Industrial EBM techno, 120 bpm, pounding kick drum, grinding acid bassline with a harsh resonant squelch, sixteenth-note sequenced analog bass, metal-on-metal percussion, cold monochrome mood, relentless mechanical drive with a stripped breakdown of bass alone, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 176.45,
+    "peak_dbfs": -2.62,
+    "lufs": -15.45
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 119.0,
+      "lufs": -15.45,
+      "peak_dbfs": -2.62,
+      "silence_s": 0.3,
+      "brightness_pct": 7.6,
+      "boominess_pct": 32.95,
+      "onsets_per_s": 6.14,
+      "seam_db": -44.4
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
