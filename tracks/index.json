@@ -384,6 +384,75 @@
       }
     },
     {
+      "slug": "greytide-attic-build-5",
+      "title": "Loft Insulation Funk (build phase)",
+      "idea": "dusty music box and warbling old-tape organ",
+      "request": "dusty music box and warbling old-tape organ",
+      "mood": "the build phase",
+      "bpm": 78,
+      "key": "E minor",
+      "seed": 700750,
+      "model": "fast",
+      "duration": 86.47,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back dusty attic groove, warbling old-tape organ, slightly out-of-tune music box, harmonium, creaky soft drum machine, warm fuzzy bass, cobweb-soft and nostalgic, never creepy, good-humoured, 78 bpm, dusty mellotron-like flutes and soft claps, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"dusty music box and warbling old-tape organ\" (the build phase): 78 bpm in E minor. The prompt describes laid back dusty attic groove with warbling old-tape organ, slightly out-of-tune music box and harmonium; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        700750
+      ],
+      "numbers": {
+        "tempo_bpm": 78.0,
+        "lufs": -16.53,
+        "peak_dbfs": -1.83,
+        "silence_s": 0.05,
+        "brightness_pct": 0.53,
+        "boominess_pct": 11.68,
+        "onsets_per_s": 1.28,
+        "seam_db": 0.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-attic-build-5/greytide-attic-build-5.mp3",
+        "notes": "greytide-attic-build-5/notes.md",
+        "recipe": "greytide-attic-build-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.59,
+        "decoded_lufs": -16.53,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Loft Insulation Funk"
+        ],
+        "take_files": [
+          "greytide-attic-build-5/greytide-attic-build-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-attic-build-4",
       "title": "Rafter Fuzz (build phase)",
       "idea": "dusty music box and warbling old-tape organ",
