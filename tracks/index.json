@@ -13919,6 +13919,76 @@
       }
     },
     {
+      "slug": "shoosting-67-sawtooth-heart",
+      "title": "Sawtooth Heart",
+      "idea": "Electro house with a broken heart",
+      "request": "Electro house with a broken heart",
+      "mood": "",
+      "bpm": 126,
+      "key": "A minor",
+      "seed": 400067,
+      "model": "best",
+      "duration": 176.63,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Electro house with a broken heart, opening on a lonely, slightly detuned upright piano playing four sad minor chords in an empty room. Then a gigantic raw buzzing sawtooth synth bass rips in underneath, unfiltered, gritty and overdriven, playing a stabbing syncopated riff over a hard four-on-the-floor kick, sharp claps and heavy sidechain pumping. The piano keeps playing over the top the whole time. The quiet sections pull back to piano and kick, the loud sections are all sawtooth. Bitter, urgent, danceable, heart on sleeve, instrumental.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Electro house with a broken heart\": 126 bpm in A minor, one of the tracks the machine chose for itself, on the best tier. The prompt describes electro house with a broken heart; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400067
+      ],
+      "numbers": {
+        "tempo_bpm": 123.0,
+        "lufs": -18.97,
+        "peak_dbfs": -2.64,
+        "silence_s": 0.1,
+        "brightness_pct": 0.63,
+        "boominess_pct": 2.6,
+        "onsets_per_s": 3.24,
+        "seam_db": -27.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-67-sawtooth-heart/shoosting-67-sawtooth-heart.mp3",
+        "notes": "shoosting-67-sawtooth-heart/notes.md",
+        "recipe": "shoosting-67-sawtooth-heart/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -18.97,
+        "failed": [
+          "loudness",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-67-sawtooth-heart/shoosting-67-sawtooth-heart.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-66-hymn-for-a-blown-speaker",
       "title": "Hymn for a Blown Speaker",
       "idea": "Distorted ambient hymn",
