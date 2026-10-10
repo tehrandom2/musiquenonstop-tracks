@@ -3,6 +3,82 @@ window.NOBODY_INDEX = {
   "written": "2026-10-10T06:17:18-04:00",
   "tracks": [
     {
+      "slug": "swimming-pool-still-open",
+      "title": "Swimming Pool, Still Open",
+      "idea": "a swimming pool with the lights off: a swimming pool with the lights off and the water lapping the tiles",
+      "request": "a swimming pool with the lights off",
+      "mood": "cosy and absent-minded, nothing to prove",
+      "bpm": 79,
+      "key": "Bb minor",
+      "seed": 247225,
+      "model": "fast",
+      "duration": 93.78,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:17:18-04:00",
+      "voice": false,
+      "prompt": "Warm unhurried downtempo groove, 79 bpm, in Bb minor, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a muted nylon guitar used as an instrument, a round, tape-saturated bass in the mid range, played sparsely, a swimming pool with the lights off and the water lapping the tiles, cosy and absent-minded, nothing to prove, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a swimming pool with the lights off\". So I wrote it at 79 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 247224 (seam level -11.4 dB tail to head); 247227 (boomy: 20.5% below 60 Hz (ceiling 12) and others). Seed 247225 is the take, but it did not clear every gate: boomy: 42.0% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 247224,
+          "reason": "seam level -11.4 dB tail to head"
+        },
+        {
+          "seed": 247227,
+          "reason": "boomy: 20.5% below 60 Hz (ceiling 12); seam level -10.9 dB tail to head"
+        }
+      ],
+      "takes": [
+        247225,
+        247226
+      ],
+      "numbers": {
+        "tempo_bpm": 77.2,
+        "lufs": -16.0,
+        "peak_dbfs": -2.84,
+        "silence_s": 0.0,
+        "brightness_pct": 0.53,
+        "boominess_pct": 41.98,
+        "onsets_per_s": 2.48,
+        "seam_db": -0.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "swimming-pool-still-open/swimming-pool-still-open.mp3",
+        "notes": "swimming-pool-still-open/notes.md",
+        "recipe": "swimming-pool-still-open/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.07,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "boomy: 42.0% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "swimming-pool-still-open/swimming-pool-still-open.mp3",
+          "swimming-pool-still-open/swimming-pool-still-open-take2.mp3"
+        ]
+      }
+    },
+    {
       "slug": "night-airport-after-hours",
       "title": "Night Airport, After Hours",
       "idea": "the night bus to the airport, everyone asleep: a night bus to the airport with everyone asleep and the road lights sliding past",
