@@ -458,6 +458,100 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-pub-build-1",
+      "title": "Wonky Pub Piano (build phase)",
+      "idea": "wonky pub-piano and wheezy accordion shuffle",
+      "request": "wonky pub-piano and wheezy accordion shuffle",
+      "mood": "the build phase",
+      "bpm": 92,
+      "key": "C major",
+      "seed": 802910,
+      "model": "fast",
+      "duration": 90.58,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wonky honky-tonk groove, clinking glasses, beer-mat taps and foot stomps as a drum kit, slightly out-of-tune pub piano, wheezy accordion used as an instrument, fuzzy walking bass, dusty brushed drum machine, tipsy after-hours daydream, good-humoured, 92 bpm, a tipsy tuba-like synth and handclaps, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wonky pub-piano and wheezy accordion shuffle\" (the build phase): 92 bpm in C major. The prompt describes laid back wonky honky-tonk groove with clinking glasses, beer-mat taps and foot stomps as a drum kit and slightly out-of-tune pub piano; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 803910,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700910,
+          "reason": "voice hint 0.72; superseded by the #443 render"
+        },
+        {
+          "seed": 701910,
+          "reason": "busy: 4.6 onsets/s; superseded by the #443 render"
+        },
+        {
+          "seed": 702910,
+          "reason": "superseded by the #443 render"
+        },
+        {
+          "seed": 800910,
+          "reason": "harsh: 3.4% above 6 kHz"
+        },
+        {
+          "seed": 801910,
+          "reason": "harsh: 2.9% above 6 kHz"
+        }
+      ],
+      "takes": [
+        802910
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.4,
+        "peak_dbfs": -1.95,
+        "silence_s": 0.05,
+        "brightness_pct": 1.56,
+        "boominess_pct": 3.6,
+        "onsets_per_s": 3.5,
+        "seam_db": -1.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-pub-build-1/greytide-pub-build-1.mp3",
+        "notes": "greytide-pub-build-1/notes.md",
+        "recipe": "greytide-pub-build-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.07,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Wonky Pub Piano"
+        ],
+        "take_files": [
+          "greytide-pub-build-1/greytide-pub-build-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-picnic-wave-5",
       "title": "Citronella Slow Jam (wave)",
       "idea": "sun-struck back-yard picnic with wrong-note nylon guitar and wheezy melodica",
