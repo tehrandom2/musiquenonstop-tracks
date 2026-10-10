@@ -1,6 +1,6 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-10T06:10:00-04:00",
+  "written": "2026-10-10T06:11:37-04:00",
   "tracks": [
     {
       "slug": "arcade-after-slow-light",
@@ -13916,6 +13916,76 @@
         ],
         "key_source": "estimated now (the source did not record one)",
         "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
+      "slug": "shoosting-46-splice-table",
+      "title": "Splice Table",
+      "idea": "Laid-back dubstep at half energy",
+      "request": "Laid-back dubstep at half energy",
+      "mood": "",
+      "bpm": 70,
+      "key": "A# minor",
+      "seed": 100046,
+      "model": "fast",
+      "duration": 176.94,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid-back dubstep at half energy, 70 bpm half-time feel, warm growling sub bass wobble kept low and smooth, soft glassy synth pads, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Laid-back dubstep at half energy\": 70 bpm in A# minor. The prompt describes laid-back dubstep at half energy with warm growling sub bass wobble kept low and smooth, soft glassy synth pads and relaxed neon-lit atmosphere; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100046
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -15.56,
+        "peak_dbfs": -2.85,
+        "silence_s": 0.1,
+        "brightness_pct": 1.11,
+        "boominess_pct": 30.84,
+        "onsets_per_s": 2.84,
+        "seam_db": -32.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-46-splice-table/shoosting-46-splice-table.mp3",
+        "notes": "shoosting-46-splice-table/notes.md",
+        "recipe": "shoosting-46-splice-table/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.57,
+        "decoded_lufs": -15.56,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-46-splice-table/shoosting-46-splice-table.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
       }
     },
     {
