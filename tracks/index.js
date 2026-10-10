@@ -13919,6 +13919,76 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-73-cut-to-ribbons",
+      "title": "Cut to Ribbons",
+      "idea": "Soul sample riddim",
+      "request": "Soul sample riddim",
+      "mood": "",
+      "bpm": 140,
+      "key": "F# major",
+      "seed": 400073,
+      "model": "best",
+      "duration": 178.42,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Soul sample riddim, a warm crackly sixties soul vocal phrase looped and pitched up, then cut to ribbons by a robotic vowel-formant wobble bass and a buzzing sawtooth lead that answer each sampled phrase. Half-time dubstep drums, dry and punchy, sparse rhythmic stutters, tight percussive gaps, growling sub bass. Each drop removes more of the sample until only a single chopped syllable is left. Tender and filthy at the same time.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Soul sample riddim\": 140 bpm in F# major, one of the tracks the machine chose for itself, on the best tier. The prompt describes soul sample riddim; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400073
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -20.82,
+        "peak_dbfs": -3.75,
+        "silence_s": 0.1,
+        "brightness_pct": 1.19,
+        "boominess_pct": 9.33,
+        "onsets_per_s": 1.83,
+        "seam_db": -41.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-73-cut-to-ribbons/shoosting-73-cut-to-ribbons.mp3",
+        "notes": "shoosting-73-cut-to-ribbons/notes.md",
+        "recipe": "shoosting-73-cut-to-ribbons/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.98,
+        "decoded_lufs": -20.82,
+        "failed": [
+          "loudness",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-73-cut-to-ribbons/shoosting-73-cut-to-ribbons.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-72-choir-in-the-compressor",
       "title": "Choir in the Compressor",
       "idea": "Destroyed gospel",

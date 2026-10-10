@@ -1,0 +1,65 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-73-cut-to-ribbons",
+  "title": "Cut to Ribbons",
+  "date": "2026-10-01",
+  "rendered_at": "2026-10-01T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": "acestep-5Hz-lm-4B",
+    "offload_to_cpu": true,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "caption": "Soul sample riddim, a warm crackly sixties soul vocal phrase looped and pitched up, then cut to ribbons by a robotic vowel-formant wobble bass and a buzzing sawtooth lead that answer each sampled phrase. Half-time dubstep drums, dry and punchy, sparse rhythmic stutters, tight percussive gaps, growling sub bass. Each drop removes more of the sample until only a single chopped syllable is left. Tender and filthy at the same time.",
+  "lyrics": "",
+  "instrumental": false,
+  "bpm": 140,
+  "keyscale": "F# major",
+  "timesignature": "4",
+  "duration": 178.42,
+  "seed": 400073,
+  "dit_caption": "Soul sample riddim, a warm crackly sixties soul vocal phrase looped and pitched up, then cut to ribbons by a robotic vowel-formant wobble bass and a buzzing sawtooth lead that answer each sampled phrase. Half-time dubstep drums, dry and punchy, sparse rhythmic stutters, tight percussive gaps, growling sub bass. Each drop removes more of the sample until only a single chopped syllable is left. Tender and filthy at the same time.",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 178.42,
+    "peak_dbfs": -3.75,
+    "lufs": -20.82
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 139.0,
+      "lufs": -20.82,
+      "peak_dbfs": -3.75,
+      "silence_s": 0.1,
+      "brightness_pct": 1.19,
+      "boominess_pct": 9.33,
+      "onsets_per_s": 1.83,
+      "seam_db": -41.8
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
