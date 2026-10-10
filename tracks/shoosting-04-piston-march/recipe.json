@@ -1,0 +1,65 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-04-piston-march",
+  "title": "Piston March",
+  "date": "2026-09-06",
+  "rendered_at": "2026-09-06T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Drumstep, 140 bpm, half-time drop every 32 bars, double-time breakbeat drums under a growling wubby sub bass, mechanical percussion fills, aggressive but readable energy, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 140,
+  "keyscale": "A# minor",
+  "timesignature": "4",
+  "duration": 176.71,
+  "seed": 100004,
+  "dit_caption": "Drumstep, 140 bpm, half-time drop every 32 bars, double-time breakbeat drums under a growling wubby sub bass, mechanical percussion fills, aggressive but readable energy, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 176.71,
+    "peak_dbfs": -3.14,
+    "lufs": -15.32
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 138.0,
+      "lufs": -15.32,
+      "peak_dbfs": -3.14,
+      "silence_s": 0.15,
+      "brightness_pct": 1.95,
+      "boominess_pct": 48.31,
+      "onsets_per_s": 3.98,
+      "seam_db": -49.9
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
