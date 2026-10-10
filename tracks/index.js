@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-gamestore-wave-3",
+      "title": "Clearance Bin Groove (wave)",
+      "idea": "plastic-toy keyboard funk",
+      "request": "plastic-toy keyboard funk",
+      "mood": "the wave phase",
+      "bpm": 81,
+      "key": "F major",
+      "seed": 801435,
+      "model": "fast",
+      "duration": 92.57,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back plastic-toy keyboard funk, cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit, sparse kazoo-like lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine, closing-time game store daydream, sunny childlike melody going a little sour, good-humoured, 81 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"plastic-toy keyboard funk\" (the wave phase): 81 bpm in F major. The prompt describes laid back plastic-toy keyboard funk with cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit and sparse kazoo-like lead used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800435,
+          "reason": "not kept"
+        },
+        {
+          "seed": 650006,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801435
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.44,
+        "peak_dbfs": -1.45,
+        "silence_s": 0.15,
+        "brightness_pct": 1.24,
+        "boominess_pct": 8.44,
+        "onsets_per_s": 2.5,
+        "seam_db": -2.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-gamestore-wave-3/greytide-gamestore-wave-3.mp3",
+        "notes": "greytide-gamestore-wave-3/notes.md",
+        "recipe": "greytide-gamestore-wave-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.14,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Clearance Bin Groove"
+        ],
+        "take_files": [
+          "greytide-gamestore-wave-3/greytide-gamestore-wave-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-gamestore-wave-2",
       "title": "Shrinkwrap Funk (wave)",
       "idea": "plastic-toy keyboard funk",
