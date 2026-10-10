@@ -108,8 +108,6 @@ def main() -> None:
     ap.add_argument("--work", default=None, help="folder for ACE's raw render (default: a 'raw' folder next to the output)")
     a = ap.parse_args()
     r = json.loads(Path(a.recipe).read_text(encoding="utf-8"))
-    if r.get("reproducible") is False:
-        raise SystemExit("this recipe is marked reproducible: false (" + r.get("reproducible_why", "an imported track") + "); nothing was rendered")
     out = Path(a.out) if a.out else Path(a.recipe).resolve().parent / f"{r['slug']}-rerender.wav"
     work = Path(a.work) if a.work else out.parent / "raw"
     work.mkdir(parents=True, exist_ok=True)
