@@ -1,7 +1,84 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T07:03:17-04:00",
+  "written": "2026-10-10T19:25:46-04:00",
   "tracks": [
+    {
+      "slug": "rain-shelter-last-call-rain-harder-tin",
+      "title": "Rain Shelter, Last Call, Rain Harder Tin",
+      "project": "station",
+      "idea": "rain on a bus shelter at 2 a.m.: a bus shelter after the last bus",
+      "request": "make it rain harder on the tin",
+      "mood": "damp and tired and quietly good-humoured, never creepy",
+      "bpm": 72,
+      "key": "B minor",
+      "seed": 396848,
+      "model": "fast",
+      "duration": 89.98,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T19:25:46-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 72 bpm, in B minor, a drum kit of rain-on-tin taps, a dripping-gutter click and a bus-door hiss as the hat, with the rain much harder and heavier, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a bus shelter after the last bus, damp and tired and quietly good-humoured, never creepy, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "This is a variation of rain-shelter-last-call: the ask was \"make it rain harder on the tin\", and the seed stayed. \"rain\" I took as: rain as an instrument: tin taps and a gutter drip as the drum kit, minor key, slow, a damp mood clause. \"a bus shelter, public transport\" I took as: the hiss of a bus door as the hat, a place clause for a shelter after the last bus. \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. So I wrote it at 72 bpm in B minor, 100 seconds, with no voice, under the mellow gates. It is meant to loop: the last 3 seconds are crossfaded onto the first 3 and removed. I rendered 1 seed and kept it. Seed 396848 is the take, but it did not clear every gate: seam level +6.1 dB tail to head.",
+      "rejected": [],
+      "takes": [
+        396848
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.02,
+        "peak_dbfs": -2.52,
+        "silence_s": 0.05,
+        "brightness_pct": 0.39,
+        "boominess_pct": 11.68,
+        "onsets_per_s": 2.94,
+        "seam_db": 6.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": {
+        "parent": "rain-shelter-last-call",
+        "seed": 396848,
+        "changed": {
+          "from": "a drum kit of rain-on-tin taps, a dripping-gutter click and a bus-door hiss as the hat",
+          "to": "a drum kit of rain-on-tin taps, a dripping-gutter click and a bus-door hiss as the hat, with the rain much harder and heavier"
+        },
+        "request": "make it rain harder on the tin",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "rain-shelter-last-call-rain-harder-tin/rain-shelter-last-call-rain-harder-tin.mp3",
+        "notes": "rain-shelter-last-call-rain-harder-tin/notes.md",
+        "recipe": "rain-shelter-last-call-rain-harder-tin/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.3,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "seam level +6.1 dB tail to head"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 3968134,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "rain-shelter-last-call-rain-harder-tin/rain-shelter-last-call-rain-harder-tin.mp3"
+        ]
+      }
+    },
     {
       "slug": "condensation",
       "title": "Condensation",
