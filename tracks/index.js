@@ -13843,6 +13843,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-42-towers",
+      "title": "Towers",
+      "idea": "Melodic dubstep",
+      "request": "Melodic dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "A minor",
+      "seed": 100042,
+      "model": "fast",
+      "duration": 178.06,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Melodic dubstep, 140 bpm, half-time drop every 32 bars, tall stacked synth chords climbing over a growling sub bass, huge drops, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Melodic dubstep\": 140 bpm in A minor. The prompt describes melodic dubstep with half-time drop every 32 bars, tall stacked synth chords climbing over a growling sub bass and huge drops; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100042
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.12,
+        "peak_dbfs": -2.62,
+        "silence_s": 0.1,
+        "brightness_pct": 2.77,
+        "boominess_pct": 50.89,
+        "onsets_per_s": 4.3,
+        "seam_db": -52.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-42-towers/shoosting-42-towers.mp3",
+        "notes": "shoosting-42-towers/notes.md",
+        "recipe": "shoosting-42-towers/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 8.51,
+        "decoded_lufs": -16.12,
+        "failed": [
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-42-towers/shoosting-42-towers.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-41-the-pit",
       "title": "The Pit",
       "idea": "Dark heavy dubstep",
