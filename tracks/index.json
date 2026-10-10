@@ -534,6 +534,86 @@
       }
     },
     {
+      "slug": "greytide-sandpit-build-2",
+      "title": "Ice Cream Van Far Away (build phase)",
+      "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "request": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "mood": "the build phase",
+      "bpm": 72,
+      "key": "G major",
+      "seed": 806520,
+      "model": "fast",
+      "duration": 93.21,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back hot lazy afternoon groove, bucket taps, spade scrapes and a dripping hose as a drum kit, buzzing bee-like synth, a far-off ice-cream-van chime used as an instrument, soft steel-drum-like plucks, fuzzy round bass, dusty shaker drum machine, sunny sandpit daydream, good-humoured, 72 bpm, a wheezy melodica and a slow tambourine, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"hot lazy afternoon groove with bees, a hose and a far-off ice-cream van\" (the build phase): 72 bpm in G major. The prompt describes laid back hot lazy afternoon groove with bucket taps, spade scrapes and a dripping hose as a drum kit and buzzing bee-like synth; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 805520,
+          "reason": "tempo 120 vs asked 72"
+        },
+        {
+          "seed": 801520,
+          "reason": "tempo 122 vs asked 72; crest 18.3 dB, too peaky to match the loudness"
+        }
+      ],
+      "takes": [
+        806520
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.42,
+        "peak_dbfs": -2.11,
+        "silence_s": 0.0,
+        "brightness_pct": 1.31,
+        "boominess_pct": 17.32,
+        "onsets_per_s": 3.42,
+        "seam_db": -0.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sandpit-build-2/greytide-sandpit-build-2.mp3",
+        "notes": "greytide-sandpit-build-2/notes.md",
+        "recipe": "greytide-sandpit-build-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.16,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Ice Cream Van Far Away"
+        ],
+        "take_files": [
+          "greytide-sandpit-build-2/greytide-sandpit-build-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sandpit-build-1",
       "title": "Bucket And Spade Shuffle (build phase)",
       "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
