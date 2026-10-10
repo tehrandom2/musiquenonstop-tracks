@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-carseat-build-1",
+      "title": "Indicator Ticks (build phase)",
+      "idea": "night-drive groove with indicator ticks and a radio between stations",
+      "request": "night-drive groove with indicator ticks and a radio between stations",
+      "mood": "the build phase",
+      "bpm": 80,
+      "key": "A minor",
+      "seed": 802410,
+      "model": "fast",
+      "duration": 92.41,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back night-drive groove, indicator ticks, windscreen-wiper swishes and seat-belt clicks as a drum kit, a radio drifting between stations, engine hum under warm pads, tape-warped electric piano used as an instrument, fuzzy round bass, dusty drum machine, back-seat streetlight daydream, good-humoured, 80 bpm, a woozy detuned synth and soft streetlight pings, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"night-drive groove with indicator ticks and a radio between stations\" (the build phase): 80 bpm in A minor. The prompt describes laid back night-drive groove with indicator ticks, windscreen-wiper swishes and seat-belt clicks as a drum kit and a radio drifting between stations; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801410,
+          "reason": "not kept"
+        }
+      ],
+      "takes": [
+        802410
+      ],
+      "numbers": {
+        "tempo_bpm": 79.0,
+        "lufs": -16.43,
+        "peak_dbfs": -1.89,
+        "silence_s": 0.1,
+        "brightness_pct": 0.74,
+        "boominess_pct": 21.91,
+        "onsets_per_s": 3.52,
+        "seam_db": 4.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-carseat-build-1/greytide-carseat-build-1.mp3",
+        "notes": "greytide-carseat-build-1/notes.md",
+        "recipe": "greytide-carseat-build-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.61,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Indicator Ticks"
+        ],
+        "take_files": [
+          "greytide-carseat-build-1/greytide-carseat-build-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sill-wave-5",
       "title": "Pigeon Overhead (wave)",
       "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
