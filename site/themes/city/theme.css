@@ -29,11 +29,7 @@
   --amber: #FFB020;    --amber-rgb: 255 176 32;
   --ink: #E8F1FF;      --ink-rgb: 232 241 255;
   --ink-mid: #9FB3D9;
-  /* the lowest tier of text still reads at 4.5:1 on the panel (12.0, legibility); the old #55628A was 3.2:1 */
-  --ink-dim: #7B88B0;  --ink-dim-rgb: 123 136 176;
-  /* the opaque panel behind every word (12.0, legibility); the glass stays on the card's margin */
-  --panel: #080B1A;    --panel-rgb: 8 11 26;
-  --big: 0px;
+  --ink-dim: #55628A;  --ink-dim-rgb: 85 98 138;
   --grad-hot: linear-gradient(90deg, var(--cyan), var(--magenta));
   --grad-deep: linear-gradient(90deg, var(--violet), var(--cyan));
   --grad-warm: linear-gradient(90deg, var(--amber), var(--magenta));
@@ -46,12 +42,10 @@
   --gap: 14px;
   --radius: 10px;
   --chw: .6;
-  /* data text is 16 px or more on desktop (12.0, legibility); 100 columns of Plex at 18 px are 1080 px, which fits 1280 with the gutters */
-  --fs: calc(clamp(16px, calc((100vw - 48px) / 100 / .6), 18px) + var(--big));
+  --fs: clamp(13px, calc((100vw - 48px) / 100 / .6), 15px);
   --lh: 1.3;
   --row: calc(var(--fs) * var(--lh));
-  --print-fs: calc(16px + var(--big));
-  --label-fs: 13px;
+  --print-fs: 13px;
   --beat: 0;
   --display: "Orbitron", "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", "Courier New", monospace;
@@ -65,15 +59,12 @@
   --amber: #19F0FF;    --amber-rgb: 25 240 255;
   --haze: #4A1A0F;
 }
-:root[data-big="1"] { --big: 2px; }
 @media (max-width: 900px) {
   :root {
     --gutter: 12px;
     --gap: 10px;
-    /* 15 px or more on the phone (12.0, legibility): 40 columns at 15.25 px on a 390 px screen with 12 px gutters */
-    --fs: calc(max(15px, calc((100vw - 24px) / 40 / .6)) + var(--big));
-    --print-fs: calc(15px + var(--big));
-    --label-fs: 12px;
+    --fs: calc((100vw - 32px) / 40 / .6);
+    --print-fs: 12px;
   }
 }
 
@@ -108,16 +99,15 @@ body.nocity .cssgrid {
 .dim, .dim * { color: var(--ink-dim); }
 .hot { color: var(--ink); }
 .amber, .amber * { color: var(--amber); text-shadow: var(--glow-amber); }
-.amber-dim { color: rgb(var(--amber-rgb) / .8); }
+.amber-dim { color: rgb(var(--amber-rgb) / .6); }
 .ok { color: var(--green); text-shadow: var(--glow-green); }
 .fail { color: var(--amber); text-shadow: var(--glow-amber); }
 .struck { color: var(--amber); text-decoration: line-through; text-decoration-color: rgb(var(--amber-rgb) / .7); }
 .label, .page h2 > span:first-child {
-  font-family: var(--display); font-weight: 600; font-size: var(--label-fs); letter-spacing: .2em; text-transform: uppercase;
+  font-family: var(--display); font-weight: 500; font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
   color: var(--ink-mid); padding-bottom: 3px; background: var(--grad-deep) no-repeat left bottom / 24px 1px;
 }
 .print, .print * { font-family: var(--mono); font-size: var(--print-fs); line-height: 1.4; color: var(--ink-mid); }
-.ghost { color: var(--ink-dim); }
 
 /* buttons: brackets violet, the word ink; hover and focus turn the brackets cyan on a cyan field. */
 button { border-radius: 3px; }
@@ -125,11 +115,9 @@ button { border-radius: 3px; }
 .bk::after { content: " ]"; color: var(--violet); }
 .bk:hover, .bk:focus-visible, .bare:hover, .bare:focus-visible { background: rgb(var(--cyan-rgb) / .12); color: var(--ink); text-shadow: var(--glow-data); }
 .bk:hover::before, .bk:hover::after, .bk:focus-visible::before, .bk:focus-visible::after { color: var(--cyan); }
-/* a dimmed button keeps a readable word; only its brackets go quiet (12.0, legibility) */
-.bk.dimmed { color: var(--ink-mid); }
-.bk.dimmed::before, .bk.dimmed::after { color: rgb(var(--violet-rgb) / .5); }
+.bk.dimmed, .bk.dimmed::before, .bk.dimmed::after { color: var(--ink-dim); }
 .bk.amber-btn { color: var(--amber); }
-.chip { font-family: var(--display); font-weight: 600; font-size: var(--label-fs); letter-spacing: .16em; color: var(--green); text-shadow: var(--glow-green); }
+.chip { font-family: var(--display); font-weight: 600; font-size: 11px; letter-spacing: .16em; color: var(--green); text-shadow: var(--glow-green); }
 .chip.off { color: var(--ink-mid); text-shadow: none; }
 .chip.tuning, .chip.dead { color: var(--amber); text-shadow: var(--glow-amber); }
 
@@ -157,22 +145,17 @@ button { border-radius: 3px; }
 @keyframes bloomfade { from { opacity: 1; } to { opacity: 0; } }
 #main { gap: var(--gap); }
 
-/* glass cards (12.6, and 12.0 legibility): an opaque panel behind the words (the background, clipped to the content box) inside a
-   glass margin the width of the padding, where the scene shows through the blur at 25 % (the inset shadow, spread to the padding),
-   then the 1 px gradient border and the corner brackets; hover runs a light around the edge. */
+/* glass cards (12.6): blur, a 1 px gradient border, inner glow, corner brackets; hover runs a light around the edge. */
 .card {
   position: relative;
-  --pad: 10px;
-  padding: var(--pad);
-  background: var(--panel);
-  background-clip: content-box;
+  padding: calc(var(--row) * .45) 1ch;
+  background: rgb(10 12 32 / .34);
   -webkit-backdrop-filter: blur(12px) saturate(1.5);
   backdrop-filter: blur(12px) saturate(1.5);
   border-radius: var(--radius);
-  box-shadow: inset 0 0 0 var(--pad) rgb(var(--panel-rgb) / .75), inset 0 0 0 1px rgb(255 255 255 / .04), 0 10px 40px rgb(0 0 0 / .45);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .04), inset 0 0 40px rgb(var(--violet-rgb) / .08), 0 10px 40px rgb(0 0 0 / .45);
   --bk: rgb(var(--violet-rgb) / .7);
 }
-@media (max-width: 900px) { .card { --pad: 8px; } }
 .card::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
   background: linear-gradient(135deg, rgb(var(--violet-rgb) / .7), rgb(var(--cyan-rgb) / .5));
@@ -197,17 +180,16 @@ button { border-radius: 3px; }
 .card:hover::after, .card:focus-within::after { --bk: var(--cyan); }
 
 /* boot: the connect card (12.10) */
-.boot { margin: 6vh auto 0; min-height: 0; }
-.boot .boot-wait { margin-bottom: calc(var(--row) * .8); }
+.boot { margin: 6vh auto 0; min-height: 0; padding-bottom: calc(var(--row) * 1.2); }
 .boot-lines { color: var(--ink); }
 .boot-lines .amber { color: var(--amber); text-shadow: var(--glow-amber); }
 .banner { margin: calc(var(--row) * .8) 0 0 4ch; padding-left: 0; min-height: 72px; display: flex; align-items: center; white-space: normal; overflow: visible; }
 .boot-tag { padding-left: 4ch; margin-top: calc(var(--row) * .6); }
-#bootFreq { font-family: var(--display); color: var(--cyan); text-shadow: var(--glow-cyan); font-size: var(--fs); letter-spacing: .06em; }
-.boot-wait { padding-left: 4ch; font-family: var(--display); font-size: 14px; letter-spacing: .14em; color: var(--ink); text-shadow: var(--glow-data); }
+#bootFreq { font-family: var(--display); color: var(--cyan); text-shadow: var(--glow-cyan); font-size: 13px; letter-spacing: .06em; }
+.boot-wait { padding-left: 4ch; font-family: var(--display); font-size: 12px; letter-spacing: .14em; color: var(--ink); text-shadow: var(--glow-data); }
 @media (max-width: 900px) {
   .banner, .boot-tag, .boot-wait { padding-left: 0; margin-left: 0; }
-  .boot-wait { font-size: 13px; white-space: normal; }
+  .boot-wait { font-size: 10px; white-space: normal; }
 }
 
 /* the station name as a 3D object (12.2): layered type that turns slowly */
@@ -234,16 +216,15 @@ button { border-radius: 3px; }
 .header .name3d .n3 span { font-size: 20px; }
 
 /* header: the literal spaces of the markup vanish in a flex row; the gaps are the layout */
+.header { padding-top: calc(var(--row) * .5); padding-bottom: calc(var(--row) * .5); }
 .header .row { align-items: center; }
-.header .left { display: inline-flex; align-items: center; gap: 2ch; white-space: normal; min-width: 0; }
-.header .left > * { white-space: nowrap; }
+.header .left { display: inline-flex; align-items: center; gap: 2ch; white-space: normal; }
 .header .right { display: inline-flex; align-items: center; gap: 2.5ch; white-space: normal; }
 .header .tagline-h { color: var(--ink-mid); white-space: pre; }
-/* the HUD numbers in the header are data: the data size, in the display face (12.0, legibility) */
-.header #hdrFreq { font-family: var(--display); color: var(--cyan); text-shadow: var(--glow-cyan); font-size: calc(var(--fs) - 2px); font-weight: 600; letter-spacing: .06em; }
+.header #hdrFreq { font-family: var(--display); color: var(--cyan); text-shadow: var(--glow-cyan); font-size: 12px; font-weight: 600; letter-spacing: .06em; }
 .header .up { color: var(--ink-mid); white-space: pre; }
-.header .up #uptime { font-family: var(--display); font-size: calc(var(--fs) - 2px); color: var(--ink); letter-spacing: .06em; }
-.header #hdrTime { font-family: var(--display); font-size: calc(var(--fs) - 2px); letter-spacing: .06em; }
+.header .up #uptime { font-family: var(--display); font-size: 12px; color: var(--ink); letter-spacing: .06em; }
+.header #hdrTime { font-family: var(--display); font-size: 12px; letter-spacing: .06em; }
 .horizon { position: absolute; left: 12px; right: 12px; bottom: -1px; height: 1px; background: var(--grad-deep); opacity: calc(.35 + .65 * var(--beat)); pointer-events: none; }
 .hdr-rail { display: inline-block; width: 12ch; height: 3px; vertical-align: middle; background: rgb(var(--ink-dim-rgb) / .4); border-radius: 2px; overflow: hidden; }
 .hdr-rail i { display: block; height: 100%; width: 0; background: var(--grad-deep); }
@@ -254,15 +235,18 @@ button { border-radius: 3px; }
 .vol .ring-outer { transform-origin: 50% 50%; animation: spin 600s linear infinite; }
 .vol .tick { stroke: rgb(var(--ink-dim-rgb) / .8); stroke-width: 2; stroke-linecap: round; }
 .vol .tick.lit { stroke: var(--cyan); filter: drop-shadow(0 0 3px rgb(var(--cyan-rgb) / .8)); }
-.vol .num { font-family: var(--display); font-weight: 600; font-size: 14px; fill: var(--ink); }
+.vol .num { font-family: var(--display); font-weight: 600; font-size: 12px; fill: var(--ink); }
 .vol.muted .num { fill: var(--amber); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes spinback { to { transform: rotate(-360deg); } }
 .np-slug { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: .04em; background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 10px rgb(var(--magenta-rgb) / .45)); }
 .np-slug:hover, .np-slug:focus-visible { background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 14px rgb(var(--cyan-rgb) / .8)); }
 .tuning-state .np-slug { background: var(--grad-warm); -webkit-background-clip: text; background-clip: text; }
-/* the readout is the prompt, read in full: the data face at the data size, wrapping (12.0, legibility; 12.4 wrote Orbitron 13 px on two lines) */
-.readout { position: relative; font-family: var(--mono); font-size: var(--fs); line-height: var(--lh); color: var(--ink); margin-top: 2px; }
+.readout {
+  position: relative; font-family: var(--display); font-weight: 500; letter-spacing: .06em;
+  font-size: 13px; line-height: 1.55; min-height: calc(13px * 1.55); max-height: calc(13px * 1.55 * 2);
+  color: var(--ink); margin-top: 2px;
+}
 .readout .mark { font-family: var(--mono); }
 .readout.tuning #readoutText { color: var(--amber); text-shadow: var(--glow-amber); }
 .readout .scanrect { position: absolute; top: 1px; bottom: 1px; left: 0; width: 8ch; border: 1px solid rgb(var(--cyan-rgb) / .6); pointer-events: none; opacity: 0; }
@@ -278,7 +262,7 @@ button { border-radius: 3px; }
 .dial .dial-strip .labels { margin-left: -1.5ch; color: rgb(var(--amber-rgb) / .7); text-shadow: none; }
 .dial.locked .dial-strip, .dial.locked .dial-strip .labels { color: var(--cyan); text-shadow: var(--glow-cyan); }
 .dial::after { content: ""; position: absolute; left: 50%; top: 0; height: calc(var(--row) * 1.6); width: 1px; background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
-.dial .dial-read { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .1em; color: var(--cyan); text-shadow: var(--glow-cyan); }
+.dial .dial-read { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .1em; color: var(--cyan); text-shadow: var(--glow-cyan); }
 #spectrum { height: calc(var(--row) * 4.5); }
 .baseline .ghost-tag { color: var(--amber); text-shadow: var(--glow-amber); }
 .scope { display: flex; align-items: center; gap: 1ch; margin-top: calc(var(--row) * .3); white-space: normal; }
@@ -296,9 +280,7 @@ button { border-radius: 3px; }
 .cat-row { position: relative; box-sizing: border-box; color: var(--ink-mid); padding: 0 1ch; border-radius: 3px; }
 .cat-row.playing { color: var(--ink); background: rgb(var(--magenta-rgb) / .10); }
 .cat-row.playing .mark { color: var(--magenta); text-shadow: var(--glow-magenta); }
-/* a played row keeps the row colour; its `.` mark and the state word say it played (12.0, legibility) */
-.cat-row.played { color: var(--ink-mid); }
-.cat-row.played .mark { color: var(--ink-dim); }
+.cat-row.played { color: var(--ink-dim); }
 .cat-row.tuning { color: var(--amber); text-shadow: var(--glow-amber); }
 .cat-row .plus { color: var(--ink-dim); visibility: hidden; }
 .cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: var(--cyan); }
@@ -333,14 +315,14 @@ button { border-radius: 3px; }
 
 /* footer: the counter inside a HUD ring (12.7) */
 .footer .odo-row { gap: 3ch; padding: calc(var(--row) * .6) 0; }
-.odometer { position: relative; gap: 1px; border: 1px solid rgb(var(--violet-rgb) / .5); border-radius: 4px; background: var(--panel); margin: 0 14px; }
+.odometer { position: relative; gap: 1px; border: 1px solid rgb(var(--violet-rgb) / .5); border-radius: 4px; background: rgb(10 12 32 / .8); margin: 0 14px; }
 .odo-ring { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; pointer-events: none; color: var(--violet); }
 .odo-ring svg { width: 72px; height: 72px; overflow: visible; display: block; }
 .odo-ring .ring-outer { transform-origin: 50% 50%; animation: spin 600s linear infinite; }
 .odo-ring .ring-inner { transform-origin: 50% 50%; animation: spinback 1200s linear infinite; }
 .drum { border-left: 1px solid rgb(var(--violet-rgb) / .3); }
 .drum:first-child { border-left: 0; }
-.drum .reel span { font-family: var(--display); font-weight: 600; font-size: var(--fs); background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.drum .reel span { font-family: var(--display); font-weight: 600; font-size: 13px; background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* pages: glass cards that slide in beside the tower (12.5) */
 .page:not([hidden]) { animation: slideIn 420ms cubic-bezier(.2, .9, .3, 1) both; }
@@ -356,9 +338,9 @@ button { border-radius: 3px; }
 .gb-entry .gb-tag { color: var(--amber); text-shadow: var(--glow-amber); }
 
 /* help overlay */
-.overlay { --pad: 12px; }
+.overlay { padding: calc(var(--row) * .6) 2ch; background: rgb(10 12 32 / .62); }
 .overlay:not([hidden]) { animation: riseIn 420ms cubic-bezier(.2, .9, .3, 1) both; }
-.help-head .label { font-size: 16px; font-weight: 700; color: var(--ink); }
+.help-head .label { font-size: 14px; font-weight: 700; color: var(--ink); }
 .help-body .help-list .bk { color: var(--ink); }
 
 /* phone (12.9, 40 columns) */
@@ -366,9 +348,8 @@ button { border-radius: 3px; }
   .header .name3d { height: 16px; }
   .header .name3d .n3 span { font-size: 15px; }
   .header .right { gap: 1.5ch; }
-  .np-slug { font-size: 16px; }
-  .header-page .left { gap: 1ch; }
-  .header #hdrFreq, .header .up #uptime, .header #hdrTime { font-size: var(--fs); }
+  .np-slug { font-size: 15px; }
+  .readout { font-size: 12px; min-height: calc(12px * 1.55); max-height: calc(12px * 1.55 * 2); }
   .vol svg { width: 36px; height: 36px; }
   .footer-buttons .left { line-height: calc(var(--row) * 1.3); }
   .fat { padding: calc(var(--row) * .6) 0 calc(var(--row) * .2); }
