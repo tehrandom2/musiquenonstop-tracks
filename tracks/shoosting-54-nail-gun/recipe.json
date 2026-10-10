@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-54-nail-gun",
+  "title": "Nail Gun",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Fidget electro house, 132 bpm, four-on-the-floor kick, staccato overdriven sawtooth stabs fired in tight sixteenth-note bursts, rubbery pitch-bent bass, hard sidechain pumping, snappy claps, playful aggressive and bouncy, clear eight-bar phrases with a filtered breakdown and a hard return, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 132,
+  "keyscale": "A# minor",
+  "timesignature": "4",
+  "duration": 174.98,
+  "seed": 100054,
+  "dit_caption": "Fidget electro house, 132 bpm, four-on-the-floor kick, staccato overdriven sawtooth stabs fired in tight sixteenth-note bursts, rubbery pitch-bent bass, hard sidechain pumping, snappy claps, playful aggressive and bouncy, clear eight-bar phrases with a filtered breakdown and a hard return, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 174.98,
+    "peak_dbfs": -3.73,
+    "lufs": -16.25
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 131.0,
+      "lufs": -16.25,
+      "peak_dbfs": -3.73,
+      "silence_s": 0.1,
+      "brightness_pct": 2.77,
+      "boominess_pct": 57.36,
+      "onsets_per_s": 4.32,
+      "seam_db": -49.2
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
