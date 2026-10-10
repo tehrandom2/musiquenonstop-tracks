@@ -384,6 +384,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-attic-wave-4",
+      "title": "Rafter Fuzz (wave)",
+      "idea": "dusty music box and warbling old-tape organ",
+      "request": "dusty music box and warbling old-tape organ",
+      "mood": "the wave phase",
+      "bpm": 79,
+      "key": "G minor",
+      "seed": 700745,
+      "model": "fast",
+      "duration": 94.41,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back dusty attic groove, warbling old-tape organ, slightly out-of-tune music box, harmonium, creaky soft drum machine, warm fuzzy bass, cobweb-soft and nostalgic, never creepy, good-humoured, 79 bpm, creaky rocking-horse bass and music-box bells, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"dusty music box and warbling old-tape organ\" (the wave phase): 79 bpm in G minor. The prompt describes laid back dusty attic groove with warbling old-tape organ, slightly out-of-tune music box and harmonium; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        700745
+      ],
+      "numbers": {
+        "tempo_bpm": 77.2,
+        "lufs": -16.46,
+        "peak_dbfs": -2.15,
+        "silence_s": 0.0,
+        "brightness_pct": 1.33,
+        "boominess_pct": 11.81,
+        "onsets_per_s": 2.32,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-attic-wave-4/greytide-attic-wave-4.mp3",
+        "notes": "greytide-attic-wave-4/notes.md",
+        "recipe": "greytide-attic-wave-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 14.85,
+        "decoded_lufs": -16.46,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Rafter Fuzz"
+        ],
+        "take_files": [
+          "greytide-attic-wave-4/greytide-attic-wave-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-attic-wave-3",
       "title": "Cobweb Waltz (wave)",
       "idea": "dusty music box and warbling old-tape organ",
