@@ -1,0 +1,68 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-60-graft",
+  "title": "Graft",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Dark melodic techno, 122 bpm, driving four-on-the-floor kick, urgent minor-key analog arpeggio that builds layer by layer, distorted bass pulsing underneath, sharp snare cracks, cold cinematic string pads rising behind it, tense and propulsive, a full drop-out to the arpeggio alone before everything returns, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 122,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 174.5,
+  "seed": 100060,
+  "dit_caption": "Dark melodic techno, 122 bpm, driving four-on-the-floor kick, urgent minor-key analog arpeggio that builds layer by layer, distorted bass pulsing underneath, sharp snare cracks, cold cinematic string pads rising behind it, tense and propulsive, a full drop-out to the arpeggio alone before everything returns, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 174.5,
+    "peak_dbfs": -2.53,
+    "lufs": -14.75
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 121.0,
+      "lufs": -14.75,
+      "peak_dbfs": -2.53,
+      "silence_s": 0.15,
+      "brightness_pct": 3.52,
+      "boominess_pct": 30.21,
+      "onsets_per_s": 6.21,
+      "seam_db": -48.8
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "brightness",
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
