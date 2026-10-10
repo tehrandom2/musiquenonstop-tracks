@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-kitchen-wave-3",
+      "title": "Fridge Magnet Muzak (wave)",
+      "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "request": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "mood": "the wave phase",
+      "bpm": 100,
+      "key": "C major",
+      "seed": 800135,
+      "model": "fast",
+      "duration": 93.74,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wrong-footed lounge exotica, spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit, mellow vibraphone, cheesy electric organ with a straight face, melodica used as an instrument that wanders off the tune, fuzzy round bass, dusty bossa nova drum box, late-night kitchen daydream, good-humoured, 100 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wrong-footed lounge exotica with vibraphone and cheesy organ\" (the wave phase): 100 bpm in C major. The prompt describes laid back wrong-footed lounge exotica with spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit and mellow vibraphone; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801135,
+          "reason": "3.5s of near-silence"
+        },
+        {
+          "seed": 640006,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800135
+      ],
+      "numbers": {
+        "tempo_bpm": 98.5,
+        "lufs": -16.43,
+        "peak_dbfs": -3.16,
+        "silence_s": 0.2,
+        "brightness_pct": 0.83,
+        "boominess_pct": 9.71,
+        "onsets_per_s": 4.01,
+        "seam_db": -2.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-kitchen-wave-3/greytide-kitchen-wave-3.mp3",
+        "notes": "greytide-kitchen-wave-3/notes.md",
+        "recipe": "greytide-kitchen-wave-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.97,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Fridge Magnet Muzak"
+        ],
+        "take_files": [
+          "greytide-kitchen-wave-3/greytide-kitchen-wave-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-kitchen-wave-2",
       "title": "Kettle Bossa (wave)",
       "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
