@@ -384,6 +384,100 @@
       }
     },
     {
+      "slug": "greytide-bootleg-jungle-a",
+      "title": "PIRATE 94.3 FM",
+      "idea": "mid-nineties UK jungle with a ragga toast (original words)",
+      "request": "mid-nineties UK jungle with a ragga toast (original words)",
+      "mood": "the title tune",
+      "bpm": 162,
+      "key": "F minor",
+      "seed": 576004,
+      "model": "fast",
+      "duration": 95.98,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Pirate-radio jungle, 162 bpm, chopped and time-stretched funk breakbeats with rolling snare fills, a huge sine sub-bass on a half-time reggae pattern, dancehall horn stabs and a skanking offbeat organ, dub siren and a spin-back rewind at the drop, tape hiss and heavy radio compression, a male ragga-style toast riding the beat: fast, rhythmic and half-sung, with echo throws on the line ends, an intro of horns and skank over a half-time beat, then the full breakbeat drop, loopable",
+      "lyrics": "[Intro - dancehall horn stabs and a skanking offbeat organ over a half-time beat, instrumental]\n\n[Verse - fast ragga toast over the beat]\nGrey plastic coming down the road tonight\nUnpainted army and they looking for a fight\nMe got a ballista and a cannon on the right\n[name] hold them till the morning light\n\n[Rewind - dub siren and a spin-back, then the full breakbeat drop]\nSelector! Rewind the sprue\nPainted mini massive, we a-come for you\nSpray can, wash and the gloss coat too\nEvery grey dude get a brand new hue\n\n[Chorus - chanted, echo on the line ends]\nHold the line, hold the line, from the kitchen to the sill\nHold the line, hold the line, tiny soldiers never still",
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"mid-nineties UK jungle with a ragga toast (original words)\" (the title tune): 162 bpm in F minor, with a voice singing words written for it. The prompt describes pirate-radio jungle with chopped and time-stretched funk breakbeats with rolling snare fills, a huge sine sub-bass on a half-time reggae pattern and dancehall horn stabs and a skanking offbeat organ; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 576001,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 576002,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 576003,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 576005,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 576006,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 576008,
+          "reason": "thrown away at the time (no reason recorded)"
+        }
+      ],
+      "takes": [
+        576004
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.92,
+        "peak_dbfs": -3.76,
+        "silence_s": 0.05,
+        "brightness_pct": 2.99,
+        "boominess_pct": 8.1,
+        "onsets_per_s": 3.91,
+        "seam_db": -1.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bootleg-jungle-a/greytide-bootleg-jungle-a.mp3",
+        "notes": "greytide-bootleg-jungle-a/notes.md",
+        "recipe": "greytide-bootleg-jungle-a/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 2.24,
+        "decoded_lufs": -16.92,
+        "failed": [
+          "brightness"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 1,
+        "stripped": [],
+        "take_files": [
+          "greytide-bootleg-jungle-a/greytide-bootleg-jungle-a.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bed-wave-5",
       "title": "Under The Covers Funk (wave)",
       "idea": "sleepy music-box and soft fuzz bass",
