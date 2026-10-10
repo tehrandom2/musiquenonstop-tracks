@@ -13919,6 +13919,77 @@
       }
     },
     {
+      "slug": "shoosting-51-sawtooth",
+      "title": "Sawtooth",
+      "idea": "Early 2000s electro house",
+      "request": "Early 2000s electro house",
+      "mood": "",
+      "bpm": 130,
+      "key": "A minor",
+      "seed": 100051,
+      "model": "fast",
+      "duration": 176.34,
+      "date": "2026-09-30",
+      "rendered_at": "2026-09-30T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Early 2000s electro house, 130 bpm, four-on-the-floor kick, one buzzing detuned sawtooth bass riff repeated hypnotically, extreme sidechain compression pumping on every beat, dry minimal drums with sharp claps and open hi-hats, gritty overdriven analog synth, stripped back and relentless club groove, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-30 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Early 2000s electro house\": 130 bpm in A minor. The prompt describes early 2000s electro house with four-on-the-floor kick, one buzzing detuned sawtooth bass riff repeated hypnotically and extreme sidechain compression pumping on every beat; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100051
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.63,
+        "peak_dbfs": -3.98,
+        "silence_s": 0.1,
+        "brightness_pct": 2.12,
+        "boominess_pct": 45.57,
+        "onsets_per_s": 4.97,
+        "seam_db": -44.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": false,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-51-sawtooth/shoosting-51-sawtooth.mp3",
+        "notes": "shoosting-51-sawtooth/notes.md",
+        "recipe": "shoosting-51-sawtooth/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.63,
+        "failed": [
+          "boominess",
+          "onsets",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-51-sawtooth/shoosting-51-sawtooth.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-50-brandee",
       "title": "Brandee",
       "idea": "Laid-back dubstep at half energy",
