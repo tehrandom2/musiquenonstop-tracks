@@ -384,6 +384,136 @@
       }
     },
     {
+      "slug": "greytide-bootleg-westcoast-a",
+      "title": "PRIMED, WASHED, DRY-BRUSHED",
+      "idea": "modern West Coast rap with a signature piano loop and a chanted hook (original words)",
+      "request": "modern West Coast rap with a signature piano loop and a chanted hook (original words)",
+      "mood": "the title tune",
+      "bpm": 102,
+      "key": "A minor",
+      "seed": 581004,
+      "model": "fast",
+      "duration": 104.34,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Modern West Coast hip-hop, 102 bpm, a minimal bouncy beat built on one signature loop: a staccato two-note piano stab on the upbeat, a round sub-bass 808 that slides, sparse claps and hi-hats with a swung bounce, a hand clap on the backbeat, a short vocal chop as a texture, a male rapper with a sharp nasal-forward tone, confident and playful, pocketed tight to the beat, a laid-back half-time flow in the verses and a fast double-time run before each hook, internal rhymes, the hook chanted by a small group with the lead on top in call and response, an intro of the loop alone for two bars, a breakdown with the beat dropped to claps under the end of the second verse, then the final hook twice, clean dry mix with a short room on the vocal, loopable",
+      "lyrics": "[Intro - the piano loop alone for two bars]\nAyy. Grey plastic. Grey plastic.\n\n[Hook - chanted by a small group with the lead on top, call and response]\nThey not painted like us, not painted like us\nCame out the box in a grey kind of fuss\nSprue on the ankle and a seam on the cheek\nWe been primed, we been washed, we been dry-brushed all week\n\n[Verse 1 - laid-back half-time flow]\nTwenty on the tray and they march in a line\nBase coat, wash, then I varnish them fine\nBallista on the ridge got a pin in the spine\nCannon count a crowd like it's quarter past nine\n[name] holding, hold up, hold your post\n[name] slow 'em, cold, they ghost\n[name] brother stick 'em to the board\nEvery grey dude get a hue he can't afford\n\n[Verse 2 - fast double-time run]\nI see 'em coming down the kitchen off the lazy Susan spinning\nThey thinning, I'm grinning, my minis in the middle of the winning\nNight light glowing and the lightbox beaming, [name] gleaming\nWave nine, wave ten, the horde is screaming and I'm dreaming\nOf a shelf where they sit, painted, finished, lit\nNot a single one of 'em grey, not a bit\n\n[Breakdown - the beat drops to claps only]\nNot painted like us. (Grey plastic.) Not painted like us.\n\n[Hook - chanted by a small group with the lead on top, call and response]\nThey not painted like us, not painted like us\nCame out the box in a grey kind of fuss\nSprue on the ankle and a seam on the cheek\nWe been primed, we been washed, we been dry-brushed all week\n\n[Hook - chanted by a small group with the lead on top, call and response]\nThey not painted like us, not painted like us\nCame out the box in a grey kind of fuss\nSprue on the ankle and a seam on the cheek\nWe been primed, we been washed, we been dry-brushed all week",
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"modern West Coast rap with a signature piano loop and a chanted hook (original words)\" (the title tune): 102 bpm in A minor, with a voice singing words written for it. The prompt describes modern West Coast hip-hop with a round sub-bass 808 that slides, sparse claps and hi-hats with a swung bounce and a hand clap on the backbeat; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 581001,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581002,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581003,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581005,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581006,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581007,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581008,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581009,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581010,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581011,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581012,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581013,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581014,
+          "reason": "thrown away at the time (no reason recorded)"
+        },
+        {
+          "seed": 581015,
+          "reason": "thrown away at the time (no reason recorded)"
+        }
+      ],
+      "takes": [
+        581004
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.92,
+        "peak_dbfs": -3.09,
+        "silence_s": 0.2,
+        "brightness_pct": 3.55,
+        "boominess_pct": 8.75,
+        "onsets_per_s": 3.11,
+        "seam_db": 5.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bootleg-westcoast-a/greytide-bootleg-westcoast-a.mp3",
+        "notes": "greytide-bootleg-westcoast-a/notes.md",
+        "recipe": "greytide-bootleg-westcoast-a/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -16.92,
+        "failed": [
+          "brightness",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 4,
+        "stripped": [
+          "Modern West Coast",
+          "West Coast"
+        ],
+        "take_files": [
+          "greytide-bootleg-westcoast-a/greytide-bootleg-westcoast-a.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bootleg-jungle-b",
       "title": "PIRATE 94.3 FM (second take)",
       "idea": "mid-nineties UK jungle with a ragga toast (original words)",
