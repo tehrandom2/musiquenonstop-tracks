@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#050705">
+<meta name="description" content="nobody fm, 88.8. the transmitter nobody can find. a station that never stops: every track generated locally from a text prompt.">
+<title>nobody fm</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23050705'/%3E%3Cpath fill='%2341FF6A' d='M3 9h2v4H3zM7 4h2v9H7zM11 7h2v6h-2z'/%3E%3C/svg%3E">
+<style>html{background:#050705;color-scheme:dark}body{margin:0;background:#050705}</style>
+<link rel="stylesheet" href="station.css">
+<script src="config.js"></script>
+<!-- the theme (design 12.0): ?theme= for one visit, then what this browser chose, then config.js. the stylesheet is
+     written here, after the skeleton and before any paint, so the first frame is already the theme's. -->
+<script>
+(function () {
+  var names = ['phosphor', 'city'];
+  var q = new URLSearchParams(location.search).get('theme'), saved = null;
+  try { saved = localStorage.getItem('nobody.theme'); } catch (e) {}
+  var cfg = (window.NOBODY_CONFIG && window.NOBODY_CONFIG.defaultTheme) || 'phosphor';
+  var t = names.indexOf(q) >= 0 ? q : names.indexOf(saved) >= 0 ? saved : names.indexOf(cfg) >= 0 ? cfg : 'phosphor';
+  window.NOBODY_THEME = t;
+  document.documentElement.dataset.theme = t;
+  document.documentElement.style.background = t === 'city' ? '#020309' : '#050705';
+  document.write('<link rel="stylesheet" id="themeCss" href="themes/' + t + '/theme.css">');
+})();
+</script>
+<link rel="preload" href="vendor/vt323.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="vendor/plex-mono-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="vendor/orbitron-variable.woff2" as="font" type="font/woff2" crossorigin>
+<!-- the two classic libraries, pinned (design 5.7, 12.11). async so an unreachable CDN never delays the boot. -->
+<script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js" async onerror="window.NOBODY_NOCDN=true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" async onerror="window.NOBODY_NOCDN=true"></script>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}
+</script>
+<script src="synth.js" defer></script>
+<script src="visuals.js" defer></script>
+<script src="terminal.js" defer></script>
+<script src="themes/phosphor/theme.js" defer></script>
+<script src="themes/city/theme.js" defer></script>
+<script src="station.js" defer></script>
+</head>
+<body>
+<div id="power" aria-hidden="true"></div>
+
+<div class="glass off" id="glass">
+  <div class="screen" id="screen">
+
+    <section class="band card boot" id="boot" aria-live="polite">
+      <pre class="boot-lines" id="bootLines"></pre>
+      <pre class="banner" id="banner" aria-label="NOBODY FM"></pre>
+      <div class="boot-tag row" id="bootTag"><span id="bootTagline"></span><span id="bootFreq"></span></div>
+      <div class="boot-wait" id="bootWait"></div>
+    </section>
+
+    <div id="main" hidden>
+      <header class="band card header" id="header">
+        <div class="row header-main" id="headerMain">
+          <span class="left"><button class="bare hot-name" id="stationName" aria-label="NOBODY FM">NOBODY FM</button><span class="tagline-h">  the transmitter nobody can find</span></span>
+          <span class="right"><span id="hdrFreq">88.8 MHz</span>  <button class="bare chip" id="chip">[STANDBY]</button>  <span class="up">up <span id="uptime">00:00:00</span></span>   <button class="bare" id="trackCount">0 tracks</button></span>
+        </div>
+        <div class="row header-page" id="headerPage" hidden>
+          <span class="left"><button class="bare hot-name" id="stationName2" aria-label="NOBODY FM">NOBODY FM</button>  playing: <button class="bare" id="hdrSlug">-</button>  <span id="hdrTime">0:00 / 0:00</span>  <span class="dim" id="hdrBar">............</span></span>
+          <span class="right"><button class="bare chip" id="chip2">[ON AIR]</button>   <button class="bare" id="hdrBack">esc back</button></span>
+        </div>
+      </header>
+
+      <section class="band card transmitter" id="transmitter">
+        <div class="row">
+          <span class="label" id="txLabel">NOW PLAYING</span>
+          <button class="bare vol" id="vol" aria-label="volume">vol ..........</button>
+        </div>
+        <div class="row np-row">
+          <button class="bare np-slug" id="npSlug">-</button>
+          <span class="meta mid" id="npMeta"></span>
+        </div>
+        <div class="readout" id="readout"><span class="mid mark">&gt; </span><span id="readoutText"></span><span class="cursor" id="readoutCursor"></span></div>
+        <div class="progress" id="progress"></div>
+        <div class="dial" id="dial" hidden></div>
+        <canvas id="spectrum" aria-label="spectrum analyser, 32 bands from 60 Hz to 20 kHz, drawn from the audio that is playing"></canvas>
+        <pre class="baseline dim" id="baseline"></pre>
+        <div class="scope" id="scope"></div>
+        <div class="deadair" id="deadair" hidden>
+          <div class="label">DEAD AIR</div>
+          <p class="deadair-text">nothing in the catalogue yet. the machine is rendering. nobody is in a hurry.</p>
+          <div class="tower-wrap">
+            <div class="tower" id="tower"></div>
+            <pre class="tower-static" id="towerStatic"></pre>
+            <span class="reread" id="reread"></span>
+          </div>
+          <pre class="bed dim" id="bed"></pre>
+        </div>
+        <div class="fat" id="fat">
+          <button class="bk" id="fatPrev" aria-label="previous">|&lt;</button>
+          <button class="bk" id="fatPlay" aria-label="play or pause">||</button>
+          <button class="bk" id="fatNext" aria-label="next">&gt;|</button>
+          <button class="bk" id="fatQueue" aria-label="queue the highlighted">+</button>
+        </div>
+      </section>
+
+      <section class="band card catalogue" id="catalogue">
+        <div class="row">
+          <span class="label">CATALOGUE</span>
+          <span class="right cat-controls"><button class="bare" id="sortLabel">newest first</button>    <button class="bare" id="shuffleLabel">shuffle off</button>   <button class="bare" id="findBtn" aria-label="find">[/]</button></span>
+        </div>
+        <pre class="cat-head mid" id="catHead"></pre>
+        <div class="cat-rows" id="catRows"></div>
+        <pre class="cat-empty dim" id="catEmpty" hidden>(empty)</pre>
+      </section>
+
+      <section class="band card page" id="page" hidden></section>
+
+      <section class="band card terminal" id="terminal">
+        <div class="log" id="log" aria-live="polite"></div>
+        <div class="prompt-row" id="promptRow">
+          <label class="ps1" for="cmd">nobody&gt; </label><input id="cmd" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="terminal"><span class="cursor" id="cmdCursor"></span>
+        </div>
+        <div class="row hint-row">
+          <span class="hints mid" id="hints"></span>
+          <span class="wire mid">visitor <span id="visitorInline">000000</span>  <span class="amber" id="wireTag">not yet on the wire</span></span>
+        </div>
+      </section>
+
+      <footer class="band card footer" id="footer">
+        <div class="row odo-row">
+          <span class="odo-label label">you are visitor</span>
+          <div class="odometer" id="odometer" aria-label="visitor counter"></div>
+          <span class="mid" id="countTag">local count. not yet on the wire.</span>
+        </div>
+        <div class="row footer-buttons">
+          <span class="left"><button class="bk" data-cmd="guestbook">guestbook</button> <button class="bk" data-cmd="list">list</button> <button class="bk" data-cmd="help">help</button> <button class="bk" data-cmd="take">take it home</button> <button class="bk" data-cmd="source">source</button></span>
+          <span class="right mid">up <span id="uptime2">00:00:00</span>   88.8</span>
+        </div>
+        <p class="licence mid" id="licence">nobody fm. every track generated locally from a text prompt. no samples, no reference audio, no third-party rights claimed.</p>
+      </footer>
+    </div>
+
+  </div>
+</div>
+
+<div class="overlay card" id="help" hidden role="dialog" aria-label="help">
+  <div class="row help-head"><span class="label" id="helpTitle">HELP</span><span class="mid"><button class="bare" id="helpClose">? or esc to close</button></span></div>
+  <div class="help-body" id="helpBody"></div>
+</div>
+
+<audio id="deck" preload="auto" crossorigin="anonymous"></audio>
+<noscript><p class="noscript">nobody fm needs javascript to boot. the catalogue is in tracks/index.json.</p></noscript>
+<!-- the one module on the page (design 5.7, 12.11): a file URL may import from https but not from itself, so the
+     station's own code stays classic and only the library imports live here. the themes take what they need from
+     NOBODY.libs: the phosphor tower wants AsciiEffect, the city wants the post-processing passes. -->
+<script type="module">
+import * as THREE from 'three';
+import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+window.NOBODY = window.NOBODY || {};
+NOBODY.libs = { THREE, AsciiEffect, passes: { EffectComposer, RenderPass, UnrealBloomPass, ShaderPass, OutputPass } };
+document.dispatchEvent(new Event('libs-ready'));
+</script>
+</body>
+</html>

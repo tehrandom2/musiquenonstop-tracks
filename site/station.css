@@ -1,0 +1,228 @@
+/* nobody fm: the skeleton. layout only, no colour, no face, no glow: those belong to a theme (design 12.0),
+   loaded after this file from themes/<name>/theme.css. a theme may override anything here. */
+
+/* the column budget is the skeleton's: 100 columns on desktop, 40 on a phone; every layout decision in the JS reads it */
+:root { --cols: 100; }
+@media (max-width: 900px) {
+  :root { --cols: 40; }
+}
+
+html, body { height: 100%; }
+body { margin: 0; overflow: hidden; -webkit-text-size-adjust: 100%; }
+[hidden] { display: none !important; }
+
+pre {
+  margin: 0;
+  font: inherit;
+  white-space: pre;
+  overflow: hidden;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  white-space: pre;
+  min-height: var(--row);
+  gap: 1ch;
+  overflow: hidden;
+}
+.row > .left, .row > .right { white-space: pre; }
+.row > .right { flex: 0 0 auto; }
+.row > .left { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: clip; }
+
+/* every [ bracket ] is a real button; the theme draws the brackets and the hover */
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-shadow: inherit;
+  white-space: pre;
+  line-height: inherit;
+}
+button:focus { outline: 0; }
+
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--gutter);
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+.screen::-webkit-scrollbar { display: none; }
+#main {
+  width: min(100%, calc(var(--cols) * 1ch));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 2 * var(--gutter));
+}
+.band.footer { margin-top: auto; }
+
+/* boot */
+.boot { width: min(100%, calc(var(--cols) * 1ch)); margin: 0 auto; min-height: calc(100vh - 2 * var(--gutter)); }
+.boot-lines { min-height: calc(var(--row) * 9); }
+.banner { margin-top: var(--row); padding-left: 8ch; min-height: calc(var(--row) * 5); white-space: pre; }
+.boot-tag { padding-left: 8ch; margin-top: var(--row); }
+.boot-wait { padding-left: 8ch; margin-top: var(--row); min-height: var(--row); white-space: pre; }
+@media (max-width: 900px) {
+  .banner, .boot-tag, .boot-wait { padding-left: 0; }
+}
+
+/* transmitter */
+.transmitter { position: relative; }
+.np-row .meta { flex: 0 0 auto; }
+.readout {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: calc(var(--row) * 2);
+  overflow: hidden;
+  min-height: var(--row);
+}
+.progress { cursor: pointer; margin-top: calc(var(--row) * .5); }
+.dial { margin-top: calc(var(--row) * .5); white-space: pre; }
+#spectrum {
+  display: block;
+  width: 100%;
+  height: calc(var(--row) * 5);
+  margin-top: calc(var(--row) * .5);
+  cursor: pointer;
+}
+#spectrum.scope5 { height: calc(var(--row) * 5); }
+.baseline { white-space: pre; }
+.scope { margin-top: calc(var(--row) * .5); white-space: pre; }
+.scope.tall { white-space: pre; }
+.deadair .deadair-text { margin: 0 0 calc(var(--row) * .5); white-space: pre-wrap; }
+.tower-wrap { position: relative; height: calc(var(--row) * 12); overflow: hidden; }
+.tower { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; }
+.tower-static { position: absolute; inset: 0; margin: 0 auto; text-align: left; width: max-content; left: 50%; transform: translateX(-50%); }
+.reread { position: absolute; right: 1ch; bottom: var(--row); }
+.bed { margin-top: calc(var(--row) * .5); }
+.fat { display: none; }
+
+/* catalogue */
+.cat-rows { max-height: calc(var(--row) * 7); overflow-y: auto; scrollbar-width: none; }
+.cat-rows::-webkit-scrollbar { display: none; }
+.cat-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  white-space: pre;
+  overflow: hidden;
+}
+.cat-row.hidden-row { display: none; }
+.cat-head .sort { cursor: pointer; }
+
+/* terminal */
+.terminal .log {
+  height: calc(var(--row) * 6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.log .line { min-height: var(--row); flex: 0 0 auto; }
+.log .line.print { white-space: pre; overflow: hidden; }
+.prompt-row { display: flex; align-items: baseline; white-space: pre; min-height: var(--row); cursor: text; }
+#cmd {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  caret-color: transparent;
+  width: 1ch;
+  min-width: 1ch;
+  max-width: calc(100% - 10ch);
+  line-height: inherit;
+}
+.hint-row .wire { flex: 0 0 auto; }
+
+/* footer, odometer */
+.footer .odo-row { justify-content: flex-start; align-items: center; gap: 2ch; padding: calc(var(--row) * .5) 0; }
+.odometer { display: inline-flex; gap: 0; }
+.drum {
+  position: relative;
+  width: 2.2ch;
+  height: var(--row);
+  overflow: hidden;
+}
+.drum .reel {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  text-align: center;
+  transition: transform 700ms cubic-bezier(.2, .9, .3, 1);
+}
+.drum .reel span { display: block; height: var(--row); line-height: var(--row); }
+.footer .footer-buttons { padding: calc(var(--row) * .25) 0; }
+.footer .licence { margin: calc(var(--row) * .5) 0 0; white-space: pre-wrap; }
+
+/* pages */
+.page { flex: 1 1 auto; overflow-y: auto; scrollbar-width: none; }
+.page::-webkit-scrollbar { display: none; }
+.page h2 { font: inherit; margin: var(--row) 0 0; text-transform: uppercase; display: flex; justify-content: space-between; white-space: pre; }
+.page p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.page .buttons { display: flex; flex-wrap: wrap; gap: 0 1ch; margin: calc(var(--row) * .5) 0; }
+.page .lyrics { white-space: pre-wrap; }
+.page table { border-collapse: collapse; white-space: pre; }
+.page td { padding: 0 2ch 0 0; vertical-align: top; }
+.page .numbers { display: flex; flex-wrap: wrap; gap: 0 3ch; white-space: pre; }
+.page .tree { white-space: pre; }
+.page .take-block { margin-top: calc(var(--row) * .25); }
+.page .remix-copy { margin: 0 0 calc(var(--row) * .5); }
+.page .catview { white-space: pre-wrap; max-height: calc(var(--row) * 14); overflow: auto; padding-left: 1ch; margin-top: calc(var(--row) * .5); }
+.gb-form .field { display: flex; white-space: pre; align-items: baseline; }
+.gb-form input { font: inherit; background: none; border: 0; outline: 0; padding: 0; flex: 1 1 auto; min-width: 0; }
+.gb-form .gb-buttons { display: flex; justify-content: flex-end; gap: 2ch; margin: calc(var(--row) * .25) 0 var(--row); }
+.gb-entry { display: grid; grid-template-columns: 7ch 17ch 12ch 1fr auto; gap: 0 1ch; white-space: pre; overflow: hidden; }
+.gb-entry .gb-line { white-space: pre-wrap; overflow-wrap: anywhere; }
+.gb-more { margin-top: var(--row); }
+
+/* help overlay */
+.overlay {
+  position: fixed;
+  left: 50%;
+  top: 8vh;
+  transform: translateX(-50%);
+  width: min(100vw - 2 * var(--gutter), calc(var(--cols) * 1ch));
+  max-height: 84vh;
+  overflow: auto;
+  box-sizing: border-box;
+  z-index: 40;
+  scrollbar-width: none;
+}
+.overlay::-webkit-scrollbar { display: none; }
+.help-body { margin-top: calc(var(--row) * .5); }
+.help-body pre { white-space: pre; }
+.help-body .help-list { display: flex; flex-wrap: wrap; gap: .5ch 1ch; }
+
+/* phone (40 columns) */
+@media (max-width: 900px) {
+  .tagline-h, .header .up, #shuffleLabel { display: none; }
+  .np-row { flex-direction: column; align-items: flex-start; gap: 0; }
+  .header-page .left { white-space: pre; }
+  .footer-buttons { flex-wrap: wrap; }
+  .footer-buttons .left { white-space: normal; flex: 1 1 100%; line-height: calc(var(--row) * 1.2); }
+  .footer-buttons .right { flex: 1 1 100%; text-align: left; }
+  .fat { display: flex; justify-content: space-around; padding: calc(var(--row) * .5) 0 calc(var(--row) * .25); margin-top: calc(var(--row) * .5); }
+  .fat .bk { font-size: calc(var(--fs) * 1.1); padding: 0 1ch; min-width: 8ch; text-align: center; }
+  .readout { max-height: calc(var(--row) * 2); }
+  #spectrum { height: calc(var(--row) * 4); }
+  .terminal .log { height: calc(var(--row) * 3); }
+  .cat-rows { max-height: none; }
+  .hint-row .hints { display: none; }
+  .gb-entry { grid-template-columns: 7ch 6ch 1fr; }
+  .gb-entry .gb-line, .gb-entry .gb-tag { grid-column: 1 / -1; padding-left: 2ch; }
+  .footer .odo-row { flex-wrap: wrap; }
+  .overlay { top: 4vh; max-height: 92vh; }
+  .page .numbers { display: block; }
+  .page .numbers span { display: block; }
+}

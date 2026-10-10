@@ -1,0 +1,304 @@
+/* nobody fm, theme "phosphor": the green CRT of the first build. design: docs/site-design.md sections 3 and 5,
+   kept as a theme by section 12.0. dark only; it is a CRT. the skeleton (station.css) carries the layout. */
+
+@font-face {
+  font-family: "VT323";
+  src: url("../../vendor/vt323.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../../vendor/plex-mono-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --glass: #050705;
+  --glass-raise: #0A110B;
+  --p1: #41FF6A;
+  --p1-mid: #22B04A;
+  --p1-dim: #146A2E;
+  --p1-ghost: #0C3A1B;
+  --hot: #D9FFE0;
+  --p3: #FFB000;
+  --p3-dim: #9A6A00;
+  --p1-rgb: 65 255 106;
+  --p3-rgb: 255 176 0;
+  --gutter: 24px;
+  /* the design wrote 0.44 em per character; VT323 advances 0.49 em in Chrome, so the budget uses 0.5 */
+  --chw: 0.5;
+  --fs: clamp(16px, calc((100vw - 48px) / 100 / var(--chw)), 22px);
+  --lh: 1.15;
+  --row: calc(var(--fs) * var(--lh));
+  --print-fs: 14px;
+  --bloom: 0 0 2px var(--p1), 0 0 6px rgb(var(--p1-rgb) / .55), 0 0 14px rgb(var(--p1-rgb) / .25);
+  --bloom-mid: 0 0 2px var(--p1-mid), 0 0 6px rgb(var(--p1-rgb) / .55);
+  --bloom-hot: 0 0 2px var(--hot), 0 0 8px rgb(var(--p1-rgb) / .7), 0 0 16px rgb(var(--p1-rgb) / .35);
+  --bloom-amber: 0 0 2px var(--p3), 0 0 6px rgb(var(--p3-rgb) / .55), 0 0 14px rgb(var(--p3-rgb) / .25);
+}
+/* the second phosphor (3.1): the cheat code and `amber` swap the ramp, warnings turn green. */
+:root[data-phosphor="amber"] {
+  --p1: #FFB000;
+  --p1-mid: #C98A00;
+  --p1-dim: #7A5400;
+  --p1-ghost: #3D2A00;
+  --hot: #FFE6A8;
+  --p3: #41FF6A;
+  --p3-dim: #22B04A;
+  --p1-rgb: 255 176 0;
+  --p3-rgb: 65 255 106;
+}
+@media (max-width: 900px) {
+  :root {
+    --gutter: 16px;
+    --fs: calc((100vw - 32px) / 40 / var(--chw));
+    --print-fs: 12px;
+  }
+}
+
+html { background: var(--glass); }
+body {
+  background: var(--glass);
+  color: var(--p1);
+  font-family: "VT323", "Courier New", monospace;
+  font-size: var(--fs);
+  line-height: var(--lh);
+  text-shadow: var(--bloom);
+}
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.noscript { font-family: system-ui, sans-serif; color: var(--p1-mid); padding: 1em; text-shadow: none; }
+
+/* text treatments */
+.mid, .mid * { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+.dim, .dim * { color: var(--p1-dim); text-shadow: none; }
+.ghost { color: var(--p1-ghost); text-shadow: none; }
+.hot { color: var(--hot); text-shadow: var(--bloom-hot); }
+.amber, .amber * { color: var(--p3); text-shadow: var(--bloom-amber); }
+.amber-dim { color: var(--p3-dim); text-shadow: none; }
+.inv { background: var(--p1); color: var(--glass); text-shadow: none; }
+.inv-amber { background: var(--p3); color: var(--glass); text-shadow: none; }
+.label { text-transform: uppercase; }
+.struck { color: var(--p3-dim); text-shadow: none; text-decoration: line-through; text-decoration-color: var(--p3-dim); }
+.print, .print * {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: var(--print-fs);
+  line-height: 1.35;
+  color: var(--p1-mid);
+  text-shadow: none;
+}
+
+/* buttons: every [ bracket ] inverts on hover and focus. the inversion is the only focus ring. */
+.bk::before { content: "[ "; color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+.bk::after { content: " ]"; color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+.bk:hover, .bk:focus-visible, .bare:hover, .bare:focus-visible, .cat-row:hover, .cat-row.hl {
+  background: var(--p1);
+  color: var(--glass);
+  text-shadow: none;
+}
+.bk:hover::before, .bk:hover::after, .bk:focus-visible::before, .bk:focus-visible::after { color: var(--glass); text-shadow: none; }
+.bk.dimmed { color: var(--p1-dim); text-shadow: none; }
+.bk.dimmed::before, .bk.dimmed::after { color: var(--p1-dim); text-shadow: none; }
+.bk.amber-btn { color: var(--p3); text-shadow: var(--bloom-amber); }
+.bk.amber-btn::before, .bk.amber-btn::after { color: var(--p3-dim); text-shadow: none; }
+.bk.amber-btn:hover, .bk.amber-btn:focus-visible { background: var(--p3); color: var(--glass); text-shadow: none; }
+.chip { text-transform: uppercase; }
+.chip.tuning, .chip.dead { color: var(--p3); text-shadow: var(--bloom-amber); }
+.chip.tuning:hover, .chip.dead:hover { background: var(--p3); color: var(--glass); text-shadow: none; }
+
+/* the cursor (3.2): a block 0.6ch by 1.1em in --hot, steps(2) blink at 530 ms. amber while tuning or after an error. */
+.cursor {
+  display: inline-block;
+  width: .6ch;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background: var(--hot);
+  box-shadow: 0 0 4px var(--hot), 0 0 10px rgb(var(--p1-rgb) / .6);
+  animation: blink 530ms steps(2, start) infinite;
+}
+.cursor.steady { animation: none; }
+.cursor.dimcur { background: var(--p1-dim); box-shadow: none; animation: none; }
+.amber-cursor .cursor, .cursor.amber-c { background: var(--p3); box-shadow: 0 0 4px var(--p3), 0 0 10px rgb(var(--p3-rgb) / .6); }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* the power line (3.2, 7): a 2 px line of --hot at the vertical centre, which the glass opens out of. */
+#power {
+  position: fixed;
+  left: 0; right: 0; top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--hot);
+  box-shadow: 0 0 8px var(--hot), 0 0 24px rgb(var(--p1-rgb) / .8), 0 0 60px rgb(var(--p1-rgb) / .5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+#power.on { opacity: 1; }
+#power.fade { transition: opacity 250ms ease-out; opacity: 0; }
+
+/* the glass (3.2): curved, vignetted, scanned, rolled, noisy, flickering. */
+.glass {
+  position: fixed;
+  inset: 0;
+  background: var(--glass);
+  border-radius: 2.5% / 3.5%;
+  box-shadow: inset 0 0 120px rgb(0 0 0 / .85), inset 0 0 12px rgb(var(--p1-rgb) / .15);
+  overflow: hidden;
+  animation: flicker 6s steps(1) infinite;
+  clip-path: inset(0 0 0 0);
+}
+.glass.barrel { filter: url(#barrel); }
+.glass.off { clip-path: inset(50% 0 50% 0); }
+.glass.opening { transition: clip-path 350ms cubic-bezier(.2, .9, .3, 1); clip-path: inset(0 0 0 0); }
+.glass.closing { transition: clip-path 350ms cubic-bezier(.2, .9, .3, 1); clip-path: inset(50% 0 50% 0); }
+.glass.dip { animation: none; opacity: .9; }
+.glass.bloom-on::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgb(var(--p1-rgb) / .22);
+  animation: bloomfade 300ms ease-out forwards;
+  z-index: 13;
+}
+@keyframes bloomfade { from { opacity: 1; } to { opacity: 0; } }
+@keyframes flicker {
+  0% { opacity: 1; } 17% { opacity: .98; } 23% { opacity: 1; } 41% { opacity: .97; }
+  46% { opacity: 1; } 71% { opacity: .99; } 79% { opacity: 1; }
+}
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0) 0 2px, rgb(0 0 0 / .18) 2px 3px);
+  z-index: 10;
+}
+.rollbar {
+  position: absolute;
+  left: 0; right: 0;
+  top: -140px;
+  height: 140px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgb(var(--p1-rgb) / 0), rgb(var(--p1-rgb) / .06) 50%, rgb(var(--p1-rgb) / 0));
+  animation: roll 9s linear infinite;
+  z-index: 11;
+}
+@keyframes roll { from { transform: translateY(0); } to { transform: translateY(calc(100vh + 140px)); } }
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .03;
+  filter: url(#phosphorNoise);
+  z-index: 12;
+}
+
+.band {
+  padding: calc(var(--row) * .25) 1ch;
+  border-top: 1px solid var(--p1-dim);
+  box-shadow: 0 -1px 6px rgb(var(--p1-rgb) / .12);
+}
+.band.header { border-top: 0; box-shadow: none; padding-top: 0; }
+
+/* boot (2.1) */
+.boot { border: 0; box-shadow: none; }
+.boot-lines .amber { color: var(--p3); text-shadow: var(--bloom-amber); }
+.banner { color: var(--p1); }
+
+/* header (2.2) */
+.header .hot-name { color: var(--hot); text-shadow: var(--bloom-hot); }
+.header .up { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+
+/* transmitter (2.2, 2.3, 5.2, 5.3) */
+.transmitter .vol { color: var(--p1); }
+.np-row .np-slug { color: var(--p1); }
+.readout.tuning #readoutText { color: var(--p3); text-shadow: var(--bloom-amber); }
+.progress { white-space: pre; overflow: hidden; }
+.progress .trk { color: var(--p1-dim); text-shadow: none; }
+.dial { color: var(--p3); text-shadow: var(--bloom-amber); overflow: hidden; }
+.baseline .ghost-tag { color: var(--p3); text-shadow: var(--bloom-amber); }
+.scope { color: var(--p1); overflow: hidden; }
+.deadair .deadair-text { color: var(--p1); }
+.tower-ascii, .tower-ascii * {
+  font-family: "VT323", monospace !important;
+  color: var(--p1) !important;
+  text-shadow: var(--bloom);
+  background: transparent !important;
+  letter-spacing: 0 !important;
+}
+.reread { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+
+/* catalogue (2.2) */
+.cat-controls .bare { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+.cat-row {
+  color: var(--p1-mid);
+  text-shadow: var(--bloom-mid);
+}
+.cat-row.playing { color: var(--p1); text-shadow: var(--bloom); }
+.cat-row.playing .mark { color: var(--hot); text-shadow: var(--bloom-hot); }
+.cat-row.played { color: var(--p1-dim); text-shadow: none; }
+.cat-row.tuning { color: var(--p3); text-shadow: var(--bloom-amber); }
+.cat-row .plus { color: var(--p1-dim); text-shadow: none; visibility: hidden; }
+.cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: inherit; }
+.cat-row:hover *, .cat-row.hl * { color: var(--glass) !important; text-shadow: none !important; }
+.cat-row .slug-link { text-decoration: none; }
+.cat-row:hover .slug-link { text-decoration: underline; }
+.cat-head .sort:hover { background: var(--p1); color: var(--glass); text-shadow: none; }
+
+/* terminal (4.4) */
+.log .err { color: var(--p3); text-shadow: var(--bloom-amber); }
+.log .err.blink { animation: errblink 300ms steps(2, start) 1; }
+@keyframes errblink { 0%, 100% { background: var(--p3); color: var(--glass); text-shadow: none; } 50% { background: none; color: var(--p3); } }
+.log .amber { color: var(--p3); text-shadow: var(--bloom-amber); }
+.prompt-row .ps1 { color: var(--p1); }
+#cmd {
+  color: var(--p1);
+  text-shadow: var(--bloom);
+}
+.hint-row .hints button { color: var(--p1); text-shadow: var(--bloom); }
+.hint-row .hints button:hover, .hint-row .hints button:focus-visible { background: var(--p1); color: var(--glass); text-shadow: none; }
+
+/* footer, odometer (2.7) */
+.odometer { border: 1px solid var(--p1-dim); border-radius: 2px; background: var(--glass-raise); }
+.drum { border-left: 1px solid var(--p1-dim); }
+.drum:first-child { border-left: 0; }
+
+/* pages (2.5, 2.6) */
+.page .why-text { color: var(--p1); }
+.page .fail { color: var(--p3); text-shadow: var(--bloom-amber); }
+.page .ok { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+.page .catview { border-left: 1px solid var(--p1-dim); }
+.gb-form input { color: var(--p1); text-shadow: var(--bloom); caret-color: var(--hot); border-bottom: 1px dotted var(--p1-ghost); }
+.gb-entry .gb-line { color: var(--p1); }
+.gb-entry .gb-tag { color: var(--p3); text-shadow: var(--bloom-amber); }
+
+/* help overlay (2.8) */
+.overlay {
+  padding: calc(var(--row) * .5) 2ch;
+  background: var(--glass-raise);
+  border: 1px solid var(--p1-dim);
+  box-shadow: 0 0 40px rgb(0 0 0 / .8), 0 0 10px rgb(var(--p1-rgb) / .2);
+}
+.help-body .help-list .bk { color: var(--p1); }
+
+/* phone (2.x, 40 columns) */
+@media (max-width: 900px) {
+  .fat { border-top: 1px solid var(--p1-dim); }
+  .cat-row .plus { visibility: visible; }
+}
+@media (hover: none) {
+  .cat-row .plus { visibility: visible; }
+}
+
+/* reduced motion (ADR 0002): the bar, the flicker, the scramble stop; typing stays, at 10x. */
+@media (prefers-reduced-motion: reduce) {
+  .rollbar { display: none; }
+  .glass { animation: none; }
+  .cursor { animation: none; }
+  .drum .reel { transition: none; }
+}
