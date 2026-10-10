@@ -534,6 +534,89 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-schooldesk-build-4",
+      "title": "Hummed Under The Breath (build phase)",
+      "idea": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",
+      "request": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",
+      "mood": "the build phase",
+      "bpm": 78,
+      "key": "D minor",
+      "seed": 806340,
+      "model": "fast",
+      "duration": 93.13,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back bored-lesson groove, clock ticks, pencil taps and ruler twangs as a drum kit, a tune hummed under the breath used as an instrument, plinky toy keyboard, fuzzy round bass, dusty drum machine, last-lesson-of-the-day daydream, good-humoured, 78 bpm, a tiny glockenspiel and a lazy organ, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"bored-lesson groove with clock ticks, pencil taps and a hummed tune\" (the build phase): 78 bpm in D minor. The prompt describes laid back bored-lesson groove with clock ticks, pencil taps and ruler twangs as a drum kit and a tune hummed under the breath used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 805340,
+          "reason": "harsh: 2.6% above 6 kHz"
+        },
+        {
+          "seed": 802340,
+          "reason": "not kept"
+        }
+      ],
+      "takes": [
+        806340
+      ],
+      "numbers": {
+        "tempo_bpm": 78.0,
+        "lufs": -17.51,
+        "peak_dbfs": -2.02,
+        "silence_s": 0.9,
+        "brightness_pct": 0.86,
+        "boominess_pct": 19.25,
+        "onsets_per_s": 3.52,
+        "seam_db": -8.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-schooldesk-build-4/greytide-schooldesk-build-4.mp3",
+        "notes": "greytide-schooldesk-build-4/notes.md",
+        "recipe": "greytide-schooldesk-build-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.23,
+        "decoded_lufs": -17.51,
+        "failed": [
+          "loudness",
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Hummed Under The Breath"
+        ],
+        "take_files": [
+          "greytide-schooldesk-build-4/greytide-schooldesk-build-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-schooldesk-build-3",
       "title": "Doodle In The Margin (build phase)",
       "idea": "bored-lesson groove with clock ticks, pencil taps and a hummed tune",
