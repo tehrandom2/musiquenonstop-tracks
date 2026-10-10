@@ -458,6 +458,92 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-pub-wave-4",
+      "title": "Dartboard Polka (wave)",
+      "idea": "wonky pub-piano and wheezy accordion shuffle",
+      "request": "wonky pub-piano and wheezy accordion shuffle",
+      "mood": "the wave phase",
+      "bpm": 89,
+      "key": "F major",
+      "seed": 801945,
+      "model": "fast",
+      "duration": 93.26,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wonky honky-tonk groove, clinking glasses, beer-mat taps and foot stomps as a drum kit, slightly out-of-tune pub piano, wheezy accordion used as an instrument, fuzzy walking bass, dusty brushed drum machine, tipsy after-hours daydream, good-humoured, 89 bpm, fiddle-like synth and foot stomps, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wonky pub-piano and wheezy accordion shuffle\" (the wave phase): 89 bpm in F major. The prompt describes laid back wonky honky-tonk groove with clinking glasses, beer-mat taps and foot stomps as a drum kit and slightly out-of-tune pub piano; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800945,
+          "reason": "tempo 85 vs asked 89; harsh: 3.4% above 6 kHz"
+        },
+        {
+          "seed": 700945,
+          "reason": "tempo 85 vs asked 89; superseded by the #443 render"
+        },
+        {
+          "seed": 701945,
+          "reason": "harsh: 2.7% above 6 kHz; superseded by the #443 render"
+        },
+        {
+          "seed": 702945,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801945
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.43,
+        "peak_dbfs": -3.11,
+        "silence_s": 0.25,
+        "brightness_pct": 1.21,
+        "boominess_pct": 6.62,
+        "onsets_per_s": 2.94,
+        "seam_db": -0.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-pub-wave-4/greytide-pub-wave-4.mp3",
+        "notes": "greytide-pub-wave-4/notes.md",
+        "recipe": "greytide-pub-wave-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.09,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Dartboard Polka"
+        ],
+        "take_files": [
+          "greytide-pub-wave-4/greytide-pub-wave-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-pub-wave-3",
       "title": "Beer Mat Boogie (wave)",
       "idea": "wonky pub-piano and wheezy accordion shuffle",

@@ -1,0 +1,62 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-pub-wave-4",
+  "title": "Dartboard Polka (wave)",
+  "date": "2026-10-06",
+  "rendered_at": "2026-10-06T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Laid back wonky honky-tonk groove, clinking glasses, beer-mat taps and foot stomps as a drum kit, slightly out-of-tune pub piano, wheezy accordion used as an instrument, fuzzy walking bass, dusty brushed drum machine, tipsy after-hours daydream, good-humoured, 89 bpm, fiddle-like synth and foot stomps, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 89,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 93.26,
+  "seed": 801945,
+  "dit_caption": "Laid back wonky honky-tonk groove, clinking glasses, beer-mat taps and foot stomps as a drum kit, slightly out-of-tune pub piano, wheezy accordion used as an instrument, fuzzy walking bass, dusty brushed drum machine, tipsy after-hours daydream, good-humoured, 89 bpm, fiddle-like synth and foot stomps, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 93.26,
+    "peak_dbfs": -3.11,
+    "lufs": -16.43
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 87.0,
+      "lufs": -16.43,
+      "peak_dbfs": -3.11,
+      "silence_s": 0.25,
+      "brightness_pct": 1.21,
+      "boominess_pct": 6.62,
+      "onsets_per_s": 2.94,
+      "seam_db": -0.1
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onsets": true,
+      "seam": true,
+      "words": null
+    },
+    "failed": []
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
