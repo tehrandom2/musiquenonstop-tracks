@@ -458,6 +458,87 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-garage-build-4",
+      "title": "Carpet Square Boogie (build phase)",
+      "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "request": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "mood": "the build phase",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 801140,
+      "model": "fast",
+      "duration": 92.9,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back slacker garage-band groove, cardboard-box kick, tambourine and cowbell as a drum kit, wobbly cheap organ and tremolo guitar through a small amp used as instruments, fuzzy round bass, dusty drum machine played behind the beat, charmingly not very good, friendly, no shredding, good-humoured, 84 bpm, a detuned electric piano and a lazy cowbell, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar\" (the build phase): 84 bpm in G major. The prompt describes laid back slacker garage-band groove with cardboard-box kick, tambourine and cowbell as a drum kit and wobbly cheap organ and tremolo guitar through a small amp used as instruments; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802140,
+          "reason": "crest 20.0 dB, too peaky to match the loudness"
+        },
+        {
+          "seed": 701140,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801140
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.44,
+        "peak_dbfs": -2.63,
+        "silence_s": 0.55,
+        "brightness_pct": 0.95,
+        "boominess_pct": 10.45,
+        "onsets_per_s": 3.09,
+        "seam_db": -5.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-garage-build-4/greytide-garage-build-4.mp3",
+        "notes": "greytide-garage-build-4/notes.md",
+        "recipe": "greytide-garage-build-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "silence",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Carpet Square Boogie"
+        ],
+        "take_files": [
+          "greytide-garage-build-4/greytide-garage-build-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-garage-build-3",
       "title": "Borrowed Bass Fuzz (build phase)",
       "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
