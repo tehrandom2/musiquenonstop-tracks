@@ -1,7 +1,87 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:29:24-04:00",
+  "written": "2026-10-10T06:31:50-04:00",
   "tracks": [
+    {
+      "slug": "telephone-exchange-still-open",
+      "title": "Telephone Exchange, Still Open",
+      "project": null,
+      "idea": "a telephone exchange in 1994, relays clicking: a telephone exchange in 1994 with relays clicking along the racks",
+      "request": "a telephone exchange in 1994, relays clicking",
+      "mood": "unhurried and a little wistful, never bleak",
+      "bpm": 160,
+      "key": "C minor",
+      "seed": 322114,
+      "model": "fast",
+      "duration": 89.95,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:31:50-04:00",
+      "voice": false,
+      "prompt": "Pirate-radio jungle, 160 bpm, in C minor, chopped and time-stretched funk breakbeats with rolling snare fills, relay-click stabs and a skanking offbeat organ used as instruments, a huge sine sub-bass on a half-time reggae pattern, a telephone exchange in 1994 with relays clicking along the racks, unhurried and a little wistful, never bleak, an intro of horns and skank over a half-time beat, then the full breakbeat drop, loopable, instrumental, no vocals, no singing, no speech, no wobble bass, no build-ups",
+      "lyrics": null,
+      "why": "You asked for \"a telephone exchange in 1994, relays clicking\". So I wrote it at 160 bpm in C minor, 100 seconds, with no voice, under the jungle gates. I rendered 4 seeds and threw away 2: 322116 (harsh: 6.3% above 6 kHz (ceiling 3.5) and others); 322115 (harsh: 7.1% above 6 kHz (ceiling 3.5) and others). Seed 322114 is the take, but it did not clear every gate: harsh: 6.0% above 6 kHz (ceiling 3.5); boomy: 17.9% below 60 Hz (ceiling 8).",
+      "rejected": [
+        {
+          "seed": 322116,
+          "reason": "harsh: 6.3% above 6 kHz (ceiling 3.5); boomy: 14.9% below 60 Hz (ceiling 8); seam level +14.2 dB tail to head"
+        },
+        {
+          "seed": 322115,
+          "reason": "harsh: 7.1% above 6 kHz (ceiling 3.5); boomy: 8.9% below 60 Hz (ceiling 8); seam level +12.8 dB tail to head"
+        }
+      ],
+      "takes": [
+        322114,
+        322117
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.02,
+        "peak_dbfs": -2.06,
+        "silence_s": 0.1,
+        "brightness_pct": 6.03,
+        "boominess_pct": 17.94,
+        "onsets_per_s": 5.1,
+        "seam_db": -4.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "telephone-exchange-still-open/telephone-exchange-still-open.mp3",
+        "notes": "telephone-exchange-still-open/notes.md",
+        "recipe": "telephone-exchange-still-open/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "jungle",
+        "seam_step_x": 0.61,
+        "decoded_lufs": -16.38,
+        "failed": [
+          "harsh: 6.0% above 6 kHz (ceiling 3.5)",
+          "boomy: 17.9% below 60 Hz (ceiling 8)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 3966586,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "telephone-exchange-still-open/telephone-exchange-still-open.mp3",
+          "telephone-exchange-still-open/telephone-exchange-still-open-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "canal-bicycle-slow-light",
       "title": "Canal Bicycle, Slow Light",
