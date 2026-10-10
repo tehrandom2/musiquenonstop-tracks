@@ -1,0 +1,65 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-63-ebony",
+  "title": "Ebony",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Slow dark electro with trap drums, 90 bpm, booming 808 kick and long sub bass slides, sparse ticking hi-hats, eerie whistling high synth lead playing a simple haunting melody, cold empty space between hits, sinister and stylish, minimal arrangement, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 90,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 176.1,
+  "seed": 100063,
+  "dit_caption": "Slow dark electro with trap drums, 90 bpm, booming 808 kick and long sub bass slides, sparse ticking hi-hats, eerie whistling high synth lead playing a simple haunting melody, cold empty space between hits, sinister and stylish, minimal arrangement, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 176.1,
+    "peak_dbfs": -3.34,
+    "lufs": -16.45
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 91.5,
+      "lufs": -16.45,
+      "peak_dbfs": -3.34,
+      "silence_s": 0.25,
+      "brightness_pct": 1.26,
+      "boominess_pct": 37.98,
+      "onsets_per_s": 3.0,
+      "seam_db": -33.1
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
