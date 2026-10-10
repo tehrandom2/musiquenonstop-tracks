@@ -13843,6 +13843,76 @@
       }
     },
     {
+      "slug": "shoosting-38-thruster",
+      "title": "Thruster",
+      "idea": "Drumstep",
+      "request": "Drumstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "A# minor",
+      "seed": 100038,
+      "model": "fast",
+      "duration": 178.42,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Drumstep, 140 bpm, half-time drop every 32 bars, double-time breakbeat drums under a growling reese sub, fast momentum, big risers, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Drumstep\": 140 bpm in A# minor. The prompt describes drumstep with half-time drop every 32 bars, double-time breakbeat drums under a growling reese sub and fast momentum; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100038
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.07,
+        "peak_dbfs": -2.78,
+        "silence_s": 0.1,
+        "brightness_pct": 1.63,
+        "boominess_pct": 54.9,
+        "onsets_per_s": 3.95,
+        "seam_db": -52.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-38-thruster/shoosting-38-thruster.mp3",
+        "notes": "shoosting-38-thruster/notes.md",
+        "recipe": "shoosting-38-thruster/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.07,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-38-thruster/shoosting-38-thruster.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-37-vampire",
       "title": "Vampire",
       "idea": "Dark heavy dubstep",
