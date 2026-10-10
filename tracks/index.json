@@ -13919,6 +13919,78 @@
       }
     },
     {
+      "slug": "shoosting-69-syllables",
+      "title": "Syllables",
+      "idea": "Glitch hop beat tape",
+      "request": "Glitch hop beat tape",
+      "mood": "",
+      "bpm": 92,
+      "key": "A# major",
+      "seed": 400069,
+      "model": "best",
+      "duration": 174.06,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Glitch hop beat tape, a rapper's voice and a soul singer's voice sliced into single syllables and replayed on sampler pads as percussion and melody, never forming a whole word. Swung, slightly drunk boom-bap drums with a dusty snare and an off-grid kick, chopped electric piano jazz chords that stutter and restart mid-phrase, warm upright bass, vinyl crackle, sudden half-beat silences and rewinds. Head-nodding, intricate, warm, restless, human hands on a drum machine.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Glitch hop beat tape\": 92 bpm in A# major, one of the tracks the machine chose for itself, on the best tier. The prompt describes glitch hop beat tape; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400069
+      ],
+      "numbers": {
+        "tempo_bpm": 90.0,
+        "lufs": -18.83,
+        "peak_dbfs": -2.97,
+        "silence_s": 0.75,
+        "brightness_pct": 0.2,
+        "boominess_pct": 17.26,
+        "onsets_per_s": 1.59,
+        "seam_db": -42.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-69-syllables/shoosting-69-syllables.mp3",
+        "notes": "shoosting-69-syllables/notes.md",
+        "recipe": "shoosting-69-syllables/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.38,
+        "decoded_lufs": -18.83,
+        "failed": [
+          "loudness",
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-69-syllables/shoosting-69-syllables.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-68-sleaze-engine",
       "title": "Sleaze Engine",
       "idea": "Industrial dance rock",
