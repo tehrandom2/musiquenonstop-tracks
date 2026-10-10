@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-45-sudden-death",
+  "title": "Sudden Death",
+  "date": "2026-09-08",
+  "rendered_at": "2026-09-08T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Heavy brostep dubstep, 140 bpm, half-time drop every 32 bars, tense staccato growls, no breakdown, back-to-back drops, urgent, relentless filthy tearout bass, screeching distorted growls stacked on a fat sub, no mercy, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 140,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 175.7,
+  "seed": 100045,
+  "dit_caption": "Heavy brostep dubstep, 140 bpm, half-time drop every 32 bars, tense staccato growls, no breakdown, back-to-back drops, urgent, relentless filthy tearout bass, screeching distorted growls stacked on a fat sub, no mercy, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 175.7,
+    "peak_dbfs": -2.76,
+    "lufs": -16.79
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 138.0,
+      "lufs": -16.79,
+      "peak_dbfs": -2.76,
+      "silence_s": 0.15,
+      "brightness_pct": 4.6,
+      "boominess_pct": 45.59,
+      "onsets_per_s": 4.78,
+      "seam_db": -46.0
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
