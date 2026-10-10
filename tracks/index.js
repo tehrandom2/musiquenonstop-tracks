@@ -13843,6 +13843,78 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-08-signal-lost",
+      "title": "Signal Lost",
+      "idea": "Riddim dubstep",
+      "request": "Riddim dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "D minor",
+      "seed": 100008,
+      "model": "fast",
+      "duration": 175.22,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, glitchy formant wobble bass, growling sub bass, tense minimal percussion, aggressive but readable drop every phrase, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Riddim dubstep\": 140 bpm in D minor. The prompt describes riddim dubstep with half-time drop every 32 bars, glitchy formant wobble bass and growling sub bass; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100008
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.71,
+        "peak_dbfs": -1.99,
+        "silence_s": 0.35,
+        "brightness_pct": 6.12,
+        "boominess_pct": 42.1,
+        "onsets_per_s": 4.53,
+        "seam_db": -32.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": false,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-08-signal-lost/shoosting-08-signal-lost.mp3",
+        "notes": "shoosting-08-signal-lost/notes.md",
+        "recipe": "shoosting-08-signal-lost/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.71,
+        "failed": [
+          "brightness",
+          "boominess",
+          "onsets",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-08-signal-lost/shoosting-08-signal-lost.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-07-gravity-well",
       "title": "Gravity Well",
       "idea": "Heavy brostep dubstep",

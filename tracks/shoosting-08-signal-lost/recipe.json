@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-08-signal-lost",
+  "title": "Signal Lost",
+  "date": "2026-09-06",
+  "rendered_at": "2026-09-06T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, glitchy formant wobble bass, growling sub bass, tense minimal percussion, aggressive but readable drop every phrase, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 140,
+  "keyscale": "D minor",
+  "timesignature": "4",
+  "duration": 175.22,
+  "seed": 100008,
+  "dit_caption": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, glitchy formant wobble bass, growling sub bass, tense minimal percussion, aggressive but readable drop every phrase, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 175.22,
+    "peak_dbfs": -1.99,
+    "lufs": -16.71
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 138.0,
+      "lufs": -16.71,
+      "peak_dbfs": -1.99,
+      "silence_s": 0.35,
+      "brightness_pct": 6.12,
+      "boominess_pct": 42.1,
+      "onsets_per_s": 4.53,
+      "seam_db": -32.4
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
