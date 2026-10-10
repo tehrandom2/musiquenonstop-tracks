@@ -458,6 +458,92 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-garage-build-2",
+      "title": "Drummer Is Late (build phase)",
+      "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "request": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "mood": "the build phase",
+      "bpm": 80,
+      "key": "A minor",
+      "seed": 803120,
+      "model": "fast",
+      "duration": 92.8,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back slacker garage-band groove, cardboard-box kick, tambourine and cowbell as a drum kit, wobbly cheap organ and tremolo guitar through a small amp used as instruments, fuzzy round bass, dusty drum machine played behind the beat, charmingly not very good, friendly, no shredding, good-humoured, 80 bpm, a wobbly cheap organ riff and a tambourine, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar\" (the build phase): 80 bpm in A minor. The prompt describes laid back slacker garage-band groove with cardboard-box kick, tambourine and cowbell as a drum kit and wobbly cheap organ and tremolo guitar through a small amp used as instruments; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802120,
+          "reason": "tempo 119 vs asked 80"
+        },
+        {
+          "seed": 701120,
+          "reason": "tempo 90 vs asked 80; superseded by the #443 render"
+        },
+        {
+          "seed": 702120,
+          "reason": "superseded by the #443 render"
+        },
+        {
+          "seed": 801120,
+          "reason": "tempo 75 vs asked 80"
+        }
+      ],
+      "takes": [
+        803120
+      ],
+      "numbers": {
+        "tempo_bpm": 79.0,
+        "lufs": -16.45,
+        "peak_dbfs": -2.0,
+        "silence_s": 0.3,
+        "brightness_pct": 0.54,
+        "boominess_pct": 6.33,
+        "onsets_per_s": 1.56,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-garage-build-2/greytide-garage-build-2.mp3",
+        "notes": "greytide-garage-build-2/notes.md",
+        "recipe": "greytide-garage-build-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.19,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Drummer Is Late"
+        ],
+        "take_files": [
+          "greytide-garage-build-2/greytide-garage-build-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-garage-build-1",
       "title": "Practice Amp Hum (build phase)",
       "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
