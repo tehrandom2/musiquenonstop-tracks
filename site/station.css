@@ -76,6 +76,9 @@ button:focus { outline: 0; }
 
 /* transmitter */
 .transmitter { position: relative; }
+/* the widget slot (design 12.0, issue #28): a theme may mount one signature widget in the transmitter card
+   (a cassette, a big scrubber); the skeleton only gives it a block and a top margin, the theme does the rest */
+.tx-widget { display: block; margin-top: calc(var(--row) * .5); }
 .np-row .meta { flex: 0 0 auto; }
 /* the readout wraps the whole prompt; it is never truncated (issue #43) */
 .readout {

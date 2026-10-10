@@ -153,6 +153,9 @@
   }
   function installIndex(idx) {
     const tracks = (idx && Array.isArray(idx.tracks)) ? idx.tracks.filter(function (t) { return t && t.slug; }) : [];
+    // newest on top always (6.2): by rendered_at, then date, then slug; an entry without rendered_at is its date at 00:00:00
+    const when = function (t) { const v = Date.parse(t.rendered_at || ((t.date || '') + 'T00:00:00')); return isNaN(v) ? 0 : v; };
+    tracks.sort(function (a, b) { return (when(b) - when(a)) || String(b.date || '').localeCompare(String(a.date || '')) || String(b.slug).localeCompare(String(a.slug)); });
     S.tracks = tracks; S.bySlug = {}; S.num = {};
     tracks.forEach(function (t, i) { S.bySlug[t.slug] = t; S.num[t.slug] = tracks.length - i; });
     el.trackCount.textContent = tracks.length + (tracks.length === 1 ? ' track' : ' tracks');
