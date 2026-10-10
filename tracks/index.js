@@ -13843,6 +13843,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-02-riddim-protocol",
+      "title": "Riddim Protocol",
+      "idea": "Riddim dubstep",
+      "request": "Riddim dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "A# minor",
+      "seed": 100002,
+      "model": "fast",
+      "duration": 178.1,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, robotic vowel-formant wobble bass, sparse rhythmic stutters, growling sub bass, tight percussive gaps, aggressive but readable arrangement, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Riddim dubstep\": 140 bpm in A# minor. The prompt describes riddim dubstep with half-time drop every 32 bars, robotic vowel-formant wobble bass and sparse rhythmic stutters; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100002
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.77,
+        "peak_dbfs": -2.76,
+        "silence_s": 1.2,
+        "brightness_pct": 2.14,
+        "boominess_pct": 49.6,
+        "onsets_per_s": 2.94,
+        "seam_db": -52.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-02-riddim-protocol/shoosting-02-riddim-protocol.mp3",
+        "notes": "shoosting-02-riddim-protocol/notes.md",
+        "recipe": "shoosting-02-riddim-protocol/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 3.95,
+        "decoded_lufs": -16.77,
+        "failed": [
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-02-riddim-protocol/shoosting-02-riddim-protocol.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-01-warhead",
       "title": "Warhead",
       "idea": "Heavy brostep dubstep",

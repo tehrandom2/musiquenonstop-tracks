@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-02-riddim-protocol",
+  "title": "Riddim Protocol",
+  "date": "2026-09-06",
+  "rendered_at": "2026-09-06T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, robotic vowel-formant wobble bass, sparse rhythmic stutters, growling sub bass, tight percussive gaps, aggressive but readable arrangement, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 140,
+  "keyscale": "A# minor",
+  "timesignature": "4",
+  "duration": 178.1,
+  "seed": 100002,
+  "dit_caption": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, robotic vowel-formant wobble bass, sparse rhythmic stutters, growling sub bass, tight percussive gaps, aggressive but readable arrangement, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 178.1,
+    "peak_dbfs": -2.76,
+    "lufs": -16.77
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 139.0,
+      "lufs": -16.77,
+      "peak_dbfs": -2.76,
+      "silence_s": 1.2,
+      "brightness_pct": 2.14,
+      "boominess_pct": 49.6,
+      "onsets_per_s": 2.94,
+      "seam_db": -52.4
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "silence",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
