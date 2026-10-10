@@ -14,5 +14,6 @@ window.NOBODY_CONFIG = {
   requestLine: null,
   requestApi: null,
   requestKey: null,
-  defaultTheme: "phosphor"
+  defaultTheme: "phosphor",
+  source: "https://github.com/tehrandom2/nobody-fm"
 };
