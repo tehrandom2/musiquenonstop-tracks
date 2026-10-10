@@ -458,6 +458,88 @@
       }
     },
     {
+      "slug": "greytide-sill-wave-2",
+      "title": "Rain On The Glass (wave)",
+      "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "request": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "mood": "the wave phase",
+      "bpm": 79,
+      "key": "D major",
+      "seed": 800625,
+      "model": "fast",
+      "duration": 88.34,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back airy drifting groove, wind chimes, rain-stick shakes and soft woodblock taps as a drum kit, wandering slide whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty shaker drum machine, sunny window-sill daydream, good-humoured, 79 bpm, steel-drum-like plucks and a slow tambourine, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wind-chime and rain-stick drift with a wandering slide whistle\" (the wave phase): 79 bpm in D major. The prompt describes laid back airy drifting groove with wind chimes, rain-stick shakes and soft woodblock taps as a drum kit and wandering slide whistle used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801625,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700625,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800625
+      ],
+      "numbers": {
+        "tempo_bpm": 79.0,
+        "lufs": -16.39,
+        "peak_dbfs": -2.13,
+        "silence_s": 1.65,
+        "brightness_pct": 1.27,
+        "boominess_pct": 19.15,
+        "onsets_per_s": 3.1,
+        "seam_db": -5.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sill-wave-2/greytide-sill-wave-2.mp3",
+        "notes": "greytide-sill-wave-2/notes.md",
+        "recipe": "greytide-sill-wave-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.51,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Rain On The Glass"
+        ],
+        "take_files": [
+          "greytide-sill-wave-2/greytide-sill-wave-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sill-wave-1",
       "title": "Windowsill Chime Drift (wave)",
       "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
