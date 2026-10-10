@@ -534,6 +534,82 @@
       }
     },
     {
+      "slug": "greytide-sandpit-build-5",
+      "title": "Sandcastle Slow Jam (build phase)",
+      "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "request": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
+      "mood": "the build phase",
+      "bpm": 76,
+      "key": "A major",
+      "seed": 802550,
+      "model": "fast",
+      "duration": 91.18,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back hot lazy afternoon groove, bucket taps, spade scrapes and a dripping hose as a drum kit, buzzing bee-like synth, a far-off ice-cream-van chime used as an instrument, soft steel-drum-like plucks, fuzzy round bass, dusty shaker drum machine, sunny sandpit daydream, good-humoured, 76 bpm, a ukulele-like pluck and a buzzing synth, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"hot lazy afternoon groove with bees, a hose and a far-off ice-cream van\" (the build phase): 76 bpm in A major. The prompt describes laid back hot lazy afternoon groove with bucket taps, spade scrapes and a dripping hose as a drum kit and buzzing bee-like synth; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801550,
+          "reason": "crest 18.9 dB, too peaky to match the loudness"
+        }
+      ],
+      "takes": [
+        802550
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -16.41,
+        "peak_dbfs": -2.1,
+        "silence_s": 0.3,
+        "brightness_pct": 1.74,
+        "boominess_pct": 11.73,
+        "onsets_per_s": 4.35,
+        "seam_db": -5.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sandpit-build-5/greytide-sandpit-build-5.mp3",
+        "notes": "greytide-sandpit-build-5/notes.md",
+        "recipe": "greytide-sandpit-build-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.23,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Sandcastle Slow Jam"
+        ],
+        "take_files": [
+          "greytide-sandpit-build-5/greytide-sandpit-build-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-sandpit-build-4",
       "title": "Bee On The Bucket (build phase)",
       "idea": "hot lazy afternoon groove with bees, a hose and a far-off ice-cream van",
