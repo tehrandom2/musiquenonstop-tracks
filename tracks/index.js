@@ -13919,6 +13919,78 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-75-last-round",
+      "title": "Last Round",
+      "idea": "Three-act finale",
+      "request": "Three-act finale",
+      "mood": "",
+      "bpm": 128,
+      "key": "A# major",
+      "seed": 400075,
+      "model": "best",
+      "duration": 179.98,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Three-act finale, starting as a quiet wordless hymn for two voices over tape hiss, becoming a pounding electro track when a raw buzzing sawtooth bass and a four-on-the-floor kick crash in, and ending as a blown-out triumphant brass fanfare with chopped vocal shouts over everything. One long climb with no way back down, the distortion increasing section by section until the final chorus is clipping. Cathartic, huge, closing-credits energy.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Three-act finale\": 128 bpm in A# major, one of the tracks the machine chose for itself, on the best tier. The prompt describes three-act finale; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400075
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.98,
+        "peak_dbfs": -2.78,
+        "silence_s": 1.45,
+        "brightness_pct": 3.99,
+        "boominess_pct": 23.75,
+        "onsets_per_s": 2.29,
+        "seam_db": -10.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-75-last-round/shoosting-75-last-round.mp3",
+        "notes": "shoosting-75-last-round/notes.md",
+        "recipe": "shoosting-75-last-round/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -16.98,
+        "failed": [
+          "silence",
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-75-last-round/shoosting-75-last-round.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-74-tape-chewed",
       "title": "Tape Chewed",
       "idea": "Lo-fi gospel beat",
