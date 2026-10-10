@@ -1,7 +1,84 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-10T06:24:28-04:00",
+  "written": "2026-10-10T06:26:56-04:00",
   "tracks": [
+    {
+      "slug": "bakery-before-number-nine",
+      "title": "Bakery Before, Number Nine",
+      "project": null,
+      "idea": "a bakery before the town wakes up: a bakery before the town wakes up, ovens ticking and trays cooling",
+      "request": "a bakery before the town wakes up",
+      "mood": "warm and a little sleepy, good-humoured",
+      "bpm": 88,
+      "key": "E major",
+      "seed": 767415,
+      "model": "fast",
+      "duration": 91.61,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:26:56-04:00",
+      "voice": false,
+      "prompt": "Dusty half-time groove, 88 bpm, in E major, a drum kit of spoon taps, pan lid clinks and a kettle-whistle blip, a melodica used as an instrument that wanders off the tune, a warm sine sub on a half-time pattern, a bakery before the town wakes up, ovens ticking and trays cooling, warm and a little sleepy, good-humoured, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a bakery before the town wakes up\". \"a kitchen, coffee, cooking\" I took as: found kitchen objects as the drum kit, a warm major key, a morning mood clause. So I wrote it at 88 bpm in E major, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 767413 (seam level -29.4 dB tail to head); 767414 (boomy: 13.9% below 60 Hz (ceiling 12) and others). Seed 767415 is the take.",
+      "rejected": [
+        {
+          "seed": 767413,
+          "reason": "seam level -29.4 dB tail to head"
+        },
+        {
+          "seed": 767414,
+          "reason": "boomy: 13.9% below 60 Hz (ceiling 12); seam level +13.0 dB tail to head"
+        }
+      ],
+      "takes": [
+        767415,
+        767416
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.01,
+        "peak_dbfs": -1.91,
+        "silence_s": 0.25,
+        "brightness_pct": 1.48,
+        "boominess_pct": 9.59,
+        "onsets_per_s": 2.63,
+        "seam_db": 2.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "bakery-before-number-nine/bakery-before-number-nine.mp3",
+        "notes": "bakery-before-number-nine/notes.md",
+        "recipe": "bakery-before-number-nine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4040022,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "bakery-before-number-nine/bakery-before-number-nine.mp3",
+          "bakery-before-number-nine/bakery-before-number-nine-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "server-room-after-hours",
       "title": "Server Room, After Hours",
