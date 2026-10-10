@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-electroclash-wave",
+  "title": "Court Jester Electroclash (wave)",
+  "date": "2026-10-03",
+  "rendered_at": "2026-10-03T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Medieval electroclash, 128 bpm, driving four-on-the-floor kick, gritty distorted sawtooth synth bass, harpsichord stabs, aggressive fuzzy lute riffs, handclaps, cowbell, snarling retro synth lead like a battle march, loopable, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 128,
+  "keyscale": "C major",
+  "timesignature": "4",
+  "duration": 94.7,
+  "seed": 590006,
+  "dit_caption": "Medieval electroclash, 128 bpm, driving four-on-the-floor kick, gritty distorted sawtooth synth bass, harpsichord stabs, aggressive fuzzy lute riffs, handclaps, cowbell, snarling retro synth lead like a battle march, loopable, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 94.7,
+    "peak_dbfs": -3.34,
+    "lufs": -17.15
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 127.0,
+      "lufs": -17.15,
+      "peak_dbfs": -3.34,
+      "silence_s": 0.05,
+      "brightness_pct": 5.43,
+      "boominess_pct": 17.88,
+      "onsets_per_s": 4.0,
+      "seam_db": -8.4
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "brightness",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

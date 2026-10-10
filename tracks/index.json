@@ -384,6 +384,80 @@
       }
     },
     {
+      "slug": "greytide-electroclash-wave",
+      "title": "Court Jester Electroclash (wave)",
+      "idea": "medieval-electroclash",
+      "request": "medieval-electroclash",
+      "mood": "the wave phase",
+      "bpm": 128,
+      "key": "C major",
+      "seed": 590006,
+      "model": "fast",
+      "duration": 94.7,
+      "date": "2026-10-03",
+      "rendered_at": "2026-10-03T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Medieval electroclash, 128 bpm, driving four-on-the-floor kick, gritty distorted sawtooth synth bass, harpsichord stabs, aggressive fuzzy lute riffs, handclaps, cowbell, snarling retro synth lead like a battle march, loopable, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-03 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"medieval-electroclash\" (the wave phase): 128 bpm in C major. The prompt describes medieval electroclash with driving four-on-the-floor kick, gritty distorted sawtooth synth bass and harpsichord stabs; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        590006
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -17.15,
+        "peak_dbfs": -3.34,
+        "silence_s": 0.05,
+        "brightness_pct": 5.43,
+        "boominess_pct": 17.88,
+        "onsets_per_s": 4.0,
+        "seam_db": -8.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-electroclash-wave/greytide-electroclash-wave.mp3",
+        "notes": "greytide-electroclash-wave/notes.md",
+        "recipe": "greytide-electroclash-wave/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -17.15,
+        "failed": [
+          "loudness",
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Court Jester Electroclash"
+        ],
+        "take_files": [
+          "greytide-electroclash-wave/greytide-electroclash-wave.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-electroclash-build",
       "title": "Court Jester Electroclash (build phase)",
       "idea": "medieval-electroclash",
