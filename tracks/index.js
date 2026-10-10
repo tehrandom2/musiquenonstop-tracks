@@ -1,7 +1,86 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:41:22-04:00",
+  "written": "2026-10-10T06:43:44-04:00",
   "tracks": [
+    {
+      "slug": "planetarium-audience-number-nine",
+      "title": "Planetarium Audience, Number Nine",
+      "project": null,
+      "idea": "a planetarium with no audience: a planetarium with no audience, the projector turning the stars",
+      "request": "a planetarium with no audience",
+      "mood": "calm and a little awed",
+      "bpm": 84,
+      "key": "Bb minor",
+      "seed": 781791,
+      "model": "fast",
+      "duration": 90.54,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:43:44-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 84 bpm, in Bb minor, a drum kit of cardboard-tube thumps, a pencil-tin rattle and a zip-pull tick as the hat, a vocoder lead used as an instrument, a warm sine sub on a half-time pattern, a planetarium with no audience, the projector turning the stars, calm and a little awed, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a planetarium with no audience\". \"space, the stars\" I took as: a vocoder lead used as an instrument, slow tempo, a minor key, a quiet-room clause. So I wrote it at 84 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 781790 (seam level +16.0 dB tail to head); 781792 (boomy: 20.6% below 60 Hz (ceiling 12) and others). Seed 781791 is the take, but it did not clear every gate: boomy: 17.8% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 781790,
+          "reason": "seam level +16.0 dB tail to head"
+        },
+        {
+          "seed": 781792,
+          "reason": "boomy: 20.6% below 60 Hz (ceiling 12); onset rate 4.5/s outside 0.3-4.5"
+        }
+      ],
+      "takes": [
+        781791,
+        781789
+      ],
+      "numbers": {
+        "tempo_bpm": 83.0,
+        "lufs": -16.02,
+        "peak_dbfs": -1.7,
+        "silence_s": 0.25,
+        "brightness_pct": 1.46,
+        "boominess_pct": 17.82,
+        "onsets_per_s": 3.38,
+        "seam_db": 0.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "planetarium-audience-number-nine/planetarium-audience-number-nine.mp3",
+        "notes": "planetarium-audience-number-nine/notes.md",
+        "recipe": "planetarium-audience-number-nine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.21,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "boomy: 17.8% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 3992649,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "planetarium-audience-number-nine/planetarium-audience-number-nine.mp3",
+          "planetarium-audience-number-nine/planetarium-audience-number-nine-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "snow-falling-number-nine",
       "title": "Snow Falling, Number Nine",
