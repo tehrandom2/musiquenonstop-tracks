@@ -1,7 +1,81 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-10T06:12:13-04:00",
+  "written": "2026-10-10T06:17:18-04:00",
   "tracks": [
+    {
+      "slug": "night-airport-after-hours",
+      "title": "Night Airport, After Hours",
+      "idea": "the night bus to the airport, everyone asleep: a night bus to the airport with everyone asleep and the road lights sliding past",
+      "request": "the night bus to the airport, everyone asleep",
+      "mood": "tired and quiet, awake when nobody else is, never creepy",
+      "bpm": 70,
+      "key": "C minor",
+      "seed": 346209,
+      "model": "fast",
+      "duration": 91.62,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:14:41-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 70 bpm, in C minor, a drum kit of brush-handle taps, jar-lid clinks and a bus-door hiss as the hat, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a night bus to the airport with everyone asleep and the road lights sliding past, tired and quiet, awake when nobody else is, never creepy, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"the night bus to the airport, everyone asleep\". \"a bus shelter, public transport\" I took as: the hiss of a bus door as the hat, a place clause for a shelter after the last bus. \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. \"chill, lo-fi, study\" I took as: a laid-back loopable groove around 70 bpm, nothing that grabs the ear. So I wrote it at 70 bpm in C minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 346208 (seam level -5.5 dB tail to head); 346206 (harsh: 3.7% above 6 kHz (ceiling 2.5) and others). Seed 346209 is the take.",
+      "rejected": [
+        {
+          "seed": 346208,
+          "reason": "seam level -5.5 dB tail to head"
+        },
+        {
+          "seed": 346206,
+          "reason": "harsh: 3.7% above 6 kHz (ceiling 2.5); onset rate 5.1/s outside 0.3-4.5"
+        }
+      ],
+      "takes": [
+        346209,
+        346207
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.02,
+        "peak_dbfs": -2.05,
+        "silence_s": 0.0,
+        "brightness_pct": 1.24,
+        "boominess_pct": 11.19,
+        "onsets_per_s": 3.3,
+        "seam_db": 0.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "night-airport-after-hours/night-airport-after-hours.mp3",
+        "notes": "night-airport-after-hours/notes.md",
+        "recipe": "night-airport-after-hours/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "night-airport-after-hours/night-airport-after-hours.mp3",
+          "night-airport-after-hours/night-airport-after-hours-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "greenhouse-thunderstorm-after-hours",
       "title": "Greenhouse Thunderstorm, After Hours",
@@ -299,6 +373,82 @@
         "take_files": [
           "last-tram-last-call/last-tram-last-call.mp3",
           "last-tram-last-call/last-tram-last-call-take2.mp3"
+        ]
+      }
+    },
+    {
+      "slug": "laundrette-midnight-number-nine",
+      "title": "Laundrette Midnight, Number Nine",
+      "idea": "a laundrette at midnight, the dryers still turning: a laundrette at midnight with the dryers still turning and the strip light buzzing",
+      "request": "a laundrette at midnight, the dryers still turning",
+      "mood": "tired and quiet, awake when nobody else is, never creepy",
+      "bpm": 76,
+      "key": "Bb minor",
+      "seed": 881938,
+      "model": "fast",
+      "duration": 88.86,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:01:48-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 76 bpm, in Bb minor, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a laundrette at midnight with the dryers still turning and the strip light buzzing, tired and quiet, awake when nobody else is, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a laundrette at midnight, the dryers still turning\". \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. So I wrote it at 76 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 881936 (boomy: 15.9% below 60 Hz (ceiling 12)); 881939 (harsh: 3.4% above 6 kHz (ceiling 2.5) and others); 881937 (harsh: 5.2% above 6 kHz (ceiling 2.5) and others). Seed 881938 is the take.",
+      "rejected": [
+        {
+          "seed": 881936,
+          "reason": "boomy: 15.9% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 881939,
+          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5); boomy: 19.4% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 881937,
+          "reason": "harsh: 5.2% above 6 kHz (ceiling 2.5); boomy: 24.5% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        881938
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -16.05,
+        "peak_dbfs": -2.29,
+        "silence_s": 0.3,
+        "brightness_pct": 1.29,
+        "boominess_pct": 7.33,
+        "onsets_per_s": 2.51,
+        "seam_db": -1.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3",
+        "notes": "laundrette-midnight-number-nine/notes.md",
+        "recipe": "laundrette-midnight-number-nine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.49,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3"
         ]
       }
     },
@@ -604,82 +754,6 @@
         "stripped": [],
         "take_files": [
           "one-machine-still-turning/one-machine-still-turning.mp3"
-        ]
-      }
-    },
-    {
-      "slug": "laundrette-midnight-number-nine",
-      "title": "Laundrette Midnight, Number Nine",
-      "idea": "a laundrette at midnight, the dryers still turning: a laundrette at midnight with the dryers still turning and the strip light buzzing",
-      "request": "a laundrette at midnight, the dryers still turning",
-      "mood": "tired and quiet, awake when nobody else is, never creepy",
-      "bpm": 76,
-      "key": "Bb minor",
-      "seed": 881938,
-      "model": "fast",
-      "duration": 88.86,
-      "date": "2026-10-10",
-      "rendered_at": "2026-10-10T06:01:48-04:00",
-      "voice": false,
-      "prompt": "Slow late-night groove, 76 bpm, in Bb minor, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a laundrette at midnight with the dryers still turning and the strip light buzzing, tired and quiet, awake when nobody else is, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
-      "lyrics": null,
-      "why": "You asked for \"a laundrette at midnight, the dryers still turning\". \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. So I wrote it at 76 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 881936 (boomy: 15.9% below 60 Hz (ceiling 12)); 881939 (harsh: 3.4% above 6 kHz (ceiling 2.5) and others); 881937 (harsh: 5.2% above 6 kHz (ceiling 2.5) and others). Seed 881938 is the take.",
-      "rejected": [
-        {
-          "seed": 881936,
-          "reason": "boomy: 15.9% below 60 Hz (ceiling 12)"
-        },
-        {
-          "seed": 881939,
-          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5); boomy: 19.4% below 60 Hz (ceiling 12)"
-        },
-        {
-          "seed": 881937,
-          "reason": "harsh: 5.2% above 6 kHz (ceiling 2.5); boomy: 24.5% below 60 Hz (ceiling 12)"
-        }
-      ],
-      "takes": [
-        881938
-      ],
-      "numbers": {
-        "tempo_bpm": 75.5,
-        "lufs": -16.05,
-        "peak_dbfs": -2.29,
-        "silence_s": 0.3,
-        "brightness_pct": 1.29,
-        "boominess_pct": 7.33,
-        "onsets_per_s": 2.51,
-        "seam_db": -1.0
-      },
-      "checks": {
-        "tempo": true,
-        "loudness": true,
-        "peak": true,
-        "silence": true,
-        "brightness": true,
-        "boominess": true,
-        "onsets": true,
-        "seam": true,
-        "words": null
-      },
-      "lineage": null,
-      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
-      "project": null,
-      "files": {
-        "mp3": "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3",
-        "notes": "laundrette-midnight-number-nine/notes.md",
-        "recipe": "laundrette-midnight-number-nine/recipe.json"
-      },
-      "extra": {
-        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
-        "profile": "mellow",
-        "seam_step_x": 0.01,
-        "decoded_lufs": -16.49,
-        "failed": [],
-        "words_not_ours": null,
-        "stripped": [],
-        "take_files": [
-          "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3"
         ]
       }
     },
