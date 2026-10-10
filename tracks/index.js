@@ -3,6 +3,80 @@ window.NOBODY_INDEX = {
   "written": "2026-10-10T06:12:13-04:00",
   "tracks": [
     {
+      "slug": "greenhouse-thunderstorm-after-hours",
+      "title": "Greenhouse Thunderstorm, After Hours",
+      "idea": "a greenhouse in a thunderstorm: a greenhouse in a thunderstorm with rain loud on the glass",
+      "request": "a greenhouse in a thunderstorm",
+      "mood": "damp and tired and quietly good-humoured, never creepy",
+      "bpm": 72,
+      "key": "C# minor",
+      "seed": 226459,
+      "model": "fast",
+      "duration": 95.94,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:12:11-04:00",
+      "voice": false,
+      "prompt": "Dusty half-time groove, 72 bpm, in C# minor, a drum kit of rain-on-tin taps and a dripping-gutter click, a muted nylon guitar used as an instrument, a round, tape-saturated bass in the mid range, played sparsely, a greenhouse in a thunderstorm with rain loud on the glass, damp and tired and quietly good-humoured, never creepy, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a greenhouse in a thunderstorm\". \"rain\" I took as: rain as an instrument: tin taps and a gutter drip as the drum kit, minor key, slow, a damp mood clause. So I wrote it at 72 bpm in C# minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 226460 (boomy: 27.6% below 60 Hz (ceiling 12)); 226458 (boomy: 16.0% below 60 Hz (ceiling 12) and others). Seed 226459 is the take.",
+      "rejected": [
+        {
+          "seed": 226460,
+          "reason": "boomy: 27.6% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 226458,
+          "reason": "boomy: 16.0% below 60 Hz (ceiling 12); seam level +10.9 dB tail to head; crest 18.1 dB, too peaky to reach -16 LUFS"
+        }
+      ],
+      "takes": [
+        226459,
+        226461
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.01,
+        "peak_dbfs": -2.55,
+        "silence_s": 0.0,
+        "brightness_pct": 0.72,
+        "boominess_pct": 8.54,
+        "onsets_per_s": 2.54,
+        "seam_db": -0.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
+      "files": {
+        "mp3": "greenhouse-thunderstorm-after-hours/greenhouse-thunderstorm-after-hours.mp3",
+        "notes": "greenhouse-thunderstorm-after-hours/notes.md",
+        "recipe": "greenhouse-thunderstorm-after-hours/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "greenhouse-thunderstorm-after-hours/greenhouse-thunderstorm-after-hours.mp3",
+          "greenhouse-thunderstorm-after-hours/greenhouse-thunderstorm-after-hours-take2.mp3"
+        ]
+      }
+    },
+    {
       "slug": "arcade-after-slow-light",
       "title": "Arcade After, Slow Light",
       "idea": "an arcade after closing, one machine still attracting moths: an arcade after closing with one machine still glowing and moths around it",
