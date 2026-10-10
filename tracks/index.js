@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:07:16-04:00",
+  "written": "2026-10-10T06:07:54-04:00",
   "tracks": [
     {
       "slug": "lighthouse-keeper-s-after-hours",
@@ -531,6 +531,84 @@ window.NOBODY_INDEX = {
         "take_files": [
           "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3"
         ]
+      }
+    },
+    {
+      "slug": "greytide-sill-wave-3",
+      "title": "Cactus Daydream (wave)",
+      "idea": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "request": "wind-chime and rain-stick drift with a wandering slide whistle",
+      "mood": "the wave phase",
+      "bpm": 75,
+      "key": "A major",
+      "seed": 800635,
+      "model": "fast",
+      "duration": 90.18,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back airy drifting groove, wind chimes, rain-stick shakes and soft woodblock taps as a drum kit, wandering slide whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty shaker drum machine, sunny window-sill daydream, good-humoured, 75 bpm, glass harmonica pad and tiny bells, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wind-chime and rain-stick drift with a wandering slide whistle\" (the wave phase): 75 bpm in A major. The prompt describes laid back airy drifting groove with wind chimes, rain-stick shakes and soft woodblock taps as a drum kit and wandering slide whistle used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801635,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700635,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800635
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.43,
+        "peak_dbfs": -2.68,
+        "silence_s": 0.0,
+        "brightness_pct": 1.14,
+        "boominess_pct": 4.74,
+        "onsets_per_s": 2.86,
+        "seam_db": -0.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-sill-wave-3/greytide-sill-wave-3.mp3",
+        "notes": "greytide-sill-wave-3/notes.md",
+        "recipe": "greytide-sill-wave-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.65,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Cactus Daydream"
+        ],
+        "take_files": [
+          "greytide-sill-wave-3/greytide-sill-wave-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
       }
     },
     {
