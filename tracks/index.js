@@ -384,6 +384,75 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-workbench-wave-1",
+      "title": "Clank Funk (wave)",
+      "idea": "clanky found-percussion groove with a talk-box lead",
+      "request": "clanky found-percussion groove with a talk-box lead",
+      "mood": "the wave phase",
+      "bpm": 95,
+      "key": "E minor",
+      "seed": 700815,
+      "model": "fast",
+      "duration": 93.93,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back clanky found-percussion groove, tin cans, wrench and pipe taps, metal tool clinks as a drum kit, talk-box lead used as an instrument, fuzzy round bass, dusty drum machine, workshop daydream, good-humoured, 95 bpm, a hand-saw bend and a plinky toy keyboard, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"clanky found-percussion groove with a talk-box lead\" (the wave phase): 95 bpm in E minor. The prompt describes laid back clanky found-percussion groove with tin cans, wrench and pipe taps and metal tool clinks as a drum kit; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        700815
+      ],
+      "numbers": {
+        "tempo_bpm": 95.0,
+        "lufs": -16.4,
+        "peak_dbfs": -1.87,
+        "silence_s": 0.15,
+        "brightness_pct": 1.81,
+        "boominess_pct": 7.29,
+        "onsets_per_s": 3.01,
+        "seam_db": 3.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-workbench-wave-1/greytide-workbench-wave-1.mp3",
+        "notes": "greytide-workbench-wave-1/notes.md",
+        "recipe": "greytide-workbench-wave-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.18,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Clank Funk"
+        ],
+        "take_files": [
+          "greytide-workbench-wave-1/greytide-workbench-wave-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-workbench-build-5",
       "title": "Hot Glue Boogie (build phase)",
       "idea": "clanky found-percussion groove with a talk-box lead",
