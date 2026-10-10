@@ -13919,6 +13919,79 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-66-hymn-for-a-blown-speaker",
+      "title": "Hymn for a Blown Speaker",
+      "idea": "Distorted ambient hymn",
+      "request": "Distorted ambient hymn",
+      "mood": "",
+      "bpm": 68,
+      "key": "G# major",
+      "seed": 400066,
+      "model": "best",
+      "duration": 180.0,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Distorted ambient hymn, a slow two-part harmony of a man and a woman singing long wordless vowels like a church duet, buried inside a wall of clipped, overdriven, bit-crushed static. The whole mix is brutally sidechained so the noise gulps and ducks on every slow pulse of a huge sub-bass thud, as if the recording is being fed through a blown speaker and a failing compressor. No drum kit, only the pulse. Digital dropouts, tape saturation, a beautiful melody underneath an ugly texture, patient, devastating, tender, enormous.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Distorted ambient hymn\": 68 bpm in G# major, one of the tracks the machine chose for itself, on the best tier. The prompt describes distorted ambient hymn; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400066
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.37,
+        "peak_dbfs": -2.75,
+        "silence_s": 1.95,
+        "brightness_pct": 1.17,
+        "boominess_pct": 42.97,
+        "onsets_per_s": 2.55,
+        "seam_db": -34.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-66-hymn-for-a-blown-speaker/shoosting-66-hymn-for-a-blown-speaker.mp3",
+        "notes": "shoosting-66-hymn-for-a-blown-speaker/notes.md",
+        "recipe": "shoosting-66-hymn-for-a-blown-speaker/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 1.8,
+        "decoded_lufs": -16.37,
+        "failed": [
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Blown Speaker"
+        ],
+        "take_files": [
+          "shoosting-66-hymn-for-a-blown-speaker/shoosting-66-hymn-for-a-blown-speaker.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-65-last-plank",
       "title": "Last Plank",
       "idea": "Dark ambient techno",

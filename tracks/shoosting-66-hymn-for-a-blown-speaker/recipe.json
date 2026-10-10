@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-66-hymn-for-a-blown-speaker",
+  "title": "Hymn for a Blown Speaker",
+  "date": "2026-10-01",
+  "rendered_at": "2026-10-01T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": "acestep-5Hz-lm-4B",
+    "offload_to_cpu": true,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "caption": "Distorted ambient hymn, a slow two-part harmony of a man and a woman singing long wordless vowels like a church duet, buried inside a wall of clipped, overdriven, bit-crushed static. The whole mix is brutally sidechained so the noise gulps and ducks on every slow pulse of a huge sub-bass thud, as if the recording is being fed through a blown speaker and a failing compressor. No drum kit, only the pulse. Digital dropouts, tape saturation, a beautiful melody underneath an ugly texture, patient, devastating, tender, enormous.",
+  "lyrics": "",
+  "instrumental": false,
+  "bpm": 68,
+  "keyscale": "G# major",
+  "timesignature": "4",
+  "duration": 180.0,
+  "seed": 400066,
+  "dit_caption": "Distorted ambient hymn, a slow two-part harmony of a man and a woman singing long wordless vowels like a church duet, buried inside a wall of clipped, overdriven, bit-crushed static. The whole mix is brutally sidechained so the noise gulps and ducks on every slow pulse of a huge sub-bass thud, as if the recording is being fed through a blown speaker and a failing compressor. No drum kit, only the pulse. Digital dropouts, tape saturation, a beautiful melody underneath an ugly texture, patient, devastating, tender, enormous.",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 180.0,
+    "peak_dbfs": -2.75,
+    "lufs": -16.37
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 134.5,
+      "lufs": -16.37,
+      "peak_dbfs": -2.75,
+      "silence_s": 1.95,
+      "brightness_pct": 1.17,
+      "boominess_pct": 42.97,
+      "onsets_per_s": 2.55,
+      "seam_db": -34.9
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "silence",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
