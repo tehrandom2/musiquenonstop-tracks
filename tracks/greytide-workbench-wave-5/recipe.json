@@ -1,0 +1,64 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "greytide-workbench-wave-5",
+  "title": "Hot Glue Boogie (wave)",
+  "date": "2026-10-05",
+  "rendered_at": "2026-10-05T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Laid back clanky found-percussion groove, tin cans, wrench and pipe taps, metal tool clinks as a drum kit, talk-box lead used as an instrument, fuzzy round bass, dusty drum machine, workshop daydream, good-humoured, 97 bpm, drill-like synth buzz and rimshots, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 97,
+  "keyscale": "C minor",
+  "timesignature": "4",
+  "duration": 93.34,
+  "seed": 701855,
+  "dit_caption": "Laid back clanky found-percussion groove, tin cans, wrench and pipe taps, metal tool clinks as a drum kit, talk-box lead used as an instrument, fuzzy round bass, dusty drum machine, workshop daydream, good-humoured, 97 bpm, drill-like synth buzz and rimshots, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 93.34,
+    "peak_dbfs": -2.63,
+    "lufs": -16.43
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 129.0,
+      "lufs": -16.43,
+      "peak_dbfs": -2.63,
+      "silence_s": 0.1,
+      "brightness_pct": 1.62,
+      "boominess_pct": 3.58,
+      "onsets_per_s": 4.08,
+      "seam_db": 10.0
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

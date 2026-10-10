@@ -384,6 +384,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-workbench-wave-5",
+      "title": "Hot Glue Boogie (wave)",
+      "idea": "clanky found-percussion groove with a talk-box lead",
+      "request": "clanky found-percussion groove with a talk-box lead",
+      "mood": "the wave phase",
+      "bpm": 97,
+      "key": "C minor",
+      "seed": 701855,
+      "model": "fast",
+      "duration": 93.34,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back clanky found-percussion groove, tin cans, wrench and pipe taps, metal tool clinks as a drum kit, talk-box lead used as an instrument, fuzzy round bass, dusty drum machine, workshop daydream, good-humoured, 97 bpm, drill-like synth buzz and rimshots, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"clanky found-percussion groove with a talk-box lead\" (the wave phase): 97 bpm in C minor. The prompt describes laid back clanky found-percussion groove with tin cans, wrench and pipe taps and metal tool clinks as a drum kit; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 700855,
+          "reason": "harsh: 3.9% above 6 kHz"
+        }
+      ],
+      "takes": [
+        701855
+      ],
+      "numbers": {
+        "tempo_bpm": 129.0,
+        "lufs": -16.43,
+        "peak_dbfs": -2.63,
+        "silence_s": 0.1,
+        "brightness_pct": 1.62,
+        "boominess_pct": 3.58,
+        "onsets_per_s": 4.08,
+        "seam_db": 10.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-workbench-wave-5/greytide-workbench-wave-5.mp3",
+        "notes": "greytide-workbench-wave-5/notes.md",
+        "recipe": "greytide-workbench-wave-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.46,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Hot Glue Boogie"
+        ],
+        "take_files": [
+          "greytide-workbench-wave-5/greytide-workbench-wave-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-workbench-wave-4",
       "title": "Spirit Level Slow Jam (wave)",
       "idea": "clanky found-percussion groove with a talk-box lead",
