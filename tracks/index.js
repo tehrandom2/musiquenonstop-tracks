@@ -458,6 +458,88 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-desk-wave-4",
+      "title": "Brush Cleaner Slow Jam (wave)",
+      "idea": "woozy tape-warped analog synth funk",
+      "request": "woozy tape-warped analog synth funk",
+      "mood": "the wave phase",
+      "bpm": 85,
+      "key": "E minor",
+      "seed": 801045,
+      "model": "fast",
+      "duration": 89.74,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back woozy analog synth funk, brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit, tape-warped detuned synthesizers drifting slightly out of tune, vocoder lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine with loose swing, lamp-lit painting desk daydream, good-humoured, 85 bpm, warbling clavinet licks and a detuned electric piano, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"woozy tape-warped analog synth funk\" (the wave phase): 85 bpm in E minor. The prompt describes laid back woozy analog synth funk with brush-handle taps, paint-jar clinks and cutting-mat ticks as a drum kit and tape-warped detuned synthesizers drifting slightly out of tune; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800045,
+          "reason": "13.6s of near-silence"
+        },
+        {
+          "seed": 700045,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801045
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -16.41,
+        "peak_dbfs": -2.73,
+        "silence_s": 0.15,
+        "brightness_pct": 2.66,
+        "boominess_pct": 14.45,
+        "onsets_per_s": 3.33,
+        "seam_db": 8.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-desk-wave-4/greytide-desk-wave-4.mp3",
+        "notes": "greytide-desk-wave-4/notes.md",
+        "recipe": "greytide-desk-wave-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.11,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Brush Cleaner Slow Jam"
+        ],
+        "take_files": [
+          "greytide-desk-wave-4/greytide-desk-wave-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-desk-wave-3",
       "title": "Wet Palette Boogie (wave)",
       "idea": "woozy tape-warped analog synth funk",
