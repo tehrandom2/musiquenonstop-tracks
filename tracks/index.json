@@ -384,6 +384,84 @@
       }
     },
     {
+      "slug": "greytide-bed-build-4",
+      "title": "Nightlight Waltz (build phase)",
+      "idea": "sleepy music-box and soft fuzz bass",
+      "request": "sleepy music-box and soft fuzz bass",
+      "mood": "the build phase",
+      "bpm": 70,
+      "key": "D major",
+      "seed": 800240,
+      "model": "fast",
+      "duration": 93.13,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back sleepy lullaby groove, music-box plucks, felt-piano and soft pillow-thump kick, slow shaker and brushed drum machine, celesta used as an instrument, warm fuzzy round bass, tape hiss, duvet-warm bedroom daydream, good-humoured, 70 bpm, music-box melody over a humming bass, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"sleepy music-box and soft fuzz bass\" (the build phase): 70 bpm in D major. The prompt describes laid back sleepy lullaby groove with music-box plucks, felt-piano and soft pillow-thump kick and slow shaker and brushed drum machine; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801240,
+          "reason": "crest 18.6 dB, too peaky to match the loudness"
+        },
+        {
+          "seed": 700240,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800240
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.45,
+        "peak_dbfs": -2.5,
+        "silence_s": 0.05,
+        "brightness_pct": 0.89,
+        "boominess_pct": 10.59,
+        "onsets_per_s": 1.93,
+        "seam_db": 2.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bed-build-4/greytide-bed-build-4.mp3",
+        "notes": "greytide-bed-build-4/notes.md",
+        "recipe": "greytide-bed-build-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.86,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Nightlight Waltz"
+        ],
+        "take_files": [
+          "greytide-bed-build-4/greytide-bed-build-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bed-build-3",
       "title": "Pillow Fort Lullaby (build phase)",
       "idea": "sleepy music-box and soft fuzz bass",
