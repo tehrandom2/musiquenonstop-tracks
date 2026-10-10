@@ -638,11 +638,9 @@ NOBODY.themes.city = (function () {
   TH.catalogue = function (tracks) { if (scene) scene.setCatalogue(tracks); };
   TH.playing = function (slug) { if (scene) scene.setPlaying(slug, 0); };
   TH.scheme = function () { if (scene) scene.scheme(); };
-  // the widget slot (12.0, issue #28): the city mounts nothing in the transmitter card; its signature is the scene behind it
-  TH.widget = function () { return null; };
   TH.state = function () {
-    return scene ? { widget: null, running: scene.running, frames: scene.frames, ms: +scene.ms.toFixed(1), bloom: scene.bloomOn, chroma: scene.chromaOn, view: scene.view, playing: scene.playing, flying: scene.flying, tunnel: scene.tunnelOn, phone: scene.phone, nocity: false }
-      : { widget: null, running: false, nocity: document.body.classList.contains('nocity') };
+    return scene ? { running: scene.running, frames: scene.frames, ms: +scene.ms.toFixed(1), bloom: scene.bloomOn, chroma: scene.chromaOn, view: scene.view, playing: scene.playing, flying: scene.flying, tunnel: scene.tunnelOn, phone: scene.phone, nocity: false }
+      : { running: false, nocity: document.body.classList.contains('nocity') };
   };
 
   /* ---- widgets ---- */

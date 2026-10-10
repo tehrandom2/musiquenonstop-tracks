@@ -15,15 +15,14 @@
      written here, after the skeleton and before any paint, so the first frame is already the theme's. -->
 <script>
 (function () {
-  var names = ['phosphor', 'city', 'tapedeck', 'arena'];
-  var dark = { phosphor: '#050705', city: '#020309', tapedeck: '#120d0a', arena: '#06060b' };
+  var names = ['phosphor', 'city'];
   var q = new URLSearchParams(location.search).get('theme'), saved = null;
   try { saved = localStorage.getItem('nobody.theme'); } catch (e) {}
   var cfg = (window.NOBODY_CONFIG && window.NOBODY_CONFIG.defaultTheme) || 'phosphor';
   var t = names.indexOf(q) >= 0 ? q : names.indexOf(saved) >= 0 ? saved : names.indexOf(cfg) >= 0 ? cfg : 'phosphor';
   window.NOBODY_THEME = t;
   document.documentElement.dataset.theme = t;
-  document.documentElement.style.background = dark[t] || dark.phosphor;
+  document.documentElement.style.background = t === 'city' ? '#020309' : '#050705';
   document.write('<link rel="stylesheet" id="themeCss" href="themes/' + t + '/theme.css">');
 })();
 </script>
@@ -41,8 +40,6 @@
 <script src="terminal.js" defer></script>
 <script src="themes/phosphor/theme.js" defer></script>
 <script src="themes/city/theme.js" defer></script>
-<script src="themes/tapedeck/theme.js" defer></script>
-<script src="themes/arena/theme.js" defer></script>
 <script src="station.js" defer></script>
 </head>
 <body>
