@@ -384,6 +384,86 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-bed-wave-1",
+      "title": "Duvet Fuzz (wave)",
+      "idea": "sleepy music-box and soft fuzz bass",
+      "request": "sleepy music-box and soft fuzz bass",
+      "mood": "the wave phase",
+      "bpm": 79,
+      "key": "A major",
+      "seed": 801215,
+      "model": "fast",
+      "duration": 94.78,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back sleepy lullaby groove, music-box plucks, felt-piano and soft pillow-thump kick, slow shaker and brushed drum machine, celesta used as an instrument, warm fuzzy round bass, tape hiss, duvet-warm bedroom daydream, good-humoured, 79 bpm, celesta and a slow bowed toy violin, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"sleepy music-box and soft fuzz bass\" (the wave phase): 79 bpm in A major. The prompt describes laid back sleepy lullaby groove with music-box plucks, felt-piano and soft pillow-thump kick and slow shaker and brushed drum machine; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800215,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700215,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801215
+      ],
+      "numbers": {
+        "tempo_bpm": 79.0,
+        "lufs": -16.45,
+        "peak_dbfs": -3.09,
+        "silence_s": 0.05,
+        "brightness_pct": 0.56,
+        "boominess_pct": 16.09,
+        "onsets_per_s": 2.59,
+        "seam_db": -1.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bed-wave-1/greytide-bed-wave-1.mp3",
+        "notes": "greytide-bed-wave-1/notes.md",
+        "recipe": "greytide-bed-wave-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.52,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Duvet Fuzz"
+        ],
+        "take_files": [
+          "greytide-bed-wave-1/greytide-bed-wave-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bed-build-5",
       "title": "Under The Covers Funk (build phase)",
       "idea": "sleepy music-box and soft fuzz bass",
