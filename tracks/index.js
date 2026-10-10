@@ -384,6 +384,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-bathroom-build-4",
+      "title": "Soap Dish Shuffle (build phase)",
+      "idea": "echoey tiled-room dub with dripping percussion and melodica",
+      "request": "echoey tiled-room dub with dripping percussion and melodica",
+      "mood": "the build phase",
+      "bpm": 74,
+      "key": "G minor",
+      "seed": 801340,
+      "model": "fast",
+      "duration": 91.94,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back echoey tiled-room dub, dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit, spring reverb and tape echo, plinky melodica used as an instrument, fuzzy round bass, dusty rimshot drum machine, steamy bathroom daydream, good-humoured, 74 bpm, echoing hand percussion and a warm electric piano, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"echoey tiled-room dub with dripping percussion and melodica\" (the build phase): 74 bpm in G minor. The prompt describes laid back echoey tiled-room dub with dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit and spring reverb and tape echo; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800340,
+          "reason": "harsh: 2.5% above 6 kHz"
+        },
+        {
+          "seed": 700340,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801340
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -16.48,
+        "peak_dbfs": -2.59,
+        "silence_s": 0.35,
+        "brightness_pct": 1.65,
+        "boominess_pct": 10.26,
+        "onsets_per_s": 2.53,
+        "seam_db": -2.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bathroom-build-4/greytide-bathroom-build-4.mp3",
+        "notes": "greytide-bathroom-build-4/notes.md",
+        "recipe": "greytide-bathroom-build-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.07,
+        "decoded_lufs": -16.48,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Soap Dish Shuffle"
+        ],
+        "take_files": [
+          "greytide-bathroom-build-4/greytide-bathroom-build-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bathroom-build-3",
       "title": "Steamed Mirror Riddim (build phase)",
       "idea": "echoey tiled-room dub with dripping percussion and melodica",
