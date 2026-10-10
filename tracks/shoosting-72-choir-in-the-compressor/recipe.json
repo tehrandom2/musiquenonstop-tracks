@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-72-choir-in-the-compressor",
+  "title": "Choir in the Compressor",
+  "date": "2026-10-01",
+  "rendered_at": "2026-10-01T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": "acestep-5Hz-lm-4B",
+    "offload_to_cpu": true,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "caption": "Destroyed gospel, with no drums at all. An electric guitar chord is gated, clipped and chopped into huge stuttering blocks of white-hot distortion that slam on and off in rhythm, with total silence between them. Over that, two clear unprocessed voices, a man and a woman, sing a simple slow hymn in close harmony, untouched by the noise. The contrast is the point: pristine voices, annihilated instrument. Stark, bright, ecstatic, overwhelming.",
+  "lyrics": "",
+  "instrumental": false,
+  "bpm": 100,
+  "keyscale": "F minor",
+  "timesignature": "4",
+  "duration": 178.98,
+  "seed": 400072,
+  "dit_caption": "Destroyed gospel, with no drums at all. An electric guitar chord is gated, clipped and chopped into huge stuttering blocks of white-hot distortion that slam on and off in rhythm, with total silence between them. Over that, two clear unprocessed voices, a man and a woman, sing a simple slow hymn in close harmony, untouched by the noise. The contrast is the point: pristine voices, annihilated instrument. Stark, bright, ecstatic, overwhelming.",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 178.98,
+    "peak_dbfs": -3.28,
+    "lufs": -19.77
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 98.5,
+      "lufs": -19.77,
+      "peak_dbfs": -3.28,
+      "silence_s": 1.65,
+      "brightness_pct": 0.61,
+      "boominess_pct": 0.01,
+      "onsets_per_s": 4.37,
+      "seam_db": -16.8
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": true,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "silence",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
