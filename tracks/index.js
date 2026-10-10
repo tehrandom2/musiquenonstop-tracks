@@ -458,6 +458,86 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-pub-wave-2",
+      "title": "Last Orders Shuffle (wave)",
+      "idea": "wonky pub-piano and wheezy accordion shuffle",
+      "request": "wonky pub-piano and wheezy accordion shuffle",
+      "mood": "the wave phase",
+      "bpm": 93,
+      "key": "G major",
+      "seed": 800925,
+      "model": "fast",
+      "duration": 91.85,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wonky honky-tonk groove, clinking glasses, beer-mat taps and foot stomps as a drum kit, slightly out-of-tune pub piano, wheezy accordion used as an instrument, fuzzy walking bass, dusty brushed drum machine, tipsy after-hours daydream, good-humoured, 93 bpm, banjo-like plucks and a wheezy harmonica-like lead, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wonky pub-piano and wheezy accordion shuffle\" (the wave phase): 93 bpm in G major. The prompt describes laid back wonky honky-tonk groove with clinking glasses, beer-mat taps and foot stomps as a drum kit and slightly out-of-tune pub piano; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801925,
+          "reason": "harsh: 3.2% above 6 kHz"
+        },
+        {
+          "seed": 700925,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800925
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.9,
+        "peak_dbfs": -2.0,
+        "silence_s": 0.15,
+        "brightness_pct": 1.22,
+        "boominess_pct": 13.68,
+        "onsets_per_s": 3.98,
+        "seam_db": 0.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-pub-wave-2/greytide-pub-wave-2.mp3",
+        "notes": "greytide-pub-wave-2/notes.md",
+        "recipe": "greytide-pub-wave-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.57,
+        "decoded_lufs": -16.9,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Last Orders Shuffle"
+        ],
+        "take_files": [
+          "greytide-pub-wave-2/greytide-pub-wave-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-pub-wave-1",
       "title": "Wonky Pub Piano (wave)",
       "idea": "wonky pub-piano and wheezy accordion shuffle",
