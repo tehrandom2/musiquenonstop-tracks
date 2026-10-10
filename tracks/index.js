@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:02:21-04:00",
+  "written": "2026-10-10T06:04:53-04:00",
   "tracks": [
     {
       "slug": "the-roof-nobody-finds",
@@ -381,6 +381,86 @@ window.NOBODY_INDEX = {
         "take_files": [
           "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3"
         ]
+      }
+    },
+    {
+      "slug": "greytide-bathroom-build-2",
+      "title": "Plughole Skank (build phase)",
+      "idea": "echoey tiled-room dub with dripping percussion and melodica",
+      "request": "echoey tiled-room dub with dripping percussion and melodica",
+      "mood": "the build phase",
+      "bpm": 76,
+      "key": "D minor",
+      "seed": 800320,
+      "model": "fast",
+      "duration": 91.98,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back echoey tiled-room dub, dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit, spring reverb and tape echo, plinky melodica used as an instrument, fuzzy round bass, dusty rimshot drum machine, steamy bathroom daydream, good-humoured, 76 bpm, tapped bottles and a drowsy organ skank, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"echoey tiled-room dub with dripping percussion and melodica\" (the build phase): 76 bpm in D minor. The prompt describes laid back echoey tiled-room dub with dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit and spring reverb and tape echo; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801320,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700320,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800320
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -16.46,
+        "peak_dbfs": -1.86,
+        "silence_s": 0.2,
+        "brightness_pct": 1.2,
+        "boominess_pct": 12.26,
+        "onsets_per_s": 3.46,
+        "seam_db": -3.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bathroom-build-2/greytide-bathroom-build-2.mp3",
+        "notes": "greytide-bathroom-build-2/notes.md",
+        "recipe": "greytide-bathroom-build-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.28,
+        "decoded_lufs": -16.46,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Plughole Skank"
+        ],
+        "take_files": [
+          "greytide-bathroom-build-2/greytide-bathroom-build-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
       }
     },
     {
