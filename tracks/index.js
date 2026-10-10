@@ -13919,6 +13919,76 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-58-black-lacquer",
+      "title": "Black Lacquer",
+      "idea": "Dark electro techno",
+      "request": "Dark electro techno",
+      "mood": "",
+      "bpm": 110,
+      "key": "A minor",
+      "seed": 100058,
+      "model": "fast",
+      "duration": 174.7,
+      "date": "2026-09-30",
+      "rendered_at": "2026-09-30T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Dark electro techno, 110 bpm, slow heavy stomping kick, screeching high-pitched distorted synth lead that slides between notes, deep growling analog bass, cold reverb-soaked snare, ominous and theatrical, minimal arrangement with long tense pauses, elegant and violent, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-30 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Dark electro techno\": 110 bpm in A minor. The prompt describes dark electro techno with slow heavy stomping kick, screeching high-pitched distorted synth lead that slides between notes and deep growling analog bass; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100058
+      ],
+      "numbers": {
+        "tempo_bpm": 109.0,
+        "lufs": -16.05,
+        "peak_dbfs": -2.9,
+        "silence_s": 0.35,
+        "brightness_pct": 2.18,
+        "boominess_pct": 47.52,
+        "onsets_per_s": 4.48,
+        "seam_db": -40.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-58-black-lacquer/shoosting-58-black-lacquer.mp3",
+        "notes": "shoosting-58-black-lacquer/notes.md",
+        "recipe": "shoosting-58-black-lacquer/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.05,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-58-black-lacquer/shoosting-58-black-lacquer.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-57-pursuit-line",
       "title": "Pursuit Line",
       "idea": "Dark industrial techno",

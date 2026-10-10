@@ -1,0 +1,65 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-58-black-lacquer",
+  "title": "Black Lacquer",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Dark electro techno, 110 bpm, slow heavy stomping kick, screeching high-pitched distorted synth lead that slides between notes, deep growling analog bass, cold reverb-soaked snare, ominous and theatrical, minimal arrangement with long tense pauses, elegant and violent, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 110,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 174.7,
+  "seed": 100058,
+  "dit_caption": "Dark electro techno, 110 bpm, slow heavy stomping kick, screeching high-pitched distorted synth lead that slides between notes, deep growling analog bass, cold reverb-soaked snare, ominous and theatrical, minimal arrangement with long tense pauses, elegant and violent, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 174.7,
+    "peak_dbfs": -2.9,
+    "lufs": -16.05
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 109.0,
+      "lufs": -16.05,
+      "peak_dbfs": -2.9,
+      "silence_s": 0.35,
+      "brightness_pct": 2.18,
+      "boominess_pct": 47.52,
+      "onsets_per_s": 4.48,
+      "seam_db": -40.5
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
