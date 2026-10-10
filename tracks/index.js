@@ -384,6 +384,75 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-workbench-build-2",
+      "title": "Vice Grip Groove (build phase)",
+      "idea": "clanky found-percussion groove with a talk-box lead",
+      "request": "clanky found-percussion groove with a talk-box lead",
+      "mood": "the build phase",
+      "bpm": 88,
+      "key": "A minor",
+      "seed": 700820,
+      "model": "fast",
+      "duration": 91.89,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back clanky found-percussion groove, tin cans, wrench and pipe taps, metal tool clinks as a drum kit, talk-box lead used as an instrument, fuzzy round bass, dusty drum machine, workshop daydream, good-humoured, 88 bpm, anvil-like bell hits and a warm organ, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"clanky found-percussion groove with a talk-box lead\" (the build phase): 88 bpm in A minor. The prompt describes laid back clanky found-percussion groove with tin cans, wrench and pipe taps and metal tool clinks as a drum kit; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        700820
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.41,
+        "peak_dbfs": -2.58,
+        "silence_s": 0.2,
+        "brightness_pct": 1.03,
+        "boominess_pct": 6.41,
+        "onsets_per_s": 3.29,
+        "seam_db": -4.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-workbench-build-2/greytide-workbench-build-2.mp3",
+        "notes": "greytide-workbench-build-2/notes.md",
+        "recipe": "greytide-workbench-build-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Vice Grip Groove"
+        ],
+        "take_files": [
+          "greytide-workbench-build-2/greytide-workbench-build-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-workbench-build-1",
       "title": "Clank Funk (build phase)",
       "idea": "clanky found-percussion groove with a talk-box lead",
