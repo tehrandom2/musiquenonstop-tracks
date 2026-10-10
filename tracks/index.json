@@ -13919,6 +13919,76 @@
       }
     },
     {
+      "slug": "shoosting-47-regrowing",
+      "title": "Regrowing",
+      "idea": "Chill wubby dubstep at half energy",
+      "request": "Chill wubby dubstep at half energy",
+      "mood": "",
+      "bpm": 70,
+      "key": "A# minor",
+      "seed": 100047,
+      "model": "fast",
+      "duration": 173.9,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Chill wubby dubstep at half energy, 70 bpm half-time feel, soft growling sub bass wobble, slowly blooming synth pads, gentle rising motion, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Chill wubby dubstep at half energy\": 70 bpm in A# minor. The prompt describes chill wubby dubstep at half energy with soft growling sub bass wobble, slowly blooming synth pads and gentle rising motion; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100047
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.68,
+        "peak_dbfs": -3.24,
+        "silence_s": 0.1,
+        "brightness_pct": 1.51,
+        "boominess_pct": 40.36,
+        "onsets_per_s": 4.27,
+        "seam_db": -52.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-47-regrowing/shoosting-47-regrowing.mp3",
+        "notes": "shoosting-47-regrowing/notes.md",
+        "recipe": "shoosting-47-regrowing/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 6.19,
+        "decoded_lufs": -16.68,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-47-regrowing/shoosting-47-regrowing.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-46-splice-table",
       "title": "Splice Table",
       "idea": "Laid-back dubstep at half energy",
