@@ -384,6 +384,87 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-bed-wave-5",
+      "title": "Under The Covers Funk (wave)",
+      "idea": "sleepy music-box and soft fuzz bass",
+      "request": "sleepy music-box and soft fuzz bass",
+      "mood": "the wave phase",
+      "bpm": 81,
+      "key": "G major",
+      "seed": 801255,
+      "model": "fast",
+      "duration": 94.74,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back sleepy lullaby groove, music-box plucks, felt-piano and soft pillow-thump kick, slow shaker and brushed drum machine, celesta used as an instrument, warm fuzzy round bass, tape hiss, duvet-warm bedroom daydream, good-humoured, 81 bpm, glockenspiel and a drowsy slide guitar-like synth, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"sleepy music-box and soft fuzz bass\" (the wave phase): 81 bpm in G major. The prompt describes laid back sleepy lullaby groove with music-box plucks, felt-piano and soft pillow-thump kick and slow shaker and brushed drum machine; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800255,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700255,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801255
+      ],
+      "numbers": {
+        "tempo_bpm": 80.5,
+        "lufs": -16.45,
+        "peak_dbfs": -2.63,
+        "silence_s": 0.0,
+        "brightness_pct": 0.69,
+        "boominess_pct": 12.64,
+        "onsets_per_s": 2.74,
+        "seam_db": -26.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bed-wave-5/greytide-bed-wave-5.mp3",
+        "notes": "greytide-bed-wave-5/notes.md",
+        "recipe": "greytide-bed-wave-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.1,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Under The Covers Funk"
+        ],
+        "take_files": [
+          "greytide-bed-wave-5/greytide-bed-wave-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-bed-wave-4",
       "title": "Nightlight Waltz (wave)",
       "idea": "sleepy music-box and soft fuzz bass",
