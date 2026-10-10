@@ -384,6 +384,87 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-workbench-build-1",
+      "title": "Clank Funk (build phase)",
+      "idea": "clanky found-percussion groove with a talk-box lead",
+      "request": "clanky found-percussion groove with a talk-box lead",
+      "mood": "the build phase",
+      "bpm": 90,
+      "key": "E minor",
+      "seed": 702810,
+      "model": "fast",
+      "duration": 90.46,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back clanky found-percussion groove, tin cans, wrench and pipe taps, metal tool clinks as a drum kit, talk-box lead used as an instrument, fuzzy round bass, dusty drum machine, workshop daydream, good-humoured, 90 bpm, a hand-saw bend and a plinky toy keyboard, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"clanky found-percussion groove with a talk-box lead\" (the build phase): 90 bpm in E minor. The prompt describes laid back clanky found-percussion groove with tin cans, wrench and pipe taps and metal tool clinks as a drum kit; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 701810,
+          "reason": "seam step 8.2x"
+        },
+        {
+          "seed": 700810,
+          "reason": "harsh: 2.6% above 6 kHz; busy: 4.8 onsets/s"
+        }
+      ],
+      "takes": [
+        702810
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.46,
+        "peak_dbfs": -1.96,
+        "silence_s": 0.4,
+        "brightness_pct": 0.93,
+        "boominess_pct": 16.34,
+        "onsets_per_s": 3.55,
+        "seam_db": 10.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-workbench-build-1/greytide-workbench-build-1.mp3",
+        "notes": "greytide-workbench-build-1/notes.md",
+        "recipe": "greytide-workbench-build-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -16.46,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Clank Funk"
+        ],
+        "take_files": [
+          "greytide-workbench-build-1/greytide-workbench-build-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-attic-wave-5",
       "title": "Loft Insulation Funk (wave)",
       "idea": "dusty music box and warbling old-tape organ",
