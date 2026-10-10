@@ -384,6 +384,83 @@
       }
     },
     {
+      "slug": "greytide-workbench-wave-4",
+      "title": "Spirit Level Slow Jam (wave)",
+      "idea": "clanky found-percussion groove with a talk-box lead",
+      "request": "clanky found-percussion groove with a talk-box lead",
+      "mood": "the wave phase",
+      "bpm": 91,
+      "key": "G minor",
+      "seed": 701845,
+      "model": "fast",
+      "duration": 90.78,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back clanky found-percussion groove, tin cans, wrench and pipe taps, metal tool clinks as a drum kit, talk-box lead used as an instrument, fuzzy round bass, dusty drum machine, workshop daydream, good-humoured, 91 bpm, squeaky toy and a detuned electric piano, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"clanky found-percussion groove with a talk-box lead\" (the wave phase): 91 bpm in G minor. The prompt describes laid back clanky found-percussion groove with tin cans, wrench and pipe taps and metal tool clinks as a drum kit; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 700845,
+          "reason": "harsh: 3.1% above 6 kHz"
+        }
+      ],
+      "takes": [
+        701845
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.41,
+        "peak_dbfs": -2.93,
+        "silence_s": 0.15,
+        "brightness_pct": 1.72,
+        "boominess_pct": 14.3,
+        "onsets_per_s": 4.36,
+        "seam_db": -21.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-workbench-wave-4/greytide-workbench-wave-4.mp3",
+        "notes": "greytide-workbench-wave-4/notes.md",
+        "recipe": "greytide-workbench-wave-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Spirit Level Slow Jam"
+        ],
+        "take_files": [
+          "greytide-workbench-wave-4/greytide-workbench-wave-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-workbench-wave-3",
       "title": "Sawdust Shuffle (wave)",
       "idea": "clanky found-percussion groove with a talk-box lead",
