@@ -1,45 +1,50 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T03:14:22-04:00",
+  "written": "2026-10-10T06:01:48-04:00",
   "tracks": [
     {
-      "slug": "one-machine-still-turning",
-      "title": "One Machine Still Turning",
-      "idea": "laundrette at closing time: its own objects as the kit, a bowed musical saw as the lead, 87 bpm",
-      "request": "laundrette at closing time: its own objects as the kit, a bowed musical saw as the lead, 87 bpm",
-      "mood": "warm and tired, the kind of tired that is nearly content, never creepy",
-      "bpm": 87,
-      "key": "Bb major",
-      "seed": 577570,
-      "model": "best",
-      "duration": 89.82,
+      "slug": "laundrette-midnight-number-nine",
+      "title": "Laundrette Midnight, Number Nine",
+      "idea": "a laundrette at midnight, the dryers still turning: a laundrette at midnight with the dryers still turning and the strip light buzzing",
+      "request": "a laundrette at midnight, the dryers still turning",
+      "mood": "tired and quiet, awake when nobody else is, never creepy",
+      "bpm": 76,
+      "key": "Bb minor",
+      "seed": 881938,
+      "model": "fast",
+      "duration": 88.86,
       "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:01:48-04:00",
       "voice": false,
-      "prompt": "Warm unhurried downtempo groove, 87 bpm, in Bb major, a drum kit of dryer-drum thumps, a coin-slot click and a folding-table slap, with a spin-cycle rattle as the hat, a bowed musical saw used as an instrument, a soft sine sub that breathes slowly like a dryer fan, a laundrette at closing time with one machine still turning and the strip light buzzing, warm and tired, the kind of tired that is nearly content, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "prompt": "Slow late-night groove, 76 bpm, in Bb minor, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, a laundrette at midnight with the dryers still turning and the strip light buzzing, tired and quiet, awake when nobody else is, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
       "lyrics": null,
-      "why": "You asked for nothing: the choice was mine. \"nothing: the machine's own choice\" I took as: a room the vocabulary has not used (laundrette at closing time), its objects as the drum kit, an unusual lead, an odd tempo (87 bpm), Bb major: the warmth of a lit room at the end of a long day, without the sugar of a bright key. So I wrote it at 87 bpm in Bb major, 100 seconds, with no voice, under the mellow gates. I rendered 3 seeds and threw away 2: 577572 (2.5s of near-silence and others); 577571 (0.6s of near-silence and others). Seed 577570 is the take.",
+      "why": "You asked for \"a laundrette at midnight, the dryers still turning\". \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. So I wrote it at 76 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 881936 (boomy: 15.9% below 60 Hz (ceiling 12)); 881939 (harsh: 3.4% above 6 kHz (ceiling 2.5) and others); 881937 (harsh: 5.2% above 6 kHz (ceiling 2.5) and others). Seed 881938 is the take.",
       "rejected": [
         {
-          "seed": 577572,
-          "reason": "2.5s of near-silence; crest 19.3 dB, too peaky to reach -16 LUFS"
+          "seed": 881936,
+          "reason": "boomy: 15.9% below 60 Hz (ceiling 12)"
         },
         {
-          "seed": 577571,
-          "reason": "0.6s of near-silence; harsh: 3.0% above 6 kHz (ceiling 2.5); crest 23.4 dB, too peaky to reach -16 LUFS"
+          "seed": 881939,
+          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5); boomy: 19.4% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 881937,
+          "reason": "harsh: 5.2% above 6 kHz (ceiling 2.5); boomy: 24.5% below 60 Hz (ceiling 12)"
         }
       ],
       "takes": [
-        577570
+        881938
       ],
       "numbers": {
-        "tempo_bpm": 85.5,
-        "lufs": -16.0,
-        "peak_dbfs": -2.03,
-        "silence_s": 0.25,
-        "brightness_pct": 0.66,
-        "boominess_pct": 5.29,
-        "onsets_per_s": 2.82,
-        "seam_db": 0.3
+        "tempo_bpm": 75.5,
+        "lufs": -16.05,
+        "peak_dbfs": -2.29,
+        "silence_s": 0.3,
+        "brightness_pct": 1.29,
+        "boominess_pct": 7.33,
+        "onsets_per_s": 2.51,
+        "seam_db": -1.0
       },
       "checks": {
         "tempo": true,
@@ -54,21 +59,22 @@ window.NOBODY_INDEX = {
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": null,
       "files": {
-        "mp3": "one-machine-still-turning/one-machine-still-turning.mp3",
-        "notes": "one-machine-still-turning/notes.md",
-        "recipe": "one-machine-still-turning/recipe.json"
+        "mp3": "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3",
+        "notes": "laundrette-midnight-number-nine/notes.md",
+        "recipe": "laundrette-midnight-number-nine/recipe.json"
       },
       "extra": {
-        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
         "profile": "mellow",
-        "seam_step_x": 0.36,
-        "decoded_lufs": -16.44,
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.49,
         "failed": [],
         "words_not_ours": null,
         "stripped": [],
         "take_files": [
-          "one-machine-still-turning/one-machine-still-turning.mp3"
+          "laundrette-midnight-number-nine/laundrette-midnight-number-nine.mp3"
         ]
       }
     },
@@ -304,6 +310,76 @@ window.NOBODY_INDEX = {
         "take_files": [
           "rain-shelter-last-call/rain-shelter-last-call.mp3",
           "rain-shelter-last-call/rain-shelter-last-call-take2.mp3"
+        ]
+      }
+    },
+    {
+      "slug": "one-machine-still-turning",
+      "title": "One Machine Still Turning",
+      "idea": "laundrette at closing time: its own objects as the kit, a bowed musical saw as the lead, 87 bpm",
+      "request": "laundrette at closing time: its own objects as the kit, a bowed musical saw as the lead, 87 bpm",
+      "mood": "warm and tired, the kind of tired that is nearly content, never creepy",
+      "bpm": 87,
+      "key": "Bb major",
+      "seed": 577570,
+      "model": "best",
+      "duration": 89.82,
+      "date": "2026-10-10",
+      "voice": false,
+      "prompt": "Warm unhurried downtempo groove, 87 bpm, in Bb major, a drum kit of dryer-drum thumps, a coin-slot click and a folding-table slap, with a spin-cycle rattle as the hat, a bowed musical saw used as an instrument, a soft sine sub that breathes slowly like a dryer fan, a laundrette at closing time with one machine still turning and the strip light buzzing, warm and tired, the kind of tired that is nearly content, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for nothing: the choice was mine. \"nothing: the machine's own choice\" I took as: a room the vocabulary has not used (laundrette at closing time), its objects as the drum kit, an unusual lead, an odd tempo (87 bpm), Bb major: the warmth of a lit room at the end of a long day, without the sugar of a bright key. So I wrote it at 87 bpm in Bb major, 100 seconds, with no voice, under the mellow gates. I rendered 3 seeds and threw away 2: 577572 (2.5s of near-silence and others); 577571 (0.6s of near-silence and others). Seed 577570 is the take.",
+      "rejected": [
+        {
+          "seed": 577572,
+          "reason": "2.5s of near-silence; crest 19.3 dB, too peaky to reach -16 LUFS"
+        },
+        {
+          "seed": 577571,
+          "reason": "0.6s of near-silence; harsh: 3.0% above 6 kHz (ceiling 2.5); crest 23.4 dB, too peaky to reach -16 LUFS"
+        }
+      ],
+      "takes": [
+        577570
+      ],
+      "numbers": {
+        "tempo_bpm": 85.5,
+        "lufs": -16.0,
+        "peak_dbfs": -2.03,
+        "silence_s": 0.25,
+        "brightness_pct": 0.66,
+        "boominess_pct": 5.29,
+        "onsets_per_s": 2.82,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "one-machine-still-turning/one-machine-still-turning.mp3",
+        "notes": "one-machine-still-turning/notes.md",
+        "recipe": "one-machine-still-turning/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.36,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "take_files": [
+          "one-machine-still-turning/one-machine-still-turning.mp3"
         ]
       }
     }
