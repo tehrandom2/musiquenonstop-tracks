@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:08:27-04:00",
+  "written": "2026-10-10T06:10:00-04:00",
   "tracks": [
     {
       "slug": "lighthouse-keeper-s-after-hours",
@@ -13840,6 +13840,77 @@ window.NOBODY_INDEX = {
         ],
         "key_source": "estimated now (the source did not record one)",
         "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
+      "slug": "shoosting-01-warhead",
+      "title": "Warhead",
+      "idea": "Heavy brostep dubstep",
+      "request": "Heavy brostep dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "A minor",
+      "seed": 100001,
+      "model": "fast",
+      "duration": 178.46,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Heavy brostep dubstep, 140 bpm, half-time drop every 32 bars, growling reese sub bass, distorted metallic wubs, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Heavy brostep dubstep\": 140 bpm in A minor. The prompt describes heavy brostep dubstep with half-time drop every 32 bars, growling reese sub bass and distorted metallic wubs; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100001
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.37,
+        "peak_dbfs": -3.66,
+        "silence_s": 0.4,
+        "brightness_pct": 2.09,
+        "boominess_pct": 66.61,
+        "onsets_per_s": 4.66,
+        "seam_db": -50.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": false,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-01-warhead/shoosting-01-warhead.mp3",
+        "notes": "shoosting-01-warhead/notes.md",
+        "recipe": "shoosting-01-warhead/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 4.82,
+        "decoded_lufs": -16.37,
+        "failed": [
+          "boominess",
+          "onsets",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-01-warhead/shoosting-01-warhead.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
       }
     }
   ]
