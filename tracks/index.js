@@ -1,7 +1,84 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:39:00-04:00",
+  "written": "2026-10-10T06:41:22-04:00",
   "tracks": [
+    {
+      "slug": "snow-falling-number-nine",
+      "title": "Snow Falling, Number Nine",
+      "project": null,
+      "idea": "snow falling on a petrol station forecourt: snow falling on a petrol station forecourt under buzzing lights",
+      "request": "snow falling on a petrol station forecourt",
+      "mood": "cosy and absent-minded, nothing to prove",
+      "bpm": 82,
+      "key": "F# minor",
+      "seed": 201972,
+      "model": "fast",
+      "duration": 90.94,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:41:22-04:00",
+      "voice": false,
+      "prompt": "Warm unhurried downtempo groove, 82 bpm, in F# minor, a drum kit of radiator knocks, a teaspoon on a mug and a sticky-tape rasp as the hat, a soft music-box celesta used as an instrument, a warm sine sub on a half-time pattern, snow falling on a petrol station forecourt under buzzing lights, cosy and absent-minded, nothing to prove, an intro of the lead alone, then the full groove settles in, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"snow falling on a petrol station forecourt\". So I wrote it at 82 bpm in F# minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 201969 (seam level +6.3 dB tail to head); 201971 (harsh: 3.9% above 6 kHz (ceiling 2.5) and others). Seed 201972 is the take.",
+      "rejected": [
+        {
+          "seed": 201969,
+          "reason": "seam level +6.3 dB tail to head"
+        },
+        {
+          "seed": 201971,
+          "reason": "harsh: 3.9% above 6 kHz (ceiling 2.5); onset rate 4.6/s outside 0.3-4.5"
+        }
+      ],
+      "takes": [
+        201972,
+        201970
+      ],
+      "numbers": {
+        "tempo_bpm": 81.5,
+        "lufs": -16.0,
+        "peak_dbfs": -2.96,
+        "silence_s": 0.0,
+        "brightness_pct": 0.55,
+        "boominess_pct": 4.2,
+        "onsets_per_s": 2.24,
+        "seam_db": -2.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "snow-falling-number-nine/snow-falling-number-nine.mp3",
+        "notes": "snow-falling-number-nine/notes.md",
+        "recipe": "snow-falling-number-nine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4010418,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "snow-falling-number-nine/snow-falling-number-nine.mp3",
+          "snow-falling-number-nine/snow-falling-number-nine-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "radio-left-left-on",
       "title": "Radio Left, Left On",
