@@ -1,7 +1,80 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:57:48-04:00",
+  "written": "2026-10-10T07:01:58-04:00",
   "tracks": [
+    {
+      "slug": "condensation",
+      "title": "Condensation",
+      "project": null,
+      "idea": "greenhouse at dawn: its own objects as the kit, a glass harmonica as the lead, 83 bpm",
+      "request": "greenhouse at dawn: its own objects as the kit, a glass harmonica as the lead, 83 bpm",
+      "mood": "quiet and hopeful, a little damp, good-humoured",
+      "bpm": 83,
+      "key": "E major",
+      "seed": 237800,
+      "model": "best",
+      "duration": 96.38,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T07:01:58-04:00",
+      "voice": false,
+      "prompt": "Warm unhurried downtempo groove, 83 bpm, in E major, a drum kit of watering-can drips, terracotta-pot knocks and a spray-bottle puff as the hat, a glass harmonica used as an instrument, a soft sine sub that rolls under the beat, a greenhouse at dawn with the glass beaded and the first light coming through, quiet and hopeful, a little damp, good-humoured, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for nothing: the choice was mine. \"nothing: the machine's own choice\" I took as: a room the vocabulary has not used (greenhouse at dawn), its objects as the drum kit, an unusual lead, an odd tempo (83 bpm), E major: first light, but low in the range so it stays soft. So I wrote it at 83 bpm in E major, 100 seconds, with no voice, under the mellow gates. I rendered 3 seeds and threw away 1: 237802 (harsh: 3.2% above 6 kHz (ceiling 2.5) and others). Seed 237800 is the take.",
+      "rejected": [
+        {
+          "seed": 237802,
+          "reason": "harsh: 3.2% above 6 kHz (ceiling 2.5); seam level +10.9 dB tail to head; crest 18.2 dB, too peaky to reach -16 LUFS"
+        }
+      ],
+      "takes": [
+        237800,
+        237801
+      ],
+      "numbers": {
+        "tempo_bpm": 83.0,
+        "lufs": -16.01,
+        "peak_dbfs": -2.37,
+        "silence_s": 0.4,
+        "brightness_pct": 0.29,
+        "boominess_pct": 4.71,
+        "onsets_per_s": 2.5,
+        "seam_db": 0.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "condensation/condensation.mp3",
+        "notes": "condensation/notes.md",
+        "recipe": "condensation/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4250300,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "condensation/condensation.mp3",
+          "condensation/condensation-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "the-station-never-stops",
       "title": "The Station Never Stops",
