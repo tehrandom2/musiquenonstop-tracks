@@ -458,6 +458,87 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-garage-wave-1",
+      "title": "Practice Amp Hum (wave)",
+      "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "request": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
+      "mood": "the wave phase",
+      "bpm": 87,
+      "key": "E minor",
+      "seed": 802115,
+      "model": "fast",
+      "duration": 90.46,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back slacker garage-band groove, cardboard-box kick, tambourine and cowbell as a drum kit, wobbly cheap organ and tremolo guitar through a small amp used as instruments, fuzzy round bass, dusty drum machine played behind the beat, charmingly not very good, friendly, no shredding, good-humoured, 87 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar\" (the wave phase): 87 bpm in E minor. The prompt describes laid back slacker garage-band groove with cardboard-box kick, tambourine and cowbell as a drum kit and wobbly cheap organ and tremolo guitar through a small amp used as instruments; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801115,
+          "reason": "not kept"
+        },
+        {
+          "seed": 701115,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        802115
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.45,
+        "peak_dbfs": -2.4,
+        "silence_s": 0.05,
+        "brightness_pct": 0.56,
+        "boominess_pct": 21.31,
+        "onsets_per_s": 2.9,
+        "seam_db": -17.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-garage-wave-1/greytide-garage-wave-1.mp3",
+        "notes": "greytide-garage-wave-1/notes.md",
+        "recipe": "greytide-garage-wave-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.27,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Practice Amp Hum"
+        ],
+        "take_files": [
+          "greytide-garage-wave-1/greytide-garage-wave-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-garage-build-5",
       "title": "Third Take Shuffle (build phase)",
       "idea": "slacker garage-band groove with fuzzy bass, wobbly organ and tremolo guitar",
