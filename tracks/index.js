@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-treehouse-build-5",
+      "title": "Leaves Say Bedtime (build phase)",
+      "idea": "creaking-wood dusk groove with a kid's whistle",
+      "request": "creaking-wood dusk groove with a kid's whistle",
+      "mood": "the build phase",
+      "bpm": 78,
+      "key": "E major",
+      "seed": 801250,
+      "model": "fast",
+      "duration": 87.94,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back dusk treehouse groove, creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit, wind-in-leaves shaker, a kid's whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty drum machine, back-garden treehouse at dusk daydream, good-humoured, 78 bpm, a breathy ocarina-like lead and rustling shakers, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"creaking-wood dusk groove with a kid's whistle\" (the build phase): 78 bpm in E major. The prompt describes laid back dusk treehouse groove with creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit and wind-in-leaves shaker; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802250,
+          "reason": "busy: 4.9 onsets/s"
+        }
+      ],
+      "takes": [
+        801250
+      ],
+      "numbers": {
+        "tempo_bpm": 78.0,
+        "lufs": -16.43,
+        "peak_dbfs": -2.34,
+        "silence_s": 0.15,
+        "brightness_pct": 0.81,
+        "boominess_pct": 1.15,
+        "onsets_per_s": 3.18,
+        "seam_db": 11.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-treehouse-build-5/greytide-treehouse-build-5.mp3",
+        "notes": "greytide-treehouse-build-5/notes.md",
+        "recipe": "greytide-treehouse-build-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.22,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Leaves Say Bedtime"
+        ],
+        "take_files": [
+          "greytide-treehouse-build-5/greytide-treehouse-build-5.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-treehouse-build-4",
       "title": "Torch Under The Blanket (build phase)",
       "idea": "creaking-wood dusk groove with a kid's whistle",
