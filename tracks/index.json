@@ -13919,6 +13919,76 @@
       }
     },
     {
+      "slug": "shoosting-70-dust-devil",
+      "title": "Dust Devil",
+      "idea": "Psychedelic beat-scene hip hop",
+      "request": "Psychedelic beat-scene hip hop",
+      "mood": "",
+      "bpm": 86,
+      "key": "D major",
+      "seed": 400070,
+      "model": "best",
+      "duration": 178.74,
+      "date": "2026-10-01",
+      "rendered_at": "2026-10-01T12:00:00-04:00",
+      "backfill": true,
+      "voice": true,
+      "prompt": "Psychedelic beat-scene hip hop, a heavy fuzzed-out live drum break recorded far too hot, a looped Anatolian psych-rock sample of electric saz and wah guitar drenched in spring reverb and tape echo, a wailing wordless female vocal sample chopped and pitched, ominous cinematic strings, and a sub bass that shakes the room. Sudden dropouts, reversed cymbals, dub sirens, everything overdriven to tape. Dark, smoky, hypnotic, a desert ritual at half speed.",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-01 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Psychedelic beat-scene hip hop\": 86 bpm in D major, one of the tracks the machine chose for itself, on the best tier. The prompt describes psychedelic beat-scene hip hop; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        400070
+      ],
+      "numbers": {
+        "tempo_bpm": 85.5,
+        "lufs": -18.94,
+        "peak_dbfs": -2.77,
+        "silence_s": 0.25,
+        "brightness_pct": 0.22,
+        "boominess_pct": 0.31,
+        "onsets_per_s": 2.93,
+        "seam_db": -25.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-70-dust-devil/shoosting-70-dust-devil.mp3",
+        "notes": "shoosting-70-dust-devil/notes.md",
+        "recipe": "shoosting-70-dust-devil/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, CFG 7.0, LM acestep-5Hz-lm-4B)",
+        "profile": "mellow",
+        "seam_step_x": 0.24,
+        "decoded_lufs": -18.94,
+        "failed": [
+          "loudness",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-70-dust-devil/shoosting-70-dust-devil.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-69-syllables",
       "title": "Syllables",
       "idea": "Glitch hop beat tape",
