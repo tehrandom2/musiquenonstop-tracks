@@ -1,0 +1,65 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-10-queue-time",
+  "title": "Queue Time",
+  "date": "2026-09-06",
+  "rendered_at": "2026-09-06T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Chill wubby dubstep at half energy, 70 bpm half-time feel, soft growling sub bass wobble, airy melodic synth motif, understated percussion, steady looping groove with no drop, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 70,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 163.02,
+  "seed": 200002,
+  "dit_caption": "Chill wubby dubstep at half energy, 70 bpm half-time feel, soft growling sub bass wobble, airy melodic synth motif, understated percussion, steady looping groove with no drop, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 163.02,
+    "peak_dbfs": -2.4,
+    "lufs": -15.95
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 138.0,
+      "lufs": -15.95,
+      "peak_dbfs": -2.4,
+      "silence_s": 0.15,
+      "brightness_pct": 1.72,
+      "boominess_pct": 58.68,
+      "onsets_per_s": 2.91,
+      "seam_db": -28.4
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

@@ -13843,6 +13843,76 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-10-queue-time",
+      "title": "Queue Time",
+      "idea": "Chill wubby dubstep at half energy",
+      "request": "Chill wubby dubstep at half energy",
+      "mood": "",
+      "bpm": 70,
+      "key": "A minor",
+      "seed": 200002,
+      "model": "fast",
+      "duration": 163.02,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Chill wubby dubstep at half energy, 70 bpm half-time feel, soft growling sub bass wobble, airy melodic synth motif, understated percussion, steady looping groove with no drop, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Chill wubby dubstep at half energy\": 70 bpm in A minor. The prompt describes chill wubby dubstep at half energy with soft growling sub bass wobble, airy melodic synth motif and understated percussion; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        200002
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -15.95,
+        "peak_dbfs": -2.4,
+        "silence_s": 0.15,
+        "brightness_pct": 1.72,
+        "boominess_pct": 58.68,
+        "onsets_per_s": 2.91,
+        "seam_db": -28.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-10-queue-time/shoosting-10-queue-time.mp3",
+        "notes": "shoosting-10-queue-time/notes.md",
+        "recipe": "shoosting-10-queue-time/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.37,
+        "decoded_lufs": -15.95,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-10-queue-time/shoosting-10-queue-time.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-09-lobby-glow",
       "title": "Lobby Glow",
       "idea": "Laid-back dubstep at half energy",
