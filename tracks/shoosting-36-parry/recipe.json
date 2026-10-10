@@ -1,0 +1,67 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-36-parry",
+  "title": "Parry",
+  "date": "2026-09-08",
+  "rendered_at": "2026-09-08T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, call-and-answer wobble bass phrases, snappy snare, tight and mechanical, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 140,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 175.34,
+  "seed": 100036,
+  "dit_caption": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, call-and-answer wobble bass phrases, snappy snare, tight and mechanical, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 175.34,
+    "peak_dbfs": -3.12,
+    "lufs": -18.05
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 139.0,
+      "lufs": -18.05,
+      "peak_dbfs": -3.12,
+      "silence_s": 3.3,
+      "brightness_pct": 1.62,
+      "boominess_pct": 68.23,
+      "onsets_per_s": 3.54,
+      "seam_db": -52.7
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": false,
+      "peak": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "loudness",
+      "silence",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

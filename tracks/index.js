@@ -13843,6 +13843,78 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-36-parry",
+      "title": "Parry",
+      "idea": "Riddim dubstep",
+      "request": "Riddim dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "F major",
+      "seed": 100036,
+      "model": "fast",
+      "duration": 175.34,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Riddim dubstep, 140 bpm, half-time drop every 32 bars, call-and-answer wobble bass phrases, snappy snare, tight and mechanical, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Riddim dubstep\": 140 bpm in F major. The prompt describes riddim dubstep with half-time drop every 32 bars, call-and-answer wobble bass phrases and snappy snare; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100036
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -18.05,
+        "peak_dbfs": -3.12,
+        "silence_s": 3.3,
+        "brightness_pct": 1.62,
+        "boominess_pct": 68.23,
+        "onsets_per_s": 3.54,
+        "seam_db": -52.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-36-parry/shoosting-36-parry.mp3",
+        "notes": "shoosting-36-parry/notes.md",
+        "recipe": "shoosting-36-parry/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 2.93,
+        "decoded_lufs": -18.05,
+        "failed": [
+          "loudness",
+          "silence",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-36-parry/shoosting-36-parry.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-35-glass-cannon",
       "title": "Glass Cannon",
       "idea": "Melodic dubstep",
