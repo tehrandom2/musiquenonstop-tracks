@@ -1,7 +1,93 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-10T06:46:04-04:00",
+  "written": "2026-10-10T06:48:50-04:00",
   "tracks": [
+    {
+      "slug": "coffee-lorries-still-open",
+      "title": "Coffee Lorries, Still Open",
+      "project": null,
+      "idea": "coffee and lorries at a motorway service station, 3 a.m.: a motorway service station at 3 a.m. with lorries idling and the coffee machine ticking",
+      "request": "coffee and lorries at a motorway service station, 3 a.m.",
+      "mood": "tired and quiet, awake when nobody else is, never creepy",
+      "bpm": 162,
+      "key": "C minor",
+      "seed": 363543,
+      "model": "fast",
+      "duration": 94.34,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:48:50-04:00",
+      "voice": true,
+      "prompt": "Pirate-radio jungle, 162 bpm, in C minor, a male ragga-style toast riding the beat, fast and half-sung, with echo throws on the line ends, chopped and time-stretched funk breakbeats with rolling snare fills, dancehall horn stabs and a skanking offbeat organ used as instruments, a huge sine sub-bass on a half-time reggae pattern, a motorway service station at 3 a.m. with lorries idling and the coffee machine ticking, tired and quiet, awake when nobody else is, never creepy, an intro of horns and skank over a half-time beat, then the full breakbeat drop, loopable, only the toast, no choir, no sung melody, no wobble bass, no build-ups",
+      "lyrics": "[Intro - dancehall horn stabs and a skanking offbeat organ over a half-time beat, instrumental]\n\n[Verse - fast ragga toast over the beat]\ncoffee in the night, motorway in the light\nWake up slow, with the lorries down low\nAll through the town the window comes down\nI count the service, I count the kettle, I count them again\ncoffee by the door, window on the floor\nHold on tight to the kettle tonight\nNothing to fear when the motorway is here\nRound and around goes the lorries sound\n\n[Rewind - dub siren and a spin-back, then the full breakbeat drop]\nOne more time for the coffee\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nmotorway, motorway, keep it going on\nkettle and service, all night long\nwindow, window, keep it going on\nNever mind the dark, the lorries is gone\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nmotorway, motorway, keep it going on\nkettle and service, all night long\nwindow, window, keep it going on\nNever mind the dark, the lorries is gone",
+      "why": "You asked for \"coffee and lorries at a motorway service station, 3 a.m.\". \"the small hours, night\" I took as: a minor key, a muted electric piano used as an instrument, a warm tape-saturated sine sub on a half-time pattern, adjectives about the room rather than the music. \"a kitchen, coffee, cooking\" I took as: found kitchen objects as the drum kit, a warm major key, a morning mood clause. So I wrote it at 162 bpm in C minor, 100 seconds, with a voice, in words I wrote myself, under the jungle gates. I rendered 4 seeds and threw away 2: 363541 (0.6s of near-silence and others); 363544 (0.7s of near-silence and others). Seed 363543 is the take, but it did not clear every gate: boomy: 9.1% below 60 Hz (ceiling 8); 5 of 28 heard words are not ours (18 %; limit 10 %, at least 40 heard): old brew so thank you.",
+      "rejected": [
+        {
+          "seed": 363541,
+          "reason": "0.6s of near-silence; boomy: 8.4% below 60 Hz (ceiling 8); 18 of 59 heard words are not ours (31 %; limit 10 %, at least 40 heard): your peace way lorry's okay you can't don't answer it's wimble wimble"
+        },
+        {
+          "seed": 363544,
+          "reason": "0.7s of near-silence; harsh: 3.7% above 6 kHz (ceiling 3.5); boomy: 9.3% below 60 Hz (ceiling 8); 13 of 120 heard words are not ours (11 %; limit 10 %, at least 40 heard): that wish move away lorry got feels found lorry motoplay motoplay motoplay"
+        }
+      ],
+      "takes": [
+        363543,
+        363542
+      ],
+      "numbers": {
+        "tempo_bpm": 80.5,
+        "lufs": -16.01,
+        "peak_dbfs": -2.16,
+        "silence_s": 0.1,
+        "brightness_pct": 3.38,
+        "boominess_pct": 9.12,
+        "onsets_per_s": 3.92,
+        "seam_db": 3.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": false
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "coffee-lorries-still-open/coffee-lorries-still-open.mp3",
+        "notes": "coffee-lorries-still-open/notes.md",
+        "recipe": "coffee-lorries-still-open/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "jungle",
+        "seam_step_x": 0.81,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "boomy: 9.1% below 60 Hz (ceiling 8)",
+          "5 of 28 heard words are not ours (18 %; limit 10 %, at least 40 heard): old brew so thank you"
+        ],
+        "words_not_ours": [
+          "old",
+          "brew",
+          "so",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 4160556,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "coffee-lorries-still-open/coffee-lorries-still-open.mp3",
+          "coffee-lorries-still-open/coffee-lorries-still-open-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "allotment-shed-last-call",
       "title": "Allotment Shed, Last Call",
