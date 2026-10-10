@@ -13843,6 +13843,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-43-cathedral",
+      "title": "Cathedral",
+      "idea": "Heavy brostep dubstep",
+      "request": "Heavy brostep dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "A# minor",
+      "seed": 100043,
+      "model": "fast",
+      "duration": 178.46,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Heavy brostep dubstep, 140 bpm, half-time drop every 32 bars, choir-like synth pads over a growling reese sub, massive reverberant drops, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Heavy brostep dubstep\": 140 bpm in A# minor. The prompt describes heavy brostep dubstep with half-time drop every 32 bars, choir-like synth pads over a growling reese sub and massive reverberant drops; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100043
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -17.21,
+        "peak_dbfs": -3.27,
+        "silence_s": 0.15,
+        "brightness_pct": 1.8,
+        "boominess_pct": 45.36,
+        "onsets_per_s": 3.4,
+        "seam_db": -53.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-43-cathedral/shoosting-43-cathedral.mp3",
+        "notes": "shoosting-43-cathedral/notes.md",
+        "recipe": "shoosting-43-cathedral/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 2.7,
+        "decoded_lufs": -17.21,
+        "failed": [
+          "loudness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-43-cathedral/shoosting-43-cathedral.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-42-towers",
       "title": "Towers",
       "idea": "Melodic dubstep",
