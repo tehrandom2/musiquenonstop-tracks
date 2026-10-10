@@ -534,6 +534,83 @@
       }
     },
     {
+      "slug": "greytide-carseat-wave-2",
+      "title": "Between Two Stations (wave)",
+      "idea": "night-drive groove with indicator ticks and a radio between stations",
+      "request": "night-drive groove with indicator ticks and a radio between stations",
+      "mood": "the wave phase",
+      "bpm": 83,
+      "key": "D minor",
+      "seed": 801425,
+      "model": "fast",
+      "duration": 88.98,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back night-drive groove, indicator ticks, windscreen-wiper swishes and seat-belt clicks as a drum kit, a radio drifting between stations, engine hum under warm pads, tape-warped electric piano used as an instrument, fuzzy round bass, dusty drum machine, back-seat streetlight daydream, good-humoured, 83 bpm, a tape-warped electric piano and a slow shaker, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"night-drive groove with indicator ticks and a radio between stations\" (the wave phase): 83 bpm in D minor. The prompt describes laid back night-drive groove with indicator ticks, windscreen-wiper swishes and seat-belt clicks as a drum kit and a radio drifting between stations; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 802425,
+          "reason": "not kept"
+        }
+      ],
+      "takes": [
+        801425
+      ],
+      "numbers": {
+        "tempo_bpm": 83.0,
+        "lufs": -16.43,
+        "peak_dbfs": -2.2,
+        "silence_s": 0.0,
+        "brightness_pct": 0.87,
+        "boominess_pct": 13.17,
+        "onsets_per_s": 2.51,
+        "seam_db": -7.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-carseat-wave-2/greytide-carseat-wave-2.mp3",
+        "notes": "greytide-carseat-wave-2/notes.md",
+        "recipe": "greytide-carseat-wave-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Between Two Stations"
+        ],
+        "take_files": [
+          "greytide-carseat-wave-2/greytide-carseat-wave-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-carseat-wave-1",
       "title": "Indicator Ticks (wave)",
       "idea": "night-drive groove with indicator ticks and a radio between stations",
