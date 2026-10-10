@@ -534,6 +534,82 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-treehouse-wave-4",
+      "title": "Torch Under The Blanket (wave)",
+      "idea": "creaking-wood dusk groove with a kid's whistle",
+      "request": "creaking-wood dusk groove with a kid's whistle",
+      "mood": "the wave phase",
+      "bpm": 77,
+      "key": "C major",
+      "seed": 802245,
+      "model": "fast",
+      "duration": 93.97,
+      "date": "2026-10-07",
+      "rendered_at": "2026-10-07T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back dusk treehouse groove, creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit, wind-in-leaves shaker, a kid's whistle used as an instrument, soft marimba, warm pads, fuzzy round bass, dusty drum machine, back-garden treehouse at dusk daydream, good-humoured, 77 bpm, a lazy ukulele-like pluck and soft claps, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-07 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"creaking-wood dusk groove with a kid's whistle\" (the wave phase): 77 bpm in C major. The prompt describes laid back dusk treehouse groove with creaking plank taps, rope-knot thumps and a tin-can tick as a drum kit and wind-in-leaves shaker; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801245,
+          "reason": "harsh: 2.9% above 6 kHz"
+        }
+      ],
+      "takes": [
+        802245
+      ],
+      "numbers": {
+        "tempo_bpm": 77.0,
+        "lufs": -16.43,
+        "peak_dbfs": -2.62,
+        "silence_s": 0.05,
+        "brightness_pct": 1.53,
+        "boominess_pct": 17.58,
+        "onsets_per_s": 2.61,
+        "seam_db": -0.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-treehouse-wave-4/greytide-treehouse-wave-4.mp3",
+        "notes": "greytide-treehouse-wave-4/notes.md",
+        "recipe": "greytide-treehouse-wave-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Torch Under The Blanket"
+        ],
+        "take_files": [
+          "greytide-treehouse-wave-4/greytide-treehouse-wave-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-treehouse-wave-3",
       "title": "Creaky Plank Groove (wave)",
       "idea": "creaking-wood dusk groove with a kid's whistle",
