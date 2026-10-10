@@ -13843,6 +13843,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-09-lobby-glow",
+      "title": "Lobby Glow",
+      "idea": "Laid-back dubstep at half energy",
+      "request": "Laid-back dubstep at half energy",
+      "mood": "",
+      "bpm": 70,
+      "key": "A minor",
+      "seed": 200001,
+      "model": "fast",
+      "duration": 160.71,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid-back dubstep at half energy, 70 bpm half-time feel, warm growling sub bass wobble kept low and smooth, gentle synth pads, steady looping groove with no drop, relaxed neon-lit atmosphere, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Laid-back dubstep at half energy\": 70 bpm in A minor. The prompt describes laid-back dubstep at half energy with warm growling sub bass wobble kept low and smooth, gentle synth pads and relaxed neon-lit atmosphere; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        200001
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -14.86,
+        "peak_dbfs": -1.86,
+        "silence_s": 0.15,
+        "brightness_pct": 2.28,
+        "boominess_pct": 34.53,
+        "onsets_per_s": 3.94,
+        "seam_db": -42.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-09-lobby-glow/shoosting-09-lobby-glow.mp3",
+        "notes": "shoosting-09-lobby-glow/notes.md",
+        "recipe": "shoosting-09-lobby-glow/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.62,
+        "decoded_lufs": -14.86,
+        "failed": [
+          "loudness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-09-lobby-glow/shoosting-09-lobby-glow.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-08-signal-lost",
       "title": "Signal Lost",
       "idea": "Riddim dubstep",
