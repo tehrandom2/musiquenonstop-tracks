@@ -384,6 +384,83 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-attic-build-2",
+      "title": "Trunk Of Old Tapes (build phase)",
+      "idea": "dusty music box and warbling old-tape organ",
+      "request": "dusty music box and warbling old-tape organ",
+      "mood": "the build phase",
+      "bpm": 72,
+      "key": "A minor",
+      "seed": 701720,
+      "model": "fast",
+      "duration": 90.16,
+      "date": "2026-10-05",
+      "rendered_at": "2026-10-05T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back dusty attic groove, warbling old-tape organ, slightly out-of-tune music box, harmonium, creaky soft drum machine, warm fuzzy bass, cobweb-soft and nostalgic, never creepy, good-humoured, 72 bpm, cracked vinyl-like crackle and a harmonium waltz feel in four, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-05 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"dusty music box and warbling old-tape organ\" (the build phase): 72 bpm in A minor. The prompt describes laid back dusty attic groove with warbling old-tape organ, slightly out-of-tune music box and harmonium; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 700720,
+          "reason": "harsh: 2.9% above 6 kHz"
+        }
+      ],
+      "takes": [
+        701720
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.44,
+        "peak_dbfs": -2.8,
+        "silence_s": 0.95,
+        "brightness_pct": 2.49,
+        "boominess_pct": 17.57,
+        "onsets_per_s": 1.42,
+        "seam_db": 2.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-attic-build-2/greytide-attic-build-2.mp3",
+        "notes": "greytide-attic-build-2/notes.md",
+        "recipe": "greytide-attic-build-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.57,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "silence",
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Trunk Of Old Tapes"
+        ],
+        "take_files": [
+          "greytide-attic-build-2/greytide-attic-build-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-attic-build-1",
       "title": "Dusty Music Box Organ (build phase)",
       "idea": "dusty music box and warbling old-tape organ",
