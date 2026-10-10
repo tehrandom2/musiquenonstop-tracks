@@ -1,7 +1,86 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:48:50-04:00",
+  "written": "2026-10-10T06:51:14-04:00",
   "tracks": [
+    {
+      "slug": "lift-only-half-past",
+      "title": "Lift Only, Half Past",
+      "project": null,
+      "idea": "a lift that only goes down: a lift that only goes down, the cable humming in the shaft",
+      "request": "a lift that only goes down",
+      "mood": "warm and tired and good-humoured, never creepy",
+      "bpm": 87,
+      "key": "Bb minor",
+      "seed": 411025,
+      "model": "fast",
+      "duration": 90.16,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:51:14-04:00",
+      "voice": false,
+      "prompt": "Dusty half-time groove, 87 bpm, in Bb minor, a drum kit of cardboard-tube thumps, a pencil-tin rattle and a zip-pull tick as the hat, a warm detuned electric piano used as an instrument, a warm sine sub on a half-time pattern, a lift that only goes down, the cable humming in the shaft, warm and tired and good-humoured, never creepy, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a lift that only goes down\". So I wrote it at 87 bpm in Bb minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 411028 (0.7s of near-silence and others); 411027 (harsh: 2.8% above 6 kHz (ceiling 2.5) and others). Seed 411025 is the take, but it did not clear every gate: boomy: 21.1% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 411028,
+          "reason": "0.7s of near-silence; boomy: 19.0% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 411027,
+          "reason": "harsh: 2.8% above 6 kHz (ceiling 2.5); boomy: 22.5% below 60 Hz (ceiling 12); seam level +5.5 dB tail to head"
+        }
+      ],
+      "takes": [
+        411025,
+        411026
+      ],
+      "numbers": {
+        "tempo_bpm": 84.8,
+        "lufs": -16.02,
+        "peak_dbfs": -1.78,
+        "silence_s": 0.25,
+        "brightness_pct": 1.89,
+        "boominess_pct": 21.11,
+        "onsets_per_s": 2.86,
+        "seam_db": 2.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "lift-only-half-past/lift-only-half-past.mp3",
+        "notes": "lift-only-half-past/notes.md",
+        "recipe": "lift-only-half-past/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "boomy: 21.1% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 3976077,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "lift-only-half-past/lift-only-half-past.mp3",
+          "lift-only-half-past/lift-only-half-past-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "coffee-lorries-still-open",
       "title": "Coffee Lorries, Still Open",
