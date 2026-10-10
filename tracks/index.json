@@ -13919,6 +13919,77 @@
       }
     },
     {
+      "slug": "shoosting-52-bandsaw",
+      "title": "Bandsaw",
+      "idea": "Dirty electro house",
+      "request": "Dirty electro house",
+      "mood": "",
+      "bpm": 128,
+      "key": "A minor",
+      "seed": 100052,
+      "model": "fast",
+      "duration": 178.26,
+      "date": "2026-09-30",
+      "rendered_at": "2026-09-30T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Dirty electro house, 128 bpm, four-on-the-floor kick, rasping distorted square wave bassline with a slow filter sweep opening over sixteen bars, heavy sidechain pumping, sparse dry claps, a single stuttering synth hook, minimal arrangement that adds one element at a time, sleazy late-night club energy, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-30 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Dirty electro house\": 128 bpm in A minor. The prompt describes dirty electro house with four-on-the-floor kick, rasping distorted square wave bassline with a slow filter sweep opening over sixteen bars and heavy sidechain pumping; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100052
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.46,
+        "peak_dbfs": -2.91,
+        "silence_s": 0.15,
+        "brightness_pct": 2.73,
+        "boominess_pct": 51.08,
+        "onsets_per_s": 4.48,
+        "seam_db": -45.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-52-bandsaw/shoosting-52-bandsaw.mp3",
+        "notes": "shoosting-52-bandsaw/notes.md",
+        "recipe": "shoosting-52-bandsaw/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 8.48,
+        "decoded_lufs": -16.46,
+        "failed": [
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-52-bandsaw/shoosting-52-bandsaw.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-51-sawtooth",
       "title": "Sawtooth",
       "idea": "Early 2000s electro house",

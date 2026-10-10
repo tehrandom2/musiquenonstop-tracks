@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-52-bandsaw",
+  "title": "Bandsaw",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Dirty electro house, 128 bpm, four-on-the-floor kick, rasping distorted square wave bassline with a slow filter sweep opening over sixteen bars, heavy sidechain pumping, sparse dry claps, a single stuttering synth hook, minimal arrangement that adds one element at a time, sleazy late-night club energy, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 128,
+  "keyscale": "A minor",
+  "timesignature": "4",
+  "duration": 178.26,
+  "seed": 100052,
+  "dit_caption": "Dirty electro house, 128 bpm, four-on-the-floor kick, rasping distorted square wave bassline with a slow filter sweep opening over sixteen bars, heavy sidechain pumping, sparse dry claps, a single stuttering synth hook, minimal arrangement that adds one element at a time, sleazy late-night club energy, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 178.26,
+    "peak_dbfs": -2.91,
+    "lufs": -16.46
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 127.0,
+      "lufs": -16.46,
+      "peak_dbfs": -2.91,
+      "silence_s": 0.15,
+      "brightness_pct": 2.73,
+      "boominess_pct": 51.08,
+      "onsets_per_s": 4.48,
+      "seam_db": -45.6
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": false,
+      "onsets": true,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "brightness",
+      "boominess",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
