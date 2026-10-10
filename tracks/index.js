@@ -384,6 +384,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-bathroom-build-1",
+      "title": "Tile Echo Dub (build phase)",
+      "idea": "echoey tiled-room dub with dripping percussion and melodica",
+      "request": "echoey tiled-room dub with dripping percussion and melodica",
+      "mood": "the build phase",
+      "bpm": 78,
+      "key": "A minor",
+      "seed": 801310,
+      "model": "fast",
+      "duration": 94.1,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back echoey tiled-room dub, dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit, spring reverb and tape echo, plinky melodica used as an instrument, fuzzy round bass, dusty rimshot drum machine, steamy bathroom daydream, good-humoured, 78 bpm, rubber-duck squeaky toy melody and plunking keys, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"echoey tiled-room dub with dripping percussion and melodica\" (the build phase): 78 bpm in A minor. The prompt describes laid back echoey tiled-room dub with dripping-tap clicks, tapped bottles and rubber-duck squeaks as a drum kit and spring reverb and tape echo; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 800310,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700310,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        801310
+      ],
+      "numbers": {
+        "tempo_bpm": 78.0,
+        "lufs": -16.44,
+        "peak_dbfs": -2.03,
+        "silence_s": 0.2,
+        "brightness_pct": 0.99,
+        "boominess_pct": 7.44,
+        "onsets_per_s": 2.48,
+        "seam_db": -0.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-bathroom-build-1/greytide-bathroom-build-1.mp3",
+        "notes": "greytide-bathroom-build-1/notes.md",
+        "recipe": "greytide-bathroom-build-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.24,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Tile Echo Dub"
+        ],
+        "take_files": [
+          "greytide-bathroom-build-1/greytide-bathroom-build-1.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-workbench-wave-5",
       "title": "Hot Glue Boogie (wave)",
       "idea": "clanky found-percussion groove with a talk-box lead",
