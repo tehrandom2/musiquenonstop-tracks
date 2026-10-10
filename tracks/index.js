@@ -13843,6 +13843,76 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-37-vampire",
+      "title": "Vampire",
+      "idea": "Dark heavy dubstep",
+      "request": "Dark heavy dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "A# minor",
+      "seed": 100037,
+      "model": "fast",
+      "duration": 176.66,
+      "date": "2026-09-08",
+      "rendered_at": "2026-09-08T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Dark heavy dubstep, 140 bpm, half-time drop every 32 bars, menacing minor-key growls, distorted sub bass, eerie pitched-down stabs, sleazy swaggering half-time groove, greasy detuned bass slides, extra grit and swagger, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-08 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Dark heavy dubstep\": 140 bpm in A# minor. The prompt describes dark heavy dubstep with half-time drop every 32 bars, menacing minor-key growls and distorted sub bass; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100037
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.58,
+        "peak_dbfs": -3.46,
+        "silence_s": 0.15,
+        "brightness_pct": 2.03,
+        "boominess_pct": 58.8,
+        "onsets_per_s": 4.23,
+        "seam_db": -46.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-37-vampire/shoosting-37-vampire.mp3",
+        "notes": "shoosting-37-vampire/notes.md",
+        "recipe": "shoosting-37-vampire/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.52,
+        "decoded_lufs": -16.58,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-37-vampire/shoosting-37-vampire.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-36-parry",
       "title": "Parry",
       "idea": "Riddim dubstep",
