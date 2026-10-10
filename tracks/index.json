@@ -1,7 +1,96 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-10T06:55:56-04:00",
+  "written": "2026-10-10T06:57:48-04:00",
   "tracks": [
+    {
+      "slug": "the-station-never-stops",
+      "title": "The Station Never Stops",
+      "project": null,
+      "idea": "a tower block roof, the aerial nobody can find: a tower-block roof at night with a coat-hanger aerial, tape hiss and heavy radio compression, a dub siren rewind at the drop",
+      "request": "a tower block roof, the aerial nobody can find",
+      "mood": "mischievous and good-humoured, never menacing",
+      "bpm": 162,
+      "key": "F minor",
+      "seed": 182410,
+      "model": "fast",
+      "duration": 57.0,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:57:48-04:00",
+      "voice": true,
+      "prompt": "Pirate-radio jungle, 162 bpm, in F minor, a male ragga-style toast riding the beat, fast and half-sung, with echo throws on the line ends, chopped funk breakbeats with rolling snare fills, a cassette-deck thump as the kick, dancehall horn stabs and a skanking offbeat organ used as instruments, a huge sine sub-bass on a half-time reggae pattern, a tower-block roof at night with a coat-hanger aerial, tape hiss and heavy radio compression, a dub siren rewind at the drop, mischievous and good-humoured, never menacing, an intro of horns and skank over a half-time beat, then the full breakbeat drop, loopable, only the toast, no choir, no sung melody, no wobble bass, no build-ups",
+      "lyrics": "[Intro - dancehall horn stabs and a skanking offbeat organ over a half-time beat, instrumental]\n\n[Verse - fast ragga toast over the beat]\nStatic on the dial, signal on the climb\nTower block roof, hiding all the time\nCassette in the deck, press record, don't stop\nSpool spins round and the tape won't drop\nMan on the street, looking up at the sky\nCan't see the mast, but the beat floats by\nForty-two floors and a fire door locked\nWhole city tuned in, still nobody's clocked\n\n[Rewind - dub siren and a spin-back, then the full breakbeat drop]\nWind it back, wind it back, to the roof\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nPirate on the air and it never stops\nUp on the roof where the signal drops\nTurn the dial, turn it up, it never stops\nNight and day, the station never stops\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nPirate on the air and it never stops\nUp on the roof where the signal drops\nTurn the dial, turn it up, it never stops\nNight and day, the station never stops",
+      "why": "You asked for \"a tower block roof, the aerial nobody can find\". \"pirate radio, a station that never stops\" I took as: 1990s pirate-radio jungle: chopped breakbeats, a sine sub on a half-time reggae pattern, horn stabs, a dub siren rewind, tape hiss and heavy radio compression. So I wrote it at 162 bpm in F minor, 60 seconds, with a voice, in words I wrote myself, under the jungle gates. I rendered 4 seeds and threw away 2: 182408 (harsh: 4.1% above 6 kHz (ceiling 3.5) and others); 182409 (harsh: 3.5% above 6 kHz (ceiling 3.5) and others). Seed 182410 is the take, but it did not clear every gate: boomy: 10.7% below 60 Hz (ceiling 8).",
+      "rejected": [
+        {
+          "seed": 182408,
+          "reason": "harsh: 4.1% above 6 kHz (ceiling 3.5); seam level -7.0 dB tail to head; 13 of 129 heard words are not ours (10 %; limit 10 %, at least 40 heard): spools turns mask moon clock clock out dying then byway hold with"
+        },
+        {
+          "seed": 182409,
+          "reason": "harsh: 3.5% above 6 kHz (ceiling 3.5); seam level -7.7 dB tail to head; 15 of 91 heard words are not ours (16 %; limit 10 %, at least 40 heard): that's gone i'm going die towered like truth passette spoo closed clock"
+        }
+      ],
+      "takes": [
+        182410,
+        182407
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.01,
+        "peak_dbfs": -2.81,
+        "silence_s": 0.05,
+        "brightness_pct": 3.48,
+        "boominess_pct": 10.66,
+        "onsets_per_s": 3.6,
+        "seam_db": 2.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "the-station-never-stops/the-station-never-stops.mp3",
+        "notes": "the-station-never-stops/notes.md",
+        "recipe": "the-station-never-stops/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "jungle",
+        "seam_step_x": 0.64,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "boomy: 10.7% below 60 Hz (ceiling 8)"
+        ],
+        "words_not_ours": [
+          "clown",
+          "power",
+          "fighting",
+          "because",
+          "school",
+          "mask",
+          "clock",
+          "powered",
+          "stopped"
+        ],
+        "stripped": [],
+        "installed_samples": 2513700,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "the-station-never-stops/the-station-never-stops.mp3",
+          "the-station-never-stops/the-station-never-stops-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "rink-after-slow-light",
       "title": "Rink After, Slow Light",

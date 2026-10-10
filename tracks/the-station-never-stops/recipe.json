@@ -1,0 +1,88 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "slug": "the-station-never-stops",
+  "title": "The Station Never Stops",
+  "date": "2026-10-10",
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Pirate-radio jungle, 162 bpm, in F minor, a male ragga-style toast riding the beat, fast and half-sung, with echo throws on the line ends, chopped funk breakbeats with rolling snare fills, a cassette-deck thump as the kick, dancehall horn stabs and a skanking offbeat organ used as instruments, a huge sine sub-bass on a half-time reggae pattern, a tower-block roof at night with a coat-hanger aerial, tape hiss and heavy radio compression, a dub siren rewind at the drop, mischievous and good-humoured, never menacing, an intro of horns and skank over a half-time beat, then the full breakbeat drop, loopable, only the toast, no choir, no sung melody, no wobble bass, no build-ups",
+  "lyrics": "[Intro - dancehall horn stabs and a skanking offbeat organ over a half-time beat, instrumental]\n\n[Verse - fast ragga toast over the beat]\nStatic on the dial, signal on the climb\nTower block roof, hiding all the time\nCassette in the deck, press record, don't stop\nSpool spins round and the tape won't drop\nMan on the street, looking up at the sky\nCan't see the mast, but the beat floats by\nForty-two floors and a fire door locked\nWhole city tuned in, still nobody's clocked\n\n[Rewind - dub siren and a spin-back, then the full breakbeat drop]\nWind it back, wind it back, to the roof\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nPirate on the air and it never stops\nUp on the roof where the signal drops\nTurn the dial, turn it up, it never stops\nNight and day, the station never stops\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nPirate on the air and it never stops\nUp on the roof where the signal drops\nTurn the dial, turn it up, it never stops\nNight and day, the station never stops",
+  "instrumental": false,
+  "bpm": 162,
+  "keyscale": "F minor",
+  "timesignature": "4",
+  "duration": 60.0,
+  "seed": 182410,
+  "dit_caption": "Pirate-radio jungle, 162 bpm, in F minor, a male ragga-style toast riding the beat, fast and half-sung, with echo throws on the line ends, chopped funk breakbeats with rolling snare fills, a cassette-deck thump as the kick, dancehall horn stabs and a skanking offbeat organ used as instruments, a huge sine sub-bass on a half-time reggae pattern, a tower-block roof at night with a coat-hanger aerial, tape hiss and heavy radio compression, a dub siren rewind at the drop, mischievous and good-humoured, never menacing, an intro of horns and skank over a half-time beat, then the full breakbeat drop, loopable, only the toast, no choir, no sung melody, no wobble bass, no build-ups",
+  "vocal_language": "unknown",
+  "audio_codes": "<|audio_code_49217|><|audio_code_26944|><|audio_code_48889|><|audio_code_28666|><|audio_code_40761|><|audio_code_28027|><|audio_code_2418|><|audio_code_33251|><|audio_code_14811|><|audio_code_40142|><|audio_code_29484|><|audio_code_38700|><|audio_code_47468|><|audio_code_39348|><|audio_code_9084|><|audio_code_54265|><|audio_code_46587|><|audio_code_61893|><|audio_code_25564|><|audio_code_3022|><|audio_code_16860|><|audio_code_56221|><|audio_code_29180|><|audio_code_30531|><|audio_code_28972|><|audio_code_26348|><|audio_code_62340|><|audio_code_837|><|audio_code_62971|><|audio_code_53677|><|audio_code_58859|><|audio_code_58820|><|audio_code_56807|><|audio_code_15333|><|audio_code_2069|><|audio_code_25103|><|audio_code_15431|><|audio_code_61634|><|audio_code_56116|><|audio_code_41267|><|audio_code_1980|><|audio_code_2437|><|audio_code_63989|><|audio_code_23533|><|audio_code_54738|><|audio_code_43418|><|audio_code_51695|><|audio_code_53063|><|audio_code_29013|><|audio_code_28926|><|audio_code_51214|><|audio_code_49530|><|audio_code_33645|><|audio_code_34811|><|audio_code_51727|><|audio_code_14760|><|audio_code_33197|><|audio_code_8094|><|audio_code_53119|><|audio_code_3224|><|audio_code_41202|><|audio_code_8361|><|audio_code_21500|><|audio_code_14888|><|audio_code_11128|><|audio_code_22328|><|audio_code_35825|><|audio_code_18720|><|audio_code_43779|><|audio_code_24042|><|audio_code_14289|><|audio_code_31680|><|audio_code_55576|><|audio_code_27072|><|audio_code_38562|><|audio_code_30368|><|audio_code_20195|><|audio_code_51635|><|audio_code_61656|><|audio_code_17907|><|audio_code_40192|><|audio_code_44754|><|audio_code_18344|><|audio_code_16026|><|audio_code_51048|><|audio_code_17708|><|audio_code_18484|><|audio_code_55935|><|audio_code_26997|><|audio_code_27976|><|audio_code_22650|><|audio_code_2152|><|audio_code_37825|><|audio_code_58315|><|audio_code_63443|><|audio_code_59897|><|audio_code_13211|><|audio_code_40897|><|audio_code_15744|><|audio_code_25544|><|audio_code_4810|><|audio_code_34232|><|audio_code_60656|><|audio_code_1485|><|audio_code_46824|><|audio_code_14738|><|audio_code_13298|><|audio_code_15259|><|audio_code_23489|><|audio_code_4443|><|audio_code_23024|><|audio_code_12000|><|audio_code_1273|><|audio_code_43320|><|audio_code_13800|><|audio_code_18975|><|audio_code_38374|><|audio_code_24223|><|audio_code_25061|><|audio_code_40128|><|audio_code_34282|><|audio_code_28904|><|audio_code_5244|><|audio_code_9546|><|audio_code_36920|><|audio_code_62207|><|audio_code_33736|><|audio_code_62955|><|audio_code_10171|><|audio_code_5090|><|audio_code_29140|><|audio_code_28208|><|audio_code_28764|><|audio_code_53740|><|audio_code_560|><|audio_code_37195|><|audio_code_3298|><|audio_code_10603|><|audio_code_26110|><|audio_code_20216|><|audio_code_50694|><|audio_code_26304|><|audio_code_38380|><|audio_code_53698|><|audio_code_11219|><|audio_code_36550|><|audio_code_27471|><|audio_code_47045|><|audio_code_58128|><|audio_code_28072|><|audio_code_63810|><|audio_code_33780|><|audio_code_44427|><|audio_code_18809|><|audio_code_50775|><|audio_code_50132|><|audio_code_54753|><|audio_code_55771|><|audio_code_25880|><|audio_code_27559|><|audio_code_3744|><|audio_code_55966|><|audio_code_63548|><|audio_code_38448|><|audio_code_25573|><|audio_code_23640|><|audio_code_2030|><|audio_code_1969|><|audio_code_11238|><|audio_code_40494|><|audio_code_63426|><|audio_code_21491|><|audio_code_55699|><|audio_code_34745|><|audio_code_40828|><|audio_code_42544|><|audio_code_57342|><|audio_code_2072|><|audio_code_10674|><|audio_code_48706|><|audio_code_62914|><|audio_code_38201|><|audio_code_19803|><|audio_code_46964|><|audio_code_1811|><|audio_code_23393|><|audio_code_32002|><|audio_code_39921|><|audio_code_14936|><|audio_code_24561|><|audio_code_6656|><|audio_code_12722|><|audio_code_12808|><|audio_code_34752|><|audio_code_37560|><|audio_code_6912|><|audio_code_28040|><|audio_code_2768|><|audio_code_35192|><|audio_code_2200|><|audio_code_28792|><|audio_code_14212|><|audio_code_303|><|audio_code_38299|><|audio_code_10296|><|audio_code_58273|><|audio_code_36408|><|audio_code_61215|><|audio_code_12895|><|audio_code_57391|><|audio_code_19991|><|audio_code_22567|><|audio_code_31807|><|audio_code_28928|><|audio_code_52203|><|audio_code_52688|><|audio_code_51192|><|audio_code_22970|><|audio_code_36809|><|audio_code_32791|><|audio_code_40476|><|audio_code_43686|><|audio_code_3595|><|audio_code_30440|><|audio_code_5191|><|audio_code_26109|><|audio_code_56828|><|audio_code_8684|><|audio_code_12268|><|audio_code_63949|><|audio_code_20856|><|audio_code_5094|><|audio_code_55786|><|audio_code_10163|><|audio_code_34119|><|audio_code_34911|><|audio_code_31359|><|audio_code_36656|><|audio_code_25808|><|audio_code_17535|><|audio_code_12230|><|audio_code_25029|><|audio_code_52693|><|audio_code_56265|><|audio_code_32731|><|audio_code_18720|><|audio_code_53139|><|audio_code_47041|><|audio_code_6828|><|audio_code_47595|><|audio_code_41567|><|audio_code_20397|><|audio_code_10416|><|audio_code_23995|><|audio_code_28287|><|audio_code_2500|><|audio_code_1005|><|audio_code_583|><|audio_code_55951|><|audio_code_39874|><|audio_code_29144|><|audio_code_28420|><|audio_code_49597|><|audio_code_10732|><|audio_code_9214|><|audio_code_55231|><|audio_code_10423|><|audio_code_9465|><|audio_code_15301|><|audio_code_47935|><|audio_code_36324|><|audio_code_38358|><|audio_code_22983|><|audio_code_31181|><|audio_code_2168|><|audio_code_63937|><|audio_code_1281|><|audio_code_37360|><|audio_code_57878|><|audio_code_17935|><|audio_code_40455|><|audio_code_12519|><|audio_code_8784|><|audio_code_26343|><|audio_code_36671|><|audio_code_63763|><|audio_code_2747|><|audio_code_61628|><|audio_code_2940|><|audio_code_63280|><|audio_code_23034|><|audio_code_54632|><|audio_code_47400|><|audio_code_47207|><|audio_code_2142|><|audio_code_48670|><|audio_code_39263|><|audio_code_48327|><|audio_code_53000|><|audio_code_25446|>",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": -1.09,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 57.0,
+    "peak_dbfs_pre_encode": -3.25,
+    "lufs": -16.01
+  },
+  "gates": {
+    "profile": "jungle",
+    "measured": {
+      "secs": 57.0,
+      "lufs": -14.908,
+      "peak": -0.681,
+      "bpm": 79.75,
+      "key": "F major",
+      "margin": 0.287,
+      "hi": 3.479,
+      "lo": 10.659,
+      "onsets": 3.596,
+      "jump": 0.643,
+      "tail_head": 2.59,
+      "voice": 0.294,
+      "silence": 0.05,
+      "seed": 182410,
+      "lo_raw": 28.684
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": [
+      "boomy: 10.7% below 60 Hz (ceiling 8)"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
