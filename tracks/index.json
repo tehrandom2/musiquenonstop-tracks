@@ -458,6 +458,91 @@
       }
     },
     {
+      "slug": "greytide-pub-build-3",
+      "title": "Beer Mat Boogie (build phase)",
+      "idea": "wonky pub-piano and wheezy accordion shuffle",
+      "request": "wonky pub-piano and wheezy accordion shuffle",
+      "mood": "the build phase",
+      "bpm": 96,
+      "key": "D major",
+      "seed": 800930,
+      "model": "fast",
+      "duration": 90.7,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wonky honky-tonk groove, clinking glasses, beer-mat taps and foot stomps as a drum kit, slightly out-of-tune pub piano, wheezy accordion used as an instrument, fuzzy walking bass, dusty brushed drum machine, tipsy after-hours daydream, good-humoured, 96 bpm, a cheesy organ and tambourine, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wonky pub-piano and wheezy accordion shuffle\" (the build phase): 96 bpm in D major. The prompt describes laid back wonky honky-tonk groove with clinking glasses, beer-mat taps and foot stomps as a drum kit and slightly out-of-tune pub piano; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801930,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700930,
+          "reason": "harsh: 5.6% above 6 kHz; superseded by the #443 render"
+        },
+        {
+          "seed": 701930,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800930
+      ],
+      "numbers": {
+        "tempo_bpm": 95.0,
+        "lufs": -16.44,
+        "peak_dbfs": -2.61,
+        "silence_s": 0.15,
+        "brightness_pct": 0.72,
+        "boominess_pct": 18.83,
+        "onsets_per_s": 2.82,
+        "seam_db": -0.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-pub-build-3/greytide-pub-build-3.mp3",
+        "notes": "greytide-pub-build-3/notes.md",
+        "recipe": "greytide-pub-build-3/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 8.21,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Beer Mat Boogie"
+        ],
+        "take_files": [
+          "greytide-pub-build-3/greytide-pub-build-3.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-pub-build-2",
       "title": "Last Orders Shuffle (build phase)",
       "idea": "wonky pub-piano and wheezy accordion shuffle",
