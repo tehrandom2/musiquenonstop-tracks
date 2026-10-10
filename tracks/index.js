@@ -458,6 +458,84 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-gamestore-build-4",
+      "title": "Demo Disc Daydream (build phase)",
+      "idea": "plastic-toy keyboard funk",
+      "request": "plastic-toy keyboard funk",
+      "mood": "the build phase",
+      "bpm": 82,
+      "key": "D major",
+      "seed": 800440,
+      "model": "fast",
+      "duration": 94.34,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back plastic-toy keyboard funk, cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit, sparse kazoo-like lead used as an instrument, fuzzy round bass, dusty lo-fi drum machine, closing-time game store daydream, sunny childlike melody going a little sour, good-humoured, 82 bpm, chiptune-flavoured toy synth bleeps and a wobbly organ, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"plastic-toy keyboard funk\" (the build phase): 82 bpm in D major. The prompt describes laid back plastic-toy keyboard funk with cheap toy keyboards and music-box plucks, shrinkwrap crackle and jewel-case clacks as a drum kit and sparse kazoo-like lead used as an instrument; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801440,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700440,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800440
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.45,
+        "peak_dbfs": -2.48,
+        "silence_s": 0.5,
+        "brightness_pct": 0.92,
+        "boominess_pct": 8.7,
+        "onsets_per_s": 2.46,
+        "seam_db": 0.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-gamestore-build-4/greytide-gamestore-build-4.mp3",
+        "notes": "greytide-gamestore-build-4/notes.md",
+        "recipe": "greytide-gamestore-build-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.28,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Demo Disc Daydream"
+        ],
+        "take_files": [
+          "greytide-gamestore-build-4/greytide-gamestore-build-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-gamestore-build-3",
       "title": "Clearance Bin Groove (build phase)",
       "idea": "plastic-toy keyboard funk",
