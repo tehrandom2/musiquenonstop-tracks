@@ -1,7 +1,86 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:31:50-04:00",
+  "written": "2026-10-10T06:34:13-04:00",
   "tracks": [
+    {
+      "slug": "wash-from-left-on",
+      "title": "Wash From, Left On",
+      "project": null,
+      "idea": "a car wash from inside the car: a car wash seen from inside the car, brushes and water drumming on the roof",
+      "request": "a car wash from inside the car",
+      "mood": "unhurried and a little wistful, never bleak",
+      "bpm": 75,
+      "key": "F# minor",
+      "seed": 557312,
+      "model": "fast",
+      "duration": 92.94,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:34:12-04:00",
+      "voice": false,
+      "prompt": "Dusty half-time groove, 75 bpm, in F# minor, a drum kit of brush-handle taps, jar-lid clinks and cutting-mat ticks as the hat, a soft music-box celesta used as an instrument, a warm sine sub on a half-time pattern, a car wash seen from inside the car, brushes and water drumming on the roof, unhurried and a little wistful, never bleak, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a car wash from inside the car\". So I wrote it at 75 bpm in F# minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 3: 557313 (boomy: 26.2% below 60 Hz (ceiling 12)); 557314 (boomy: 13.0% below 60 Hz (ceiling 12)); 557315 (boomy: 20.9% below 60 Hz (ceiling 12)). Seed 557312 is the take.",
+      "rejected": [
+        {
+          "seed": 557313,
+          "reason": "boomy: 26.2% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 557314,
+          "reason": "boomy: 13.0% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 557315,
+          "reason": "boomy: 20.9% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        557312
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.01,
+        "peak_dbfs": -2.44,
+        "silence_s": 0.0,
+        "brightness_pct": 2.44,
+        "boominess_pct": 5.26,
+        "onsets_per_s": 3.69,
+        "seam_db": -4.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "wash-from-left-on/wash-from-left-on.mp3",
+        "notes": "wash-from-left-on/notes.md",
+        "recipe": "wash-from-left-on/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4098634,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "wash-from-left-on/wash-from-left-on.mp3"
+        ]
+      }
+    },
     {
       "slug": "telephone-exchange-still-open",
       "title": "Telephone Exchange, Still Open",
