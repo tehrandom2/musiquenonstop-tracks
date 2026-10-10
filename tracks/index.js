@@ -3,6 +3,137 @@ window.NOBODY_INDEX = {
   "written": "2026-10-10T03:14:22-04:00",
   "tracks": [
     {
+      "slug": "the-roof-nobody-finds",
+      "title": "The Roof Nobody Finds",
+      "idea": "pirate radio, the station that never stops: a tower-block roof at night with a coat-hanger aerial, tape hiss and heavy radio compression, a dub siren rewind at the drop",
+      "request": "pirate radio, the station that never stops",
+      "mood": "mischievous and good-humoured, never menacing",
+      "bpm": 162,
+      "key": "F minor",
+      "seed": 260074,
+      "model": "fast",
+      "duration": 97.0,
+      "date": "2026-10-10",
+      "voice": true,
+      "prompt": "Pirate-radio jungle, 162 bpm, in F minor, a male ragga-style toast riding the beat, fast and half-sung, with echo throws on the line ends, chopped funk breakbeats with rolling snare fills, a cassette-deck thump as the kick, dancehall horn stabs and a skanking offbeat organ used as instruments, a huge sine sub-bass on a half-time reggae pattern, a tower-block roof at night with a coat-hanger aerial, tape hiss and heavy radio compression, a dub siren rewind at the drop, mischievous and good-humoured, never menacing, an intro of horns and skank over a half-time beat, then the full breakbeat drop, loopable, only the toast, no choir, no sung melody, no wobble bass, no build-ups",
+      "lyrics": "[Intro - dancehall horn stabs and a skanking offbeat organ over a half-time beat, instrumental]\n\n[Verse - fast ragga toast over the beat]\nStatic on the dial, signal on the climb\nTower block roof, hiding all the time\nCassette in the deck, press record, don't stop\nSpool spins round and the tape won't drop\nMan on the street, looking up at the sky\nCan't see the mast, but the beat floats by\nForty-two floors and a fire door locked\nWhole city tuned in, still nobody's clocked\n\n[Rewind - dub siren and a spin-back, then the full breakbeat drop]\nWind it back, wind it back, to the roof\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nPirate on the air and it never stops\nUp on the roof where the signal drops\nTurn the dial, turn it up, it never stops\nNight and day, the station never stops\n\n[Hook - chanted by a small group with the lead on top, echo on the line ends]\nPirate on the air and it never stops\nUp on the roof where the signal drops\nTurn the dial, turn it up, it never stops\nNight and day, the station never stops",
+      "why": "You asked for \"pirate radio, the station that never stops\". \"pirate radio, a station that never stops\" I took as: 1990s pirate-radio jungle: chopped breakbeats, a sine sub on a half-time reggae pattern, horn stabs, a dub siren rewind, tape hiss and heavy radio compression. So I wrote it at 162 bpm in F minor, 100 seconds, with a voice, in words I wrote myself, under the jungle gates. I rendered 16 seeds and threw away 14: 260086 (boomy: 8.7% below 60 Hz (ceiling 8) and others); 260075 (harsh: 4.5% above 6 kHz (ceiling 3.5) and others); 260081 (boomy: 8.6% below 60 Hz (ceiling 8) and others); 260077 (seam level +6.4 dB tail to head and others), and 10 more (all listed below). Seed 260074 is the take, but it did not clear every gate: boomy: 9.0% below 60 Hz (ceiling 8).",
+      "rejected": [
+        {
+          "seed": 260086,
+          "reason": "boomy: 8.7% below 60 Hz (ceiling 8); 10 of 32 heard words are not ours (31 %; limit 10 %, at least 40 heard): oh i'm gonna play game oh winding winding she'll you"
+        },
+        {
+          "seed": 260075,
+          "reason": "harsh: 4.5% above 6 kHz (ceiling 3.5); 22 of 137 heard words are not ours (16 %; limit 10 %, at least 40 heard): client power proof hide another pass screws fans hooking mass beep home"
+        },
+        {
+          "seed": 260081,
+          "reason": "boomy: 8.6% below 60 Hz (ceiling 8); 25 of 109 heard words are not ours (23 %; limit 10 %, at least 40 heard): jade mask oh truck i read head no more i read head"
+        },
+        {
+          "seed": 260077,
+          "reason": "seam level +6.4 dB tail to head; 228 of 340 heard words are not ours (67 %; limit 10 %, at least 40 heard): signaled biting class d*** school matter beep old clock bok bok bok"
+        },
+        {
+          "seed": 260073,
+          "reason": "harsh: 4.5% above 6 kHz (ceiling 3.5); 240 of 299 heard words are not ours (80 %; limit 10 %, at least 40 heard): oh blocked set mask wide close toon club oh oh oh oh"
+        },
+        {
+          "seed": 260085,
+          "reason": "harsh: 3.9% above 6 kHz (ceiling 3.5); seam level +8.6 dB tail to head; 9 of 75 heard words are not ours (12 %; limit 10 %, at least 40 heard): oh proof cutting cause they're setting school mask scores"
+        },
+        {
+          "seed": 260080,
+          "reason": "2.0s of near-silence; harsh: 3.7% above 6 kHz (ceiling 3.5); boomy: 9.5% below 60 Hz (ceiling 8)"
+        },
+        {
+          "seed": 260079,
+          "reason": "harsh: 4.0% above 6 kHz (ceiling 3.5); boomy: 9.3% below 60 Hz (ceiling 8); 14 of 131 heard words are not ours (11 %; limit 10 %, at least 40 heard): school i mass flows then oh got do room upon i wait"
+        },
+        {
+          "seed": 260087,
+          "reason": "harsh: 5.0% above 6 kHz (ceiling 3.5); seam level +11.9 dB tail to head; 15 of 132 heard words are not ours (11 %; limit 10 %, at least 40 heard): school mask gate lock clock i wait when turns data i wait"
+        },
+        {
+          "seed": 260084,
+          "reason": "harsh: 4.0% above 6 kHz (ceiling 3.5); seam level +13.7 dB tail to head; 19 of 137 heard words are not ours (14 %; limit 10 %, at least 40 heard): proof cosset streets mask beach clock i've been foot tops i've been"
+        },
+        {
+          "seed": 260076,
+          "reason": "0.7s of near-silence; harsh: 3.8% above 6 kHz (ceiling 3.5); 40 of 139 heard words are not ours (29 %; limit 10 %, at least 40 heard): dude dude dive sweat code school band mass beef old clock spring"
+        },
+        {
+          "seed": 260072,
+          "reason": "1.0s of near-silence; harsh: 3.8% above 6 kHz (ceiling 3.5); boomy: 9.9% below 60 Hz (ceiling 8); 12 of 98 heard words are not ours (12 %; limit 10 %, at least 40 heard): black run school table mask old toed clogged went find dials operation"
+        },
+        {
+          "seed": 260083,
+          "reason": "harsh: 4.0% above 6 kHz (ceiling 3.5); boomy: 11.5% below 60 Hz (ceiling 8); seam level +5.7 dB tail to head; 12 of 75 heard words are not ours (16 %; limit 10 %, at least 40 heard): okay because sitting school dancing echo lamp echo light light i cut"
+        },
+        {
+          "seed": 260078,
+          "reason": "harsh: 4.0% above 6 kHz (ceiling 3.5); boomy: 10.1% below 60 Hz (ceiling 8); seam level -7.2 dB tail to head; 227 of 281 heard words are not ours (81 %; limit 10 %, at least 40 heard): i'm mask lock clock clock clock clock clock clock clock clock clock"
+        }
+      ],
+      "takes": [
+        260074,
+        260082
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.0,
+        "peak_dbfs": -3.52,
+        "silence_s": 0.05,
+        "brightness_pct": 3.47,
+        "boominess_pct": 8.99,
+        "onsets_per_s": 3.9,
+        "seam_db": 0.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "the-roof-nobody-finds/the-roof-nobody-finds.mp3",
+        "notes": "the-roof-nobody-finds/notes.md",
+        "recipe": "the-roof-nobody-finds/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "jungle",
+        "seam_step_x": 0.71,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "boomy: 9.0% below 60 Hz (ceiling 8)"
+        ],
+        "words_not_ours": [
+          "yes",
+          "through",
+          "wondering",
+          "wondering",
+          "i",
+          "went",
+          "tornado",
+          "parade"
+        ],
+        "stripped": [],
+        "take_files": [
+          "the-roof-nobody-finds/the-roof-nobody-finds.mp3",
+          "the-roof-nobody-finds/the-roof-nobody-finds-take2.mp3"
+        ]
+      }
+    },
+    {
       "slug": "rain-shelter-last-call",
       "title": "Rain Shelter, Last Call",
       "idea": "rain on a bus shelter at 2 a.m.: a bus shelter after the last bus",
