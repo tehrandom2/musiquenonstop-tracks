@@ -458,6 +458,86 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-kitchen-wave-2",
+      "title": "Kettle Bossa (wave)",
+      "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "request": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "mood": "the wave phase",
+      "bpm": 97,
+      "key": "Bb major",
+      "seed": 800125,
+      "model": "fast",
+      "duration": 90.42,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wrong-footed lounge exotica, spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit, mellow vibraphone, cheesy electric organ with a straight face, melodica used as an instrument that wanders off the tune, fuzzy round bass, dusty bossa nova drum box, late-night kitchen daydream, good-humoured, 97 bpm, the same groove with a little more drive and bounce, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wrong-footed lounge exotica with vibraphone and cheesy organ\" (the wave phase): 97 bpm in Bb major. The prompt describes laid back wrong-footed lounge exotica with spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit and mellow vibraphone; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801125,
+          "reason": "not kept"
+        },
+        {
+          "seed": 640005,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800125
+      ],
+      "numbers": {
+        "tempo_bpm": 95.0,
+        "lufs": -16.45,
+        "peak_dbfs": -2.34,
+        "silence_s": 0.25,
+        "brightness_pct": 0.21,
+        "boominess_pct": 18.83,
+        "onsets_per_s": 2.46,
+        "seam_db": 0.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-kitchen-wave-2/greytide-kitchen-wave-2.mp3",
+        "notes": "greytide-kitchen-wave-2/notes.md",
+        "recipe": "greytide-kitchen-wave-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.34,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Kettle Bossa"
+        ],
+        "take_files": [
+          "greytide-kitchen-wave-2/greytide-kitchen-wave-2.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-kitchen-wave-1",
       "title": "Wrong Floor Lounge (wave)",
       "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
