@@ -1,7 +1,86 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-10T06:36:33-04:00",
+  "written": "2026-10-10T06:39:00-04:00",
   "tracks": [
+    {
+      "slug": "radio-left-left-on",
+      "title": "Radio Left, Left On",
+      "project": null,
+      "idea": "a radio left on in an empty flat: a radio left on in an empty flat, one lamp and a quiet street",
+      "request": "a radio left on in an empty flat",
+      "mood": "cosy and absent-minded, nothing to prove",
+      "bpm": 80,
+      "key": "B minor",
+      "seed": 193074,
+      "model": "fast",
+      "duration": 91.63,
+      "date": "2026-10-10",
+      "rendered_at": "2026-10-10T06:39:00-04:00",
+      "voice": false,
+      "prompt": "Slow late-night groove, 80 bpm, in B minor, a drum kit of radiator knocks, a teaspoon on a mug and a sticky-tape rasp as the hat, a soft music-box celesta used as an instrument, a warm sine sub on a half-time pattern, a radio left on in an empty flat, one lamp and a quiet street, cosy and absent-minded, nothing to prove, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": null,
+      "why": "You asked for \"a radio left on in an empty flat\". So I wrote it at 80 bpm in B minor, 100 seconds, with no voice, under the mellow gates. I rendered 4 seeds and threw away 2: 193075 (3.2s of near-silence and others); 193077 (harsh: 3.5% above 6 kHz (ceiling 2.5) and others). Seed 193074 is the take, but it did not clear every gate: boomy: 12.9% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 193075,
+          "reason": "3.2s of near-silence; boomy: 30.8% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 193077,
+          "reason": "harsh: 3.5% above 6 kHz (ceiling 2.5); boomy: 19.8% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        193074,
+        193076
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.01,
+        "peak_dbfs": -1.95,
+        "silence_s": 0.1,
+        "brightness_pct": 1.73,
+        "boominess_pct": 12.92,
+        "onsets_per_s": 4.05,
+        "seam_db": 1.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "radio-left-left-on/radio-left-left-on.mp3",
+        "notes": "radio-left-left-on/notes.md",
+        "recipe": "radio-left-left-on/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boomy: 12.9% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4040830,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "radio-left-left-on/radio-left-left-on.mp3",
+          "radio-left-left-on/radio-left-left-on-take2.mp3"
+        ]
+      }
+    },
     {
       "slug": "overnight-ferry-slow-light",
       "title": "Overnight Ferry, Slow Light",
