@@ -458,6 +458,86 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "greytide-kitchen-build-4",
+      "title": "Casserole Exotica (build phase)",
+      "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "request": "wrong-footed lounge exotica with vibraphone and cheesy organ",
+      "mood": "the build phase",
+      "bpm": 90,
+      "key": "G major",
+      "seed": 800140,
+      "model": "fast",
+      "duration": 92.54,
+      "date": "2026-10-06",
+      "rendered_at": "2026-10-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Laid back wrong-footed lounge exotica, spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit, mellow vibraphone, cheesy electric organ with a straight face, melodica used as an instrument that wanders off the tune, fuzzy round bass, dusty bossa nova drum box, late-night kitchen daydream, good-humoured, 90 bpm, marimba and a wheezy harmonium, calm and spacious, steady loopable arrangement, instrumental, no vocals, no singing, no speech, no drops, no wobble bass, no build-ups, no aggressive drums, no sub bass, light thin low end, bass in the mid range only",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-10-06 for an earlier tabletop game soundtrack, and I have brought it in under that date, so it is not new. The ask was \"wrong-footed lounge exotica with vibraphone and cheesy organ\" (the build phase): 90 bpm in G major. The prompt describes laid back wrong-footed lounge exotica with spoon taps, pan lid clinks and a kettle-whistle blip as a drum kit and mellow vibraphone; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [
+        {
+          "seed": 801140,
+          "reason": "not kept"
+        },
+        {
+          "seed": 700140,
+          "reason": "superseded by the #443 render"
+        }
+      ],
+      "takes": [
+        800140
+      ],
+      "numbers": {
+        "tempo_bpm": 90.0,
+        "lufs": -16.45,
+        "peak_dbfs": -2.07,
+        "silence_s": 0.15,
+        "brightness_pct": 0.36,
+        "boominess_pct": 16.05,
+        "onsets_per_s": 2.76,
+        "seam_db": 1.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "greytide",
+      "files": {
+        "mp3": "greytide-kitchen-build-4/greytide-kitchen-build-4.mp3",
+        "notes": "greytide-kitchen-build-4/notes.md",
+        "recipe": "greytide-kitchen-build-4/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.2,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "boominess"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [
+          "Casserole Exotica"
+        ],
+        "take_files": [
+          "greytide-kitchen-build-4/greytide-kitchen-build-4.mp3"
+        ],
+        "key_source": "source",
+        "backfill_about": "an earlier tabletop game soundtrack"
+      }
+    },
+    {
       "slug": "greytide-kitchen-build-3",
       "title": "Fridge Magnet Muzak (build phase)",
       "idea": "wrong-footed lounge exotica with vibraphone and cheesy organ",
