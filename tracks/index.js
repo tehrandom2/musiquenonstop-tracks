@@ -13843,6 +13843,78 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-05-black-static",
+      "title": "Black Static",
+      "idea": "Dark heavy dubstep",
+      "request": "Dark heavy dubstep",
+      "mood": "",
+      "bpm": 140,
+      "key": "F# minor",
+      "seed": 100005,
+      "model": "fast",
+      "duration": 177.1,
+      "date": "2026-09-06",
+      "rendered_at": "2026-09-06T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Dark heavy dubstep, 140 bpm, half-time drop every 32 bars, menacing minor-key growls, distorted industrial sub bass wubs, ominous atmosphere, aggressive but readable arrangement, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-06 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Dark heavy dubstep\": 140 bpm in F# minor. The prompt describes dark heavy dubstep with half-time drop every 32 bars, menacing minor-key growls and distorted industrial sub bass wubs; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100005
+      ],
+      "numbers": {
+        "tempo_bpm": 93.5,
+        "lufs": -16.96,
+        "peak_dbfs": -2.73,
+        "silence_s": 0.35,
+        "brightness_pct": 3.48,
+        "boominess_pct": 52.72,
+        "onsets_per_s": 3.87,
+        "seam_db": -42.5
+      },
+      "checks": {
+        "tempo": false,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-05-black-static/shoosting-05-black-static.mp3",
+        "notes": "shoosting-05-black-static/notes.md",
+        "recipe": "shoosting-05-black-static/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.69,
+        "decoded_lufs": -16.96,
+        "failed": [
+          "tempo",
+          "brightness",
+          "boominess",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-05-black-static/shoosting-05-black-static.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-04-piston-march",
       "title": "Piston March",
       "idea": "Drumstep",
