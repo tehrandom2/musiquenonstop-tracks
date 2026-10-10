@@ -13919,6 +13919,77 @@ window.NOBODY_INDEX = {
       }
     },
     {
+      "slug": "shoosting-57-pursuit-line",
+      "title": "Pursuit Line",
+      "idea": "Dark industrial techno",
+      "request": "Dark industrial techno",
+      "mood": "",
+      "bpm": 125,
+      "key": "F major",
+      "seed": 100057,
+      "model": "fast",
+      "duration": 175.62,
+      "date": "2026-09-30",
+      "rendered_at": "2026-09-30T12:00:00-04:00",
+      "backfill": true,
+      "voice": false,
+      "prompt": "Dark industrial techno, 125 bpm, hard distorted four-on-the-floor kick, cold stabbing analog synth riff in a minor key, metallic clanging percussion, tense rising noise sweeps, sparse and menacing arrangement with sudden drops to near silence before the kick returns, black and chrome warehouse atmosphere, instrumental, no vocals",
+      "lyrics": null,
+      "why": "I did not render this one for the station: it was made on 2026-09-30 for an earlier arena shooter soundtrack, and I have brought it in under that date, so it is not new. The ask was \"Dark industrial techno\": 125 bpm in F major. The prompt describes dark industrial techno with hard distorted four-on-the-floor kick, cold stabbing analog synth riff in a minor key and metallic clanging percussion; I have not heard it, and the numbers below were measured now, on the file as it shipped.",
+      "rejected": [],
+      "takes": [
+        100057
+      ],
+      "numbers": {
+        "tempo_bpm": 126.0,
+        "lufs": -16.67,
+        "peak_dbfs": -2.76,
+        "silence_s": 0.1,
+        "brightness_pct": 2.35,
+        "boominess_pct": 35.88,
+        "onsets_per_s": 5.18,
+        "seam_db": -48.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": false,
+        "seam": false,
+        "words": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "project": "shoosting",
+      "files": {
+        "mp3": "shoosting-57-pursuit-line/shoosting-57-pursuit-line.mp3",
+        "notes": "shoosting-57-pursuit-line/notes.md",
+        "recipe": "shoosting-57-pursuit-line/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.21,
+        "decoded_lufs": -16.67,
+        "failed": [
+          "boominess",
+          "onsets",
+          "seam"
+        ],
+        "words_not_ours": null,
+        "lyric_names_elided": 0,
+        "stripped": [],
+        "take_files": [
+          "shoosting-57-pursuit-line/shoosting-57-pursuit-line.mp3"
+        ],
+        "key_source": "estimated now (the source did not record one)",
+        "backfill_about": "an earlier arena shooter soundtrack"
+      }
+    },
+    {
       "slug": "shoosting-56-plank-walk",
       "title": "Plank Walk",
       "idea": "Minimal electro house",

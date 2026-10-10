@@ -1,0 +1,66 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "reproducible_why": "imported from an earlier soundtrack: the seed, caption and model were recorded but not the planner's audio codes, and the post-processing was not this pipeline's",
+  "slug": "shoosting-57-pursuit-line",
+  "title": "Pursuit Line",
+  "date": "2026-09-30",
+  "rendered_at": "2026-09-30T12:00:00-04:00",
+  "backfill": true,
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "caption": "Dark industrial techno, 125 bpm, hard distorted four-on-the-floor kick, cold stabbing analog synth riff in a minor key, metallic clanging percussion, tense rising noise sweeps, sparse and menacing arrangement with sudden drops to near silence before the kick returns, black and chrome warehouse atmosphere, instrumental, no vocals",
+  "lyrics": "",
+  "instrumental": true,
+  "bpm": 125,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 175.62,
+  "seed": 100057,
+  "dit_caption": "Dark industrial techno, 125 bpm, hard distorted four-on-the-floor kick, cold stabbing analog synth riff in a minor key, metallic clanging percussion, tense rising noise sweeps, sparse and menacing arrangement with sudden drops to near silence before the kick returns, black and chrome warehouse atmosphere, instrumental, no vocals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "expected": {
+    "duration_s": 175.62,
+    "peak_dbfs": -2.76,
+    "lufs": -16.67
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "tempo_bpm": 126.0,
+      "lufs": -16.67,
+      "peak_dbfs": -2.76,
+      "silence_s": 0.1,
+      "brightness_pct": 2.35,
+      "boominess_pct": 35.88,
+      "onsets_per_s": 5.18,
+      "seam_db": -48.9
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": false,
+      "onsets": false,
+      "seam": false,
+      "words": null
+    },
+    "failed": [
+      "boominess",
+      "onsets",
+      "seam"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
