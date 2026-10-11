@@ -1509,11 +1509,12 @@ NOBODY.themes = NOBODY.themes || {};
     const AU = { on: false };
     // the camp's own sounds (the fire, the wind, the scope's static, the chime, the ident, the bite) on one bus, with a switch and
     // a level remembered in this browser (issue #82); the station's volume is never touched. the sky's music: on unless v said no
-    const SND = { on: true, level: 100, ctls: [] }, SKYP = { on: true };
+    // amb: the fire and the wind are ambience. 'auto' hushes them while a track plays (this is a radio first), 'on' keeps them under the music
+    const SND = { on: true, level: 100, amb: 'auto', ctls: [] }, SKYP = { on: true };
     // the tracklist prototypes (issue #84): ?camplist=sky (the constellation, the reel for a track) or ?camplist=spiral (a sketch)
     const CAMPLIST = (new URLSearchParams(location.search).get('camplist') || '').toLowerCase();
     function loadPrefs() {
-      try { const s = JSON.parse(localStorage.getItem('nobody.campfire.sounds') || 'null'); if (s) { SND.on = s.on !== false; SND.level = typeof s.level === 'number' ? clamp(Math.round(s.level), 0, 100) : 100; } } catch (e) {}
+      try { const s = JSON.parse(localStorage.getItem('nobody.campfire.sounds') || 'null'); if (s) { SND.on = s.on !== false; SND.level = typeof s.level === 'number' ? clamp(Math.round(s.level), 0, 100) : 100; SND.amb = s.amb === 'on' ? 'on' : 'auto'; } } catch (e) {}
       try { SKYP.on = localStorage.getItem('nobody.campfire.sky') !== '0'; } catch (e) {}
     }
     function el(id) { return ctx.el[id] || document.getElementById(id); }
@@ -1551,7 +1552,7 @@ NOBODY.themes = NOBODY.themes || {};
     TH.help = function () {
       return [CAMPLIST === 'sky' ? ['arrows', 'walk an arm (left, right), jump arms (up, down)'] : ['arrows', 'look round'], ['z', 'raise or lower the scope (hold it, or tap)'], ['w e', 'the frequency, down or up'], ['l or enter', 'lock on to the signal in the reticle'],
         ['h', 'a marshmallow: tap to skewer, hold to toast, tap to eat'], ['x', 'eat it now'], ['j k', 'the scope onto each match after a find'], ['q', 'the locked signal onto the route'], ['f', 'the camp or the deck'],
-        ['v', 'the sky with the music, or not'], ['sounds', 'camp sounds off|on|0..100'], ['esc', 'the journal, then the scope']];
+        ['v', 'the sky with the music, or not'], ['sounds', 'camp sounds off|on|0..100; camp ambience on|auto (the fire under the music)'], ['esc', 'the journal, then the scope']];
     };
     TH.commands = function () {
       return {
@@ -1576,6 +1577,12 @@ NOBODY.themes = NOBODY.themes || {};
             else if (w[1] === 'on') setSounds(true, null, true);
             else if (/^\d+$/.test(w[1])) setSounds(true, parseInt(w[1], 10), true);
             else say('camp sounds off, on, or a level from 0 to 100.', 'err');
+            return;
+          }
+          // `camp ambience on|auto`: the fire and the wind under the music, or only between tracks (the default)
+          if (w[0] === 'ambience' || w[0] === 'ambient') {
+            if (w[1] === 'on' || w[1] === 'auto') setAmbience(w[1], true);
+            else say('camp ambience ' + SND.amb + (SND.amb === 'auto' ? ': the fire and the wind hush while a track plays.' : ': the fire and the wind stay under the music.') + ' camp ambience on, or auto.', 'mid');
             return;
           }
           if (w[0] === 'sky') { setSky(w[1] === 'off' ? false : w[1] === 'on' ? true : null); return; }
@@ -1827,7 +1834,7 @@ NOBODY.themes = NOBODY.themes || {};
     TH.state = function () {
       const sy = SY();
       const base = { widget: null, layout: UI.layout, nocamp: document.body.classList.contains('nocamp'), golden: UI.golden, goldenVisit: UI.goldenVisit, journal: UI.journalSlug,
-        sounds: { on: SND.on, level: SND.level, gain: AU.on && AU.bus ? +AU.bus.gain.value.toFixed(3) : null, want: +campGain().toFixed(3), station: sy && sy.gain ? +sy.gain.gain.value.toFixed(3) : null, volume: sy ? sy.volume : null,
+        sounds: { on: SND.on, level: SND.level, amb: SND.amb, ambGain: AU.amb ? +AU.amb.gain.value.toFixed(3) : null, gain: AU.on && AU.bus ? +AU.bus.gain.value.toFixed(3) : null, want: +campGain().toFixed(3), station: sy && sy.gain ? +sy.gain.gain.value.toFixed(3) : null, volume: sy ? sy.volume : null,
           route: 'fire, wind, static, chime, ident, bite -> the camp bus (this gain) -> the station gain (the mute) -> speakers' },
         sky: scene ? scene.musicState() : { on: SKYP.on },
         camplist: CAMPLIST || null, constellation: scene && scene.cl() ? Object.assign(scene.clState(), { cursor: UI.clCursor || null, hover: UI.hover || null }) : null,
@@ -1945,15 +1952,18 @@ NOBODY.themes = NOBODY.themes || {};
       if (AU.on || !sy || !sy.ctx || !sy.gain) return;
       const c = sy.ctx; AU.on = true; AU.c = c; AU.nodes = [];
       AU.bus = c.createGain(); AU.bus.gain.value = campGain(); AU.bus.connect(sy.gain);
+      AU.amb = c.createGain(); AU.amb.gain.value = ambWant(); AU.amb.connect(AU.bus);
+      const d = document.getElementById('deck');
+      if (d && !AU.deckL) { AU.deckL = ambSync; ['play', 'playing', 'pause', 'ended', 'emptied'].forEach(function (t) { d.addEventListener(t, AU.deckL); }); }
       const noiseSrc = function () { const s = c.createBufferSource(); s.buffer = sy.noise; s.loop = true; s.start(0, Math.random() * 1.9); AU.nodes.push(s); return s; };
       // the wind: low noise, breathing slowly
       const wl = c.createBiquadFilter(); wl.type = 'lowpass'; wl.frequency.value = 380;
       const wg = c.createGain(); wg.gain.value = 0.011;
       const lfo = c.createOscillator(); lfo.frequency.value = 0.06; const lg = c.createGain(); lg.gain.value = 0.007; lfo.connect(lg); lg.connect(wg.gain); lfo.start(); AU.nodes.push(lfo);
-      noiseSrc().connect(wl); wl.connect(wg); wg.connect(AU.bus);
+      noiseSrc().connect(wl); wl.connect(wg); wg.connect(AU.amb);
       // the fire's low breath
       const rl = c.createBiquadFilter(); rl.type = 'lowpass'; rl.frequency.value = 240; const rg = c.createGain(); rg.gain.value = 0.016;
-      noiseSrc().connect(rl); rl.connect(rg); rg.connect(AU.bus);
+      noiseSrc().connect(rl); rl.connect(rg); rg.connect(AU.amb);
       // the scope's static: tightens to a narrow band as the signal grows
       AU.statBp = c.createBiquadFilter(); AU.statBp.type = 'bandpass'; AU.statBp.frequency.value = 1500; AU.statBp.Q.value = 0.7;
       AU.statG = c.createGain(); AU.statG.gain.value = 0;
@@ -1971,10 +1981,19 @@ NOBODY.themes = NOBODY.themes || {};
       }
     }
     function campGain() { return SND.on ? 0.9 * SND.level / 100 : 0; }
+    function saveSnd() { try { localStorage.setItem('nobody.campfire.sounds', JSON.stringify({ on: SND.on, level: SND.level, amb: SND.amb })); } catch (e) {} }
+    // the ambience sub-bus: open between tracks, paused or in standby; shut while the deck plays unless the listener said on
+    function deckPlaying() { const d = document.getElementById('deck'); return !!d && !d.paused && !d.ended; }
+    function ambWant() { return SND.amb === 'on' || !deckPlaying() ? 1 : 0; }
+    function ambSync() { if (AU.on && AU.amb) AU.amb.gain.setTargetAtTime(ambWant(), AU.c.currentTime, 0.35); }
+    function setAmbience(mode, speak) {
+      SND.amb = mode === 'on' ? 'on' : 'auto'; saveSnd(); ambSync(); syncSoundCtls();
+      if (speak) say(SND.amb === 'on' ? 'camp ambience on: the fire and the wind stay under the music.' : 'camp ambience auto: the fire and the wind hush while a track plays.', 'mid');
+    }
     function setSounds(on, level, speak) {
       if (level != null) SND.level = clamp(Math.round(level), 0, 100);
       if (on != null) SND.on = !!on;
-      try { localStorage.setItem('nobody.campfire.sounds', JSON.stringify({ on: SND.on, level: SND.level })); } catch (e) {}
+      saveSnd();
       if (AU.on && AU.bus) AU.bus.gain.setTargetAtTime(campGain(), AU.c.currentTime, 0.06);
       syncSoundCtls();
       if (speak) say(SND.on ? 'camp sounds on, at ' + SND.level + '. the fire, the wind, the static, the chime. the station is not touched.' : 'camp sounds off. the fire burns on without a sound. the station plays on.', 'mid');
@@ -1986,6 +2005,7 @@ NOBODY.themes = NOBODY.themes || {};
         if (document.activeElement !== c.range) c.range.value = String(SND.level);
         c.range.setAttribute('aria-valuetext', SND.level + ' of 100' + (SND.on ? '' : ', off'));
         c.wrap.classList.toggle('off', !SND.on);
+        if (c.amb) { c.amb.setAttribute('aria-pressed', SND.amb === 'on' ? 'true' : 'false'); c.amb.textContent = 'fire under music: ' + (SND.amb === 'on' ? 'on' : 'off'); }
       });
     }
     // one control (a switch and a small slider); mounted by the fire, in the help and in the phone's dash
@@ -1994,12 +2014,15 @@ NOBODY.themes = NOBODY.themes || {};
       const btn = mk('button', 'bk camp-btn', wrap, 'sounds on'); btn.type = 'button';
       btn.setAttribute('aria-label', "the camp's own sounds: the fire, the wind, the static, the chime");
       btn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); setSounds(!SND.on, null, true); });
+      const amb = mk('button', 'bk camp-btn camp-amb', wrap, 'fire under music: off'); amb.type = 'button';
+      amb.setAttribute('aria-label', 'keep the fire and the wind playing under the music');
+      amb.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); setAmbience(SND.amb === 'on' ? 'auto' : 'on', true); });
       const range = mk('input', 'camp-snd-level', wrap); range.type = 'range'; range.min = '0'; range.max = '100'; range.step = '5';
       range.setAttribute('aria-label', 'camp sounds level');
       range.addEventListener('input', function () { setSounds(+range.value > 0 ? true : SND.on, +range.value, false); });
       range.addEventListener('change', function () { say('camp sounds at ' + SND.level + '.', 'mid'); });
       ['pointerdown', 'keydown'].forEach(function (t) { range.addEventListener(t, function (e) { e.stopPropagation(); }); });
-      const c = { wrap: wrap, btn: btn, range: range, where: where };
+      const c = { wrap: wrap, btn: btn, amb: amb, range: range, where: where };
       SND.ctls.push(c); syncSoundCtls();
       return c;
     }
@@ -2022,15 +2045,17 @@ NOBODY.themes = NOBODY.themes || {};
       try { AU.nodes.forEach(function (n) { try { n.stop(); } catch (e) {} }); AU.bus.disconnect(); if (AU.pg) AU.pg.disconnect(); } catch (e) {}
       if (AU.pv) { try { AU.pv.pause(); AU.pv.removeAttribute('src'); AU.pv.load(); } catch (e) {} }
       const sy = SY(); if (sy && sy.duck) sy.duck(1, 0.3);
-      AU.on = false; AU.pv = null; AU.pvSlug = null;
+      const d = document.getElementById('deck');
+      if (d && AU.deckL) { ['play', 'playing', 'pause', 'ended', 'emptied'].forEach(function (t) { d.removeEventListener(t, AU.deckL); }); AU.deckL = null; }
+      AU.on = false; AU.pv = null; AU.pvSlug = null; AU.amb = null;
     }
     function crackle(s) {
-      if (!AU.on || document.hidden || !campGain()) return;
+      if (!AU.on || document.hidden || !campGain() || !ambWant()) return;
       const c = AU.c, sy = SY(), t = c.currentTime;
       const src = c.createBufferSource(); src.buffer = sy.noise;
       const hp = c.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1100 + Math.random() * 2600;
       const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.012 + 0.05 * s, t + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.01 + 0.04 * s);
-      src.connect(hp); hp.connect(g); g.connect(AU.bus);
+      src.connect(hp); hp.connect(g); g.connect(AU.amb);
       src.start(t, Math.random() * 1.8, 0.07);
     }
     function chime() {

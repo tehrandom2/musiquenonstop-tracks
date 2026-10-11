@@ -179,7 +179,9 @@
     const q = new URLSearchParams(location.search), out = new URLSearchParams();
     if (S.theme) out.set('theme', S.theme);
     if (q.get('camplist')) out.set('camplist', q.get('camplist'));
-    return location.origin + location.pathname + '?' + out.toString() + '#/track/' + slug;
+    // ?play= starts the station on that track with the theme on screen; #/track/ would open its info page over everything
+    out.set('play', slug);
+    return location.origin + location.pathname + '?' + out.toString();
   }
   function findTrack(arg) {
     if (!arg) return S.current ? S.bySlug[S.current] : null;
@@ -407,8 +409,9 @@
       if (MUTE) T.print('muted by the harness: gain to the speakers is 0. the analyser still reads.', 'amber');
       if (!S.tracks.length) { deadAir(); return; }
       S.queue = chronological();
-      // a theme can name its opening track (config themeStart): with no link to follow, its album plays from there
-      const open = (CFG.themeStart || {})[S.theme];
+      // a shared link (?play=<slug>) or the theme's opening track (config themeStart) starts the station, and its album plays on
+      const shared = new URLSearchParams(location.search).get('play');
+      const open = shared && S.bySlug[shared] ? shared : (CFG.themeStart || {})[S.theme];
       if (open && S.bySlug[open] && !/^#\/(track|album)\//.test(location.hash)) {
         const alb = S.albumOfSlug[open];
         const run = alb ? alb.tracks.slice(alb.tracks.indexOf(open)).concat(alb.tracks.slice(0, alb.tracks.indexOf(open))) : [open];
