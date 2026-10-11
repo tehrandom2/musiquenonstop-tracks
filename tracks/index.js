@@ -3,6 +3,117 @@ window.NOBODY_INDEX = {
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "porch-steps-kettle-on",
+      "title": "Porch Steps, Kettle On",
+      "project": null,
+      "idea": "a slow porch at sunrise, cello and soft guitar, rubato: a wooden porch at dawn, still cold air, birds very faint, recorded close with one microphone",
+      "request": "a slow porch at sunrise, cello and soft guitar, rubato",
+      "mood": "tender and unhurried, the quiet before anyone else is awake, wonder at an ordinary morning",
+      "bpm": 60,
+      "key": "D major",
+      "seed": 251552,
+      "model": "best",
+      "duration": 136.94,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:08:25-04:00",
+      "voice": false,
+      "prompt": "Slow rubato acoustic chamber piece, no steady beat, 60 bpm, in D major, a solo cello bowed slowly, warm and close, rosin and bow noise audible, over a steel-string acoustic guitar fingerpicked very softly, a wooden porch at dawn, still cold air, birds very faint, recorded close with one microphone, tender and unhurried, the quiet before anyone else is awake, wonder at an ordinary morning, the guitar alone for a few bars, the cello enters with long held notes, long pauses between phrases, the room carries the gaps, ends on one held cello note fading out, instrumental, no vocals, no singing, no speech, no drums, no beat, no drops, no build-ups, no synth, no piano, no orchestra, no sub bass",
+      "lyrics": null,
+      "why": "You asked for \"a slow porch at sunrise, cello and soft guitar, rubato\". A morning piece in no hurry. A bowed cello over a barely touched guitar, with rests long enough to hear the porch. I kept the tempo free on purpose: this is the album breathing in before it leaves. So I wrote it at 60 bpm in D major, 140 seconds, with no voice, under the ambient gates. It has no beat to hold, so 60 bpm is only the grid I gave the model and the tempo gate is not applied. I set it to -18 LUFS rather than the station's -16, so it sits quieter beside the rest. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 251554 (passed, but outranked by the kept takes); 251549 (passed, but outranked by the kept takes); 251553 (passed, but outranked by the kept takes); 251550 (5.1s of near-silence (limit 3.0)). Seed 251552 is the take.",
+      "rejected": [
+        {
+          "seed": 251554,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 251549,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 251553,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 251550,
+          "reason": "5.1s of near-silence (limit 3.0)"
+        }
+      ],
+      "takes": [
+        251552,
+        251551
+      ],
+      "numbers": {
+        "tempo_bpm": 119.0,
+        "lufs": -18.0,
+        "lufs_target": -18.0,
+        "peak_dbfs": -4.18,
+        "silence_s": 0.35,
+        "brightness_pct": 0.05,
+        "boominess_pct": 0.02,
+        "onsets_per_s": 2.41,
+        "seam_db": -52.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "cello",
+          "guitar",
+          "morning",
+          "arc:opening"
+        ],
+        "track_no": 2
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "porch-steps-kettle-on/porch-steps-kettle-on.mp3",
+        "notes": "porch-steps-kettle-on/notes.md",
+        "recipe": "porch-steps-kettle-on/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "ambient",
+        "seam_step_x": 0.13,
+        "decoded_lufs": -18.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6039224,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "porch-steps-kettle-on/porch-steps-kettle-on.mp3",
+          "porch-steps-kettle-on/porch-steps-kettle-on-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 100,
+          "flags": [],
+          "doubts": [],
+          "description": "A slow acoustic piece featuring a guitar and cello. The mood is calm and peaceful.",
+          "answers": {
+            "frame": "yes",
+            "lead": "yes",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "home-fire-one-more-song",
       "title": "Home Fire, One More Song",
       "project": null,
@@ -22832,6 +22943,7 @@ window.NOBODY_INDEX = {
       "cover_1400": "albums/interloper-ai/cover-1400.webp",
       "tracks": [
         "first-light-through-the-pines",
+        "porch-steps-kettle-on",
         "flute-on-a-rolling-sea",
         "a-whistle-on-the-moon",
         "banjo-on-falling-ground",
