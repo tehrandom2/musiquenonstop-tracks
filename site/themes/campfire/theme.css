@@ -330,7 +330,8 @@ body[data-layout="camp"] #page { grid-column: 1 / 4; grid-row: 2 / 6; min-height
 /* on a page the terminal sits under it across the width, never inside the page's box (issue #77) */
 body.camp-page[data-layout="camp"] #page { grid-row: 2 / 5; }
 body.camp-page[data-layout="camp"] #terminal { grid-column: 1 / 4; }
-body[data-layout="camp"] #transmitter #spectrum, body[data-layout="camp"] #transmitter #baseline, body[data-layout="camp"] #transmitter #scope { display: none; }
+/* no station visualizer under the camp, in any layout or view (issue #82): the sky is the visualizer */
+#transmitter #spectrum, #transmitter #baseline, #transmitter #scope, #hideViz { display: none !important; }
 body[data-layout="camp"] #transmitter .readout { max-height: calc(var(--row) * 2); overflow: hidden; }
 body[data-layout="camp"] .terminal .log { height: calc(var(--row) * 2); max-height: none; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
 body[data-layout="camp"] #make .make-line:empty { display: none; }
@@ -347,7 +348,7 @@ body.camp-away .camp-legend, body.camp-away .camp-bar, body.camp-away .camp-cred
 }
 body:not([data-layout="camp"]) .camp-legend, body:not([data-layout="camp"]) .camp-bar, body:not([data-layout="camp"]) .camp-credit, body:not([data-layout="camp"]) .camp-scope, body:not([data-layout="camp"]) .camp-hint { display: none; }
 body.ui-hidden .camp-legend, body.ui-hidden .camp-bar, body.ui-hidden .camp-credit, body.ui-hidden .camp-scope, body.ui-hidden .camp-hint, body.ui-hidden .camp-journal { display: none; }
-body.nocamp .camp-scope, body.nocamp .camp-legend, body.nocamp .camp-bar .camp-btn:first-child { display: none; }
+body.nocamp .camp-scope, body.nocamp .camp-legend, body.nocamp .camp-bar > .camp-btn:first-child { display: none; }
 
 /* the legend of frequencies: a small board on the left, under the header */
 .camp-legend { position: fixed; left: var(--gutter); top: calc(var(--gutter) + var(--row) + 34px); z-index: 2; --pad: 7px; min-width: 22ch; font-size: var(--fs); }
@@ -359,13 +360,30 @@ body.nocamp .camp-scope, body.nocamp .camp-legend, body.nocamp .camp-bar .camp-b
 .camp-legend .cl-n { color: var(--ink-mid); }
 
 /* the bar by the fire: the scope, the marshmallow, its word */
-.camp-bar { position: fixed; left: 50%; bottom: 58px; transform: translateX(-50%); z-index: 2; display: flex; align-items: center; gap: 1.2ch; white-space: nowrap; pointer-events: auto; }
+.camp-bar { position: fixed; left: 50%; bottom: 58px; transform: translateX(-50%); z-index: 2; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 1.2ch; width: max-content; white-space: nowrap; pointer-events: auto; }
 .camp-bar .camp-btn { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: .06em; color: var(--ink); background: var(--panel); border: 1px solid rgb(var(--ember-rgb) / .55); border-radius: 999px; padding: 5px 16px; box-shadow: 0 0 calc(6px + 10px * var(--beat)) rgb(var(--ember-rgb) / .35); touch-action: none; user-select: none; }
 .camp-bar .camp-btn::before, .camp-bar .camp-btn::after { content: none; }
 .camp-bar .camp-btn:hover, .camp-bar .camp-btn:focus-visible { background: #2a1d12; border-color: var(--gold); }
 .camp-bar .camp-btn[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
 .camp-mallow { font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: .04em; color: var(--ink); background: var(--panel); border-radius: 999px; padding: 4px 12px; border: 1px solid rgb(var(--gold-rgb) / .3); position: relative; overflow: hidden; }
 .camp-mallow::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: calc(var(--toast, 0) * 100%); background: linear-gradient(90deg, #f3eee3, #e2a650 45%, #a8622a 65%, #1a120d 95%); }
+/* the camp's own sounds (issue #82): a switch and a small slider, by the fire, in the help, in the phone's dash */
+.camp-snd { display: inline-flex; align-items: center; gap: 8px; }
+.camp-snd .camp-btn { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: .06em; color: var(--ink); background: var(--panel); border: 1px solid rgb(var(--ember-rgb) / .55); border-radius: 999px; padding: 5px 14px; }
+.camp-snd .camp-btn::before, .camp-snd .camp-btn::after { content: none; }
+.camp-snd .camp-btn:hover, .camp-snd .camp-btn:focus-visible { background: #2a1d12; border-color: var(--gold); }
+.camp-snd .camp-btn[aria-pressed="true"] { color: var(--gold); border-color: rgb(var(--gold-rgb) / .7); }
+.camp-snd.off .camp-btn { color: var(--ink-mid); border-color: rgb(var(--ink-dim-rgb) / .6); }
+.camp-snd-level { -webkit-appearance: none; appearance: none; width: 84px; height: 22px; margin: 0; background: transparent; cursor: pointer; }
+.camp-snd-level::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: rgb(var(--gold-rgb) / .35); }
+.camp-snd-level::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 6px rgb(var(--ember-rgb) / .7); }
+.camp-snd-level::-moz-range-track { height: 4px; border-radius: 2px; background: rgb(var(--gold-rgb) / .35); }
+.camp-snd-level::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: var(--gold); }
+.camp-snd.off .camp-snd-level { opacity: .45; }
+.camp-snd-level:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+.camp-snd-bar { background: var(--panel); border-radius: 999px; padding-right: 10px; }
+.camp-snd-help { display: flex; align-items: center; gap: 2ch; margin-top: calc(var(--row) * .5); }
+.camp-snd-row { display: none; }
 .camp-credit { position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 2; margin: 0; padding: 4px 10px; max-width: 520px; text-align: center; font-family: var(--display); font-weight: 700; font-size: 16px; line-height: 1.25; letter-spacing: .01em; color: var(--ink-mid); background: var(--panel); border-radius: 4px; }
 .camp-hint { position: fixed; top: calc(var(--gutter) + var(--row) + 34px); left: 50%; transform: translateX(-50%); z-index: 2; max-width: min(760px, calc(100vw - 2 * var(--gutter) - 26ch)); padding: 6px 14px; font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: .03em; line-height: 1.4; color: var(--ink); background: var(--panel); border: 1px solid rgb(var(--gold-rgb) / .35); border-radius: 6px; text-align: center; animation: hintIn 500ms ease-out both; }
 @keyframes hintIn { from { opacity: 0; transform: translateX(-50%) translateY(-8px); } to { opacity: 1; transform: translateX(-50%); } }
@@ -434,6 +452,10 @@ body.camp-scoped .camp-scope { opacity: 1; visibility: visible; transition: opac
   .camp-legend { display: none; }
   .camp-bar { bottom: auto; }
   .camp-bar .camp-btn { font-size: 17px; padding: 8px 14px; }
+  .camp-bar .camp-snd-bar { display: none; }
+  .camp-snd-row { display: flex; align-items: center; gap: 1.5ch; margin-top: 4px; }
+  .camp-snd-row .camp-snd .camp-btn { font-size: 16px; padding: 6px 12px; }
+  .camp-snd-row .camp-snd-level { width: 120px; height: 30px; }
   .camp-credit { display: none; }
   .camp-hint { top: calc(var(--gutter) + var(--row) * 2 + 20px); max-width: calc(100vw - 2 * var(--gutter)); font-size: 15px; }
   .camp-journal { top: auto; bottom: var(--gutter); max-height: 70vh; }

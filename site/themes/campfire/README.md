@@ -46,11 +46,19 @@ finds a group's signals clustered round its world.
 | marshmallow | `h` skewers one; hold `h` to toast; tap `h` (or `x`) to eat | `[ marshmallow ]`: tap, hold, tap |
 | the deck | `f` | `[ deck ]` in the catalogue |
 | hide | `` ` `` | two fingers, twice |
+| the sky with the music | `v` (on by default) | |
+| the camp's sounds | `[ sounds on ]` and the slider by the fire, or in the help | the same in the dash |
 
 The station's own keys are unchanged (12.0): `space` plays and pauses, `q` queues the locked signal onto the route (drawn
 as a dotted line between the signals), `/` finds (the matching signals blaze, the rest go quiet) and then `j` and `k`
 swing the scope onto each match, `m` mutes, `tab` and `:` open the terminal. Commands: `scope`, `freq [name]`, `lock`,
-`toast`, `tally`, `camp`.
+`toast`, `tally`, `camp`, `camp sounds off|on|0..100`, `camp sky off|on`.
+
+There is no station visualizer here, in any view (issue #82): the sky is the visualizer. The playing track, read from the
+analyser's numbers, gently widens and warms the dust band (the low end), stirs it and lifts the curtains of light (the middle),
+ripples and shimmers the curtains and quickens the stars' twinkle (the highs), and the playing signal breathes on the kick.
+Paused, it settles back to the sky's own slow breathing; with reduced motion it moves much less; `v` lets the sky keep its own
+time and brings the music back (remembered in this browser). Behind the hidden interface the view looks up into the sky.
 
 The marshmallow toasts through raw, warm, golden, brown, black and charred, swells, bubbles, steams, and catches fire if
 you leave it in; pulled back, a burning one burns on a moment and goes out smoking. Eating one takes two bites and a puff
@@ -58,8 +66,10 @@ of sugar. A golden one is carved into the log across the fire (a tally kept in t
 ["nobody.campfire.golden"]`); a burnt one gets a dry line.
 
 Sound: the preview is the track's own file through a lowpass, a pan and a gain into the station's gain (the mute), never
-into the analyser; the deck ducks under the scope. All of it is quiet and all of it is muted by `?mute=1`. Nobody who
-built this heard any of it.
+into the analyser; the deck ducks under the scope. The camp's own sounds (the fire, the wind, the static, the chime, the
+ident, the bite) share one gain that `[ sounds on ]`, its slider and `camp sounds` set, remembered in this browser
+(`localStorage["nobody.campfire.sounds"]`); the station's volume is not touched. All of it is quiet and all of it is muted by
+`?mute=1`. Nobody who built this heard any of it.
 
 ## Files and fonts
 

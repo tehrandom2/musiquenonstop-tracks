@@ -222,6 +222,16 @@ body[data-interface]:not([data-interface=""]) .glass .band, body[data-interface]
 .page .tree { white-space: pre; }
 .page .take-block { margin-top: calc(var(--row) * .25); }
 .page .catview { white-space: pre-wrap; max-height: calc(var(--row) * 14); overflow: auto; padding-left: 1ch; margin-top: calc(var(--row) * .5); }
+/* albums (issue #73): the cover beside the album's words on a track page, large beside the description on an album page.
+   the cover never sits under text, so the words keep their own panel behind them (12.0's legibility rules) */
+.page .album-block { display: flex; gap: 0 2ch; align-items: flex-start; margin: calc(var(--row) * .5) 0; }
+.page .album-block .cover-art { display: block; flex: 0 0 auto; width: calc(var(--row) * 6); height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
+.page .album-hero .cover-art { width: min(360px, 40%); }
+.page .album-meta { flex: 1 1 auto; min-width: 0; }
+.page .album-meta .row { justify-content: flex-start; gap: 0 1ch; }
+.page .album-meta .bk { white-space: normal; text-align: left; }
+.page .album-tracks .cat-row { cursor: pointer; white-space: pre; overflow: hidden; }
+.page .credits > div { white-space: pre-wrap; }
 .gb-form .field { display: flex; white-space: pre; align-items: baseline; }
 .gb-form input { font: inherit; background: none; border: 0; outline: 0; padding: 0; flex: 1 1 auto; min-width: 0; }
 .gb-form .gb-buttons { display: flex; justify-content: flex-end; gap: 2ch; margin: calc(var(--row) * .25) 0 var(--row); }
@@ -276,6 +286,9 @@ body[data-interface]:not([data-interface=""]) .glass .band, body[data-interface]
   .overlay { top: 4vh; max-height: 92vh; }
   .page .numbers { display: block; }
   .page .numbers span { display: block; }
+  .page .album-block .cover-art { width: calc(var(--row) * 5); }
+  .page .album-hero { flex-direction: column; }
+  .page .album-hero .cover-art { width: 100%; margin-bottom: calc(var(--row) * .5); }
 }
 
 /* hidden mode (design 12.0, issue #52): body.ui-hidden fades the interface and leaves the theme's scene running. layout and timing

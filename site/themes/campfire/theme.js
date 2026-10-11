@@ -107,10 +107,12 @@ NOBODY.themes = NOBODY.themes || {};
     const LEAN = SEAT.clone().lerp(FIRE, 0.64); LEAN.y = SEAT.y - 0.3;
 
     /* ---- the sky dome: a deep gradient, the breathing band, curtains of faint light, the warm glow round the low sun ---- */
-    const skyU = { uTime: { value: 0 }, uSun: { value: new THREE.Vector3() }, uDawn: { value: 0 }, uBreath: { value: 1 }, uRed: { value: 0 } };
+    // uMusic (issue #82): the playing track's low end, middle, highs and a soft pulse, each already eased to a slow envelope
+    // (0..1, scaled down under reduced motion, 0 with the music off); uFlow is a clock that runs a little faster with the music
+    const skyU = { uTime: { value: 0 }, uSun: { value: new THREE.Vector3() }, uDawn: { value: 0 }, uBreath: { value: 1 }, uRed: { value: 0 }, uMusic: { value: new THREE.Vector4() }, uFlow: { value: 0 } };
     const SKY_V = 'varying vec3 vL; varying vec3 vW; void main(){ vL = normalize(position); vW = normalize(mat3(modelMatrix) * position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }';
     const SKY_F = [
-      'uniform float uTime, uDawn, uBreath, uRed; uniform vec3 uSun; varying vec3 vL; varying vec3 vW;', NOISE,
+      'uniform float uTime, uDawn, uBreath, uRed, uFlow; uniform vec3 uSun; uniform vec4 uMusic; varying vec3 vL; varying vec3 vW;', NOISE,
       'void main(){',
       '  vec3 d = normalize(vW), l = normalize(vL); float y = d.y;',
       '  vec3 zen = mix(vec3(0.010,0.016,0.060), vec3(0.030,0.020,0.070), uDawn);',
@@ -121,21 +123,27 @@ NOBODY.themes = NOBODY.themes || {};
       '  float above = smoothstep(-0.25, 0.08, y);',
       '  c += mix(vec3(1.0, 0.52, 0.22), vec3(1.0, 0.30, 0.14), uRed) * (pow(sd, 6.0) * 0.30 + pow(sd, 48.0) * 0.55) * (1.0 + 0.5 * uRed) * above;',
       '  c += vec3(0.85, 0.40, 0.20) * exp(-abs(y) * 8.0) * pow(sd, 1.5) * 0.16;',
-      // the band, fixed to the turning sky: painterly dust with dark lanes, breathing slowly
+      // the band, fixed to the turning sky: painterly dust with dark lanes, breathing slowly; the low end widens it and warms
+      // its glow a little, the middle stirs the dust (uFlow)
       '  float b = l.z * 0.9 + l.x * 0.25;',
-      '  float band = exp(-b * b * 9.0);',
-      '  float n = fbm(l * 3.2 + vec3(0.0, uTime * 0.006, 0.0));',
-      '  float n2 = fbm(l * 8.5 - vec3(uTime * 0.008, 0.0, uTime * 0.004));',
+      '  float band = exp(-b * b * 9.0 / (1.0 + 0.55 * uMusic.x));',
+      '  float n = fbm(l * 3.2 + vec3(0.0, uTime * 0.006 + uFlow * 0.004, 0.0));',
+      '  float n2 = fbm(l * 8.5 - vec3(uTime * 0.008 + uFlow * 0.006, 0.0, uTime * 0.004));',
       '  float dust = band * (0.45 + 0.55 * n) * (0.55 + 0.45 * n2);',
-      '  c += mix(vec3(0.15, 0.11, 0.30), vec3(0.34, 0.28, 0.46), n2) * dust * 0.62 * uBreath;',
+      '  float swell = uBreath + 0.30 * uMusic.x + 0.10 * uMusic.w;',
+      '  c += mix(vec3(0.15, 0.11, 0.30), vec3(0.34, 0.28, 0.46), n2) * dust * 0.62 * swell;',
+      '  c += vec3(0.10, 0.05, 0.08) * dust * uMusic.x * n;',
       '  c -= vec3(0.045, 0.045, 0.07) * band * smoothstep(0.52, 0.72, n2);',
-      // faint curtains over the far horizon, rising and falling
+      // faint curtains over the far horizon, rising and falling; the middle lifts them, the highs make their folds ripple and
+      // run with fine vertical shimmer
       '  float az = atan(d.x, -d.z);',
-      '  float cur = fbm(vec3(az * 2.6, uTime * 0.035, 3.0));',
-      '  float hgt = 0.16 + 0.10 * fbm(vec3(az * 4.0, uTime * 0.05, 7.0));',
-      '  float aur = smoothstep(0.03, 0.12, y) * (1.0 - smoothstep(hgt, hgt + 0.22, y)) * smoothstep(0.42, 0.78, cur);',
+      '  float rip = uMusic.z * 0.22 * sin(az * 11.0 + uFlow * 1.7 + y * 9.0);',
+      '  float cur = fbm(vec3(az * 2.6 + rip, uTime * 0.035 + uFlow * 0.03, 3.0));',
+      '  float hgt = 0.16 + 0.10 * fbm(vec3(az * 4.0, uTime * 0.05, 7.0)) + 0.035 * uMusic.y;',
+      '  float aur = smoothstep(0.03, 0.12, y) * (1.0 - smoothstep(hgt, hgt + 0.22, y)) * smoothstep(0.42 - 0.03 * uMusic.y, 0.78, cur);',
+      '  aur *= 1.0 + uMusic.z * 0.55 * (n3(vec3(az * 46.0, y * 3.0, uFlow * 0.9)) - 0.4);',
       '  float side = smoothstep(-0.2, 0.7, -d.z * 0.8 + d.x * 0.5);',
-      '  c += (vec3(0.10, 0.50, 0.40) * 0.20 + vec3(0.30, 0.16, 0.48) * 0.10 * smoothstep(0.1, 0.35, y)) * aur * side * uBreath;',
+      '  c += (vec3(0.10, 0.50, 0.40) * 0.20 + vec3(0.30, 0.16, 0.48) * 0.10 * smoothstep(0.1, 0.35, y)) * aur * side * (uBreath + 0.35 * uMusic.y + 0.2 * uMusic.z);',
       '  c += (hh(d * 613.0) - 0.5) * 0.010;',
       '  gl_FragColor = vec4(max(c, vec3(0.0)), 1.0);',
       '}'
@@ -283,6 +291,8 @@ NOBODY.themes = NOBODY.themes || {};
     const sig = { list: [], bySlug: {}, freqs: [], freq: 0, lit: null, playing: null, queue: [], cursor: null, target: null, strength: 0, angle: 99, dwell: 0, hl: null, nearest: null };
     const look = { lean: 0, yaw: 0, pitch: -1 * DEG, yawT: 0, pitchT: -1 * DEG, cy: 0, cp: -1 * DEG, oy: 0, op: 0, fov: 62, fovT: 62, scopeFov: 13 };
     const fire = { heat: 0.6, flick: 1, pop: 0, nextPop: 1.5, nextCrackle: 0.2, beat: 0, loud: 0 };
+    // the sky listens (issue #82): slow envelopes of the track's low end, middle and highs, and a soft pulse on the kick
+    const music = { on: true, amt: 0, low: 0, mid: 0, high: 0, pulse: 0, bassSlow: 0, avg: [0, 0, 0], flow: 0, tw: 0, raw: [0, 0, 0] };
     const M = { on: false, toast: 0, heat: 0, fire: 0, fireFor: 0, held: false, ext: 0, eating: -1, scale: 0, bites: 0, appear: 0, caught: false, bend: 0, swayV: 0, sway: 0, tip: new THREE.Vector3(), pos: new THREE.Vector3(), dir: new THREE.Vector3(0, 0, -1), steamFor: 0 };
     const tmp = { v: new THREE.Vector3(), v2: new THREE.Vector3(), v3: new THREE.Vector3(), q: new THREE.Quaternion(), m: new THREE.Matrix4() };
     const hooks = { onFrame: null, onPop: null, onCrackle: null, onLockDwell: null, onMallow: null };
@@ -856,15 +866,18 @@ NOBODY.themes = NOBODY.themes || {};
       // the sky turns on the planet's axis; faster behind the hidden interface
       SKY.angle += dt * SKY.speed * slow * (C.hidden ? 3 : 1);
       skyPivot.quaternion.setFromAxisAngle(SKY.axis, SKY.angle);
-      skyU.uTime.value = T; skyU.uBreath.value = 0.86 + 0.14 * Math.sin(T * 0.19) + 0.06 * Math.sin(T * 0.47 + 1.3);
-      stars.material.uniforms.uTime.value = T;
+      skyU.uTime.value = T; skyU.uFlow.value = music.flow; skyU.uBreath.value = 0.86 + 0.14 * Math.sin(T * 0.19) + 0.06 * Math.sin(T * 0.47 + 1.3);
+      stepMusic(dt, A, slow);
+      stars.material.uniforms.uTime.value = music.tw;
+      stars.material.uniforms.uTwinkle.value = 1 + 0.45 * music.high * music.amt;
       if (signalPts) signalPts.material.uniforms.uTime.value = T;
       stepWorlds(dt);
       stepMeteors(dt);
       stepCrosser(dt);
 
       // the camera: springs toward the gaze; the scope narrows the field; a slow breath while you sit
-      if (C.hidden) { look.yawT = FIRE_AIM.yaw + 0.42 + Math.sin(T * 0.05) * 0.14; look.pitchT = 0.24 + Math.sin(T * 0.07) * 0.05; }
+      // hidden: the sky fills the frame (issue #82), the fire's flames in the bottom corner, the bag and the log below the edge
+      if (C.hidden) { look.yawT = FIRE_AIM.yaw + 0.42 + Math.sin(T * 0.05) * 0.12; look.pitchT = 0.42 + Math.sin(T * 0.07) * 0.03; }
       else { look.yawT = look.cy + look.oy; look.pitchT = clamp(look.cp + look.op, -40 * DEG, 84 * DEG); }
       const tc = C.scoped ? 0.16 : C.hidden ? 1.6 : 0.12;
       look.yaw += wrapAngle(look.yawT - look.yaw) * ease(dt, tc);
@@ -905,6 +918,36 @@ NOBODY.themes = NOBODY.themes || {};
       else if (perf.under >= 5 && perf.ladder > 0) { perf.ladder--; perf.under = 0; setPixelRatio(); }
     }
     function setPixelRatio() { pr = prBase * [1, 0.8, 0.62][perf.ladder]; renderer.setPixelRatio(pr); renderer.setSize(W, H, false); }
+
+    // the sky's music (issue #82): read the analyser's 64 bands, never the audio graph; ease everything so the sky swells and
+    // settles over a second or so and never jumps with a frame. paused, tuning or switched off, it sinks back to its own breath
+    function env(cur, want, dt, up, down) { return cur + (want - cur) * ease(dt, want > cur ? up : down); }
+    function stepMusic(dt, A, slow) {
+      let lo = 0, mi = 0, hi = 0, kick = 0;
+      if (A && A.v64 && !A.tuning) {
+        const v = A.v64; let a = 0, b = 0, c = 0;
+        for (let i = 0; i < 8; i++) a += v[i];
+        for (let i = 8; i < 32; i++) b += v[i];
+        for (let i = 32; i < 64; i++) c += v[i];
+        a /= 8; b /= 24; c /= 32; music.raw[0] = a; music.raw[1] = b; music.raw[2] = c;
+        // a loud track is not a brighter sky: most of the response is the track moving against its own last few seconds,
+        // a little is how full it is overall
+        const lv = [a, b, c], out = [0, 0, 0];
+        for (let k = 0; k < 3; k++) { music.avg[k] = env(music.avg[k], lv[k], dt, 4, 4); out[k] = 0.6 * smooth(-0.02, 0.12, lv[k] - music.avg[k]) + 0.4 * smooth(0.15, 0.8, music.avg[k]); }
+        lo = out[0]; mi = out[1]; hi = out[2];
+        music.bassSlow = env(music.bassSlow, a, dt, 0.6, 0.6);
+        kick = smooth(0.02, 0.14, a - music.bassSlow);
+      } else { music.raw[0] = music.raw[1] = music.raw[2] = 0; }
+      music.low = env(music.low, lo, dt, 0.35, 1.2);
+      music.mid = env(music.mid, mi, dt, 0.45, 1.5);
+      music.high = env(music.high, hi, dt, 0.2, 0.8);
+      music.pulse = env(music.pulse, kick, dt, 0.06, 0.45);
+      music.amt = env(music.amt, music.on ? (reduced ? 0.3 : 1) : 0, dt, 1.2, 1.2);
+      const k = music.amt;
+      skyU.uMusic.value.set(music.low * k, music.mid * k, music.high * k, music.pulse * k);
+      music.flow += dt * slow * (1 + 1.6 * music.mid * k);
+      music.tw += dt * slow * (1 + 1.8 * music.high * k);
+    }
 
     function stepFire(dt, slow) {
       const t = T;
@@ -1093,7 +1136,8 @@ NOBODY.themes = NOBODY.themes || {};
       const strength = tg ? 0.42 * far + 0.58 * near : 0;
       sig.strength += (strength - sig.strength) * ease(dt, 0.12);
       sig.angle = tAng;
-      const lit = sig.lit, beat = fire.beat;
+      // the playing signal glows with the track and breathes on its kick, as gently as the sky does (and not at all with v off)
+      const lit = sig.lit, beat = (0.45 * music.pulse + 0.35 * music.low) * music.amt;
       for (let i = 0; i < sig.list.length; i++) {
         const s = sig.list[i], onF = s.freq === sig.freq;
         let I = onF ? 0.7 : (C.scoped ? 0.16 : 0.34), sz = onF ? 7 : 4.5;
@@ -1302,6 +1346,8 @@ NOBODY.themes = NOBODY.themes || {};
       drawTally: drawTally,
       scheme: function (dawn) { skyU.uDawn.value = dawn ? 1 : 0; },
       noMeteors: function (v) { C.noMeteors = !!v; },
+      music: function (on) { if (on != null) music.on = !!on; return music.on; },
+      musicState: function () { const r = function (x) { return +x.toFixed(3); }; return { on: music.on, amt: r(music.amt), low: r(music.low), mid: r(music.mid), high: r(music.high), pulse: r(music.pulse), raw: music.raw.map(r), reduced: reduced }; },
       // test only (?mute=1): stop the loop and render on a stepped clock, one exact frame per call, so a recording is smooth
       // whatever the capture costs; the frame-time numbers are always measured on the live loop
       manual: function (on) { if (qs.get('mute') !== '1') return false; C.manual = !!on; if (on) { cancelAnimationFrame(raf); C.manualNow = last || performance.now(); } else { last = 0; raf = requestAnimationFrame(step); } return true; },
@@ -1316,9 +1362,16 @@ NOBODY.themes = NOBODY.themes || {};
   NOBODY.themes.campfire = (function () {
     const TH = { name: 'campfire', blurb: 'a fire on a small planet, a sky full of signals, a scope, marshmallows.' };
     let ctx = null, V = null, A = null, glass = null, power = null, S = null;
-    let scene = null, canvas = null, painted = null, nocampTimer = 0, scopeCanvas = null, scopeCtx = null, pendingView = null, gainHold = 1;
+    let scene = null, canvas = null, painted = null, nocampTimer = 0, pendingView = null;
     const UI = { scopeEl: null, legend: null, bar: null, hint: null, credit: null, journal: null, meterBars: [], lockRing: null, freqBtn: null, targetEl: null, strengthEl: null, mallowBtn: null, mallowChip: null, scopeBtn: null, layout: 'camp', journalSlug: null, journalAt: 0, journalHover: false, lockSlug: null, lockAt: 0, ptr: null, pinch: null, rightScope: false, zDown: 0, hDown: 0, hToast: 0, hKey: false, jkAt: 0, selfHL: false, placeholder: null, hintAt: 0, freqAt: 0, frames: 0, golden: 0, goldenVisit: 0 };
     const AU = { on: false };
+    // the camp's own sounds (the fire, the wind, the scope's static, the chime, the ident, the bite) on one bus, with a switch and
+    // a level remembered in this browser (issue #82); the station's volume is never touched. the sky's music: on unless v said no
+    const SND = { on: true, level: 100, ctls: [] }, SKYP = { on: true };
+    function loadPrefs() {
+      try { const s = JSON.parse(localStorage.getItem('nobody.campfire.sounds') || 'null'); if (s) { SND.on = s.on !== false; SND.level = typeof s.level === 'number' ? clamp(Math.round(s.level), 0, 100) : 100; } } catch (e) {}
+      try { SKYP.on = localStorage.getItem('nobody.campfire.sky') !== '0'; } catch (e) {}
+    }
     function el(id) { return ctx.el[id] || document.getElementById(id); }
     function say(text, cls) { if (ctx && ctx.T) ctx.T.print(text, cls); }
     function phone() { return V && V.phone(); }
@@ -1348,11 +1401,13 @@ NOBODY.themes = NOBODY.themes || {};
     TH.credit = CREDIT;
 
     /* ---- the interface paradigm (12.0, the hooks) ---- */
-    const KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'z', 'w', 'e', 'l', 'h', 'x'];
-    TH.interface = function () { return { kind: 'camp', keys: KEYS.slice(), layouts: ['camp', 'deck'] }; };
+    // no station visualizer here (issue #82): the sky is the visualizer, and v is the sky's
+    const KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'z', 'w', 'e', 'l', 'h', 'x', 'v'];
+    TH.interface = function () { return { kind: 'camp', keys: KEYS.slice(), layouts: ['camp', 'deck'], visualizer: false }; };
     TH.help = function () {
       return [['arrows', 'look round'], ['z', 'raise or lower the scope (hold it, or tap)'], ['w e', 'the frequency, down or up'], ['l or enter', 'lock on to the signal in the reticle'],
-        ['h', 'a marshmallow: tap to skewer, hold to toast, tap to eat'], ['x', 'eat it now'], ['j k', 'the scope onto each match after a find'], ['q', 'the locked signal onto the route'], ['f', 'the camp or the deck'], ['esc', 'the journal, then the scope']];
+        ['h', 'a marshmallow: tap to skewer, hold to toast, tap to eat'], ['x', 'eat it now'], ['j k', 'the scope onto each match after a find'], ['q', 'the locked signal onto the route'], ['f', 'the camp or the deck'],
+        ['v', 'the sky with the music, or not'], ['sounds', 'camp sounds off|on|0..100'], ['esc', 'the journal, then the scope']];
     };
     TH.commands = function () {
       return {
@@ -1368,7 +1423,20 @@ NOBODY.themes = NOBODY.themes || {};
         lock: function () { lock(); },
         toast: function () { mallowTap(); },
         tally: function () { say('golden ones carved in the log: ' + UI.golden + (UI.goldenVisit ? ', ' + UI.goldenVisit + ' tonight.' : '. none tonight yet.'), 'mid'); },
-        camp: function () { ctx.setLayout('camp'); }
+        // `camp` alone is the camp view; `camp sounds off|on|40` the camp's own sounds; `camp sky off|on` the sky's music
+        camp: function (a) {
+          const w = (a || '').toLowerCase().trim().split(/\s+/);
+          if (w[0] === 'sounds' || w[0] === 'sound') {
+            if (!w[1]) { say('camp sounds ' + (SND.on ? 'on, at ' + SND.level : 'off') + '. camp sounds off, on, or 0 to 100.', 'mid'); return; }
+            if (w[1] === 'off') setSounds(false, null, true);
+            else if (w[1] === 'on') setSounds(true, null, true);
+            else if (/^\d+$/.test(w[1])) setSounds(true, parseInt(w[1], 10), true);
+            else say('camp sounds off, on, or a level from 0 to 100.', 'err');
+            return;
+          }
+          if (w[0] === 'sky') { setSky(w[1] === 'off' ? false : w[1] === 'on' ? true : null); return; }
+          ctx.setLayout('camp');
+        }
       };
     };
     // the camp is the view only on the home screen in the camp layout with no overlay open (issue #77): a track page, the
@@ -1384,8 +1452,10 @@ NOBODY.themes = NOBODY.themes || {};
       else placeBar();
     }
     TH.keys = function (e) {
-      if (!scene) return false;
       const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      // v works in every view and behind the hidden interface: the sky is always up there
+      if (k === 'v') { if (!e.repeat) setSky(null); return true; }
+      if (!scene) return false;
       if (UI.away && k !== 'f') return false;
       if (k === 'f') { ctx.setLayout(inCamp() ? 'deck' : 'camp'); return true; }
       if (!inCamp()) {
@@ -1458,18 +1528,15 @@ NOBODY.themes = NOBODY.themes || {};
       document.body.insertBefore(painted, document.body.firstChild);
       document.body.insertBefore(canvas, document.body.firstChild);
       try { UI.golden = parseInt(localStorage.getItem('nobody.campfire.golden') || '0', 10) || 0; } catch (e) { UI.golden = 0; }
-      el('scope').textContent = '';
-      scopeCanvas = document.createElement('canvas'); scopeCanvas.setAttribute('aria-label', 'oscilloscope'); el('scope').appendChild(scopeCanvas);
-      const lab = document.createElement('span'); lab.className = 'dim scope-label'; lab.textContent = 'scope'; el('scope').appendChild(lab);
-      scopeCtx = scopeCanvas.getContext('2d');
       el('licence').textContent = TH.strings.licence;
       el('progress').innerHTML = '<span class="rail"><i class="fill"></i><b class="head"></b></span><span class="time mid"></span>';
       el('hdrBar').textContent = ''; el('hdrBar').className = 'hdr-rail'; el('hdrBar').appendChild(document.createElement('i'));
       el('dial').innerHTML = '<span class="dial-band"><i></i></span><span class="dial-read"></span>';
       const words = el('makeWords'); if (words) { UI.placeholder = words.getAttribute('placeholder'); words.setAttribute('placeholder', 'ask the sky for a track...'); }
       UI.layout = 'camp'; UI.view = S.view === 'home' ? 'home' : 'page'; UI.away = null;
+      loadPrefs();
       buildUi();
-      UI.helpWatch = new MutationObserver(syncAway); UI.helpWatch.observe(el('help'), { attributes: true, attributeFilter: ['hidden'] });
+      UI.helpWatch = new MutationObserver(function () { syncAway(); helpSoundCtl(); }); UI.helpWatch.observe(el('help'), { attributes: true, attributeFilter: ['hidden'] });
       syncAway();
       sceneUp();
       nocampTimer = setTimeout(function () { if (!scene) document.body.classList.add('nocamp'); }, 2000);
@@ -1480,9 +1547,9 @@ NOBODY.themes = NOBODY.themes || {};
       clearTimeout(nocampTimer);
       audioStop();
       if (scene) { scene.dispose(); scene = null; }
-      [canvas, painted, UI.scopeEl, UI.legend, UI.bar, UI.hint, UI.credit, UI.journal, UI.deckWrap].forEach(function (n) { if (n) n.remove(); });
-      canvas = painted = null; UI.scopeEl = UI.legend = UI.bar = UI.hint = UI.credit = UI.journal = UI.deckWrap = UI.deckBtn = null; UI.meterBars = [];
-      el('scope').textContent = ''; scopeCanvas = null; scopeCtx = null;
+      [canvas, painted, UI.scopeEl, UI.legend, UI.bar, UI.hint, UI.credit, UI.journal, UI.deckWrap, UI.sndRow].forEach(function (n) { if (n) n.remove(); });
+      const hs = document.querySelector('.camp-snd-help'); if (hs) hs.remove();
+      canvas = painted = null; UI.scopeEl = UI.legend = UI.bar = UI.hint = UI.credit = UI.journal = UI.deckWrap = UI.deckBtn = UI.sndRow = null; UI.meterBars = []; SND.ctls = [];
       el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
       el('dial').textContent = '';
       const words = el('makeWords'); if (words && UI.placeholder) words.setAttribute('placeholder', UI.placeholder);
@@ -1509,6 +1576,7 @@ NOBODY.themes = NOBODY.themes || {};
         scene.setQueue(ctx.queueList().slice(0, 6), ctx.current());
         if (ctx.filter()) scene.setFilter(ctx.filter(), ctx.visible());
         scene.scheme(document.documentElement.dataset.phosphor === 'amber');
+        scene.music(SKYP.on);
         scene.drawTally(UI.golden);
         drawLegend();
         if (pendingView) { const p = pendingView; pendingView = null; if (p.playing) scene.setPlaying(p.playing); if (p.hidden) scene.hidden(true); }
@@ -1516,11 +1584,6 @@ NOBODY.themes = NOBODY.themes || {};
     }
     TH.libsReady = function () { sceneUp(); };
     TH.resize = function () {
-      if (scopeCanvas && scopeCtx) {
-        const dpr = window.devicePixelRatio || 1, sw = scopeCanvas.clientWidth || 500, sh = scopeCanvas.clientHeight || V.rowPx();
-        scopeCanvas.width = Math.round(sw * dpr); scopeCanvas.height = Math.round(sh * dpr); scopeCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        scopeCanvas.dataset.w = sw; scopeCanvas.dataset.h = sh;
-      }
       if (scene) scene.resize();
       placeBar();
     };
@@ -1570,7 +1633,11 @@ NOBODY.themes = NOBODY.themes || {};
     TH.scheme = function () { if (scene) scene.scheme(document.documentElement.dataset.phosphor === 'amber'); };
     TH.widget = function () { return null; };
     TH.state = function () {
-      const base = { widget: null, layout: UI.layout, nocamp: document.body.classList.contains('nocamp'), golden: UI.golden, goldenVisit: UI.goldenVisit, journal: UI.journalSlug };
+      const sy = SY();
+      const base = { widget: null, layout: UI.layout, nocamp: document.body.classList.contains('nocamp'), golden: UI.golden, goldenVisit: UI.goldenVisit, journal: UI.journalSlug,
+        sounds: { on: SND.on, level: SND.level, gain: AU.on && AU.bus ? +AU.bus.gain.value.toFixed(3) : null, want: +campGain().toFixed(3), station: sy && sy.gain ? +sy.gain.gain.value.toFixed(3) : null, volume: sy ? sy.volume : null,
+          route: 'fire, wind, static, chime, ident, bite -> the camp bus (this gain) -> the station gain (the mute) -> speakers' },
+        sky: scene ? scene.musicState() : { on: SKYP.on } };
       if (!scene) return Object.assign(base, { running: false });
       const sg = scene.sig, yp = scene.yawPitch(), M = scene.M, pv = AU.pv;
       return Object.assign(base, {
@@ -1683,7 +1750,7 @@ NOBODY.themes = NOBODY.themes || {};
       const sy = SY();
       if (AU.on || !sy || !sy.ctx || !sy.gain) return;
       const c = sy.ctx; AU.on = true; AU.c = c; AU.nodes = [];
-      AU.bus = c.createGain(); AU.bus.gain.value = 0.9; AU.bus.connect(sy.gain);
+      AU.bus = c.createGain(); AU.bus.gain.value = campGain(); AU.bus.connect(sy.gain);
       const noiseSrc = function () { const s = c.createBufferSource(); s.buffer = sy.noise; s.loop = true; s.start(0, Math.random() * 1.9); AU.nodes.push(s); return s; };
       // the wind: low noise, breathing slowly
       const wl = c.createBiquadFilter(); wl.type = 'lowpass'; wl.frequency.value = 380;
@@ -1709,6 +1776,53 @@ NOBODY.themes = NOBODY.themes || {};
         } catch (e) { AU.pv = null; }
       }
     }
+    function campGain() { return SND.on ? 0.9 * SND.level / 100 : 0; }
+    function setSounds(on, level, speak) {
+      if (level != null) SND.level = clamp(Math.round(level), 0, 100);
+      if (on != null) SND.on = !!on;
+      try { localStorage.setItem('nobody.campfire.sounds', JSON.stringify({ on: SND.on, level: SND.level })); } catch (e) {}
+      if (AU.on && AU.bus) AU.bus.gain.setTargetAtTime(campGain(), AU.c.currentTime, 0.06);
+      syncSoundCtls();
+      if (speak) say(SND.on ? 'camp sounds on, at ' + SND.level + '. the fire, the wind, the static, the chime. the station is not touched.' : 'camp sounds off. the fire burns on without a sound. the station plays on.', 'mid');
+    }
+    function syncSoundCtls() {
+      SND.ctls.forEach(function (c) {
+        c.btn.setAttribute('aria-pressed', SND.on ? 'true' : 'false');
+        c.btn.textContent = SND.on ? 'sounds on' : 'sounds off';
+        if (document.activeElement !== c.range) c.range.value = String(SND.level);
+        c.range.setAttribute('aria-valuetext', SND.level + ' of 100' + (SND.on ? '' : ', off'));
+        c.wrap.classList.toggle('off', !SND.on);
+      });
+    }
+    // one control (a switch and a small slider); mounted by the fire, in the help and in the phone's dash
+    function soundCtl(where) {
+      const wrap = mk('span', 'camp-snd camp-snd-' + where);
+      const btn = mk('button', 'bk camp-btn', wrap, 'sounds on'); btn.type = 'button';
+      btn.setAttribute('aria-label', "the camp's own sounds: the fire, the wind, the static, the chime");
+      btn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); setSounds(!SND.on, null, true); });
+      const range = mk('input', 'camp-snd-level', wrap); range.type = 'range'; range.min = '0'; range.max = '100'; range.step = '5';
+      range.setAttribute('aria-label', 'camp sounds level');
+      range.addEventListener('input', function () { setSounds(+range.value > 0 ? true : SND.on, +range.value, false); });
+      range.addEventListener('change', function () { say('camp sounds at ' + SND.level + '.', 'mid'); });
+      ['pointerdown', 'keydown'].forEach(function (t) { range.addEventListener(t, function (e) { e.stopPropagation(); }); });
+      const c = { wrap: wrap, btn: btn, range: range, where: where };
+      SND.ctls.push(c); syncSoundCtls();
+      return c;
+    }
+    // the help (redrawn by the station each time it opens) gets the same control under the camp's keys
+    function helpSoundCtl() {
+      const help = el('help'), body = document.getElementById('helpBody');
+      if (!help || help.hidden || !body || body.querySelector('.camp-snd')) return;
+      SND.ctls = SND.ctls.filter(function (c) { return c.where !== 'help'; });
+      const row = mk('div', 'camp-snd-help', body); mk('span', 'label', row, 'CAMP SOUNDS');
+      row.appendChild(soundCtl('help').wrap);
+    }
+    function setSky(on) {
+      SKYP.on = on == null ? !SKYP.on : !!on;
+      try { localStorage.setItem('nobody.campfire.sky', SKYP.on ? '1' : '0'); } catch (e) {}
+      if (scene) scene.music(SKYP.on);
+      say(!scene ? 'no sky here. the list is the sky.' : SKYP.on ? 'the sky listens: the dust and the curtains move with the music. v to let it keep its own time.' : 'the sky keeps its own time. v and it listens again.', 'mid');
+    }
     function audioStop() {
       if (!AU.on) return;
       try { AU.nodes.forEach(function (n) { try { n.stop(); } catch (e) {} }); AU.bus.disconnect(); if (AU.pg) AU.pg.disconnect(); } catch (e) {}
@@ -1717,7 +1831,7 @@ NOBODY.themes = NOBODY.themes || {};
       AU.on = false; AU.pv = null; AU.pvSlug = null;
     }
     function crackle(s) {
-      if (!AU.on || document.hidden) return;
+      if (!AU.on || document.hidden || !campGain()) return;
       const c = AU.c, sy = SY(), t = c.currentTime;
       const src = c.createBufferSource(); src.buffer = sy.noise;
       const hp = c.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1100 + Math.random() * 2600;
@@ -1829,7 +1943,13 @@ NOBODY.themes = NOBODY.themes || {};
       UI.mallowBtn.addEventListener('pointercancel', function () { mallowUp(); });
       UI.mallowBtn.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); mallowTap(); } });
       UI.mallowChip = mk('span', 'camp-mallow', bar, '');
+      bar.appendChild(soundCtl('bar').wrap);
       UI.bar = bar;
+      // the phone's dash carries the same switch and slider, under the volume
+      const sr = document.createElement('div'); sr.className = 'row camp-snd-row';
+      mk('span', 'label', sr, 'CAMP'); sr.appendChild(soundCtl('dash').wrap);
+      const txRow = el('transmitter').querySelector('.row'); if (txRow) txRow.after(sr);
+      UI.sndRow = sr;
       // the [ deck ] bracket in the catalogue's control row
       const wrap = document.createElement('span'); wrap.className = 'camp-deck-wrap';
       const db = mk('button', 'bk camp-deck', wrap, 'deck'); db.type = 'button'; db.setAttribute('aria-label', 'the camp or the deck');
@@ -1884,11 +2004,13 @@ NOBODY.themes = NOBODY.themes || {};
       if (ph) {
         const tx = el('transmitter').getBoundingClientRect();
         const top = inCamp() ? tx.top : innerHeight;
-        UI.bar.style.left = '50%'; UI.bar.style.top = Math.round(top - (UI.bar.offsetHeight || 44) - 10) + 'px'; UI.bar.style.bottom = 'auto';
+        UI.bar.style.maxWidth = ''; UI.bar.style.left = '50%'; UI.bar.style.top = Math.round(top - (UI.bar.offsetHeight || 44) - 10) + 'px'; UI.bar.style.bottom = 'auto';
       } else {
         const tx = el('transmitter').getBoundingClientRect(), cat = el('catalogue').getBoundingClientRect();
         const left = tx.right > 0 ? tx.right : 0, right = cat.left > left ? cat.left : innerWidth;
         UI.credit.style.left = Math.round((left + right) / 2) + 'px'; UI.credit.style.maxWidth = Math.max(240, Math.round(right - left - 24)) + 'px';
+        // the bar stays inside the gap between the boards; what does not fit wraps onto a second row above it (issue #82)
+        UI.bar.style.maxWidth = Math.max(240, Math.round(right - left - 24)) + 'px';
         UI.bar.style.left = Math.round((left + right) / 2) + 'px'; UI.bar.style.top = 'auto'; UI.bar.style.bottom = Math.round((UI.credit.offsetHeight || 40) + 24) + 'px';
       }
     }
@@ -2042,44 +2164,9 @@ NOBODY.themes = NOBODY.themes || {};
     TH.towerStop = function () { el('towerStatic').hidden = true; };
     TH.towerState = function () { return scene && scene.C.running ? 'the camp at night, the fire going' : 'a small CSS fire in the card'; };
 
-    /* ---- the card's analyser in the deck: warm bars, a gold scope line ---- */
-    function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-    function autoGain(s) { let m = 0; for (let i = 0; i < s.length; i++) m = Math.max(m, Math.abs(s[i])); const want = m > 0.02 ? Math.min(12, 0.8 / m) : gainHold; gainHold += (want - gainHold) * 0.05; return gainHold; }
-    TH.frame = function () {
-      if (!A.ctx2d) return;
-      const ember = token('--ember'), gold = token('--gold'), dim = token('--ink-dim'), deep = token('--ember-deep');
-      if (!ember || !gold) return;
-      const g = A.ctx2d, W = A.W, H = A.H;
-      g.clearRect(0, 0, W, H);
-      const ph = phone(), cellW = V.fontPx() * 0.6, totalCols = Math.floor(W / cellW);
-      A.totalCols = totalCols;
-      const labelCols = ph ? 10 : 24, areaCols = Math.max(A.bands, totalCols - 2 - labelCols), areaW = areaCols * cellW, x0 = 2 * cellW;
-      g.fillStyle = dim; g.fillRect(0, 0, 1, H);
-      const n = Math.max(32, Math.floor(areaW / 3));
-      if (A.mode === 'scope5') {
-        const s = A.samples(n), gn = autoGain(s);
-        g.lineWidth = 1.5; g.strokeStyle = gold; g.shadowColor = ember; g.shadowBlur = 8; g.beginPath();
-        for (let i = 0; i < n; i++) { const x = x0 + i / (n - 1) * areaW, y = H / 2 - s[i] * gn * (H / 2 - 2); if (i) g.lineTo(x, y); else g.moveTo(x, y); }
-        g.stroke(); g.shadowBlur = 0; A.baselineText(true); return;
-      }
-      const per = areaW / A.bands, bw = Math.max(2, per * 0.62);
-      const grad = g.createLinearGradient(0, H, 0, 0); grad.addColorStop(0, deep || ember); grad.addColorStop(0.5, ember); grad.addColorStop(1, gold);
-      const rows = A.rows, cellH = H / rows;
-      for (let b = 0; b < A.bands; b++) {
-        const v = A.vals[b], cells = Math.min(rows, Math.floor(Math.pow(v, 0.8) * (rows + 0.99))), hgt = Math.max(0, Math.pow(v, 0.8) * H);
-        if (cells > A.peaks[b]) { A.peaks[b] = cells; A.peakAt[b] = performance.now(); } else if (performance.now() - A.peakAt[b] > 150 && A.peaks[b] > 0) { A.peaks[b]--; A.peakAt[b] = performance.now(); }
-        const x = x0 + b * per + (per - bw) / 2;
-        g.fillStyle = grad; if (hgt > 1) { if (A.flip) g.fillRect(x, 0, bw, hgt); else g.fillRect(x, H - hgt, bw, hgt); }
-        const pk = A.peaks[b]; if (pk > cells && pk <= rows) { g.fillStyle = gold; g.fillRect(x, A.flip ? pk * cellH - 2 : H - pk * cellH, bw, 2); }
-      }
-      A.baselineText(A.live);
-      if (scopeCtx) {
-        const SW = +scopeCanvas.dataset.w || 500, SH = +scopeCanvas.dataset.h || 20, m = Math.max(32, Math.floor(SW / 3)), s = A.samples(m), gn = autoGain(s), sc = scopeCtx;
-        sc.clearRect(0, 0, SW, SH); sc.lineWidth = 1.2; sc.strokeStyle = gold; sc.beginPath();
-        for (let i = 0; i < m; i++) { const x = i / (m - 1) * SW, y = SH / 2 - s[i] * gn * (SH / 2 - 1); if (i) sc.lineTo(x, y); else sc.moveTo(x, y); }
-        sc.stroke();
-      }
-    };
+    /* ---- no station visualizer under the camp (issue #82): the sky is the visualizer. the card's spectrum, baseline and scope
+       are hidden by the theme's CSS in every layout; frame() only keeps the baseline's words current, as 12.0 asks ---- */
+    TH.frame = function () { A.baselineText(A.live); };
     TH.artwork = function () {
       try {
         const cv = document.createElement('canvas'); cv.width = 512; cv.height = 512; const g = cv.getContext('2d');

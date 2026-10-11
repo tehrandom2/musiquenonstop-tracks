@@ -26,7 +26,7 @@
   const st = NOBODY.st = {};
   // S is the station's state. it is exposed read-only as NOBODY.state for the screenshot and test harness.
   const S = NOBODY.state = {
-    tracks: [], bySlug: {}, num: {}, queue: [], current: null, history: [], played: new Set(),
+    tracks: [], bySlug: {}, num: {}, queue: [], current: null, history: [], played: new Set(), albums: [], albumBySlug: {}, albumOfSlug: {},
     state: 'standby', shuffle: false, repeat: false, hl: -1, filter: '', sort: 'newest',
     onAir: false, airSince: 0, visitor: 0, view: 'home', readoutTyper: null, whyTyper: null,
     deadTimer: 0, deadLeft: 60, idleTimer: 0, tuningToken: 0, scopeMode: 'bars', booted: false,
@@ -73,6 +73,9 @@
       open: function (slug) { if (S.bySlug[slug]) openTrack(slug); },
       find: function (words) { st.setFilter(words); },
       remix: function (slug) { st.remixThis(slug); },
+      // albums (issue #73): the same API as NOBODY.albums/album/albumOf/cover/playAlbum, plus the album page
+      openAlbum: function (slug) { if (S.albumBySlug[slug]) openAlbum(slug); }, playAlbum: function (slug) { return playAlbum(slug); },
+      albums: function () { return S.albums.slice(); }, albumOf: function (track) { return albumOf(track); }, cover: function (x, size) { return coverUrl(x, size); },
       setHighlight: function (slug) { setHighlight(slug); },
       setLayout: function (name) { st.setLayout(name); },
       // a track's own file, for a theme that previews it through its own element (issue #64: the campfire's scope)
@@ -82,8 +85,9 @@
       hidden: function () { return st.hidden(); }, layout: function () { return S.layout || null; } };
   }
   // the keys a theme may claim for its paradigm (12.0): the arrows, and letters the station's own table does not use
-  const CLAIMABLE = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'd', 'h', 'l', 'o', 'u', 'w', 'x', 'y', 'z', 'e', 't'];
-  const IFACE = { kind: null, keys: [], arrows: false, layouts: [] };
+  // `v` is the hidden mode's visualizer key; a theme that says visualizer: false (issue #82) has no station visualizer and may claim it
+  const CLAIMABLE = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'd', 'h', 'l', 'o', 'u', 'w', 'x', 'y', 'z', 'e', 't', 'v'];
+  const IFACE = { kind: null, keys: [], arrows: false, layouts: [], viz: true };
   function themeInit(name) {
     const th = THEMES[name]; if (!th) return false;
     NOBODY.theme.current = th; NOBODY.theme.name = name; S.theme = name;
@@ -102,6 +106,9 @@
   function themeInterface(th) {
     const iface = th.interface ? th.interface() : null;
     IFACE.kind = iface ? (iface.kind || 'custom') : null; IFACE.keys = []; IFACE.arrows = false; IFACE.layouts = iface && iface.layouts ? iface.layouts.slice() : [];
+    IFACE.viz = !(iface && iface.visualizer === false);
+    HELP_HIDE[1] = IFACE.viz ? 'hide the interface (v: bars)' : 'hide the interface';
+    hideVizSync();
     document.body.dataset.interface = IFACE.kind || '';
     if (!iface) { delete document.body.dataset.layout; S.layout = null; return; }
     const refused = [];
@@ -113,7 +120,7 @@
   }
   function themeRelease() {
     T.retract(S.theme);
-    IFACE.kind = null; IFACE.keys = []; IFACE.arrows = false; IFACE.layouts = [];
+    IFACE.kind = null; IFACE.keys = []; IFACE.arrows = false; IFACE.layouts = []; IFACE.viz = true;
     document.body.dataset.interface = ''; delete document.body.dataset.layout; S.layout = null;
   }
   // the layout of the home view (12.0, issue #53): the station sets body[data-layout], the theme's CSS folds the cards, the theme
@@ -135,7 +142,7 @@
     if (i < 0 || i === S.hl) return;
     S.hl = i; highlight();
   }
-  function pageKind() { return S.state === 'dead' ? 'dead' : S.view === 'track' ? 'page' : S.view === 'guestbook' ? 'guestbook' : 'home'; }
+  function pageKind() { return S.state === 'dead' ? 'dead' : S.view === 'track' || S.view === 'album' ? 'page' : S.view === 'guestbook' ? 'guestbook' : 'home'; }
   document.addEventListener('libs-ready', function () { const th = TH(); if (th && th.libsReady) th.libsReady(); });
 
   /* ---------------- helpers ---------------- */
@@ -214,11 +221,67 @@
     tracks.sort(function (a, b) { return (when(b) - when(a)) || String(b.date || '').localeCompare(String(a.date || '')) || String(b.slug).localeCompare(String(a.slug)); });
     S.tracks = tracks; S.bySlug = {}; S.num = {};
     tracks.forEach(function (t, i) { S.bySlug[t.slug] = t; S.num[t.slug] = tracks.length - i; });
+    installAlbums(idx);
     el.trackCount.textContent = tracks.length + (tracks.length === 1 ? ' track' : ' tracks');
     if (TH()) TH().catalogue(tracks);
     return tracks.length;
   }
   function chronological() { return S.tracks.slice().reverse().map(function (t) { return t.slug; }); }
+
+  /* ---------------- albums (issue #73): the index's `albums`, each track's segments ----------------
+     an album is { slug, title, project, cover_400, cover_1400, tracks, description, credits, licence }; its tracks are
+     filtered to the ones in the catalogue, in album order. a track belongs to the album that lists it. */
+  const PLACEHOLDER = { 400: 'img/nobody-cover-400.webp', 1400: 'img/nobody-cover-1400.webp' };
+  function installAlbums(idx) {
+    S.albums = []; S.albumBySlug = {}; S.albumOfSlug = {};
+    ((idx && Array.isArray(idx.albums)) ? idx.albums : []).forEach(function (a) {
+      if (!a || !a.slug || S.albumBySlug[a.slug]) return;
+      const tracks = (a.tracks || []).filter(function (s) { return S.bySlug[s] && !S.albumOfSlug[s]; });
+      if (!tracks.length) return;
+      const al = Object.assign({}, a, { tracks: tracks, credits: Array.isArray(a.credits) ? a.credits : [] });
+      S.albums.push(al); S.albumBySlug[al.slug] = al;
+      tracks.forEach(function (s) { S.albumOfSlug[s] = al; });
+    });
+  }
+  function albumOf(x) {
+    const slug = typeof x === 'string' ? x : x && x.slug;
+    return (slug && S.albumOfSlug[slug]) || null;
+  }
+  function albumTitle(a) { return a ? (a.title || a.slug) : ''; }
+  function trackNo(slug) { const a = albumOf(slug); return a ? a.tracks.indexOf(slug) + 1 : null; }
+  // an album from an album, a track, or either one's slug (an album's slug first)
+  function resolveAlbum(x) {
+    if (!x) return null;
+    if (typeof x === 'string') return S.albumBySlug[x] || albumOf(x);
+    if (Array.isArray(x.tracks) && S.albumBySlug[x.slug]) return S.albumBySlug[x.slug];
+    return albumOf(x);
+  }
+  // a cover's URL: the album's own art at 400 or 1400 px, or the station's placeholder (a single, or an album without art)
+  function coverUrl(x, size) {
+    size = Number(size) === 1400 ? 1400 : 400;
+    const a = resolveAlbum(x);
+    const rel = a && (size === 1400 ? (a.cover_1400 || a.cover_400) : (a.cover_400 || a.cover_1400));
+    return rel ? CFG.tracksBase + rel : PLACEHOLDER[size];
+  }
+  function hasArt(x) { return coverUrl(x, 400) !== PLACEHOLDER[400]; }
+  function absUrl(u) { try { return new URL(u, location.href).href; } catch (e) { return u; } }
+  function albumLink(slug) { return location.href.split('#')[0] + '#/album/' + slug; }
+  // play an album: its first track now, the rest next in album order, ahead of whatever was queued
+  function playAlbum(slug) {
+    const a = S.albumBySlug[slug]; if (!a) return false;
+    if (!S.onAir) { S.pendingAlbum = slug; goOnAir(null); return true; }
+    if (S.state === 'dead') return false;
+    S.queue = a.tracks.slice(1).concat(S.queue.filter(function (s) { return a.tracks.indexOf(s) < 0 && s !== S.current; }));
+    T.print('album: ' + albumTitle(a) + '. ' + a.tracks.length + (a.tracks.length === 1 ? ' track' : ' tracks') + ', in order.');
+    tuneTo(a.tracks[0]);
+    return true;
+  }
+  // the theme-agnostic album API (the contract on #73): themes build their album views on these
+  NOBODY.albums = function () { return S.albums.slice(); };
+  NOBODY.album = function (slug) { return S.albumBySlug[slug] || null; };
+  NOBODY.albumOf = function (track) { return albumOf(track); };
+  NOBODY.cover = function (x, size) { return coverUrl(x, size); };
+  NOBODY.playAlbum = function (slug) { return playAlbum(slug); };
 
   /* ---------------- boot (2.1, 7) ---------------- */
   let bootCursor = null, bootTypers = [], bootDone = false, bootIndexPromise = null;
@@ -341,6 +404,11 @@
         const slug = decodeURIComponent(m[1]);
         S.queue = [slug].concat(S.queue.filter(function (s) { return s !== slug; }));
       }
+      // an album's link (or playAlbum before the key): the album plays first, in its order (issue #73)
+      const ma = /^#\/album\/([^/?]+)/.exec(location.hash);
+      const al = S.albumBySlug[S.pendingAlbum] || (ma && S.albumBySlug[decodeURIComponent(ma[1])]);
+      S.pendingAlbum = null;
+      if (al) S.queue = al.tracks.concat(S.queue.filter(function (s) { return al.tracks.indexOf(s) < 0; }));
       setChip('ON AIR');
       tuneTo(S.queue.shift());
       route();
@@ -353,7 +421,16 @@
   }
 
   /* ---------------- the deck, the queue, tuning (2.3, 5.1) ---------------- */
-  function markRows() { renderRows(); tellQueue(); }
+  function markRows() { renderRows(); tellQueue(); markAlbumRows(); }
+  // the album page's rows follow the deck like the catalogue's (issue #73)
+  function markAlbumRows() {
+    if (S.view !== 'album') return;
+    el.page.querySelectorAll('.album-tracks .cat-row').forEach(function (r) {
+      const stt = stateOf(S.bySlug[r.dataset.slug]);
+      r.className = 'cat-row ' + stt;
+      r.querySelector('.mark').textContent = stt === 'playing' || stt === 'tuning' ? '>' : stt === 'played' ? '.' : ' ';
+    });
+  }
   function tuneTo(slug) {
     const t = S.bySlug[slug];
     // a slug that is not in the catalogue is skipped, but never forever (issue #25)
@@ -443,7 +520,7 @@
     markRows();
     S.preloaded = false;
     clearIdle();
-    if (S.pendingPage) { const p = S.pendingPage; S.pendingPage = null; openTrack(p); }
+    if (S.pendingPage) { const p = S.pendingPage; S.pendingPage = null; if (p.indexOf('album:') === 0) openAlbum(p.slice(6)); else openTrack(p); }
   }
   // the dial: the theme draws it (text ticks in phosphor, a strip of frequencies in the city)
   function drawDial(f, locked, note) { TH().dial(el.dial, f, !!locked, note || '', content()); }
@@ -524,10 +601,18 @@
   function mediaSession(t) {
     if (!('mediaSession' in navigator)) return;
     try {
-      if (!S.artwork) S.artwork = TH().artwork();
+      // the album's cover (issue #73); a single shows the theme's own picture, or the placeholder cover without one
+      const a = albumOf(t);
+      let art;
+      if (a && hasArt(a)) art = [{ src: absUrl(coverUrl(a, 400)), sizes: '400x400', type: 'image/webp' }, { src: absUrl(coverUrl(a, 1400)), sizes: '1400x1400', type: 'image/webp' }];
+      else {
+        if (S.artwork === undefined) S.artwork = TH().artwork() || null;
+        art = S.artwork ? [{ src: S.artwork, sizes: '512x512', type: 'image/png' }]
+          : [{ src: absUrl(PLACEHOLDER[400]), sizes: '400x400', type: 'image/webp' }, { src: absUrl(PLACEHOLDER[1400]), sizes: '1400x1400', type: 'image/webp' }];
+      }
+      S.mediaArt = art[art.length - 1].src;
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: t.title || t.slug, artist: 'nobody fm', album: '88.8 the transmitter nobody can find',
-        artwork: S.artwork ? [{ src: S.artwork, sizes: '512x512', type: 'image/png' }] : []
+        title: t.title || t.slug, artist: 'nobody fm', album: a ? albumTitle(a) : '88.8 the transmitter nobody can find', artwork: art
       });
       navigator.mediaSession.setActionHandler('play', togglePlay);
       navigator.mediaSession.setActionHandler('pause', togglePlay);
@@ -601,6 +686,8 @@
     else if (S.sort === 'tier') r = r.slice().sort(by(function (t) { return t.model || ''; }));
     else if (S.sort === 'num') r = r.slice().sort(by(function (t) { return S.num[t.slug]; }));
     else if (S.sort === 'lineage') r = r.slice().sort(by(function (t) { return S.num[t.slug]; }));
+    // by album: the albums in the index's order, each in its own order, then the singles newest first
+    else if (S.sort === 'album') r = r.slice().sort(by(function (t) { const a = albumOf(t); return a ? String(1e4 + S.albums.indexOf(a)) + String(1e4 + a.tracks.indexOf(t.slug)) : '3' + String(1e6 - S.num[t.slug]); }));
     const out = [];
     (function walk(list, depth) { list.forEach(function (t) { out.push({ t: t, depth: depth }); walk(children(t.slug), depth + 1); }); })(r, 0);
     return out;
@@ -612,10 +699,13 @@
   }
   function matches(t) {
     if (!S.filter) return true;
-    const hay = [t.slug, t.title, t.idea, t.request, t.prompt, t.lyrics, t.why, t.key, t.mood, t.project].join(' ').toLowerCase();
-    // `project:<name>` is exact (a tag a sibling project put on its requests); every other word is a substring of the text
+    const al = albumOf(t), seg = t.segments || {};
+    const hay = [t.slug, t.title, t.idea, t.request, t.prompt, t.lyrics, t.why, t.key, t.mood, t.project, albumTitle(al), seg.submitter].join(' ').toLowerCase();
+    // `project:<name>` and `album:<slug>` are exact (a tag a sibling project put on its requests, an album's slug); every
+    // other word is a substring of the text
     return S.filter.toLowerCase().split(/\s+/).every(function (w) {
       if (w.indexOf('project:') === 0) return (t.project || '').toLowerCase() === w.slice(8);
+      if (w.indexOf('album:') === 0) return !!al && al.slug === w.slice(6);
       return hay.indexOf(w) >= 0;
     });
   }
@@ -632,7 +722,7 @@
     el.catHead.textContent = '';
     const heads = phone()
       ? [['#', 'num', 4], ['slug', null, 14], ['bpm', 'bpm', 4], ['key', 'key', 4], ['st', null, 4]]
-      : [['#', 'num', 4], ['slug', null, 32], ['bpm', 'bpm', 5], ['key', 'key', 6], ['len', 'len', 6], ['tier', 'tier', 7], ['state', null, 11], ['lineage', null, 0]];
+      : [['#', 'num', 4], ['slug', null, 28], ['bpm', 'bpm', 5], ['key', 'key', 6], ['len', 'len', 6], ['tier', 'tier', 7], ['state', null, 11], ['album', 'album', 0]];
     heads.forEach(function (h) {
       const s = span(h[2] ? pad(h[0], h[2]) : h[0], h[1] ? 'sort' : '');
       if (h[1]) s.addEventListener('click', function () { S.sort = h[1]; buildCatalogue(); T.print('sorted by ' + h[0] + '.', 'mid'); });
@@ -644,13 +734,16 @@
     const slug = (item.depth ? '+-- ' : '') + t.slug;
     const lin = t.lineage && t.lineage.parent && S.bySlug[t.lineage.parent] ? 'from ' + S.num[t.lineage.parent] + ': "' + (t.lineage.request || '') + '"' : '';
     const tag = [t.voice ? 'voice' : '', t.project ? 'project:' + t.project : ''].filter(Boolean).join(' ');
+    // the last column (issue #73) is the album and the track's place in it; a single shows its lineage or its tags there
+    const al = albumOf(t), lw = Math.max(0, content() - 68 - 7);
+    const alb = al ? pad(albumTitle(al), Math.max(0, lw - 4)) + String(trackNo(t.slug)).padStart(4) : '';
     // the row ends in `+ remix` (issue #51): 7 columns, taken from the lineage column on desktop; on the phone the row is 35 columns
     // (a 13-character slug), the width the narrowest card gives it (the arena's, 2ch of padding each side)
     if (phone()) {
       const g = stt === 'playing' ? '*' : stt === 'tuning' ? '~' : stt === 'played' ? '.' : 'q';
       return { num: pad(n, 2), slug: pad(slug, 13) + ' ', rest: pad(t.bpm, 3) + ' ' + pad(keyShort(t.key), 2) + '  ' + g + (t.voice ? 'v' : ' ') };
     }
-    return { num: pad(n, 2), slug: pad(slug, 32), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(stt, 9) + '  ' + pad(lin || tag, Math.max(0, content() - 72 - 7)) };
+    return { num: pad(n, 2), slug: pad(slug, 28), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(stt, 9) + '  ' + pad(alb || lin || tag, lw) };
   }
   function renderRows() {
     const items = displayOrder();
@@ -715,8 +808,19 @@
     const h = location.hash || '#/';
     let m;
     if ((m = /^#\/track\/([^/?]+)/.exec(h))) { const slug = decodeURIComponent(m[1]); if (S.bySlug[slug]) { if (S.onAir && S.state !== 'tuning') showTrack(slug); else S.pendingPage = slug; return; } }
+    if ((m = /^#\/album\/([^/?]+)/.exec(h))) { const slug = decodeURIComponent(m[1]); if (S.albumBySlug[slug]) { if (S.onAir && S.state !== 'tuning') showAlbum(slug); else S.pendingPage = 'album:' + slug; return; } }
     if (/^#\/guestbook/.test(h)) { showGuestbook(); return; }
     showHome();
+  }
+  // what a link to this screen should show (Open Graph, issue #73): the page's own title, words and cover. a crawler reads
+  // index.html's defaults (a hash never reaches a server); this keeps the tags true for anything that reads the live page
+  const SHARE_DEFAULT = {};
+  function share(title, desc, image) {
+    [['og:title', title], ['og:description', desc], ['og:image', image], ['og:url', location.href], ['twitter:title', title], ['twitter:description', desc], ['twitter:image', image]].forEach(function (kv) {
+      const m = document.head.querySelector('meta[property="' + kv[0] + '"], meta[name="' + kv[0] + '"]'); if (!m) return;
+      if (!(kv[0] in SHARE_DEFAULT)) SHARE_DEFAULT[kv[0]] = m.getAttribute('content');
+      m.setAttribute('content', kv[1] == null ? SHARE_DEFAULT[kv[0]] : kv[1]);
+    });
   }
   window.addEventListener('hashchange', route);
   function showHome() {
@@ -726,11 +830,13 @@
     el.transmitter.hidden = false; el.catalogue.hidden = false; el.make.hidden = false;
     el.headerMain.hidden = false; el.headerPage.hidden = true;
     if (S.whyTyper) { S.whyTyper.cancel(); S.whyTyper = null; }
+    share(null, null, null);
+    if (was === 'album') document.title = S.state === 'tuning' ? 'nobody fm: tuning' : S.current ? 'nobody fm: ' + S.current : 'nobody fm';
     A.resize();
-    // home pulls the camera back up (12.5)
-    if (S.onAir && S.state !== 'dead' && was !== 'home') TH().transition(was === 'track' ? 'page' : was, 'home', { slug: S.current });
+    // home pulls the camera back up (12.5); an album page is a page to the theme (12.0's transitions)
+    if (S.onAir && S.state !== 'dead' && was !== 'home') TH().transition(was === 'track' || was === 'album' ? 'page' : was, 'home', { slug: S.current });
   }
-  function openPage(kind) {
+  function openPage(kind, album) {
     S.view = kind;
     // the MAKE A TRACK card lives on the main screen (12.0 controls); a page's remix this goes home to it
     el.transmitter.hidden = true; el.catalogue.hidden = true; el.make.hidden = true;
@@ -739,10 +845,89 @@
     el.page.hidden = false; el.page.textContent = '';
     el.page.scrollTop = 0;
     drawProgress();
-    // the camera flies down to the tower for a track page, up and wide for the guestbook (12.5)
-    if (S.onAir) TH().transition('home', kind === 'track' ? 'page' : 'guestbook', { slug: S.current });
+    // the camera flies down to the tower for a track page, up and wide for the guestbook (12.5); an album page is a page,
+    // and its info names the album (issue #73)
+    if (S.onAir) TH().transition('home', kind === 'guestbook' ? 'guestbook' : 'page', album ? { slug: S.current, album: album } : { slug: S.current });
   }
   function openTrack(slug) { location.hash = '#/track/' + slug; if (location.hash === '#/track/' + slug) route(); }
+  function openAlbum(slug) { location.hash = '#/album/' + slug; if (location.hash === '#/album/' + slug) route(); }
+  // the cover, the album as a link, the place in it and who asked (issue #73): on the track page under the asked line
+  function albumBlock(t) {
+    const a = albumOf(t), seg = t.segments || {};
+    const box = div('album-block');
+    const img = document.createElement('img');
+    img.className = 'cover-art' + (hasArt(a) ? '' : ' placeholder');
+    img.src = coverUrl(t, 400); img.width = 400; img.height = 400; img.loading = 'lazy'; img.decoding = 'async';
+    img.alt = a ? 'cover of ' + albumTitle(a) : 'nobody fm placeholder cover';
+    img.addEventListener('error', function () { if (img.src.indexOf(PLACEHOLDER[400]) < 0) { img.src = PLACEHOLDER[400]; img.classList.add('placeholder'); } });
+    box.appendChild(img);
+    const meta = div('album-meta');
+    if (a) {
+      const l1 = div('row'); l1.appendChild(span('ALBUM', 'label')); l1.appendChild(span(' track ' + trackNo(t.slug) + ' of ' + a.tracks.length, 'mid')); meta.appendChild(l1);
+      const l2 = div(''); l2.appendChild(button(albumTitle(a), 'album-link', function () { openAlbum(a.slug); })); meta.appendChild(l2);
+    } else {
+      const l1 = div('row'); l1.appendChild(span('SINGLE', 'label')); meta.appendChild(l1);
+      meta.appendChild(span('no album. it stands on its own.', 'mid'));
+    }
+    if (seg.submitter) { const l3 = div(''); l3.appendChild(span('asked by ', 'mid')); l3.appendChild(span(seg.submitter, 'submitter')); meta.appendChild(l3); }
+    if (seg.tags && seg.tags.length) meta.appendChild(div('')).appendChild(span('tags: ' + seg.tags.join(' '), 'mid'));
+    box.appendChild(meta);
+    return box;
+  }
+  function showAlbum(slug) {
+    const a = S.albumBySlug[slug]; if (!a) return;
+    openPage('album', slug);
+    const p = el.page;
+    const copyBtn = button('copy', '', function () { copyText(albumLink(slug), albumLink(slug)); });
+    const head = div('row'); head.appendChild(span('ALBUM' + (a.project && !phone() ? '  project:' + a.project : ''), 'label'));
+    const hr = span(''); hr.appendChild(span(phone() ? '' : '#/album/' + slug + ' ', 'mid')); hr.appendChild(phone() ? button('< back', '', function () { st.home(); }) : copyBtn);
+    head.appendChild(hr); p.appendChild(head);
+    p.appendChild(span(albumTitle(a), 'page-title'));
+    const total = a.tracks.reduce(function (s, x) { return s + ((S.bySlug[x] || {}).duration || 0); }, 0);
+    const box = div('album-block album-hero');
+    const img = document.createElement('img');
+    img.className = 'cover-art' + (hasArt(a) ? '' : ' placeholder');
+    img.src = coverUrl(a, 1400); img.srcset = coverUrl(a, 400) + ' 400w, ' + coverUrl(a, 1400) + ' 1400w'; img.sizes = phone() ? '100vw' : '360px';
+    img.width = 1400; img.height = 1400; img.decoding = 'async'; img.alt = 'cover of ' + albumTitle(a);
+    img.addEventListener('error', function () { if (img.src.indexOf(PLACEHOLDER[1400]) < 0) { img.removeAttribute('srcset'); img.src = PLACEHOLDER[1400]; img.classList.add('placeholder'); } });
+    box.appendChild(img);
+    const meta = div('album-meta');
+    meta.appendChild(span(a.tracks.length + (a.tracks.length === 1 ? ' track' : ' tracks') + '   ' + fmt(total) + (hasArt(a) ? '' : '   no cover yet'), 'mid'));
+    if (phone()) { const pl = div('row'); pl.appendChild(span('#/album/' + slug, 'mid')); pl.appendChild(copyBtn); meta.appendChild(pl); }
+    const d = document.createElement('p'); d.className = 'why-text'; d.textContent = a.description || '(nobody wrote about this one yet.)'; meta.appendChild(d);
+    box.appendChild(meta);
+    p.appendChild(box);
+    const buttons = div('buttons primary');
+    buttons.appendChild(button('> play all', '', function () { playAlbum(slug); }));
+    buttons.appendChild(button('+ queue all', '', function () { st.queueAlbum(slug); }));
+    p.appendChild(buttons);
+    p.appendChild(h2('TRACKS', phone() ? null : span('list album:' + slug, 'mid')));
+    const list = div('album-tracks');
+    a.tracks.forEach(function (s, i) {
+      const t = S.bySlug[s], stt = stateOf(t);
+      const r = div('cat-row ' + stt); r.setAttribute('role', 'button'); r.tabIndex = -1; r.dataset.slug = s;
+      r.appendChild(span(pad(i + 1, 3)));
+      r.appendChild(span(stt === 'playing' || stt === 'tuning' ? '>' : stt === 'played' ? '.' : ' ', 'mark'));
+      r.appendChild(span(' '));
+      const sl = span(pad(s, phone() ? Math.max(12, content() - 12) : 40), 'slug-link'); sl.title = 'open ' + s;
+      sl.addEventListener('click', function (e) { e.stopPropagation(); openTrack(s); });
+      r.appendChild(sl);
+      r.appendChild(span(' ' + pad(fmt(t.duration), 5) + (phone() ? '' : pad(t.bpm != null ? t.bpm + ' bpm' : '', 9) + pad(t.title || '', Math.max(0, content() - 64)))));
+      r.addEventListener('click', function () { playNow(s); });
+      list.appendChild(r);
+    });
+    p.appendChild(list);
+    if (a.credits && a.credits.length) {
+      p.appendChild(h2('CREDITS'));
+      const cr = div('credits');
+      a.credits.forEach(function (c) { const l = div(''); l.appendChild(span(pad(c.role || '', 12), 'mid')); l.appendChild(span(c.name || '')); cr.appendChild(l); });
+      p.appendChild(cr);
+    }
+    const lic = document.createElement('p'); lic.className = 'mid'; lic.textContent = a.licence || 'generated locally from text prompts, no samples or reference audio, no third-party rights claimed.'; p.appendChild(lic);
+    document.title = 'nobody fm: ' + albumTitle(a);
+    share('nobody fm: ' + albumTitle(a), a.description || null, absUrl(coverUrl(a, 1400)));
+    const th = TH(); if (th && th.albumPage) th.albumPage(a, p);
+  }
   function h2(label, right) { const h = document.createElement('h2'); h.appendChild(span(label)); if (right) h.appendChild(right); return h; }
   function numbersRow(t) {
     const n = t.numbers || {}, c = t.checks || {};
@@ -784,6 +969,8 @@
     p.appendChild(asked);
     if (t.project) { const pr = div('row'); pr.appendChild(span('project:' + t.project + (phone() ? '' : '   list project:' + t.project + ' shows the rest'), 'mid')); p.appendChild(pr); }
     if (phone()) { const pl = div('row'); pl.appendChild(span('#/track/' + slug, 'mid')); pl.appendChild(copyBtn); p.appendChild(pl); }
+    p.appendChild(albumBlock(t));
+    share('nobody fm: ' + (t.title || slug), t.idea || t.request || null, absUrl(coverUrl(t, 1400)));
     // the action row (issue #51): play, remix this and take it home first and biggest; the copy actions smaller under them
     const buttons = div('buttons primary');
     buttons.appendChild(button('> play', '', function () { playNow(slug); }));
@@ -842,7 +1029,7 @@
     const lic = document.createElement('p'); lic.className = 'mid'; lic.textContent = t.licence || 'generated locally from a text prompt, no samples or reference audio, no third-party rights claimed.'; p.appendChild(lic);
     p.appendChild(h2('TAKE IT HOME'));
     const tk = div('print take-block');
-    tk.textContent = 'this is the whole recipe for this take: the words, the seed, the model settings, the\nmastering numbers. same seed, same words, same audio, on your machine. the model is\nfree and runs on one consumer card. no sound in the bag; you make the sound.\n  zip: recipe.json  HOW-TO.md  recipe_render.py        about 9 KB';
+    tk.textContent = 'this is the whole recipe for this take: the words, the seed, the model settings, the\nmastering numbers. same seed, same words, same audio, on your machine. the model is\nfree and runs on one consumer card. no sound in the bag; you make the sound.\n  zip: recipe.json  HOW-TO.md  recipe_render.py  cover.webp';
     p.appendChild(tk);
     const tb = div('buttons'); const takeBtn = button('take it home', '', function () { st.take(slug, takeBtn); }); tb.appendChild(takeBtn); p.appendChild(tb);
     p.appendChild(div('take-links'));
@@ -949,14 +1136,15 @@
     ['q', 'queue the highlighted'], ['s  r', 'shuffle / repeat one'], ['- =  m', 'volume down / up / mute'], ['0..9', 'seek to 0 % .. 90 %'],
     ['left right', 'seek 5 s'], ['i', "this track's page"], ['c', 'copy the permalink'], ['/', 'find'], ['g', 'guestbook'], ['esc', 'back to the transmitter']
   ];
-  HELP_KEYS.push(['`', 'hide the interface (v: bars)']);
+  const HELP_HIDE = ['`', 'hide the interface (v: bars)'];
+  HELP_KEYS.push(HELP_HIDE);
   // request first (issue #51): making a track is the first thing the help offers
   const HELP_CMDS = [
     'request <words>   remix [slug] [words]', 'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10',
     'list [words]    find <words>   info [slug]', 'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     guestbook   sign   count',
-    'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast', '', 'a few others. nobody documents everything.'
+    'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast   album [slug]', '', 'a few others. nobody documents everything.'
   ];
-  const HELP_WORDS = ['request', 'remix', 'play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'cat', 'tree', 'seed', 'prompt', 'take', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'clear', 'reboot', 'home'];
+  const HELP_WORDS = ['request', 'remix', 'play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'album', 'cat', 'tree', 'seed', 'prompt', 'take', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'clear', 'reboot', 'home'];
   function helpLines() {
     const out = [];
     const n = Math.max(HELP_KEYS.length, HELP_CMDS.length);
@@ -1025,12 +1213,35 @@
     const items = displayOrder().filter(function (it) { return matches(it.t); });
     S.filter = saved;
     if (!items.length) { T.print('nothing matches "' + words + '".', 'mid'); return; }
-    items.forEach(function (it) { const t = it.t; T.print(pad(S.num[t.slug], 3) + pad((it.depth ? '+-- ' : '') + t.slug, 28) + ' ' + pad(t.bpm, 4) + pad(keyShort(t.key), 4) + fmt(t.duration) + '  ' + (t.model || '') + (t.voice ? '  voice' : '') + (t.project ? '  project:' + t.project : '')); });
+    items.forEach(function (it) { const t = it.t; T.print(pad(S.num[t.slug], 3) + pad((it.depth ? '+-- ' : '') + t.slug, 28) + ' ' + pad(t.bpm, 4) + pad(keyShort(t.key), 4) + fmt(t.duration) + '  ' + (t.model || '') + (t.voice ? '  voice' : '') + (t.project ? '  project:' + t.project : '') + (albumOf(t) ? '  album:' + albumOf(t).slug : '')); });
   };
   st.setFilter = function (words) {
     S.filter = (words || '').trim(); S.hl = -1; renderRows();
     T.print(S.filter ? 'find: ' + S.visible.length + ' match "' + S.filter + '". find alone clears.' : 'find cleared.', 'mid');
     tellFilter();
+  };
+  // albums (issue #73): `album` lists them, `album <slug|words>` opens one; `queueAlbum` puts one next, in its order
+  function findAlbum(arg) {
+    const a = String(arg || '').trim().toLowerCase().replace(/^album:/, '');
+    if (!a) { const cur = albumOf(S.current); return cur || null; }
+    return S.albumBySlug[a] || S.albums.find(function (x) { return x.slug.indexOf(a) >= 0 || albumTitle(x).toLowerCase().indexOf(a) >= 0; }) || null;
+  }
+  st.album = function (arg, list) {
+    if (list || (!arg && !albumOf(S.current))) {
+      if (!S.albums.length) { T.print('no albums yet. every track here is a single.', 'mid'); return; }
+      T.printScroll(['albums: ' + S.albums.length + '. album <slug> opens one.'].concat(S.albums.map(function (x) { return pad(x.slug, 28) + ' ' + pad(String(x.tracks.length), 3) + ' ' + pad(hasArt(x) ? 'cover' : '-', 6) + albumTitle(x); })));
+      return;
+    }
+    const a = findAlbum(arg); if (!a) { T.error('nobody knows the album "' + arg + '". album lists them.'); return; }
+    openAlbum(a.slug);
+  };
+  st.playAlbum = function (arg) { const a = findAlbum(arg); if (!a) { T.error('nobody knows the album "' + arg + '".'); return; } playAlbum(a.slug); };
+  st.queueAlbum = function (slug) {
+    const a = S.albumBySlug[slug]; if (!a) return;
+    const rest = a.tracks.filter(function (s) { return s !== S.current; });
+    S.queue = rest.concat(S.queue.filter(function (s) { return rest.indexOf(s) < 0; }));
+    T.print('queued next: ' + albumTitle(a) + ', ' + rest.length + (rest.length === 1 ? ' track' : ' tracks') + ' in order.');
+    markRows();
   };
   st.info = function (a) { const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; } openTrack(t.slug); };
   st.cat = function (a, pageEl) {
@@ -1051,9 +1262,9 @@
   st.copyPrompt = function (a) { const t = findTrack(a); if (!t) { T.print('no track called that. to ask for one: request <words>', 'amber'); return; } copyText(t.prompt || '', 'the prompt for ' + t.slug); };
   st.take = function (a, btn) {
     const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
-    const files = [['recipe.json', trackUrl(t, 'recipe')], ['HOW-TO.md', CFG.tracksBase + 'HOW-TO.md'], ['recipe_render.py', CFG.tracksBase + 'recipe_render.py']];
+    const files = [['recipe.json', trackUrl(t, 'recipe')], ['HOW-TO.md', CFG.tracksBase + 'HOW-TO.md'], ['recipe_render.py', CFG.tracksBase + 'recipe_render.py'], ['cover.webp', coverUrl(t, 1400)]];
     const links = function () {
-      T.print('zip needs the wire. the three files, one per line:', 'amber');
+      T.print('zip needs the wire. the four files, one per line:', 'amber');
       files.forEach(function (f) { T.print('  ' + f[1], 'mid'); });
       const box = el.page.querySelector('.take-links');
       if (box && S.view === 'track') { box.textContent = ''; files.forEach(function (f) { const a2 = document.createElement('a'); a2.href = f[1]; a2.download = f[0]; a2.textContent = '[ ' + f[0] + ' ]'; a2.className = 'mid'; box.appendChild(a2); box.appendChild(span('  ')); }); }
@@ -1061,7 +1272,12 @@
     if (FILE || !window.JSZip) { links(); return; }
     if (btn) btn.textContent = 'packing ...';
     const zip = new window.JSZip();
-    Promise.all(files.map(function (f) { return fetch(f[1], { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(f[0] + ' ' + r.status); return r.text(); }).then(function (txt) { zip.file(f[0], txt); }); }))
+    // the cover (issue #73: the album's art, or the placeholder) is binary and optional: a cover that does not come leaves the bag whole
+    Promise.all(files.map(function (f) {
+      const bin = /\.webp$/.test(f[0]);
+      return fetch(f[1], { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(f[0] + ' ' + r.status); return bin ? r.arrayBuffer() : r.text(); })
+        .then(function (body) { zip.file(f[0], body, bin ? { binary: true } : undefined); }, function (e) { if (!bin) throw e; T.print('no cover in the bag: ' + e.message, 'mid'); });
+    }))
       .then(function () { return zip.generateAsync({ type: 'blob' }); })
       .then(function (blob) {
         const name = 'nobody-fm-' + t.slug + '.zip';
@@ -1163,6 +1379,9 @@
   function readBack(rec) {
     const rb = rec.readback || {}, t = rb.take || {};
     T.print('request ' + rec.id, 'mid');
+    // a request line at the edge (cloudflare/wire) may answer before a render box has planned it: say what was heard;
+    // the take follows as a `planned` progress line
+    if (!rb.take) { const l = fit(rb.line || 'heard. the machine reads it back soon.'); T.print(l); MAKE.readback(l); return; }
     const take = fit('take: ' + [t.bpm != null ? t.bpm + ' bpm' : null, t.key, t.voice ? 'a voice' : 'instrumental', t.tier ? t.tier + ' tier' : null,
       t.seeds && t.seeds.length ? t.seeds.length + (t.seeds.length === 1 ? ' seed' : ' seeds') : null].filter(Boolean).join(', '));
     T.print(take);
@@ -1184,6 +1403,8 @@
       else if (d.state === 'failed') { const l = fit('failed' + (d.note ? ': ' + d.note : '') + '. nothing was made.'); T.print(l, 'amber'); MAKE.note(l, 'amber'); }
     } else if (kind === 'progress') {
       if (d.text) T.print(fit(d.text), 'mid');
+      const take = d.stage === 'planned' && /take: .*/.exec(d.text || '');
+      if (take) MAKE.readback(fit(take[0]));
     }
   }
   function reqDone(cur, final) {
@@ -1472,10 +1693,11 @@
     g.globalAlpha = 1;
   }
   function hideVizSync() {
-    const run = HIDE.on && HIDE.viz;
+    // a theme with no station visualizer (issue #82) gets no bars over its scene, whatever this browser remembered
+    const run = HIDE.on && HIDE.viz && IFACE.viz;
     if (run && !HIDE.raf) HIDE.raf = requestAnimationFrame(hideDraw);
     if (!run && HIDE.raf) { cancelAnimationFrame(HIDE.raf); HIDE.raf = 0; if (HIDE.g) HIDE.g.clearRect(0, 0, HIDE.canvas.width, HIDE.canvas.height); }
-    document.body.classList.toggle('no-hideviz', !HIDE.viz);
+    document.body.classList.toggle('no-hideviz', !HIDE.viz || !IFACE.viz);
   }
   function hideCursorWake() {
     if (!HIDE.on) return;
@@ -1518,7 +1740,7 @@
     if (k === '`' || k === '~') { st.hideUi(); return true; }
     if (!HIDE.on) return false;
     if (k === 'Escape') { st.hideUi(false); return true; }
-    if (k === 'v' || k === 'V') { st.hideViz(); return true; }
+    if ((k === 'v' || k === 'V') && IFACE.viz) { st.hideViz(); return true; }
     if ('/:?gicqjk'.indexOf(k) >= 0 || k === 'Tab' || k === 'Enter') return true;
     // play and the volume keep working; with no interface their answer is one word over the scene
     if (k === ' ' || k === '-' || k === '=' || k === '+' || k === 'm') {

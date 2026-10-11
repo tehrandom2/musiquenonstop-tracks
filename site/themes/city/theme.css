@@ -431,7 +431,8 @@ body[data-layout="air"] #catalogue { grid-area: rail; display: flex; flex-direct
 body[data-layout="air"] #catalogue .cat-rows { flex: 1 1 auto; max-height: none; min-height: 0; }
 body[data-layout="air"] #terminal { grid-area: term; }
 body[data-layout="air"] #footer { display: none; }
-body[data-layout="air"] #page { grid-column: 1 / 3; grid-row: 2 / 6; min-height: 0; }
+/* a page ends above the terminal's row (issue #73): the terminal stays reachable and never lies over a page's words */
+body[data-layout="air"] #page { grid-column: 1 / 3; grid-row: 2 / 5; min-height: 0; }
 body[data-layout="air"] #transmitter #spectrum, body[data-layout="air"] #transmitter #baseline, body[data-layout="air"] #transmitter #scope { display: none; }
 body[data-layout="air"] #transmitter .readout { max-height: calc(var(--row) * 3); overflow: hidden; }
 body[data-layout="air"] .terminal .log { height: calc(var(--row) * 2); max-height: none; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
