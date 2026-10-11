@@ -3,6 +3,119 @@ window.NOBODY_INDEX = {
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "first-light-through-the-pines",
+      "title": "First Light Through the Pines",
+      "project": null,
+      "idea": "first light at a small camp in the pines, the home idea stated small: recorded close in a small wooden cabin with the door open to the trees, one microphone, fingers on strings audible, home-recorded and honest, slightly imperfect",
+      "request": "first light at a small camp in the pines, the home idea stated small",
+      "mood": "homely and warm, curious, a first morning, a small fire in a very big dark",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 371410,
+      "model": "best",
+      "duration": 146.94,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:07:06-04:00",
+      "voice": false,
+      "prompt": "Intimate acoustic folk for a camp under the stars at dawn, 84 bpm, in G major, an old five-string banjo fingerpicked in a slow simple rolling pattern, a little plunky and off-centre, gentle, not bluegrass, not country, used as an instrument, joined later by a steel-string acoustic guitar fingerpicked softly with open strings ringing, recorded close in a small wooden cabin with the door open to the trees, one microphone, fingers on strings audible, home-recorded and honest, slightly imperfect, homely and warm, curious, a first morning, a small fire in a very big dark, opens with the banjo alone for several bars, the guitar enters quietly underneath, a short phrase repeated with small changes, stays sparse, ends by thinning back to the banjo alone, instrumental, no vocals, no singing, no speech, no drums, no drum kit, no drops, no build-ups, no electronic beat, no synth lead, no orchestra, no sub bass, light thin low end",
+      "lyrics": null,
+      "why": "You asked for \"first light at a small camp in the pines, the home idea stated small\". The album starts where a trip starts: at home, early, with one plucky banjo. I asked for it slightly off-centre and gentle so it sounds like a hand-me-down played on a porch, not a bluegrass show. Its key and tempo are the album's home; the wanderers use them too. So I wrote it at 84 bpm in G major, 150 seconds, with no voice, under the acoustic gates. It has no beat to hold, so 84 bpm is only the grid I gave the model and the tempo gate is not applied. I set it to -17 LUFS rather than the station's -16, so it sits quieter beside the rest. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 371412 (6.5s of near-silence (limit 1.0)); 371409 (5.7s of near-silence (limit 1.0)); 371413 (5.6s of near-silence (limit 1.0)); 371411 (3.2s of near-silence (limit 1.0) and others). Seed 371410 is the take.",
+      "rejected": [
+        {
+          "seed": 371412,
+          "reason": "6.5s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 371409,
+          "reason": "5.7s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 371413,
+          "reason": "5.6s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 371411,
+          "reason": "3.2s of near-silence (limit 1.0); crest 22.5 dB, too peaky to reach -17 LUFS"
+        }
+      ],
+      "takes": [
+        371410,
+        371414
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -17.0,
+        "lufs_target": -17.0,
+        "peak_dbfs": -2.77,
+        "silence_s": 0.15,
+        "brightness_pct": 0.18,
+        "boominess_pct": 1.42,
+        "onsets_per_s": 3.06,
+        "seam_db": -9.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "banjo",
+          "guitar",
+          "home",
+          "arc:opening"
+        ],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "first-light-through-the-pines/first-light-through-the-pines.mp3",
+        "notes": "first-light-through-the-pines/notes.md",
+        "recipe": "first-light-through-the-pines/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "acoustic",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -17.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6480070,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "first-light-through-the-pines/first-light-through-the-pines.mp3",
+          "first-light-through-the-pines/first-light-through-the-pines-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 77,
+          "flags": [],
+          "doubts": [
+            "lead"
+          ],
+          "description": "This acoustic folk track features bright fingerpicked string instruments. A steady drum beat and bass line eventually drive the arrangement.",
+          "answers": {
+            "frame": "partly",
+            "lead": "partly",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "downriver-single-note",
       "title": "Downriver, Single Note",
       "project": null,
@@ -22265,6 +22378,7 @@ window.NOBODY_INDEX = {
       "cover_400": "albums/interloper-ai/cover-400.webp",
       "cover_1400": "albums/interloper-ai/cover-1400.webp",
       "tracks": [
+        "first-light-through-the-pines",
         "a-whistle-on-the-moon",
         "banjo-on-falling-ground",
         "a-lantern-nobody-lit",
