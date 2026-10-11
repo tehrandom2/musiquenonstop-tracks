@@ -3,6 +3,121 @@
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "a-lantern-nobody-lit",
+      "title": "A Lantern Nobody Lit",
+      "project": null,
+      "idea": "the dark comes in: a gliding singing lead, something unknown: a dim wooden hall inside something enormous and hidden, a lantern humming, long dark reverb",
+      "request": "the dark comes in: a gliding singing lead, something unknown",
+      "mood": "unsettling and beautiful, curiosity turning into unease, a slow dread, never violent",
+      "bpm": 66,
+      "key": "D minor",
+      "seed": 661241,
+      "model": "best",
+      "duration": 158.34,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:06:05-04:00",
+      "voice": false,
+      "prompt": "Dark ambient folk soundscape, slow, no steady beat, 66 bpm, in D minor, a gliding monophonic analog synth lead doubled by a slide guitar, wavering pitch, singing, eerie and human, over a low warm drone, a dim wooden hall inside something enormous and hidden, a lantern humming, long dark reverb, unsettling and beautiful, curiosity turning into unease, a slow dread, never violent, the drone alone, the gliding lead enters and wanders, long pauses, never resolves, thins back to the drone, instrumental, no vocals, no speech, no beat, no drums, no drops, no horror stingers, no screaming, no harsh noise wall, no sub bass rumble",
+      "lyrics": null,
+      "why": "You asked for \"the dark comes in: a gliding singing lead, something unknown\". The turn. A new voice that slides between notes, half machine and half slide guitar, so you cannot tell if a person is playing it. Everything stays slow and quiet: the dread should come from not knowing, not from noise. So I wrote it at 66 bpm in D minor, 160 seconds, with no voice, under the ambient gates. It has no beat to hold, so 66 bpm is only the grid I gave the model and the tempo gate is not applied. I set it to -17 LUFS rather than the station's -16, so it sits quieter beside the rest. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 5: 661239 (crest 19.0 dB, too peaky to reach -17 LUFS); 661243 (11.8s of near-silence (limit 3.0)); 661240 (4.8s of near-silence (limit 3.0) and others); 661242 (boomy: 37.6% below 60 Hz (ceiling 8) and others), and 1 more (all listed below). Seed 661241 is the take.",
+      "rejected": [
+        {
+          "seed": 661239,
+          "reason": "crest 19.0 dB, too peaky to reach -17 LUFS"
+        },
+        {
+          "seed": 661243,
+          "reason": "11.8s of near-silence (limit 3.0)"
+        },
+        {
+          "seed": 661240,
+          "reason": "4.8s of near-silence (limit 3.0); crest 19.0 dB, too peaky to reach -17 LUFS"
+        },
+        {
+          "seed": 661242,
+          "reason": "boomy: 37.6% below 60 Hz (ceiling 8); crest 22.0 dB, too peaky to reach -17 LUFS"
+        },
+        {
+          "seed": 661238,
+          "reason": "5.2s of near-silence (limit 3.0); boomy: 13.4% below 60 Hz (ceiling 8); crest 22.0 dB, too peaky to reach -17 LUFS"
+        }
+      ],
+      "takes": [
+        661241
+      ],
+      "numbers": {
+        "tempo_bpm": 120.0,
+        "lufs": -17.0,
+        "lufs_target": -17.0,
+        "peak_dbfs": -5.93,
+        "silence_s": 0.2,
+        "brightness_pct": 0.59,
+        "boominess_pct": 0.04,
+        "onsets_per_s": 2.31,
+        "seam_db": -28.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "slide guitar",
+          "analog synth",
+          "dark",
+          "arc:darker"
+        ],
+        "track_no": 11
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "a-lantern-nobody-lit/a-lantern-nobody-lit.mp3",
+        "notes": "a-lantern-nobody-lit/notes.md",
+        "recipe": "a-lantern-nobody-lit/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "ambient",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -17.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6982670,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "a-lantern-nobody-lit/a-lantern-nobody-lit.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 36,
+          "flags": [
+            "lead"
+          ],
+          "doubts": [],
+          "description": "A very fast, glitchy sequence repeats constantly with harsh, rhythmic clicking. It sounds heavily degraded and ends with an abrupt synthetic tone.",
+          "answers": {
+            "frame": "no",
+            "lead": "no",
+            "voice": "yes",
+            "clean": "no"
+          }
+        }
+      }
+    },
+    {
       "slug": "shoosting-64-wall-of-grain-warmer-slower-kettle",
       "title": "Wall of Grain, Warmer Slower Kettle",
       "project": "station",
@@ -21793,6 +21908,32 @@
         "greytide-treehouse-build-5"
       ],
       "description": "the treehouse table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "interloper-ai",
+      "title": "interloper ai",
+      "project": null,
+      "cover_400": "albums/interloper-ai/cover-400.webp",
+      "cover_1400": "albums/interloper-ai/cover-1400.webp",
+      "tracks": [
+        "a-lantern-nobody-lit"
+      ],
+      "description": "15 tracks, in the order they were meant to be heard.",
       "credits": [
         {
           "role": "asked by",
