@@ -3,6 +3,117 @@ window.NOBODY_INDEX = {
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "downriver-single-note",
+      "title": "Downriver, Single Note",
+      "project": null,
+      "idea": "a boat on dark water, a single plucked note driving it, bittersweet and fast: a small boat moving quickly down a dark river under a false painted sky, water rushing past",
+      "request": "a boat on dark water, a single plucked note driving it, bittersweet and fast",
+      "mood": "bittersweet and urgent, carried along, beautiful and a little afraid",
+      "bpm": 128,
+      "key": "E minor",
+      "seed": 835710,
+      "model": "best",
+      "duration": 143.35,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:06:49-04:00",
+      "voice": false,
+      "prompt": "Bittersweet driving instrumental, a single repeating plucked note as the engine, 128 bpm, in E minor, a single plucked note repeating fast as a pulse, a picked clean guitar melody over it, a warm analog pad far behind, a soft bass guitar holding long notes, a small boat moving quickly down a dark river under a false painted sky, water rushing past, bittersweet and urgent, carried along, beautiful and a little afraid, the single note alone, the guitar joins, the pad rises, a steady drive with no break, then the note alone again and a sudden quiet end, instrumental, no vocals, no singing, no speech, no drum kit, no snare, no drops, no wobble bass, no EDM build, no distortion, no sub bass",
+      "lyrics": null,
+      "why": "You asked for \"a boat on dark water, a single plucked note driving it, bittersweet and fast\". The only fast track. One plucked note does the work a drum would, and the river does the rest. I asked for it bittersweet rather than exciting: it is a ride you are not sure you wanted. So I wrote it at 128 bpm in E minor, 150 seconds, with no voice, under the acoustic gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 835707 (passed, but outranked by the kept takes); 835708 (passed, but outranked by the kept takes); 835709 (boomy: 9.6% below 60 Hz (ceiling 8)); 835711 (boomy: 23.1% below 60 Hz (ceiling 8) and others). Seed 835710 is the take.",
+      "rejected": [
+        {
+          "seed": 835707,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 835708,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 835709,
+          "reason": "boomy: 9.6% below 60 Hz (ceiling 8)"
+        },
+        {
+          "seed": 835711,
+          "reason": "boomy: 23.1% below 60 Hz (ceiling 8); crest 19.9 dB, too peaky to reach -16 LUFS"
+        }
+      ],
+      "takes": [
+        835710,
+        835706
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.06,
+        "silence_s": 0.2,
+        "brightness_pct": 1.94,
+        "boominess_pct": 1.73,
+        "onsets_per_s": 3.45,
+        "seam_db": -48.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "guitar",
+          "pulse",
+          "river",
+          "arc:darker"
+        ],
+        "track_no": 12
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "downriver-single-note/downriver-single-note.mp3",
+        "notes": "downriver-single-note/notes.md",
+        "recipe": "downriver-single-note/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "acoustic",
+        "seam_step_x": 0.29,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6321884,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "downriver-single-note/downriver-single-note.mp3",
+          "downriver-single-note/downriver-single-note-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 100,
+          "flags": [],
+          "doubts": [],
+          "description": "A rapid, rhythmic plucked string creates a constant underlying pulse while a clean guitar plays a melancholy melody over soft chord swells. The piece maintains a steady, driving momentum throughout before fading away quietly.",
+          "answers": {
+            "frame": "yes",
+            "lead": "yes",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "banjo-on-falling-ground",
       "title": "Banjo on Falling Ground",
       "project": null,
@@ -22156,7 +22267,8 @@ window.NOBODY_INDEX = {
       "tracks": [
         "a-whistle-on-the-moon",
         "banjo-on-falling-ground",
-        "a-lantern-nobody-lit"
+        "a-lantern-nobody-lit",
+        "downriver-single-note"
       ],
       "description": "15 tracks, in the order they were meant to be heard.",
       "credits": [
