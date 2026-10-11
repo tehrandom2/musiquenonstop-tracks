@@ -3,6 +3,117 @@
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "stones-that-remember",
+      "title": "Stones That Remember",
+      "project": null,
+      "idea": "a short interlude, a sparse piano for builders long gone: an empty stone hall with a long dark reverb, ruins open to the sky",
+      "request": "a short interlude, a sparse piano for builders long gone",
+      "mood": "melancholy for something very old and long gone, quiet respect",
+      "bpm": 56,
+      "key": "A minor",
+      "seed": 185780,
+      "model": "best",
+      "duration": 71.79,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:08:33-04:00",
+      "voice": false,
+      "prompt": "Sparse ambient piano piece with long silences, free tempo, 56 bpm, in A minor, a felt-damped upright piano, a few notes at a time, slightly out of tune, a little off-kilter, an empty stone hall with a long dark reverb, ruins open to the sky, melancholy for something very old and long gone, quiet respect, a few notes, a long silence, a few more, the room carries the gaps, never builds, ends on a single low note left ringing, instrumental, no vocals, no speech, no drums, no beat, no drops, no strings, no pad, no synth, no melody hooks, no sub bass",
+      "lyrics": null,
+      "why": "You asked for \"a short interlude, a sparse piano for builders long gone\". A short breath between wanderers. Piano stands for whoever built the ruins: a few notes and then the hall answers. The silences are the point, so I asked for them twice. So I wrote it at 56 bpm in A minor, 75 seconds, with no voice, under the ambient gates. It has no beat to hold, so 56 bpm is only the grid I gave the model and the tempo gate is not applied. I set it to -19 LUFS rather than the station's -16, so it sits quieter beside the rest. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 185778 (passed, but outranked by the kept takes); 185777 (passed, but outranked by the kept takes); 185776 (passed, but outranked by the kept takes); 185779 (7.7s of near-silence (limit 3.0)). Seed 185780 is the take.",
+      "rejected": [
+        {
+          "seed": 185778,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 185777,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 185776,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 185779,
+          "reason": "7.7s of near-silence (limit 3.0)"
+        }
+      ],
+      "takes": [
+        185780,
+        185781
+      ],
+      "numbers": {
+        "tempo_bpm": 109.0,
+        "lufs": -19.0,
+        "lufs_target": -19.0,
+        "peak_dbfs": -4.86,
+        "silence_s": 0.1,
+        "brightness_pct": 0.04,
+        "boominess_pct": 0.01,
+        "onsets_per_s": 2.08,
+        "seam_db": -58.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "piano",
+          "interlude",
+          "ancient",
+          "arc:wanderers"
+        ],
+        "track_no": 6
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "stones-that-remember/stones-that-remember.mp3",
+        "notes": "stones-that-remember/notes.md",
+        "recipe": "stones-that-remember/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "ambient",
+        "seam_step_x": 0.36,
+        "decoded_lufs": -19.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 3165822,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "stones-that-remember/stones-that-remember.mp3",
+          "stones-that-remember/stones-that-remember-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 100,
+          "flags": [],
+          "doubts": [],
+          "description": "A sparse and melancholic piano piece features isolated, muffled notes echoing in a reverberant space. The slow, arrhythmic timing and slightly wavering pitch create an atmosphere of quiet reflection.",
+          "answers": {
+            "frame": "yes",
+            "lead": "yes",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "porch-steps-kettle-on",
       "title": "Porch Steps, Kettle On",
       "project": null,
@@ -22946,6 +23057,7 @@
         "porch-steps-kettle-on",
         "flute-on-a-rolling-sea",
         "a-whistle-on-the-moon",
+        "stones-that-remember",
         "banjo-on-falling-ground",
         "hand-drum-hot-sand",
         "harmonica-farthest-out",
