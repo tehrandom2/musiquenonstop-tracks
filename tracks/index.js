@@ -3,6 +3,119 @@ window.NOBODY_INDEX = {
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "the-long-way-up",
+      "title": "The Long Way Up",
+      "project": null,
+      "idea": "the climb out of the sky, the home loop under one big hopeful swell: outdoors on a high ridge at night, wide open air, a long natural echo",
+      "request": "the climb out of the sky, the home loop under one big hopeful swell",
+      "mood": "hopeful and full of wonder, the ground falling away, cosmic scale without fear",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 254748,
+      "model": "best",
+      "duration": 174.61,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:09:15-04:00",
+      "voice": false,
+      "prompt": "Warm folk with a slow post-rock swell, 84 bpm, in G major, an old five-string banjo fingerpicking a short rolling phrase that never stops, reverb-washed clean electric guitars in the far background that slowly rise, a warm analog synth pad underneath like distant air, a soft round bass guitar entering only at the peak, outdoors on a high ridge at night, wide open air, a long natural echo, hopeful and full of wonder, the ground falling away, cosmic scale without fear, the banjo alone, then the guitars and pad rise in one slow swell to a wide gentle crescendo in the middle, then a long fade back to the banjo alone, instrumental, no vocals, no singing, no speech, no drum kit, no snare, no drops, no wobble bass, no aggressive drums, no distortion, no EDM build, no sub bass",
+      "lyrics": null,
+      "why": "You asked for \"the climb out of the sky, the home loop under one big hopeful swell\". The one big lift early on: the home phrase keeps going while the sky opens round it. Post-rock guitars swell and fall away again, and nothing hits like a drum kit, because the size should come from distance, not volume. So I wrote it at 84 bpm in G major, 180 seconds, with no voice, under the acoustic gates. It has no beat to hold, so 84 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 254745 (passed, but outranked by the kept takes); 254749 (boomy: 23.1% below 60 Hz (ceiling 8)); 254750 (2.9s of near-silence (limit 1.0)); 254747 (1.2s of near-silence (limit 1.0)). Seed 254748 is the take.",
+      "rejected": [
+        {
+          "seed": 254745,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 254749,
+          "reason": "boomy: 23.1% below 60 Hz (ceiling 8)"
+        },
+        {
+          "seed": 254750,
+          "reason": "2.9s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 254747,
+          "reason": "1.2s of near-silence (limit 1.0)"
+        }
+      ],
+      "takes": [
+        254748,
+        254746
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.47,
+        "silence_s": 0.65,
+        "brightness_pct": 0.25,
+        "boominess_pct": 1.3,
+        "onsets_per_s": 2.97,
+        "seam_db": -29.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "banjo",
+          "electric guitar",
+          "swell",
+          "arc:opening"
+        ],
+        "track_no": 3
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "the-long-way-up/the-long-way-up.mp3",
+        "notes": "the-long-way-up/notes.md",
+        "recipe": "the-long-way-up/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "acoustic",
+        "seam_step_x": 0.18,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7700252,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "the-long-way-up/the-long-way-up.mp3",
+          "the-long-way-up/the-long-way-up-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 64,
+          "flags": [
+            "lead"
+          ],
+          "doubts": [],
+          "description": "An acoustic guitar plays a repetitive rolling pattern over atmospheric synth pads and background electric guitars. The arrangement gradually builds, adding a slow, steady drum beat and bass before eventually fading back to the solitary guitar.",
+          "answers": {
+            "frame": "partly",
+            "lead": "no",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "the-last-warm-light",
       "title": "The Last Warm Light",
       "project": null,
@@ -23167,6 +23280,7 @@ window.NOBODY_INDEX = {
       "tracks": [
         "first-light-through-the-pines",
         "porch-steps-kettle-on",
+        "the-long-way-up",
         "flute-on-a-rolling-sea",
         "a-whistle-on-the-moon",
         "stones-that-remember",
