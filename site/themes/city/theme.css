@@ -411,3 +411,88 @@ button { border-radius: 3px; }
 
 /* hidden mode (12.0, issue #52): the scene is the picture; the bars are the cyan to magenta of the analyser's own gradient */
 :root { --hide-ink: var(--magenta); --hide-ink2: var(--cyan); --hide-face: var(--display); }
+
+/* ---- the fly-through (issue #53, docs/city-flythrough.md) ---- */
+/* the air (city-flythrough 3.1): the cards fold to the edges and the city fills the frame. the header strip stays; the catalogue is
+   the rail on the right (the same rows); the transmitter, the MAKE A TRACK card and the terminal stack into the dash at the bottom;
+   the footer and the card's spectrum fold away. S.view stays home; the layout is body[data-layout]. */
+body[data-layout="air"] .screen { overflow: hidden; }
+body[data-layout="air"] #main {
+  width: 100%; max-width: none; min-height: 0; height: calc(100vh - 2 * var(--gutter));
+  display: grid; gap: var(--gap);
+  grid-template-columns: minmax(0, 1fr) 42ch;
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+  grid-template-areas: "header header" "scene rail" "tx rail" "make rail" "term rail";
+}
+body[data-layout="air"] #header { grid-area: header; }
+body[data-layout="air"] #transmitter { grid-area: tx; }
+body[data-layout="air"] #make { grid-area: make; }
+body[data-layout="air"] #catalogue { grid-area: rail; display: flex; flex-direction: column; min-height: 0; }
+body[data-layout="air"] #catalogue .cat-rows { flex: 1 1 auto; max-height: none; min-height: 0; }
+body[data-layout="air"] #terminal { grid-area: term; }
+body[data-layout="air"] #footer { display: none; }
+body[data-layout="air"] #page { grid-column: 1 / 3; grid-row: 2 / 6; min-height: 0; }
+body[data-layout="air"] #transmitter #spectrum, body[data-layout="air"] #transmitter #baseline, body[data-layout="air"] #transmitter #scope { display: none; }
+body[data-layout="air"] #transmitter .readout { max-height: calc(var(--row) * 3); overflow: hidden; }
+body[data-layout="air"] .terminal .log { height: calc(var(--row) * 2); max-height: none; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+body[data-layout="air"] #make .make-line { min-height: 0; }
+body[data-layout="air"] #make .make-line:empty { display: none; }
+/* the hint row carries the hover line beside the keys */
+.hint-row .hints[data-hover]::after { content: attr(data-hover); color: var(--ink-mid); margin-left: 3ch; }
+@media (max-width: 900px) {
+  body[data-layout="air"] #main { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; grid-template-areas: "header" "scene" "tx"; }
+  body[data-layout="air"] #catalogue, body[data-layout="air"] #make, body[data-layout="air"] #terminal { display: none; }
+  body[data-layout="air"] #page { grid-column: 1; grid-row: 2 / 4; }
+  body[data-layout="air"] #transmitter .readout { max-height: calc(var(--row) * 2); }
+}
+/* the [ fly ] bracket in the catalogue's control row */
+.cat-controls .city-fly { color: var(--cyan); }
+
+/* the readout anchored to the cursor tower (city-flythrough 3.2): a small card, opaque panel, the slug in the display face */
+.city-readout {
+  position: fixed; left: 0; top: 0; z-index: 2; width: min(400px, calc(100vw - 16px)); --pad: 8px; pointer-events: auto;
+  font-family: var(--mono); font-size: var(--fs); line-height: var(--lh); color: var(--ink);
+  animation: roIn 160ms cubic-bezier(.2, .9, .3, 1) both;
+}
+@keyframes roIn { from { opacity: 0; margin-top: 6px; } to { opacity: 1; margin-top: 0; } }
+.city-readout .ro-slug { font-family: var(--display); font-size: 16px; font-weight: 700; letter-spacing: .04em; background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 8px rgb(var(--magenta-rgb) / .4)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.city-readout .ro-meta { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.city-readout .ro-prompt { white-space: normal; overflow-wrap: anywhere; }
+.city-readout .ro-buttons { white-space: normal; margin-top: 2px; }
+.city-readout .ro-buttons .bk { white-space: pre; }
+.city-readout .ro-buttons .bk { color: var(--ink); }
+.city-readout.hint { pointer-events: none; animation: roHint 3s ease-out forwards; }
+.city-readout.hint .ro-buttons { display: none; }
+@keyframes roHint { 0% { opacity: 0; margin-top: 18px; } 12% { opacity: 1; margin-top: 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+/* the scanning bracket around the cursor tower (12.7, in the scene) */
+.city-bracket {
+  position: fixed; left: 0; top: 0; z-index: 2; pointer-events: none; --bk: var(--cyan);
+  background:
+    linear-gradient(var(--bk) 0 0) top left / 10px 1.5px no-repeat, linear-gradient(var(--bk) 0 0) top left / 1.5px 10px no-repeat,
+    linear-gradient(var(--bk) 0 0) top right / 10px 1.5px no-repeat, linear-gradient(var(--bk) 0 0) top right / 1.5px 10px no-repeat,
+    linear-gradient(var(--bk) 0 0) bottom left / 10px 1.5px no-repeat, linear-gradient(var(--bk) 0 0) bottom left / 1.5px 10px no-repeat,
+    linear-gradient(var(--bk) 0 0) bottom right / 10px 1.5px no-repeat, linear-gradient(var(--bk) 0 0) bottom right / 1.5px 10px no-repeat;
+  filter: drop-shadow(0 0 4px rgb(var(--cyan-rgb) / .8));
+  animation: bracketIn 160ms cubic-bezier(.2, .9, .3, 1) both;
+}
+/* the edge marker when the playing tower is off screen (city-flythrough 3.6): an opaque chip, clickable */
+.city-marker {
+  position: fixed; left: 0; top: 0; z-index: 2; padding: 2px 1ch; white-space: pre; pointer-events: auto;
+  font-family: var(--mono); font-size: var(--fs); color: var(--ink); background: var(--panel);
+  border: 1px solid rgb(var(--magenta-rgb) / .7); border-radius: 4px; box-shadow: 0 0 10px rgb(var(--magenta-rgb) / .35);
+}
+.city-marker:hover { border-color: var(--cyan); }
+/* the pins on the route and the street signs: HUD chips on an opaque panel (12.0, legibility) */
+.city-hud { position: fixed; inset: 0; z-index: 0; pointer-events: none; }  /* above the canvas, under the glass and its cards */
+.city-pin, .city-sign { position: fixed; left: 0; top: 0; white-space: pre; font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: .1em; background: var(--panel); color: var(--ink); border-radius: 3px; padding: 1px 6px; }
+.city-pin { width: 1ch; text-align: center; border: 1px solid rgb(var(--magenta-rgb) / .7); color: var(--ink); }
+.city-sign { border: 1px solid rgb(var(--violet-rgb) / .6); color: var(--ink-mid); }
+.city-sign.district { color: var(--ink); border-color: rgb(var(--cyan-rgb) / .6); }
+/* the hidden interface (12.0, #52) in the city is the cruise (city-flythrough 3.9): only the readout's hint stays over the scene */
+body.ui-hidden .city-marker, body.ui-hidden .city-hud, body.ui-hidden .city-bracket { display: none; }
+body.ui-hidden .city-readout:not(.hint) { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .city-readout, .city-bracket { animation: none; }
+  .city-readout.hint { animation: roHintStill 3s steps(1) forwards; }
+  @keyframes roHintStill { 0% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
+}

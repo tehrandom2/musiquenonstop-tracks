@@ -174,5 +174,25 @@ NOBODY.term = (function () {
     try { return fn(arg, raw); } catch (e) { T.error('that command fell over: ' + (e && e.message ? e.message : e)); }
   };
   T.commands = cmds;
+
+  // a theme's own commands (design 12.0, the interface hooks, issue #53): merged under the theme's name while it is on,
+  // taken out on dispose; a name that collides with a core command is refused and printed once. help lists them.
+  const EXT = {};
+  T.extend = function (name, table) {
+    T.retract(name);
+    const names = [], refused = [];
+    Object.keys(table || {}).forEach(function (k) {
+      if (cmds[k]) { refused.push(k); return; }
+      cmds[k] = table[k]; names.push(k);
+    });
+    EXT[name] = names;
+    if (refused.length) T.print(name + ': ' + refused.join(', ') + ' already ' + (refused.length === 1 ? 'means' : 'mean') + ' something. refused.', 'amber');
+    return names;
+  };
+  T.retract = function (name) {
+    (EXT[name] || []).forEach(function (k) { delete cmds[k]; });
+    delete EXT[name];
+  };
+  T.extensions = function () { return Object.keys(EXT).map(function (n) { return { name: n, commands: EXT[n].slice() }; }); };
   return T;
 })();

@@ -1,7 +1,9 @@
 # theme: city
 
-A city of data at night, seen from the air: the second look (design 12.1 to 12.13, ADR 0008). Towers of
-glowing translucent blocks on an endless grid, one per track, the camera flying between them.
+A city of data at night, seen from the air: the second look (design 12.1 to 12.13, ADR 0008), and since issue #53
+the fly-through (`docs/city-flythrough.md`, design 12.0 "the interface paradigm", 12.17): the catalogue is a street
+city built from the index's measured numbers and the camera is the cursor. Towers of glowing translucent blocks on a
+street grid, one per track, the camera flying the streets between them.
 
 - **Palette.** Cyan `#19F0FF`, magenta `#FF2BD6`, violet `#8B5CF6`, a green beacon `#B4FF39`, amber
   `#FFB020` for warnings, ink `#E8F1FF` on `#020309`. The second scheme (`amber`, the cheat code) makes it a
@@ -15,6 +17,15 @@ glowing translucent blocks on an endless grid, one per track, the camera flying 
   CDN; without it the body says `nocity` and a CSS perspective grid stands in.
 - **Dead air.** The scene's unlit tower building block by block, or a CSS tower in the card without the
   scene.
+- **The fly-through.** Two layouts of the home view: the air (the cards folded to the edges, the city in hand) and
+  the deck (the cards in their column). Tempo is a tower's height, duration its width, loudness its glow, brightness
+  its crown, boominess its base, the tier its hue, a voice its beacon, age its edge light; `project` or a mood family
+  is its district, the date its street. Keys in the air: `up`/`down` speed, `left`/`right` a turn at the next street,
+  `f` the air or the deck, `j`/`k` the cursor tower, `enter` fly in and play, `q` route it next, `esc` back to the
+  orbit then the deck, `shift`+`left`/`right` the 5 s seek. The pointer hovers a tower for its readout and clicks to
+  fly in; the wheel is the speed; on a phone one finger flies and a tap is the hover, a second tap flies in. Commands:
+  `fly [slug]`, `deck`, `route`, `cruise`, `land`, `district [name]`, `where`. The hidden mode is the cruise. Without
+  the scene the list is the city.
 
 Files: `theme.css`, `theme.js`. Fonts: Orbitron and IBM Plex Mono, both SIL Open Font License 1.1, in
 `../../vendor/` with the licences in `../../vendor/LICENSES.md`. The harness runs this theme's Chrome on

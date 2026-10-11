@@ -63,6 +63,10 @@ button:focus { outline: 0; }
   min-height: calc(100vh - 2 * var(--gutter));
 }
 .band.footer { margin-top: auto; }
+/* a theme that owns the browsing paradigm (design 12.0, the interface hooks, issue #53) gets the pointer where no card is: the
+   glass lets it through to the scene and the cards take it back. only while such a theme is on; the other themes see no change. */
+body[data-interface]:not([data-interface=""]) .glass { pointer-events: none; }
+body[data-interface]:not([data-interface=""]) .glass .band, body[data-interface]:not([data-interface=""]) .glass .boot, body[data-interface]:not([data-interface=""]) .overlay { pointer-events: auto; }
 
 /* boot */
 .boot { width: min(100%, calc(var(--cols) * 1ch)); margin: 0 auto; min-height: calc(100vh - 2 * var(--gutter)); }

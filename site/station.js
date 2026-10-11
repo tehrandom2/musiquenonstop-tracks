@@ -65,8 +65,23 @@
   function TH() { return NOBODY.theme.current; }
   function themeCtx() {
     return { el: el, glass: glass, power: power, S: S, deck: deck, V: V, A: A, T: T, fmt: fmt, phone: phone, cols: cols, content: content,
-      libs: function () { return NOBODY.libs || null; }, wantsTower: function () { return S.state === 'dead' || !!S.idle; }, print: T.print };
+      libs: function () { return NOBODY.libs || null; }, wantsTower: function () { return S.state === 'dead' || !!S.idle; }, print: T.print,
+      // the actions (design 12.0, the interface hooks, issue #53): each is the station's own function, so a theme that owns the
+      // browsing paradigm asks for the same things the keys and the commands do, and the log narrates them the same way
+      play: function (slug) { if (S.bySlug[slug]) playNow(slug); },
+      queue: function (slug) { st.queueAdd(slug); },
+      open: function (slug) { if (S.bySlug[slug]) openTrack(slug); },
+      find: function (words) { st.setFilter(words); },
+      remix: function (slug) { st.remixThis(slug); },
+      setHighlight: function (slug) { setHighlight(slug); },
+      setLayout: function (name) { st.setLayout(name); },
+      tracks: function () { return S.tracks; }, queueList: function () { return S.queue.slice(); }, current: function () { return S.current; },
+      filter: function () { return S.filter; }, visible: function () { return (S.visible || []).map(function (b) { return b.dataset.slug; }); },
+      hidden: function () { return st.hidden(); }, layout: function () { return S.layout || null; } };
   }
+  // the keys a theme may claim for its paradigm (12.0): the arrows, and letters the station's own table does not use
+  const CLAIMABLE = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'd', 'h', 'l', 'o', 'u', 'w', 'x', 'y', 'z', 'e', 't'];
+  const IFACE = { kind: null, keys: [], arrows: false, layouts: [] };
   function themeInit(name) {
     const th = THEMES[name]; if (!th) return false;
     NOBODY.theme.current = th; NOBODY.theme.name = name; S.theme = name;
@@ -77,7 +92,46 @@
     if (S.current) th.playing(S.current);
     drawVol();
     A.resize();
+    themeInterface(th);
     return true;
+  }
+  // the interface paradigm (12.0, issue #53): a theme that answers interface() claims keys, adds commands and names its layouts;
+  // the station refuses a claim on one of its own keys and says so once. nothing here changes what the station does.
+  function themeInterface(th) {
+    const iface = th.interface ? th.interface() : null;
+    IFACE.kind = iface ? (iface.kind || 'custom') : null; IFACE.keys = []; IFACE.arrows = false; IFACE.layouts = iface && iface.layouts ? iface.layouts.slice() : [];
+    document.body.dataset.interface = IFACE.kind || '';
+    if (!iface) { delete document.body.dataset.layout; S.layout = null; return; }
+    const refused = [];
+    (iface.keys || []).forEach(function (k) { if (CLAIMABLE.indexOf(k) >= 0) IFACE.keys.push(k); else refused.push(k); });
+    IFACE.arrows = IFACE.keys.some(function (k) { return /^Arrow/.test(k); });
+    if (refused.length) T.print(S.theme + ' asked for ' + refused.join(', ') + '. the station keeps those keys. refused.', 'amber');
+    if (th.commands) T.extend(S.theme, th.commands());
+    if (IFACE.layouts.length) st.setLayout(IFACE.layouts[0], true);
+  }
+  function themeRelease() {
+    T.retract(S.theme);
+    IFACE.kind = null; IFACE.keys = []; IFACE.arrows = false; IFACE.layouts = [];
+    document.body.dataset.interface = ''; delete document.body.dataset.layout; S.layout = null;
+  }
+  // the layout of the home view (12.0, issue #53): the station sets body[data-layout], the theme's CSS folds the cards, the theme
+  // moves its camera; quiet skips the log line (the first layout at init)
+  st.setLayout = function (name, quiet) {
+    if (!IFACE.kind || IFACE.layouts.indexOf(name) < 0) { if (!quiet) T.print('no city here. the list is the city.', 'mid'); return; }
+    if (S.layout === name) return;
+    S.layout = name;
+    document.body.dataset.layout = name;
+    if (TH() && TH().layout) TH().layout(name);
+    relayout();
+    if (!quiet) T.print(name === 'air' ? 'the air.' : 'the ' + name + '.', 'mid');
+  };
+  st.layout = function () { return S.layout || null; };
+  st.interfaceState = function () { return { kind: IFACE.kind, keys: IFACE.keys.slice(), layouts: IFACE.layouts.slice(), layout: S.layout || null }; };
+  // the highlight by slug: one cursor for the list and for the theme's picture (12.0, issue #53)
+  function setHighlight(slug) {
+    const i = (S.visible || []).findIndex(function (b) { return b.dataset.slug === slug; });
+    if (i < 0 || i === S.hl) return;
+    S.hl = i; highlight();
   }
   function pageKind() { return S.state === 'dead' ? 'dead' : S.view === 'track' ? 'page' : S.view === 'guestbook' ? 'guestbook' : 'home'; }
   document.addEventListener('libs-ready', function () { const th = TH(); if (th && th.libsReady) th.libsReady(); });
@@ -297,7 +351,7 @@
   }
 
   /* ---------------- the deck, the queue, tuning (2.3, 5.1) ---------------- */
-  function markRows() { renderRows(); }
+  function markRows() { renderRows(); tellQueue(); }
   function tuneTo(slug) {
     const t = S.bySlug[slug];
     // a slug that is not in the catalogue is skipped, but never forever (issue #25)
@@ -635,7 +689,11 @@
   function highlight() {
     S.visible.forEach(function (b, i) { b.classList.toggle('hl', i === S.hl); });
     if (S.hl >= 0 && S.visible[S.hl]) S.visible[S.hl].scrollIntoView({ block: 'nearest' });
+    const th = TH(); if (th && th.highlight) th.highlight(hlSlug());
   }
+  // what the theme is told on every queue change and every find (12.0, issue #53); a theme without the hook is skipped
+  function tellQueue() { const th = TH(); if (th && th.queue) th.queue(S.queue.slice(0, 6), S.current); }
+  function tellFilter() { const th = TH(); if (th && th.filter) th.filter(S.filter, (S.visible || []).map(function (b) { return b.dataset.slug; })); }
   function hlSlug() { return S.hl >= 0 && S.visible[S.hl] ? S.visible[S.hl].dataset.slug : null; }
   function hintButton(key, label, fn) {
     const b = document.createElement('button'); b.className = 'bare'; b.textContent = key; b.title = label;
@@ -905,6 +963,14 @@
       const k = HELP_KEYS[i] ? pad(HELP_KEYS[i][0], 11) + pad(HELP_KEYS[i][1], 32) : pad('', 43);
       out.push(k + (HELP_CMDS[i] || ''));
     }
+    // a theme's own keys and commands (12.0, issue #53), after the station's table
+    const th = TH(), ext = T.extensions();
+    if (IFACE.kind && th && th.help) {
+      out.push('');
+      out.push(pad(S.theme + '>', 43) + (ext.length ? ext[0].commands.join('   ') : ''));
+      th.help().forEach(function (h) { out.push(pad(h[0], 11) + pad(h[1], 32)); });
+      if (IFACE.arrows) out.push('shift+left right   seek 5 s while ' + S.theme + ' holds the arrows');
+    }
     return out;
   }
   function drawHelp() {
@@ -914,6 +980,7 @@
       HELP_KEYS.forEach(function (k) { const l = div('mid'); l.textContent = pad(k[0], 11) + k[1]; el.helpBody.appendChild(l); });
       el.helpBody.appendChild(span('\n'));
       HELP_WORDS.forEach(function (w) { list.appendChild(button(w, '', function () { st.help(false); T.run(w, true); })); });
+      T.extensions().forEach(function (x) { x.commands.forEach(function (w) { list.appendChild(button(w, '', function () { st.help(false); T.run(w, true); })); }); });
       el.helpBody.appendChild(list);
       return;
     }
@@ -946,6 +1013,7 @@
     if (S.shuffle) shuffleArray(S.queue); else S.queue = chronological().filter(function (s) { return S.queue.indexOf(s) >= 0; });
     el.shuffleLabel.textContent = S.shuffle ? 'shuffle on' : 'shuffle off';
     T.print('shuffle ' + (S.shuffle ? 'on. the queue is reordered.' : 'off. the queue is in order.'));
+    tellQueue();
   };
   st.repeatOnce = function () { S.repeat = !S.repeat; T.print(S.repeat ? 'repeat: this one once more.' : 'repeat off.'); };
   st.setVol = setVol;
@@ -960,6 +1028,7 @@
   st.setFilter = function (words) {
     S.filter = (words || '').trim(); S.hl = -1; renderRows();
     T.print(S.filter ? 'find: ' + S.visible.length + ' match "' + S.filter + '". find alone clears.' : 'find cleared.', 'mid');
+    tellFilter();
   };
   st.info = function (a) { const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; } openTrack(t.slug); };
   st.cat = function (a, pageEl) {
@@ -1280,7 +1349,8 @@
     T.printScroll(lines);
   };
   st.home = function () { if (location.hash && location.hash !== '#/') location.hash = '#/'; else showHome(); st.help(false); };
-  st.escape = function () { if (!el.help.hidden) { st.help(false); return; } if (S.view !== 'home') { st.home(); return; } };
+  // esc: the overlay, then a page, then the theme's own paradigm (12.0, the interface hooks, issue #53: the city flies back to its orbit)
+  st.escape = function () { if (!el.help.hidden) { st.help(false); return; } if (S.view !== 'home') { st.home(); return; } if (IFACE.kind && TH() && TH().escape) TH().escape(); };
   st.reboot = function () {
     T.print('power off.', 'mid');
     deck.pause(); S.onAir = false; S.state = 'standby'; S.current = null; S.played = new Set(); S.history = []; S.queue = [];
@@ -1304,6 +1374,7 @@
     try { localStorage.setItem('nobody.theme', name); } catch (e) {}
     const link = document.getElementById('themeCss');
     const was = pageKind();
+    themeRelease();
     if (TH()) TH().dispose();
     const done = function () {
       link.onload = null; link.onerror = null;
@@ -1489,6 +1560,12 @@
     if (!el.help.hidden) { if (e.key === '?' || e.key === 'Escape') { e.preventDefault(); st.help(false); } return; }
     if (e.ctrlKey || e.metaKey) return;
     const k = e.key;
+    // a theme's claimed keys go to the theme first (12.0, issue #53); while it holds the arrows the 5 s seek is shift + arrows
+    if (IFACE.kind && TH() && TH().keys && !e.altKey) {
+      const claimed = IFACE.keys.indexOf(k) >= 0 || (k.length === 1 && IFACE.keys.indexOf(k.toLowerCase()) >= 0);
+      if (claimed && !(e.shiftKey && /^Arrow/.test(k))) { if (TH().keys(e)) { e.preventDefault(); return; } }
+      if (IFACE.arrows && e.shiftKey && (k === 'ArrowLeft' || k === 'ArrowRight')) { seekBy(k === 'ArrowLeft' ? -5 : 5); e.preventDefault(); return; }
+    }
     let handled = true;
     switch (k) {
       case ' ': togglePlay(); break;
@@ -1530,7 +1607,8 @@
   function relayout() { A.resize(); drawCatHead(); renderRows(); drawVol(); drawProgress(); T.maxLines = phone() ? 3 : 6; if (TH() && TH().resize) TH().resize(); }
   function wire() {
     // the glass: a tap goes on air before anything else
-    glass.addEventListener('pointerdown', function (e) { if (!S.onAir && (S.booted || bootTypers.length)) { goOnAir(e); } });
+    // on the document, not the glass: a theme that owns the pointer (12.0, issue #53) lets it through the glass to its scene
+    document.addEventListener('pointerdown', function (e) { if (!S.onAir && (S.booted || bootTypers.length)) { goOnAir(e); } });
     el.stationName.addEventListener('click', function () {
       st.home();
       const now = Date.now(); S.nameTaps = now - S.nameTapAt < 1500 ? S.nameTaps + 1 : 1; S.nameTapAt = now;
