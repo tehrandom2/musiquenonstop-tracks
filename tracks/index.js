@@ -3,6 +3,121 @@ window.NOBODY_INDEX = {
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "the-reel-room",
+      "title": "The Reel Room",
+      "project": null,
+      "idea": "the darkest room: a projector still running, guitars slipping out of tune, wordless voices: a dark cinema with an old film projector whirring, reel flutter and worn-tape warble, nobody in the seats",
+      "request": "the darkest room: a projector still running, guitars slipping out of tune, wordless voices",
+      "mood": "haunted and tender, a memory playing to an empty room",
+      "bpm": 60,
+      "key": "C minor",
+      "seed": 544771,
+      "model": "best",
+      "duration": 170.0,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:09:35-04:00",
+      "voice": true,
+      "prompt": "Dark ambient piece, no steady beat, 60 bpm, in C minor, a wordless human voice used as an instrument, open vowels held long and sung low, like a choir of one, no words and no language, with a long echo, a simple clean guitar figure that slowly detunes and dissolves into drone, a dark cinema with an old film projector whirring, reel flutter and worn-tape warble, nobody in the seats, haunted and tender, a memory playing to an empty room, starts simple and familiar, then slowly detunes and fades into dark ambient, the voices rise from inside the drone and fall away, ends on projector hum alone, wordless voices only, no words, no lyrics, no speech, no rap, no drums, no beat, no drops, no stingers, no screaming",
+      "lyrics": "[Chorus - a wordless voice on open vowels, long notes over the whole arrangement, no real words]\nneu theu feu yeur rae yei",
+      "why": "You asked for \"the darkest room: a projector still running, guitars slipping out of tune, wordless voices\". The bottom of the album. A plain guitar figure goes out of tune the way old film goes out of focus, and wordless voices come up out of the hum. The projector is my invention, for a world told in slides and reels; it is in the room clause, not the music's history. So I wrote it at 60 bpm in C minor, 170 seconds, with a wordless voice, syllables I invented myself, under the ambient gates. It has no beat to hold, so 60 bpm is only the grid I gave the model and the tempo gate is not applied. I set it to -17 LUFS rather than the station's -16, so it sits quieter beside the rest. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 544770 (passed, but outranked by the kept takes); 544773 (onset rate 4.4/s outside 0.02-3.5); 544774 (3.7s of near-silence (limit 3.0)); 544769 (boomy: 10.3% below 60 Hz (ceiling 8) and others). Seed 544771 is the take.",
+      "rejected": [
+        {
+          "seed": 544770,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 544773,
+          "reason": "onset rate 4.4/s outside 0.02-3.5"
+        },
+        {
+          "seed": 544774,
+          "reason": "3.7s of near-silence (limit 3.0)"
+        },
+        {
+          "seed": 544769,
+          "reason": "boomy: 10.3% below 60 Hz (ceiling 8); 5 real English words heard (6 words in all; fails at 5): you new you're right you"
+        }
+      ],
+      "takes": [
+        544771,
+        544772
+      ],
+      "numbers": {
+        "tempo_bpm": 120.0,
+        "lufs": -17.0,
+        "lufs_target": -17.0,
+        "peak_dbfs": -3.65,
+        "silence_s": 1.55,
+        "brightness_pct": 0.26,
+        "boominess_pct": 1.45,
+        "onsets_per_s": 2.18,
+        "seam_db": -55.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "detuned guitar",
+          "wordless voice",
+          "projector",
+          "arc:darker"
+        ],
+        "track_no": 13
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "the-reel-room/the-reel-room.mp3",
+        "notes": "the-reel-room/notes.md",
+        "recipe": "the-reel-room/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "ambient",
+        "seam_step_x": 8.48,
+        "decoded_lufs": -17.44,
+        "failed": [],
+        "words_not_ours": [
+          "hey"
+        ],
+        "stripped": [],
+        "installed_samples": 7497000,
+        "loop": false,
+        "wordless": true,
+        "take_files": [
+          "the-reel-room/the-reel-room.mp3",
+          "the-reel-room/the-reel-room-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 86,
+          "flags": [],
+          "doubts": [
+            "lead"
+          ],
+          "description": "A dark ambient track with no steady beat, featuring wordless vocals and a drone. The vocals are sustained and atmospheric, with a slightly detuned quality.",
+          "answers": {
+            "frame": "yes",
+            "lead": "partly",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "the-long-way-up",
       "title": "The Long Way Up",
       "project": null,
@@ -23289,6 +23404,7 @@ window.NOBODY_INDEX = {
         "harmonica-farthest-out",
         "a-lantern-nobody-lit",
         "downriver-single-note",
+        "the-reel-room",
         "the-last-warm-light",
         "home-fire-one-more-song"
       ],
