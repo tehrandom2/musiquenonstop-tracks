@@ -3,6 +3,123 @@
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "the-signals-line-up",
+      "title": "The Signals Line Up",
+      "project": null,
+      "idea": "the signals line up: five folk instruments enter one by one and fit together as one tune: a campfire at night under a huge clear sky, crickets far off, each player at a different distance",
+      "request": "the signals line up: five folk instruments enter one by one and fit together as one tune",
+      "mood": "the moment of connection across distance, friends who cannot see each other playing the same song",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 474469,
+      "model": "best",
+      "duration": 175.38,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:09:56-04:00",
+      "voice": false,
+      "prompt": "Warm folk ensemble for a camp under the stars, 84 bpm, in G major, a hand drum played with fingers and palm, soft and steady, no drum kit, five folk instruments entering one at a time, each repeating its own short phrase, banjo, harmonica, wooden flute, a person whistling and the hand drum, until they fit together as one tune, a campfire at night under a huge clear sky, crickets far off, each player at a different distance, the moment of connection across distance, friends who cannot see each other playing the same song, the banjo alone, then each instrument enters in turn and stays, building slowly to a full but gentle ensemble, then each falls away until the banjo is alone again, instrumental, no vocals, no singing, no speech, no drum kit, no snare, no drops, no wobble bass, no aggressive drums, no electric guitar, no synth, no sub bass, no EDM build",
+      "lyrics": null,
+      "why": "You asked for \"the signals line up: five folk instruments enter one by one and fit together as one tune\". The centre of the album. Every wanderer's instrument, in the key and tempo they all share, entering one at a time until the loops line up into a song. If this one works, the solos before it turn out to have been parts all along. So I wrote it at 84 bpm in G major, 180 seconds, with no voice, under the acoustic gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 474470 (passed, but outranked by the kept takes); 474468 (2.5s of near-silence (limit 1.0)); 474466 (1.2s of near-silence (limit 1.0)); 474465 (1.7s of near-silence (limit 1.0)). Seed 474469 is the take.",
+      "rejected": [
+        {
+          "seed": 474470,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 474468,
+          "reason": "2.5s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 474466,
+          "reason": "1.2s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 474465,
+          "reason": "1.7s of near-silence (limit 1.0)"
+        }
+      ],
+      "takes": [
+        474469,
+        474467
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.05,
+        "silence_s": 0.15,
+        "brightness_pct": 0.19,
+        "boominess_pct": 0.09,
+        "onsets_per_s": 2.49,
+        "seam_db": -49.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "banjo",
+          "harmonica",
+          "flute",
+          "whistling",
+          "hand drum",
+          "ensemble",
+          "arc:gathering"
+        ],
+        "track_no": 10
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "the-signals-line-up/the-signals-line-up.mp3",
+        "notes": "the-signals-line-up/notes.md",
+        "recipe": "the-signals-line-up/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "acoustic",
+        "seam_step_x": 2.4,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7734453,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "the-signals-line-up/the-signals-line-up.mp3",
+          "the-signals-line-up/the-signals-line-up-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 58,
+          "flags": [
+            "lead"
+          ],
+          "doubts": [],
+          "description": "A folk instrumental track featuring a prominent wooden flute playing a continuous melody over a strummed acoustic guitar and steady drums. The full ensemble plays together throughout rather than building slowly as requested.",
+          "answers": {
+            "frame": "partly",
+            "kit": "no",
+            "lead": "no",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "the-reel-room",
       "title": "The Reel Room",
       "project": null,
@@ -23402,6 +23519,7 @@
         "banjo-on-falling-ground",
         "hand-drum-hot-sand",
         "harmonica-farthest-out",
+        "the-signals-line-up",
         "a-lantern-nobody-lit",
         "downriver-single-note",
         "the-reel-room",
