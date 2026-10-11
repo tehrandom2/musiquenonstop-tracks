@@ -9,11 +9,12 @@ and is not copied here.
 | `vt323.woff2` | VT323, regular (latin subset) | the phosphor theme (design 3.3) | the Google Fonts release, via the `@fontsource/vt323` 5.2.6 package (Google Fonts "v17" build) | SIL Open Font License 1.1, below |
 | `plex-mono-regular.woff2` | IBM Plex Mono, regular (latin subset) | both themes: the printout face in phosphor, the data face in city | the Google Fonts release, via the `@fontsource/ibm-plex-mono` 5.2.6 package (Google Fonts "v19" build) | SIL Open Font License 1.1, below |
 | `orbitron-variable.woff2` | Orbitron, variable weight 400 to 900 (latin subset) | the city theme's display face (design 12.2) | the Google Fonts release, via the `@fontsource-variable/orbitron` 5.2.6 package | SIL Open Font License 1.1, below |
-| `barlow-condensed-700.woff2`, `barlow-condensed-800.woff2` | Barlow Condensed, bold and extra-bold (latin subset) | the tapedeck theme's display face (design 12.14) | the Google Fonts release, via the `@fontsource/barlow-condensed` 5.2.6 package | SIL Open Font License 1.1, below |
+| `barlow-condensed-700.woff2`, `barlow-condensed-800.woff2` | Barlow Condensed, bold and extra-bold (latin subset) | the tapedeck theme's display face (design 12.14), the campfire's too (12.18) | the Google Fonts release, via the `@fontsource/barlow-condensed` 5.2.6 package | SIL Open Font License 1.1, below |
 | `permanent-marker.woff2` | Permanent Marker, regular (latin subset) | the tapedeck theme's hand-lettered label (design 12.14) | the Google Fonts release, via the `@fontsource/permanent-marker` 5.2.6 package | Apache License 2.0, below (the package labels it OFL; the font's own metadata in the Google Fonts repository says Apache 2.0, which is the licence reproduced here) |
 | `unbounded-variable.woff2` | Unbounded, variable weight 200 to 900 (latin subset) | the arena theme's display face (design 12.15) | the Google Fonts release, via the `@fontsource-variable/unbounded` 5.2.6 package | SIL Open Font License 1.1, below |
 | `space-grotesk-variable.woff2` | Space Grotesk, variable weight 300 to 700 (latin subset) | the arena theme's prose face (design 12.15) | the Google Fonts release, via the `@fontsource-variable/space-grotesk` 5.2.6 package | SIL Open Font License 1.1, below |
-| `jetbrains-mono-variable.woff2` | JetBrains Mono, variable weight 100 to 800 (latin subset) | the arena theme's data face (design 12.15) | the Google Fonts release, via the `@fontsource-variable/jetbrains-mono` 5.2.6 package | SIL Open Font License 1.1, below |
+| `jetbrains-mono-variable.woff2` | JetBrains Mono, variable weight 100 to 800 (latin subset) | the arena theme's data face (design 12.15), the campfire's too (12.18) | the Google Fonts release, via the `@fontsource-variable/jetbrains-mono` 5.2.6 package | SIL Open Font License 1.1, below |
+| `patrick-hand.woff2` | Patrick Hand, regular (latin subset) | the campfire theme's camp journal (design 12.18) | the Google Fonts release, via the `@fontsource/patrick-hand` 5.0.8 package | SIL Open Font License 1.1, below |
 
 The first design named IBM Plex Mono 6.4.0; the Google Fonts build is the same family under the same
 licence, packaged as a ready `woff2` latin subset. Each font's copyright notice follows, then the licence
@@ -274,6 +275,19 @@ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 ```
+
+## Patrick Hand
+
+```
+Copyright (c) 2010-2012 Patrick Wagesreiter
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+```
+
+The licence text is the one reproduced under VT323 above, word for word. (The font's own notice also gives the designer's
+contact address; it is left out here, as the project keeps no addresses in its files.)
 
 ## Permanent Marker
 

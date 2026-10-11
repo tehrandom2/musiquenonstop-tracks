@@ -32,7 +32,10 @@ NOBODY.synth = (function () {
       S.gain = S.ctx.createGain();
       S.muted = !!mute;
       S.gain.gain.value = S.muted ? 0 : curve(S.volume);
-      S.analyser.connect(S.gain);
+      // the duck (design 12.0, issue #64): 1 unless a theme lowers the deck under something of its own (the campfire's scope)
+      S.duckGain = S.ctx.createGain();
+      S.analyser.connect(S.duckGain);
+      S.duckGain.connect(S.gain);
       S.gain.connect(S.ctx.destination);
       if (connectDeck) {
         S.source = S.ctx.createMediaElementSource(deck);
@@ -61,6 +64,15 @@ NOBODY.synth = (function () {
     }
     if (deck && (fileMode || !S.deckConnected)) deck.volume = g;
     try { localStorage.setItem('nobody.vol', String(S.volume)); } catch (e) {}
+  };
+
+  // lowers the deck to `level` (0..1) after the analyser and before the volume, so the analyser still reads the whole
+  // signal and the mute still wins; a theme calls duck(1) to give it back, and on dispose
+  S.duck = function (level, seconds) {
+    if (!S.duckGain) return;
+    const t = S.ctx.currentTime;
+    S.duckGain.gain.cancelScheduledValues(t);
+    S.duckGain.gain.setTargetAtTime(Math.max(0, Math.min(1, level)), t, Math.max(0.01, seconds || 0.15) / 3);
   };
 
   S.setMuted = function (m, deck, fileMode) {

@@ -6,7 +6,8 @@
 //              requestLine instead. requestKey is that API's public requester key (pinned to a project, rate limited, CORS for this
 //              origin); it goes in a header, so treat it as public. null sends none.
 // defaultTheme: the look a first visit gets (design 12.0): "phosphor" (the green CRT), "city" (the city at night),
-//              "tapedeck" (a cassette on a painting desk) or "arena" (a dark stage that takes the colour of the track).
+//              "tapedeck" (a cassette on a painting desk), "arena" (a dark stage that takes the colour of the track) or
+//              "campfire" (a fire on a small planet, a sky of signals, a scope and marshmallows).
 //              `theme <name>` in the terminal changes it for that browser; ?theme=<name> for one visit.
 // A ?tracks=<base> query on the page URL overrides tracksBase for that visit (used by the test catalogue).
 window.NOBODY_CONFIG = {

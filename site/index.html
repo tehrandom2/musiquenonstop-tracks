@@ -15,8 +15,8 @@
      written here, after the skeleton and before any paint, so the first frame is already the theme's. -->
 <script>
 (function () {
-  var names = ['phosphor', 'city', 'tapedeck', 'arena'];
-  var dark = { phosphor: '#050705', city: '#020309', tapedeck: '#120d0a', arena: '#06060b' };
+  var names = ['phosphor', 'city', 'tapedeck', 'arena', 'campfire'];
+  var dark = { phosphor: '#050705', city: '#020309', tapedeck: '#120d0a', arena: '#06060b', campfire: '#05070f' };
   var q = new URLSearchParams(location.search).get('theme'), saved = null;
   try { saved = localStorage.getItem('nobody.theme'); } catch (e) {}
   var cfg = (window.NOBODY_CONFIG && window.NOBODY_CONFIG.defaultTheme) || 'phosphor';
@@ -44,6 +44,7 @@
 <script src="themes/city/theme.js" defer></script>
 <script src="themes/tapedeck/theme.js" defer></script>
 <script src="themes/arena/theme.js" defer></script>
+<script src="themes/campfire/theme.js" defer></script>
 <script src="station.js" defer></script>
 </head>
 <body>

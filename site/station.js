@@ -75,6 +75,8 @@
       remix: function (slug) { st.remixThis(slug); },
       setHighlight: function (slug) { setHighlight(slug); },
       setLayout: function (name) { st.setLayout(name); },
+      // a track's own file, for a theme that previews it through its own element (issue #64: the campfire's scope)
+      src: function (slug) { return S.bySlug[slug] ? trackUrl(S.bySlug[slug], 'mp3') : null; }, fileMode: function () { return FILE; },
       tracks: function () { return S.tracks; }, queueList: function () { return S.queue.slice(); }, current: function () { return S.current; },
       filter: function () { return S.filter; }, visible: function () { return (S.visible || []).map(function (b) { return b.dataset.slug; }); },
       hidden: function () { return st.hidden(); }, layout: function () { return S.layout || null; } };
