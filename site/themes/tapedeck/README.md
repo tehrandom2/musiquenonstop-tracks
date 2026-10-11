@@ -21,6 +21,15 @@ commands and data are untouched.
   tilted on the desk. Its reels turn while the deck plays (the chip says `ON AIR`), the tape moves from the
   left hub to the right with the track, the label carries the title, bpm and key, the side and the track
   number. While tuning it lifts out of the deck; on dead air an empty cassette turns slowly on the shelf.
+- **The J-card and the cover (issue #88).** Behind the tape stands its case's paper insert: the playing
+  track's cover (#73's `NOBODY.cover`, its placeholder when an album has none) printed on the front panel and,
+  small, on the tape's label, both through one SVG filter that makes them a photocopy on card (nearly grey,
+  the contrast pushed, the tones stepped, warmed to the cream, a grain, a few pale scuffs), a dashed fold, a
+  dog-eared corner. The spine is hand-lettered. An album plays as one tape: the label and the spine read the
+  album's title, the first half of its tracks is side A and the rest side B, the number counts within the
+  side and the track's own title moves to the small print; a single keeps its own label and its spine says
+  `single`. While the cover loads, or when no file can be read, the painted square stays. On a phone the
+  J-card and the tape stand side by side. A long title takes two lines on the label instead of an ellipsis.
 - **Behind the page.** A canvas of 48 warm bars along the foot of the desk, read from the analyser's 64
   bands, and the lamp breathing with the loudness. It lowers its own resolution on a slow machine.
 - **The card.** Rounded bars in orange and lamp with cream peaks; a cream scope line; the dial is a

@@ -7,10 +7,17 @@ The default look until the owner flips `defaultTheme` in `../../config.js`.
   `#FFB000` for warnings and the tuning state. The second scheme (`amber`, the cheat code) swaps the ramp to
   amber and the warnings to green. Every text tone reads at 4.5:1 or better on the glass (12.0, legibility).
 - **Type.** VT323 as the one face (a terminal has one); IBM Plex Mono for the printouts (`cat`).
-- **The widget.** None. The CRT mounts nothing in the transmitter card: the progress bar is typed
-  (`####....`), the dial is text ticks, the volume is the shared fader (`volume.js`, design 12.0 controls) in
-  the green with a `--hot` handle, the analyser is typed cells and the
-  scope a line of glyphs. `widget()` answers `null`.
+- **The widget.** The cover, dithered (issue #88): the playing track's cover, or #73's placeholder, sampled at
+  2 x 4 dots per glyph cell (a braille cell's grid), its tones stretched and diffused (Floyd and Steinberg,
+  serpentine), drawn as blocks of the phosphor on a canvas with a faint ghost of every unlit dot and the glow
+  on top; it stands in the readout's right margin on desktop (the prompt keeps its column beside it, so the
+  afterglow's copy of the text lines up) and above the prompt on a phone. `widget()` answers `dither`. When no
+  cover can be read the picture is the station's transmitter, drawn in `theme.js`. The track page and the
+  album page (#73) show it in the station's cover slots instead of the photograph; `art` prints it full size in
+  the log (`clear` puts it away). The rest is typed: the progress
+  bar (`####....`), the dial's ticks, the analyser's cells and the scope's glyphs (whose gain now follows the
+  wave's peak, so a quiet track is a trace and not a row of tildes); the volume is the shared fader
+  (`volume.js`, design 12.0 controls) in the green with a `--hot` handle.
 - **Behind the page.** The glass: a barrel filter (dropped on a slow machine by a twelve-frame probe, read once
   the tube has warmed), scanlines at 10 % that flicker a little, a rolling bar, phosphor noise, a flicker, the
   power line that opens and closes it, a deeper vignette on a near-black bezel, and a still sheen over it all.

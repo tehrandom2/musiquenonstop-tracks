@@ -806,12 +806,128 @@ NOBODY.themes = NOBODY.themes || {};
       const m = pointsMaterial(0, true, true); m.uniforms.uTwinkle.value = 0.6;
       signalPts = new THREE.Points(g, m); signalPts.frustumCulled = false; signalPts.renderOrder = 6; signalPts.visible = sig.list.length > 0;
       scene.add(signalPts);
+      if (CL.on) buildConstellation(tracks);
       placeSignals();
       buildRoute();
     }
+    /* ---- the constellation (issue #84, ?camplist=sky): the catalogue as branching spiral arms from one bright centre, home.
+       one arm per frequency, newest nearest home; a remix branches off its parent. the stars are the signals themselves, so
+       the scope and the browsing share one sky. our own geometry: a plain arithmetic spiral per arm, nothing traced ---- */
+    const CL = { on: qs.get('camplist') === 'sky', home: new THREE.Vector3(), E: new THREE.Vector3(), N: new THREE.Vector3(), order: [], arms: [], path: {}, pathLen: 0, head: 0, lines: null, homeSprite: null, hidden: 0 };
+    function clDir(x, y, out) {
+      const r = Math.hypot(x, y) * DEG, ph = Math.atan2(y, x);
+      out.copy(CL.home).multiplyScalar(Math.cos(r)).addScaledVector(CL.E, Math.cos(ph) * Math.sin(r)).addScaledVector(CL.N, Math.sin(ph) * Math.sin(r));
+      // never under 10 degrees over the horizon
+      const el = Math.asin(clamp(out.y, -1, 1)), lo = 10 * DEG;
+      if (el < lo) { const h = Math.hypot(out.x, out.z) || 1; out.set(out.x / h * Math.cos(lo), Math.sin(lo), out.z / h * Math.cos(lo)); }
+      return out.normalize();
+    }
+    function buildConstellation(tracks) {
+      const meta = {}; (tracks || []).forEach(function (t) { meta[t.slug] = t; });
+      const az = -24 * DEG, el = 27 * DEG;
+      CL.home.set(Math.sin(az) * Math.cos(el), Math.sin(el), -Math.cos(az) * Math.cos(el)).normalize();
+      CL.E.set(Math.cos(az), 0, Math.sin(az)).normalize(); CL.N.crossVectors(CL.E, CL.home).negate().normalize();
+      if (CL.N.y < 0) CL.N.negate();
+      const when = function (s) { const t = meta[s.slug] || {}; return String(t.rendered_at || t.date || ''); };
+      const parentOf = function (s) { const t = meta[s.slug] || {}; return t.lineage && t.lineage.parent ? t.lineage.parent : null; };
+      const K = Math.max(1, sig.freqs.length), R0 = 2.6, G = 3.6, STEP = 0.8, SQ = 0.62;
+      CL.order = []; CL.arms = [];
+      sig.list.forEach(function (s) { s.cpar = -1; s.cdist = 0; s.cx = 0; s.cy = 0; s.arm = s.freq; s.kids = []; s.cdir = new THREE.Vector3(); });
+      sig.freqs.forEach(function (f, k) {
+        const arr = sig.list.filter(function (s) { return s.freq === k; }).sort(function (a, b) { return when(b).localeCompare(when(a)) || a.slug.localeCompare(b.slug); });
+        const inArm = {}; arr.forEach(function (s) { inArm[s.slug] = s; });
+        const main = arr.filter(function (s) { const p = parentOf(s); return !(p && inArm[p] && p !== s.slug); });
+        const kids = arr.filter(function (s) { return main.indexOf(s) < 0; });
+        const ph0 = k / K * Math.PI * 2 + 0.5;
+        let th = 0, r = R0, px = 0, py = 0, pd = 0, prev = null;
+        main.forEach(function (s, i) {
+          if (i) { th += STEP / r; r = R0 + G * th; }
+          s.cx = r * Math.cos(ph0 + th); s.cy = r * Math.sin(ph0 + th) * SQ;
+          const d = Math.hypot(s.cx - px, s.cy - py); s.cdist = pd + d; s.cpar = prev ? prev.i : -1;
+          px = s.cx; py = s.cy; pd = s.cdist; prev = s;
+        });
+        // the remixes: a short branch off the parent, alternating sides, each remix of that one a step further out
+        const placed = {}; main.forEach(function (s) { placed[s.slug] = true; });
+        for (let pass = 0; pass < 8 && kids.some(function (s) { return !placed[s.slug]; }); pass++) {
+          kids.forEach(function (s) {
+            if (placed[s.slug]) return; const p = inArm[parentOf(s)]; if (!p || !placed[p.slug]) return;
+            p.kids.push(s); const n = p.kids.length, side = (hashStr(p.slug) & 1 ? 1 : -1) * (n % 2 ? 1 : -1);
+            const out = Math.atan2(p.cy / SQ, p.cx) + side * (0.95 + 0.25 * Math.floor((n - 1) / 2));
+            const len = 1.0 + 0.55 * Math.floor((n - 1) / 2);
+            s.cx = p.cx + Math.cos(out) * len; s.cy = p.cy + Math.sin(out) * len * SQ;
+            s.cdist = p.cdist + Math.hypot(s.cx - p.cx, s.cy - p.cy); s.cpar = p.i; placed[s.slug] = true;
+          });
+        }
+        kids.forEach(function (s) { if (!placed[s.slug]) { main.push(s); } });
+        // the arm's reading order: each star, then the branch off it
+        const ord = []; const walk = function (s) { ord.push(s); s.kids.forEach(walk); };
+        main.forEach(walk);
+        const seen = {}; CL.arms[k] = ord.filter(function (s) { if (seen[s.slug]) return false; seen[s.slug] = true; return true; });
+        CL.arms[k].forEach(function (s, j) { s.armAt = j; CL.order.push(s); });
+      });
+      sig.list.forEach(function (s) { clDir(s.cx, s.cy, s.cdir); });
+      // the lines: home to each arm's first star, each star to the one before it on its path; one draw call
+      if (CL.lines) { scene.remove(CL.lines); CL.lines.geometry.dispose(); }
+      const n = sig.list.length, pos = new Float32Array(n * 6), dist = new Float32Array(n * 2), onp = new Float32Array(n * 2), col = new Float32Array(n * 6);
+      sig.list.forEach(function (s, i) {
+        const a = s.cpar >= 0 ? sig.list[s.cpar].cdir : CL.home, b = s.cdir;
+        pos.set([a.x * 598, a.y * 598, a.z * 598, b.x * 598, b.y * 598, b.z * 598], i * 6);
+        dist[i * 2] = s.cpar >= 0 ? sig.list[s.cpar].cdist : 0; dist[i * 2 + 1] = s.cdist;
+        col.set([s.col.r, s.col.g, s.col.b, s.col.r, s.col.g, s.col.b], i * 6);
+      });
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('aD', new THREE.BufferAttribute(dist, 1));
+      g.setAttribute('aP', new THREE.BufferAttribute(onp, 1)); g.setAttribute('aC', new THREE.BufferAttribute(col, 3));
+      CL.lines = new THREE.LineSegments(g, new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        uniforms: { uHead: { value: 0 }, uGap: { value: 9 }, uWidth: { value: 1.6 }, uBase: { value: 0.16 }, uPath: { value: 0.3 }, uAmp: { value: 0 } },
+        vertexShader: 'attribute float aD, aP; attribute vec3 aC; varying float vD, vP; varying vec3 vC; void main(){ vD = aD; vP = aP; vC = aC; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+        // the pulse: waves of light leaving home along the path to the playing star, one a beat, travelling outward
+        fragmentShader: 'uniform float uHead, uGap, uWidth, uBase, uPath, uAmp; varying float vD, vP; varying vec3 vC; void main(){ float x = vD - uHead; float f = x - uGap * floor(x / uGap + 0.5); float w = exp(-f * f / (uWidth * uWidth)) * step(vD, uHead + 0.5); vec3 warm = mix(vC, vec3(1.0, 0.86, 0.62), 0.55); float a = uBase + vP * (uPath + w * uAmp); gl_FragColor = vec4(mix(vC, warm, vP) * a, 1.0); }' }));
+      CL.lines.frustumCulled = false; CL.lines.renderOrder = 5; scene.add(CL.lines);
+      if (!CL.homeSprite) {
+        CL.homeSprite = new THREE.Sprite(new THREE.SpriteMaterial({ fog: false, map: glowTexture([[0, 'rgba(255,248,232,1)'], [0.18, 'rgba(255,226,170,0.8)'], [0.45, 'rgba(255,190,120,0.22)'], [1, 'rgba(255,160,90,0)']]), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+        CL.homeSprite.renderOrder = 6; scene.add(CL.homeSprite);
+      }
+      CL.homeSprite.position.copy(CL.home).multiplyScalar(600); CL.homeSprite.scale.setScalar(22);
+      clPath();
+    }
+    // the path from home to the playing star: marks its segments and its stars, and its length for the pulse
+    function clPath() {
+      CL.path = {}; CL.pathLen = 0; CL.head = 0;
+      if (!CL.lines) return;
+      const onp = CL.lines.geometry.attributes.aP.array; onp.fill(0);
+      let s = sig.playing && sig.bySlug[sig.playing];
+      if (s) CL.pathLen = s.cdist;
+      for (let guard = 0; s && guard < 999; guard++) { CL.path[s.slug] = true; onp[s.i * 2] = 1; onp[s.i * 2 + 1] = 1; s = s.cpar >= 0 ? sig.list[s.cpar] : null; }
+      CL.lines.geometry.attributes.aP.needsUpdate = true;
+    }
+    function stepConstellation(dt) {
+      if (!CL.lines) return;
+      CL.hidden += ((C.hidden ? 1 : 0) - CL.hidden) * ease(dt, 0.8);
+      const A = NOBODY.vis && NOBODY.vis.analyser, bpm = A && A.bpm ? A.bpm : 90, k = music.amt;
+      const playing = !!sig.playing && music.low + music.mid + music.high > 0.05;
+      const u = CL.lines.material.uniforms, gap = u.uGap.value;
+      // one wave leaves home on every beat; it travels a gap per beat, so the waves arrive in time with the music
+      CL.head += dt * (playing ? gap * bpm / 60 : gap * 0.15);
+      // past the end of the path the pattern repeats every gap, so the head steps back by whole gaps and never grows without end
+      if (CL.head > CL.pathLen + gap * 3) CL.head -= gap * Math.floor((CL.head - CL.pathLen - gap) / gap);
+      u.uHead.value = CL.head;
+      const h = CL.hidden;
+      u.uBase.value = lerp(0.16, 0.025, h);
+      u.uPath.value = lerp(0.3, 0.14, h);
+      u.uAmp.value = (playing ? (0.55 + 0.9 * music.pulse * k + 0.4 * music.low * k) : 0.15) * lerp(0.55, 1.25, h);
+      CL.homeSprite.material.opacity = lerp(0.95, 0.75, h) * (0.9 + 0.1 * Math.sin(T * 0.8));
+    }
+
     // every frame: each signal follows its world along the orbit (kept a little above the horizon)
     function placeSignals() {
       if (!signalPts) return;
+      if (CL.on && CL.order.length) {
+        const pos = signalPts.geometry.attributes.position.array;
+        for (let i = 0; i < sig.list.length; i++) { const s = sig.list[i]; s.dir.copy(s.cdir); pos[i * 3] = s.dir.x * 600; pos[i * 3 + 1] = s.dir.y * 600; pos[i * 3 + 2] = s.dir.z * 600; }
+        signalPts.geometry.attributes.position.needsUpdate = true;
+        return;
+      }
       const pos = signalPts.geometry.attributes.position.array;
       for (let i = 0; i < sig.list.length; i++) {
         const s = sig.list[i], w = W_.list[s.world];
@@ -877,7 +993,8 @@ NOBODY.themes = NOBODY.themes || {};
 
       // the camera: springs toward the gaze; the scope narrows the field; a slow breath while you sit
       // hidden: the sky fills the frame (issue #82), the fire's flames in the bottom corner, the bag and the log below the edge
-      if (C.hidden) { look.yawT = FIRE_AIM.yaw + 0.42 + Math.sin(T * 0.05) * 0.12; look.pitchT = 0.42 + Math.sin(T * 0.07) * 0.03; }
+      if (C.hidden && CL.on) { look.yawT = FIRE_AIM.yaw - 0.1 + Math.sin(T * 0.05) * 0.08; look.pitchT = 0.4 + Math.sin(T * 0.07) * 0.03; }
+      else if (C.hidden) { look.yawT = FIRE_AIM.yaw + 0.42 + Math.sin(T * 0.05) * 0.12; look.pitchT = 0.42 + Math.sin(T * 0.07) * 0.03; }
       else { look.yawT = look.cy + look.oy; look.pitchT = clamp(look.cp + look.op, -40 * DEG, 84 * DEG); }
       const tc = C.scoped ? 0.16 : C.hidden ? 1.6 : 0.12;
       look.yaw += wrapAngle(look.yawT - look.yaw) * ease(dt, tc);
@@ -894,6 +1011,7 @@ NOBODY.themes = NOBODY.themes || {};
 
       stepFire(dt, slow);
       stepSignals(dt);
+      if (CL.on) stepConstellation(dt);
       stepMallow(dt);
       if (treeMat.userData.sh) treeMat.userData.sh.uniforms.uTime.value = T;
       const scale = H / (2 * Math.tan(camera.fov * DEG / 2));     // pixels per unit at one unit's depth
@@ -1141,6 +1259,9 @@ NOBODY.themes = NOBODY.themes || {};
       for (let i = 0; i < sig.list.length; i++) {
         const s = sig.list[i], onF = s.freq === sig.freq;
         let I = onF ? 0.7 : (C.scoped ? 0.16 : 0.34), sz = onF ? 7 : 4.5;
+        // the constellation: every arm reads alike until the scope picks a frequency; hidden, all but the path home sink away
+        if (CL.on && !C.scoped) { I = 0.62; sz = 6; }
+        if (CL.on && CL.hidden > 0.01) { if (CL.path[s.slug]) { I = Math.max(I, 0.7); } else { I *= lerp(1, 0.1, CL.hidden); sz *= lerp(1, 0.7, CL.hidden); } }
         if (lit) { if (lit[s.slug]) { I = 1.5 + 0.3 * Math.sin(T * 3 + s.seed * 9); sz = 10; } else { I *= 0.18; sz *= 0.7; } }
         if (s.slug === sig.target) { I += sig.strength * 1.6; sz += sig.strength * 9; }
         if (s.slug === sig.playing) { I = Math.max(I, 1.0 + 0.6 * beat); sz = Math.max(sz, 9 + 5 * beat); }
@@ -1289,7 +1410,8 @@ NOBODY.themes = NOBODY.themes || {};
         scene.add(new THREE.HemisphereLight('#3a4f8f', '#120c08', 0.9));
         const moon = new THREE.DirectionalLight('#8fa6e0', 0.35); moon.position.set(-0.4, 1, 0.3); scene.add(moon);
         buildSky(); buildGround(); buildTrees(C.phone ? 90 : 140); buildCamp(); buildFire(); buildMallow();
-        aimTo(FIRE_AIM.yaw, (C.phone ? -4 : 1) * DEG, true);
+        // with the constellation the first look is a little higher and to the left, home in view, the fire still in the frame
+        if (CL.on) aimTo(FIRE_AIM.yaw - 12 * DEG, (C.phone ? 6 : 9) * DEG, true); else aimTo(FIRE_AIM.yaw, (C.phone ? -4 : 1) * DEG, true);
         api.resize();
         C.running = true; raf = requestAnimationFrame(step);
         return true;
@@ -1306,7 +1428,7 @@ NOBODY.themes = NOBODY.themes || {};
         renderer = null; scene = null;
       },
       setCatalogue: setCatalogue,
-      setPlaying: function (slug) { sig.playing = slug; buildRoute(); },
+      setPlaying: function (slug) { const was = sig.playing; sig.playing = slug; buildRoute(); if (CL.on && slug !== was) clPath(); },
       setQueue: function (list, current) { sig.queue = (list || []).slice(0, 6); sig.playing = current || sig.playing; buildRoute(); },
       setFilter: function (words, slugs) { if (!words) { sig.lit = null; return; } sig.lit = {}; (slugs || []).forEach(function (s) { sig.lit[s] = true; }); },
       litCount: function () { return sig.lit ? Object.keys(sig.lit).filter(function (s) { return sig.bySlug[s]; }).length : null; },
@@ -1347,6 +1469,26 @@ NOBODY.themes = NOBODY.themes || {};
       scheme: function (dawn) { skyU.uDawn.value = dawn ? 1 : 0; },
       noMeteors: function (v) { C.noMeteors = !!v; },
       music: function (on) { if (on != null) music.on = !!on; return music.on; },
+      // the constellation (issue #84): is it on; a step along an arm (out from home, in toward it) or to the next arm over
+      cl: function () { return CL.on; },
+      clMove: function (slug, how) {
+        if (!CL.on || !CL.arms.length) return null;
+        let s = slug && sig.bySlug[slug];
+        if (!s) { const a = CL.arms.find(function (x) { return x && x.length; }); return a ? a[0].slug : null; }
+        const arm = CL.arms[s.arm] || [];
+        if (how === 'out') return (arm[s.armAt + 1] || s).slug;
+        if (how === 'in') return (arm[s.armAt - 1] || s).slug;
+        const K = CL.arms.length;
+        for (let d = 1; d < K; d++) {
+          const other = CL.arms[((s.arm + (how === 'next' ? d : -d)) % K + K) % K];
+          if (!other || !other.length) continue;
+          let best = other[0]; other.forEach(function (o) { if (Math.abs(o.cdist - s.cdist) < Math.abs(best.cdist - s.cdist)) best = o; });
+          return best.slug;
+        }
+        return s.slug;
+      },
+      clState: function () { return { on: CL.on, arms: CL.arms.map(function (a) { return a ? a.length : 0; }), stars: CL.order.length, path: Object.keys(CL.path).length, pathLen: +CL.pathLen.toFixed(1), head: +CL.head.toFixed(1), hidden: +CL.hidden.toFixed(2), amp: CL.lines ? +CL.lines.material.uniforms.uAmp.value.toFixed(3) : 0 }; },
+      homeAt: function () { if (!CL.on || !camera) return null; const p = tmp.v2.copy(CL.home).multiplyScalar(600).add(camera.position).project(camera); return { x: (p.x + 1) / 2 * W, y: (1 - p.y) / 2 * H, behind: p.z > 1 }; },
       musicState: function () { const r = function (x) { return +x.toFixed(3); }; return { on: music.on, amt: r(music.amt), low: r(music.low), mid: r(music.mid), high: r(music.high), pulse: r(music.pulse), raw: music.raw.map(r), reduced: reduced }; },
       // test only (?mute=1): stop the loop and render on a stepped clock, one exact frame per call, so a recording is smooth
       // whatever the capture costs; the frame-time numbers are always measured on the live loop
@@ -1368,6 +1510,8 @@ NOBODY.themes = NOBODY.themes || {};
     // the camp's own sounds (the fire, the wind, the scope's static, the chime, the ident, the bite) on one bus, with a switch and
     // a level remembered in this browser (issue #82); the station's volume is never touched. the sky's music: on unless v said no
     const SND = { on: true, level: 100, ctls: [] }, SKYP = { on: true };
+    // the tracklist prototypes (issue #84): ?camplist=sky (the constellation, the reel for a track) or ?camplist=spiral (a sketch)
+    const CAMPLIST = (new URLSearchParams(location.search).get('camplist') || '').toLowerCase();
     function loadPrefs() {
       try { const s = JSON.parse(localStorage.getItem('nobody.campfire.sounds') || 'null'); if (s) { SND.on = s.on !== false; SND.level = typeof s.level === 'number' ? clamp(Math.round(s.level), 0, 100) : 100; } } catch (e) {}
       try { SKYP.on = localStorage.getItem('nobody.campfire.sky') !== '0'; } catch (e) {}
@@ -1405,7 +1549,7 @@ NOBODY.themes = NOBODY.themes || {};
     const KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'z', 'w', 'e', 'l', 'h', 'x', 'v'];
     TH.interface = function () { return { kind: 'camp', keys: KEYS.slice(), layouts: ['camp', 'deck'], visualizer: false }; };
     TH.help = function () {
-      return [['arrows', 'look round'], ['z', 'raise or lower the scope (hold it, or tap)'], ['w e', 'the frequency, down or up'], ['l or enter', 'lock on to the signal in the reticle'],
+      return [CAMPLIST === 'sky' ? ['arrows', 'walk an arm (left, right), jump arms (up, down)'] : ['arrows', 'look round'], ['z', 'raise or lower the scope (hold it, or tap)'], ['w e', 'the frequency, down or up'], ['l or enter', 'lock on to the signal in the reticle'],
         ['h', 'a marshmallow: tap to skewer, hold to toast, tap to eat'], ['x', 'eat it now'], ['j k', 'the scope onto each match after a find'], ['q', 'the locked signal onto the route'], ['f', 'the camp or the deck'],
         ['v', 'the sky with the music, or not'], ['sounds', 'camp sounds off|on|0..100'], ['esc', 'the journal, then the scope']];
     };
@@ -1455,6 +1599,8 @@ NOBODY.themes = NOBODY.themes || {};
       const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
       // v works in every view and behind the hidden interface: the sky is always up there
       if (k === 'v') { if (!e.repeat) setSky(null); return true; }
+      // the reel: the arrows advance it (back with left or up)
+      if (RL.el && !RL.el.hidden && /^Arrow/.test(k)) { reelGo(RL.at + (k === 'ArrowLeft' || k === 'ArrowUp' ? -1 : 1)); return true; }
       if (!scene) return false;
       if (UI.away && k !== 'f') return false;
       if (k === 'f') { ctx.setLayout(inCamp() ? 'deck' : 'camp'); return true; }
@@ -1464,6 +1610,11 @@ NOBODY.themes = NOBODY.themes || {};
       }
       if (document.body.classList.contains('ui-hidden')) return false;
       const scoped = scene.C.scoped, step = scoped ? 0.7 * Math.PI / 180 : 2.4 * Math.PI / 180;
+      // the constellation: left and right walk along an arm (in toward home, out from it), up and down step to the next arm
+      if (skyList() && !scoped && /^Arrow/.test(k)) {
+        const how = k === 'ArrowLeft' ? 'in' : k === 'ArrowRight' ? 'out' : k === 'ArrowUp' ? 'next' : 'prev';
+        clCursor(scene.clMove(UI.clCursor || scene.sig.playing, how), true); UI.hover = null; hintSeen(); return true;
+      }
       switch (k) {
         case 'ArrowLeft': scene.nudge(-step, 0); hintSeen(); return true;
         case 'ArrowRight': scene.nudge(step, 0); hintSeen(); return true;
@@ -1495,6 +1646,8 @@ NOBODY.themes = NOBODY.themes || {};
       scene.setCursor(slug);
       // j and k after a find swing the scope onto each match (the station keeps tab for the terminal)
       const cycling = performance.now() - UI.jkAt < 400;
+      // the constellation: j and k (after a find, or any time) fly to the star; no scope needed
+      if (skyList() && !scene.C.scoped && slug && scene.sig.bySlug[slug]) { UI.clCursor = slug; UI.hover = null; if (cycling && inCamp()) scene.aimAt(slug, -4, false); return; }
       if (cycling && slug && scene.sig.bySlug[slug] && inCamp() && (ctx.filter() || scene.C.scoped)) {
         setFreq(scene.sig.bySlug[slug].freq, false);
         if (!scene.C.scoped) setScope(true);
@@ -1536,6 +1689,13 @@ NOBODY.themes = NOBODY.themes || {};
       UI.layout = 'camp'; UI.view = S.view === 'home' ? 'home' : 'page'; UI.away = null;
       loadPrefs();
       buildUi();
+      if (CAMPLIST === 'sky' || CAMPLIST === 'spiral') document.body.classList.add('camplist-' + CAMPLIST);
+      if (CAMPLIST === 'sky') {
+        UI.starLabel = mk('div', 'camp-star-label', document.body); UI.starLabel.hidden = true; UI.starLabel.setAttribute('aria-hidden', 'true');
+        mk('div', 'csl-title', UI.starLabel, ''); mk('div', 'csl-meta', UI.starLabel, '');
+        UI.homeLabel = mk('div', 'camp-home-label', document.body, 'home'); UI.homeLabel.hidden = true; UI.homeLabel.setAttribute('aria-hidden', 'true');
+      }
+      if (CAMPLIST === 'spiral') buildSpiral();
       UI.helpWatch = new MutationObserver(function () { syncAway(); helpSoundCtl(); }); UI.helpWatch.observe(el('help'), { attributes: true, attributeFilter: ['hidden'] });
       syncAway();
       sceneUp();
@@ -1549,6 +1709,9 @@ NOBODY.themes = NOBODY.themes || {};
       if (scene) { scene.dispose(); scene = null; }
       [canvas, painted, UI.scopeEl, UI.legend, UI.bar, UI.hint, UI.credit, UI.journal, UI.deckWrap, UI.sndRow].forEach(function (n) { if (n) n.remove(); });
       const hs = document.querySelector('.camp-snd-help'); if (hs) hs.remove();
+      [UI.starLabel, UI.homeLabel, UI.spiral, RL.el].forEach(function (n) { if (n) n.remove(); });
+      UI.starLabel = UI.homeLabel = UI.spiral = null; RL.el = null; RL.slug = null;
+      document.body.classList.remove('camplist-sky', 'camplist-spiral', 'camp-reel-open');
       canvas = painted = null; UI.scopeEl = UI.legend = UI.bar = UI.hint = UI.credit = UI.journal = UI.deckWrap = UI.deckBtn = UI.sndRow = null; UI.meterBars = []; SND.ctls = [];
       el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
       el('dial').textContent = '';
@@ -1585,6 +1748,7 @@ NOBODY.themes = NOBODY.themes || {};
     TH.libsReady = function () { sceneUp(); };
     TH.resize = function () {
       if (scene) scene.resize();
+      reelPlace();
       placeBar();
     };
 
@@ -1622,14 +1786,18 @@ NOBODY.themes = NOBODY.themes || {};
         duckFor();
         return Promise.resolve();
       }
-      if (to === 'page' || to === 'guestbook' || to === 'home' || to === 'dead') { UI.view = to === 'home' || to === 'dead' ? 'home' : to; syncAway(); }
+      if (to === 'page' || to === 'guestbook' || to === 'home' || to === 'dead') {
+        UI.view = to === 'home' || to === 'dead' ? 'home' : to; syncAway();
+        // ?camplist=sky (issue #84): a track opens as a reel; anything else rolls it back up
+        if (CAMPLIST === 'sky') { if (to === 'page' && info.slug) openReel(info.slug); else closeReel(); }
+      }
       if (info.slug && scene) scene.setPlaying(info.slug);
       return Promise.resolve();
     };
 
     /* ---- scene hooks ---- */
-    TH.catalogue = function (tracks) { if (scene) { scene.setCatalogue(tracks); drawLegend(); } };
-    TH.playing = function (slug) { if (scene) scene.setPlaying(slug); };
+    TH.catalogue = function (tracks) { if (scene) { scene.setCatalogue(tracks); drawLegend(); } if (CAMPLIST === 'spiral') buildSpiral(); };
+    TH.playing = function (slug) { if (scene) scene.setPlaying(slug); if (CAMPLIST === 'spiral') buildSpiral(); };
     TH.scheme = function () { if (scene) scene.scheme(document.documentElement.dataset.phosphor === 'amber'); };
     TH.widget = function () { return null; };
     TH.state = function () {
@@ -1637,7 +1805,9 @@ NOBODY.themes = NOBODY.themes || {};
       const base = { widget: null, layout: UI.layout, nocamp: document.body.classList.contains('nocamp'), golden: UI.golden, goldenVisit: UI.goldenVisit, journal: UI.journalSlug,
         sounds: { on: SND.on, level: SND.level, gain: AU.on && AU.bus ? +AU.bus.gain.value.toFixed(3) : null, want: +campGain().toFixed(3), station: sy && sy.gain ? +sy.gain.gain.value.toFixed(3) : null, volume: sy ? sy.volume : null,
           route: 'fire, wind, static, chime, ident, bite -> the camp bus (this gain) -> the station gain (the mute) -> speakers' },
-        sky: scene ? scene.musicState() : { on: SKYP.on } };
+        sky: scene ? scene.musicState() : { on: SKYP.on },
+        camplist: CAMPLIST || null, constellation: scene && scene.cl() ? Object.assign(scene.clState(), { cursor: UI.clCursor || null, hover: UI.hover || null }) : null,
+        reel: RL.el && !RL.el.hidden ? { slug: RL.slug, at: RL.at, frames: RL.frames.map(function (f) { return f.label; }) } : null };
       if (!scene) return Object.assign(base, { running: false });
       const sg = scene.sig, yp = scene.yawPitch(), M = scene.M, pv = AU.pv;
       return Object.assign(base, {
@@ -1693,7 +1863,7 @@ NOBODY.themes = NOBODY.themes || {};
       UI.selfHL = true; ctx.setHighlight(slug); UI.selfHL = false;
       const t = ctx.tracks().find(function (x) { return x.slug === slug; });
       say((auto ? 'held steady. ' : '') + 'locked on: ' + (t ? (t.title || slug) : slug) + '. it comes in clear.', 'mid');
-      setTimeout(function () { if (UI.scopeEl) UI.scopeEl.classList.remove('locked'); if (scene && scene.C.scoped) setScope(false); openJournal(slug); }, 1300);
+      setTimeout(function () { if (UI.scopeEl) UI.scopeEl.classList.remove('locked'); if (scene && scene.C.scoped) setScope(false); if (CAMPLIST === 'sky') ctx.open(slug); else openJournal(slug); }, 1300);
     }
     function duckFor() { const sy = SY(); if (sy && sy.duck && sy.ctx) sy.duck(scene && scene.C.scoped ? 0.2 : 1, scene && scene.C.scoped ? 0.5 : 0.9); }
 
@@ -2017,7 +2187,8 @@ NOBODY.themes = NOBODY.themes || {};
     function showHint() {
       let seen = false; try { seen = localStorage.getItem('nobody.campfire.hint') === '1'; } catch (e) {}
       if (seen || !UI.hint) return;
-      UI.hint.textContent = phone() ? 'drag to look. [ scope ], then sweep and tap a signal. [ marshmallow ]: tap, hold, tap.' : 'look: move or drag, or the arrows.  scope: z or the right button.  frequency: w e or the wheel.  lock: l, enter or a click.  marshmallow: h, hold h to toast.  f: the deck.';
+      UI.hint.textContent = CAMPLIST === 'sky' ? (phone() ? 'every star is a track, on arms that wind out from home. drag to look, tap a star to play it.' : 'every star is a track, on arms that wind out from home. left and right walk an arm, up and down jump arms, enter or a click plays. z: the scope. h: a marshmallow.') :
+        phone() ? 'drag to look. [ scope ], then sweep and tap a signal. [ marshmallow ]: tap, hold, tap.' :'look: move or drag, or the arrows.  scope: z or the right button.  frequency: w e or the wheel.  lock: l, enter or a click.  marshmallow: h, hold h to toast.  f: the deck.';
       UI.hint.hidden = false; UI.hintAt = performance.now();
     }
     function hintSeen() { if (UI.hint && !UI.hint.hidden && performance.now() - UI.hintAt > 1500) { UI.hint.hidden = true; try { localStorage.setItem('nobody.campfire.hint', '1'); } catch (e) {} } }
@@ -2076,6 +2247,8 @@ NOBODY.themes = NOBODY.themes || {};
         if (scene.C.scoped) { if (UI.mlx != null) scene.nudge((e.clientX - UI.mlx) * k * 0.9, -(e.clientY - UI.mly) * k * 0.9); }
         else scene.gaze((e.clientX / innerWidth - 0.5) * 2 * 24 * DEGR, (0.5 - e.clientY / innerHeight) * 2 * 11 * DEGR);
         UI.mlx = e.clientX; UI.mly = e.clientY;
+        // the constellation: the star under the pointer shows its title
+        if (skyList() && !scene.C.scoped) { const s = scene.pick(e.clientX, e.clientY, 18); UI.hover = s ? s.slug : null; }
       }
     }
     function onUp(e) {
@@ -2088,6 +2261,8 @@ NOBODY.themes = NOBODY.themes || {};
       if (p.moved) return;
       // a click: in the scope it locks; outside it, a click near a signal raises the scope on it
       if (scene.C.scoped) { lock(); return; }
+      // the constellation: a click (a tap) on a star plays it
+      if (skyList()) { const s = scene.pick(e.clientX, e.clientY, p.touch ? 34 : 22); if (s) { clCursor(s.slug, false); ctx.play(s.slug); } return; }
       const s = scene.pick(e.clientX, e.clientY, p.touch ? 40 : 28);
       if (s) { setFreq(s.freq, false); setScope(true); scene.aimAt(s.slug, 0, false); UI.selfHL = true; ctx.setHighlight(s.slug); UI.selfHL = false; scene.setCursor(s.slug); }
     }
@@ -2131,6 +2306,177 @@ NOBODY.themes = NOBODY.themes || {};
       if (UI.journalSlug && !UI.journalHover && now - UI.journalAt > 22000) closeJournal();
       if (UI.hint && !UI.hint.hidden && now - UI.hintAt > 16000) hintSeen();
       if (UI.frames % 30 === 1) placeBar();
+      if (CAMPLIST === 'sky') clLabel();
+    }
+
+    /* ---- the tracklist prototypes (issue #84), behind ?camplist=: `sky` is the constellation and the reel, `spiral` a sketch ---- */
+    function skyList() { return CAMPLIST === 'sky' && !!scene && scene.cl(); }
+    function trackOf(slug) { return ctx.tracks().find(function (x) { return x.slug === slug; }); }
+    // the constellation's cursor: a star, its full title beside it (never clipped), the camera easing toward it
+    function clCursor(slug, aim) {
+      if (!slug || !scene) return;
+      scene.setCursor(slug); UI.clCursor = slug;
+      UI.selfHL = true; ctx.setHighlight(slug); UI.selfHL = false;
+      if (aim) scene.aimAt(slug, -4, false);
+    }
+    function clLabel() {
+      const L = UI.starLabel; if (!L) return;
+      const slug = UI.hover || UI.clCursor || (scene && scene.sig.playing);
+      const show = skyList() && inCamp() && !scene.C.scoped && !document.body.classList.contains('ui-hidden') && !!slug;
+      const p = show ? scene.project(slug) : null;
+      if (!p || p.behind || p.x < 0 || p.y < 0 || p.x > innerWidth || p.y > innerHeight) { if (!L.hidden) L.hidden = true; } else {
+        if (L.dataset.slug !== slug) {
+          const t = trackOf(slug) || {}, s = scene.sig.bySlug[slug], f = s ? scene.sig.freqs[s.freq] : null;
+          L.dataset.slug = slug; L.querySelector('.csl-title').textContent = t.title || slug;
+          L.querySelector('.csl-meta').textContent = [f ? f.name : '', t.bpm ? t.bpm + ' bpm' : '', t.key || '', t.date || ''].filter(Boolean).join('  ·  ');
+          L.style.setProperty('--fc', f ? f.colour : '#ffd27a');
+          L.classList.toggle('playing', slug === scene.sig.playing);
+        }
+        L.hidden = false;
+        const w = L.offsetWidth, h = L.offsetHeight, right = p.x + 18 + w < innerWidth - 12;
+        L.style.left = Math.round(right ? p.x + 18 : Math.max(12, p.x - 18 - w)) + 'px';
+        L.style.top = Math.round(clamp(p.y - h / 2, 70, innerHeight - h - 12)) + 'px';
+      }
+      const H = UI.homeLabel; if (!H) return;
+      const hp = skyList() && !document.body.classList.contains('ui-hidden') && inCamp() ? scene.homeAt() : null;
+      if (!hp || hp.behind || hp.x < 0 || hp.x > innerWidth || hp.y < 0 || hp.y > innerHeight) H.hidden = true;
+      else { H.hidden = false; H.style.left = Math.round(hp.x) + 'px'; H.style.top = Math.round(hp.y + 16) + 'px'; }
+    }
+
+    /* the reel and projector (issue #84): a track opened under ?camplist=sky is threaded as a reel of frames thrown on a sheet
+       strung between two trees. the frames are the track page's sections in order; the text is crisp ink on the lit sheet
+       (the flicker is in the light round it); the station's own page stays in the document, as text, for a screen reader */
+    const RL = { el: null, slug: null, frames: [], at: 0, wheelAt: 0, down: null };
+    // the text in frames of about n characters, word by word; a frame ends at a sentence when one falls in its last stretch
+    function chunkText(text, n) {
+      const out = []; let cur = '', end = -1;
+      String(text || '').split(/\s+/).filter(Boolean).forEach(function (w) {
+        if (cur && cur.length + 1 + w.length > n) {
+          if (end > n * 0.35) { out.push(cur.slice(0, end)); cur = cur.slice(end).trim(); } else { out.push(cur); cur = ''; }
+          end = -1;
+        }
+        cur = cur ? cur + ' ' + w : w;
+        if (/[.!?]["')]?$/.test(w)) end = cur.length;
+      });
+      if (cur) out.push(cur);
+      return out.length ? out : [''];
+    }
+    function reelFrames(t) {
+      const n = phone() ? 720 : 560, F = [], fmt = ctx.fmt;
+      const nums = t.numbers || {}, chk = t.checks || {};
+      F.push({ label: 'title', kind: 'title', title: t.title || t.slug, rows: [['made', t.date], ['tier', t.model], ['tempo', t.bpm ? t.bpm + ' bpm' : null], ['key', t.key], ['length', t.duration ? fmt(t.duration) : null], ['voice', t.voice ? 'yes' : 'no']] });
+      const ask = t.request || t.idea || '';
+      chunkText((ask ? 'asked: "' + ask + '". ' : '') + (t.why || 'nobody wrote a why for this one.'), n).forEach(function (c, i, a) { F.push({ label: a.length > 1 ? 'the why ' + (i + 1) : 'the why', head: i ? '' : 'the request and the why', text: c }); });
+      chunkText(t.prompt || '(no prompt recorded)', n).forEach(function (c, i, a) { F.push({ label: a.length > 1 ? 'prompt ' + (i + 1) : 'the prompt', head: i ? '' : 'the prompt', text: c, mono: true }); });
+      if (t.lyrics) chunkText(t.lyrics, n).forEach(function (c, i, a) { F.push({ label: a.length > 1 ? 'words ' + (i + 1) : 'the words', head: i ? '' : 'the words', text: c }); });
+      const nr = [['tempo', nums.tempo_bpm != null ? nums.tempo_bpm + ' bpm' : null, chk.tempo], ['loudness', nums.lufs != null ? nums.lufs + ' LUFS' : null, chk.loudness], ['peak', nums.peak_dbfs != null ? nums.peak_dbfs + ' dBFS' : null, chk.peak],
+        ['silence', nums.silence_s != null ? nums.silence_s + ' s' : null, chk.silence], ['brightness', nums.brightness_pct != null ? nums.brightness_pct + ' %' : null, chk.brightness], ['boominess', nums.boominess_pct != null ? nums.boominess_pct + ' %' : null, chk.boominess],
+        ['onsets', nums.onsets_per_s != null ? nums.onsets_per_s + '/s' : null, chk.onsets], ['seed', t.seed, null]].filter(function (r) { return r[1] != null && r[1] !== ''; });
+      F.push({ label: 'the numbers', head: 'the numbers', rows: nr.map(function (r) { return [r[0], String(r[1]) + (r[2] === false ? '   FAIL' : r[2] === true ? '   ok' : '')]; }) });
+      const rej = (t.rejected || []).map(function (r) { return [String(r.seed), r.reason || 'rejected']; }).concat((t.takes || []).filter(function (s) { return s !== t.seed; }).map(function (s) { return [String(s), 'kept as second take']; }));
+      F.push({ label: 'rejected seeds', head: 'rejected seeds', rows: rej.length ? rej.slice(0, 8) : null, text: rej.length ? '' : 'none. first seed, first take.' });
+      const lin = t.lineage || {};
+      F.push({ label: 'lineage', head: 'lineage', text: lin.parent ? 'a variation of ' + lin.parent + (lin.request ? ', asked: "' + lin.request + '"' : '') + (lin.changed ? '. changed: "' + lin.changed.from + '" to "' + lin.changed.to + '"' : '') + '. same seed, ' + (lin.seed != null ? lin.seed : t.seed) + '.' : 'no parent. it started here, at seed ' + (t.seed != null ? t.seed : '-') + '.' });
+      F.push({ label: 'take it home', head: 'take it home', text: (t.licence || 'generated locally from a text prompt, no samples or reference audio.') + ' the file, the prompt and the seed are yours to take: the button below, or take ' + t.slug + ' at the terminal.' });
+      return F;
+    }
+    function buildReel() {
+      if (RL.el) return;
+      const r = mk('section', 'camp-reel', document.body); r.id = 'campReel'; r.hidden = true; r.setAttribute('aria-label', 'the reel: the track, frame by frame');
+      r.innerHTML = '<svg class="cr-beam" aria-hidden="true"><defs><linearGradient id="crBeamG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".34"/><stop offset="1" stop-color="#ffd890" stop-opacity=".06"/></linearGradient></defs><polygon fill="url(#crBeamG)"/></svg>' +
+        '<div class="cr-stage" aria-hidden="true"><div class="cr-sheet"><i class="cr-light"></i><i class="cr-rope"></i><div class="cr-frame"></div><span class="cr-count"></span></div></div>' +
+        '<svg class="cr-projector" viewBox="0 0 120 92" aria-hidden="true"><g transform="translate(34 22)"><g class="cr-reel"><circle r="19"/><path d="M0-15V15M-13-7.5 13 7.5M-13 7.5 13-7.5"/><circle r="4" class="hub"/></g></g><g transform="translate(80 22)"><g class="cr-reel"><circle r="19"/><path d="M0-15V15M-13-7.5 13 7.5M-13 7.5 13-7.5"/><circle r="4" class="hub"/></g></g><rect class="body" x="14" y="40" width="80" height="38" rx="6"/><rect class="trim" x="20" y="47" width="40" height="5" rx="2"/><path class="lens" d="M94 50h12l8-5v28l-8-5H94z"/><circle class="lamp" cx="70" cy="59" r="5"/><path class="leg" d="M28 78l-8 13M80 78l8 13"/></svg>' +
+        '<div class="cr-strip" role="tablist" aria-label="frames"></div><div class="cr-actions"></div>';
+      const acts = r.querySelector('.cr-actions');
+      [['> play', 'play', function (s) { ctx.play(s); }], ['remix this', 'remix this track', function (s) { ctx.remix(s); }], ['take it home', 'take it home', function (s) { NOBODY.st.take(s); }],
+        ['+ queue', 'queue it next', function (s) { ctx.queue(s); }], ['copy seed', 'copy the seed', function (s) { NOBODY.st.copySeed(s); }], ['copy prompt', 'copy the prompt', function (s) { NOBODY.st.copyPrompt(s); }]].forEach(function (b, i) {
+        const btn = mk('button', 'bk' + (i < 3 ? ' cr-primary' : ''), acts, b[0]); btn.type = 'button'; btn.setAttribute('aria-label', b[1]);
+        btn.addEventListener('click', function (e) { e.stopPropagation(); if (RL.slug) b[2](RL.slug); });
+      });
+      const stage = r.querySelector('.cr-stage');
+      r.addEventListener('wheel', function (e) { e.preventDefault(); const now = performance.now(); if (now - RL.wheelAt < 260) return; RL.wheelAt = now; reelGo(RL.at + (e.deltaY > 0 ? 1 : -1)); }, { passive: false });
+      stage.addEventListener('pointerdown', function (e) { RL.down = { x: e.clientX, y: e.clientY }; try { stage.setPointerCapture(e.pointerId); } catch (err) {} });
+      stage.addEventListener('pointercancel', function () { RL.down = null; });
+      stage.addEventListener('pointerup', function (e) {
+        const d = RL.down; RL.down = null; if (!d) return;
+        const dx = e.clientX - d.x, dy = e.clientY - d.y;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) reelGo(RL.at + (dx < 0 ? 1 : -1));
+        else if (Math.abs(dy) > 40) reelGo(RL.at + (dy < 0 ? 1 : -1));
+        else if (Math.abs(dx) + Math.abs(dy) < 6) reelGo(RL.at + 1);
+      });
+      RL.el = r;
+    }
+    function openReel(slug) {
+      const t = trackOf(slug); if (!t) return;
+      buildReel();
+      RL.slug = slug; RL.frames = reelFrames(t); RL.at = 0;
+      const strip = RL.el.querySelector('.cr-strip'); strip.textContent = '';
+      RL.frames.forEach(function (f, i) {
+        const c = mk('button', 'cr-cell', strip, f.label); c.type = 'button'; c.setAttribute('role', 'tab'); c.setAttribute('aria-label', 'frame ' + (i + 1) + ' of ' + RL.frames.length + ': ' + f.label);
+        c.addEventListener('click', function (e) { e.stopPropagation(); reelGo(i); });
+      });
+      RL.el.hidden = false; document.body.classList.add('camp-reel-open');
+      RL.el.classList.remove('threading'); void RL.el.offsetWidth; RL.el.classList.add('threading');
+      reelPlace(); reelGo(0, true);
+    }
+    function closeReel() { if (!RL.el || RL.el.hidden) return; RL.el.hidden = true; RL.slug = null; document.body.classList.remove('camp-reel-open'); }
+    function reelGo(i, first) {
+      if (!RL.el || !RL.frames.length) return;
+      i = clamp(i, 0, RL.frames.length - 1);
+      if (i === RL.at && !first) return;
+      RL.at = i;
+      const f = RL.frames[i], fr = RL.el.querySelector('.cr-frame');
+      fr.textContent = ''; fr.className = 'cr-frame' + (f.kind === 'title' ? ' cr-title-card' : '') + (f.mono ? ' cr-mono' : '');
+      if (f.kind === 'title') { mk('div', 'cr-kicker', fr, 'NOBODY FM  ·  a reel'); mk('h3', 'cr-h', fr, f.title); }
+      else if (f.head) mk('div', 'cr-kicker', fr, f.head);
+      if (f.text) mk('p', 'cr-text', fr, f.text);
+      if (f.rows) { const dl = mk('dl', 'cr-rows', fr); f.rows.forEach(function (r) { if (r[1] == null || r[1] === '') return; mk('dt', '', dl, r[0]); mk('dd', /FAIL$/.test(r[1]) ? 'fail' : '', dl, r[1]); }); }
+      // never clipped: a frame that does not fit steps its type down until it does
+      fr.style.fontSize = '';
+      for (let k = 0; k < 6 && fr.scrollHeight > fr.clientHeight + 1; k++) fr.style.fontSize = (1 - 0.08 * (k + 1)) + 'em';
+      RL.el.querySelector('.cr-count').textContent = (i + 1) + ' / ' + RL.frames.length;
+      [].forEach.call(RL.el.querySelectorAll('.cr-cell'), function (c, j) { c.classList.toggle('on', j === i); c.setAttribute('aria-selected', j === i ? 'true' : 'false'); if (j === i && c.scrollIntoView) c.scrollIntoView({ block: 'nearest', inline: 'center' }); });
+      const sh = RL.el.querySelector('.cr-sheet'); sh.classList.remove('advance'); void sh.offsetWidth; sh.classList.add('advance');
+      RL.el.classList.remove('turning'); void RL.el.offsetWidth; RL.el.classList.add('turning');
+    }
+    // the reel sits between the header and the terminal; the beam runs from the projector's lens to the sheet
+    function reelPlace() {
+      if (!RL.el || RL.el.hidden) return;
+      const hdr = el('header') ? el('header').getBoundingClientRect() : { bottom: 60 }, term = el('terminal') ? el('terminal').getBoundingClientRect() : { top: innerHeight };
+      const top = Math.round(hdr.bottom + 10), bottom = phone() ? 10 : Math.max(10, Math.round(innerHeight - term.top + 10));
+      RL.el.style.top = top + 'px'; RL.el.style.bottom = bottom + 'px';
+      const pj = RL.el.querySelector('.cr-projector'), sheet = RL.el.querySelector('.cr-sheet'), poly = RL.el.querySelector('.cr-beam polygon');
+      const a = pj.getBoundingClientRect(), b = sheet.getBoundingClientRect(), o = RL.el.getBoundingClientRect();
+      if (!a.width || phone()) { poly.setAttribute('points', ''); return; }
+      const lens = [a.left + a.width * 0.95 - o.left, a.top + a.height * 0.64 - o.top];
+      const pts = [lens, [b.left - o.left, b.top - o.top], [b.right - o.left, b.top - o.top], [b.right - o.left, b.bottom - o.top], [b.left - o.left, b.bottom - o.top]];
+      poly.setAttribute('points', hull(pts).map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '));
+    }
+    function hull(P) {
+      const p = P.slice().sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; }), cr = function (o, a, b) { return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]); };
+      const lo = [], up = [];
+      p.forEach(function (q) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); });
+      p.slice().reverse().forEach(function (q) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); });
+      return lo.slice(0, -1).concat(up.slice(0, -1));
+    }
+
+    /* the spiral (a quick sketch for comparison, ?camplist=spiral): the newest titles along one arithmetic spiral on a dark disc,
+       read from the centre out; the wheel turns it. plain titles in our own type, nothing more */
+    // built when the catalogue arrives, and again when the playing track changes (it is marked in gold)
+    function buildSpiral() {
+      if (UI.spiral) { UI.spiral.remove(); UI.spiral = null; }
+      if (!ctx.tracks().length) return;
+      const tr = ctx.tracks().slice().sort(function (a, b) { return String(b.rendered_at || b.date || '').localeCompare(String(a.rendered_at || a.date || '')); }).slice(0, 50);
+      const R = 250, turns = 10, b = (R - 18) / (turns * Math.PI * 2);
+      let d = ''; for (let th = 0.6; th <= turns * Math.PI * 2; th += 0.06) { const r = 18 + b * th; d += (d ? 'L' : 'M') + (r * Math.cos(th)).toFixed(1) + ' ' + (r * Math.sin(th)).toFixed(1); }
+      const wrap = mk('div', 'camp-spiral', document.body); wrap.setAttribute('aria-hidden', 'true');
+      const cur = ctx.current();
+      wrap.innerHTML = '<svg viewBox="-270 -270 540 540"><circle r="262" class="disc"/><g class="turn"><path id="campSpiralPath" d="' + d + '" class="arm"/><text><textPath href="#campSpiralPath">' +
+        tr.map(function (t) { return '<tspan' + (t.slug === cur ? ' class="now"' : '') + '>' + String(t.title || t.slug).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }) + '</tspan>'; }).join('<tspan class="dot">  ·  </tspan>') +
+        '</textPath></text></g><circle r="6" class="home"/></svg><div class="cs-note">a sketch: the newest 50 along one spiral, newest at the centre. the wheel turns it.</div>';
+      let ang = 0; const g = wrap.querySelector('.turn');
+      wrap.addEventListener('wheel', function (e) { e.preventDefault(); ang += e.deltaY > 0 ? 12 : -12; g.style.transform = 'rotate(' + ang + 'deg)'; }, { passive: false });
+      UI.spiral = wrap;
     }
 
     /* ---- the station's widgets in the camp's hand ---- */

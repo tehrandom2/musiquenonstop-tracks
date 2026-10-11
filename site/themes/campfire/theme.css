@@ -465,3 +465,89 @@ body.camp-scoped .camp-scope { opacity: 1; visibility: visible; transition: opac
   .camp-journal.in, .camp-hint { animation: none; }
   .camp-scope.locked .cs-mask { animation: none; }
 }
+
+/* ---- the tracklist prototypes (issue #84), behind ?camplist= ---- */
+/* the list leaves the right-hand column but stays in the document, as a real list, for a screen reader and the keys */
+body.camplist-sky[data-layout="camp"] #catalogue, body.camplist-spiral[data-layout="camp"] #catalogue, body.camp-reel-open #page {
+  position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip-path: inset(50%) !important; white-space: nowrap !important; contain: none !important;
+  padding: 0 !important; border: 0 !important; margin: 0 !important; border-image: none !important;
+}
+/* the constellation's label: the star's whole title beside it, never clipped (it wraps, and flips to the other side at an edge) */
+.camp-star-label { position: fixed; z-index: 2; max-width: min(380px, calc(100vw - 24px)); padding: 6px 12px 7px; background: var(--panel); border-left: 3px solid var(--fc, var(--gold)); border-radius: 0 4px 4px 0; pointer-events: none; box-shadow: 0 0 14px rgb(0 0 0 / .45); }
+.camp-star-label .csl-title { font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.15; letter-spacing: .02em; color: var(--ink); overflow-wrap: anywhere; }
+.camp-star-label.playing .csl-title { color: var(--gold); }
+.camp-star-label .csl-meta { margin-top: 2px; font-family: var(--mono); font-size: 13px; color: var(--ink-mid); }
+.camp-home-label { position: fixed; z-index: 2; transform: translateX(-50%); font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .3em; color: var(--gold); text-shadow: 0 0 8px rgb(0 0 0 / .9), 0 0 2px rgb(0 0 0); pointer-events: none; }
+body.ui-hidden .camp-star-label, body.ui-hidden .camp-home-label, body.camp-away .camp-star-label, body.camp-away .camp-home-label, body.camp-scoped .camp-star-label, body.camp-scoped .camp-home-label,
+body:not([data-layout="camp"]) .camp-star-label, body:not([data-layout="camp"]) .camp-home-label { display: none; }
+
+/* the reel and projector: a sheet strung between two trees, a projector at the left throwing a warm beam on it */
+.camp-reel { position: fixed; left: var(--gutter); right: var(--gutter); top: 70px; bottom: 140px; z-index: 3; display: grid; grid-template-rows: minmax(0, 1fr) auto auto; justify-items: center; gap: 10px; }
+.camp-reel[hidden], body.ui-hidden .camp-reel { display: none; }
+.camp-reel .cr-beam { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; animation: crBeam 2.6s linear infinite; }
+@keyframes crBeam { 0%, 100% { opacity: .92; } 18% { opacity: .8; } 21% { opacity: .95; } 47% { opacity: .86; } 63% { opacity: 1; } 66% { opacity: .84; } 81% { opacity: .93; } }
+.camp-reel .cr-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 26px 0 8px; box-sizing: border-box; touch-action: none; user-select: none; }
+.camp-reel .cr-sheet { position: relative; width: min(680px, calc(100% - 300px)); height: min(380px, 100%); background: #efe3c9 repeating-linear-gradient(90deg, rgb(120 90 50 / .035) 0 1px, transparent 1px 4px); border-radius: 2px 2px 8px 8px / 2px 2px 14px 14px; box-shadow: 0 0 0 1px rgb(60 40 20 / .45), 0 10px 34px rgb(0 0 0 / .55); }
+/* the trees the sheet is strung between, and the rope over it */
+.camp-reel .cr-strip, .camp-reel .cr-actions { position: relative; z-index: 2; }
+.camp-reel .cr-sheet::before, .camp-reel .cr-sheet::after { content: ""; position: absolute; top: -70px; bottom: -34px; width: 30px; background: linear-gradient(90deg, #1a120c, #3a2a1c 45%, #1c140e); border-radius: 12px 12px 4px 4px; }
+.camp-reel .cr-sheet::before { left: -58px; } .camp-reel .cr-sheet::after { right: -58px; }
+.camp-reel .cr-rope { position: absolute; left: -44px; right: -44px; top: -16px; height: 18px; border-bottom: 2px solid #b08a58; border-radius: 0 0 50% 50% / 0 0 100% 100%; }
+/* the light round the frame flickers; the frame's ink does not */
+.camp-reel .cr-light { position: absolute; inset: -46px; z-index: -1; border-radius: 40px; background: radial-gradient(ellipse at 42% 52%, rgb(255 214 150 / .42), rgb(255 190 110 / .12) 55%, transparent 72%); animation: crFlick 1.9s linear infinite; pointer-events: none; }
+@keyframes crFlick { 0%, 100% { opacity: .9; } 9% { opacity: .78; } 12% { opacity: .95; } 37% { opacity: .85; } 58% { opacity: 1; } 61% { opacity: .8; } 77% { opacity: .92; } }
+.camp-reel .cr-frame { position: absolute; inset: 22px 30px 30px; overflow: hidden; color: #24160a; font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: .01em; }
+.camp-reel .cr-sheet.advance .cr-frame { animation: crIn 420ms cubic-bezier(.2, .8, .3, 1) both; }
+.camp-reel .cr-sheet.advance .cr-light { animation: crDip 420ms ease-out, crFlick 1.9s linear 420ms infinite; }
+@keyframes crIn { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+@keyframes crDip { 0% { opacity: .25; } 100% { opacity: .9; } }
+.camp-reel .cr-kicker { font-size: .66em; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #7a3a10; margin-bottom: .45em; }
+.camp-reel .cr-h { margin: .2em 0 .55em; font-family: var(--display); font-weight: 700; font-size: 1.85em; line-height: 1.05; color: #1c1006; }
+.camp-reel .cr-text { margin: 0; }
+.camp-reel .cr-mono .cr-text { font-family: var(--mono); font-weight: 400; font-size: .8em; line-height: 1.45; }
+.camp-reel .cr-rows { display: grid; grid-template-columns: max-content 1fr; gap: .15em 1.2em; margin: .3em 0 0; font-family: var(--mono); font-weight: 400; font-size: .78em; }
+.camp-reel .cr-rows dt { color: #6a4526; } .camp-reel .cr-rows dd { margin: 0; color: #1c1006; } .camp-reel .cr-rows dd.fail { color: #9a1c0c; font-weight: 700; }
+.camp-reel .cr-count { position: absolute; right: 12px; bottom: 7px; font-family: var(--mono); font-size: 13px; color: #6a4526; }
+.camp-reel .cr-projector { position: absolute; left: 1%; bottom: 96px; width: 132px; overflow: visible; }
+.camp-reel .cr-projector .body { fill: #2e241d; stroke: #8a6a3a; stroke-width: 1.5; }
+.camp-reel .cr-projector .trim { fill: #8a6a3a; }
+.camp-reel .cr-projector .lens { fill: #1a1410; stroke: #c9a46a; stroke-width: 1.4; }
+.camp-reel .cr-projector .lamp { fill: #ffd890; filter: drop-shadow(0 0 4px #ffb860); }
+.camp-reel .cr-projector .leg { stroke: #5a4630; stroke-width: 3; stroke-linecap: round; }
+.camp-reel .cr-reel circle { fill: #1d1612; stroke: #c9a46a; stroke-width: 1.6; } .camp-reel .cr-reel .hub { fill: #c9a46a; } .camp-reel .cr-reel path { stroke: #c9a46a; stroke-width: 1.4; }
+.camp-reel.turning .cr-reel, .camp-reel.threading .cr-reel { animation: crTurn 520ms cubic-bezier(.3, .6, .3, 1); }
+@keyframes crTurn { from { transform: rotate(0); } to { transform: rotate(120deg); } }
+/* the strip of frames along the reel: film with its sprocket rows, the frame in the gate lit */
+.camp-reel .cr-strip { display: flex; gap: 6px; max-width: 100%; overflow-x: auto; padding: 9px 10px; background: #120d0a; border-radius: 3px; box-shadow: inset 0 3px 0 -1px #120d0a, inset 0 0 0 1px #3a2c22;
+  background-image: repeating-linear-gradient(90deg, #3a2c22 0 6px, transparent 6px 14px), repeating-linear-gradient(90deg, #3a2c22 0 6px, transparent 6px 14px); background-size: 100% 3px, 100% 3px; background-position: 0 2px, 0 calc(100% - 2px); background-repeat: no-repeat; }
+.camp-reel .cr-cell { flex: 0 0 auto; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .04em; color: var(--ink-mid); background: #1f1712; border: 1px solid #3f3026; border-radius: 2px; padding: 5px 11px; white-space: nowrap; }
+.camp-reel .cr-cell::before, .camp-reel .cr-cell::after { content: none; }
+.camp-reel .cr-cell:hover, .camp-reel .cr-cell:focus-visible { color: var(--ink); border-color: var(--gold); }
+.camp-reel .cr-cell.on { color: #1c1006; background: #e9d7b0; border-color: var(--gold); box-shadow: 0 0 10px rgb(255 210 140 / .45); }
+.camp-reel .cr-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 12px; padding: 6px 12px; background: var(--panel); border-radius: 4px; }
+.camp-reel .cr-actions .bk { font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: .04em; }
+.camp-reel .cr-actions .cr-primary { color: var(--gold); }
+
+/* the spiral, a sketch: titles along one spiral on a dark disc, where the column was */
+.camp-spiral { position: fixed; right: var(--gutter); top: calc(var(--gutter) + var(--row) + 40px); width: min(500px, 38vw); z-index: 2; }
+.camp-spiral svg { display: block; width: 100%; height: auto; }
+.camp-spiral .disc { fill: rgb(14 12 18 / .9); stroke: #5a4630; stroke-width: 2; }
+.camp-spiral .arm { fill: none; stroke: rgb(201 164 106 / .12); }
+.camp-spiral .turn { transform-origin: 50% 50%; transition: transform 380ms cubic-bezier(.2, .8, .3, 1); }
+.camp-spiral text { font-family: var(--display); font-weight: 600; font-size: 12.5px; letter-spacing: .02em; fill: #eadfc8; }
+.camp-spiral .now { fill: var(--gold); font-weight: 700; } .camp-spiral .dot { fill: #8a6a3a; } .camp-spiral .home { fill: var(--gold); }
+.camp-spiral .cs-note { margin-top: 6px; padding: 4px 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-mid); background: var(--panel); border-radius: 4px; text-align: center; }
+body:not([data-layout="camp"]) .camp-spiral, body.camp-away .camp-spiral, body.ui-hidden .camp-spiral, body.camp-scoped .camp-spiral { display: none; }
+
+@media (max-width: 900px) {
+  .camp-reel { left: 8px; right: 8px; bottom: 10px; padding: 6px 0 4px; background: rgb(8 8 14 / .94); border-radius: 6px; }
+  .camp-reel .cr-projector, .camp-reel .cr-beam, .camp-reel .cr-sheet::before, .camp-reel .cr-sheet::after, .camp-reel .cr-rope { display: none; }
+  .camp-reel .cr-stage { padding: 6px 0; }
+  .camp-reel .cr-sheet { width: 100%; height: 100%; }
+  .camp-reel .cr-frame { inset: 16px 16px 26px; font-size: 19px; }
+  .camp-reel .cr-actions .bk { font-size: 16px; }
+  .camp-spiral { width: calc(100vw - 2 * var(--gutter)); top: auto; bottom: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .camp-reel .cr-beam, .camp-reel .cr-light, .camp-reel .cr-sheet.advance .cr-frame, .camp-reel .cr-sheet.advance .cr-light, .camp-reel.turning .cr-reel, .camp-reel.threading .cr-reel { animation: none; }
+}

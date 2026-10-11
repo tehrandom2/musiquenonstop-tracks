@@ -29,6 +29,9 @@ pre {
 .row > .left, .row > .right { white-space: pre; }
 .row > .right { flex: 0 0 auto; }
 .row > .left { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: clip; }
+/* the track page's asked line wraps instead of losing the end of the request (issue #88); the numbers go under it when it is long */
+.page .row.asked { flex-wrap: wrap; white-space: normal; }
+.page .row.asked > span { white-space: normal; overflow-wrap: anywhere; }
 
 /* every [ bracket ] is a real button; the theme draws the brackets and the hover */
 button {

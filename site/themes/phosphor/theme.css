@@ -495,3 +495,16 @@ body.ui-hidden .afterglow { display: none; }
   opacity: 0; pointer-events: none; transition: opacity 400ms ease-out; z-index: 1;
 }
 body.ui-hidden .hide-tower { opacity: 1; }
+
+/* the cover in phosphor (issue #88): dots of the phosphor in the glyph cells, a ghost of the grid under them, the CRT's glow on top.
+   desktop: in the readout's right margin (the prompt keeps the column beside it); phone: its own block above the prompt; the track
+   track page and the album page: in the station's cover slot; `art`: a line of the log, full size */
+.phos-art canvas { display: block; filter: drop-shadow(0 0 1.5px rgb(var(--p1-rgb) / .6)) drop-shadow(0 0 7px rgb(var(--p1-rgb) / .22)); }
+.readout.has-art { position: relative; padding-right: calc(var(--art-w) + 2ch); min-height: var(--art-h); }
+.readout .np-art { position: absolute; right: 0; top: 0; }
+.transmitter > .np-art { display: flex; justify-content: center; margin: calc(var(--row) * .3) 0; }
+.page .page-art, .page .hero-art { flex: 0 0 auto; }
+.page .album-hero .hero-art { margin-bottom: calc(var(--row) * .5); }
+.log .art-print { margin: calc(var(--row) * .3) 0; min-height: 0; }
+/* the station's cover images (#73, the track page and the album page) are these blocks here: the CRT shows no photographs */
+.page .cover-art { display: none !important; }

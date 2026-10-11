@@ -196,11 +196,27 @@ body.is-playing .transmitter { border-color: var(--lamp); box-shadow: 0 0 0 3px 
 /* transmitter (12.14): the cassette sits at the right of the card on a desk, everything else in the left column */
 .transmitter { display: grid; grid-template-columns: minmax(0, 1fr) 30ch; column-gap: 2ch; }
 .transmitter > * { grid-column: 1; min-width: 0; }
-.transmitter > .tx-widget.cassette { grid-column: 2; grid-row: 2 / span 9; align-self: center; margin: 0; }
-.transmitter > .row:first-child { align-items: center; }
-.cassette svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 18px rgb(0 0 0 / .65)); transform: rotate(-2.2deg); transition: transform .5s ease, opacity .4s; }
-body.is-playing .cassette svg { transform: rotate(-1deg) translateY(-4px); }
-.tuning-state .cassette svg { transform: rotate(-4deg) translateY(-18px); opacity: .55; }
+/* the label and the fader span the card (issue #88): the knob sits at the card's right edge over the tape, not stranded mid-card */
+.transmitter > .row:first-child { grid-column: 1 / -1; align-items: center; }
+.transmitter > .tx-widget.cassette { grid-column: 2; grid-row: 2 / span 9; align-self: center; margin: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.cassette svg.tape-svg { width: 100%; height: auto; display: block; align-self: flex-end; filter: drop-shadow(0 18px 18px rgb(0 0 0 / .65)); transform: rotate(-2.2deg); transition: transform .5s ease, opacity .4s; position: relative; }
+body.is-playing .cassette svg.tape-svg { transform: rotate(-1deg) translateY(-4px); }
+/* tuning fades the whole widget, not each sheet, so the tape stays opaque over its J-card */
+.tuning-state .cassette svg.tape-svg { transform: rotate(-4deg) translateY(-18px); }
+.transmitter.tuning-state > .tx-widget.cassette { opacity: .6; }
+.transmitter > .tx-widget.cassette { transition: opacity .4s; }
+/* the J-card (issue #88): the case's paper insert behind the tape, turned the other way; the tape overlaps its foot */
+.cassette svg.jcard { width: 68%; height: auto; display: block; margin-bottom: -13%; transform: rotate(2.4deg); filter: drop-shadow(0 10px 14px rgb(0 0 0 / .55)); transition: transform .5s ease, opacity .4s; }
+.tuning-state .cassette svg.jcard { transform: rotate(3.4deg) translateY(-6px); }
+.transmitter > .tx-widget.cassette svg.tape-svg { width: 88%; }
+.jcard .jc-card { fill: var(--paper); stroke: #c9b996; stroke-width: 1; }
+.jcard .jc-fold { stroke: #b9a98f; stroke-width: 1.5; stroke-dasharray: 2 3; }
+.jcard .jc-spine { font-family: var(--hand); font-size: 24px; fill: var(--ink); }
+.jcard .jc-side { font-family: var(--mono); font-size: 15px; fill: #5d4f3a; }
+.jcard .jc-hand { font-family: var(--hand); font-size: 30px; fill: var(--ink); fill-opacity: .8; }
+.jcard.has-cover .jc-paint { visibility: hidden; }
+.jcard .jc-wear { fill: #000; opacity: .5; pointer-events: none; }
+.jcard .jc-ear { fill: #c9b996; }
 .cassette .shell { fill: var(--shell); stroke: #0b0805; stroke-width: 3; }
 .cassette .screw { fill: #0d0905; opacity: .9; }
 .cassette .paper { fill: var(--paper); }
@@ -256,12 +272,13 @@ body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
 .progress .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 2px; background: var(--lamp); }
 .progress .head { position: absolute; top: 50%; left: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--paper); box-shadow: 0 2px 4px rgb(0 0 0 / .6); }
 .progress .time { flex: 0 0 auto; white-space: pre; font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .08em; color: var(--dim); }
-.dial { position: relative; height: calc(var(--row) * 2.4); overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+/* the reading has its own line under the labels (issue #88: it sat on them, two numbers on top of each other) */
+.dial { position: relative; height: calc(var(--row) * 3.2); overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .dial .dial-strip { position: absolute; left: 0; top: 0; white-space: pre; color: var(--cream); will-change: transform; }
 .dial .dial-strip .labels { margin-left: -1.5ch; color: var(--faint); }
 .dial.locked .dial-strip, .dial.locked .dial-strip .labels { color: var(--lamp); }
 .dial::after { content: ""; position: absolute; left: 50%; top: 0; height: calc(var(--row) * 1.6); width: 2px; background: var(--orange); box-shadow: 0 0 6px rgb(var(--orange-rgb) / .8); }
-.dial .dial-read { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .1em; color: var(--lamp); }
+.dial .dial-read { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); padding: 0 1ch; background: #241910; border-radius: 4px; white-space: pre; font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .1em; color: var(--lamp); }
 #spectrum { height: calc(var(--row) * 4.5); }
 .baseline .ghost-tag { color: var(--warn); }
 .scope { display: flex; align-items: center; gap: 1ch; margin-top: calc(var(--row) * .3); white-space: normal; }
@@ -271,7 +288,7 @@ body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
 .tower-wrap { height: calc(var(--row) * 10); }
 .tower { align-items: flex-start; }
 .tower .cassette { width: min(60%, 26ch); margin: 0 auto; }
-.tower .cassette svg { transform: rotate(-2.2deg); }
+.tower .cassette svg.tape-svg { transform: rotate(-2.2deg); }
 .tower .cassette .reel { animation: spin 7s linear infinite; }
 .reread { color: var(--dim); }
 
@@ -333,7 +350,11 @@ body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
 @media (max-width: 900px) {
   .header-page .left { white-space: pre; gap: 1ch; } /* the skeleton's 390 px page header (12.0): playing: <slug...>  <time>  [chip] */
   .transmitter { display: block; }
-  .transmitter > .tx-widget.cassette { width: 62%; margin: calc(var(--row) * .4) auto 0; }
+  /* the J-card and the tape side by side under the fader: the cover on the left, the tape on the right (issue #88) */
+  .transmitter > .tx-widget.cassette { width: 100%; margin: calc(var(--row) * .4) 0 0; flex-direction: row; align-items: center; justify-content: center; gap: 2%; }
+  .cassette svg.jcard { width: 34%; margin: 0; transform: rotate(-2deg); }
+  .tuning-state .cassette svg.jcard { transform: rotate(-3deg) translateY(-4px); }
+  .transmitter > .tx-widget.cassette svg.tape-svg { width: 62%; align-self: center; }
   .header .hot-name { font-size: 17px; }
   .header .right { gap: 1.5ch; }
   .np-slug { font-size: 18px; }
@@ -353,7 +374,7 @@ body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
 /* reduced motion (12.8): the reels stop, the slides stop; the data still moves. */
 @media (prefers-reduced-motion: reduce) {
   body.is-playing .cassette .reel, .tower .cassette .reel { animation: none; }
-  .cassette svg, .card { transition: none; }
+  .cassette svg.tape-svg, .cassette svg.jcard, .card { transition: none; }
   .cursor { animation: none; }
   .drum .reel { transition: none; }
   .page:not([hidden]), .overlay:not([hidden]) { animation: none; }

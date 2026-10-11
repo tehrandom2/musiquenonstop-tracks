@@ -9,7 +9,7 @@ NOBODY.themes.tapedeck = (function () {
   const TH = { name: 'tapedeck', blurb: 'a cassette on a painting desk. one lamp, warm bars, the reels turn.' };
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
-  let viz = null, cassette = null, towerCassette = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, knob = null, chipWatch = null;
+  let viz = null, cassette = null, jcard = null, towerCassette = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, knob = null, chipWatch = null;
   let uid = 0;
   function el(id) { return ctx.el[id] || document.getElementById(id); }
   function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
@@ -45,6 +45,8 @@ NOBODY.themes.tapedeck = (function () {
     document.body.insertBefore(viz.canvas, document.body.firstChild);
     // the widget slot (12.0): the cassette, inserted after the first row of the transmitter card
     cassette = makeCassette();
+    jcard = makeJcard();
+    cassette.host.insertBefore(jcard.svg, cassette.svg);
     const tx = el('transmitter');
     tx.insertBefore(cassette.host, tx.querySelector('.np-row'));
     if (c.wantsTower()) cassette.host.hidden = true;
@@ -65,7 +67,8 @@ NOBODY.themes.tapedeck = (function () {
   };
   TH.dispose = function () {
     if (viz) { viz.stop(); viz.canvas.remove(); viz = null; }
-    if (cassette) { cassette.host.remove(); cassette = null; }
+    if (cassette) { cassette.host.remove(); cassette = null; jcard = null; }
+    coverWant = null; coverState = 'none'; tape = null;
     if (towerCassette) { towerCassette.host.remove(); towerCassette = null; }
     if (chipWatch) { chipWatch.disconnect(); chipWatch = null; }
     document.body.classList.remove('is-playing');
@@ -99,7 +102,7 @@ NOBODY.themes.tapedeck = (function () {
     }
     if (to === 'air') { glass.classList.add('bloom-on'); setTimeout(function () { glass.classList.remove('bloom-on'); }, 300); }
     // dead air: the widget cassette steps aside, the empty one in the tower slot is the picture (one cassette, not two)
-    if (to === 'dead') { if (cassette) { cassette.host.hidden = true; cassette.label('no tape', 'nothing on the shelf', 'SIDE A'); } }
+    if (to === 'dead') { if (cassette) { cassette.host.hidden = true; cassette.label('no tape', 'nothing on the shelf', 'SIDE A'); if (jcard) jcard.spine('no tape', ''); showCover(null); } }
     else if (cassette && from === 'dead') cassette.host.hidden = false;
     if (to === 'playing' || ((to === 'home' || to === 'page' || to === 'guestbook') && info.slug)) { if (cassette) cassette.host.hidden = false; TH.playing(info.slug || S.current); }
     return Promise.resolve();
@@ -111,18 +114,35 @@ NOBODY.themes.tapedeck = (function () {
 
   /* ---- the cassette (12.14): an SVG, reels that turn, tape that moves hub to hub, a hand-lettered label ---- */
   function svgEl(name, attrs) { const e = document.createElementNS('http://www.w3.org/2000/svg', name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  // the photocopy (issue #88): the cover as if run through an office copier onto card. nearly grey, the contrast pushed, the tones
+  // stepped into a few toner levels, warmed to the card's cream, a grain multiplied over it and a few pale scuffs where it has worn
+  function copyFilter(id, seed) {
+    return '<filter id="' + id + '" x="0" y="0" width="1" height="1" color-interpolation-filters="sRGB">' +
+      '<feColorMatrix in="SourceGraphic" type="saturate" values="0.32" result="grey"/>' +
+      '<feComponentTransfer in="grey" result="hard"><feFuncR type="linear" slope="1.45" intercept="-0.16"/><feFuncG type="linear" slope="1.45" intercept="-0.16"/><feFuncB type="linear" slope="1.45" intercept="-0.16"/></feComponentTransfer>' +
+      '<feComponentTransfer in="hard" result="toner"><feFuncR type="table" tableValues="0.1 0.2 0.42 0.7 0.9 0.96"/><feFuncG type="table" tableValues="0.08 0.18 0.4 0.67 0.87 0.93"/><feFuncB type="table" tableValues="0.06 0.14 0.33 0.57 0.76 0.83"/></feComponentTransfer>' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="' + seed + '" result="n"/>' +
+      '<feColorMatrix in="n" type="matrix" values="0.5 0 0 0 0.66  0.5 0 0 0 0.66  0.5 0 0 0 0.66  0 0 0 0 1" result="grain"/>' +
+      '<feBlend in="toner" in2="grain" mode="multiply" result="grained"/>' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="' + (seed + 7) + '" result="w"/>' +
+      '<feColorMatrix in="w" type="matrix" values="0 0 0 0 0.94  0 0 0 0 0.91  0 0 0 0 0.83  3 0 0 0 -2.1" result="scuff"/>' +
+      '<feComposite in="scuff" in2="SourceAlpha" operator="in" result="scuffs"/>' +
+      '<feMerge><feMergeNode in="grained"/><feMergeNode in="scuffs"/></feMerge></filter>';
+  }
   function makeCassette() {
     const id = 'tape' + (++uid);
     const host = document.createElement('div'); host.className = 'tx-widget cassette'; host.setAttribute('aria-hidden', 'true');
-    const svg = svgEl('svg', { viewBox: '0 0 420 270', role: 'img' });
+    const svg = svgEl('svg', { viewBox: '0 0 420 270', role: 'img', class: 'tape-svg' });
     svg.innerHTML =
       '<defs><clipPath id="' + id + '-well"><rect x="134" y="198" width="152" height="36" rx="18"/></clipPath>' +
+      '<clipPath id="' + id + '-art"><rect x="40" y="36" width="116" height="116" rx="4"/></clipPath>' + copyFilter(id + '-copy', 11 + uid) +
       '<linearGradient id="' + id + '-shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient></defs>' +
       '<rect class="shell" x="6" y="6" width="408" height="258" rx="18"/>' +
       '<rect x="6" y="6" width="408" height="258" rx="18" fill="url(#' + id + '-shine)"/>' +
       '<g class="screw"><circle cx="24" cy="24" r="5"/><circle cx="396" cy="24" r="5"/><circle cx="24" cy="246" r="5"/><circle cx="396" cy="246" r="5"/></g>' +
       '<rect class="paper" x="34" y="30" width="352" height="128" rx="8"/>' +
       '<rect class="art" x="40" y="36" width="116" height="116" rx="4"/><rect class="art-stripe" x="40" y="118" width="116" height="10"/><rect x="92" y="52" width="14" height="66" fill="#fff" fill-opacity=".28"/><rect x="52" y="80" width="26" height="38" fill="#000" fill-opacity=".25"/>' +
+      '<image class="cover" x="40" y="36" width="116" height="116" preserveAspectRatio="xMidYMid slice" clip-path="url(#' + id + '-art)" filter="url(#' + id + '-copy)" visibility="hidden"/>' +
       '<rect class="art-frame" x="40" y="36" width="116" height="116" rx="4"/>' +
       '<text class="side" x="170" y="56">SIDE A</text>' +
       '<text class="title" x="170" y="94">nothing loaded</text>' +
@@ -135,24 +155,139 @@ NOBODY.themes.tapedeck = (function () {
     host.appendChild(svg);
     const side = svg.querySelector('.side'), title = svg.querySelector('.title'), sub = svg.querySelector('.sub'), tl = svg.querySelector('.tape-l'), tr = svg.querySelector('.tape-r');
     return {
-      host: host, svg: svg, titleText: 'nothing loaded',
-      // the marker face is wide: 17 characters fill the label; a longer title is cut with an ellipsis and shrinks a step
-      label: function (t, s, sd) { this.titleText = t; title.textContent = t.length > 17 ? t.slice(0, 16) + '...' : t; title.setAttribute('font-size', t.length > 12 ? '20' : '24'); sub.textContent = (s || '').slice(0, 34); side.textContent = sd; },
+      host: host, svg: svg, titleText: 'nothing loaded', cover: svg.querySelector('.cover'),
+      // the marker face is wide: one line holds about 15 characters at 24; a longer title takes two lines at 20, broken at the
+      // space nearest the middle, and a line still too wide is drawn narrower, never cut (the polish pass of issue #88)
+      label: function (t, s, sd) {
+        this.titleText = t;
+        title.textContent = '';
+        const lines = t.length > 15 ? twoLines(t) : [t];
+        lines.forEach(function (l, i) { title.appendChild(svgEl('tspan', { x: 170, dy: i ? 23 : 0 })).textContent = l; });
+        title.setAttribute('font-size', lines.length > 1 ? '20' : '24');
+        title.setAttribute('y', lines.length > 1 ? '84' : '96');
+        sub.setAttribute('y', lines.length > 1 ? '127' : '122');
+        sub.textContent = s || '';
+        side.textContent = sd;
+        fitText(title.querySelectorAll('tspan'), 206); fitText([sub], 206);
+      },
       tape: function (f) { f = Math.max(0, Math.min(1, f || 0)); tl.setAttribute('r', (16 + 18 * (1 - f)).toFixed(1)); tr.setAttribute('r', (16 + 18 * f).toFixed(1)); }
     };
+  }
+  function twoLines(t) {
+    const mid = t.length / 2;
+    let best = -1;
+    for (let i = 0; i < t.length; i++) if (t[i] === ' ' && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+    return best < 0 ? [t.slice(0, Math.ceil(mid)), t.slice(Math.ceil(mid))] : [t.slice(0, best), t.slice(best + 1)];
+  }
+  // squeeze a line of the drawing to its box (it is part of the picture, 12.14); past 60 % it is cut instead
+  function fitText(nodes, w) {
+    [].forEach.call(nodes, function (n) {
+      n.removeAttribute('textLength'); n.removeAttribute('lengthAdjust');
+      let len = 0; try { len = n.getComputedTextLength(); } catch (e) {}
+      if (!len || len <= w) return;
+      if (len * 0.6 > w) { const keep = Math.max(4, Math.floor(n.textContent.length * w / (len * 0.6)) - 1); n.textContent = n.textContent.slice(0, keep) + '...'; try { len = n.getComputedTextLength(); } catch (e) {} if (len <= w) return; }
+      n.setAttribute('textLength', w); n.setAttribute('lengthAdjust', 'spacingAndGlyphs');
+    });
+  }
+
+  /* ---- the J-card (issue #88): the paper insert of the tape's case, the cover photocopied onto its front panel, the spine under
+     it hand-lettered with what is on the tape. it stands behind the cassette in the widget, slightly turned the other way ---- */
+  function makeJcard() {
+    const id = 'jcard' + (++uid);
+    const svg = svgEl('svg', { viewBox: '0 0 300 352', role: 'img', class: 'jcard' });
+    svg.innerHTML =
+      '<defs><clipPath id="' + id + '-front"><rect x="14" y="66" width="272" height="272"/></clipPath>' + copyFilter(id + '-copy', 23 + uid) +
+      '<filter id="' + id + '-worn" x="0" y="0" width="1" height="1"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.06" numOctaves="3" seed="' + (5 + uid) + '"/>' +
+      '<feColorMatrix type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.27  0 0 0 0 0.17  0 0 0 2.2 -1.2"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>' +
+      '<rect class="jc-card" x="2" y="2" width="296" height="348" rx="3"/>' +
+      '<text class="jc-spine" x="14" y="36">nothing loaded</text>' +
+      '<text class="jc-side" x="286" y="36" text-anchor="end">A/B</text>' +
+      '<line class="jc-fold" x1="2" y1="56" x2="298" y2="56"/>' +
+      '<g class="jc-paint"><rect class="art" x="14" y="66" width="272" height="272"/><rect class="art-stripe" x="14" y="266" width="272" height="22"/>' +
+      '<rect x="136" y="104" width="32" height="160" fill="#fff" fill-opacity=".28"/><rect x="44" y="172" width="60" height="94" fill="#000" fill-opacity=".25"/>' +
+      '<text class="jc-hand" x="150" y="322" text-anchor="middle">nobody fm</text></g>' +
+      '<image class="cover" x="14" y="66" width="272" height="272" preserveAspectRatio="xMidYMid slice" clip-path="url(#' + id + '-front)" filter="url(#' + id + '-copy)" visibility="hidden"/>' +
+      '<rect class="jc-wear" x="2" y="2" width="296" height="348" rx="3" filter="url(#' + id + '-worn)"/>' +
+      '<path class="jc-ear" d="M298 2 L298 26 L274 2 Z"/>';
+    const spine = svg.querySelector('.jc-spine'), sideT = svg.querySelector('.jc-side');
+    return {
+      svg: svg, cover: svg.querySelector('.cover'), spineText: '',
+      spine: function (t, s) { this.spineText = t; spine.textContent = t; sideT.textContent = s || ''; let sw = 0; try { sw = s ? sideT.getComputedTextLength() : 0; } catch (e) {} fitText([spine], 272 - (sw ? sw + 12 : 0)); }
+    };
+  }
+
+  // the cover (#73's site API, NOBODY.cover): loaded once per address; while it loads, or if it never does, the painted square of
+  // 12.14 stays (the station's placeholder file is the first fallback, this is the second)
+  const coverCache = {};
+  let coverWant = null, coverState = 'none';
+  function coverOf(slug) {
+    const t = S.bySlug && S.bySlug[slug];
+    if (!t || typeof NOBODY.cover !== 'function') return null;
+    try { return NOBODY.cover(t, 400) || null; } catch (e) { return null; }
+  }
+  function albumOf(slug) {
+    const t = S.bySlug && S.bySlug[slug];
+    if (!t || typeof NOBODY.albumOf !== 'function') return null;
+    try { return NOBODY.albumOf(t) || null; } catch (e) { return null; }
+  }
+  function showCover(url) {
+    coverWant = url;
+    const targets = [cassette && cassette.cover, jcard && jcard.cover].filter(Boolean);
+    const apply = function (ok) {
+      if (coverWant !== url) return;
+      coverState = ok ? 'image' : 'painted';
+      targets.forEach(function (im) { if (ok) im.setAttribute('href', url); im.setAttribute('visibility', ok ? 'visible' : 'hidden'); });
+      if (jcard) jcard.svg.classList.toggle('has-cover', !!ok);
+    };
+    if (!url) { apply(false); coverState = 'none'; return; }
+    const c = coverCache[url];
+    if (c && c.done) { apply(c.ok); return; }
+    coverState = 'loading';
+    if (!c) {
+      const rec = coverCache[url] = { done: false, ok: false, wait: [] };
+      const img = new Image();
+      img.onload = function () { rec.done = true; rec.ok = true; rec.wait.forEach(function (f) { f(true); }); };
+      img.onerror = function () { rec.done = true; rec.wait.forEach(function (f) { f(false); }); };
+      img.src = url;
+    }
+    coverCache[url].wait.push(apply);
   }
   function reel(cx, cy) {
     return '<g class="reel"><circle class="hub" cx="' + cx + '" cy="' + cy + '" r="15"/><g class="spoke"><line x1="' + cx + '" y1="' + (cy - 13) + '" x2="' + cx + '" y2="' + (cy + 13) + '"/><line x1="' + (cx - 13) + '" y1="' + cy + '" x2="' + (cx + 13) + '" y2="' + cy + '"/><line x1="' + (cx - 9) + '" y1="' + (cy - 9) + '" x2="' + (cx + 9) + '" y2="' + (cy + 9) + '"/><line x1="' + (cx + 9) + '" y1="' + (cy - 9) + '" x2="' + (cx - 9) + '" y2="' + (cy + 9) + '"/></g><circle class="axle" cx="' + cx + '" cy="' + cy + '" r="4"/></g>';
   }
   function sideName() { return document.documentElement.dataset.phosphor === 'amber' ? 'SIDE B' : 'SIDE A'; }
-  // the label is the track's: the title in the marker face, bpm and key under it, the side and the number above
+  // a single's label is the track's: the title in the marker face, bpm and key under it, the side and the number above. an album
+  // plays as one tape (issue #88): the label and the spine read the album's title, the first half of its tracks is side A and the
+  // rest side B, the number counts within the side, and the track's own title moves to the small print
+  let tape = null;
+  function tapeOf(slug) {
+    const a = albumOf(slug);
+    const list = a && Array.isArray(a.tracks) ? a.tracks : [];
+    const i = list.indexOf(slug);
+    if (!a || i < 0) return null;
+    const half = Math.ceil(list.length / 2), b = i >= half;
+    return { album: a.slug, title: a.title || titleOf(a.slug), side: b ? 'B' : 'A', no: b ? i - half + 1 : i + 1, of: b ? list.length - half : half, n: list.length };
+  }
   TH.playing = function (slug) {
     if (!cassette || !slug) return;
     const t = S.bySlug && S.bySlug[slug];
     if (!t) return;
-    const num = S.num && S.num[slug] ? String(S.num[slug]).padStart(2, '0') : '--';
-    cassette.label(titleOf(t.title || slug), (t.bpm ? t.bpm + ' bpm' : '') + (t.key ? '  ' + t.key : '') + (t.model ? '  ' + t.model : ''), sideName() + ' - ' + num);
+    tape = tapeOf(slug);
+    const meta = (t.bpm ? t.bpm + ' bpm' : '') + (t.key ? '  ' + t.key : '');
+    if (tape) {
+      const no = String(tape.no).padStart(2, '0');
+      cassette.label(tape.title, no + '  ' + titleOf(t.title || slug), 'SIDE ' + tape.side + ' - ' + no + ' of ' + String(tape.of).padStart(2, '0'));
+      if (jcard) jcard.spine(tape.title, 'A/B');
+    } else {
+      const num = S.num && S.num[slug] ? String(S.num[slug]).padStart(2, '0') : '--';
+      cassette.label(titleOf(t.title || slug), meta + (t.model ? '  ' + t.model : ''), sideName() + ' - ' + num);
+      if (jcard) jcard.spine(titleOf(t.title || slug), 'single');
+    }
+    showCover(coverOf(slug));
+    // the label's lines are measured in the marker face; if it was still loading, measure again once it is in
+    if (!fontsFitted && document.fonts && document.fonts.load) { fontsFitted = true; document.fonts.load('24px "Permanent Marker"').then(function () { if (S.current && cassette) TH.playing(S.current); }, function () {}); }
   };
+  let fontsFitted = false;
   TH.catalogue = function () {};
   TH.scheme = function () { if (S.current) TH.playing(S.current); };
 
@@ -373,6 +508,8 @@ NOBODY.themes.tapedeck = (function () {
   TH.widget = function () { return cassette ? { kind: 'cassette', host: cassette.host } : null; };
   TH.state = function () {
     return { widget: 'cassette', reels: document.body.classList.contains('is-playing') ? 'turning' : 'still', label: cassette ? cassette.titleText : '',
+      side: cassette ? cassette.svg.querySelector('.side').textContent : '', sub: cassette ? cassette.svg.querySelector('.sub').textContent : '',
+      jcard: jcard ? { spine: jcard.spineText, cover: coverState, href: jcard.cover.getAttribute('href') || null } : null, cover: coverWant, tape: tape,
       viz: viz ? { running: viz.running, frames: viz.frames, ms: +viz.ms.toFixed(1), scale: viz.scale } : null };
   };
   return TH;

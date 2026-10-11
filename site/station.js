@@ -110,7 +110,8 @@
     HELP_HIDE[1] = IFACE.viz ? 'hide the interface (v: bars)' : 'hide the interface';
     hideVizSync();
     document.body.dataset.interface = IFACE.kind || '';
-    if (!iface) { delete document.body.dataset.layout; S.layout = null; return; }
+    // a theme without a paradigm may still add commands (issue #88: phosphor's `album` and `art`); it claims no key and no layout
+    if (!iface) { delete document.body.dataset.layout; S.layout = null; if (th.commands) T.extend(S.theme, th.commands()); return; }
     const refused = [];
     (iface.keys || []).forEach(function (k) { if (CLAIMABLE.indexOf(k) >= 0) IFACE.keys.push(k); else refused.push(k); });
     IFACE.arrows = IFACE.keys.some(function (k) { return /^Arrow/.test(k); });
@@ -735,15 +736,16 @@
     const lin = t.lineage && t.lineage.parent && S.bySlug[t.lineage.parent] ? 'from ' + S.num[t.lineage.parent] + ': "' + (t.lineage.request || '') + '"' : '';
     const tag = [t.voice ? 'voice' : '', t.project ? 'project:' + t.project : ''].filter(Boolean).join(' ');
     // the last column (issue #73) is the album and the track's place in it; a single shows its lineage or its tags there
-    const al = albumOf(t), lw = Math.max(0, content() - 68 - 7);
+    const al = albumOf(t), lw = Math.max(0, content() - 68 - 8);
     const alb = al ? pad(albumTitle(al), Math.max(0, lw - 4)) + String(trackNo(t.slug)).padStart(4) : '';
     // the row ends in `+ remix` (issue #51): 7 columns, taken from the lineage column on desktop; on the phone the row is 35 columns
-    // (a 13-character slug), the width the narrowest card gives it (the arena's, 2ch of padding each side)
+    // (a 13-character slug), the width the narrowest card gives it (the arena's, 2ch of padding each side). one blank column always
+    // stands before the `+`, so a long lineage or the voice mark never runs into it (issue #88)
     if (phone()) {
       const g = stt === 'playing' ? '*' : stt === 'tuning' ? '~' : stt === 'played' ? '.' : 'q';
-      return { num: pad(n, 2), slug: pad(slug, 13) + ' ', rest: pad(t.bpm, 3) + ' ' + pad(keyShort(t.key), 2) + '  ' + g + (t.voice ? 'v' : ' ') };
+      return { num: pad(n, 2), slug: pad(slug, 13) + ' ', rest: pad(t.bpm, 3) + ' ' + pad(keyShort(t.key), 2) + ' ' + g + (t.voice ? 'v' : ' ') + ' ' };
     }
-    return { num: pad(n, 2), slug: pad(slug, 28), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(stt, 9) + '  ' + pad(alb || lin || tag, lw) };
+    return { num: pad(n, 2), slug: pad(slug, 28), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(stt, 9) + '  ' + pad(alb || lin || tag, lw) + ' ' };
   }
   function renderRows() {
     const items = displayOrder();
@@ -963,7 +965,7 @@
     const hr = span(''); hr.appendChild(span(phone() ? '' : '#/track/' + slug + ' ', 'mid')); hr.appendChild(phone() ? button('< back', '', function () { st.home(); }) : copyBtn);
     head.appendChild(hr); p.appendChild(head);
     p.appendChild(span(slug, 'page-title'));
-    const asked = div('row');
+    const asked = div('row asked');
     asked.appendChild(span('asked: "' + (t.request || t.idea || '') + '"'));
     asked.appendChild(span([t.date, t.model ? t.model + ' tier' : '', t.bpm + ' bpm', t.key, fmt(t.duration)].filter(Boolean).join('   '), 'mid'));
     p.appendChild(asked);
@@ -1155,7 +1157,7 @@
     }
     // a theme's own keys and commands (12.0, issue #53), after the station's table
     const th = TH(), ext = T.extensions();
-    if (IFACE.kind && th && th.help) {
+    if ((IFACE.kind || ext.length) && th && th.help) {
       out.push('');
       out.push(pad(S.theme + '>', 43) + (ext.length ? ext[0].commands.join('   ') : ''));
       th.help().forEach(function (h) { out.push(pad(h[0], 11) + pad(h[1], 32)); });
