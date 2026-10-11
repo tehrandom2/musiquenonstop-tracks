@@ -3,6 +3,122 @@
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "home-fire-one-more-song",
+      "title": "Home Fire, One More Song",
+      "project": null,
+      "idea": "the return: everyone at one fire, then the banjo alone, the home idea small: one big campfire at night, crackling, everyone close together, recorded in the open with one microphone in the middle",
+      "request": "the return: everyone at one fire, then the banjo alone, the home idea small",
+      "mood": "welcoming, friends finally at the same fire, warmth after a very long dark",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 317933,
+      "model": "best",
+      "duration": 177.0,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:08:08-04:00",
+      "voice": false,
+      "prompt": "Warm folk ensemble around one campfire, 84 bpm, in G major, a hand drum played softly with fingers, no drum kit, an old five-string banjo, a steel-string acoustic guitar, a plain harmonica, a wooden flute and a person whistling, all playing together gently at one fire, one big campfire at night, crackling, everyone close together, recorded in the open with one microphone in the middle, welcoming, friends finally at the same fire, warmth after a very long dark, everyone playing together from the start, warm and gentle, then one by one they stop until the banjo plays the home phrase alone, small and slow, and stops, instrumental, no vocals, no singing, no speech, no drum kit, no snare, no drops, no electric guitar, no synth, no orchestra, no sub bass, no EDM build",
+      "lyrics": null,
+      "why": "You asked for \"the return: everyone at one fire, then the banjo alone, the home idea small\". The welcome home. Everyone is at the same fire this time, close enough to hear each other, and then they drop out until only the banjo is left with the phrase from the first track. The album ends the way it began, smaller. So I wrote it at 84 bpm in G major, 180 seconds, with no voice, under the acoustic gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 6 seeds and threw away 4: 317934 (passed, but outranked by the kept takes); 317935 (passed, but outranked by the kept takes); 317932 (4.0s of near-silence (limit 1.0)); 317931 (3.3s of near-silence (limit 1.0)). Seed 317933 is the take.",
+      "rejected": [
+        {
+          "seed": 317934,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 317935,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 317932,
+          "reason": "4.0s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 317931,
+          "reason": "3.3s of near-silence (limit 1.0)"
+        }
+      ],
+      "takes": [
+        317933,
+        317930
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -4.05,
+        "silence_s": 0.15,
+        "brightness_pct": 0.52,
+        "boominess_pct": 0.04,
+        "onsets_per_s": 2.45,
+        "seam_db": -49.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "banjo",
+          "guitar",
+          "harmonica",
+          "ensemble",
+          "home",
+          "arc:return"
+        ],
+        "track_no": 15
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "home-fire-one-more-song/home-fire-one-more-song.mp3",
+        "notes": "home-fire-one-more-song/notes.md",
+        "recipe": "home-fire-one-more-song/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "acoustic",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7805824,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "home-fire-one-more-song/home-fire-one-more-song.mp3",
+          "home-fire-one-more-song/home-fire-one-more-song-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 79,
+          "flags": [],
+          "doubts": [
+            "lead"
+          ],
+          "description": "A folk acoustic track featuring a prominent flute and whistling over acoustic guitar and soft hand percussion. The instruments blend warmly in an intimate setting before slowly fading out one by one at the end.",
+          "answers": {
+            "frame": "partly",
+            "kit": "yes",
+            "lead": "partly",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "harmonica-farthest-out",
       "title": "Harmonica, Farthest Out",
       "project": null,
@@ -22722,7 +22838,8 @@
         "hand-drum-hot-sand",
         "harmonica-farthest-out",
         "a-lantern-nobody-lit",
-        "downriver-single-note"
+        "downriver-single-note",
+        "home-fire-one-more-song"
       ],
       "description": "15 tracks, in the order they were meant to be heard.",
       "credits": [
