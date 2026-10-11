@@ -1,0 +1,30 @@
+{
+  "slug": "greytide-attic",
+  "title": "greytide · attic",
+  "project": "greytide",
+  "description": "the attic table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+  "tracks": [
+    "greytide-attic-wave-1",
+    "greytide-attic-wave-2",
+    "greytide-attic-wave-3",
+    "greytide-attic-wave-4",
+    "greytide-attic-wave-5",
+    "greytide-attic-build-1",
+    "greytide-attic-build-2",
+    "greytide-attic-build-3",
+    "greytide-attic-build-4",
+    "greytide-attic-build-5"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

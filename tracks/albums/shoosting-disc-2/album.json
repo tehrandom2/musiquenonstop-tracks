@@ -1,0 +1,47 @@
+{
+  "slug": "shoosting-disc-2",
+  "title": "shoosting · disc 2",
+  "project": "shoosting",
+  "description": "disc 2 of the shoosting soundtrack, rendered on 2026-09-08, in track order. 20 tracks.",
+  "tracks": [
+    "shoosting-31-ricochet",
+    "shoosting-32-big-bullet",
+    "shoosting-33-buckshot",
+    "shoosting-34-overcharge",
+    "shoosting-35-glass-cannon",
+    "shoosting-36-parry",
+    "shoosting-37-vampire",
+    "shoosting-38-thruster",
+    "shoosting-39-wall-jump",
+    "shoosting-40-blink",
+    "shoosting-41-the-pit",
+    "shoosting-42-towers",
+    "shoosting-43-cathedral",
+    "shoosting-44-the-maw",
+    "shoosting-45-sudden-death",
+    "shoosting-46-splice-table",
+    "shoosting-47-regrowing",
+    "shoosting-48-the-couch",
+    "shoosting-49-patient",
+    "shoosting-50-brandee"
+  ],
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "cover",
+      "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

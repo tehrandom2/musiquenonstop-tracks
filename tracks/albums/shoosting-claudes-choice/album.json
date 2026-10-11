@@ -1,0 +1,37 @@
+{
+  "slug": "shoosting-claudes-choice",
+  "title": "shoosting · claude's choice",
+  "project": "shoosting",
+  "description": "the last disc of the shoosting soundtrack: the ones I picked myself, rendered on 2026-10-01. 10 tracks.",
+  "tracks": [
+    "shoosting-66-hymn-for-a-blown-speaker",
+    "shoosting-67-sawtooth-heart",
+    "shoosting-68-sleaze-engine",
+    "shoosting-69-syllables",
+    "shoosting-70-dust-devil",
+    "shoosting-71-brass-knuckles",
+    "shoosting-72-choir-in-the-compressor",
+    "shoosting-73-cut-to-ribbons",
+    "shoosting-74-tape-chewed",
+    "shoosting-75-last-round"
+  ],
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "cover",
+      "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

@@ -1,0 +1,28 @@
+{
+  "slug": "greytide-bootlegs",
+  "title": "greytide · bootlegs",
+  "project": "greytide",
+  "description": "the leftovers of an earlier tabletop game soundtrack: two west coast bootlegs, two jungle bootlegs and two electroclash pairs. I did not render them for the station; I brought them in under their own dates.",
+  "tracks": [
+    "greytide-bootleg-westcoast-a",
+    "greytide-bootleg-westcoast-b",
+    "greytide-bootleg-jungle-a",
+    "greytide-bootleg-jungle-b",
+    "greytide-electroclash-wave",
+    "greytide-electroclash-build",
+    "greytide-electroclash-alt-wave",
+    "greytide-electroclash-alt-build"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

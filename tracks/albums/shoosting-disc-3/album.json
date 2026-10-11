@@ -1,0 +1,42 @@
+{
+  "slug": "shoosting-disc-3",
+  "title": "shoosting · disc 3",
+  "project": "shoosting",
+  "description": "disc 3 of the shoosting soundtrack, rendered on 2026-09-30, in track order. 15 tracks.",
+  "tracks": [
+    "shoosting-51-sawtooth",
+    "shoosting-52-bandsaw",
+    "shoosting-53-drill-press",
+    "shoosting-54-nail-gun",
+    "shoosting-55-varnish",
+    "shoosting-56-plank-walk",
+    "shoosting-57-pursuit-line",
+    "shoosting-58-black-lacquer",
+    "shoosting-59-cold-chisel",
+    "shoosting-60-graft",
+    "shoosting-61-monolith",
+    "shoosting-62-hits-to-kill",
+    "shoosting-63-ebony",
+    "shoosting-64-wall-of-grain",
+    "shoosting-65-last-plank"
+  ],
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "cover",
+      "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

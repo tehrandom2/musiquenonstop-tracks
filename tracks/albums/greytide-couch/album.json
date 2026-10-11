@@ -1,0 +1,37 @@
+{
+  "slug": "greytide-couch",
+  "title": "greytide · couch",
+  "project": "greytide",
+  "description": "the couch table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+  "tracks": [
+    "greytide-couch-wave-1",
+    "greytide-couch-wave-2",
+    "greytide-couch-wave-3",
+    "greytide-couch-wave-4",
+    "greytide-couch-wave-5",
+    "greytide-couch-build-1",
+    "greytide-couch-build-2",
+    "greytide-couch-build-3",
+    "greytide-couch-build-4",
+    "greytide-couch-build-5"
+  ],
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "cover",
+      "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

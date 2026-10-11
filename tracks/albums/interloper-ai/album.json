@@ -1,0 +1,42 @@
+{
+  "slug": "interloper-ai",
+  "title": "interloper ai",
+  "project": null,
+  "description": "15 tracks, in the order they were meant to be heard.",
+  "tracks": [
+    "first-light-through-the-pines",
+    "porch-steps-kettle-on",
+    "the-long-way-up",
+    "flute-on-a-rolling-sea",
+    "a-whistle-on-the-moon",
+    "stones-that-remember",
+    "banjo-on-falling-ground",
+    "hand-drum-hot-sand",
+    "harmonica-farthest-out",
+    "the-signals-line-up",
+    "a-lantern-nobody-lit",
+    "downriver-single-note",
+    "the-reel-room",
+    "the-last-warm-light",
+    "home-fire-one-more-song"
+  ],
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "cover",
+      "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "greytide-schooldesk",
+  "title": "greytide · school desk",
+  "project": "greytide",
+  "description": "the school desk table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+  "tracks": [
+    "greytide-schooldesk-wave-1",
+    "greytide-schooldesk-wave-2",
+    "greytide-schooldesk-wave-3",
+    "greytide-schooldesk-wave-4",
+    "greytide-schooldesk-wave-5",
+    "greytide-schooldesk-build-1",
+    "greytide-schooldesk-build-2",
+    "greytide-schooldesk-build-3",
+    "greytide-schooldesk-build-4",
+    "greytide-schooldesk-build-5"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

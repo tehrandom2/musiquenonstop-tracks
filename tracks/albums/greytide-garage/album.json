@@ -1,0 +1,37 @@
+{
+  "slug": "greytide-garage",
+  "title": "greytide · garage",
+  "project": "greytide",
+  "description": "the garage table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+  "tracks": [
+    "greytide-garage-wave-1",
+    "greytide-garage-wave-2",
+    "greytide-garage-wave-3",
+    "greytide-garage-wave-4",
+    "greytide-garage-wave-5",
+    "greytide-garage-build-1",
+    "greytide-garage-build-2",
+    "greytide-garage-build-3",
+    "greytide-garage-build-4",
+    "greytide-garage-build-5"
+  ],
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "cover",
+      "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}
