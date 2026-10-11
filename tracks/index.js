@@ -3,6 +3,117 @@ window.NOBODY_INDEX = {
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "flute-on-a-rolling-sea",
+      "title": "Flute on a Rolling Sea",
+      "project": null,
+      "idea": "a lone wanderer playing a wooden flute on a world of rolling sea and storms: a small island camp beside a rolling sea under storm clouds, wind and distant waves, heard from across the water with a long natural echo",
+      "request": "a lone wanderer playing a wooden flute on a world of rolling sea and storms",
+      "mood": "lonely but not sad, someone playing to themselves who does not know anyone is listening",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 644358,
+      "model": "best",
+      "duration": 114.93,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:07:20-04:00",
+      "voice": false,
+      "prompt": "Solo folk instrument heard far off, intimate and spacious, 84 bpm, in G major, a wooden flute alone, breathy and unpolished, a short simple phrase repeated with small changes, a small island camp beside a rolling sea under storm clouds, wind and distant waves, heard from across the water with a long natural echo, lonely but not sad, someone playing to themselves who does not know anyone is listening, the flute phrase alone, repeated and loopable, long breaths between phrases, nothing else playing, no build-up, instrumental, no vocals, no singing, no speech, no drums, no beat, no drops, no guitar, no strings, no pad, no synth, no orchestra, no sub bass, nothing else playing",
+      "lyrics": null,
+      "why": "You asked for \"a lone wanderer playing a wooden flute on a world of rolling sea and storms\". The first wanderer. One wooden flute, one phrase, sea weather all round it. It shares the home key and tempo so it could sit inside the gathering later; on its own it should sound like someone who has not seen anyone in a while. So I wrote it at 84 bpm in G major, 120 seconds, with no voice, under the ambient gates. It has no beat to hold, so 84 bpm is only the grid I gave the model and the tempo gate is not applied. I set it to -18 LUFS rather than the station's -16, so it sits quieter beside the rest. I rendered 6 seeds and threw away 4: 644356 (seam level -14.4 dB tail to head); 644359 (seam level -26.4 dB tail to head); 644357 (4.2s of near-silence (limit 3.0) and others); 644355 (6.9s of near-silence (limit 3.0) and others). Seed 644358 is the take.",
+      "rejected": [
+        {
+          "seed": 644356,
+          "reason": "seam level -14.4 dB tail to head"
+        },
+        {
+          "seed": 644359,
+          "reason": "seam level -26.4 dB tail to head"
+        },
+        {
+          "seed": 644357,
+          "reason": "4.2s of near-silence (limit 3.0); seam level -6.2 dB tail to head"
+        },
+        {
+          "seed": 644355,
+          "reason": "6.9s of near-silence (limit 3.0); seam level -9.2 dB tail to head"
+        }
+      ],
+      "takes": [
+        644358,
+        644354
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -18.0,
+        "lufs_target": -18.0,
+        "peak_dbfs": -6.92,
+        "silence_s": 0.0,
+        "brightness_pct": 0.06,
+        "boominess_pct": 0.01,
+        "onsets_per_s": 2.65,
+        "seam_db": -0.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "flute",
+          "solo",
+          "wanderer",
+          "arc:wanderers"
+        ],
+        "track_no": 4
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "flute-on-a-rolling-sea/flute-on-a-rolling-sea.mp3",
+        "notes": "flute-on-a-rolling-sea/notes.md",
+        "recipe": "flute-on-a-rolling-sea/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "ambient",
+        "seam_step_x": 0.39,
+        "decoded_lufs": -18.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5068583,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "flute-on-a-rolling-sea/flute-on-a-rolling-sea.mp3",
+          "flute-on-a-rolling-sea/flute-on-a-rolling-sea-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 91,
+          "flags": [],
+          "doubts": [],
+          "description": "A solo, breathy wooden flute plays a simple, repeating melody over the sound of ocean waves. The track is atmospheric and loopable, creating a calm, natural setting.",
+          "answers": {
+            "frame": "partly",
+            "lead": "yes",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "first-light-through-the-pines",
       "title": "First Light Through the Pines",
       "project": null,
@@ -22379,6 +22490,7 @@ window.NOBODY_INDEX = {
       "cover_1400": "albums/interloper-ai/cover-1400.webp",
       "tracks": [
         "first-light-through-the-pines",
+        "flute-on-a-rolling-sea",
         "a-whistle-on-the-moon",
         "banjo-on-falling-ground",
         "a-lantern-nobody-lit",
