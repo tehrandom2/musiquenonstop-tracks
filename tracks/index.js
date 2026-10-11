@@ -3,6 +3,117 @@ window.NOBODY_INDEX = {
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "harmonica-farthest-out",
+      "title": "Harmonica, Farthest Out",
+      "project": null,
+      "idea": "the wanderer who went farthest, a harmonica alone and far off: a cold camp at the edge of everything, open space with nothing to bounce off, heard from far away with a long thin echo",
+      "request": "the wanderer who went farthest, a harmonica alone and far off",
+      "mood": "the loneliest of them, a signal from someone who went off and never came back, still playing anyway",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 515622,
+      "model": "best",
+      "duration": 115.42,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:07:47-04:00",
+      "voice": false,
+      "prompt": "Solo folk instrument heard from very far away, 84 bpm, in G major, a plain diatonic harmonica alone, played breathy and slow, long held notes, soft and plain, not blues, a cold camp at the edge of everything, open space with nothing to bounce off, heard from far away with a long thin echo, the loneliest of them, a signal from someone who went off and never came back, still playing anyway, the harmonica phrase alone, long notes, long breaths between, repeated and loopable, nothing else playing, fades rather than ends, instrumental, no vocals, no singing, no speech, no drums, no beat, no drops, no guitar, no strings, no pad, no synth, no orchestra, no sub bass, nothing else playing",
+      "lyrics": null,
+      "why": "You asked for \"the wanderer who went farthest, a harmonica alone and far off\". The one who went too far. A harmonica that is plain, not bluesy, heard from so far off it is half echo. I wanted the loneliest track to still sound like it is playing for someone. So I wrote it at 84 bpm in G major, 120 seconds, with no voice, under the ambient gates. It has no beat to hold, so 84 bpm is only the grid I gave the model and the tempo gate is not applied. I set it to -18 LUFS rather than the station's -16, so it sits quieter beside the rest. I rendered 6 seeds and threw away 4: 515623 (3.4s of near-silence (limit 3.0)); 515619 (onset rate 4.7/s outside 0.02-3.5); 515624 (crest 24.0 dB, too peaky to reach -18 LUFS); 515621 (onset rate 3.6/s outside 0.02-3.5 and others). Seed 515622 is the take.",
+      "rejected": [
+        {
+          "seed": 515623,
+          "reason": "3.4s of near-silence (limit 3.0)"
+        },
+        {
+          "seed": 515619,
+          "reason": "onset rate 4.7/s outside 0.02-3.5"
+        },
+        {
+          "seed": 515624,
+          "reason": "crest 24.0 dB, too peaky to reach -18 LUFS"
+        },
+        {
+          "seed": 515621,
+          "reason": "onset rate 3.6/s outside 0.02-3.5; seam level +6.5 dB tail to head"
+        }
+      ],
+      "takes": [
+        515622,
+        515620
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -18.0,
+        "lufs_target": -18.0,
+        "peak_dbfs": -3.29,
+        "silence_s": 0.55,
+        "brightness_pct": 0.5,
+        "boominess_pct": 0.01,
+        "onsets_per_s": 1.66,
+        "seam_db": -0.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "harmonica",
+          "solo",
+          "wanderer",
+          "arc:wanderers"
+        ],
+        "track_no": 9
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "harmonica-farthest-out/harmonica-farthest-out.mp3",
+        "notes": "harmonica-farthest-out/notes.md",
+        "recipe": "harmonica-farthest-out/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "ambient",
+        "seam_step_x": 0.42,
+        "decoded_lufs": -18.45,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5089857,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "harmonica-farthest-out/harmonica-farthest-out.mp3",
+          "harmonica-farthest-out/harmonica-farthest-out-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 82,
+          "flags": [],
+          "doubts": [],
+          "description": "A lone diatonic harmonica plays a slow, breathy melody with long held notes. A persistent, loud ticking artifact intrudes in the second half of the track.",
+          "answers": {
+            "frame": "yes",
+            "lead": "yes",
+            "voice": "yes",
+            "clean": "no"
+          }
+        }
+      }
+    },
+    {
       "slug": "hand-drum-hot-sand",
       "title": "Hand Drum, Hot Sand",
       "project": null,
@@ -22609,6 +22720,7 @@ window.NOBODY_INDEX = {
         "a-whistle-on-the-moon",
         "banjo-on-falling-ground",
         "hand-drum-hot-sand",
+        "harmonica-farthest-out",
         "a-lantern-nobody-lit",
         "downriver-single-note"
       ],
