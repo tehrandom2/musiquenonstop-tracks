@@ -89,6 +89,36 @@ NOBODY.themes.tapedeck = (function () {
     if (dialStrip && S && S.state === 'tuning') dialStrip.set(88.8, false, '');
   };
 
+  /* ---- the switch sound (issue #103): the cassette. the stop key's clunk, a short fast-forward whir climbing as the reels
+     speed up, the play key's click, and a little tape hiss under all of it ---- */
+  TH.transitionSound = function (seconds) {
+    return NOBODY.synth.sound(seconds, function (c, out, t0, dur, k) {
+      const n = k.noise();
+      // the keys: a low thump falling in pitch for stop, a higher one for play, each with a filtered knock of noise
+      const th = k.osc('sine'), tg = c.createGain();
+      th.frequency.setValueAtTime(110, t0); th.frequency.exponentialRampToValueAtTime(60, t0 + 0.12); th.frequency.setValueAtTime(140, t0 + 1.0);
+      k.env(tg.gain, [[0, 0], [0.025, 0.016], [0.11, 0.002], [0.15, 0], [1.0, 0], [1.015, 0.012], [1.07, 0]]);
+      th.connect(tg); tg.connect(out);
+      const kl = c.createBiquadFilter(); kl.type = 'bandpass'; kl.frequency.setValueAtTime(700, t0); kl.frequency.setValueAtTime(2500, t0 + 1.0); kl.Q.value = 1.5;
+      const kg = c.createGain(); k.env(kg.gain, [[0, 0], [0.02, 0.01], [0.06, 0], [1.0, 0], [1.006, 0.014], [1.025, 0]]);
+      n.connect(kl); kl.connect(kg); kg.connect(out);
+      // the whir: the motor's tone climbing as the tape winds, with a flutter, and the tape rushing over the heads
+      const wr = k.osc('triangle'); wr.frequency.setValueAtTime(170, t0 + 0.16); wr.frequency.exponentialRampToValueAtTime(560, t0 + 0.9);
+      const fl = k.osc('sine'), fg = c.createGain(); fl.frequency.value = 23; fg.gain.value = 12; fl.connect(fg); fg.connect(wr.frequency);
+      const wl = c.createBiquadFilter(); wl.type = 'lowpass'; wl.frequency.value = 900;
+      const wg = c.createGain(); k.env(wg.gain, [[0, 0], [0.16, 0], [0.3, 0.012], [0.8, 0.012], [0.92, 0]]);
+      wr.connect(wl); wl.connect(wg); wg.connect(out);
+      const rb = c.createBiquadFilter(); rb.type = 'bandpass'; rb.Q.value = 0.8;
+      rb.frequency.setValueAtTime(1200, t0 + 0.16); rb.frequency.exponentialRampToValueAtTime(3000, t0 + 0.9);
+      const rg = c.createGain(); k.env(rg.gain, [[0, 0], [0.16, 0], [0.3, 0.006], [0.8, 0.006], [0.92, 0]]);
+      n.connect(rb); rb.connect(rg); rg.connect(out);
+      // the hiss
+      const hp = c.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 5000;
+      const hg = c.createGain(); k.env(hg.gain, [[0, 0], [0.1, 0.003], [dur, 0.003]]);
+      n.connect(hp); hp.connect(hg); hg.connect(out);
+    });
+  };
+
   /* ---- transitions (12.0): the lamp comes on for the boot, goes off for a reboot; the cassette lifts while tuning ---- */
   TH.transition = function (from, to, info) {
     info = info || {};

@@ -109,6 +109,22 @@ NOBODY.themes.arena = (function () {
     if (stage) stage.targetHue = h;
   }
   TH.playing = function (slug) { setHue(slug); if (scrub) scrub.draw(); };
+  // the switch sound (issue #103): a low swell into the next track's colour, no hiss. the hue picks the root, one semitone
+  // per 30 degrees up from A1; root, fifth and octave glide up a whole tone into it as a lowpass opens over the triangle
+  TH.transitionSound = function (seconds, info) {
+    const f = 55 * Math.pow(2, Math.round(hueOf(info && info.slug) / 30) % 12 / 12);
+    return NOBODY.synth.sound(seconds, function (c, out, t0, dur, k) {
+      const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.Q.value = 0.9;
+      lp.frequency.setValueAtTime(150, t0); lp.frequency.exponentialRampToValueAtTime(1400, t0 + dur);
+      const g = c.createGain(); k.env(g.gain, [[0, 0], [0.25, 0.007], [0.7, 0.012], [dur, 0.019]]);
+      lp.connect(g); g.connect(out);
+      [[1, 'sine', 1], [1.5, 'sine', 0.6], [2, 'triangle', 0.5]].forEach(function (v) {
+        const o = k.osc(v[1]), og = c.createGain(); og.gain.value = v[2];
+        o.frequency.setValueAtTime(f * v[0] * 0.8909, t0); o.frequency.exponentialRampToValueAtTime(f * v[0], t0 + dur);
+        o.connect(og); og.connect(lp);
+      });
+    });
+  };
   TH.scheme = function () { setHue(S.current); };
 
   /* ---- transitions (12.0): a flash for the boot and the key, tracers for the tuning, the lights down for a reboot ---- */

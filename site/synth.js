@@ -89,9 +89,9 @@ NOBODY.synth = (function () {
     S.gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, curve(S.volume)), t + 0.15);
   };
 
-  // tuning static (5.4): looped white noise through a bandpass (Q .7) sweeping 400 Hz -> 3.2 kHz -> 400 Hz
-  // over the 1.2 s, with a sine heterodyne whistle gliding 1.8 kHz -> 300 Hz at a quarter of the noise gain.
-  // envelope 0 -> .35 in 80 ms, hold, -> 0 in 150 ms. returns a function that ends the burst now.
+  // tuning static (5.4), softened: looped white noise through a bandpass (Q .7) sweeping 300 Hz -> 1.4 kHz
+  // -> 300 Hz over the 1.2 s, then a lowpass at 2.2 kHz to take the hiss off, with a faint sine whistle gliding
+  // 900 Hz -> 250 Hz. envelope 0 -> .09 in 250 ms, hold, -> 0 in 150 ms. returns a function that ends the burst now.
   S.tuning = function (seconds) {
     if (!S.ctx) return function () {};
     const ctx = S.ctx, t0 = ctx.currentTime, dur = Math.max(1.2, seconds || 1.2);
@@ -99,19 +99,21 @@ NOBODY.synth = (function () {
     src.buffer = S.noise; src.loop = true;
     const bp = ctx.createBiquadFilter();
     bp.type = 'bandpass'; bp.Q.value = 0.7;
-    bp.frequency.setValueAtTime(400, t0);
-    bp.frequency.exponentialRampToValueAtTime(3200, t0 + dur / 2);
-    bp.frequency.exponentialRampToValueAtTime(400, t0 + dur);
+    bp.frequency.setValueAtTime(300, t0);
+    bp.frequency.exponentialRampToValueAtTime(1400, t0 + dur / 2);
+    bp.frequency.exponentialRampToValueAtTime(300, t0 + dur);
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 2200;
     const ng = ctx.createGain();
     ng.gain.setValueAtTime(0, t0);
-    ng.gain.linearRampToValueAtTime(0.35, t0 + 0.08);
+    ng.gain.linearRampToValueAtTime(0.09, t0 + 0.25);
     const osc = ctx.createOscillator();
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(1800, t0);
-    osc.frequency.exponentialRampToValueAtTime(300, t0 + dur);
+    osc.frequency.setValueAtTime(900, t0);
+    osc.frequency.exponentialRampToValueAtTime(250, t0 + dur);
     const og = ctx.createGain();
-    og.gain.value = 0.25;
-    src.connect(bp); bp.connect(ng); ng.connect(S.analyser);
+    og.gain.value = 0.1;
+    src.connect(bp); bp.connect(lp); lp.connect(ng); ng.connect(S.analyser);
     osc.connect(og); og.connect(ng);
     src.start(t0); osc.start(t0);
     let ended = false;
@@ -124,6 +126,32 @@ NOBODY.synth = (function () {
       try { src.stop(t + 0.2); osc.stop(t + 0.2); } catch (e) {}
     }
     return stop;
+  };
+
+  // a theme's own switch sound (issue #103). the station calls theme.transitionSound(seconds, info) where it called tuning,
+  // and tuning when the theme has none. build(ctx, out, t0, dur, k) schedules its nodes into `out`, which feeds the analyser;
+  // k.noise() and k.osc(type) make a source that starts now and stops with the sound, k.env(param, [[s, v], ...]) ramps a
+  // param linearly through points given in seconds from now (the first point is set, not ramped). returns stop(): a 150 ms
+  // fade like the static's, then every source stops.
+  S.sound = function (seconds, build) {
+    if (!S.ctx) return function () {};
+    const ctx = S.ctx, t0 = ctx.currentTime, dur = Math.max(1.2, seconds || 1.2), srcs = [];
+    const out = ctx.createGain(); out.connect(S.analyser);
+    const k = {
+      noise: function () { const s = ctx.createBufferSource(); s.buffer = S.noise; s.loop = true; s.start(t0, Math.random() * 1.9); srcs.push(s); return s; },
+      osc: function (type) { const o = ctx.createOscillator(); o.type = type || 'sine'; o.start(t0); srcs.push(o); return o; },
+      env: function (p, pts) { pts.forEach(function (q, i) { if (i) p.linearRampToValueAtTime(q[1], t0 + q[0]); else p.setValueAtTime(q[1], t0 + q[0]); }); return p; }
+    };
+    build(ctx, out, t0, dur, k);
+    let ended = false;
+    return function stop() {
+      if (ended) return; ended = true;
+      const t = ctx.currentTime;
+      out.gain.cancelScheduledValues(t);
+      out.gain.setValueAtTime(out.gain.value, t);
+      out.gain.linearRampToValueAtTime(0, t + 0.15);
+      srcs.forEach(function (s) { try { s.stop(t + 0.2); } catch (e) {} });
+    };
   };
 
   // the ident (4.5): three square notes 880, 1174.7, 1760 Hz, 120 ms each, 20 ms gaps, lowpass 4 kHz, gain .15

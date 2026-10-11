@@ -173,7 +173,14 @@
     const rel = f[kind] || (kind === 'mp3' ? t.slug + '/' + t.slug + '.mp3' : kind === 'notes' ? t.slug + '/notes.md' : t.slug + '/recipe.json');
     return CFG.tracksBase + rel;
   }
-  function permalink(slug) { return location.href.split('#')[0] + '#/track/' + slug; }
+  // a shared link opens in the look the sharer is seeing: ?theme= is for that visit only (index.html never saves it),
+  // so the friend's own saved theme stays theirs. only known-safe flags ride along, never the rest of the query.
+  function permalink(slug) {
+    const q = new URLSearchParams(location.search), out = new URLSearchParams();
+    if (S.theme) out.set('theme', S.theme);
+    if (q.get('camplist')) out.set('camplist', q.get('camplist'));
+    return location.origin + location.pathname + '?' + out.toString() + '#/track/' + slug;
+  }
   function findTrack(arg) {
     if (!arg) return S.current ? S.bySlug[S.current] : null;
     const a = String(arg).trim().toLowerCase().replace(/^#/, '');
@@ -400,6 +407,13 @@
       if (MUTE) T.print('muted by the harness: gain to the speakers is 0. the analyser still reads.', 'amber');
       if (!S.tracks.length) { deadAir(); return; }
       S.queue = chronological();
+      // a theme can name its opening track (config themeStart): with no link to follow, its album plays from there
+      const open = (CFG.themeStart || {})[S.theme];
+      if (open && S.bySlug[open] && !/^#\/(track|album)\//.test(location.hash)) {
+        const alb = S.albumOfSlug[open];
+        const run = alb ? alb.tracks.slice(alb.tracks.indexOf(open)).concat(alb.tracks.slice(0, alb.tracks.indexOf(open))) : [open];
+        S.queue = run.concat(S.queue.filter(function (s) { return run.indexOf(s) < 0; }));
+      }
       const m = /^#\/track\/([^/?]+)/.exec(location.hash);
       if (m && S.bySlug[decodeURIComponent(m[1])]) {
         const slug = decodeURIComponent(m[1]);
@@ -453,7 +467,9 @@
     V.scramble(el.npSlug, slug, 1100);
     el.progress.hidden = true; el.dial.hidden = false;
     A.tuning = true; A.setTrack(slug, t.bpm);
-    const stopNoise = SY.tuning(1.2);
+    // the theme's own switch sound (issue #103), or the station's static when it has none
+    const th = TH(), own = th.transitionSound && th.transitionSound(1.2, { slug: slug });
+    const stopNoise = typeof own === 'function' ? own : SY.tuning(1.2);
     // the theme's between-tracks move (12.5): in the city, the camera leaves through the tunnel for the next tower
     TH().playing(slug);
     TH().transition('playing', 'tuning', { slug: slug, ms: 1200 });

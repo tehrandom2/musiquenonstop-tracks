@@ -9,6 +9,8 @@
 //              "tapedeck" (a cassette on a painting desk), "arena" (a dark stage that takes the colour of the track) or
 //              "campfire" (a fire on a small planet, a sky of signals, a scope and marshmallows).
 //              `theme <name>` in the terminal changes it for that browser; ?theme=<name> for one visit.
+// themeStart: a theme's opening track, by slug. A visit with no track or album link starts there, and that track's album
+//              plays on from it before the rest of the catalogue.
 // A ?tracks=<base> query on the page URL overrides tracksBase for that visit (used by the test catalogue).
 window.NOBODY_CONFIG = {
   tracksBase: "../tracks/",
@@ -17,5 +19,6 @@ window.NOBODY_CONFIG = {
   requestApi: null,
   requestKey: null,
   defaultTheme: "campfire",
+  themeStart: { campfire: "the-long-way-up" },
   source: "https://github.com/tehrandom2/nobody-fm"
 };

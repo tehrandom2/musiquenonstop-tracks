@@ -142,6 +142,24 @@ NOBODY.themes.phosphor = (function () {
     }, 1000));
   }
 
+  /* ---- the switch sound (issue #103): a quiet tune-in. a narrow band of static slides down as a whistle beats down to
+     nothing, and a faint tone says the station is found ---- */
+  TH.transitionSound = function (seconds) {
+    return NOBODY.synth.sound(seconds, function (c, out, t0, dur, k) {
+      const bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.4;
+      bp.frequency.setValueAtTime(1100, t0); bp.frequency.exponentialRampToValueAtTime(500, t0 + dur * 0.75);
+      const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800;
+      const ng = c.createGain(); k.env(ng.gain, [[0, 0], [0.3, 0.022], [0.7, 0.016], [1.05, 0.003], [dur, 0.002]]);
+      k.noise().connect(bp); bp.connect(lp); lp.connect(ng); ng.connect(out);
+      const wh = k.osc('sine'); wh.frequency.setValueAtTime(520, t0); wh.frequency.exponentialRampToValueAtTime(70, t0 + 1.05);
+      const wg = c.createGain(); k.env(wg.gain, [[0, 0], [0.3, 0.01], [0.85, 0.005], [1.1, 0]]);
+      wh.connect(wg); wg.connect(out);
+      const lock = k.osc('sine'); lock.frequency.value = 660;
+      const lg = c.createGain(); k.env(lg.gain, [[0, 0], [0.92, 0], [1.0, 0.006], [dur, 0.004]]);
+      lock.connect(lg); lg.connect(out);
+    });
+  };
+
   /* ---- transitions (12.0): the power line opens and closes the glass; the key blooms it ---- */
   TH.transition = function (from, to, info) {
     // the track page is built after this call; the dithered cover goes in once it is there (issue #88)

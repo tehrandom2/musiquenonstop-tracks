@@ -1226,6 +1226,26 @@ NOBODY.themes.city = (function () {
     if (dialStrip && S && S.state === 'tuning') dialStrip.set(88.8, false, '');
   };
 
+  /* ---- the switch sound (issue #103): the flight heard from the camera. a soft filtered whoosh that swells to the middle of
+     the flight and passes left to right, and three data chirps falling in pitch as the camera goes by them ---- */
+  TH.transitionSound = function (seconds) {
+    return NOBODY.synth.sound(seconds, function (c, out, t0, dur, k) {
+      const pan = c.createStereoPanner(); pan.pan.setValueAtTime(-0.6, t0); pan.pan.linearRampToValueAtTime(0.6, t0 + dur);
+      pan.connect(out);
+      const bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.1;
+      bp.frequency.setValueAtTime(220, t0); bp.frequency.exponentialRampToValueAtTime(1600, t0 + 0.55); bp.frequency.exponentialRampToValueAtTime(380, t0 + dur);
+      const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2400;
+      const ng = c.createGain(); k.env(ng.gain, [[0, 0], [0.55, 0.05], [dur, 0.006]]);
+      k.noise().connect(bp); bp.connect(lp); lp.connect(ng); ng.connect(pan);
+      const ch = k.osc('sine'), cg = c.createGain(), pts = [[0, 0]];
+      [[0.42, 2400], [0.52, 2150], [0.62, 1900]].forEach(function (b) {
+        ch.frequency.setValueAtTime(b[1], t0 + b[0]);
+        pts.push([b[0], 0], [b[0] + 0.01, 0.004], [b[0] + 0.03, 0.004], [b[0] + 0.045, 0]);
+      });
+      k.env(cg.gain, pts); ch.connect(cg); cg.connect(pan);
+    });
+  };
+
   /* ---- transitions (12.5): what the camera does when the station changes state ---- */
   function viewOf(to) { return to === 'page' ? 'page' : to === 'guestbook' ? 'guestbook' : to === 'dead' ? 'dead' : to === 'boot' || to === 'off' ? 'standby' : 'home'; }
   TH.transition = function (from, to, info) {

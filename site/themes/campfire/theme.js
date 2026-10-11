@@ -1795,6 +1795,30 @@ NOBODY.themes = NOBODY.themes || {};
       return Promise.resolve();
     };
 
+    // the switch sound (issue #103), never radio static: a gust through the pines, a log settling, two sparks
+    TH.transitionSound = function (seconds) {
+      return SY().sound(seconds, function (c, out, t0, dur, k) {
+        const n = k.noise();
+        const wb = c.createBiquadFilter(); wb.type = 'bandpass'; wb.Q.value = 0.6;
+        wb.frequency.setValueAtTime(450, t0); wb.frequency.exponentialRampToValueAtTime(900, t0 + 0.5); wb.frequency.exponentialRampToValueAtTime(550, t0 + dur);
+        const wg = c.createGain(); k.env(wg.gain, [[0, 0], [0.5, 0.022], [dur, 0.01]]);
+        n.connect(wb); wb.connect(wg); wg.connect(out);
+        const nb = c.createBiquadFilter(); nb.type = 'bandpass'; nb.frequency.value = 2600; nb.Q.value = 3;
+        const ng = c.createGain(); k.env(ng.gain, [[0, 0], [0.55, 0.008], [dur, 0.003]]);
+        n.connect(nb); nb.connect(ng); ng.connect(out);
+        const lg = k.osc('sine'), lgg = c.createGain();
+        lg.frequency.setValueAtTime(150, t0 + 0.5); lg.frequency.exponentialRampToValueAtTime(85, t0 + 0.66);
+        k.env(lgg.gain, [[0, 0], [0.5, 0], [0.52, 0.02], [0.66, 0]]);
+        lg.connect(lgg); lgg.connect(out);
+        const kl = c.createBiquadFilter(); kl.type = 'lowpass'; kl.frequency.value = 500;
+        const kg = c.createGain(); k.env(kg.gain, [[0, 0], [0.5, 0], [0.51, 0.025], [0.6, 0]]);
+        n.connect(kl); kl.connect(kg); kg.connect(out);
+        const sp = c.createBiquadFilter(); sp.type = 'bandpass'; sp.frequency.value = 3500; sp.Q.value = 4;
+        const sg = c.createGain(); k.env(sg.gain, [[0, 0], [0.82, 0], [0.823, 0.02], [0.84, 0], [0.95, 0], [0.953, 0.012], [0.968, 0]]);
+        n.connect(sp); sp.connect(sg); sg.connect(out);
+      });
+    };
+
     /* ---- scene hooks ---- */
     TH.catalogue = function (tracks) { if (scene) { scene.setCatalogue(tracks); drawLegend(); } if (CAMPLIST === 'spiral') buildSpiral(); };
     TH.playing = function (slug) { if (scene) scene.setPlaying(slug); if (CAMPLIST === 'spiral') buildSpiral(); };
