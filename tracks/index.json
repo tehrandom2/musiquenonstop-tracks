@@ -3,6 +3,121 @@
   "written": "2026-10-11T06:10:29-04:00",
   "tracks": [
     {
+      "slug": "hand-drum-hot-sand",
+      "title": "Hand Drum, Hot Sand",
+      "project": null,
+      "idea": "a wanderer playing hand drum under a hot sky, with a low drone: a desert camp under a hot white sky, sand pouring somewhere far off, dry open air",
+      "request": "a wanderer playing hand drum under a hot sky, with a low drone",
+      "mood": "patient and grounded, keeping time for nobody",
+      "bpm": 84,
+      "key": "G major",
+      "seed": 318385,
+      "model": "best",
+      "duration": 117.0,
+      "date": "2026-10-11",
+      "rendered_at": "2026-10-11T06:07:34-04:00",
+      "voice": false,
+      "prompt": "Solo hand drum folk piece over a drone, 84 bpm, in G major, a hand drum played with fingers and palm, soft and steady, no drum kit, a low hummed drone held underneath, very quiet, like warm wind, a desert camp under a hot white sky, sand pouring somewhere far off, dry open air, patient and grounded, keeping time for nobody, the hand drum alone for several bars, the drone fades in, a short pattern repeated with small changes, loopable, no build-up, ends with the drum alone, instrumental, no vocals, no singing, no words, no speech, no drum kit, no snare, no cymbals, no electronic beat, no drops, no synth lead, no orchestra, no sub bass",
+      "lyrics": null,
+      "why": "You asked for \"a wanderer playing hand drum under a hot sky, with a low drone\". The wanderer with no tune, just time. A hand drum, fingers and palm, over a drone low enough to feel rather than follow. It is the only solo with a pulse, and it is in the gathering's tempo so the others can lock to it. So I wrote it at 84 bpm in G major, 120 seconds, with no voice, under the acoustic gates. I set it to -18 LUFS rather than the station's -16, so it sits quieter beside the rest. I rendered 6 seeds and threw away 4: 318387 (tempo 76 vs asked 84 and others); 318388 (3.1s of near-silence (limit 1.0) and others); 318390 (tempo 134 vs asked 84 and others); 318386 (tempo 98 vs asked 84 and others). Seed 318385 is the take.",
+      "rejected": [
+        {
+          "seed": 318387,
+          "reason": "tempo 76 vs asked 84; 4.4s of near-silence (limit 1.0)"
+        },
+        {
+          "seed": 318388,
+          "reason": "3.1s of near-silence (limit 1.0); seam level -10.8 dB tail to head"
+        },
+        {
+          "seed": 318390,
+          "reason": "tempo 134 vs asked 84; seam level -17.7 dB tail to head"
+        },
+        {
+          "seed": 318386,
+          "reason": "tempo 98 vs asked 84; onset rate 5.1/s outside 0.1-5.0; seam level +11.7 dB tail to head; crest 20.6 dB, too peaky to reach -18 LUFS"
+        }
+      ],
+      "takes": [
+        318385,
+        318389
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -18.0,
+        "lufs_target": -18.0,
+        "peak_dbfs": -5.06,
+        "silence_s": 0.0,
+        "brightness_pct": 2.13,
+        "boominess_pct": 0.01,
+        "onsets_per_s": 2.52,
+        "seam_db": 0.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "interloper ai",
+        "submitter": "the machine",
+        "tags": [
+          "hand drum",
+          "drone",
+          "solo",
+          "wanderer",
+          "arc:wanderers"
+        ],
+        "track_no": 8
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "hand-drum-hot-sand/hand-drum-hot-sand.mp3",
+        "notes": "hand-drum-hot-sand/notes.md",
+        "recipe": "hand-drum-hot-sand/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "acoustic",
+        "seam_step_x": 0.53,
+        "decoded_lufs": -18.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5159700,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "hand-drum-hot-sand/hand-drum-hot-sand.mp3",
+          "hand-drum-hot-sand/hand-drum-hot-sand-take2.mp3"
+        ],
+        "ears": {
+          "heard_by": "heard by a model, not a person",
+          "model": "gemini-3.1-pro-preview",
+          "score": 62,
+          "flags": [
+            "lead"
+          ],
+          "doubts": [],
+          "description": "A steady hand drum and shaker provide a rhythmic bed for a repetitive, cascading melody played on a plucked string instrument like a zither or harp. The mood is meditative and rhythmic, maintaining a constant energy throughout.",
+          "answers": {
+            "frame": "partly",
+            "kit": "partly",
+            "lead": "no",
+            "voice": "yes",
+            "clean": "yes"
+          }
+        }
+      }
+    },
+    {
       "slug": "flute-on-a-rolling-sea",
       "title": "Flute on a Rolling Sea",
       "project": null,
@@ -22493,6 +22608,7 @@
         "flute-on-a-rolling-sea",
         "a-whistle-on-the-moon",
         "banjo-on-falling-ground",
+        "hand-drum-hot-sand",
         "a-lantern-nobody-lit",
         "downriver-single-note"
       ],
