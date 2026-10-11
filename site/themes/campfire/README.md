@@ -32,16 +32,24 @@ own orbit round a big low sun, lit by it, with its own period and spin. None has
 - **The sun.** Big and low on the horizon; over a long, slow loop it swells a little and reddens, then comes back. Nothing more.
 - **The platform.** A little ring-and-panels station close to the sun, a light blinking on its hub.
 
-A frequency lives round a world: its signals sit in a loose spiral round it and travel the orbit with it, so the scope
-finds a group's signals clustered round its world.
+## The constellation (issue #84)
+
+The tracks are the sky's stars, on spiral arms that run out from one bright centre called home: an album is an arm, in its
+own order; each frequency's tracks on no album make one more. It is a map: zoom from the whole sky round home down to one
+arm, where the stars stand apart with their titles. A reticle stays in the middle and the sky moves under it; the star in it
+is the one you have. A track's page is a reel: a projector on a stump throws it, frame by frame, onto a sheet between two
+trees. `?camplist=list` gives the camp the right-hand column instead, and then a frequency lives round a world: its signals
+sit in a loose spiral round it and travel the orbit with it.
 
 ## Using it
 
 | | desktop | phone |
 |---|---|---|
-| look | move the mouse (a gentle gaze), drag to turn, or the arrows | drag |
-| the scope | `z` (tap to toggle, hold to peek), the right button held, or `[ scope ]` | `[ scope ]`, pinch to zoom it |
-| frequency | `w` and `e`, the wheel, or click the frequency chip or a legend row | tap the frequency chip |
+| move the sky | drag, or walk an arm with the arrows (left and right along it, up and down to the next) | drag |
+| zoom | the wheel, `+` `-`, or the buttons on the right; `Home` (or `home`) flies back to the whole sky | pinch, or the buttons |
+| the star in the reticle | `enter` plays it, `q` queues it; its card has play, queue and its reel; a click on a star brings it in | tap a star, then the card |
+| what the sky shows | `w` `e`, `freq <name>`, `freq all`, or a row of the board: the whole sky, an album, a feel | the list under the header |
+| the scope | `z` (tap to toggle, hold to peek), the right button held, or `[ scope ]`; it zooms too | `[ scope ]`, pinch to zoom it |
 | lock on | hold steady, `l`, `enter`, or a click in the scope | hold steady or tap |
 | marshmallow | `h` skewers one; hold `h` to toast; tap `h` (or `x`) to eat | `[ marshmallow ]`: tap, hold, tap |
 | the deck | `f` | `[ deck ]` in the catalogue |
@@ -77,4 +85,6 @@ ident, the bite) share one gain that `[ sounds on ]`, its slider and `camp sound
 Patrick Hand (the camp journal's hand), SIL Open Font License 1.1, all in `../../vendor/` with their licences in
 `../../vendor/LICENSES.md`. Without the CDN there is no scene: the body says `nocamp`, a painted night and a CSS fire
 stand in, and the list is the sky. The harness runs this theme's Chrome on ANGLE (SwiftShader by default, `--angle d3d11`
-for the real card) and its own scenario is `--only camp`.
+for the real card) and its own scenarios are `--only camp` (the camp with its column, `?camplist=list`) and `--only camplist`
+(the constellation, the scope's helpers and the projector; `--camp-tracks` a catalogue with albums for the album arms and covers).
+The boards' frames are dark card (`?campframe=canvas` and `?campframe=wood` show the other two).

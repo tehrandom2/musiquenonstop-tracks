@@ -294,7 +294,7 @@ NOBODY.themes = NOBODY.themes || {};
     // the sky listens (issue #82): slow envelopes of the track's low end, middle and highs, and a soft pulse on the kick
     const music = { on: true, amt: 0, low: 0, mid: 0, high: 0, pulse: 0, bassSlow: 0, avg: [0, 0, 0], flow: 0, tw: 0, raw: [0, 0, 0] };
     const M = { on: false, toast: 0, heat: 0, fire: 0, fireFor: 0, held: false, ext: 0, eating: -1, scale: 0, bites: 0, appear: 0, caught: false, bend: 0, swayV: 0, sway: 0, tip: new THREE.Vector3(), pos: new THREE.Vector3(), dir: new THREE.Vector3(0, 0, -1), steamFor: 0 };
-    const tmp = { v: new THREE.Vector3(), v2: new THREE.Vector3(), v3: new THREE.Vector3(), q: new THREE.Quaternion(), m: new THREE.Matrix4() };
+    const tmp = { v: new THREE.Vector3(), v2: new THREE.Vector3(), v3: new THREE.Vector3(), v4: new THREE.Vector3(), v5: new THREE.Vector3(), v6: new THREE.Vector3(), v7: new THREE.Vector3(), q: new THREE.Quaternion(), m: new THREE.Matrix4() };
     const hooks = { onFrame: null, onPop: null, onCrackle: null, onLockDwell: null, onMallow: null };
     let sched = { meteorAt: 6 + Math.random() * 6, crossAt: 14, crossKind: 0 };
 
@@ -614,7 +614,7 @@ NOBODY.themes = NOBODY.themes || {};
         // the orbit, drawn faint
         const pts = [], t = { u: 0, v: 0 };
         for (let i = 0; i <= 200; i++) { orbitUV(o, i / 200 * o.period, t); pts.push(skyDir(t.u, t.v).multiplyScalar(WD + 6)); }
-        const ol = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ fog: false, color: '#e0c08e', transparent: true, opacity: 0.14, depthWrite: false }));
+        const ol = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ fog: false, color: '#e0c08e', transparent: true, opacity: CL.on ? 0.05 : 0.14, depthWrite: false }));
         ol.renderOrder = -4; scene.add(ol); orbitLines.push(ol);
         W_.list.push(w);
       });
@@ -810,86 +810,194 @@ NOBODY.themes = NOBODY.themes || {};
       placeSignals();
       buildRoute();
     }
-    /* ---- the constellation (issue #84, ?camplist=sky): the catalogue as branching spiral arms from one bright centre, home.
-       one arm per frequency, newest nearest home; a remix branches off its parent. the stars are the signals themselves, so
-       the scope and the browsing share one sky. our own geometry: a plain arithmetic spiral per arm, nothing traced ---- */
-    const CL = { on: qs.get('camplist') === 'sky', home: new THREE.Vector3(), E: new THREE.Vector3(), N: new THREE.Vector3(), order: [], arms: [], path: {}, pathLen: 0, head: 0, lines: null, homeSprite: null, hidden: 0 };
+    /* ---- the constellation (issue #84): the catalogue as spiral arms winding out from one bright centre, home. an album is an
+       arm, its tracks in album order from home outward; the tracks on no album make one arm per frequency, newest nearest home
+       (with no albums at all the arms are the frequencies). a remix branches off its parent. the stars are the signals
+       themselves, so the scope and the browsing share one sky. our own geometry: a plain arithmetic spiral per arm, nothing traced.
+       a band (the whole sky, an album, a feel) re-lays the sky: its stars spread out round home, the rest shrink back into it ---- */
+    const CL = { on: String(qs.get('camplist') || '').toLowerCase() !== 'list', home: new THREE.Vector3(), E: new THREE.Vector3(), N: new THREE.Vector3(), all: [], arms: [], order: [], info: [], ext: { x: 20, y: 12 },
+      bands: [{ kind: 'all', name: 'the whole sky', slugs: null, colour: '#ffe2a8', n: 0 }], band: 0, set: null, tr: null, path: {}, pathLen: 0, head: 0, lines: null, homeSprite: null, hidden: 0 };
+    // the spiral's measures in degrees of sky: the first star's distance from home, the outward run per radian, the step between stars
+    const CLG = { R0: 4.6, G: 12, STEP: 1.45, SQ: 0.58, BR: 1.8 };
     function clDir(x, y, out) {
       const r = Math.hypot(x, y) * DEG, ph = Math.atan2(y, x);
       out.copy(CL.home).multiplyScalar(Math.cos(r)).addScaledVector(CL.E, Math.cos(ph) * Math.sin(r)).addScaledVector(CL.N, Math.sin(ph) * Math.sin(r));
-      // never under 10 degrees over the horizon
-      const el = Math.asin(clamp(out.y, -1, 1)), lo = 10 * DEG;
+      // never under 7 degrees over the horizon, where the trees stand
+      const el = Math.asin(clamp(out.y, -1, 1)), lo = 7 * DEG;
       if (el < lo) { const h = Math.hypot(out.x, out.z) || 1; out.set(out.x / h * Math.cos(lo), Math.sin(lo), out.z / h * Math.cos(lo)); }
       return out.normalize();
     }
-    function buildConstellation(tracks) {
-      const meta = {}; (tracks || []).forEach(function (t) { meta[t.slug] = t; });
-      const az = -24 * DEG, el = 27 * DEG;
-      CL.home.set(Math.sin(az) * Math.cos(el), Math.sin(el), -Math.cos(az) * Math.cos(el)).normalize();
-      CL.E.set(Math.cos(az), 0, Math.sin(az)).normalize(); CL.N.crossVectors(CL.E, CL.home).negate().normalize();
-      if (CL.N.y < 0) CL.N.negate();
-      const when = function (s) { const t = meta[s.slug] || {}; return String(t.rendered_at || t.date || ''); };
-      const parentOf = function (s) { const t = meta[s.slug] || {}; return t.lineage && t.lineage.parent ? t.lineage.parent : null; };
-      const K = Math.max(1, sig.freqs.length), R0 = 2.6, G = 3.6, STEP = 0.8, SQ = 0.62;
-      CL.order = []; CL.arms = [];
-      sig.list.forEach(function (s) { s.cpar = -1; s.cdist = 0; s.cx = 0; s.cy = 0; s.arm = s.freq; s.kids = []; s.cdir = new THREE.Vector3(); });
+    // the other way: a direction as the map's own degrees round home (the mini-map's plane)
+    function clXY(d) { const r = Math.acos(clamp(d.dot(CL.home), -1, 1)) / DEG, ph = Math.atan2(d.dot(CL.N), d.dot(CL.E)); return { x: r * Math.cos(ph), y: r * Math.sin(ph) }; }
+    // a track's feel: the mood families of 12.18, whatever its project; everything else drifts
+    function feelOf(t) { const m = String(t && t.mood || ''); for (let i = 0; i < FAMILIES.length; i++) if (FAMILIES[i][1].test(m)) return FAMILIES[i][0]; return 'drift'; }
+    // the arms: every album in the catalogue, then each frequency's tracks that are on no album; a frequency's arms side by side
+    function clArms(meta, when) {
+      const albums = (NOBODY.albums ? NOBODY.albums() : []).filter(function (a) { return a && Array.isArray(a.tracks); });
+      const taken = {}, arms = [];
+      albums.forEach(function (a) {
+        const stars = a.tracks.map(function (s) { return sig.bySlug[s]; }).filter(function (s) { return s && !taken[s.slug]; });
+        if (!stars.length) return;
+        stars.forEach(function (s) { taken[s.slug] = true; });
+        // an album sits with the frequency most of its tracks are on; its date is its newest track's
+        const n = {}; stars.forEach(function (s) { n[s.freq] = (n[s.freq] || 0) + 1; });
+        const f = +Object.keys(n).sort(function (x, y) { return n[y] - n[x] || x - y; })[0];
+        const date = stars.reduce(function (m, s) { const w = when(s); return w > m ? w : m; }, '');
+        arms.push({ name: a.title || a.slug, album: a.slug, freq: f, stars: stars, date: date });
+      });
+      const onAlbums = arms.length;
       sig.freqs.forEach(function (f, k) {
-        const arr = sig.list.filter(function (s) { return s.freq === k; }).sort(function (a, b) { return when(b).localeCompare(when(a)) || a.slug.localeCompare(b.slug); });
-        const inArm = {}; arr.forEach(function (s) { inArm[s.slug] = s; });
-        const main = arr.filter(function (s) { const p = parentOf(s); return !(p && inArm[p] && p !== s.slug); });
+        const rest = sig.list.filter(function (s) { return s.freq === k && !taken[s.slug]; }).sort(function (a, b) { return when(b).localeCompare(when(a)) || a.slug.localeCompare(b.slug); });
+        if (rest.length) arms.push({ name: onAlbums ? f.name + ' · singles' : f.name, album: null, freq: k, stars: rest, date: '' });
+      });
+      // each arm's reading order: its spine, and after each star the remixes that branch off it
+      const parentOf = function (s) { const t = meta[s.slug] || {}; return t.lineage && t.lineage.parent ? t.lineage.parent : null; };
+      arms.forEach(function (A) { A.stars.forEach(function (s) { s.par = parentOf(s); }); });
+      return arms.map(function (a, i) { a.i = i; return a; }).sort(function (a, b) { return a.freq - b.freq || a.i - b.i; });
+    }
+    // the bands of the selector (the owner's order): the whole sky, the albums newest first, then the feels; an empty group is left out
+    function clBands(meta, when) {
+      const B = [{ kind: 'all', name: 'the whole sky', slugs: null, colour: '#ffe2a8', n: sig.list.length }];
+      CL.all.filter(function (a) { return a.album; }).slice().sort(function (a, b) { return b.date.localeCompare(a.date) || a.i - b.i; }).forEach(function (a) {
+        B.push({ kind: 'album', name: a.name, album: a.album, slugs: a.stars.map(function (s) { return s.slug; }), colour: sig.freqs[a.freq] ? sig.freqs[a.freq].colour : '#ffe2a8', n: a.stars.length });
+      });
+      const feels = FAMILIES.map(function (f) { return f[0]; }).concat(['drift']);
+      feels.forEach(function (name, i) {
+        const slugs = sig.list.filter(function (s) { return feelOf(meta[s.slug]) === name; }).map(function (s) { return s.slug; });
+        if (slugs.length) B.push({ kind: 'feel', name: name, slugs: slugs, colour: FREQ_COLOURS[(i + 2) % FREQ_COLOURS.length], n: slugs.length });
+      });
+      return B;
+    }
+    // one layout of the arms: the members of `set` (null: everyone) on spiral arms round home, wider apart when a band is
+    // picked; a star outside the band shrinks back toward home along the line it had. writes s.tx, s.ty, s.td, s.tp, s.tm
+    function clLayout(set) {
+      const spread = set ? 1.3 : 1, arms = [];
+      CL.all.forEach(function (A) { const st = set ? A.stars.filter(function (s) { return set[s.slug]; }) : A.stars; if (st.length) arms.push({ A: A, stars: st }); });
+      const K = Math.max(1, arms.length), R0 = Math.max(CLG.R0 * spread, K * 2.3 * spread / (Math.PI * 2)), G = CLG.G * spread, STEP = CLG.STEP * spread, SQ = CLG.SQ;
+      sig.list.forEach(function (s) { s.tp = -1; s.tm = 0; s.lArm = -1; s.lAt = 0; s.kids = []; });
+      const view = [];
+      arms.forEach(function (L, k) {
+        const arr = L.stars, inArm = {}; arr.forEach(function (s) { inArm[s.slug] = s; s.lArm = k; s.tm = 1; });
+        const main = arr.filter(function (s) { return !(s.par && inArm[s.par] && s.par !== s.slug); });
         const kids = arr.filter(function (s) { return main.indexOf(s) < 0; });
-        const ph0 = k / K * Math.PI * 2 + 0.5;
+        const ph0 = K === 1 ? 0.35 : k / K * Math.PI * 2 + 0.5;
         let th = 0, r = R0, px = 0, py = 0, pd = 0, prev = null;
         main.forEach(function (s, i) {
-          if (i) { th += STEP / r; r = R0 + G * th; }
-          s.cx = r * Math.cos(ph0 + th); s.cy = r * Math.sin(ph0 + th) * SQ;
-          const d = Math.hypot(s.cx - px, s.cy - py); s.cdist = pd + d; s.cpar = prev ? prev.i : -1;
-          px = s.cx; py = s.cy; pd = s.cdist; prev = s;
+          // an even step along the curve: the arc of an arithmetic spiral grows with both the turn and the radius
+          if (i) { th += STEP / Math.hypot(G, r); r = R0 + G * th; }
+          s.tx = r * Math.cos(ph0 + th); s.ty = r * Math.sin(ph0 + th) * SQ;
+          const d = Math.hypot(s.tx - px, s.ty - py); s.td = pd + d; s.tp = prev ? prev.i : -1;
+          px = s.tx; py = s.ty; pd = s.td; prev = s;
         });
         // the remixes: a short branch off the parent, alternating sides, each remix of that one a step further out
         const placed = {}; main.forEach(function (s) { placed[s.slug] = true; });
         for (let pass = 0; pass < 8 && kids.some(function (s) { return !placed[s.slug]; }); pass++) {
           kids.forEach(function (s) {
-            if (placed[s.slug]) return; const p = inArm[parentOf(s)]; if (!p || !placed[p.slug]) return;
+            if (placed[s.slug]) return; const p = inArm[s.par]; if (!p || !placed[p.slug]) return;
             p.kids.push(s); const n = p.kids.length, side = (hashStr(p.slug) & 1 ? 1 : -1) * (n % 2 ? 1 : -1);
-            const out = Math.atan2(p.cy / SQ, p.cx) + side * (0.95 + 0.25 * Math.floor((n - 1) / 2));
-            const len = 1.0 + 0.55 * Math.floor((n - 1) / 2);
-            s.cx = p.cx + Math.cos(out) * len; s.cy = p.cy + Math.sin(out) * len * SQ;
-            s.cdist = p.cdist + Math.hypot(s.cx - p.cx, s.cy - p.cy); s.cpar = p.i; placed[s.slug] = true;
+            const out = Math.atan2(p.ty / SQ, p.tx) + side * (0.95 + 0.25 * Math.floor((n - 1) / 2));
+            const len = (1.0 + 0.55 * Math.floor((n - 1) / 2)) * spread * CLG.BR;
+            s.tx = p.tx + Math.cos(out) * len; s.ty = p.ty + Math.sin(out) * len * SQ;
+            s.td = p.td + Math.hypot(s.tx - p.tx, s.ty - p.ty); s.tp = p.i; placed[s.slug] = true;
           });
         }
-        kids.forEach(function (s) { if (!placed[s.slug]) { main.push(s); } });
-        // the arm's reading order: each star, then the branch off it
-        const ord = []; const walk = function (s) { ord.push(s); s.kids.forEach(walk); };
+        kids.forEach(function (s) { if (!placed[s.slug]) main.push(s); });
+        const ord = [], seen = {}; const walk = function (s) { if (seen[s.slug]) return; seen[s.slug] = true; ord.push(s); s.kids.forEach(walk); };
         main.forEach(walk);
-        const seen = {}; CL.arms[k] = ord.filter(function (s) { if (seen[s.slug]) return false; seen[s.slug] = true; return true; });
-        CL.arms[k].forEach(function (s, j) { s.armAt = j; CL.order.push(s); });
+        ord.forEach(function (s, j) { s.lAt = j; });
+        // the arm's name sits just past its outermost star, along the way the arm was going
+        const tip = main[main.length - 1], tr = Math.hypot(tip.tx, tip.ty / SQ) || 1, ta = Math.atan2(tip.ty / SQ, tip.tx);
+        view.push({ name: L.A.name, album: L.A.album, freq: L.A.freq, stars: ord, tx: (tr + 2.4 * spread) * Math.cos(ta), ty: (tr + 2.4 * spread) * Math.sin(ta) * SQ, left: Math.cos(ta) < -0.2, tip: new THREE.Vector3(), centre: new THREE.Vector3() });
       });
-      sig.list.forEach(function (s) { clDir(s.cx, s.cy, s.cdir); });
+      // outside the band: back toward home along the line it had in the whole sky, faint
+      sig.list.forEach(function (s) { if (!s.tm) { s.tx = s.ax * 0.14; s.ty = s.ay * 0.14; s.td = s.ad * 0.14; s.tp = s.ap; } });
+      return view;
+    }
+    function buildConstellation(tracks) {
+      const meta = {}; (tracks || []).forEach(function (t) { meta[t.slug] = t; });
+      // home: a little left of the fire and well up the sky, so the whole sky round it still has the fire's glow under it
+      const az = FIRE_AIM.yaw - 8 * DEG, el = (C.phone ? 30 : 25) * DEG;
+      CL.home.set(Math.sin(az) * Math.cos(el), Math.sin(el), -Math.cos(az) * Math.cos(el)).normalize();
+      CL.E.set(Math.cos(az), 0, Math.sin(az)).normalize(); CL.N.crossVectors(CL.E, CL.home).negate().normalize();
+      if (CL.N.y < 0) CL.N.negate();
+      const when = function (s) { const t = meta[s.slug] || {}; return String(t.rendered_at || t.date || ''); };
+      CL.all = clArms(meta, when);
+      sig.list.forEach(function (s) { s.cdir = s.cdir || new THREE.Vector3(); });
+      // the whole sky first: every star's place in it is where it shrinks back to when another band is picked
+      clLayout(null);
+      CL.ext = { x: 4, y: 3 };
+      sig.list.forEach(function (s) { s.ax = s.tx; s.ay = s.ty; s.ad = s.td; s.ap = s.tp; CL.ext.x = Math.max(CL.ext.x, Math.abs(s.tx)); CL.ext.y = Math.max(CL.ext.y, Math.abs(s.ty)); });
+      CL.bands = clBands(meta, when);
+      const keep = CL.bands.findIndex(function (b) { return b.name === (CL.bandName || ''); });
+      CL.band = keep > 0 ? keep : 0; CL.set = bandSet(CL.band);
+      CL.info = clLayout(CL.set);
+      sig.list.forEach(function (s) { s.cx = s.tx; s.cy = s.ty; s.cdist = s.td; s.cpar = s.tp; s.cm = s.tm; });
+      clAdopt();
       // the lines: home to each arm's first star, each star to the one before it on its path; one draw call
       if (CL.lines) { scene.remove(CL.lines); CL.lines.geometry.dispose(); }
-      const n = sig.list.length, pos = new Float32Array(n * 6), dist = new Float32Array(n * 2), onp = new Float32Array(n * 2), col = new Float32Array(n * 6);
-      sig.list.forEach(function (s, i) {
-        const a = s.cpar >= 0 ? sig.list[s.cpar].cdir : CL.home, b = s.cdir;
-        pos.set([a.x * 598, a.y * 598, a.z * 598, b.x * 598, b.y * 598, b.z * 598], i * 6);
-        dist[i * 2] = s.cpar >= 0 ? sig.list[s.cpar].cdist : 0; dist[i * 2 + 1] = s.cdist;
-        col.set([s.col.r, s.col.g, s.col.b, s.col.r, s.col.g, s.col.b], i * 6);
-      });
-      const g = new THREE.BufferGeometry();
-      g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('aD', new THREE.BufferAttribute(dist, 1));
-      g.setAttribute('aP', new THREE.BufferAttribute(onp, 1)); g.setAttribute('aC', new THREE.BufferAttribute(col, 3));
+      const n = sig.list.length, g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 6), 3)); g.setAttribute('aD', new THREE.BufferAttribute(new Float32Array(n * 2), 1));
+      g.setAttribute('aP', new THREE.BufferAttribute(new Float32Array(n * 2), 1)); g.setAttribute('aM', new THREE.BufferAttribute(new Float32Array(n * 2), 1));
+      const col = new Float32Array(n * 6); sig.list.forEach(function (s, i) { col.set([s.col.r, s.col.g, s.col.b, s.col.r, s.col.g, s.col.b], i * 6); });
+      g.setAttribute('aC', new THREE.BufferAttribute(col, 3));
       CL.lines = new THREE.LineSegments(g, new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-        uniforms: { uHead: { value: 0 }, uGap: { value: 9 }, uWidth: { value: 1.6 }, uBase: { value: 0.16 }, uPath: { value: 0.3 }, uAmp: { value: 0 } },
-        vertexShader: 'attribute float aD, aP; attribute vec3 aC; varying float vD, vP; varying vec3 vC; void main(){ vD = aD; vP = aP; vC = aC; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
-        // the pulse: waves of light leaving home along the path to the playing star, one a beat, travelling outward
-        fragmentShader: 'uniform float uHead, uGap, uWidth, uBase, uPath, uAmp; varying float vD, vP; varying vec3 vC; void main(){ float x = vD - uHead; float f = x - uGap * floor(x / uGap + 0.5); float w = exp(-f * f / (uWidth * uWidth)) * step(vD, uHead + 0.5); vec3 warm = mix(vC, vec3(1.0, 0.86, 0.62), 0.55); float a = uBase + vP * (uPath + w * uAmp); gl_FragColor = vec4(mix(vC, warm, vP) * a, 1.0); }' }));
+        uniforms: { uHead: { value: 0 }, uGap: { value: 15 }, uWidth: { value: 2.6 }, uBase: { value: 0.16 }, uPath: { value: 0.3 }, uAmp: { value: 0 } },
+        vertexShader: 'attribute float aD, aP, aM; attribute vec3 aC; varying float vD, vP, vM; varying vec3 vC; void main(){ vD = aD; vP = aP; vM = aM; vC = aC; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+        // the pulse: waves of light leaving home along the path to the playing star, one a beat, travelling outward; a line outside
+        // the picked band is a ghost of itself
+        fragmentShader: 'uniform float uHead, uGap, uWidth, uBase, uPath, uAmp; varying float vD, vP, vM; varying vec3 vC; void main(){ float x = vD - uHead; float f = x - uGap * floor(x / uGap + 0.5); float w = exp(-f * f / (uWidth * uWidth)) * step(vD, uHead + 0.5); vec3 warm = mix(vC, vec3(1.0, 0.86, 0.62), 0.55); float a = uBase * mix(0.18, 1.0, vM) + vP * (uPath + w * uAmp); gl_FragColor = vec4(mix(vC, warm, vP) * a, 1.0); }' }));
       CL.lines.frustumCulled = false; CL.lines.renderOrder = 5; scene.add(CL.lines);
       if (!CL.homeSprite) {
         CL.homeSprite = new THREE.Sprite(new THREE.SpriteMaterial({ fog: false, map: glowTexture([[0, 'rgba(255,248,232,1)'], [0.18, 'rgba(255,226,170,0.8)'], [0.45, 'rgba(255,190,120,0.22)'], [1, 'rgba(255,160,90,0)']]), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
         CL.homeSprite.renderOrder = 6; scene.add(CL.homeSprite);
       }
       CL.homeSprite.position.copy(CL.home).multiplyScalar(600); CL.homeSprite.scale.setScalar(22);
-      clPath();
+      clLines(); clPath();
+      mapLimits();
+      // the first look: the whole sky, home in the middle
+      if (!CL.aimed) { CL.aimed = true; const f = fitBand(), yp = yawPitchOf(f.dir); aimTo(yp.yaw, yp.pitch, true); MAP.fov = look.fov = look.fovT = f.fov; }
+    }
+    function bandSet(i) { const b = CL.bands[i]; if (!b || !b.slugs) return null; const o = {}; b.slugs.forEach(function (s) { o[s] = true; }); return o; }
+    // the arms as laid out now: walking and naming follow the picked band
+    function clAdopt() {
+      CL.arms = CL.info.map(function (a) { return a.stars; }); CL.order = [];
+      sig.list.forEach(function (s) { s.arm = s.lArm; s.armAt = s.lAt; });
+      CL.info.forEach(function (a) { a.centre.set(0, 0, 0); a.stars.forEach(function (s) { CL.order.push(s); a.centre.add(clDir(s.tx, s.ty, tmp.v4)); }); a.centre.normalize(); clDir(a.tx, a.ty, a.tip); a.n = a.stars.length; });
+    }
+    // every star's direction and its line from where the layout has it now
+    function clLines() {
+      if (!CL.lines) return;
+      sig.list.forEach(function (s) { clDir(s.cx, s.cy, s.cdir); });
+      const at = CL.lines.geometry.attributes, pos = at.position.array, dist = at.aD.array, mem = at.aM.array;
+      sig.list.forEach(function (s, i) {
+        const p = s.cpar >= 0 ? sig.list[s.cpar] : null, a = p ? p.cdir : CL.home, b = s.cdir;
+        pos[i * 6] = a.x * 598; pos[i * 6 + 1] = a.y * 598; pos[i * 6 + 2] = a.z * 598; pos[i * 6 + 3] = b.x * 598; pos[i * 6 + 4] = b.y * 598; pos[i * 6 + 5] = b.z * 598;
+        dist[i * 2] = p ? p.cdist : 0; dist[i * 2 + 1] = s.cdist;
+        mem[i * 2] = p ? Math.min(p.cm, s.cm) : s.cm; mem[i * 2 + 1] = s.cm;
+      });
+      at.position.needsUpdate = true; at.aD.needsUpdate = true; at.aM.needsUpdate = true;
+    }
+    // pick a band: the sky re-lays itself over a second and a half (a cut under reduced motion), and the view follows it
+    function setBand(i, fly) {
+      if (!CL.on || !CL.bands.length) return null;
+      i = ((i % CL.bands.length) + CL.bands.length) % CL.bands.length;
+      CL.band = i; CL.bandName = CL.bands[i].name; CL.set = bandSet(i);
+      sig.list.forEach(function (s) { s.fx = s.cx; s.fy = s.cy; s.fd = s.cdist; s.fm = s.cm; });
+      CL.info = clLayout(CL.set);
+      sig.list.forEach(function (s) { s.cpar = s.tp; });
+      clAdopt(); clPath();
+      CL.tr = { t: 0, dur: reduced ? 0 : 1.5 };
+      if (reduced) stepLayout(0);
+      if (fly !== false) { const f = fitBand(); flyTo(f.dir, f.fov, reduced ? 0 : 1.5); }
+      return CL.bands[i];
+    }
+    function stepLayout(dt) {
+      const tr = CL.tr; if (!tr) return;
+      tr.t = tr.dur > 0 ? Math.min(1, tr.t + dt / tr.dur) : 1;
+      const e = tr.t < 0.5 ? 4 * tr.t * tr.t * tr.t : 1 - Math.pow(-2 * tr.t + 2, 3) / 2;
+      sig.list.forEach(function (s) { s.cx = lerp(s.fx, s.tx, e); s.cy = lerp(s.fy, s.ty, e); s.cdist = lerp(s.fd, s.td, e); s.cm = lerp(s.fm, s.tm, e); });
+      clLines();
+      if (tr.t >= 1) { CL.tr = null; CL.pathLen = sig.playing && sig.bySlug[sig.playing] ? sig.bySlug[sig.playing].cdist : 0; }
     }
     // the path from home to the playing star: marks its segments and its stars, and its length for the pulse
     function clPath() {
@@ -897,12 +1005,13 @@ NOBODY.themes = NOBODY.themes || {};
       if (!CL.lines) return;
       const onp = CL.lines.geometry.attributes.aP.array; onp.fill(0);
       let s = sig.playing && sig.bySlug[sig.playing];
-      if (s) CL.pathLen = s.cdist;
+      if (s) CL.pathLen = s.td != null ? s.td : s.cdist;
       for (let guard = 0; s && guard < 999; guard++) { CL.path[s.slug] = true; onp[s.i * 2] = 1; onp[s.i * 2 + 1] = 1; s = s.cpar >= 0 ? sig.list[s.cpar] : null; }
       CL.lines.geometry.attributes.aP.needsUpdate = true;
     }
     function stepConstellation(dt) {
       if (!CL.lines) return;
+      stepLayout(dt);
       CL.hidden += ((C.hidden ? 1 : 0) - CL.hidden) * ease(dt, 0.8);
       const A = NOBODY.vis && NOBODY.vis.analyser, bpm = A && A.bpm ? A.bpm : 90, k = music.amt;
       const playing = !!sig.playing && music.low + music.mid + music.high > 0.05;
@@ -917,6 +1026,129 @@ NOBODY.themes = NOBODY.themes || {};
       u.uPath.value = lerp(0.3, 0.14, h);
       u.uAmp.value = (playing ? (0.55 + 0.9 * music.pulse * k + 0.4 * music.low * k) : 0.15) * lerp(0.55, 1.25, h);
       CL.homeSprite.material.opacity = lerp(0.95, 0.75, h) * (0.9 + 0.1 * Math.sin(T * 0.8));
+      // home keeps the same size on screen at every zoom, a little bigger zoomed in
+      CL.homeSprite.scale.setScalar(22 * clamp(look.fov / 62, 0.18, 1.4) * (look.fov < 30 ? 1.3 : 1));
+    }
+
+    /* ---- the map (issue #84): the constellation is a sky you zoom and pan. the zoom is the field of view, from the whole sky (home
+       in the middle, every arm) down to a few degrees, where an arm's stars stand apart. the zoom holds the middle of the screen,
+       where the reticle is; zooming out drifts back toward home. a fly is an eased move of the aim and the zoom together;
+       reduced motion cuts instead ---- */
+    // max: all the way out (the camp's own view, the fire in it); fit: the whole sky, home in the middle, where home flies to
+    const MAP = { fov: 62, min: 2.5, max: 62, base: 62, fit: 40, fly: null, glide: null, zv: 0 };
+    function fitFov(dirs, centre, margin) {
+      const yp = yawPitchOf(centre), cf = tmp.v5.copy(centre), rt = tmp.v6.set(Math.cos(yp.yaw), 0, Math.sin(yp.yaw)), up = tmp.v7.crossVectors(rt, cf).normalize();
+      let tx = 0, ty = 0;
+      dirs.forEach(function (d) { const z = Math.max(0.05, d.dot(cf)); tx = Math.max(tx, Math.abs(d.dot(rt)) / z); ty = Math.max(ty, Math.abs(d.dot(up)) / z); });
+      const half = Math.max(ty, tx / Math.max(0.3, camera ? camera.aspect : 1.6)) * (margin || 1.25);
+      return clamp(2 * Math.atan(half) / DEG, MAP.min * 3, MAP.max);
+    }
+    function mapLimits() {
+      MAP.base = C.phone ? 70 : 62;
+      if (!CL.on || !sig.list.length) { MAP.max = MAP.base; return; }
+      const dirs = []; sig.list.forEach(function (s) { dirs.push(clDir(s.ax, s.ay, new THREE.Vector3())); });
+      // the view was the whole sky: it stays the whole sky for the new shape of the screen
+      const save = MAP.max, atFit = Math.abs(MAP.fov - MAP.fit) < 0.6 && CL.aimed && !CL.set; MAP.max = 112;
+      MAP.fit = fitFov(dirs, CL.home, 1.12);
+      if (atFit && !MAP.fly) MAP.fov = MAP.fit;
+      MAP.max = Math.max(MAP.base, MAP.fit);
+      if (save !== MAP.max && !MAP.fly) MAP.fov = Math.min(MAP.fov, MAP.max);
+    }
+    // where a band's stars are now headed, and the field of view that holds them all
+    function fitBand() {
+      const dirs = [];
+      sig.list.forEach(function (s) { if (s.tm) dirs.push(clDir(s.tx, s.ty, new THREE.Vector3())); });
+      if (!CL.set) return { dir: CL.home.clone(), fov: MAP.fit };
+      const c = new THREE.Vector3(); dirs.forEach(function (d) { c.add(d); }); c.add(CL.home).normalize();
+      dirs.push(CL.home.clone());
+      return { dir: c, fov: fitFov(dirs, c, 1.3) };
+    }
+    /* the map's motion (issue #84): every move of the view is a critically damped spring on the aim and on the zoom (in log space),
+       so it eases in and settles without overshoot, and a new target while it moves carries the velocity on instead of snapping.
+       a drag that lets go keeps a little of its speed and glides out; the wheel and the zoom keys push the zoom, which glides out
+       the same way. reduced motion cuts: every move lands at once, nothing glides */
+    const SPRING = { y: 0, p: 0, f: 0 };
+    // one axis of a critically damped spring toward its target, exact for any dt: [offset from the target, velocity]
+    function crit(x, v, w, dt) { const e = Math.exp(-w * dt), q = (v + w * x) * dt; return [(x + q) * e, (v - w * q) * e]; }
+    function flyTo(dir, fov, dur) {
+      const yp = yawPitchOf(dir), f1 = clamp(fov == null ? MAP.fov : fov, MAP.min, MAP.max);
+      if (dur == null) dur = 0.8 + 0.18 * Math.abs(Math.log(f1 / Math.max(0.1, look.fov)));
+      MAP.glide = null;
+      // dur is about when it has settled: the spring's rate is set from it
+      MAP.fly = { y: yp.yaw, p: clamp(yp.pitch, -40 * DEG, 84 * DEG), lf: Math.log(f1), w: 7 / Math.max(0.12, dur) };
+      if (reduced || !dur) { SPRING.y = SPRING.p = SPRING.f = 0; MAP.fly.w = 1e4; stepMap(1); }
+    }
+    function stepMap(dt) {
+      // the drag's glide-out
+      const G = MAP.glide;
+      if (G) {
+        look.cy += G.vy * dt; look.cp = clamp(look.cp + G.vp * dt, -40 * DEG, 84 * DEG);
+        const k = Math.exp(-dt / 0.28); G.vy *= k; G.vp *= k;
+        // it ends when it has nearly stopped: a twentieth of the speed it left with, or a crawl
+        if (Math.abs(G.vy) + Math.abs(G.vp) < Math.max(0.002, G.s0 * 0.05)) MAP.glide = null;
+      }
+      // the zoom's push and glide-out: zv is the zoom's speed in log units a second (in when positive)
+      if (MAP.zv) {
+        const z = Math.exp(MAP.zv * Math.min(dt, 0.05));
+        if (C.scoped) look.scopeFov = clamp(look.scopeFov / z, 2.5, 40); else { zoomBy(z); look.fov = look.fovT = MAP.fov; }
+        MAP.zv *= Math.exp(-dt / 0.16);
+        if (Math.abs(MAP.zv) < 0.01) MAP.zv = 0;
+      }
+      const F = MAP.fly; if (!F) return;
+      const lf = Math.log(MAP.fov);
+      let a = crit(wrapAngle(look.yaw - F.y), SPRING.y, F.w, dt); const yaw = F.y + a[0]; SPRING.y = a[1];
+      a = crit(look.pitch - F.p, SPRING.p, F.w, dt); const pitch = F.p + a[0]; SPRING.p = a[1];
+      a = crit(lf - F.lf, SPRING.f, F.w, dt); MAP.fov = Math.exp(F.lf + a[0]); SPRING.f = a[1];
+      if (!C.scoped) look.fov = look.fovT = MAP.fov;
+      look.oy = 0; look.op = 0;
+      look.cy = look.yaw = look.yawT = yaw;
+      look.cp = look.pitch = look.pitchT = pitch;
+      if (Math.abs(wrapAngle(yaw - F.y)) + Math.abs(pitch - F.p) < 2e-5 && Math.abs(Math.log(MAP.fov) - F.lf) < 1e-4 && Math.abs(SPRING.y) + Math.abs(SPRING.p) + Math.abs(SPRING.f) < 1e-3) {
+        look.cy = look.yaw = look.yawT = F.y; look.cp = look.pitch = look.pitchT = F.p; MAP.fov = Math.exp(F.lf); if (!C.scoped) look.fov = look.fovT = MAP.fov;
+        MAP.fly = null; SPRING.y = SPRING.p = SPRING.f = 0;
+      }
+    }
+    // a hand on the map stops a move where it is (keeping nothing of its speed)
+    function mapStop() { MAP.fly = null; MAP.glide = null; MAP.zv = 0; SPRING.y = SPRING.p = SPRING.f = 0; }
+    // the zoom about the middle of the screen; zooming out drifts toward home, so all the way out is the whole sky round it
+    function zoomBy(k) {
+      if (!CL.on) return false;
+      const f0 = MAP.fov, f1 = clamp(f0 / k, MAP.min, MAP.max);
+      if (Math.abs(f1 - f0) < 1e-4) return true;
+      if (f1 > f0 && MAP.fit - f0 > 1e-3) {
+        const u = clamp((f1 - f0) / (MAP.fit - f0), 0, 1), c = forward(tmp.v3).clone(), to = CL.set ? fitBand().dir : CL.home;
+        const d = c.lerp(to, u).normalize(), yp = yawPitchOf(d);
+        look.cy = look.yaw + wrapAngle(yp.yaw - look.yaw); look.cp = yp.pitch;
+      }
+      MAP.fov = f1;
+      return true;
+    }
+    // a push on the zoom (the wheel, + -, the buttons): in all, the zoom moves by k, easing in and gliding out over a moment
+    function zoomPush(k) {
+      if (!CL.on) return false;
+      if (MAP.fly) { MAP.fly = null; SPRING.y = SPRING.p = SPRING.f = 0; }
+      if (reduced) { if (C.scoped) look.scopeFov = clamp(look.scopeFov / k, 2.5, 40); else { zoomBy(k); look.fov = MAP.fov; } return true; }
+      MAP.zv = clamp((MAP.zv || 0) + Math.log(k) / 0.16, -40, 40);
+      return true;
+    }
+    // a drag let go: it keeps its speed (radians a second) and glides out
+    function glide(vy, vp) {
+      if (reduced || !CL.on) return;
+      const s = Math.hypot(vy, vp); if (s < 0.01) return;
+      const cap = 2.5 * look.fov * DEG; if (s > cap) { vy *= cap / s; vp *= cap / s; }
+      MAP.glide = { vy: vy, vp: vp, s0: Math.abs(vy) + Math.abs(vp) };
+    }
+    // the star nearest the middle of the screen, inside r pixels (the reticle's catch); a star outside the band is not caught
+    function centreStar(r) {
+      let best = null, bd = r || 30;
+      for (let i = 0; i < sig.list.length; i++) {
+        const s = sig.list[i]; if (CL.on && s.cm < 0.5) continue;
+        const p = tmp.v.copy(s.dir).multiplyScalar(600).add(camera.position).project(camera);
+        if (p.z > 1) continue;
+        const d = Math.hypot(p.x * W / 2, (1 - p.y) / 2 * H - (C.cyNow || H / 2));
+        if (d < bd) { bd = d; best = s; }
+      }
+      return best ? best.slug : null;
     }
 
     // every frame: each signal follows its world along the orbit (kept a little above the horizon)
@@ -993,25 +1225,33 @@ NOBODY.themes = NOBODY.themes || {};
 
       // the camera: springs toward the gaze; the scope narrows the field; a slow breath while you sit
       // hidden: the sky fills the frame (issue #82), the fire's flames in the bottom corner, the bag and the log below the edge
-      if (C.hidden && CL.on) { look.yawT = FIRE_AIM.yaw - 0.1 + Math.sin(T * 0.05) * 0.08; look.pitchT = 0.4 + Math.sin(T * 0.07) * 0.03; }
+      // the constellation keeps the view you left it at, at whatever zoom: the pulse home runs on the map you were reading
+      if (CL.on) { stepMap(dt); look.yawT = look.cy + look.oy; look.pitchT = clamp(look.cp + look.op, -40 * DEG, 84 * DEG); }
       else if (C.hidden) { look.yawT = FIRE_AIM.yaw + 0.42 + Math.sin(T * 0.05) * 0.12; look.pitchT = 0.42 + Math.sin(T * 0.07) * 0.03; }
       else { look.yawT = look.cy + look.oy; look.pitchT = clamp(look.cp + look.op, -40 * DEG, 84 * DEG); }
-      const tc = C.scoped ? 0.16 : C.hidden ? 1.6 : 0.12;
+      const tc = C.scoped ? 0.16 : C.hidden && !CL.on ? 1.6 : 0.12;
       look.yaw += wrapAngle(look.yawT - look.yaw) * ease(dt, tc);
       look.pitch += (look.pitchT - look.pitch) * ease(dt, tc);
-      look.fovT = C.scoped ? look.scopeFov : (C.phone ? 70 : 62);
-      look.fov += (look.fovT - look.fov) * ease(dt, 0.2);
+      look.fovT = C.scoped ? look.scopeFov : CL.on ? MAP.fov : (C.phone ? 70 : 62);
+      if (!(CL.on && (MAP.fly || MAP.zv) && !C.scoped)) look.fov += (look.fovT - look.fov) * ease(dt, CL.on ? 0.1 : 0.2);
       const breath = reduced ? 0 : Math.sin(T * 1.4) * 0.0018 + Math.sin(T * 0.37) * 0.0012;
       look.lean += ((M.on && M.held && M.eating < 0 ? 1 : 0) - look.lean) * ease(dt, 0.42);
       camera.position.copy(SEAT).lerp(LEAN, smooth(0, 1, look.lean)); camera.position.y += breath * 6;
       camera.rotation.order = 'YXZ'; camera.rotation.set(look.pitch + breath, -look.yaw, Math.sin(T * 0.3) * 0.002 * slow);
       if (Math.abs(camera.fov - look.fov) > 0.01) { camera.fov = look.fov; camera.updateProjectionMatrix(); }
+      // the map's middle (the reticle) sits in the middle of the sky you can see; on a phone that is above the dash. the scope is
+      // always round the screen's own middle
+      const cyWant = CL.on && !C.scoped && C.cy ? C.cy : H / 2;
+      if (Math.abs((C.cyNow || H / 2) - cyWant) > 0.25) {
+        C.cyNow = (C.cyNow || H / 2) + (cyWant - (C.cyNow || H / 2)) * ease(dt, 0.18);
+        camera.setViewOffset(W, H, 0, H / 2 - C.cyNow, W, H);
+      }
       camera.updateMatrixWorld();
       camFwd.set(0, 0, -1).applyQuaternion(camera.quaternion); camRight.set(1, 0, 0).applyQuaternion(camera.quaternion); camUp.set(0, 1, 0).applyQuaternion(camera.quaternion);
 
       stepFire(dt, slow);
-      stepSignals(dt);
       if (CL.on) stepConstellation(dt);
+      stepSignals(dt);
       stepMallow(dt);
       if (treeMat.userData.sh) treeMat.userData.sh.uniforms.uTime.value = T;
       const scale = H / (2 * Math.tan(camera.fov * DEG / 2));     // pixels per unit at one unit's depth
@@ -1042,7 +1282,9 @@ NOBODY.themes = NOBODY.themes || {};
     function env(cur, want, dt, up, down) { return cur + (want - cur) * ease(dt, want > cur ? up : down); }
     function stepMusic(dt, A, slow) {
       let lo = 0, mi = 0, hi = 0, kick = 0;
-      if (A && A.v64 && !A.tuning) {
+      // the sky listens only while the deck plays: paused, the analyser's own floor is not music, and the sky settles to its breath
+      const deck = document.getElementById('deck'), live = !!deck && !deck.paused && !(NOBODY.state && NOBODY.state.state !== 'playing');
+      if (A && A.v64 && !A.tuning && live) {
         const v = A.v64; let a = 0, b = 0, c = 0;
         for (let i = 0; i < 8; i++) a += v[i];
         for (let i = 8; i < 32; i++) b += v[i];
@@ -1051,7 +1293,7 @@ NOBODY.themes = NOBODY.themes || {};
         // a loud track is not a brighter sky: most of the response is the track moving against its own last few seconds,
         // a little is how full it is overall
         const lv = [a, b, c], out = [0, 0, 0];
-        for (let k = 0; k < 3; k++) { music.avg[k] = env(music.avg[k], lv[k], dt, 4, 4); out[k] = 0.6 * smooth(-0.02, 0.12, lv[k] - music.avg[k]) + 0.4 * smooth(0.15, 0.8, music.avg[k]); }
+        for (let k = 0; k < 3; k++) { music.avg[k] = env(music.avg[k], lv[k], dt, 4, 4); out[k] = 0.6 * smooth(0.005, 0.12, lv[k] - music.avg[k]) + 0.4 * smooth(0.15, 0.8, music.avg[k]); }
         lo = out[0]; mi = out[1]; hi = out[2];
         music.bassSlow = env(music.bassSlow, a, dt, 0.6, 0.6);
         kick = smooth(0.02, 0.14, a - music.bassSlow);
@@ -1238,15 +1480,21 @@ NOBODY.themes = NOBODY.themes || {};
       let best = null, bestAng = 99;
       for (let i = 0; i < sig.list.length; i++) {
         const s = sig.list[i];
-        if (s.freq !== sig.freq) continue;
+        if (CL.on ? s.cm < 0.5 : s.freq !== sig.freq) continue;
         const ang = Math.acos(clamp(s.dir.dot(fwd), -1, 1));
         if (ang < bestAng) { bestAng = ang; best = s; }
       }
       if (!C.scoped || !best || bestAng > FAR * 1.4) { sig.cand = null; sig.target = null; }
       else if (best.slug !== sig.target) {
-        if (sig.cand !== best.slug) { sig.cand = best.slug; sig.candFor = 0; }
-        sig.candFor += dt;
-        if (!sig.target || sig.candFor > 0.22) { sig.target = best.slug; sig.dwell = 0; }
+        // held steady between two close signals, the scope keeps the one it has: another takes it only when it is clearly nearer
+        // (a quarter nearer and a tenth of a degree), so the breath of the view cannot flip the target and restart the lock's dwell
+        const cur = sig.target && sig.bySlug[sig.target], curAng = cur ? Math.acos(clamp(cur.dir.dot(fwd), -1, 1)) : 99;
+        if (cur && bestAng > curAng * 0.75 - 0.1 * DEG) { sig.cand = null; }
+        else {
+          if (sig.cand !== best.slug) { sig.cand = best.slug; sig.candFor = 0; }
+          sig.candFor += dt;
+          if (!sig.target || sig.candFor > 0.22) { sig.target = best.slug; sig.dwell = 0; }
+        }
       }
       const tg = sig.target && sig.bySlug[sig.target];
       const tAng = tg ? Math.acos(clamp(tg.dir.dot(fwd), -1, 1)) : 99;
@@ -1256,11 +1504,13 @@ NOBODY.themes = NOBODY.themes || {};
       sig.angle = tAng;
       // the playing signal glows with the track and breathes on its kick, as gently as the sky does (and not at all with v off)
       const lit = sig.lit, beat = (0.45 * music.pulse + 0.35 * music.low) * music.amt;
+      // zoomed in, the stars grow a little, so an arm you read up close has stars you can see and hit
+      const zk = CL.on ? clamp(Math.pow(62 / look.fov, 0.35), 1, 2.2) : 1;
       for (let i = 0; i < sig.list.length; i++) {
-        const s = sig.list[i], onF = s.freq === sig.freq;
+        const s = sig.list[i], onF = CL.on ? s.cm > 0.5 : s.freq === sig.freq;
         let I = onF ? 0.7 : (C.scoped ? 0.16 : 0.34), sz = onF ? 7 : 4.5;
-        // the constellation: every arm reads alike until the scope picks a frequency; hidden, all but the path home sink away
-        if (CL.on && !C.scoped) { I = 0.62; sz = 6; }
+        // the constellation: every star in the picked band reads alike, the rest are faint; hidden, all but the path home sink away
+        if (CL.on) { I = (C.scoped ? 0.55 : 0.62) * lerp(0.2, 1, s.cm); sz = 6 * lerp(0.55, 1, s.cm) * zk; }
         if (CL.on && CL.hidden > 0.01) { if (CL.path[s.slug]) { I = Math.max(I, 0.7); } else { I *= lerp(1, 0.1, CL.hidden); sz *= lerp(1, 0.7, CL.hidden); } }
         if (lit) { if (lit[s.slug]) { I = 1.5 + 0.3 * Math.sin(T * 3 + s.seed * 9); sz = 10; } else { I *= 0.18; sz *= 0.7; } }
         if (s.slug === sig.target) { I += sig.strength * 1.6; sz += sig.strength * 9; }
@@ -1280,9 +1530,12 @@ NOBODY.themes = NOBODY.themes || {};
     function halo(sp, slug, op, sc) {
       const s = slug && sig.bySlug[slug];
       if (!s) { sp.material.opacity += (0 - sp.material.opacity) * 0.2; if (sp.material.opacity < 0.01) sp.visible = false; return; }
-      sp.visible = true; sp.position.copy(s.dir).multiplyScalar(590);
+      // on the map the cursor's halo slides from star to star (a quick ease), never a jump; reduced motion puts it there at once
+      const at = tmp.v4.copy(s.dir).multiplyScalar(590), slide = CL.on && sp === cursorHalo && sp.visible && !reduced && sp.position.distanceTo(at) < 120;
+      sp.visible = true; if (slide) sp.position.lerp(at, 0.28).normalize().multiplyScalar(590); else sp.position.copy(at);
       sp.material.color.copy(s.col); sp.material.opacity += (op - sp.material.opacity) * 0.2;
-      sp.scale.setScalar(sc * (C.scoped ? 1.4 : 1));
+      // on the map a halo keeps its size on screen whatever the zoom
+      sp.scale.setScalar(sc * (C.scoped ? 1.4 : 1) * (CL.on ? clamp(look.fov / (C.scoped ? 13 : 62), 0.08, 1.4) : 1));
     }
 
     // the marshmallow, every frame: the stick from your hand to the rest point or the flame, the heat, the toast, the bite
@@ -1419,7 +1672,9 @@ NOBODY.themes = NOBODY.themes || {};
       resize: function () {
         if (!renderer) return;
         W = canvas.clientWidth || innerWidth; H = canvas.clientHeight || innerHeight;
-        renderer.setSize(W, H, false); camera.aspect = W / H; camera.updateProjectionMatrix();
+        renderer.setSize(W, H, false); camera.aspect = W / H;
+        if (C.cyNow) camera.setViewOffset(W, H, 0, H / 2 - C.cyNow, W, H); else camera.updateProjectionMatrix();
+        if (CL.on) mapLimits();
       },
       dispose: function () {
         cancelAnimationFrame(raf); C.running = false;
@@ -1435,7 +1690,8 @@ NOBODY.themes = NOBODY.themes || {};
       setCursor: function (slug) { sig.cursor = slug; },
       setFreq: function (i) { const n = sig.freqs.length; if (!n) return; sig.freq = ((i % n) + n) % n; sig.dwell = 0; },
       scope: function (on) { C.scoped = !!on; sig.dwell = 0; if (!on) { sig.target = null; } },
-      setScopeFov: function (f) { look.scopeFov = clamp(f, 6, 24); },
+      // the constellation's scope zooms further both ways: right in on one arm, or out to read a band whole
+      setScopeFov: function (f) { look.scopeFov = CL.on ? clamp(f, 2.5, 40) : clamp(f, 6, 24); },
       // look: a gaze offset from the pointer, the centre moved by drags, the keys and the scope
       gaze: function (oy, op) { look.oy = oy; look.op = op; },
       nudge: function (dy, dp) { look.cy += dy; look.cp = clamp(look.cp + dp, -40 * DEG - look.op, 84 * DEG - look.op); },
@@ -1474,7 +1730,7 @@ NOBODY.themes = NOBODY.themes || {};
       clMove: function (slug, how) {
         if (!CL.on || !CL.arms.length) return null;
         let s = slug && sig.bySlug[slug];
-        if (!s) { const a = CL.arms.find(function (x) { return x && x.length; }); return a ? a[0].slug : null; }
+        if (!s || s.arm < 0 || !CL.arms[s.arm]) { const a = CL.arms.find(function (x) { return x && x.length; }); return a ? a[0].slug : null; }
         const arm = CL.arms[s.arm] || [];
         if (how === 'out') return (arm[s.armAt + 1] || s).slug;
         if (how === 'in') return (arm[s.armAt - 1] || s).slug;
@@ -1487,7 +1743,43 @@ NOBODY.themes = NOBODY.themes || {};
         }
         return s.slug;
       },
-      clState: function () { return { on: CL.on, arms: CL.arms.map(function (a) { return a ? a.length : 0; }), stars: CL.order.length, path: Object.keys(CL.path).length, pathLen: +CL.pathLen.toFixed(1), head: +CL.head.toFixed(1), hidden: +CL.hidden.toFixed(2), amp: CL.lines ? +CL.lines.material.uniforms.uAmp.value.toFixed(3) : 0 }; },
+      clState: function () { return { on: CL.on, arms: CL.arms.map(function (a) { return a ? a.length : 0; }), names: CL.info.map(function (a) { return a.name; }), stars: CL.order.length, path: Object.keys(CL.path).length, pathLen: +CL.pathLen.toFixed(1), head: +CL.head.toFixed(1), hidden: +CL.hidden.toFixed(2), amp: CL.lines ? +CL.lines.material.uniforms.uAmp.value.toFixed(3) : 0, band: CL.band, bandName: CL.bands[CL.band] ? CL.bands[CL.band].name : null, moving: !!CL.tr, members: sig.list.filter(function (s) { return s.cm > 0.5; }).length }; },
+      // the map: zoom (k > 1 is in), fly home or to an arm or a star, where the view is, the bands
+      zoomBy: zoomBy, zoomPush: zoomPush, glide: glide,
+      cancelFly: mapStop,
+      flyHome: function () { if (!CL.on) return false; const f = fitBand(); flyTo(f.dir, f.fov); return true; },
+      flyArm: function (k) { const a = CL.info[k]; if (!a) return false; const dirs = a.stars.map(function (s) { return s.cdir; }); dirs.push(a.tip); flyTo(a.centre, fitFov(dirs, a.centre, 1.25)); return true; },
+      // a star to the middle of the screen, keeping the zoom (or at a given one); dur 0 cuts
+      flyStar: function (slug, fov, dur) { const s = sig.bySlug[slug]; if (!s || !CL.on) return false; placeSignals(); flyTo(s.dir, fov, dur); return true; },
+      mapState: function () { return { fov: +look.fov.toFixed(2), mapFov: +MAP.fov.toFixed(2), min: MAP.min, max: +MAP.max.toFixed(2), fit: +MAP.fit.toFixed(2), zoom: +(MAP.fit / (C.scoped ? look.scopeFov : MAP.fov)).toFixed(2), flying: !!MAP.fly, gliding: !!MAP.glide || !!MAP.zv, speed: { yaw: +SPRING.y.toFixed(3), pitch: +SPRING.p.toFixed(3), zoom: +SPRING.f.toFixed(3), zv: +(MAP.zv || 0).toFixed(3) }, scopeFov: look.scopeFov }; },
+      bands: function () { return CL.bands; },
+      band: function (i, fly) { if (i == null) return CL.band; return setBand(i, fly); },
+      centreStar: centreStar,
+      // where the map's middle is on screen (px from the top); null puts it back in the screen's middle
+      setCentre: function (y) { C.cy = y || 0; },
+      centreY: function () { return C.cyNow || H / 2; },
+      // the arms' names: where each one's tip is on screen, and the arm's colour
+      armLabels: function () {
+        return CL.info.map(function (a, k) {
+          const p = tmp.v.copy(a.tip).multiplyScalar(600).add(camera.position).project(camera);
+          return { k: k, name: a.name, n: a.n, colour: sig.freqs[a.freq] ? sig.freqs[a.freq].colour : '#ffe2a8', x: (p.x + 1) / 2 * W, y: (1 - p.y) / 2 * H, behind: p.z > 1, left: a.left };
+        });
+      },
+      // every star on screen now: [x, y, on screen and in the band] for the title labels
+      starsOnScreen: function (out) {
+        out = out || [];
+        for (let i = 0; i < sig.list.length; i++) {
+          const s = sig.list[i], p = tmp.v.copy(s.dir).multiplyScalar(600).add(camera.position).project(camera);
+          out[i] = { slug: s.slug, x: (p.x + 1) / 2 * W, y: (1 - p.y) / 2 * H, ok: p.z <= 1 && s.cm > 0.5 && Math.abs(p.x) < 1.05 && Math.abs(p.y) < 1.05, arm: s.arm, at: s.armAt };
+        }
+        return out;
+      },
+      // the mini-map: the stars where they are on the map (degrees round home), home at 0, 0, and the view's four corners there
+      miniMap: function () {
+        const st = sig.list.map(function (s) { return [s.cx, s.cy, s.cm, s.freq]; });
+        const corners = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(function (c) { const d = new THREE.Vector3(c[0], c[1], 0.5).unproject(camera).sub(camera.position).normalize(); const p = clXY(d); return [p.x, p.y]; });
+        return { stars: st, view: corners, ext: CL.ext, colours: sig.freqs.map(function (f) { return f.colour; }) };
+      },
       homeAt: function () { if (!CL.on || !camera) return null; const p = tmp.v2.copy(CL.home).multiplyScalar(600).add(camera.position).project(camera); return { x: (p.x + 1) / 2 * W, y: (1 - p.y) / 2 * H, behind: p.z > 1 }; },
       musicState: function () { const r = function (x) { return +x.toFixed(3); }; return { on: music.on, amt: r(music.amt), low: r(music.low), mid: r(music.mid), high: r(music.high), pulse: r(music.pulse), raw: music.raw.map(r), reduced: reduced }; },
       // test only (?mute=1): stop the loop and render on a stepped clock, one exact frame per call, so a recording is smooth
@@ -1511,8 +1803,11 @@ NOBODY.themes = NOBODY.themes || {};
     // a level remembered in this browser (issue #82); the station's volume is never touched. the sky's music: on unless v said no
     // amb: the fire and the wind are ambience. 'auto' hushes them while a track plays (this is a radio first), 'on' keeps them under the music
     const SND = { on: true, level: 100, amb: 'auto', ctls: [] }, SKYP = { on: true };
-    // the tracklist prototypes (issue #84): ?camplist=sky (the constellation, the reel for a track) or ?camplist=spiral (a sketch)
-    const CAMPLIST = (new URLSearchParams(location.search).get('camplist') || '').toLowerCase();
+    // the tracklist (issue #84): the constellation is the camp's tracklist, with the reel and projector for a track; ?camplist=list
+    // keeps the right-hand column instead (the fallback)
+    const CAMPLIST = (new URLSearchParams(location.search).get('camplist') || '').toLowerCase() === 'list' ? 'list' : 'sky';
+    // the boards' frames (issue #84, item 1): card (the pick), canvas (the other direction), wood (the planks before)
+    const CAMPFRAME = (function () { const f = (new URLSearchParams(location.search).get('campframe') || '').toLowerCase(); return f === 'canvas' || f === 'wood' ? f : 'card'; })();
     function loadPrefs() {
       try { const s = JSON.parse(localStorage.getItem('nobody.campfire.sounds') || 'null'); if (s) { SND.on = s.on !== false; SND.level = typeof s.level === 'number' ? clamp(Math.round(s.level), 0, 100) : 100; SND.amb = s.amb === 'on' ? 'on' : 'auto'; } } catch (e) {}
       try { SKYP.on = localStorage.getItem('nobody.campfire.sky') !== '0'; } catch (e) {}
@@ -1547,10 +1842,14 @@ NOBODY.themes = NOBODY.themes || {};
 
     /* ---- the interface paradigm (12.0, the hooks) ---- */
     // no station visualizer here (issue #82): the sky is the visualizer, and v is the sky's
+    // the constellation's map also claims + and - (its zoom) and home; whatever it does not take stays the station's (the volume)
     const KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'z', 'w', 'e', 'l', 'h', 'x', 'v'];
-    TH.interface = function () { return { kind: 'camp', keys: KEYS.slice(), layouts: ['camp', 'deck'], visualizer: false }; };
+    TH.interface = function () { return { kind: 'camp', keys: KEYS.concat(CAMPLIST === 'sky' ? ['+', '=', '-', 'Home'] : []), layouts: ['camp', 'deck'], visualizer: false }; };
     TH.help = function () {
-      return [CAMPLIST === 'sky' ? ['arrows', 'walk an arm (left, right), jump arms (up, down)'] : ['arrows', 'look round'], ['z', 'raise or lower the scope (hold it, or tap)'], ['w e', 'the frequency, down or up'], ['l or enter', 'lock on to the signal in the reticle'],
+      if (CAMPLIST === 'sky') return [['arrows', 'walk an arm; up, down: arms'], ['+ - home', 'zoom; home: the whole sky'], ['drag', 'move the sky under the reticle'], ['enter q', 'play, queue the reticle star'],
+        ['w e', 'the sky: an album, a feel'], ['z', 'the scope (zooms, maps)'], ['h', 'a marshmallow: tap, hold, tap'], ['x', 'eat it now'], ['f', 'the camp or the deck'],
+        ['v', 'the sky with the music, or not'], ['sounds', 'camp sounds off|on|0..100'], ['esc', 'the reel, then the scope']];
+      return [['arrows', 'look round'], ['z', 'raise or lower the scope (hold it, or tap)'], ['w e', 'the frequency, down or up'], ['l or enter', 'lock on to the signal in the reticle'],
         ['h', 'a marshmallow: tap to skewer, hold to toast, tap to eat'], ['x', 'eat it now'], ['j k', 'the scope onto each match after a find'], ['q', 'the locked signal onto the route'], ['f', 'the camp or the deck'],
         ['v', 'the sky with the music, or not'], ['sounds', 'camp sounds off|on|0..100; camp ambience on|auto (the fire under the music)'], ['esc', 'the journal, then the scope']];
     };
@@ -1560,6 +1859,15 @@ NOBODY.themes = NOBODY.themes || {};
         freq: function (a) {
           if (!scene) { say('no sky here. the list is the sky.', 'mid'); return; }
           const fs = scene.sig.freqs;
+          // the constellation: freq names a band (the whole sky, an album, a feel); `freq all` brings the whole sky back
+          if (skyList()) {
+            const bs = scene.bands(), cur = scene.band();
+            if (!a) { say('the sky shows: ' + bs.map(function (b, i) { return (i === cur ? '> ' : '') + b.name + ' ' + b.n; }).join(', ') + '. freq <name> picks one; freq all, the whole sky.', 'mid'); return; }
+            const q = a.toLowerCase().trim();
+            const j = q === 'all' || q === 'sky' || q === 'home' ? 0 : bs.findIndex(function (b) { return b.name.toLowerCase() === q; }) >= 0 ? bs.findIndex(function (b) { return b.name.toLowerCase() === q; }) : bs.findIndex(function (b) { return b.name.toLowerCase().indexOf(q) >= 0; });
+            if (j < 0) { say('nothing in the sky called "' + a + '".', 'err'); return; }
+            setFreq(j, true); return;
+          }
           if (!a) { say('frequencies: ' + fs.map(function (f, i) { return (i === scene.sig.freq ? '> ' : '') + f.name + ' ' + f.slugs.length; }).join(', ') + '. freq <name> tunes the scope.', 'mid'); return; }
           const i = fs.findIndex(function (f) { return f.name === a.toLowerCase(); }), j = i >= 0 ? i : fs.findIndex(function (f) { return f.name.indexOf(a.toLowerCase()) >= 0; });
           if (j < 0) { say('no frequency called "' + a + '".', 'err'); return; }
@@ -1617,10 +1925,24 @@ NOBODY.themes = NOBODY.themes || {};
       }
       if (document.body.classList.contains('ui-hidden')) return false;
       const scoped = scene.C.scoped, step = scoped ? 0.7 * Math.PI / 180 : 2.4 * Math.PI / 180;
-      // the constellation: left and right walk along an arm (in toward home, out from it), up and down step to the next arm
-      if (skyList() && !scoped && /^Arrow/.test(k)) {
-        const how = k === 'ArrowLeft' ? 'in' : k === 'ArrowRight' ? 'out' : k === 'ArrowUp' ? 'next' : 'prev';
-        clCursor(scene.clMove(UI.clCursor || scene.sig.playing, how), true); UI.hover = null; hintSeen(); return true;
+      if (skyList()) {
+        // the map's zoom, in the free view and in the scope alike; home flies back out to the whole sky
+        if (k === '+' || k === '=') { zoomStep(1.4); return true; }
+        if (k === '-') { zoomStep(1 / 1.4); return true; }
+        if (k === 'Home') { goHome(); return true; }
+        // left and right walk along an arm (in toward home, out from it), up and down step to the next arm; the star comes to the middle
+        if (!scoped && /^Arrow/.test(k)) {
+          const how = k === 'ArrowLeft' ? 'in' : k === 'ArrowRight' ? 'out' : k === 'ArrowUp' ? 'next' : 'prev', now = performance.now();
+          // a held arrow walks on, gently quicker the longer it is held: a step every 280 ms at first, every 110 ms after a second
+          // and a half. the view's spring takes each new star as it comes, so the walk is one smooth move, not a row of jumps
+          if (!e.repeat) MAPUI.holdAt = now;
+          const held = now - (MAPUI.holdAt || now), every = lerp(280, 110, smooth(0, 1500, held));
+          if (e.repeat && now - (MAPUI.stepAt || 0) < every) return true;
+          MAPUI.stepAt = now;
+          touched(); clCursor(scene.clMove(UI.clCursor && MAPUI.walking ? UI.clCursor : MAPUI.sel || UI.clCursor || scene.sig.playing, how), true, e.repeat ? clamp(every / 1000 * 2.4, 0.3, 0.6) : 0.5);
+          MAPUI.walking = true; UI.hover = null; hintSeen(); return true;
+        }
+        if (scoped && /^Arrow/.test(k)) poked();
       }
       switch (k) {
         case 'ArrowLeft': scene.nudge(-step, 0); hintSeen(); return true;
@@ -1628,8 +1950,8 @@ NOBODY.themes = NOBODY.themes || {};
         case 'ArrowUp': scene.nudge(0, step); hintSeen(); return true;
         case 'ArrowDown': scene.nudge(0, -step); hintSeen(); return true;
         case 'z': if (!e.repeat) { UI.zDown = performance.now(); UI.zWasScoped = scoped; if (!scoped) setScope(true); } return true;
-        case 'w': setFreq(scene.sig.freq - 1, true); return true;
-        case 'e': setFreq(scene.sig.freq + 1, true); return true;
+        case 'w': setFreq(curFreq() - 1, true); return true;
+        case 'e': setFreq(curFreq() + 1, true); return true;
         case 'l': lock(); return true;
         case 'x': if (!scene.M.on) say('nothing on the stick. h for a marshmallow.', 'mid'); else eat(); return true;
         case 'h': if (!e.repeat) mallowDown(); return true;
@@ -1654,7 +1976,7 @@ NOBODY.themes = NOBODY.themes || {};
       // j and k after a find swing the scope onto each match (the station keeps tab for the terminal)
       const cycling = performance.now() - UI.jkAt < 400;
       // the constellation: j and k (after a find, or any time) fly to the star; no scope needed
-      if (skyList() && !scene.C.scoped && slug && scene.sig.bySlug[slug]) { UI.clCursor = slug; UI.hover = null; if (cycling && inCamp()) scene.aimAt(slug, -4, false); return; }
+      if (skyList() && !scene.C.scoped && slug && scene.sig.bySlug[slug]) { UI.clCursor = slug; UI.hover = null; if (cycling && inCamp()) { touched(); scene.flyStar(slug, null, 0.6); } return; }
       if (cycling && slug && scene.sig.bySlug[slug] && inCamp() && (ctx.filter() || scene.C.scoped)) {
         setFreq(scene.sig.bySlug[slug].freq, false);
         if (!scene.C.scoped) setScope(true);
@@ -1696,13 +2018,14 @@ NOBODY.themes = NOBODY.themes || {};
       UI.layout = 'camp'; UI.view = S.view === 'home' ? 'home' : 'page'; UI.away = null;
       loadPrefs();
       buildUi();
-      if (CAMPLIST === 'sky' || CAMPLIST === 'spiral') document.body.classList.add('camplist-' + CAMPLIST);
+      if (CAMPLIST === 'sky') document.body.classList.add('camplist-sky');
+      if (CAMPFRAME !== 'wood') document.documentElement.dataset.campframe = CAMPFRAME;
       if (CAMPLIST === 'sky') {
         UI.starLabel = mk('div', 'camp-star-label', document.body); UI.starLabel.hidden = true; UI.starLabel.setAttribute('aria-hidden', 'true');
         mk('div', 'csl-title', UI.starLabel, ''); mk('div', 'csl-meta', UI.starLabel, '');
         UI.homeLabel = mk('div', 'camp-home-label', document.body, 'home'); UI.homeLabel.hidden = true; UI.homeLabel.setAttribute('aria-hidden', 'true');
+        buildMapUi();
       }
-      if (CAMPLIST === 'spiral') buildSpiral();
       UI.helpWatch = new MutationObserver(function () { syncAway(); helpSoundCtl(); }); UI.helpWatch.observe(el('help'), { attributes: true, attributeFilter: ['hidden'] });
       syncAway();
       sceneUp();
@@ -1716,14 +2039,16 @@ NOBODY.themes = NOBODY.themes || {};
       if (scene) { scene.dispose(); scene = null; }
       [canvas, painted, UI.scopeEl, UI.legend, UI.bar, UI.hint, UI.credit, UI.journal, UI.deckWrap, UI.sndRow].forEach(function (n) { if (n) n.remove(); });
       const hs = document.querySelector('.camp-snd-help'); if (hs) hs.remove();
-      [UI.starLabel, UI.homeLabel, UI.spiral, RL.el].forEach(function (n) { if (n) n.remove(); });
-      UI.starLabel = UI.homeLabel = UI.spiral = null; RL.el = null; RL.slug = null;
-      document.body.classList.remove('camplist-sky', 'camplist-spiral', 'camp-reel-open');
+      [UI.starLabel, UI.homeLabel, RL.el].concat(Object.keys(MAPUI.el).filter(function (k) { return ['sight', 'zoom', 'labels', 'arms', 'select'].indexOf(k) >= 0; }).map(function (k) { return MAPUI.el[k]; })).forEach(function (n) { if (n) n.remove(); });
+      MAPUI.el = {}; MAPUI.pool = []; MAPUI.arms = []; MAPUI.armKey = ''; MAPUI.sel = null;
+      UI.starLabel = UI.homeLabel = null; RL.el = null; RL.slug = null;
+      document.body.classList.remove('camplist-sky', 'camp-reel-open');
       canvas = painted = null; UI.scopeEl = UI.legend = UI.bar = UI.hint = UI.credit = UI.journal = UI.deckWrap = UI.deckBtn = UI.sndRow = null; UI.meterBars = []; SND.ctls = [];
       el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
       el('dial').textContent = '';
       const words = el('makeWords'); if (words && UI.placeholder) words.setAttribute('placeholder', UI.placeholder);
       document.body.classList.remove('nocamp', 'camp-scoped', 'camp-journal-open', 'camp-toasting', 'camp-away', 'camp-page');
+      delete document.documentElement.dataset.campframe;
       if (UI.helpWatch) { UI.helpWatch.disconnect(); UI.helpWatch = null; }
       glass.classList.remove('closing', 'bloom-on');
       el('towerStatic').textContent = ''; el('towerStatic').hidden = true;
@@ -1789,6 +2114,7 @@ NOBODY.themes = NOBODY.themes || {};
       }
       if (to === 'playing') {
         if (scene) scene.setPlaying(info.slug); else pendingView = { playing: info.slug };
+        follow(info.slug);
         if (UI.lockSlug && UI.lockSlug !== info.slug) UI.lockSlug = null;
         duckFor();
         return Promise.resolve();
@@ -1827,8 +2153,8 @@ NOBODY.themes = NOBODY.themes || {};
     };
 
     /* ---- scene hooks ---- */
-    TH.catalogue = function (tracks) { if (scene) { scene.setCatalogue(tracks); drawLegend(); } if (CAMPLIST === 'spiral') buildSpiral(); };
-    TH.playing = function (slug) { if (scene) scene.setPlaying(slug); if (CAMPLIST === 'spiral') buildSpiral(); };
+    TH.catalogue = function (tracks) { if (scene) { scene.setCatalogue(tracks); drawLegend(); } };
+    TH.playing = function (slug) { if (scene) scene.setPlaying(slug); };
     TH.scheme = function () { if (scene) scene.scheme(document.documentElement.dataset.phosphor === 'amber'); };
     TH.widget = function () { return null; };
     TH.state = function () {
@@ -1837,7 +2163,9 @@ NOBODY.themes = NOBODY.themes || {};
         sounds: { on: SND.on, level: SND.level, amb: SND.amb, ambGain: AU.amb ? +AU.amb.gain.value.toFixed(3) : null, gain: AU.on && AU.bus ? +AU.bus.gain.value.toFixed(3) : null, want: +campGain().toFixed(3), station: sy && sy.gain ? +sy.gain.gain.value.toFixed(3) : null, volume: sy ? sy.volume : null,
           route: 'fire, wind, static, chime, ident, bite -> the camp bus (this gain) -> the station gain (the mute) -> speakers' },
         sky: scene ? scene.musicState() : { on: SKYP.on },
-        camplist: CAMPLIST || null, constellation: scene && scene.cl() ? Object.assign(scene.clState(), { cursor: UI.clCursor || null, hover: UI.hover || null }) : null,
+        camplist: CAMPLIST || null, constellation: scene && scene.cl() ? Object.assign(scene.clState(), { cursor: UI.clCursor || null, hover: UI.hover || null, sel: MAPUI.sel, handAgo: Math.round(performance.now() - MAPUI.handAt), follow: MAPUI.followWhy || null,
+          map: scene.mapState(), centreY: Math.round(scene.centreY()), armNames: MAPUI.arms.filter(function (b) { return b.style.display !== 'none'; }).length, armOpacity: MAPUI.el.arms ? +MAPUI.el.arms.style.opacity : 0,
+          titles: MAPUI.pool.filter(function (n) { return n.style.display !== 'none'; }).length }) : null,
         reel: RL.el && !RL.el.hidden ? { slug: RL.slug, at: RL.at, frames: RL.frames.map(function (f) { return f.label; }) } : null };
       if (!scene) return Object.assign(base, { running: false });
       const sg = scene.sig, yp = scene.yawPitch(), M = scene.M, pv = AU.pv;
@@ -1852,7 +2180,7 @@ NOBODY.themes = NOBODY.themes || {};
         mallow: { on: M.on, toast: +M.toast.toFixed(3), state: mallowWord(), heat: +M.heat.toFixed(2), fire: +M.fire.toFixed(2), held: M.held, eating: M.eating >= 0 }
       });
     };
-    TH.aimAt = function (slug, off, snap) { if (!scene) return false; setFreq(scene.sig.bySlug[slug] ? scene.sig.bySlug[slug].freq : 0, false); return scene.aimAt(slug, off || 0, snap !== false); };
+    TH.aimAt = function (slug, off, snap) { if (!scene) return false; if (!skyList()) setFreq(scene.sig.bySlug[slug] ? scene.sig.bySlug[slug].freq : 0, false); return scene.aimAt(slug, off || 0, snap !== false); };
     TH.screenSignals = function () { if (!scene) return []; return scene.sig.list.map(function (s) { const p = scene.project(s.slug); return { slug: s.slug, freq: s.freq, x: Math.round(p.x), y: Math.round(p.y), behind: p.behind }; }).filter(function (p) { return !p.behind && p.x > 0 && p.y > 0 && p.x < innerWidth && p.y < innerHeight; }); };
     TH.sceneApi = function () { return scene; };
 
@@ -1870,7 +2198,15 @@ NOBODY.themes = NOBODY.themes || {};
       if (!on) preview(null, 0, 0);
     }
     function toggleScope() { if (!scene) { say('no sky here. the list is the sky.', 'mid'); return; } if (!inCamp()) ctx.setLayout('camp'); setScope(!scene.C.scoped); }
+    // under the constellation the selector picks a band (the whole sky, an album, a feel) and the sky re-lays itself round it
+    function curFreq() { return skyList() ? scene.band() : scene.sig.freq; }
     function setFreq(i, speak) {
+      if (skyList()) {
+        const b = scene.band(i);
+        if (b && speak) say(b.kind === 'all' ? 'the whole sky. every arm back out from home.' : (b.kind === 'album' ? 'the album ' : 'the feel ') + b.name + ': ' + b.n + (b.n === 1 ? ' star' : ' stars') + ' to the front. the rest back toward home.', 'mid');
+        touched(); drawLegend();
+        return;
+      }
       if (!scene || !scene.sig.freqs.length) return;
       scene.setFreq(i);
       const f = scene.sig.freqs[scene.sig.freq];
@@ -2142,7 +2478,7 @@ NOBODY.themes = NOBODY.themes || {};
       UI.lockRing = sc.querySelector('.lockring');
       const top = mk('div', 'cs-top', sc);
       UI.freqBtn = mk('button', 'bare cs-freq', top, ''); UI.freqBtn.type = 'button'; UI.freqBtn.setAttribute('aria-label', 'next frequency');
-      UI.freqBtn.addEventListener('click', function (e) { e.stopPropagation(); setFreq(scene ? scene.sig.freq + 1 : 0, true); });
+      UI.freqBtn.addEventListener('click', function (e) { e.stopPropagation(); setFreq(scene ? curFreq() + 1 : 0, true); });
       const bot = mk('div', 'cs-bottom', sc);
       const meter = mk('div', 'cs-meter', bot); for (let i = 0; i < 14; i++) UI.meterBars.push(mk('i', '', meter));
       UI.strengthEl = mk('span', 'cs-strength', bot, 'no signal');
@@ -2207,6 +2543,26 @@ NOBODY.themes = NOBODY.themes || {};
       if (!UI.legend || !scene) return;
       const fs = scene.sig.freqs;
       UI.legend.textContent = '';
+      // the constellation's selector (the owner's order): the whole sky, the albums newest first, the feels; a header per group
+      if (skyList()) {
+        const bs = scene.bands(), cur = scene.band();
+        mk('div', 'label', UI.legend, 'THE SKY');
+        let group = '';
+        bs.forEach(function (b, i) {
+          const g = b.kind === 'album' ? 'ALBUMS' : b.kind === 'feel' ? 'FEELS' : '';
+          if (g && g !== group) { group = g; mk('div', 'label cl-group', UI.legend, g); }
+          const r = mk('button', 'bare cl-row' + (i === cur ? ' on' : ''), UI.legend); r.type = 'button'; r.setAttribute('aria-pressed', i === cur ? 'true' : 'false');
+          const dot = mk('i', 'cl-dot' + (b.kind === 'all' ? ' cl-home' : ''), r); dot.style.background = b.colour; dot.style.boxShadow = '0 0 8px ' + b.colour;
+          mk('span', 'cl-name', r, (i === cur ? '> ' : '  ') + b.name);
+          mk('span', 'cl-n', r, String(b.n));
+          r.addEventListener('click', function () { setFreq(i, true); });
+          if (i === cur) setTimeout(function () { if (r.isConnected && r.scrollIntoView) r.scrollIntoView({ block: 'nearest' }); }, 0);
+        });
+        const b = bs[cur];
+        if (UI.freqBtn && b) { UI.freqBtn.textContent = (cur + 1) + '/' + bs.length + '  ' + b.name; UI.freqBtn.style.setProperty('--fc', b.colour); }
+        syncBandSelect();
+        return;
+      }
       mk('div', 'label', UI.legend, 'FREQUENCIES');
       fs.forEach(function (f, i) {
         const b = mk('button', 'bare cl-row' + (i === scene.sig.freq ? ' on' : ''), UI.legend); b.type = 'button';
@@ -2224,6 +2580,8 @@ NOBODY.themes = NOBODY.themes || {};
         const tx = el('transmitter').getBoundingClientRect();
         const top = inCamp() ? tx.top : innerHeight;
         UI.bar.style.maxWidth = ''; UI.bar.style.left = '50%'; UI.bar.style.top = Math.round(top - (UI.bar.offsetHeight || 44) - 10) + 'px'; UI.bar.style.bottom = 'auto';
+        // the map's middle: halfway down the sky you can see, between the header (and the selector) and the bar, a little high for the card
+        if (scene && skyList()) { const hb = el('header').getBoundingClientRect().bottom + 50, bt = top - (UI.bar.offsetHeight || 44) - 10; scene.setCentre(Math.round(hb + (bt - hb) * 0.42)); }
       } else {
         const tx = el('transmitter').getBoundingClientRect(), cat = el('catalogue').getBoundingClientRect();
         const left = tx.right > 0 ? tx.right : 0, right = cat.left > left ? cat.left : innerWidth;
@@ -2231,12 +2589,15 @@ NOBODY.themes = NOBODY.themes || {};
         // the bar stays inside the gap between the boards; what does not fit wraps onto a second row above it (issue #82)
         UI.bar.style.maxWidth = Math.max(240, Math.round(right - left - 24)) + 'px';
         UI.bar.style.left = Math.round((left + right) / 2) + 'px'; UI.bar.style.top = 'auto'; UI.bar.style.bottom = Math.round((UI.credit.offsetHeight || 40) + 24) + 'px';
+        if (scene && skyList()) scene.setCentre(0);
+        // the sky's selector ends above the board under it, and scrolls
+        if (UI.legend && CAMPLIST === 'sky') { const lt = UI.legend.getBoundingClientRect().top; if (tx.top > lt) UI.legend.style.maxHeight = Math.max(150, Math.round(tx.top - lt - 12)) + 'px'; }
       }
     }
     function showHint() {
       let seen = false; try { seen = localStorage.getItem('nobody.campfire.hint') === '1'; } catch (e) {}
       if (seen || !UI.hint) return;
-      UI.hint.textContent = CAMPLIST === 'sky' ? (phone() ? 'every star is a track, on arms that wind out from home. drag to look, tap a star to play it.' : 'every star is a track, on arms that wind out from home. left and right walk an arm, up and down jump arms, enter or a click plays. z: the scope. h: a marshmallow.') :
+      UI.hint.textContent = CAMPLIST === 'sky' ? (phone() ? 'every star is a track, on arms that wind out from home. drag the sky under the reticle, pinch to zoom, tap a star to bring it in.' : 'every star is a track, on arms that wind out from home. drag the sky under the reticle, wheel or + - to zoom, the arrows walk an arm. enter plays what is in the reticle, q queues it. w e: an album or a feel.') :
         phone() ? 'drag to look. [ scope ], then sweep and tap a signal. [ marshmallow ]: tap, hold, tap.' :'look: move or drag, or the arrows.  scope: z or the right button.  frequency: w e or the wheel.  lock: l, enter or a click.  marshmallow: h, hold h to toast.  f: the deck.';
       UI.hint.hidden = false; UI.hintAt = performance.now();
     }
@@ -2269,17 +2630,27 @@ NOBODY.themes = NOBODY.themes || {};
         UI.touches = UI.touches || {}; UI.touches[e.pointerId] = { x: e.clientX, y: e.clientY };
         try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
         const ids = Object.keys(UI.touches);
-        if (ids.length === 2 && scene.C.scoped) { const a = UI.touches[ids[0]], b = UI.touches[ids[1]]; UI.pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), fov: scene.look.scopeFov }; UI.ptr = null; return; }
+        if (ids.length === 2 && (scene.C.scoped || skyList())) { const a = UI.touches[ids[0]], b = UI.touches[ids[1]]; UI.pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), fov: scene.look.scopeFov, last: Math.hypot(a.x - b.x, a.y - b.y) }; UI.ptr = null; if (skyList()) { touched(); scene.cancelFly(); } return; }
       }
       if (e.button === 2) { if (!scene.C.scoped) { UI.rightScope = true; setScope(true); } UI.ptr = { x: e.clientX, y: e.clientY, lx: e.clientX, ly: e.clientY, t: performance.now(), moved: false, right: true }; return; }
-      UI.ptr = { x: e.clientX, y: e.clientY, lx: e.clientX, ly: e.clientY, t: performance.now(), moved: false, touch: e.pointerType === 'touch' };
+      UI.ptr = { x: e.clientX, y: e.clientY, lx: e.clientX, ly: e.clientY, t: performance.now(), moved: false, touch: e.pointerType === 'touch', trail: [] };
       if (!UI.ptr.touch) { scene.freezeGaze(); try { canvas.setPointerCapture(e.pointerId); } catch (err) {} }
+      // a hand on the sky catches it: a glide or a move in flight stops where it is
+      if (skyList()) scene.cancelFly();
     }
     function onMove(e) {
       if (!scene || !inCamp() || document.body.classList.contains('ui-hidden')) return;
       if (e.pointerType === 'touch' && UI.touches && UI.touches[e.pointerId]) {
         UI.touches[e.pointerId] = { x: e.clientX, y: e.clientY };
-        if (UI.pinch) { const ids = Object.keys(UI.touches); if (ids.length >= 2) { const a = UI.touches[ids[0]], b = UI.touches[ids[1]]; scene.setScopeFov(UI.pinch.fov * UI.pinch.d / Math.max(20, Math.hypot(a.x - b.x, a.y - b.y))); } return; }
+        if (UI.pinch) {
+          const ids = Object.keys(UI.touches);
+          if (ids.length >= 2) {
+            const a = UI.touches[ids[0]], b = UI.touches[ids[1]], d = Math.max(20, Math.hypot(a.x - b.x, a.y - b.y));
+            if (skyList()) { touched(); if (scene.C.scoped) scene.setScopeFov(scene.look.scopeFov * UI.pinch.last / d); else scene.zoomBy(d / UI.pinch.last); UI.pinch.last = d; }
+            else scene.setScopeFov(UI.pinch.fov * UI.pinch.d / d);
+          }
+          return;
+        }
       }
       const p = UI.ptr, fovV = scene.look.fov * DEGR, k = fovV / innerHeight;
       if (p) {
@@ -2287,17 +2658,23 @@ NOBODY.themes = NOBODY.themes || {};
         if (Math.abs(e.clientX - p.x) + Math.abs(e.clientY - p.y) > 6) p.moved = true;
         if (!p.moved) return;
         hintSeen();
+        if (skyList()) { touched(); MAPUI.walking = false; }
         // the scope aims where you push; without it, a drag takes hold of the sky
         if (scene.C.scoped && !p.touch) scene.nudge(dx * k * 0.9, -dy * k * 0.9);
-        else scene.nudge(-dx * k * 1.1, dy * k * 1.1);
+        else {
+          scene.nudge(-dx * k * 1.1, dy * k * 1.1);
+          // the last tenth of a second of the drag, for the glide when it lets go
+          const t = performance.now(); p.trail.push({ t: t, y: -dx * k * 1.1, p: dy * k * 1.1 }); while (p.trail.length && t - p.trail[0].t > 100) p.trail.shift();
+        }
         return;
       }
       if (e.pointerType === 'mouse') {
-        if (scene.C.scoped) { if (UI.mlx != null) scene.nudge((e.clientX - UI.mlx) * k * 0.9, -(e.clientY - UI.mly) * k * 0.9); }
-        else scene.gaze((e.clientX / innerWidth - 0.5) * 2 * 24 * DEGR, (0.5 - e.clientY / innerHeight) * 2 * 11 * DEGR);
+        if (scene.C.scoped) { if (UI.mlx != null) scene.nudge((e.clientX - UI.mlx) * k * 0.9, -(e.clientY - UI.mly) * k * 0.9); if (skyList()) poked(); }
+        // the map holds still under a resting pointer: only a drag moves the sky
+        else if (!skyList()) scene.gaze((e.clientX / innerWidth - 0.5) * 2 * 24 * DEGR, (0.5 - e.clientY / innerHeight) * 2 * 11 * DEGR);
         UI.mlx = e.clientX; UI.mly = e.clientY;
         // the constellation: the star under the pointer shows its title
-        if (skyList() && !scene.C.scoped) { const s = scene.pick(e.clientX, e.clientY, 18); UI.hover = s ? s.slug : null; }
+        if (skyList() && !scene.C.scoped) { const s = scene.pick(e.clientX, e.clientY, 18); UI.hover = s && s.cm > 0.5 ? s.slug : null; }
       }
     }
     function onUp(e) {
@@ -2307,11 +2684,19 @@ NOBODY.themes = NOBODY.themes || {};
       if (!scene || !p || !inCamp()) return;
       if (p.right) { if (UI.rightScope) { UI.rightScope = false; if (!p.moved || performance.now() - p.t > 300) setScope(false); } return; }
       UI.mlx = e.clientX; UI.mly = e.clientY;
-      if (p.moved) return;
+      if (p.moved) {
+        // let go while still moving: the sky keeps a little of the drag's speed and glides out
+        const tr = p.trail || [], now = performance.now();
+        if (skyList() && !scene.C.scoped && tr.length > 1 && now - tr[tr.length - 1].t < 60) {
+          const span = Math.max(16, now - tr[0].t) / 1000; let vy = 0, vp = 0; tr.forEach(function (s) { vy += s.y; vp += s.p; });
+          scene.glide(vy / span, vp / span);
+        }
+        return;
+      }
       // a click: in the scope it locks; outside it, a click near a signal raises the scope on it
       if (scene.C.scoped) { lock(); return; }
-      // the constellation: a click (a tap) on a star plays it
-      if (skyList()) { const s = scene.pick(e.clientX, e.clientY, p.touch ? 34 : 22); if (s) { clCursor(s.slug, false); ctx.play(s.slug); } return; }
+      // the constellation: a click (a tap) on a star flies it to the middle, under the reticle; enter or the card's play plays it
+      if (skyList()) { const s = scene.pick(e.clientX, e.clientY, p.touch ? 34 : 22); if (s && s.cm > 0.5) { touched(); clCursor(s.slug, false); scene.flyStar(s.slug, null, 0.6); } return; }
       const s = scene.pick(e.clientX, e.clientY, p.touch ? 40 : 28);
       if (s) { setFreq(s.freq, false); setScope(true); scene.aimAt(s.slug, 0, false); UI.selfHL = true; ctx.setHighlight(s.slug); UI.selfHL = false; scene.setCursor(s.slug); }
     }
@@ -2319,6 +2704,8 @@ NOBODY.themes = NOBODY.themes || {};
     function onWheel(e) {
       if (!scene || !inCamp() || e.target !== canvas) return;
       e.preventDefault();
+      // the constellation: the wheel zooms (the scope's own field when it is up); a trackpad's pinch arrives as a wheel too
+      if (skyList()) { const d = clamp(e.deltaY * (e.deltaMode === 1 ? 33 : 1), -240, 240); zoomStep(Math.exp(-d * 0.0022)); return; }
       const now = performance.now(); if (now - UI.freqAt < 160) return; UI.freqAt = now;
       setFreq(scene.sig.freq + (e.deltaY > 0 ? 1 : -1), true);
     }
@@ -2355,29 +2742,30 @@ NOBODY.themes = NOBODY.themes || {};
       if (UI.journalSlug && !UI.journalHover && now - UI.journalAt > 22000) closeJournal();
       if (UI.hint && !UI.hint.hidden && now - UI.hintAt > 16000) hintSeen();
       if (UI.frames % 30 === 1) placeBar();
-      if (CAMPLIST === 'sky') clLabel();
+      if (CAMPLIST === 'sky') { mapFrame(now); clLabel(); if (UI.frames % 15 === 0) reelRun(); }
     }
 
     /* ---- the tracklist prototypes (issue #84), behind ?camplist=: `sky` is the constellation and the reel, `spiral` a sketch ---- */
     function skyList() { return CAMPLIST === 'sky' && !!scene && scene.cl(); }
     function trackOf(slug) { return ctx.tracks().find(function (x) { return x.slug === slug; }); }
-    // the constellation's cursor: a star, its full title beside it (never clipped), the camera easing toward it
-    function clCursor(slug, aim) {
+    // the constellation's cursor: a star walked to with the arrows (or found with j and k) flies to the middle, under the reticle
+    function clCursor(slug, aim, dur) {
       if (!slug || !scene) return;
-      scene.setCursor(slug); UI.clCursor = slug;
+      scene.setCursor(slug); UI.clCursor = slug; MAPUI.hlSent = slug;
       UI.selfHL = true; ctx.setHighlight(slug); UI.selfHL = false;
-      if (aim) scene.aimAt(slug, -4, false);
+      if (aim) scene.flyStar(slug, null, dur || 0.5);
     }
+    // the star under the pointer shows its title beside it (the reticle's own star has its card instead)
     function clLabel() {
       const L = UI.starLabel; if (!L) return;
-      const slug = UI.hover || UI.clCursor || (scene && scene.sig.playing);
+      const hs = UI.hover && scene.sig.bySlug[UI.hover], slug = hs && hs.cm > 0.5 && UI.hover !== MAPUI.sel ? UI.hover : null;
       const show = skyList() && inCamp() && !scene.C.scoped && !document.body.classList.contains('ui-hidden') && !!slug;
       const p = show ? scene.project(slug) : null;
       if (!p || p.behind || p.x < 0 || p.y < 0 || p.x > innerWidth || p.y > innerHeight) { if (!L.hidden) L.hidden = true; } else {
         if (L.dataset.slug !== slug) {
           const t = trackOf(slug) || {}, s = scene.sig.bySlug[slug], f = s ? scene.sig.freqs[s.freq] : null;
           L.dataset.slug = slug; L.querySelector('.csl-title').textContent = t.title || slug;
-          L.querySelector('.csl-meta').textContent = [f ? f.name : '', t.bpm ? t.bpm + ' bpm' : '', t.key || '', t.date || ''].filter(Boolean).join('  ·  ');
+          L.querySelector('.csl-meta').textContent = [albumName(slug) || (f ? f.name : ''), t.bpm ? t.bpm + ' bpm' : '', t.key || ''].filter(Boolean).join('  ·  ');
           L.style.setProperty('--fc', f ? f.colour : '#ffd27a');
           L.classList.toggle('playing', slug === scene.sig.playing);
         }
@@ -2389,12 +2777,256 @@ NOBODY.themes = NOBODY.themes || {};
       const H = UI.homeLabel; if (!H) return;
       const hp = skyList() && !document.body.classList.contains('ui-hidden') && inCamp() ? scene.homeAt() : null;
       if (!hp || hp.behind || hp.x < 0 || hp.x > innerWidth || hp.y < 0 || hp.y > innerHeight) H.hidden = true;
-      else { H.hidden = false; H.style.left = Math.round(hp.x) + 'px'; H.style.top = Math.round(hp.y + 16) + 'px'; }
+      else { H.hidden = false; H.style.left = Math.round(hp.x) + 'px'; H.style.top = Math.round(hp.y - 36) + 'px'; }
+    }
+    // a track starts: the map eases to its star, unless a hand has been on the map in the last eight seconds. all the way out, with
+    // the star already in view, the whole sky stays as it is (home in the middle)
+    function follow(slug) {
+      if (!skyList() || MAPUI.followed === slug) return;
+      if (!inCamp() || UI.ptr || UI.pinch) { MAPUI.followWhy = 'away or a hand down'; return; }
+      const s = scene.sig.bySlug[slug]; if (!s || !(s.cm >= 0.5)) { MAPUI.followWhy = 'not in the band'; return; }
+      MAPUI.followed = slug;
+      if (performance.now() - MAPUI.handAt < 8000) { MAPUI.followWhy = 'a hand on the map'; return; }
+      const p = scene.project(slug), seen = p && !p.behind && p.x > 40 && p.y > 80 && p.x < innerWidth - 40 && p.y < innerHeight - 80;
+      if (seen && scene.mapState().zoom < 1.15) { MAPUI.followWhy = 'in view, all the way out'; return; }
+      MAPUI.followWhy = 'flew'; scene.flyStar(slug, null, 1.4);
+    }
+    function albumName(slug) { const a = NOBODY.albumOf ? NOBODY.albumOf(slug) : null; return a ? a.title || a.slug : ''; }
+
+    /* ---- the map's interface (issue #84): the reticle fixed in the middle (the star under it is the selection: its title and album
+       by the reticle, enter plays it, q queues it), the zoom buttons (+, -, home), the arms' names past the first zoom, the stars'
+       titles once an arm is near enough to read, and the scope's quiet helpers round its edge, which fade when you stop ---- */
+    const MAPUI = { sel: null, handAt: -1e9, inputAt: 0, pool: [], arms: [], armKey: '', widths: {}, scr: [], miniAt: 0, el: {} };
+    // a hand on the map: the camera does not chase a new track for a while after
+    function touched() { MAPUI.handAt = performance.now(); MAPUI.inputAt = MAPUI.handAt; }
+    function poked() { MAPUI.inputAt = performance.now(); }
+    const ICON = {
+      play: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z"/></svg>',
+      queue: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h8M2 8h8M2 12h5M12 9v6M9 12h6"/></svg>',
+      reel: '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><circle cx="8" cy="8" r="1.4"/><circle cx="8" cy="4.3" r="1.2"/><circle cx="8" cy="11.7" r="1.2"/><circle cx="4.3" cy="8" r="1.2"/><circle cx="11.7" cy="8" r="1.2"/></svg>',
+      plus: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>',
+      minus: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/></svg>',
+      home: '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.2"/><circle cx="8" cy="8" r="6" stroke-dasharray="2 2.2"/></svg>',
+      close: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>'
+    };
+    function iconBtn(parent, cls, icon, label, aria, fn) {
+      const b = mk('button', cls, parent); b.type = 'button'; b.setAttribute('aria-label', aria);
+      b.innerHTML = ICON[icon] + (label ? '<span>' + label + '</span>' : '');
+      b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); fn(); });
+      return b;
+    }
+    function buildMapUi() {
+      const sg = mk('div', 'camp-sight', document.body); sg.setAttribute('role', 'group'); sg.setAttribute('aria-label', 'the reticle: the star in the middle of the sky');
+      sg.innerHTML = '<svg class="cg-ring" viewBox="-40 -40 80 80" aria-hidden="true"><circle r="21"/><path d="M-36 0H-27M27 0H36M0 -36V-27M0 27V36"/><circle r="1.5" class="dot"/></svg>';
+      const card = mk('div', 'cg-card', sg); card.hidden = true;
+      mk('div', 'label cg-kicker', card, ''); mk('div', 'cg-title', card, ''); mk('div', 'cg-meta', card, '');
+      const acts = mk('div', 'cg-acts', card);
+      iconBtn(acts, 'cg-btn cg-play', 'play', 'play', 'play the star under the reticle', function () { if (MAPUI.sel) ctx.play(MAPUI.sel); });
+      iconBtn(acts, 'cg-btn', 'queue', 'queue', 'queue the star under the reticle', function () { if (MAPUI.sel) ctx.queue(MAPUI.sel); });
+      iconBtn(acts, 'cg-btn', 'reel', 'reel', 'open its reel: the track, frame by frame', function () { if (MAPUI.sel) ctx.open(MAPUI.sel); });
+      MAPUI.el.sight = sg; MAPUI.el.card = card;
+      const z = mk('div', 'camp-zoom', document.body); z.setAttribute('role', 'group'); z.setAttribute('aria-label', 'zoom the sky');
+      iconBtn(z, 'cz-btn', 'plus', '', 'zoom in', function () { zoomStep(1.6); });
+      MAPUI.el.read = mk('span', 'label cz-read', z, '');
+      iconBtn(z, 'cz-btn', 'minus', '', 'zoom out', function () { zoomStep(1 / 1.6); });
+      iconBtn(z, 'cz-btn cz-home', 'home', 'home', 'fly back out to the whole sky, home in the middle', function () { goHome(); });
+      MAPUI.el.zoom = z;
+      MAPUI.el.labels = mk('div', 'camp-map-labels', document.body); MAPUI.el.labels.setAttribute('aria-hidden', 'true');
+      MAPUI.el.arms = mk('div', 'camp-arm-names', document.body); MAPUI.el.arms.setAttribute('role', 'group'); MAPUI.el.arms.setAttribute('aria-label', 'the arms of the sky');
+      // the scope's helpers: the zoom, the band that is on, the keys, and the whole sky small with the view's box on it
+      const sc = UI.scopeEl, info = mk('div', 'cs-info', sc); info.setAttribute('aria-hidden', 'true');
+      const zg = mk('div', 'csi-zoom', info); mk('div', 'csi-cap', zg, 'zoom'); const rail = mk('div', 'csi-rail', zg); MAPUI.el.zTick = mk('i', '', rail); MAPUI.el.zRead = mk('div', 'csi-val', zg, '');
+      const mm = mk('div', 'csi-map', info); mk('div', 'csi-cap', mm, 'the whole sky'); MAPUI.el.mini = mk('canvas', '', mm); MAPUI.el.mini.width = 168; MAPUI.el.mini.height = 112;
+      MAPUI.el.band = mk('div', 'csi-band', info, '');
+      MAPUI.el.keys = mk('div', 'csi-keys', info, '');
+      // phone: the selector is a native list with its groups (the board of bands is a desktop thing)
+      const sel = document.createElement('select'); sel.className = 'camp-band-select'; sel.setAttribute('aria-label', 'what the sky shows: the whole sky, an album, or a feel');
+      sel.addEventListener('change', function () { setFreq(parseInt(sel.value, 10), true); });
+      document.body.appendChild(sel); MAPUI.el.select = sel;
+    }
+    function zoomStep(k) {
+      if (!scene) return;
+      touched();
+      // a push: the zoom eases in and glides out (the scope's own field when it is up); reduced motion moves it at once
+      scene.zoomPush(k);
+    }
+    function goHome() { if (!scene) return; touched(); if (scene.C.scoped) setScope(false); scene.flyHome(); say('home. the whole sky round it.', 'mid'); }
+    // the bands as the phone's list: the whole sky, then the albums and the feels under their own headers
+    function syncBandSelect() {
+      const sel = MAPUI.el.select; if (!sel || !scene) return;
+      const bs = scene.bands(), key = bs.map(function (b) { return b.name; }).join('|');
+      if (sel.dataset.key !== key) {
+        sel.textContent = ''; sel.dataset.key = key; let grp = sel;
+        bs.forEach(function (b, i) {
+          if (b.kind === 'album' && (i === 0 || bs[i - 1].kind !== 'album')) { grp = document.createElement('optgroup'); grp.label = 'albums'; sel.appendChild(grp); }
+          if (b.kind === 'feel' && (i === 0 || bs[i - 1].kind !== 'feel')) { grp = document.createElement('optgroup'); grp.label = 'feels'; sel.appendChild(grp); }
+          const o = document.createElement('option'); o.value = String(i); o.textContent = b.name + '  (' + b.n + ')'; grp.appendChild(o);
+        });
+      }
+      sel.value = String(scene.band());
+    }
+    // what a name on the sky must not cover: the boards, the bar, the credit, the hint, the map's own controls (measured every half second)
+    function boardRects(now) {
+      if (MAPUI.rects && now - MAPUI.rectsAt < 500) return MAPUI.rects;
+      MAPUI.rectsAt = now; MAPUI.rects = [];
+      ['header', 'transmitter', 'make', 'terminal'].map(el).concat([UI.legend, UI.bar, UI.credit, UI.hint, MAPUI.el.zoom, MAPUI.el.card, MAPUI.el.select]).forEach(function (n) {
+        if (!n || n.hidden || n.offsetParent === null && getComputedStyle(n).position !== 'fixed') return;
+        const r = n.getBoundingClientRect(); if (r.width && r.height && r.bottom > 0 && r.top < innerHeight) MAPUI.rects.push({ x: r.left - 4, y: r.top - 4, w: r.width + 8, h: r.height + 8 });
+      });
+      return MAPUI.rects;
+    }
+    function zoomWord(ms) { const z = ms.zoom; return z < 0.93 ? 'the camp' : z < 1.07 ? 'the whole sky' : 'x' + (z < 10 ? z.toFixed(1) : Math.round(z)); }
+    function mapFrame(now) {
+      if (!skyList()) return;
+      const away = !inCamp() || document.body.classList.contains('ui-hidden') || (RL.el && !RL.el.hidden);
+      const scoped = scene.C.scoped, ms = scene.mapState();
+      // the reticle's catch: the nearest star to the middle, inside a small ring
+      // the selection holds its star a little past the ring (no flicker between two close stars as the sky glides), and the
+      // card crossfades to the next one rather than jumping
+      const r0 = phone() ? 40 : 30;
+      let sel = !away && !scoped ? scene.centreStar(r0) : null;
+      if (!away && !scoped && MAPUI.sel && sel !== MAPUI.sel) {
+        // the old one holds while it is inside the ring's edge, unless the new one is plainly nearer the middle (half as far)
+        const cx = innerWidth / 2, cy = scene.centreY(), q = scene.project(MAPUI.sel), s0 = scene.sig.bySlug[MAPUI.sel], qn = sel ? scene.project(sel) : null;
+        const dOld = q && !q.behind ? Math.hypot(q.x - cx, q.y - cy) : 1e9, dNew = qn ? Math.hypot(qn.x - cx, qn.y - cy) : 1e9;
+        if (s0 && s0.cm > 0.5 && dOld < r0 * 1.4 && dNew > dOld * 0.5) sel = MAPUI.sel;
+      }
+      if (sel !== MAPUI.sel) {
+        MAPUI.sel = sel;
+        const card = MAPUI.el.card;
+        if (sel) { card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap'); }
+        if (sel) {
+          const t = trackOf(sel) || {}, s = scene.sig.bySlug[sel], f = s ? scene.sig.freqs[s.freq] : null, a = NOBODY.albumOf ? NOBODY.albumOf(sel) : null;
+          const no = a && t.segments && t.segments.track_no ? 'track ' + t.segments.track_no + ' of ' + a.tracks.length : a ? 'track ' + (a.tracks.indexOf(sel) + 1) + ' of ' + a.tracks.length : '';
+          card.querySelector('.cg-kicker').textContent = sel === scene.sig.playing ? 'playing now' : 'under the reticle';
+          card.querySelector('.cg-title').textContent = t.title || sel;
+          card.querySelector('.cg-meta').textContent = [a ? (a.title || a.slug) : (f ? f.name : ''), no, t.bpm ? t.bpm + ' bpm' : ''].filter(Boolean).join('  ·  ');
+          card.style.setProperty('--fc', f ? f.colour : '#ffd27a');
+          card.hidden = false;
+          // mid-walk the cursor is the star being flown to; the one passing under the reticle does not take it back
+          if (!(MAPUI.walking && ms.flying)) { scene.setCursor(sel); UI.clCursor = sel; }
+          // the station's highlight follows the reticle only when the view has settled: a star passing under it in flight (a walk,
+          // j and k after a find) is not a choice
+        } else { card.hidden = true; if (!(MAPUI.walking && ms.flying)) scene.setCursor(null); }
+      }
+      if (!ms.flying && MAPUI.sel && MAPUI.hlSent !== MAPUI.sel) { MAPUI.hlSent = MAPUI.sel; UI.selfHL = true; ctx.setHighlight(MAPUI.sel); UI.selfHL = false; }
+      // the walk has landed: the selection is the cursor again
+      if (MAPUI.walking && !ms.flying && MAPUI.sel && UI.clCursor !== MAPUI.sel) { scene.setCursor(MAPUI.sel); UI.clCursor = MAPUI.sel; }
+      if (MAPUI.walking && !ms.flying && performance.now() - (MAPUI.stepAt || 0) > 900) MAPUI.walking = false;
+      MAPUI.el.sight.classList.toggle('caught', !!sel);
+      const cy = Math.round(scene.centreY()) + 'px'; if (MAPUI.el.sight.style.top !== cy) MAPUI.el.sight.style.top = cy;
+      const zr = ms.zoom < 0.93 ? 'camp' : 'x' + (ms.zoom < 10 ? ms.zoom.toFixed(1) : Math.round(ms.zoom)); if (MAPUI.el.read.textContent !== zr) MAPUI.el.read.textContent = zr;
+      armNames(away || scoped, ms);
+      starTitles(away || scoped, ms);
+      if (scoped) scopeInfo(now, ms);
+    }
+    // the arms' names: faint, past the first step of zoom; a click flies there
+    function armNames(off, ms) {
+      const box = MAPUI.el.arms, st = scene.clState(), key = st.names.join('|') + '#' + st.band;
+      if (key !== MAPUI.armKey) {
+        MAPUI.armKey = key; box.textContent = ''; MAPUI.arms = [];
+        st.names.forEach(function (name, k) {
+          const b = mk('button', 'camp-arm', box, name); b.type = 'button'; b.tabIndex = -1; b.setAttribute('aria-label', 'fly to ' + name);
+          b.addEventListener('click', function (e) { e.stopPropagation(); touched(); if (scene.C.scoped) setScope(false); scene.flyArm(k); });
+          MAPUI.arms.push(b);
+        });
+      }
+      const fade = off || st.moving ? 0 : smooth(ms.fit * 0.95, ms.fit * 0.75, ms.fov) * (ms.fov < 4 ? 0.6 : 1);
+      box.style.opacity = fade.toFixed(3); box.style.visibility = fade < 0.02 ? 'hidden' : 'visible';
+      if (fade < 0.02) return;
+      const L = scene.armLabels(), placed = [], walls = boardRects(performance.now());
+      // each name rides just past its arm's outermost star on screen, along the way the arm runs out from home: at the arm's tip
+      // all the way out, and still on screen when the view is in close on the middle of the arms
+      const S_ = scene.starsOnScreen(MAPUI.scr), seen = {}, hp = scene.homeAt();
+      S_.forEach(function (p) { if (!p || !p.ok || p.arm < 0 || p.x < 8 || p.x > innerWidth - 8 || p.y < 8 || p.y > innerHeight - 8) return; (seen[p.arm] = seen[p.arm] || []).push(p); });
+      const fits = function (x, y, w, h) { return x > 4 && y > 60 && x + w < innerWidth - 4 && y + h < innerHeight - 8; };
+      L.forEach(function (a) {
+        const b = MAPUI.arms[a.k]; if (!b) return;
+        const w = MAPUI.widths['a:' + a.name] || (MAPUI.widths['a:' + a.name] = b.offsetWidth || a.name.length * 7 + 12), h = 22;
+        let x = a.left ? a.x - w : a.x, y = a.y - h / 2, onScreen = !a.behind && fits(x, y, w, h);
+        // in close, the outermost star of the arm on screen whose name fits there, working back toward home
+        if (!onScreen && seen[a.k]) {
+          const hx = hp && !hp.behind ? hp.x : innerWidth / 2, hy = hp && !hp.behind ? hp.y : innerHeight / 2;
+          seen[a.k].sort(function (p, q) { return q.at - p.at; }).slice(0, 8).some(function (p) {
+            let dx = p.x - hx, dy = p.y - hy; const d = Math.hypot(dx, dy) || 1; dx /= d; dy /= d;
+            const ax = p.x + dx * 14, ay = p.y + dy * 14, xx = dx < -0.2 ? ax - w : ax, yy = ay - h / 2;
+            if (!fits(xx, yy, w, h)) return false;
+            x = xx; y = yy; onScreen = true; return true;
+          });
+        }
+        const r = { x: x, y: y, w: w, h: h }, hit = placed.concat(walls).some(function (q) { return r.x < q.x + q.w && q.x < r.x + r.w && r.y < q.y + q.h && q.y < r.y + r.h; });
+        const ok = onScreen && !hit;
+        if (ok) placed.push(r);
+        b.style.display = ok ? '' : 'none';
+        if (ok) { b.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)'; b.style.setProperty('--fc', a.colour); }
+      });
+      MAPUI.armBoxes = placed;
+    }
+    // the stars' titles: once the stars stand far enough apart to read, as many as fit without overlapping, nearest the middle first
+    function starTitles(off, ms) {
+      const box = MAPUI.el.labels, pool = MAPUI.pool;
+      const pxDeg = innerHeight / Math.max(1, ms.fov);
+      let used = 0;
+      // past the arms' names: the stars' titles come in once an arm is near enough to read (about twice the whole sky)
+      if (!off && ms.zoom >= 1.8 && pxDeg * 1.45 >= 22) {
+        const S_ = scene.starsOnScreen(MAPUI.scr), cx = innerWidth / 2, cy = scene.centreY();
+        const cand = S_.filter(function (p) { return p && p.ok && p.slug !== MAPUI.sel && p.slug !== UI.hover; });
+        cand.sort(function (a, b) { return Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy); });
+        const placed = (MAPUI.armBoxes || []).concat(boardRects(performance.now()));
+        placed.push({ x: cx - 30, y: cy - 30, w: 60, h: 60 });
+        for (let i = 0; i < cand.length && used < 60; i++) {
+          const p = cand[i], t = trackOf(p.slug), title = t ? t.title || p.slug : p.slug;
+          const w = MAPUI.widths[p.slug] || Math.min(260, title.length * 6.6 + 12), h = 18;
+          let r = null;
+          [[p.x + 9, p.y - h / 2], [p.x - 9 - w, p.y - h / 2], [p.x - w / 2, p.y - h - 7], [p.x - w / 2, p.y + 7]].some(function (c) {
+            const q = { x: c[0], y: c[1], w: w, h: h };
+            if (q.x < 4 || q.y < 60 || q.x + w > innerWidth - 4 || q.y + h > innerHeight - 6) return false;
+            if (placed.some(function (o) { return q.x < o.x + o.w && o.x < q.x + q.w && q.y < o.y + o.h && o.y < q.y + q.h; })) return false;
+            r = q; return true;
+          });
+          if (!r) continue;
+          placed.push(r);
+          let n = pool[used]; if (!n) { n = mk('div', 'camp-star-title', box); pool.push(n); }
+          if (n.dataset.slug !== p.slug) { n.dataset.slug = p.slug; n.textContent = title; const s = scene.sig.bySlug[p.slug], f = s ? scene.sig.freqs[s.freq] : null; n.style.setProperty('--fc', f ? f.colour : '#ffd27a'); n.classList.toggle('playing', p.slug === scene.sig.playing); if (!MAPUI.widths[p.slug]) MAPUI.widths[p.slug] = n.offsetWidth || w; }
+          n.style.display = ''; n.style.transform = 'translate(' + Math.round(r.x) + 'px,' + Math.round(r.y) + 'px)';
+          used++;
+        }
+      }
+      for (let i = used; i < pool.length; i++) if (pool[i].style.display !== 'none') { pool[i].style.display = 'none'; pool[i].dataset.slug = ''; }
+    }
+    // round the scope's edge: the zoom on a rail, the band that is on, the keys, the whole sky small; quiet after a few seconds
+    function scopeInfo(now, ms) {
+      const idle = now - MAPUI.inputAt > 3500;
+      UI.scopeEl.classList.toggle('csi-idle', idle);
+      const f = scene.look.scopeFov, lo = 2.5, hi = 40, u = 1 - (Math.log(f) - Math.log(lo)) / (Math.log(hi) - Math.log(lo));
+      MAPUI.el.zTick.style.bottom = (u * 100).toFixed(1) + '%';
+      const zv = zoomWord(ms); if (MAPUI.el.zRead.textContent !== zv) MAPUI.el.zRead.textContent = zv;
+      const b = scene.bands()[scene.band()], bt = b ? (b.kind === 'all' ? 'showing: the whole sky' : 'showing ' + (b.kind === 'album' ? 'the album ' : 'the feel ') + b.name + ', ' + b.n + (b.n === 1 ? ' star' : ' stars')) : '';
+      if (MAPUI.el.band.textContent !== bt) MAPUI.el.band.textContent = bt;
+      const kt = phone() ? 'pinch  zoom\ndrag  move the sky\nthe list  an album, a feel\nhome  back out' : 'wheel, + -   zoom\ndrag, arrows   move the sky\nw e   an album, a feel\nhome   back out\nz   lower the scope';
+      if (MAPUI.el.keys.textContent !== kt) MAPUI.el.keys.textContent = kt;
+      if (now - MAPUI.miniAt > 90) { MAPUI.miniAt = now; drawMini(); }
+    }
+    function drawMini() {
+      const cv = MAPUI.el.mini, g = cv.getContext('2d'), m = scene.miniMap(), W2 = cv.width, H2 = cv.height;
+      const s = Math.min((W2 / 2 - 8) / (m.ext.x + 3), (H2 / 2 - 8) / (m.ext.y + 3));
+      const X = function (x) { return W2 / 2 + x * s; }, Y = function (y) { return H2 / 2 - y * s; };
+      g.clearRect(0, 0, W2, H2);
+      g.fillStyle = 'rgba(12,10,16,0.72)'; g.fillRect(0, 0, W2, H2);
+      m.stars.forEach(function (p) { g.globalAlpha = 0.25 + 0.75 * p[2]; g.fillStyle = m.colours[p[3]] || '#ffe2a8'; g.fillRect(X(p[0]) - 1, Y(p[1]) - 1, p[2] > 0.5 ? 2 : 1.5, p[2] > 0.5 ? 2 : 1.5); });
+      g.globalAlpha = 1; g.fillStyle = '#fff4dc'; g.beginPath(); g.arc(X(0), Y(0), 2.6, 0, Math.PI * 2); g.fill();
+      g.strokeStyle = '#ffd27a'; g.lineWidth = 1.2; g.beginPath();
+      m.view.forEach(function (c, i) { const x = clamp(X(c[0]), -4, W2 + 4), y = clamp(Y(c[1]), -4, H2 + 4); if (i) g.lineTo(x, y); else g.moveTo(x, y); });
+      g.closePath(); g.stroke();
     }
 
-    /* the reel and projector (issue #84): a track opened under ?camplist=sky is threaded as a reel of frames thrown on a sheet
-       strung between two trees. the frames are the track page's sections in order; the text is crisp ink on the lit sheet
-       (the flicker is in the light round it); the station's own page stays in the document, as text, for a screen reader */
+    /* the reel and projector (issue #84): a track opened under ?camplist=sky is threaded as a reel and thrown, frame by frame, by a
+       hand-cranked projector standing on a stump in the woods, onto a cloth sheet strung on a rope between two trees. the beam is
+       warm and flickers, with dust and a little smoke in it; the frame on the sheet has a faint gate weave, grain and soft dark
+       edges. the slides are the track page's sections: the cover with the title, the album and the track number, then what it is
+       made of, the request and the why, the prompt, the words, the numbers, the seeds, the lineage, and taking it home. the ink
+       does not flicker; the light round it does. the station's own page stays in the document, as text, for a screen reader.
+       every shape here is our own: plain gradients and paths in the camp's palette */
     const RL = { el: null, slug: null, frames: [], at: 0, wheelAt: 0, down: null };
     // the text in frames of about n characters, word by word; a frame ends at a sentence when one falls in its last stretch
     function chunkText(text, n) {
@@ -2411,9 +3043,17 @@ NOBODY.themes = NOBODY.themes || {};
       return out.length ? out : [''];
     }
     function reelFrames(t) {
-      const n = phone() ? 720 : 560, F = [], fmt = ctx.fmt;
-      const nums = t.numbers || {}, chk = t.checks || {};
-      F.push({ label: 'title', kind: 'title', title: t.title || t.slug, rows: [['made', t.date], ['tier', t.model], ['tempo', t.bpm ? t.bpm + ' bpm' : null], ['key', t.key], ['length', t.duration ? fmt(t.duration) : null], ['voice', t.voice ? 'yes' : 'no']] });
+      const n = phone() ? 520 : 470, F = [], fmt = ctx.fmt;
+      const nums = t.numbers || {}, chk = t.checks || {}, seg = t.segments || {};
+      const al = ctx.albumOf ? ctx.albumOf(t.slug) : null, s = scene && scene.sig.bySlug[t.slug], f = s ? scene.sig.freqs[s.freq] : null;
+      const no = al ? (seg.track_no || al.tracks.indexOf(t.slug) + 1) : null;
+      const tags = (seg.tags || []).filter(function (x) { return !/^arc:/.test(x); }), arc = (seg.tags || []).filter(function (x) { return /^arc:/.test(x); }).map(function (x) { return x.slice(4); })[0];
+      // the title card: the cover, the title, the album and where in it
+      F.push({ label: 'title', kind: 'title', title: t.title || t.slug, cover: ctx.cover ? ctx.cover(t.slug, 400) : null,
+        album: al ? (al.title || al.slug) : (f ? f.name : 'a single'), no: al ? 'track ' + no + ' of ' + al.tracks.length : 'a single', date: t.date });
+      // what it is made of: the tags, the feel, the numbers a listener reads first
+      F.push({ label: 'made of', kind: 'facts', head: 'what it is made of', tags: tags.length ? tags : (t.mood ? [t.mood] : []), arc: arc,
+        rows: [['tempo', t.bpm ? t.bpm + ' bpm' : null], ['key', t.key], ['length', t.duration ? fmt(t.duration) : null], ['voice', t.voice ? 'a voice' : 'no voice'], ['tier', t.model], ['made', t.date]] });
       const ask = t.request || t.idea || '';
       chunkText((ask ? 'asked: "' + ask + '". ' : '') + (t.why || 'nobody wrote a why for this one.'), n).forEach(function (c, i, a) { F.push({ label: a.length > 1 ? 'the why ' + (i + 1) : 'the why', head: i ? '' : 'the request and the why', text: c }); });
       chunkText(t.prompt || '(no prompt recorded)', n).forEach(function (c, i, a) { F.push({ label: a.length > 1 ? 'prompt ' + (i + 1) : 'the prompt', head: i ? '' : 'the prompt', text: c, mono: true }); });
@@ -2422,24 +3062,77 @@ NOBODY.themes = NOBODY.themes || {};
         ['silence', nums.silence_s != null ? nums.silence_s + ' s' : null, chk.silence], ['brightness', nums.brightness_pct != null ? nums.brightness_pct + ' %' : null, chk.brightness], ['boominess', nums.boominess_pct != null ? nums.boominess_pct + ' %' : null, chk.boominess],
         ['onsets', nums.onsets_per_s != null ? nums.onsets_per_s + '/s' : null, chk.onsets], ['seed', t.seed, null]].filter(function (r) { return r[1] != null && r[1] !== ''; });
       F.push({ label: 'the numbers', head: 'the numbers', rows: nr.map(function (r) { return [r[0], String(r[1]) + (r[2] === false ? '   FAIL' : r[2] === true ? '   ok' : '')]; }) });
-      const rej = (t.rejected || []).map(function (r) { return [String(r.seed), r.reason || 'rejected']; }).concat((t.takes || []).filter(function (s) { return s !== t.seed; }).map(function (s) { return [String(s), 'kept as second take']; }));
-      F.push({ label: 'rejected seeds', head: 'rejected seeds', rows: rej.length ? rej.slice(0, 8) : null, text: rej.length ? '' : 'none. first seed, first take.' });
+      const rej = (t.rejected || []).map(function (r) { return [String(r.seed), r.reason || 'rejected']; }).concat((t.takes || []).filter(function (x) { return x !== t.seed; }).map(function (x) { return [String(x), 'kept as second take']; }));
+      F.push({ label: 'seeds', head: 'rejected seeds', rows: rej.length ? rej.slice(0, 8) : null, text: rej.length ? '' : 'none. first seed, first take.' });
       const lin = t.lineage || {};
       F.push({ label: 'lineage', head: 'lineage', text: lin.parent ? 'a variation of ' + lin.parent + (lin.request ? ', asked: "' + lin.request + '"' : '') + (lin.changed ? '. changed: "' + lin.changed.from + '" to "' + lin.changed.to + '"' : '') + '. same seed, ' + (lin.seed != null ? lin.seed : t.seed) + '.' : 'no parent. it started here, at seed ' + (t.seed != null ? t.seed : '-') + '.' });
       F.push({ label: 'take it home', head: 'take it home', text: (t.licence || 'generated locally from a text prompt, no samples or reference audio.') + ' the file, the prompt and the seed are yours to take: the button below, or take ' + t.slug + ' at the terminal.' });
       return F;
     }
+    // the projector: a wooden case with brass, a lamp house with a chimney and glowing vents, a lens barrel, two reels on arms
+    // with the film between them, and a crank; it stands on a stump. lit warm from the fire's side, cool from the sky above
+    const PROJECTOR = '<svg class="cr-projector" viewBox="0 0 240 230" aria-hidden="true"><defs>' +
+      '<linearGradient id="crWood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a3f28"/><stop offset=".55" stop-color="#3a2717"/><stop offset="1" stop-color="#22160d"/></linearGradient>' +
+      '<linearGradient id="crBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0d28c"/><stop offset=".45" stop-color="#c9a046"/><stop offset="1" stop-color="#6e5320"/></linearGradient>' +
+      '<linearGradient id="crStump" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1c130c"/><stop offset=".6" stop-color="#3b2a1b"/><stop offset="1" stop-color="#5b3e24"/></linearGradient>' +
+      '<radialGradient id="crGlow"><stop offset="0" stop-color="#fff1c8"/><stop offset=".35" stop-color="#ffc56e"/><stop offset="1" stop-color="#ff8a3a" stop-opacity="0"/></radialGradient>' +
+      '<radialGradient id="crGlass" cx=".35" cy=".35"><stop offset="0" stop-color="#fff6dc"/><stop offset=".3" stop-color="#ffd890"/><stop offset=".7" stop-color="#7a4a1c"/><stop offset="1" stop-color="#2a180a"/></radialGradient>' +
+      '<linearGradient id="crRim" x1="0" y1="0" x2="1" y2="0"><stop offset=".6" stop-color="#ff9a4a" stop-opacity="0"/><stop offset="1" stop-color="#ff9a4a" stop-opacity=".55"/></linearGradient></defs>' +
+      // the stump, its top cut ring and bark
+      '<path class="stump" d="M58 176 Q54 206 46 226 H190 Q180 204 178 176 Z" fill="url(#crStump)"/><ellipse cx="118" cy="176" rx="60" ry="10" fill="#7a5a38"/><ellipse cx="118" cy="176" rx="44" ry="6.5" fill="none" stroke="#5a3f26" stroke-width="1.2"/><ellipse cx="118" cy="176" rx="24" ry="3.5" fill="none" stroke="#5a3f26" stroke-width="1"/>' +
+      '<path d="M70 186 q-3 18 -8 36 M92 186 q-1 20 -4 38 M150 186 q3 18 6 38 M168 184 q4 18 10 36" stroke="#120b06" stroke-width="2" fill="none" opacity=".7"/>' +
+      // the arms and the reels (back and front); the film runs from the front reel down into the gate and out to the back reel
+      '<path d="M86 104 L74 56 M150 104 L160 56" stroke="url(#crBrass)" stroke-width="4" stroke-linecap="round"/>' +
+      '<path class="film" d="M160 84 C 176 92 170 112 156 118 M96 118 C 80 112 70 96 74 82" fill="none" stroke="#1a1410" stroke-width="5"/>' +
+      '<g class="cr-reel cr-reel-b" transform="translate(74 52)"><circle r="40" fill="#1d1510" stroke="url(#crBrass)" stroke-width="3"/><circle r="31" fill="#2a1e15"/><g class="spokes" fill="#120c08"><circle cx="0" cy="-19" r="8"/><circle cx="16.5" cy="9.5" r="8"/><circle cx="-16.5" cy="9.5" r="8"/></g><circle r="6" fill="url(#crBrass)"/><circle r="2" fill="#3a2a14"/></g>' +
+      '<g class="cr-reel cr-reel-f" transform="translate(160 52)"><circle r="40" fill="#1d1510" stroke="url(#crBrass)" stroke-width="3"/><circle r="22" fill="#2a1e15"/><g class="spokes" fill="#120c08"><circle cx="0" cy="-26" r="7"/><circle cx="22.5" cy="13" r="7"/><circle cx="-22.5" cy="13" r="7"/></g><circle r="6" fill="url(#crBrass)"/><circle r="2" fill="#3a2a14"/></g>' +
+      // the case, its brass band and rivets; the warm rim on the fire's side
+      '<rect x="56" y="102" width="122" height="66" rx="7" fill="url(#crWood)" stroke="#120b06" stroke-width="2"/><rect x="56" y="102" width="122" height="66" rx="7" fill="url(#crRim)"/>' +
+      '<rect x="56" y="112" width="122" height="5" fill="url(#crBrass)"/><g fill="#e6c27a"><circle cx="64" cy="128" r="1.8"/><circle cx="64" cy="158" r="1.8"/><circle cx="170" cy="128" r="1.8"/><circle cx="170" cy="158" r="1.8"/></g>' +
+      // the lamp house: a round window that glows, vents, a chimney with a little heat over it
+      '<circle cx="98" cy="142" r="15" fill="#160e08" stroke="url(#crBrass)" stroke-width="2.5"/><circle class="lamp" cx="98" cy="142" r="11" fill="url(#crGlow)"/>' +
+      '<g class="vents" fill="#ffb35c"><rect x="124" y="126" width="22" height="2.4" rx="1"/><rect x="124" y="132" width="22" height="2.4" rx="1"/><rect x="124" y="138" width="22" height="2.4" rx="1"/></g>' +
+      '<rect x="62" y="84" width="14" height="20" fill="#2a1d13" stroke="#120b06" stroke-width="1.5"/><rect x="59" y="80" width="20" height="5" rx="1.5" fill="url(#crBrass)"/>' +
+      // the lens barrel: brass rings, the glass
+      '<rect x="178" y="122" width="22" height="30" rx="3" fill="url(#crBrass)"/><rect x="198" y="126" width="16" height="22" rx="3" fill="#8a6a2e"/><path d="M182 122v30M190 122v30" stroke="#5a4218" stroke-width="1.2"/>' +
+      '<ellipse class="cr-lens" cx="215" cy="137" rx="5" ry="10" fill="url(#crGlass)"/>' +
+      // the crank on the near side (it turns about its own hub, the group's origin)
+      '<g transform="translate(120 150)"><g class="cr-crank"><path d="M0 0 L-22 -10" stroke="url(#crBrass)" stroke-width="4" stroke-linecap="round"/><rect x="-29" y="-17" width="8" height="14" rx="3" fill="#6a3f1e" transform="rotate(-24 -25 -10)"/></g><circle r="5" fill="url(#crBrass)"/></g>' +
+      // the cool moonlight along the top edges
+      '<path d="M58 103 H176 M37 50 a40 40 0 0 1 74 -18 M123 50 a40 40 0 0 1 74 -18" stroke="#9fb6ec" stroke-width="1.2" fill="none" opacity=".35"/></svg>';
+    // a tree to hang the rope from: a tapering trunk with a branch stub, bark lines, the fire's warm light on one side
+    function treeSvg(side) {
+      const flip = side === 'r' ? ' transform="translate(80 0) scale(-1 1)"' : '';
+      return '<svg class="cr-tree cr-tree-' + side + '" viewBox="0 0 80 600" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="crBark' + side + '" x1="0" y1="0" x2="1" y2="0">' +
+        '<stop offset="0" stop-color="#0f0a07"/><stop offset=".45" stop-color="#271a11"/><stop offset=".8" stop-color="#3d2a1a"/><stop offset="1" stop-color="' + (side === 'r' ? '#20150d' : '#6a4426') + '"/></linearGradient></defs>' +
+        '<g' + flip + '><path d="M22 0 C 24 160 18 320 14 600 H70 C 62 320 58 160 60 0 Z" fill="url(#crBark' + side + ')"/>' +
+        '<path d="M58 90 C 70 84 78 74 80 64 L80 74 C 76 86 68 94 58 100 Z" fill="#2a1c12"/>' +
+        '<path d="M30 40 C 28 140 26 260 24 380 M42 10 C 41 140 40 300 38 520 M52 60 C 52 180 54 300 56 460" stroke="#0b0705" stroke-width="2.2" fill="none" opacity=".6"/>' +
+        '<path d="M60 0 C 58 160 62 320 70 600" stroke="#ff9a4a" stroke-width="2" fill="none" opacity=".18"/></g></svg>';
+    }
     function buildReel() {
       if (RL.el) return;
       const r = mk('section', 'camp-reel', document.body); r.id = 'campReel'; r.hidden = true; r.setAttribute('aria-label', 'the reel: the track, frame by frame');
-      r.innerHTML = '<svg class="cr-beam" aria-hidden="true"><defs><linearGradient id="crBeamG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".34"/><stop offset="1" stop-color="#ffd890" stop-opacity=".06"/></linearGradient></defs><polygon fill="url(#crBeamG)"/></svg>' +
-        '<div class="cr-stage" aria-hidden="true"><div class="cr-sheet"><i class="cr-light"></i><i class="cr-rope"></i><div class="cr-frame"></div><span class="cr-count"></span></div></div>' +
-        '<svg class="cr-projector" viewBox="0 0 120 92" aria-hidden="true"><g transform="translate(34 22)"><g class="cr-reel"><circle r="19"/><path d="M0-15V15M-13-7.5 13 7.5M-13 7.5 13-7.5"/><circle r="4" class="hub"/></g></g><g transform="translate(80 22)"><g class="cr-reel"><circle r="19"/><path d="M0-15V15M-13-7.5 13 7.5M-13 7.5 13-7.5"/><circle r="4" class="hub"/></g></g><rect class="body" x="14" y="40" width="80" height="38" rx="6"/><rect class="trim" x="20" y="47" width="40" height="5" rx="2"/><path class="lens" d="M94 50h12l8-5v28l-8-5H94z"/><circle class="lamp" cx="70" cy="59" r="5"/><path class="leg" d="M28 78l-8 13M80 78l8 13"/></svg>' +
-        '<div class="cr-strip" role="tablist" aria-label="frames"></div><div class="cr-actions"></div>';
-      const acts = r.querySelector('.cr-actions');
-      [['> play', 'play', function (s) { ctx.play(s); }], ['remix this', 'remix this track', function (s) { ctx.remix(s); }], ['take it home', 'take it home', function (s) { NOBODY.st.take(s); }],
-        ['+ queue', 'queue it next', function (s) { ctx.queue(s); }], ['copy seed', 'copy the seed', function (s) { NOBODY.st.copySeed(s); }], ['copy prompt', 'copy the prompt', function (s) { NOBODY.st.copyPrompt(s); }]].forEach(function (b, i) {
-        const btn = mk('button', 'bk' + (i < 3 ? ' cr-primary' : ''), acts, b[0]); btn.type = 'button'; btn.setAttribute('aria-label', b[1]);
+      let dust = ''; const rr = rng(84);
+      for (let i = 0; i < 46; i++) dust += '<circle cx="' + (rr() * 100).toFixed(1) + '%" cy="' + (rr() * 100).toFixed(1) + '%" r="' + (0.6 + rr() * 1.4).toFixed(1) + '" style="animation-duration:' + (7 + rr() * 9).toFixed(1) + 's;animation-delay:-' + (rr() * 12).toFixed(1) + 's"/>';
+      r.innerHTML = '<div class="cr-night" aria-hidden="true"></div>' +
+        '<svg class="cr-beam" aria-hidden="true"><defs><linearGradient id="crBeamG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ffe7b0" stop-opacity=".46"/><stop offset=".5" stop-color="#ffd890" stop-opacity=".16"/><stop offset="1" stop-color="#ffd890" stop-opacity=".07"/></linearGradient>' +
+        '<clipPath id="crBeamClip"><polygon class="clip"/></clipPath><filter id="crSoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>' +
+        '<polygon class="cone" fill="url(#crBeamG)" filter="url(#crSoft)"/><g clip-path="url(#crBeamClip)"><g class="smoke"><ellipse cx="30%" cy="62%" rx="120" ry="40"/><ellipse cx="45%" cy="48%" rx="160" ry="46"/><ellipse cx="60%" cy="58%" rx="110" ry="34"/></g><g class="dust">' + dust + '</g></g></svg>' +
+        '<div class="cr-stage" aria-hidden="true">' + treeSvg('l') + treeSvg('r') +
+        '<svg class="cr-rope" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 4 Q50 18 100 4" fill="none" stroke="#b08a58" stroke-width="1.4" vector-effect="non-scaling-stroke"/><path d="M0 4 Q50 18 100 4" fill="none" stroke="#5a3f22" stroke-width=".5" stroke-dasharray="1 1.4" vector-effect="non-scaling-stroke"/></svg>' +
+        '<div class="cr-sheet"><i class="cr-peg" style="left:12%"></i><i class="cr-peg" style="left:50%"></i><i class="cr-peg" style="left:88%"></i><i class="cr-light"></i>' +
+        '<div class="cr-gate"><div class="cr-weave"><div class="cr-frame"></div></div><i class="cr-grain"></i><i class="cr-vig"></i></div><span class="label cr-count"></span></div></div>' +
+        PROJECTOR +
+        '<div class="cr-strip" role="tablist" aria-label="the frames on the reel"></div>' +
+        '<div class="cr-controls" role="group" aria-label="the track"><div class="cr-main"></div><div class="cr-more"></div></div>';
+      const main = r.querySelector('.cr-main'), more = r.querySelector('.cr-more');
+      iconBtn(main, 'cg-btn cg-play cr-play', 'play', 'play', 'play this track', function () { if (RL.slug) ctx.play(RL.slug); });
+      iconBtn(main, 'cg-btn', 'queue', 'queue', 'queue this track next', function () { if (RL.slug) ctx.queue(RL.slug); });
+      iconBtn(main, 'cg-btn cr-close', 'close', 'close', 'roll the reel up and go back to the sky', function () { if (NOBODY.st && NOBODY.st.escape) NOBODY.st.escape(); else closeReel(); });
+      [['remix this', 'remix this track', function (s) { ctx.remix(s); }], ['take it home', 'take it home: the file, the prompt, the seed', function (s) { NOBODY.st.take(s); }],
+        ['copy seed', 'copy the seed', function (s) { NOBODY.st.copySeed(s); }], ['copy prompt', 'copy the prompt', function (s) { NOBODY.st.copyPrompt(s); }]].forEach(function (b) {
+        const btn = mk('button', 'cr-small', more, b[0]); btn.type = 'button'; btn.setAttribute('aria-label', b[1]);
         btn.addEventListener('click', function (e) { e.stopPropagation(); if (RL.slug) b[2](RL.slug); });
       });
       const stage = r.querySelector('.cr-stage');
@@ -2466,40 +3159,55 @@ NOBODY.themes = NOBODY.themes || {};
       });
       RL.el.hidden = false; document.body.classList.add('camp-reel-open');
       RL.el.classList.remove('threading'); void RL.el.offsetWidth; RL.el.classList.add('threading');
-      reelPlace(); reelGo(0, true);
+      reelPlace(); reelGo(0, true); reelRun();
     }
     function closeReel() { if (!RL.el || RL.el.hidden) return; RL.el.hidden = true; RL.slug = null; document.body.classList.remove('camp-reel-open'); }
+    // the reels and the crank turn while this track is the one playing
+    function reelRun() { if (RL.el && !RL.el.hidden) RL.el.classList.toggle('running', ctx.current() === RL.slug && NOBODY.state && NOBODY.state.state === 'playing'); }
     function reelGo(i, first) {
       if (!RL.el || !RL.frames.length) return;
       i = clamp(i, 0, RL.frames.length - 1);
       if (i === RL.at && !first) return;
       RL.at = i;
       const f = RL.frames[i], fr = RL.el.querySelector('.cr-frame');
-      fr.textContent = ''; fr.className = 'cr-frame' + (f.kind === 'title' ? ' cr-title-card' : '') + (f.mono ? ' cr-mono' : '');
-      if (f.kind === 'title') { mk('div', 'cr-kicker', fr, 'NOBODY FM  ·  a reel'); mk('h3', 'cr-h', fr, f.title); }
-      else if (f.head) mk('div', 'cr-kicker', fr, f.head);
-      if (f.text) mk('p', 'cr-text', fr, f.text);
-      if (f.rows) { const dl = mk('dl', 'cr-rows', fr); f.rows.forEach(function (r) { if (r[1] == null || r[1] === '') return; mk('dt', '', dl, r[0]); mk('dd', /FAIL$/.test(r[1]) ? 'fail' : '', dl, r[1]); }); }
+      fr.textContent = ''; fr.className = 'cr-frame cr-k-' + (f.kind || 'text') + (f.mono ? ' cr-mono' : '');
+      if (f.kind === 'title') {
+        const fig = mk('div', 'cr-cover', fr);
+        if (f.cover) { const im = document.createElement('img'); im.src = f.cover; im.alt = ''; im.decoding = 'async'; fig.appendChild(im); }
+        const tx = mk('div', 'cr-tbody', fr);
+        mk('div', 'label cr-kicker', tx, f.no + (f.album ? '  ·  ' + f.album : ''));
+        mk('h3', 'cr-h', tx, f.title);
+        if (f.date) mk('div', 'cr-sub', tx, 'made ' + f.date);
+        mk('div', 'cr-orn', tx, '');
+      } else {
+        mk('div', 'cr-orn cr-orn-top', fr, '');
+        if (f.head) mk('div', 'label cr-kicker', fr, f.head);
+        if (f.tags && f.tags.length) { const tg = mk('div', 'cr-tags', fr); f.tags.slice(0, 10).forEach(function (x) { mk('span', '', tg, x); }); }
+        if (f.arc) mk('div', 'cr-sub', fr, 'in the album\'s story: ' + f.arc);
+        if (f.text) mk('p', 'cr-text', fr, f.text);
+        if (f.rows) { const dl = mk('dl', 'cr-rows', fr); f.rows.forEach(function (r) { if (r[1] == null || r[1] === '') return; mk('dt', '', dl, r[0]); mk('dd', /FAIL$/.test(r[1]) ? 'fail' : '', dl, r[1]); }); }
+        mk('div', 'cr-orn cr-orn-bot', fr, '');
+      }
       // never clipped: a frame that does not fit steps its type down until it does
       fr.style.fontSize = '';
-      for (let k = 0; k < 6 && fr.scrollHeight > fr.clientHeight + 1; k++) fr.style.fontSize = (1 - 0.08 * (k + 1)) + 'em';
+      for (let k = 0; k < 7 && (fr.scrollHeight > fr.clientHeight + 1 || fr.scrollWidth > fr.clientWidth + 1); k++) fr.style.fontSize = (1 - 0.08 * (k + 1)) + 'em';
       RL.el.querySelector('.cr-count').textContent = (i + 1) + ' / ' + RL.frames.length;
       [].forEach.call(RL.el.querySelectorAll('.cr-cell'), function (c, j) { c.classList.toggle('on', j === i); c.setAttribute('aria-selected', j === i ? 'true' : 'false'); if (j === i && c.scrollIntoView) c.scrollIntoView({ block: 'nearest', inline: 'center' }); });
       const sh = RL.el.querySelector('.cr-sheet'); sh.classList.remove('advance'); void sh.offsetWidth; sh.classList.add('advance');
       RL.el.classList.remove('turning'); void RL.el.offsetWidth; RL.el.classList.add('turning');
     }
-    // the reel sits between the header and the terminal; the beam runs from the projector's lens to the sheet
+    // the reel sits between the header and the terminal; the beam runs from the projector's lens to the frame on the sheet
     function reelPlace() {
       if (!RL.el || RL.el.hidden) return;
       const hdr = el('header') ? el('header').getBoundingClientRect() : { bottom: 60 }, term = el('terminal') ? el('terminal').getBoundingClientRect() : { top: innerHeight };
-      const top = Math.round(hdr.bottom + 10), bottom = phone() ? 10 : Math.max(10, Math.round(innerHeight - term.top + 10));
+      const top = Math.round(hdr.bottom + 6), bottom = phone() ? 8 : Math.max(8, Math.round(innerHeight - term.top + 8));
       RL.el.style.top = top + 'px'; RL.el.style.bottom = bottom + 'px';
-      const pj = RL.el.querySelector('.cr-projector'), sheet = RL.el.querySelector('.cr-sheet'), poly = RL.el.querySelector('.cr-beam polygon');
-      const a = pj.getBoundingClientRect(), b = sheet.getBoundingClientRect(), o = RL.el.getBoundingClientRect();
-      if (!a.width || phone()) { poly.setAttribute('points', ''); return; }
-      const lens = [a.left + a.width * 0.95 - o.left, a.top + a.height * 0.64 - o.top];
-      const pts = [lens, [b.left - o.left, b.top - o.top], [b.right - o.left, b.top - o.top], [b.right - o.left, b.bottom - o.top], [b.left - o.left, b.bottom - o.top]];
-      poly.setAttribute('points', hull(pts).map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '));
+      const lens = RL.el.querySelector('.cr-lens'), gate = RL.el.querySelector('.cr-gate'), beam = RL.el.querySelector('.cr-beam');
+      const a = lens.getBoundingClientRect(), b = gate.getBoundingClientRect(), o = RL.el.getBoundingClientRect();
+      if (!a.width || phone()) { beam.querySelectorAll('polygon').forEach(function (p) { p.setAttribute('points', ''); }); return; }
+      const L = [a.left + a.width / 2 - o.left, a.top + a.height / 2 - o.top];
+      const pts = hull([L, [L[0], L[1] - 3], [L[0], L[1] + 3], [b.left - o.left, b.top - o.top], [b.right - o.left, b.top - o.top], [b.right - o.left, b.bottom - o.top], [b.left - o.left, b.bottom - o.top]]).map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+      beam.querySelectorAll('polygon').forEach(function (p) { p.setAttribute('points', pts); });
     }
     function hull(P) {
       const p = P.slice().sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; }), cr = function (o, a, b) { return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]); };
@@ -2507,25 +3215,6 @@ NOBODY.themes = NOBODY.themes || {};
       p.forEach(function (q) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); });
       p.slice().reverse().forEach(function (q) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); });
       return lo.slice(0, -1).concat(up.slice(0, -1));
-    }
-
-    /* the spiral (a quick sketch for comparison, ?camplist=spiral): the newest titles along one arithmetic spiral on a dark disc,
-       read from the centre out; the wheel turns it. plain titles in our own type, nothing more */
-    // built when the catalogue arrives, and again when the playing track changes (it is marked in gold)
-    function buildSpiral() {
-      if (UI.spiral) { UI.spiral.remove(); UI.spiral = null; }
-      if (!ctx.tracks().length) return;
-      const tr = ctx.tracks().slice().sort(function (a, b) { return String(b.rendered_at || b.date || '').localeCompare(String(a.rendered_at || a.date || '')); }).slice(0, 50);
-      const R = 250, turns = 10, b = (R - 18) / (turns * Math.PI * 2);
-      let d = ''; for (let th = 0.6; th <= turns * Math.PI * 2; th += 0.06) { const r = 18 + b * th; d += (d ? 'L' : 'M') + (r * Math.cos(th)).toFixed(1) + ' ' + (r * Math.sin(th)).toFixed(1); }
-      const wrap = mk('div', 'camp-spiral', document.body); wrap.setAttribute('aria-hidden', 'true');
-      const cur = ctx.current();
-      wrap.innerHTML = '<svg viewBox="-270 -270 540 540"><circle r="262" class="disc"/><g class="turn"><path id="campSpiralPath" d="' + d + '" class="arm"/><text><textPath href="#campSpiralPath">' +
-        tr.map(function (t) { return '<tspan' + (t.slug === cur ? ' class="now"' : '') + '>' + String(t.title || t.slug).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }) + '</tspan>'; }).join('<tspan class="dot">  ·  </tspan>') +
-        '</textPath></text></g><circle r="6" class="home"/></svg><div class="cs-note">a sketch: the newest 50 along one spiral, newest at the centre. the wheel turns it.</div>';
-      let ang = 0; const g = wrap.querySelector('.turn');
-      wrap.addEventListener('wheel', function (e) { e.preventDefault(); ang += e.deltaY > 0 ? 12 : -12; g.style.transform = 'rotate(' + ang + 'deg)'; }, { passive: false });
-      UI.spiral = wrap;
     }
 
     /* ---- the station's widgets in the camp's hand ---- */

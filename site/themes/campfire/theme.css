@@ -148,6 +148,40 @@ button { border-radius: 4px; }
 }
 .card:focus-within { box-shadow: inset 0 0 0 1px rgb(0 0 0 / .5), 0 0 0 1px rgb(var(--ember-rgb) / .6), 0 10px 30px rgb(0 0 0 / .55); }
 
+/* the frames (issue #84, item 1): two quieter directions for the boards than the planks, chosen on the root (?campframe=).
+   the panel behind the words is the same opaque one in both, so every contrast stays what it was.
+   card: dark weathered card, cut by hand (no two corners alike), a soft paper grain, a ruled line inside the edge, and the
+   fire's warm light along the side that faces it. canvas: a woven field-kit canvas, a stitched hem, leather at the corners */
+:root[data-campframe="card"] {
+  --card-face: #221a13;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .82 0 0 0 0 .62 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+:root[data-campframe="card"] .card {
+  --pad: 8px;
+  background: linear-gradient(var(--panel), var(--panel)) content-box, var(--grain) border-box, linear-gradient(160deg, #2b2119, var(--card-face) 45%, #1a140e) border-box;
+  border-radius: 4px 9px 5px 8px / 8px 4px 9px 5px;
+  box-shadow: inset 0 0 0 1px rgb(255 228 190 / .07), 0 1px 0 rgb(0 0 0 / .6), 0 12px 28px rgb(0 0 0 / .5), 0 10px 22px -10px rgb(var(--ember-rgb) / .28);
+}
+:root[data-campframe="card"] .card::after { inset: 3px; border: 1px solid rgb(230 200 150 / .16); border-radius: 3px 7px 4px 6px / 6px 3px 7px 4px; background: none; }
+/* the side that faces the fire takes its light: the boards on the left catch it on their right edge, every board on its foot */
+:root[data-campframe="card"] .card::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; box-shadow: inset 0 -2px 0 rgb(var(--ember-rgb) / .32), inset 0 -10px 14px -12px rgb(var(--ember-rgb) / .5); }
+:root[data-campframe="card"] :is(#transmitter, #make, #terminal, .camp-legend).card::before { box-shadow: inset 0 -2px 0 rgb(var(--ember-rgb) / .3), inset -2px 0 0 rgb(var(--ember-rgb) / .34), inset -12px 0 16px -14px rgb(var(--ember-rgb) / .55); }
+:root[data-campframe="card"] .card:focus-within { box-shadow: inset 0 0 0 1px rgb(255 228 190 / .07), 0 0 0 1px rgb(var(--ember-rgb) / .6), 0 12px 28px rgb(0 0 0 / .5); }
+:root[data-campframe="card"] .camp-journal { background: linear-gradient(var(--paper), var(--paper)) content-box, var(--grain) border-box, linear-gradient(160deg, #2b2119, var(--card-face)) border-box; }
+
+:root[data-campframe="canvas"] .card {
+  --pad: 9px;
+  background: linear-gradient(var(--panel), var(--panel)) content-box,
+    repeating-linear-gradient(0deg, rgb(255 240 200 / .045) 0 1px, transparent 1px 3px) border-box, repeating-linear-gradient(90deg, rgb(0 0 0 / .12) 0 1px, transparent 1px 3px) border-box, linear-gradient(170deg, #4a4330, #3a3425 60%, #2e2a1e) border-box;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / .45), 0 10px 26px rgb(0 0 0 / .5);
+}
+/* the stitched hem, and leather patches at the corners where the cord would tie */
+:root[data-campframe="canvas"] .card::after { inset: 3px; border: 1px dashed rgb(232 214 170 / .4); border-radius: 4px;
+  background: radial-gradient(circle at 0 0, #6b4527 0 5px, transparent 5.5px) top left / 12px 12px no-repeat, radial-gradient(circle at 100% 0, #6b4527 0 5px, transparent 5.5px) top right / 12px 12px no-repeat,
+    radial-gradient(circle at 0 100%, #6b4527 0 5px, transparent 5.5px) bottom left / 12px 12px no-repeat, radial-gradient(circle at 100% 100%, #6b4527 0 5px, transparent 5.5px) bottom right / 12px 12px no-repeat; }
+:root[data-campframe="canvas"] .camp-journal { background: linear-gradient(var(--paper), var(--paper)) content-box, linear-gradient(170deg, #4a4330, #2e2a1e) border-box; }
+
 /* boot */
 .boot { margin: 6vh auto 0; min-height: 0; }
 .boot .boot-wait { margin-bottom: calc(var(--row) * .8); }
@@ -481,73 +515,199 @@ body.camplist-sky[data-layout="camp"] #catalogue, body.camplist-spiral[data-layo
 body.ui-hidden .camp-star-label, body.ui-hidden .camp-home-label, body.camp-away .camp-star-label, body.camp-away .camp-home-label, body.camp-scoped .camp-star-label, body.camp-scoped .camp-home-label,
 body:not([data-layout="camp"]) .camp-star-label, body:not([data-layout="camp"]) .camp-home-label { display: none; }
 
-/* the reel and projector: a sheet strung between two trees, a projector at the left throwing a warm beam on it */
-.camp-reel { position: fixed; left: var(--gutter); right: var(--gutter); top: 70px; bottom: 140px; z-index: 3; display: grid; grid-template-rows: minmax(0, 1fr) auto auto; justify-items: center; gap: 10px; }
-.camp-reel[hidden], body.ui-hidden .camp-reel { display: none; }
-.camp-reel .cr-beam { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; animation: crBeam 2.6s linear infinite; }
-@keyframes crBeam { 0%, 100% { opacity: .92; } 18% { opacity: .8; } 21% { opacity: .95; } 47% { opacity: .86; } 63% { opacity: 1; } 66% { opacity: .84; } 81% { opacity: .93; } }
-.camp-reel .cr-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 26px 0 8px; box-sizing: border-box; touch-action: none; user-select: none; }
-.camp-reel .cr-sheet { position: relative; width: min(680px, calc(100% - 300px)); height: min(380px, 100%); background: #efe3c9 repeating-linear-gradient(90deg, rgb(120 90 50 / .035) 0 1px, transparent 1px 4px); border-radius: 2px 2px 8px 8px / 2px 2px 14px 14px; box-shadow: 0 0 0 1px rgb(60 40 20 / .45), 0 10px 34px rgb(0 0 0 / .55); }
-/* the trees the sheet is strung between, and the rope over it */
-.camp-reel .cr-strip, .camp-reel .cr-actions { position: relative; z-index: 2; }
-.camp-reel .cr-sheet::before, .camp-reel .cr-sheet::after { content: ""; position: absolute; top: -70px; bottom: -34px; width: 30px; background: linear-gradient(90deg, #1a120c, #3a2a1c 45%, #1c140e); border-radius: 12px 12px 4px 4px; }
-.camp-reel .cr-sheet::before { left: -58px; } .camp-reel .cr-sheet::after { right: -58px; }
-.camp-reel .cr-rope { position: absolute; left: -44px; right: -44px; top: -16px; height: 18px; border-bottom: 2px solid #b08a58; border-radius: 0 0 50% 50% / 0 0 100% 100%; }
-/* the light round the frame flickers; the frame's ink does not */
-.camp-reel .cr-light { position: absolute; inset: -46px; z-index: -1; border-radius: 40px; background: radial-gradient(ellipse at 42% 52%, rgb(255 214 150 / .42), rgb(255 190 110 / .12) 55%, transparent 72%); animation: crFlick 1.9s linear infinite; pointer-events: none; }
-@keyframes crFlick { 0%, 100% { opacity: .9; } 9% { opacity: .78; } 12% { opacity: .95; } 37% { opacity: .85; } 58% { opacity: 1; } 61% { opacity: .8; } 77% { opacity: .92; } }
-.camp-reel .cr-frame { position: absolute; inset: 22px 30px 30px; overflow: hidden; color: #24160a; font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: .01em; }
-.camp-reel .cr-sheet.advance .cr-frame { animation: crIn 420ms cubic-bezier(.2, .8, .3, 1) both; }
-.camp-reel .cr-sheet.advance .cr-light { animation: crDip 420ms ease-out, crFlick 1.9s linear 420ms infinite; }
-@keyframes crIn { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
-@keyframes crDip { 0% { opacity: .25; } 100% { opacity: .9; } }
-.camp-reel .cr-kicker { font-size: .66em; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #7a3a10; margin-bottom: .45em; }
-.camp-reel .cr-h { margin: .2em 0 .55em; font-family: var(--display); font-weight: 700; font-size: 1.85em; line-height: 1.05; color: #1c1006; }
-.camp-reel .cr-text { margin: 0; }
-.camp-reel .cr-mono .cr-text { font-family: var(--mono); font-weight: 400; font-size: .8em; line-height: 1.45; }
-.camp-reel .cr-rows { display: grid; grid-template-columns: max-content 1fr; gap: .15em 1.2em; margin: .3em 0 0; font-family: var(--mono); font-weight: 400; font-size: .78em; }
-.camp-reel .cr-rows dt { color: #6a4526; } .camp-reel .cr-rows dd { margin: 0; color: #1c1006; } .camp-reel .cr-rows dd.fail { color: #9a1c0c; font-weight: 700; }
-.camp-reel .cr-count { position: absolute; right: 12px; bottom: 7px; font-family: var(--mono); font-size: 13px; color: #6a4526; }
-.camp-reel .cr-projector { position: absolute; left: 1%; bottom: 96px; width: 132px; overflow: visible; }
-.camp-reel .cr-projector .body { fill: #2e241d; stroke: #8a6a3a; stroke-width: 1.5; }
-.camp-reel .cr-projector .trim { fill: #8a6a3a; }
-.camp-reel .cr-projector .lens { fill: #1a1410; stroke: #c9a46a; stroke-width: 1.4; }
-.camp-reel .cr-projector .lamp { fill: #ffd890; filter: drop-shadow(0 0 4px #ffb860); }
-.camp-reel .cr-projector .leg { stroke: #5a4630; stroke-width: 3; stroke-linecap: round; }
-.camp-reel .cr-reel circle { fill: #1d1612; stroke: #c9a46a; stroke-width: 1.6; } .camp-reel .cr-reel .hub { fill: #c9a46a; } .camp-reel .cr-reel path { stroke: #c9a46a; stroke-width: 1.4; }
-.camp-reel.turning .cr-reel, .camp-reel.threading .cr-reel { animation: crTurn 520ms cubic-bezier(.3, .6, .3, 1); }
-@keyframes crTurn { from { transform: rotate(0); } to { transform: rotate(120deg); } }
-/* the strip of frames along the reel: film with its sprocket rows, the frame in the gate lit */
-.camp-reel .cr-strip { display: flex; gap: 6px; max-width: 100%; overflow-x: auto; padding: 9px 10px; background: #120d0a; border-radius: 3px; box-shadow: inset 0 3px 0 -1px #120d0a, inset 0 0 0 1px #3a2c22;
-  background-image: repeating-linear-gradient(90deg, #3a2c22 0 6px, transparent 6px 14px), repeating-linear-gradient(90deg, #3a2c22 0 6px, transparent 6px 14px); background-size: 100% 3px, 100% 3px; background-position: 0 2px, 0 calc(100% - 2px); background-repeat: no-repeat; }
-.camp-reel .cr-cell { flex: 0 0 auto; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .04em; color: var(--ink-mid); background: #1f1712; border: 1px solid #3f3026; border-radius: 2px; padding: 5px 11px; white-space: nowrap; }
-.camp-reel .cr-cell::before, .camp-reel .cr-cell::after { content: none; }
-.camp-reel .cr-cell:hover, .camp-reel .cr-cell:focus-visible { color: var(--ink); border-color: var(--gold); }
-.camp-reel .cr-cell.on { color: #1c1006; background: #e9d7b0; border-color: var(--gold); box-shadow: 0 0 10px rgb(255 210 140 / .45); }
-.camp-reel .cr-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 12px; padding: 6px 12px; background: var(--panel); border-radius: 4px; }
-.camp-reel .cr-actions .bk { font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: .04em; }
-.camp-reel .cr-actions .cr-primary { color: var(--gold); }
+/* ---- the map (issue #84): the reticle fixed in the middle, its card, the zoom buttons, the arms' names, the stars' titles ---- */
+.camp-sight { position: fixed; left: 50%; top: 50%; z-index: 2; width: 0; height: 0; pointer-events: none; }
+.camp-sight .cg-ring { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; overflow: visible; fill: none; stroke: rgb(var(--gold-rgb) / .55); stroke-width: 1; transition: stroke 200ms ease-out; }
+.camp-sight .cg-ring .dot { fill: rgb(var(--gold-rgb) / .7); stroke: none; }
+.camp-sight.caught .cg-ring { stroke: var(--gold); filter: drop-shadow(0 0 3px rgb(var(--gold-rgb) / .6)); }
+/* the card by the reticle: the star's title and its album, and its controls as plain labelled buttons */
+.camp-sight .cg-card { position: absolute; left: 46px; top: -26px; width: max-content; max-width: min(340px, 40vw); padding: 7px 10px 8px 12px; background: rgb(var(--panel-rgb) / .9); border-left: 3px solid var(--fc, var(--gold)); border-radius: 0 6px 6px 0; box-shadow: 0 4px 18px rgb(0 0 0 / .5); pointer-events: auto; }
+.camp-sight .cg-card[hidden] { display: none; }
+/* the next star's card comes in with a short fade, never a jump (the reticle's ring eases its colour the same way) */
+.camp-sight .cg-card.swap { animation: cgSwap 240ms cubic-bezier(.2, .8, .3, 1); }
+@keyframes cgSwap { from { opacity: .3; translate: -6px 0; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) { .camp-sight .cg-card.swap { animation: none; } .camp-sight .cg-ring { transition: none; } }
+.camp-sight .cg-kicker { font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-mid); }
+.camp-sight .cg-title { font-family: var(--display); font-weight: 700; font-size: 21px; line-height: 1.12; letter-spacing: .02em; color: var(--ink); overflow-wrap: anywhere; }
+.camp-sight .cg-meta { margin-top: 2px; font-family: var(--mono); font-size: var(--print-fs); color: var(--ink-mid); overflow-wrap: anywhere; }
+.camp-sight .cg-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+/* the controls: a filled shape, an icon and a word, never a bare bracket; the focus ring is the gold one everywhere */
+.cg-btn, .cz-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 3px 11px 3px 8px; font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: .05em; color: var(--ink); background: #2a1f17; border: 1px solid #6a5034; border-radius: 6px; cursor: pointer; box-shadow: inset 0 1px 0 rgb(255 230 180 / .08); }
+.cg-btn svg, .cz-btn svg { width: 15px; height: 15px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.cg-btn.cg-play { color: #1c1006; background: var(--gold); border-color: var(--gold); }
+.cg-btn.cg-play svg { fill: currentColor; stroke: none; }
+.cg-btn:hover, .cz-btn:hover { border-color: var(--gold); }
+.cg-btn:focus-visible, .cz-btn:focus-visible, .camp-arm:focus-visible, .camp-band-select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.camp-zoom { position: fixed; right: var(--gutter); top: 50%; transform: translateY(-50%); z-index: 2; display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 6px; background: rgb(var(--panel-rgb) / .82); border: 1px solid #4a3826; border-radius: 8px; }
+.camp-zoom .cz-btn { justify-content: center; padding: 6px 8px; min-width: 40px; }
+.camp-zoom .cz-btn svg { width: 18px; height: 18px; }
+.camp-zoom .cz-read { font-family: var(--mono); font-weight: 400; font-size: 12.5px; letter-spacing: 0; text-transform: none; color: var(--ink-mid); text-align: center; white-space: nowrap; }
+.camp-arm-names, .camp-map-labels { position: fixed; inset: 0; z-index: 1; pointer-events: none; transition: opacity 300ms ease-out; }
+.camp-arm { position: absolute; left: 0; top: 0; padding: 1px 6px; font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: lowercase; color: color-mix(in srgb, var(--fc, #ffe2a8) 75%, #fff); background: rgb(10 8 14 / .45); border: 0; border-radius: 3px; white-space: nowrap; cursor: pointer; pointer-events: auto; text-shadow: 0 0 6px rgb(0 0 0 / .9); }
+.camp-arm:hover { background: rgb(10 8 14 / .8); color: #fff; }
+.camp-star-title { position: absolute; left: 0; top: 0; padding: 0 4px; font-family: var(--display); font-weight: 600; font-size: 13px; line-height: 18px; letter-spacing: .02em; color: #eee3cc; white-space: nowrap; text-shadow: 0 0 4px rgb(0 0 0), 0 0 8px rgb(0 0 0 / .8); border-left: 2px solid color-mix(in srgb, var(--fc, #ffe2a8) 60%, transparent); }
+.camp-star-title.playing { color: var(--gold); }
+.camp-band-select { display: none; }
+/* the legend is the sky's selector: the whole sky, the albums, the feels; it scrolls when the albums are many */
+body.camplist-sky .camp-legend { max-height: calc(100vh - 470px); min-height: 150px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+body.camplist-sky .camp-legend .cl-group { margin: 6px 0 1px 1ch; font-size: .8em; color: var(--ink-mid); border-top: 1px solid rgb(var(--gold-rgb) / .18); padding-top: 4px; }
+body.camplist-sky .camp-legend .cl-row { white-space: nowrap; }
+body.camplist-sky .camp-legend .cl-name { overflow: hidden; text-overflow: ellipsis; }
+.camp-legend .cl-home { outline: 1px solid rgb(255 255 255 / .5); outline-offset: 1px; }
+/* the scope's helpers, round its edge: quiet, and quieter still when nothing has moved for a while */
+.camp-scope .cs-info { position: absolute; inset: 0; pointer-events: none; transition: opacity 600ms ease-out; }
+.camp-scope.csi-idle .cs-info { opacity: .12; transition-duration: 1600ms; }
+.camp-scope .cs-info > * { position: absolute; font-family: var(--mono); font-size: 12px; color: rgb(var(--ink-rgb) / .78); }
+.camp-scope .csi-cap { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: rgb(var(--gold-rgb) / .7); margin-bottom: 4px; }
+.camp-scope .csi-zoom { left: calc(50% - var(--r) - 74px); top: calc(50% - 70px); width: 52px; display: flex; flex-direction: column; align-items: center; }
+.camp-scope .csi-rail { position: relative; width: 2px; height: 110px; background: linear-gradient(rgb(var(--gold-rgb) / .5), rgb(var(--gold-rgb) / .15)); }
+.camp-scope .csi-rail::before { content: ""; position: absolute; inset: 0 -5px; background: repeating-linear-gradient(transparent 0 21px, rgb(var(--gold-rgb) / .35) 21px 22px); }
+.camp-scope .csi-rail i { position: absolute; left: -7px; width: 16px; height: 2px; margin-bottom: -1px; background: var(--gold); box-shadow: 0 0 6px var(--gold); transition: bottom 160ms ease-out; }
+.camp-scope .csi-val { margin-top: 5px; font-size: 13px; color: var(--ink); }
+.camp-scope .csi-map { left: calc(50% + var(--r) + 22px); top: calc(50% - 70px); }
+.camp-scope .csi-map canvas { display: block; width: 168px; height: 112px; border: 1px solid rgb(var(--gold-rgb) / .3); border-radius: 4px; }
+.camp-scope .csi-band { left: 50%; top: calc(50% - var(--r) - 44px); transform: translate(-50%, -100%); white-space: nowrap; }
+.camp-scope .csi-keys { left: max(12px, calc(50% - var(--r) - 210px)); top: calc(50% + 86px); width: 180px; font-size: 11.5px; line-height: 1.55; white-space: pre-line; text-align: right; color: rgb(var(--ink-rgb) / .62); }
+body:not(.camplist-sky) .camp-scope .cs-info { display: none; }
+body.ui-hidden .camp-sight, body.ui-hidden .camp-zoom, body.ui-hidden .camp-arm-names, body.ui-hidden .camp-map-labels, body.ui-hidden .camp-band-select,
+body.camp-away .camp-sight, body.camp-away .camp-zoom, body.camp-away .camp-arm-names, body.camp-away .camp-map-labels, body.camp-away .camp-band-select,
+body.camp-scoped .camp-sight, body.camp-scoped .camp-arm-names, body.camp-scoped .camp-map-labels, body.camp-toasting .camp-sight, body.camp-toasting .camp-zoom,
+body.camp-reel-open .camp-sight, body.camp-reel-open .camp-zoom, body.camp-reel-open .camp-arm-names, body.camp-reel-open .camp-map-labels,
+body:not([data-layout="camp"]) .camp-sight, body:not([data-layout="camp"]) .camp-zoom, body:not([data-layout="camp"]) .camp-arm-names, body:not([data-layout="camp"]) .camp-map-labels, body:not([data-layout="camp"]) .camp-band-select { display: none !important; }
+body.camp-scoped .camp-zoom { z-index: 3; }
+@media (max-width: 900px) {
+  /* the phone's map: the selector a native list under the header, the zoom on the right, the card under the reticle */
+  body.camplist-sky[data-layout="camp"] .camp-band-select { display: block; position: fixed; left: var(--gutter); top: calc(var(--gutter) + var(--row) + 18px); z-index: 2; max-width: calc(100vw - 2 * var(--gutter) - 70px); height: 36px; padding: 0 10px; font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: .04em; color: var(--ink); background: rgb(var(--panel-rgb) / .9); border: 1px solid #6a5034; border-radius: 6px; }
+  .camp-zoom { top: calc(var(--gutter) + var(--row) + 18px); transform: none; padding: 4px; gap: 4px; }
+  .camp-zoom .cz-btn { min-height: 38px; }
+  .camp-sight .cg-card { left: 50%; top: 44px; transform: translateX(-50%); max-width: calc(100vw - 32px); }
+  .camp-scope .csi-zoom { left: calc(50% - var(--r)); top: calc(50% + var(--r) + 64px); flex-direction: row; gap: 8px; width: auto; }
+  .camp-scope .csi-zoom .csi-cap { margin: 0; }
+  .camp-scope .csi-rail { width: 70px; height: 2px; background: linear-gradient(90deg, rgb(var(--gold-rgb) / .15), rgb(var(--gold-rgb) / .5)); }
+  .camp-scope .csi-rail::before { content: none; }
+  .camp-scope .csi-rail i { display: none; }
+  .camp-scope .csi-val { margin: 0; }
+  .camp-scope .csi-map { left: auto; right: calc(50% - var(--r)); top: calc(50% + var(--r) + 56px); }
+  .camp-scope .csi-map .csi-cap { display: none; }
+  .camp-scope .csi-map canvas { width: 120px; height: 80px; }
+  .camp-scope .csi-band { top: calc(50% - var(--r) - 40px); max-width: calc(100vw - 32px); overflow: hidden; text-overflow: ellipsis; }
+  .camp-scope .csi-keys { left: calc(50% - var(--r)); top: auto; bottom: 10px; width: auto; text-align: left; font-size: 11px; line-height: 1.45; }
+}
 
-/* the spiral, a sketch: titles along one spiral on a dark disc, where the column was */
-.camp-spiral { position: fixed; right: var(--gutter); top: calc(var(--gutter) + var(--row) + 40px); width: min(500px, 38vw); z-index: 2; }
-.camp-spiral svg { display: block; width: 100%; height: auto; }
-.camp-spiral .disc { fill: rgb(14 12 18 / .9); stroke: #5a4630; stroke-width: 2; }
-.camp-spiral .arm { fill: none; stroke: rgb(201 164 106 / .12); }
-.camp-spiral .turn { transform-origin: 50% 50%; transition: transform 380ms cubic-bezier(.2, .8, .3, 1); }
-.camp-spiral text { font-family: var(--display); font-weight: 600; font-size: 12.5px; letter-spacing: .02em; fill: #eadfc8; }
-.camp-spiral .now { fill: var(--gold); font-weight: 700; } .camp-spiral .dot { fill: #8a6a3a; } .camp-spiral .home { fill: var(--gold); }
-.camp-spiral .cs-note { margin-top: 6px; padding: 4px 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-mid); background: var(--panel); border-radius: 4px; text-align: center; }
-body:not([data-layout="camp"]) .camp-spiral, body.camp-away .camp-spiral, body.ui-hidden .camp-spiral, body.camp-scoped .camp-spiral { display: none; }
+/* ---- the reel and projector (issue #84): a hand-cranked projector on a stump in the woods at night, its warm beam through a
+   little smoke and dust onto a cloth sheet strung between two trees. the frame on the sheet has a faint gate weave, grain and
+   soft dark edges; the light round it flickers, the ink does not. all of it our own shapes in the camp's palette ---- */
+.camp-reel { position: fixed; left: 0; right: 0; top: 70px; bottom: 140px; z-index: 3; display: grid; grid-template-rows: minmax(0, 1fr) auto auto; justify-items: center; gap: 8px; padding: 0 var(--gutter); }
+.camp-reel[hidden], body.ui-hidden .camp-reel { display: none; }
+/* the night closes in round the sheet, so the projection is what you look at */
+.camp-reel .cr-night { position: absolute; inset: -4px 0; z-index: -1; pointer-events: none; border-radius: 14px; background: radial-gradient(ellipse 60% 60% at 55% 42%, rgb(6 6 12 / .3), rgb(4 4 8 / .72) 70%, rgb(3 3 6 / .86)); }
+.camp-reel .cr-beam { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; overflow: visible; }
+.camp-reel .cr-beam .cone { animation: crBeam 2.6s linear infinite; }
+@keyframes crBeam { 0%, 100% { opacity: .92; } 18% { opacity: .78; } 21% { opacity: .96; } 47% { opacity: .86; } 63% { opacity: 1; } 66% { opacity: .82; } 81% { opacity: .94; } }
+.camp-reel .cr-beam .smoke ellipse { fill: rgb(255 226 180 / .07); filter: blur(14px); animation: crSmoke 22s ease-in-out infinite alternate; transform-box: fill-box; }
+.camp-reel .cr-beam .smoke ellipse:nth-child(2) { animation-duration: 31s; animation-delay: -9s; }
+.camp-reel .cr-beam .smoke ellipse:nth-child(3) { animation-duration: 26s; animation-delay: -15s; }
+@keyframes crSmoke { from { transform: translate(-40px, 10px) scale(1); } to { transform: translate(60px, -24px) scale(1.25); } }
+.camp-reel .cr-beam .dust circle { fill: #fff2d6; opacity: 0; animation: crDust 11s linear infinite; transform-box: fill-box; }
+@keyframes crDust { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .75; } 70% { opacity: .5; } 100% { opacity: 0; transform: translate(46px, -38px); } }
+.camp-reel .cr-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 34px 0 6px; box-sizing: border-box; touch-action: none; user-select: none; }
+/* the trees and the rope, the sheet pegged to it with a soft sag at its hem and folds in the cloth */
+.camp-reel .cr-tree { position: absolute; top: -6px; bottom: -40px; width: 64px; height: calc(100% + 46px); }
+.camp-reel .cr-tree-l { left: calc(50% - min(370px, (100% - 300px) / 2) - 84px); }
+.camp-reel .cr-tree-r { right: calc(50% - min(370px, (100% - 300px) / 2) - 84px); }
+.camp-reel .cr-rope { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: calc(min(740px, 100% - 300px) + 120px); height: 26px; overflow: visible; }
+.camp-reel .cr-sheet { position: relative; width: min(740px, calc(100% - 300px)); height: min(430px, 100%); margin-top: 6px;
+  background: linear-gradient(90deg, rgb(70 50 30 / .10), transparent 8%, rgb(255 255 255 / .05) 22%, transparent 30%, rgb(60 40 20 / .07) 47%, transparent 55%, rgb(255 255 255 / .05) 70%, rgb(60 40 20 / .08) 86%, transparent 94%, rgb(70 50 30 / .12)),
+    repeating-linear-gradient(0deg, rgb(110 80 45 / .045) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgb(110 80 45 / .04) 0 1px, transparent 1px 3px), #cdbf9f;
+  border-radius: 3px 3px 10px 14px / 3px 3px 22px 16px; box-shadow: 0 14px 40px rgb(0 0 0 / .6), inset 0 -12px 18px -10px rgb(40 26 14 / .35); }
+.camp-reel .cr-peg { position: absolute; top: -9px; width: 7px; height: 20px; margin-left: -3px; z-index: 2; background: linear-gradient(90deg, #8a6236, #c49a62 50%, #7a5530); border-radius: 2px; box-shadow: 0 2px 3px rgb(0 0 0 / .5); }
+/* the projected light on the sheet: it flickers and spills a little past the frame */
+.camp-reel .cr-light { position: absolute; inset: -30px; z-index: 0; border-radius: 30px; background: radial-gradient(ellipse at 50% 50%, rgb(255 220 160 / .42), rgb(255 196 120 / .14) 60%, transparent 76%); animation: crFlick 1.9s linear infinite; pointer-events: none; mix-blend-mode: screen; }
+@keyframes crFlick { 0%, 100% { opacity: .9; } 9% { opacity: .76; } 12% { opacity: .96; } 37% { opacity: .84; } 58% { opacity: 1; } 61% { opacity: .8; } 77% { opacity: .92; } }
+/* the gate: the projected frame, warm light with dark soft edges, grain over it, and the frame weaving a hair in the gate */
+.camp-reel .cr-gate { position: absolute; inset: 22px 30px 30px; z-index: 1; overflow: hidden; border-radius: 10px / 14px; background: radial-gradient(ellipse at 50% 46%, #fbf0d6, #f1dfb8 62%, #d9c08f); }
+.camp-reel .cr-weave { position: absolute; inset: 0; animation: crWeave .5s steps(1) infinite; }
+@keyframes crWeave { 0% { transform: translate(0, 0); } 25% { transform: translate(.4px, -.5px); } 50% { transform: translate(-.3px, .3px); } 75% { transform: translate(.2px, .5px); } }
+.camp-reel .cr-grain { position: absolute; inset: -40px; pointer-events: none; opacity: .14; mix-blend-mode: multiply; animation: crGrain .36s steps(1) infinite;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .2 0 0 0 0 .1 0 0 0 1.6 -.3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@keyframes crGrain { 0% { transform: translate(0, 0); } 33% { transform: translate(-23px, 17px); } 66% { transform: translate(19px, -29px); } }
+.camp-reel .cr-vig { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: radial-gradient(ellipse 72% 68% at 50% 48%, transparent 58%, rgb(70 40 14 / .32) 82%, rgb(40 22 8 / .62)); }
+.camp-reel .cr-frame { position: absolute; inset: 22px 34px 26px; overflow: hidden; color: #23150a; font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: .01em; display: flex; flex-direction: column; justify-content: center; }
+.camp-reel .cr-sheet.advance .cr-frame { animation: crIn 460ms cubic-bezier(.2, .8, .3, 1) both; }
+.camp-reel .cr-sheet.advance .cr-light { animation: crDip 460ms ease-out, crFlick 1.9s linear 460ms infinite; }
+@keyframes crIn { 0% { opacity: 0; transform: translateY(-22px); filter: blur(2px); } 60% { opacity: 1; filter: none; } 100% { opacity: 1; transform: none; } }
+@keyframes crDip { 0% { opacity: .2; } 100% { opacity: .9; } }
+/* the slides: an intertitle's thin double rule top and bottom, a small kicker, the title in the display face */
+.camp-reel .cr-orn { flex: 0 0 auto; height: 5px; margin: 0 auto; width: 46%; border-top: 1px solid rgb(60 34 12 / .55); border-bottom: 1px solid rgb(60 34 12 / .55); }
+.camp-reel .cr-orn-top { margin-bottom: .7em; } .camp-reel .cr-orn-bot { margin-top: .8em; }
+.camp-reel .cr-kicker { font-size: .62em; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #7a3a10; margin-bottom: .4em; text-align: center; }
+.camp-reel .cr-h { margin: .1em 0 .3em; font-family: var(--display); font-weight: 700; font-size: 1.9em; line-height: 1.04; color: #1c1006; }
+/* the small print on a slide never goes under the station's data size (16 px, 15 on a phone), however a long frame steps its type down */
+.camp-reel .cr-sub { font-family: var(--mono); font-weight: 400; font-size: max(.66em, var(--print-fs)); color: #5a3a1c; text-align: center; }
+.camp-reel .cr-text { margin: 0; text-align: center; text-wrap: pretty; font-size: max(1em, var(--print-fs)); }
+.camp-reel .cr-mono .cr-text { font-family: var(--mono); font-weight: 400; font-size: max(.78em, var(--print-fs)); line-height: 1.45; text-align: left; }
+.camp-reel .cr-rows { display: grid; grid-template-columns: max-content max-content; justify-content: center; gap: .15em 1.4em; margin: .3em 0 0; font-family: var(--mono); font-weight: 400; font-size: max(.76em, var(--print-fs)); }
+.camp-reel .cr-rows dt { color: #6a4526; text-align: right; } .camp-reel .cr-rows dd { margin: 0; color: #1c1006; } .camp-reel .cr-rows dd.fail { color: #9a1c0c; font-weight: 700; }
+.camp-reel .cr-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: .3em .45em; margin: .2em 0 .5em; }
+.camp-reel .cr-tags span { font-size: max(.72em, var(--print-fs)); letter-spacing: .06em; padding: .08em .6em .12em; border: 1px solid rgb(60 34 12 / .45); border-radius: 999px; color: #3a220e; }
+/* the title card: the cover projected beside the title, its own soft edge */
+.camp-reel .cr-k-title { flex-direction: row; align-items: center; gap: 1.2em; }
+.camp-reel .cr-k-title .cr-cover { flex: 0 0 auto; width: min(44%, 300px); aspect-ratio: 1; border-radius: 4px; overflow: hidden; background: #3a2a1a; box-shadow: 0 0 0 1px rgb(60 34 12 / .35), 0 0 22px rgb(120 70 20 / .25); }
+.camp-reel .cr-k-title .cr-cover img { display: block; width: 100%; height: 100%; object-fit: cover; filter: sepia(.18) saturate(.92) contrast(.96); -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, #000 70%, transparent 100%); mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, #000 70%, transparent 100%); }
+.camp-reel .cr-k-title .cr-tbody { flex: 1 1 auto; min-width: 0; }
+.camp-reel .cr-k-title .cr-kicker, .camp-reel .cr-k-title .cr-sub { text-align: left; }
+.camp-reel .cr-k-title .cr-orn { margin: .8em 0 0; width: 60%; }
+.camp-reel .cr-count { position: absolute; right: 16px; bottom: 7px; z-index: 2; font-family: var(--mono); font-weight: 400; font-size: 13px; letter-spacing: 0; color: #5a3a1c; }
+/* the projector on its stump at the left; the reels and the crank turn while the track plays */
+.camp-reel .cr-projector { position: absolute; left: max(4px, calc(50% - min(370px, (100% - 300px) / 2) - 300px)); bottom: 0; width: 230px; height: auto; overflow: visible; filter: drop-shadow(0 8px 14px rgb(0 0 0 / .6)); }
+/* the spokes and the crank turn about their own group's origin: the hub */
+.camp-reel.running .cr-reel .spokes { animation: crSpin 2.4s linear infinite; }
+.camp-reel.running .cr-reel-b .spokes { animation-duration: 3.1s; }
+.camp-reel.running .cr-crank { animation: crSpin 1.2s linear infinite; }
+.camp-reel.turning .cr-reel .spokes, .camp-reel.threading .cr-reel .spokes { animation: crSpin 520ms cubic-bezier(.3, .6, .3, 1); }
+@keyframes crSpin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.camp-reel .cr-projector .lamp { animation: crFlick 1.9s linear infinite; }
+.camp-reel .cr-projector .vents rect { filter: drop-shadow(0 0 3px #ff9a3a); }
+/* the strip of frames: film, with its sprocket holes, the frame in the gate lit */
+.camp-reel .cr-strip { position: relative; z-index: 2; display: flex; gap: 6px; max-width: min(100%, 900px); overflow-x: auto; padding: 12px 10px; background: #100b08; border-radius: 3px; box-shadow: inset 0 0 0 1px #3a2c22; scrollbar-width: thin;
+  background-image: repeating-linear-gradient(90deg, #3d2e22 0 7px, transparent 7px 15px), repeating-linear-gradient(90deg, #3d2e22 0 7px, transparent 7px 15px); background-size: 100% 4px, 100% 4px; background-position: 0 3px, 0 calc(100% - 3px); background-repeat: repeat-x; }
+.camp-reel .cr-cell { flex: 0 0 auto; font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: .04em; color: var(--ink-mid); background: #1f1712; border: 1px solid #3f3026; border-radius: 2px; padding: 5px 11px; white-space: nowrap; cursor: pointer; }
+.camp-reel .cr-cell:hover { color: var(--ink); border-color: #8a6a3a; }
+.camp-reel .cr-cell:focus-visible, .camp-reel .cr-small:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.camp-reel .cr-cell.on { color: #1c1006; background: #f1dfb8; border-color: var(--gold); box-shadow: 0 0 12px rgb(255 210 140 / .5); }
+/* the controls: play, queue and close, labelled and with icons; the rest in a quieter row under them */
+.camp-reel .cr-controls { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 18px; padding: 8px 14px; background: rgb(var(--panel-rgb) / .92); border: 1px solid #4a3826; border-radius: 8px; }
+.camp-reel .cr-main { display: flex; gap: 8px; }
+.camp-reel .cr-main .cg-btn { min-height: 38px; padding: 4px 16px 4px 12px; font-size: 17px; }
+.camp-reel .cr-main .cg-btn svg { width: 17px; height: 17px; }
+.camp-reel .cr-more { display: flex; flex-wrap: wrap; gap: 6px; }
+.camp-reel .cr-small { font-family: var(--display); font-weight: 600; font-size: 16px; letter-spacing: .04em; color: var(--ink-mid); background: transparent; border: 1px solid #4a3826; border-radius: 5px; padding: 4px 10px; cursor: pointer; }
+.camp-reel .cr-small:hover { color: var(--ink); border-color: #8a6a3a; }
 
 @media (max-width: 900px) {
-  .camp-reel { left: 8px; right: 8px; bottom: 10px; padding: 6px 0 4px; background: rgb(8 8 14 / .94); border-radius: 6px; }
-  .camp-reel .cr-projector, .camp-reel .cr-beam, .camp-reel .cr-sheet::before, .camp-reel .cr-sheet::after, .camp-reel .cr-rope { display: none; }
-  .camp-reel .cr-stage { padding: 6px 0; }
-  .camp-reel .cr-sheet { width: 100%; height: 100%; }
-  .camp-reel .cr-frame { inset: 16px 16px 26px; font-size: 19px; }
-  .camp-reel .cr-actions .bk { font-size: 16px; }
-  .camp-spiral { width: calc(100vw - 2 * var(--gutter)); top: auto; bottom: 12px; }
+  /* the phone: the sheet fills the screen; the projector small at its foot, the beam and the trees left out */
+  .camp-reel { left: 0; right: 0; bottom: 8px; padding: 0 8px; gap: 6px; }
+  .camp-reel .cr-beam, .camp-reel .cr-tree, .camp-reel .cr-rope { display: none; }
+  .camp-reel .cr-stage { padding: 12px 0 4px; }
+  .camp-reel .cr-sheet { width: 100%; height: 100%; margin: 0; }
+  .camp-reel .cr-gate { inset: 12px 10px 24px; }
+  .camp-reel .cr-frame { inset: 16px 16px 18px; font-size: 18px; }
+  .camp-reel .cr-k-title { flex-direction: column; align-items: stretch; gap: .6em; }
+  .camp-reel .cr-k-title .cr-cover { width: min(64%, 240px); margin: 0 auto; }
+  .camp-reel .cr-k-title .cr-kicker, .camp-reel .cr-k-title .cr-sub { text-align: center; }
+  .camp-reel .cr-k-title .cr-h { text-align: center; }
+  .camp-reel .cr-k-title .cr-orn { margin: .6em auto 0; }
+  .camp-reel .cr-projector { display: none; }
+  .camp-reel .cr-controls { width: 100%; box-sizing: border-box; gap: 6px; padding: 6px 8px; }
+  .camp-reel .cr-main { width: 100%; justify-content: center; }
+  .camp-reel .cr-main .cg-btn { flex: 1 1 0; justify-content: center; padding: 4px 8px; }
+  .camp-reel .cr-more { justify-content: center; }
+  .camp-reel .cr-strip { max-width: 100%; }
+  /* the reel covers the phone's screen: the boards under it step out of view (the page stays, as text, for a screen reader) */
+  body.camp-reel-open #main > :not(#header):not(#page) { visibility: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .camp-reel .cr-beam, .camp-reel .cr-light, .camp-reel .cr-sheet.advance .cr-frame, .camp-reel .cr-sheet.advance .cr-light, .camp-reel.turning .cr-reel, .camp-reel.threading .cr-reel { animation: none; }
+  .camp-reel .cr-beam .cone, .camp-reel .cr-beam .smoke ellipse, .camp-reel .cr-beam .dust circle, .camp-reel .cr-light, .camp-reel .cr-weave, .camp-reel .cr-grain, .camp-reel .cr-sheet.advance .cr-frame, .camp-reel .cr-sheet.advance .cr-light,
+  .camp-reel.running .cr-reel .spokes, .camp-reel.running .cr-crank, .camp-reel.turning .cr-reel .spokes, .camp-reel.threading .cr-reel .spokes, .camp-reel .cr-projector .lamp { animation: none; }
+  .camp-reel .cr-beam .dust circle { opacity: .4; }
 }

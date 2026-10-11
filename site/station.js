@@ -86,7 +86,8 @@
   }
   // the keys a theme may claim for its paradigm (12.0): the arrows, and letters the station's own table does not use
   // `v` is the hidden mode's visualizer key; a theme that says visualizer: false (issue #82) has no station visualizer and may claim it
-  const CLAIMABLE = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'd', 'h', 'l', 'o', 'u', 'w', 'x', 'y', 'z', 'e', 't', 'v'];
+  // `+`, `=`, `-` and Home (issue #84): a theme with a map may zoom with them; a key the theme does not take is the volume again
+  const CLAIMABLE = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'd', 'h', 'l', 'o', 'u', 'w', 'x', 'y', 'z', 'e', 't', 'v', '+', '=', '-', 'Home'];
   const IFACE = { kind: null, keys: [], arrows: false, layouts: [], viz: true };
   function themeInit(name) {
     const th = THEMES[name]; if (!th) return false;
