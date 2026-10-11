@@ -194,17 +194,8 @@ NOBODY.themes.phosphor = (function () {
     const pos = Math.round((f - 86) / (91.6 - 86) * (w - 1));
     dialEl.textContent = '86.0 ' + ticks + ' 91.6\n' + ' '.repeat(Math.max(0, 5 + pos)) + '^ ' + f.toFixed(1) + (note === 'static' ? '  static' : '');
   };
-  TH.volume = function (volEl, v, muted, phone) {
-    const bars = phone ? 5 : 10, per = 10 / bars, on = Math.round(v / per);
-    volEl.textContent = 'vol ' + '#'.repeat(on) + '.'.repeat(bars - on) + (muted ? ' m' : '');
-    return {
-      hit: function (x, y) {
-        const r = volEl.getBoundingClientRect(), chars = volEl.textContent.length, ch = r.width / chars, idx = Math.floor((x - r.left) / ch) - 4;
-        if (idx >= 0 && idx < bars) return Math.round((idx + 1) * 10 / bars);
-        return 0;
-      }
-    };
-  };
+  // the volume is the shared fader (volume.js, 12.0 controls), drawn in this theme's tokens; nothing decorates it here
+  TH.volume = function () {};
   function span(text, cls) { const s = document.createElement('span'); if (cls) s.className = cls; s.textContent = text; return s; }
 
   /* ---- the ASCII tower (5.6) for dead air: three.js through AsciiEffect, the static drawing without the CDN ---- */

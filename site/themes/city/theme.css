@@ -250,13 +250,27 @@ button { border-radius: 3px; }
 
 /* transmitter (12.4) */
 .transmitter > .row:first-child { align-items: center; }
-.vol svg { width: 44px; height: 44px; display: block; overflow: visible; color: var(--violet); }
-.vol .ring-outer { transform-origin: 50% 50%; animation: spin 600s linear infinite; }
-.vol .tick { stroke: rgb(var(--ink-dim-rgb) / .8); stroke-width: 2; stroke-linecap: round; }
-.vol .tick.lit { stroke: var(--cyan); filter: drop-shadow(0 0 3px rgb(var(--cyan-rgb) / .8)); }
-.vol .num { font-family: var(--display); font-weight: 600; font-size: 14px; fill: var(--ink); }
-.vol.muted .num { fill: var(--amber); }
+/* the volume fader (12.0 controls) in the city: the word in the display face, a dim rail, the deep gradient fill, a cyan handle with its glow */
+.vol .vol-word { font-family: var(--display); font-weight: 600; font-size: var(--label-fs); letter-spacing: .2em; color: var(--ink-mid); }
+.vol .vol-track { background: rgb(var(--ink-dim-rgb) / .35); box-shadow: inset 0 0 0 1px rgb(var(--violet-rgb) / .35); }
+.vol .vol-fill { background: var(--grad-deep); }
+.vol .vol-handle { background: var(--cyan); box-shadow: 0 0 8px var(--cyan), 0 0 20px rgb(var(--cyan-rgb) / .6); }
+.vol .vol-rail:focus-visible .vol-handle, .vol.dragging .vol-handle { box-shadow: 0 0 0 2px var(--panel), 0 0 0 3px var(--cyan), 0 0 20px rgb(var(--cyan-rgb) / .6); }
+.vol .vol-read { font-family: var(--display); font-weight: 600; font-size: var(--label-fs); letter-spacing: .1em; color: var(--ink); text-shadow: var(--glow-data); }
+.vol.muted .vol-word { color: var(--amber); text-shadow: var(--glow-amber); text-decoration: line-through; text-decoration-thickness: 2px; }
+.vol.muted .vol-fill { background: rgb(var(--ink-dim-rgb) / .6); }
+.vol.muted .vol-handle { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+.vol.muted .vol-read { color: var(--amber); text-shadow: var(--glow-amber); }
+.vol .vol-mute:hover .vol-word, .vol .vol-mute:focus-visible .vol-word { color: var(--cyan); }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* MAKE A TRACK (12.0 controls): the prompt mark in magenta like the terminal's, the input in ink on the panel */
+.make-form .make-mark { color: var(--magenta); text-shadow: var(--glow-magenta); }
+.make-form #makeWords { color: var(--ink); caret-color: var(--cyan); border-bottom: 1px solid rgb(var(--violet-rgb) / .5); }
+.make-form #makeWords::placeholder { color: var(--ink-mid); opacity: 1; }
+.make-form #makeWords:focus { border-bottom-color: var(--cyan); box-shadow: 0 1px 0 rgb(var(--cyan-rgb) / .4); }
+.make-line.amber { color: var(--amber); text-shadow: var(--glow-amber); }
+.make-line .bk { color: var(--ink); }
 @keyframes spinback { to { transform: rotate(-360deg); } }
 .np-slug { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: .04em; background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 10px rgb(var(--magenta-rgb) / .45)); }
 .np-slug:hover, .np-slug:focus-visible { background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 14px rgb(var(--cyan-rgb) / .8)); }
@@ -300,8 +314,9 @@ button { border-radius: 3px; }
 .cat-row.played { color: var(--ink-mid); }
 .cat-row.played .mark { color: var(--ink-dim); }
 .cat-row.tuning { color: var(--amber); text-shadow: var(--glow-amber); }
-.cat-row .plus { color: var(--ink-dim); visibility: hidden; }
-.cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: var(--cyan); }
+.cat-row .plus, .cat-row .rmx { color: var(--ink-dim); visibility: hidden; }
+.cat-row:hover .plus, .cat-row.hl .plus, .cat-row:hover .rmx, .cat-row.hl .rmx { visibility: visible; color: var(--cyan); }
+.cat-row:hover .rmx { text-decoration: underline; text-decoration-color: rgb(var(--cyan-rgb) / .6); }
 .cat-row:hover, .cat-row.hl { color: var(--ink); background: rgb(var(--cyan-rgb) / .12); text-shadow: none; }
 .cat-row:hover *, .cat-row.hl * { color: var(--ink); }
 .cat-row:hover .mark, .cat-row.hl .mark { color: var(--magenta); }
@@ -369,23 +384,24 @@ button { border-radius: 3px; }
   .np-slug { font-size: 16px; }
   .header-page .left { gap: 1ch; }
   .header #hdrFreq, .header .up #uptime, .header #hdrTime { font-size: var(--fs); }
-  .vol svg { width: 36px; height: 36px; }
   .footer-buttons .left { line-height: calc(var(--row) * 1.3); }
   .fat { padding: calc(var(--row) * .6) 0 calc(var(--row) * .2); }
   .fat .bk { padding: .25em 1.6ch; min-width: 7ch; color: var(--cyan); text-shadow: var(--glow-data); border: 1px solid rgb(var(--cyan-rgb) / .4); border-radius: 999px; background: rgb(var(--cyan-rgb) / .06); }
   .fat .bk::before, .fat .bk::after { content: none; }
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
+  /* the 40-column row keeps its whole width on the phone: no inset, so `+ remix` stays on the card (issue #51) */
+  .cat-row { padding-left: 0; padding-right: 0; }
   .footer .odo-row { gap: 2ch; }
   .odo-ring { width: 56px; height: 56px; margin: -28px 0 0 -28px; }
   .odo-ring svg { width: 56px; height: 56px; }
 }
 @media (hover: none) {
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
 }
 
 /* reduced motion (12.8): the drift, the sway, the rings, the scans stop; the data still moves. */
 @media (prefers-reduced-motion: reduce) {
-  .name3d .n3, .banner.name3d .n3, .vol .ring-outer, .odo-ring .ring-outer, .odo-ring .ring-inner { animation: none; }
+  .name3d .n3, .banner.name3d .n3, .odo-ring .ring-outer, .odo-ring .ring-inner { animation: none; }
   .readout.typing .scanrect, .cat-row:hover::after, .cat-row.hl::after { animation: none; display: none; }
   .card:hover::before, .card:focus-within::before { animation: none; }
   .cursor { animation: none; }

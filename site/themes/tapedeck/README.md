@@ -24,8 +24,9 @@ commands and data are untouched.
 - **Behind the page.** A canvas of 48 warm bars along the foot of the desk, read from the analyser's 64
   bands, and the lamp breathing with the loudness. It lowers its own resolution on a slow machine.
 - **The card.** Rounded bars in orange and lamp with cream peaks; a cream scope line; the dial is a
-  strip of frequencies under a red needle; the volume is a knob with ten ticks (click by angle, the centre
-  mutes). The progress bar is a cream rail with a lamp fill.
+  strip of frequencies under a red needle; the volume is the shared fader (`volume.js`, design 12.0 controls)
+  with the lamp as its fill, and the knob with ten ticks stays beside it as decoration, its pointer following
+  the level. The progress bar is a cream rail with a lamp fill.
 
 ## Files
 

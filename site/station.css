@@ -76,6 +76,37 @@ button:focus { outline: 0; }
 
 /* transmitter */
 .transmitter { position: relative; }
+/* the volume fader (design 12.0, controls): the word or glyph that mutes, a rail at least 160 px wide on desktop and the
+   card's width on the phone, a 44 px hit area (the rail's ::before reaches 10 px above and below it), the handle, and the
+   readout of the notch that appears while the control is touched (hover, focus, a drag). colour is the theme's. */
+.transmitter > .row:first-child { align-items: center; overflow: visible; }
+.vol { display: inline-flex; align-items: center; gap: 1ch; flex: 0 1 auto; min-width: 0; white-space: pre; }
+.vol .vol-mute { display: inline-flex; align-items: center; gap: .5ch; flex: 0 0 auto; }
+.vol .vol-word { letter-spacing: .08em; }
+.vol .vol-spk { display: none; width: 20px; height: 20px; overflow: visible; }
+.vol .vol-spk .spk-body { fill: currentColor; }
+.vol .vol-spk .spk-waves, .vol .vol-spk .spk-cross { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.vol .vol-spk .spk-cross { display: none; }
+.vol.muted .vol-spk .spk-waves { display: none; }
+.vol.muted .vol-spk .spk-cross { display: block; }
+.vol .vol-rail { position: relative; z-index: 1; flex: 1 1 200px; min-width: 160px; max-width: 280px; height: 24px; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; outline: 0; }
+.vol .vol-rail::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; bottom: -10px; }
+.vol .vol-track { position: absolute; left: 0; right: 0; top: 50%; height: 6px; margin-top: -3px; border-radius: 3px; overflow: hidden; }
+.vol .vol-fill { height: 100%; width: 70%; border-radius: 3px; }
+.vol .vol-handle { position: absolute; top: 50%; left: 70%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; pointer-events: none; }
+.vol .vol-read { flex: 0 0 auto; width: 6ch; text-align: left; opacity: 0; transition: opacity .15s; }
+.vol:hover .vol-read, .vol:focus-within .vol-read, .vol.dragging .vol-read { opacity: 1; }
+.vol .vol-deco { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.vol .vol-deco:empty { display: none; }
+@media (prefers-reduced-motion: reduce) { .vol .vol-read { transition: none; } }
+
+/* MAKE A TRACK (design 12.0, controls): one input, [ request ] and [ remix what's playing ], one line of state under them */
+.make-form { display: flex; align-items: center; flex-wrap: wrap; gap: 0 1ch; min-height: var(--row); white-space: pre; }
+.make-form .make-mark { flex: 0 0 auto; }
+.make-form #makeWords { font: inherit; background: none; border: 0; outline: 0; padding: 0; margin: 0; flex: 1 1 24ch; min-width: 14ch; line-height: inherit; }
+.make-form .make-buttons { flex: 0 0 auto; white-space: pre; }
+.make-line { min-height: var(--row); white-space: pre-wrap; overflow-wrap: anywhere; margin-top: calc(var(--row) * .2); }
+.make-line .bk { white-space: pre; }
 /* the widget slot (design 12.0, issue #28): a theme may mount one signature widget in the transmitter card
    (a cassette, a big scrubber); the skeleton only gives it a block and a top margin, the theme does the rest */
 .tx-widget { display: block; margin-top: calc(var(--row) * .5); }
@@ -119,6 +150,8 @@ button:focus { outline: 0; }
 }
 .cat-row.hidden-row { display: none; }
 .cat-head .sort { cursor: pointer; }
+/* the two affordances at the end of a row: + queues, remix goes to the MAKE A TRACK card (shown on hover, always on a phone) */
+.cat-row .plus, .cat-row .rmx { cursor: pointer; }
 
 /* terminal */
 .terminal .log {
@@ -173,13 +206,17 @@ button:focus { outline: 0; }
 .page h2 { font: inherit; margin: var(--row) 0 0; text-transform: uppercase; display: flex; justify-content: space-between; white-space: pre; }
 .page p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .page .buttons { display: flex; flex-wrap: wrap; gap: 0 1ch; margin: calc(var(--row) * .5) 0; }
+/* the action row (design 12.0, controls): play, remix this and take it home first and biggest; the copy actions smaller under them */
+.page .buttons.primary { gap: .2em 1.5ch; margin-bottom: calc(var(--row) * .25); align-items: center; }
+.page .buttons.primary .bk { font-size: calc(var(--fs) * 1.2); line-height: 1.4; }
+.page .buttons.secondary { margin-top: 0; }
+.page .tree .bk { white-space: pre; }
 .page .lyrics { white-space: pre-wrap; }
 .page table { border-collapse: collapse; white-space: pre; }
 .page td { padding: 0 2ch 0 0; vertical-align: top; }
 .page .numbers { display: flex; flex-wrap: wrap; gap: 0 3ch; white-space: pre; }
 .page .tree { white-space: pre; }
 .page .take-block { margin-top: calc(var(--row) * .25); }
-.page .remix-copy { margin: 0 0 calc(var(--row) * .5); }
 .page .catview { white-space: pre-wrap; max-height: calc(var(--row) * 14); overflow: auto; padding-left: 1ch; margin-top: calc(var(--row) * .5); }
 .gb-form .field { display: flex; white-space: pre; align-items: baseline; }
 .gb-form input { font: inherit; background: none; border: 0; outline: 0; padding: 0; flex: 1 1 auto; min-width: 0; }
@@ -210,6 +247,11 @@ button:focus { outline: 0; }
 @media (max-width: 900px) {
   .tagline-h, .header .up, #shuffleLabel { display: none; }
   .np-row { flex-direction: column; align-items: flex-start; gap: 0; }
+  /* the fader takes the card's full width under the label; the hit area stays 44 px */
+  .transmitter > .row:first-child { flex-wrap: wrap; }
+  .vol { flex: 1 1 100%; }
+  .vol .vol-rail { max-width: none; flex: 1 1 auto; }
+  .make-form .make-buttons { flex: 1 1 100%; margin-top: calc(var(--row) * .2); }
   /* the page header at 390 px: `playing: <slug...>  <time>  [chip]`; the name and the small bar go, the slug gets an ellipsis, the chip is never overlapped (issue #43) */
   .header-page .left { white-space: pre; display: flex; align-items: baseline; min-width: 0; overflow: hidden; }
   .header-page .left > * { flex: 0 0 auto; }

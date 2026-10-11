@@ -506,7 +506,7 @@ NOBODY.themes.city = (function () {
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
   let scene = null, canvas = null, cssgrid = null, horizon = null, scanrect = null, odoRing = null, nocityTimer = 0;
-  let scopeCanvas = null, scopeCtx = null, volRing = null, dialStrip = null, pendingView = null;
+  let scopeCanvas = null, scopeCtx = null, dialStrip = null, pendingView = null;
   let gainHold = 1;
   function el(id) { return ctx.el[id] || document.getElementById(id); }
   function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
@@ -565,7 +565,7 @@ NOBODY.themes.city = (function () {
     canvas = cssgrid = horizon = scanrect = odoRing = null;
     el('scope').textContent = ''; scopeCanvas = null; scopeCtx = null;
     el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
-    el('dial').textContent = ''; dialStrip = null; volRing = null;
+    el('dial').textContent = ''; dialStrip = null;
     el('readout').classList.remove('typing'); el('transmitter').classList.remove('tuning-state');
     document.body.classList.remove('nocity');
     glass.classList.remove('closing', 'bloom-on');
@@ -698,12 +698,8 @@ NOBODY.themes.city = (function () {
     };
   }
   TH.dial = function (dialEl, f, locked, note) { if (!dialStrip) dialStrip = makeDialStrip(dialEl); dialStrip.set(f, locked, note); };
-  // the volume is a HUD ring (12.4, 12.7): ten ticks, the number in the middle; a click by angle, the centre mutes
-  TH.volume = function (volEl, v, muted, phone) {
-    if (!volRing) volRing = ring(volEl, { ticks: 10 });
-    volRing.set(v, muted);
-    return { hit: function (x, y) { return volRing.hit(x, y); } };
-  };
+  // the volume is the shared fader (volume.js, 12.0 controls) in the city's tokens; the HUD ring of 12.4 stays on the counter only
+  TH.volume = function () {};
   function svgEl(name, attrs) { const e = document.createElementNS('http://www.w3.org/2000/svg', name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
   function ring(host, opts) {
     const cx = 50, cy = 50, ticks = opts.ticks == null ? 10 : opts.ticks;

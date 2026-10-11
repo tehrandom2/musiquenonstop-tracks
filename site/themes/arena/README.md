@@ -31,7 +31,8 @@ behind the page came across, nothing else did. The station's voice, commands and
   signal the page runs on a synthetic spectrum the live one crossfades from. A slow machine draws it
   smaller rather than less often.
 - **The card.** Bars in the hue with a hot top and white peaks; a ribbon scope; the dial a strip of
-  frequencies under a white needle; the volume a slider (the speaker icon mutes, the rail sets 1 to 10); the
+  frequencies under a white needle; the volume the shared fader (`volume.js`, design 12.0 controls) drawn as
+  the dock's slider: the speaker glyph mutes, the accent fills the rail, a white handle; the
   counter in glowing display digits; dead air is an empty orbit turning in the card.
 
 ## Files

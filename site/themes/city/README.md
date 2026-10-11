@@ -9,7 +9,8 @@ glowing translucent blocks on an endless grid, one per track, the camera flying 
 - **Type.** Orbitron (variable) as the display face; IBM Plex Mono as the data face.
 - **The widget.** None in the transmitter card: the city's signature is the scene behind the page (the
   ring of 64 bars and the ribbon around the playing tower). `widget()` answers `null`. The progress bar is
-  a rail with a glowing head, the dial a strip of frequencies, the volume a HUD ring.
+  a rail with a glowing head, the dial a strip of frequencies, the volume the shared fader (`volume.js`,
+  design 12.0 controls) with the deep gradient as its fill and a cyan handle; the HUD ring stays on the counter.
 - **Behind the page.** The three.js scene with bloom and chromatic fringing, on `NOBODY.libs` from the
   CDN; without it the body says `nocity` and a CSS perspective grid stands in.
 - **Dead air.** The scene's unlit tower building block by block, or a CSS tower in the card without the

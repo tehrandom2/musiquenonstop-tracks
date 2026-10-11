@@ -71,7 +71,7 @@ NOBODY.themes.tapedeck = (function () {
     document.body.classList.remove('is-playing');
     el('scope').textContent = ''; scopeCanvas = null; scopeCtx = null;
     el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
-    el('dial').textContent = ''; dialStrip = null; knob = null; el('vol').textContent = '';
+    el('dial').textContent = ''; dialStrip = null; knob = null; el('volDeco').textContent = '';
     el('towerStatic').textContent = ''; el('towerStatic').hidden = true;
     glass.classList.remove('closing', 'bloom-on');
   };
@@ -194,7 +194,8 @@ NOBODY.themes.tapedeck = (function () {
     };
   }
   TH.dial = function (dialEl, f, locked, note) { if (!dialStrip) dialStrip = makeDialStrip(dialEl); dialStrip.set(f, locked, note); };
-  // the volume is a knob (12.14): ten ticks around it, a cream pointer; a click by angle sets it, the centre mutes
+  // the knob of 12.14 stays as decoration beside the shared fader (volume.js, 12.0 controls): ten ticks, a cream pointer
+  // that follows the level; it takes no click, the fader does
   function makeKnob(host) {
     host.textContent = '';
     const svg = svgEl('svg', { viewBox: '0 0 100 100', 'aria-hidden': 'true' });
@@ -208,31 +209,19 @@ NOBODY.themes.tapedeck = (function () {
     const pointer = svgEl('line', { class: 'knob-pointer', x1: 50, y1: 50, x2: 50, y2: 20 });
     svg.appendChild(pointer);
     host.appendChild(svg);
-    const text = document.createElement('span'); text.className = 'vol-text'; host.appendChild(text);
     return {
       set: function (v, muted) {
         const a = angleOf(v);
         pointer.setAttribute('x2', (50 + Math.cos(a) * 28).toFixed(1)); pointer.setAttribute('y2', (50 + Math.sin(a) * 28).toFixed(1));
         ticks.forEach(function (t, i) { t.classList.toggle('lit', i < v); });
-        text.textContent = muted ? 'vol m' : 'vol ' + v;
         host.classList.toggle('muted', !!muted);
-      },
-      hit: function (x, y) {
-        const r = svg.getBoundingClientRect(), px = (x - r.left) / r.width * 100, py = (y - r.top) / r.height * 100;
-        if (px < -5 || px > 105) return 0;
-        const dx = px - 50, dy = py - 50, d = Math.hypot(dx, dy);
-        if (d < 14 || d > 56) return 0;
-        let k = (Math.atan2(dy, dx) - angleOf(0)) / (angleOf(10) - angleOf(0));
-        if (k < 0) k += 2 * Math.PI / (angleOf(10) - angleOf(0));
-        return Math.max(1, Math.min(10, Math.ceil(k * 10)));
       }
     };
   }
   function angleOf(v) { return Math.PI * 0.75 + v / 10 * Math.PI * 1.5; }
-  TH.volume = function (volEl, v, muted) {
-    if (!knob || !volEl.querySelector('svg')) knob = makeKnob(volEl);
+  TH.volume = function (decoEl, v, muted) {
+    if (!knob || !decoEl.querySelector('svg')) knob = makeKnob(decoEl);
     knob.set(v, muted);
-    return { hit: function (x, y) { return knob.hit(x, y); } };
   };
   // dead air: an empty cassette on the shelf, its reels turning slowly (there is nothing on it)
   TH.towerStart = function (hostEl, staticEl) {

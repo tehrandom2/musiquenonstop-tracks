@@ -220,14 +220,31 @@ body.is-playing .cassette svg { transform: rotate(-1deg) translateY(-4px); }
 .reel { transform-box: fill-box; transform-origin: center; }
 body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.vol { display: inline-flex; align-items: center; gap: 1ch; }
-.vol svg { width: 36px; height: 36px; display: block; overflow: visible; }
-.vol .knob-body { fill: #3a2e22; stroke: #0b0805; stroke-width: 2; }
-.vol .knob-tick { stroke: var(--faint); stroke-width: 2; stroke-linecap: round; }
-.vol .knob-tick.lit { stroke: var(--lamp); }
-.vol .knob-pointer { stroke: var(--paper); stroke-width: 3; stroke-linecap: round; }
-.vol.muted .knob-pointer { stroke: var(--orange); }
-.vol .vol-text { font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+/* the volume fader (12.0 controls) on the desk: the word in the condensed face, a cream rail with the lamp as the fill, a cream
+   handle; the knob of 12.14 stays beside it as decoration (its pointer follows the level, it takes no click) */
+.vol .vol-word { font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.vol .vol-track { background: rgb(255 255 255 / .14); box-shadow: inset 0 1px 2px rgb(0 0 0 / .6); }
+.vol .vol-fill { background: var(--lamp); }
+.vol .vol-handle { background: var(--paper); box-shadow: 0 2px 4px rgb(0 0 0 / .6); }
+.vol .vol-rail:focus-visible .vol-handle, .vol.dragging .vol-handle { box-shadow: 0 0 0 2px #1b130d, 0 0 0 3px var(--lamp), 0 2px 4px rgb(0 0 0 / .6); }
+.vol .vol-read { font-family: var(--display); font-weight: 700; font-size: var(--fs); letter-spacing: .1em; color: var(--paper); }
+.vol.muted .vol-word { color: var(--orange-text); text-decoration: line-through; text-decoration-thickness: 2px; }
+.vol.muted .vol-fill { background: var(--faint); }
+.vol.muted .vol-read { color: var(--orange-text); }
+.vol .vol-mute:hover .vol-word, .vol .vol-mute:focus-visible .vol-word { color: var(--lamp); }
+.vol-deco svg { width: 36px; height: 36px; display: block; overflow: visible; }
+.vol-deco .knob-body { fill: #3a2e22; stroke: #0b0805; stroke-width: 2; }
+.vol-deco .knob-tick { stroke: var(--faint); stroke-width: 2; stroke-linecap: round; }
+.vol-deco .knob-tick.lit { stroke: var(--lamp); }
+.vol-deco .knob-pointer { stroke: var(--paper); stroke-width: 3; stroke-linecap: round; }
+.vol-deco.muted .knob-pointer { stroke: var(--orange); }
+
+/* MAKE A TRACK (12.0 controls): the liner-notes input, the lamp as the mark */
+.make-form .make-mark { color: var(--lamp); }
+.make-form #makeWords { color: var(--paper); caret-color: var(--lamp); border-bottom: 1px solid var(--line); }
+.make-form #makeWords::placeholder { color: var(--dim); opacity: 1; }
+.make-form #makeWords:focus { border-bottom-color: var(--lamp); }
+.make-line.amber { color: var(--warn); }
 .np-slug { font-family: var(--display); font-weight: 800; font-size: 24px; letter-spacing: .03em; text-transform: uppercase; color: var(--paper); line-height: 1.1; }
 .np-slug:hover, .np-slug:focus-visible { color: var(--lamp); }
 .tuning-state .np-slug { color: var(--lamp); }
@@ -267,8 +284,9 @@ body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
 .cat-row.played { color: var(--dim); }
 .cat-row.played .mark { color: var(--faint); }
 .cat-row.tuning { color: var(--lamp); }
-.cat-row .plus { color: var(--faint); visibility: hidden; }
-.cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: var(--lamp); }
+.cat-row .plus, .cat-row .rmx { color: var(--faint); visibility: hidden; }
+.cat-row:hover .plus, .cat-row.hl .plus, .cat-row:hover .rmx, .cat-row.hl .rmx { visibility: visible; color: var(--lamp); }
+.cat-row:hover .rmx { text-decoration: underline; text-decoration-color: rgb(var(--lamp-rgb) / .6); }
 .cat-row:hover, .cat-row.hl { color: var(--paper); background: rgb(255 255 255 / .05); border-left-color: var(--teal); }
 .cat-row:hover *, .cat-row.hl * { color: var(--paper); }
 .cat-row:hover .mark, .cat-row.hl .mark { color: var(--lamp); }
@@ -319,16 +337,17 @@ body.is-playing .cassette .reel { animation: spin 2.4s linear infinite; }
   .header .hot-name { font-size: 17px; }
   .header .right { gap: 1.5ch; }
   .np-slug { font-size: 18px; }
-  .vol svg { width: 30px; height: 30px; }
-  .vol .vol-text { display: none; }
+  .vol-deco svg { width: 30px; height: 30px; }
   .footer-buttons .left { line-height: calc(var(--row) * 1.4); }
   .fat { padding: calc(var(--row) * .6) 0 calc(var(--row) * .2); }
   .fat .bk { padding: .25em 1.6ch; min-width: 7ch; font-size: var(--fs); color: var(--paper); border-color: rgb(var(--lamp-rgb) / .4); background: rgb(var(--lamp-rgb) / .08); }
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
+  /* the 40-column row keeps its whole width on the phone: no inset, so `+ remix` stays on the card (issue #51) */
+  .cat-row { padding-left: 0; padding-right: 0; }
   .footer .odo-row { gap: 2ch; }
 }
 @media (hover: none) {
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
 }
 
 /* reduced motion (12.8): the reels stop, the slides stop; the data still moves. */

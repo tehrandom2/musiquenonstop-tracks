@@ -37,7 +37,8 @@
   const deck = $('deck'), glass = $('glass'), power = $('power');
   const el = {};
   ['boot', 'bootLines', 'banner', 'bootTagline', 'bootFreq', 'bootWait', 'main', 'headerMain', 'headerPage', 'chip', 'chip2', 'uptime', 'uptime2',
-    'trackCount', 'hdrSlug', 'hdrTime', 'hdrBar', 'hdrBack', 'txLabel', 'vol', 'npSlug', 'npMeta', 'readout', 'readoutText', 'readoutCursor',
+    'trackCount', 'hdrSlug', 'hdrTime', 'hdrBar', 'hdrBack', 'txLabel', 'vol', 'volDeco', 'npSlug', 'npMeta', 'readout', 'readoutText', 'readoutCursor',
+    'make', 'makeState', 'makeForm', 'makeWords', 'makeSend', 'makeRemix', 'makeLine',
     'progress', 'progressTime', 'dial', 'spectrum', 'baseline', 'scope', 'deadair', 'tower', 'towerStatic', 'reread', 'bed', 'fat', 'fatPrev', 'fatPlay', 'fatNext', 'fatQueue', 'licence',
     'catalogue', 'sortLabel', 'shuffleLabel', 'findBtn', 'catHead', 'catRows', 'catEmpty', 'page', 'terminal', 'log', 'cmd', 'cmdCursor', 'promptRow', 'hints',
     'visitorInline', 'wireTag', 'footer', 'odometer', 'countTag', 'help', 'helpTitle', 'helpBody', 'helpClose', 'stationName', 'stationName2', 'transmitter']
@@ -61,7 +62,6 @@
   /* ---------------- the theme (12.0): one token set, one visuals module, a few strings ---------------- */
   const THEMES = NOBODY.themes || {};
   NOBODY.theme = { current: null, name: null };
-  let volWidget = null;
   function TH() { return NOBODY.theme.current; }
   function themeCtx() {
     return { el: el, glass: glass, power: power, S: S, deck: deck, V: V, A: A, T: T, fmt: fmt, phone: phone, cols: cols, content: content,
@@ -75,7 +75,7 @@
     th.stationName(el.stationName); th.stationName(el.stationName2);
     th.catalogue(S.tracks);
     if (S.current) th.playing(S.current);
-    volWidget = null; drawVol();
+    drawVol();
     A.resize();
     return true;
   }
@@ -448,16 +448,19 @@
     TH().progress(el.progress, el.hdrBar, c, d, phone(), S.view, content());
     if (S.view !== 'home') el.hdrTime.textContent = fmt(c) + ' / ' + fmt(d);
   }
-  // the volume widget is the theme's (text bars in phosphor, a HUD ring in the city); it answers clicks by position
+  // the volume fader is shared (volume.js, design 12.0 controls); a theme may only decorate the slot beside it
   function drawVol() {
-    volWidget = TH().volume(el.vol, SY.volume, SY.muted, phone());
+    NOBODY.volume.draw(SY.volume, SY.muted);
+    if (TH() && TH().volume) TH().volume(el.volDeco, SY.volume, SY.muted, phone());
     el.vol.setAttribute('aria-label', 'volume ' + SY.volume + ' of 10' + (SY.muted ? ', muted' : ''));
   }
-  function setVol(v) {
+  // quiet: the fader is being dragged, the gain follows and the line is printed once on release
+  function setVol(v, quiet) {
     v = Math.round(Number(v));
     if (isNaN(v) || v < 0 || v > 10) { T.error('vol 0..10'); return; }
     SY.setVolume(v, deck, FILE || !SY.ctx);
-    drawVol(); T.print('vol ' + v + '/10' + (SY.muted ? ' (muted)' : ''));
+    try { localStorage.setItem('nobody.vol', String(v)); } catch (e) {}
+    drawVol(); if (!quiet) T.print('vol ' + v + '/10' + (SY.muted ? ' (muted)' : ''));
   }
   function seekTo(frac) { if (deck.duration) deck.currentTime = Math.max(0, Math.min(deck.duration - 0.1, frac * deck.duration)); drawProgress(); }
   function seekBy(s) { if (deck.duration) deck.currentTime = Math.max(0, Math.min(deck.duration - 0.1, deck.currentTime + s)); drawProgress(); }
@@ -572,7 +575,7 @@
   function drawCatHead() {
     el.catHead.textContent = '';
     const heads = phone()
-      ? [['#', 'num', 4], ['slug', null, 20], ['bpm', 'bpm', 5], ['key', 'key', 4], ['st', null, 4]]
+      ? [['#', 'num', 4], ['slug', null, 14], ['bpm', 'bpm', 4], ['key', 'key', 4], ['st', null, 4]]
       : [['#', 'num', 4], ['slug', null, 32], ['bpm', 'bpm', 5], ['key', 'key', 6], ['len', 'len', 6], ['tier', 'tier', 7], ['state', null, 11], ['lineage', null, 0]];
     heads.forEach(function (h) {
       const s = span(h[2] ? pad(h[0], h[2]) : h[0], h[1] ? 'sort' : '');
@@ -585,11 +588,13 @@
     const slug = (item.depth ? '+-- ' : '') + t.slug;
     const lin = t.lineage && t.lineage.parent && S.bySlug[t.lineage.parent] ? 'from ' + S.num[t.lineage.parent] + ': "' + (t.lineage.request || '') + '"' : '';
     const tag = [t.voice ? 'voice' : '', t.project ? 'project:' + t.project : ''].filter(Boolean).join(' ');
+    // the row ends in `+ remix` (issue #51): 7 columns, taken from the lineage column on desktop; on the phone the row is 35 columns
+    // (a 13-character slug), the width the narrowest card gives it (the arena's, 2ch of padding each side)
     if (phone()) {
       const g = stt === 'playing' ? '*' : stt === 'tuning' ? '~' : stt === 'played' ? '.' : 'q';
-      return { num: pad(n, 2), slug: pad(slug, 18) + '  ', rest: pad(t.bpm, 3) + '  ' + pad(keyShort(t.key), 2) + '  ' + g + (t.voice ? ' v' : '  ') };
+      return { num: pad(n, 2), slug: pad(slug, 13) + ' ', rest: pad(t.bpm, 3) + ' ' + pad(keyShort(t.key), 2) + '  ' + g + (t.voice ? 'v' : ' ') };
     }
-    return { num: pad(n, 2), slug: pad(slug, 32), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(stt, 9) + '  ' + pad(lin || tag, Math.max(0, content() - 72 - 1)) };
+    return { num: pad(n, 2), slug: pad(slug, 32), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(stt, 9) + '  ' + pad(lin || tag, Math.max(0, content() - 72 - 7)) };
   }
   function renderRows() {
     const items = displayOrder();
@@ -611,6 +616,11 @@
       const plus = span('+', 'plus'); plus.title = 'queue ' + t.slug;
       plus.addEventListener('click', function (e) { e.stopPropagation(); st.queueAdd(t.slug); });
       b.appendChild(plus);
+      // remix: the MAKE A TRACK card, prefilled with this row (shown on hover, always on a phone)
+      b.appendChild(span(' '));
+      const rmx = span('remix', 'rmx'); rmx.title = 'remix ' + t.slug; rmx.setAttribute('role', 'button');
+      rmx.addEventListener('click', function (e) { e.stopPropagation(); st.remixThis(t.slug); });
+      b.appendChild(rmx);
       b.addEventListener('click', function () { playNow(t.slug); });
       let pressTimer = 0;
       b.addEventListener('touchstart', function () { pressTimer = setTimeout(function () { pressTimer = 0; st.queueAdd(t.slug); }, 500); }, { passive: true });
@@ -653,7 +663,7 @@
     const was = S.view;
     S.view = 'home';
     el.page.hidden = true; el.page.textContent = '';
-    el.transmitter.hidden = false; el.catalogue.hidden = false;
+    el.transmitter.hidden = false; el.catalogue.hidden = false; el.make.hidden = false;
     el.headerMain.hidden = false; el.headerPage.hidden = true;
     if (S.whyTyper) { S.whyTyper.cancel(); S.whyTyper = null; }
     A.resize();
@@ -662,7 +672,8 @@
   }
   function openPage(kind) {
     S.view = kind;
-    el.transmitter.hidden = true; el.catalogue.hidden = true;
+    // the MAKE A TRACK card lives on the main screen (12.0 controls); a page's remix this goes home to it
+    el.transmitter.hidden = true; el.catalogue.hidden = true; el.make.hidden = true;
     el.headerMain.hidden = true; el.headerPage.hidden = false;
     el.hdrSlug.textContent = S.current || '-';
     el.page.hidden = false; el.page.textContent = '';
@@ -713,15 +724,17 @@
     p.appendChild(asked);
     if (t.project) { const pr = div('row'); pr.appendChild(span('project:' + t.project + (phone() ? '' : '   list project:' + t.project + ' shows the rest'), 'mid')); p.appendChild(pr); }
     if (phone()) { const pl = div('row'); pl.appendChild(span('#/track/' + slug, 'mid')); pl.appendChild(copyBtn); p.appendChild(pl); }
-    const buttons = div('buttons');
+    // the action row (issue #51): play, remix this and take it home first and biggest; the copy actions smaller under them
+    const buttons = div('buttons primary');
     buttons.appendChild(button('> play', '', function () { playNow(slug); }));
-    buttons.appendChild(button('+ queue', '', function () { st.queueAdd(slug); }));
+    buttons.appendChild(button('remix this', '', function () { st.remixThis(slug); }));
     buttons.appendChild(button('take it home', '', function () { st.take(slug); }));
-    buttons.appendChild(button('copy seed', '', function () { st.copySeed(slug); }));
-    buttons.appendChild(button('copy prompt', '', function () { st.copyPrompt(slug); }));
-    buttons.appendChild(button(phone() ? 'remix on the request line' : 'remix on request line', CFG.requestLine ? '' : 'dimmed', function () { st.remix(slug); }));
     p.appendChild(buttons);
-    const rc = div('print remix-copy'); rc.textContent = 'same seed, one changed clause, is a variation. the seed is the take. take it.'; p.appendChild(rc);
+    const more = div('buttons secondary');
+    more.appendChild(button('+ queue', '', function () { st.queueAdd(slug); }));
+    more.appendChild(button('copy seed', '', function () { st.copySeed(slug); }));
+    more.appendChild(button('copy prompt', '', function () { st.copyPrompt(slug); }));
+    p.appendChild(more);
     p.appendChild(h2('WHY'));
     const why = document.createElement('p'); why.className = 'why-text';
     const whyText = span(''); why.appendChild(whyText); const wc = span('', 'cursor'); why.appendChild(wc);
@@ -757,6 +770,9 @@
       tree.appendChild(span('+-- ' + pad(ch.slug, phone() ? 18 : 20) + ' seed ' + (ch.lineage && ch.lineage.seed != null ? ch.lineage.seed : ch.seed) + (phone() ? '\n    ' : '   ') + chg + '\n', ch.slug === slug ? '' : 'mid'));
     });
     if (!children(root.slug).length && !parent) tree.appendChild(span('no variations yet. the seed is on the page; take it.\n', 'mid'));
+    // the nudge (issue #51): same seed, one changed clause: remix this.
+    const nudge = span('', 'mid'); nudge.appendChild(span('same seed, one changed clause: ')); nudge.appendChild(button('remix this', '', function () { st.remixThis(slug); })); nudge.appendChild(span('.'));
+    tree.appendChild(nudge);
     p.appendChild(tree);
     const fileRow = div('row');
     const fl = span(''); fl.appendChild(span('FILE   ', 'label')); fl.appendChild(span((phone() ? '' : 'tracks/') + (t.files && t.files.notes ? t.files.notes : slug + '/notes.md') + '   '));
@@ -874,12 +890,13 @@
     ['left right', 'seek 5 s'], ['i', "this track's page"], ['c', 'copy the permalink'], ['/', 'find'], ['g', 'guestbook'], ['esc', 'back to the transmitter']
   ];
   HELP_KEYS.push(['`', 'hide the interface (v: bars)']);
+  // request first (issue #51): making a track is the first thing the help offers
   const HELP_CMDS = [
-    'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10', 'list [words]    find <words>   info [slug]',
-    'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     remix [slug]   request <words>', 'guestbook   sign   count   uptime   dial <MHz>',
-    'amber   green   help   clear   reboot   home', 'theme [name]   big   contrast', '', 'a few others. nobody documents everything.'
+    'request <words>   remix [slug] [words]', 'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10',
+    'list [words]    find <words>   info [slug]', 'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     guestbook   sign   count',
+    'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast', '', 'a few others. nobody documents everything.'
   ];
-  const HELP_WORDS = ['play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'cat', 'tree', 'seed', 'prompt', 'take', 'remix', 'request', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'clear', 'reboot', 'home'];
+  const HELP_WORDS = ['request', 'remix', 'play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'cat', 'tree', 'seed', 'prompt', 'take', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'clear', 'reboot', 'home'];
   function helpLines() {
     const out = [];
     const n = Math.max(HELP_KEYS.length, HELP_CMDS.length);
@@ -983,11 +1000,78 @@
       .catch(function (e) { T.error('the bag tore: ' + e.message); links(); })
       .then(function () { if (btn) btn.textContent = 'take it home'; });
   };
+  // remix <slug> <words>: with the station API, a remix request (same seed, one changed clause); remix <slug> alone with the API
+  // goes to the MAKE A TRACK card prefilled. without the API (the Discord line, or nothing): the copy-and-open of section 8.
   st.remix = function (a) {
-    const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
-    copyText('/remix ' + t.slug + ' ', '/remix ' + t.slug);
+    const m = /^(\S+)\s+(.+)$/.exec((a || '').trim());
+    const t = findTrack(m ? m[1] : a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
+    if (reqBase()) { if (m) st.request('remix ' + t.slug + ' ' + m[2]); else st.remixThis(t.slug); return; }
+    copyText('/remix ' + t.slug + ' ' + (m ? m[2] : ''), '/remix ' + t.slug);
     if (CFG.requestLine) { T.print('request line is open. paste, add a few words, send.'); window.open(CFG.requestLine, '_blank', 'noopener'); }
     else T.print('request line not open yet. the command is on your clipboard for when it is.', 'amber');
+  };
+  // remix this (issue #51): home, the MAKE A TRACK card prefilled with `remix <slug> `, the input focused
+  st.remixThis = function (slug) {
+    const t = findTrack(slug); if (!t) { T.error('nobody knows "' + slug + '".'); return; }
+    // home first, synchronously: the card must be shown before the input can take focus (the hash change routes later, idempotent)
+    if (S.view !== 'home') { showHome(); st.help(false); if (location.hash && location.hash !== '#/') location.hash = '#/'; }
+    makePrefill('remix ' + t.slug + ' ');
+    T.print('remix ' + t.slug + ': add a few words and send.', 'mid');
+  };
+
+  /* ---------------- MAKE A TRACK (issue #51, design 12.0 controls) ----------------
+     the card under NOW PLAYING: one input, [ request ], [ remix what's playing ]. submitting runs the terminal's own request
+     flow; the card shows the read-back's first line, `watching ...` until done, then the permalink. without a request line
+     it says so, offers the Discord link when there is one, and copies the words for pasting there. */
+  function makeLine(text, cls, more) {
+    el.makeLine.textContent = '';
+    el.makeLine.className = 'make-line ' + (cls || 'mid');
+    if (text) el.makeLine.appendChild(span(text));
+    if (more) el.makeLine.appendChild(more);
+  }
+  function makeState(text) { el.makeState.textContent = text || ''; }
+  function makeIdle() {
+    makeState('');
+    if (reqBase()) { makeLine('a few of your own words. the machine reads them back, then renders.'); return; }
+    if (CFG.requestLine) {
+      const open = button('open the request line', '', function () { window.open(CFG.requestLine, '_blank', 'noopener'); T.print('the request line: ' + CFG.requestLine, 'mid'); });
+      makeLine('the request line opens soon. ', 'mid', open);
+    } else makeLine('the request line opens soon.');
+  }
+  function makePrefill(text) {
+    el.makeWords.value = text;
+    el.makeWords.focus();
+    try { el.makeWords.setSelectionRange(text.length, text.length); } catch (e) {}
+    if (phone()) setTimeout(function () { el.make.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, 50);
+  }
+  function makeSubmit() {
+    const words = el.makeWords.value.trim();
+    if (!words) { el.makeWords.focus(); return; }
+    if (!reqBase()) {
+      // no line from here: the words go to the clipboard for the Discord line (a remix becomes the bot's /remix command)
+      const m = /^remix\s+(\S+)\s+(.+)$/.exec(words);
+      const text = m && S.bySlug[m[1]] ? '/remix ' + m[1] + ' ' + m[2] : words;
+      copyText(text, text);
+      makeLine(CFG.requestLine ? 'copied. paste it on the request line.' : 'copied. the request line opens soon; nobody is taking requests from here yet.', 'amber',
+        CFG.requestLine ? button('open the request line', '', function () { window.open(CFG.requestLine, '_blank', 'noopener'); }) : null);
+      return;
+    }
+    el.makeWords.value = '';
+    T.run(/^remix\s+\S+\s+\S/.test(words) ? words : 'request ' + words, true);
+    el.makeWords.blur();
+  }
+  // what the request flow tells the card
+  const MAKE = {
+    asking: function () { makeState('asking ...'); makeLine('asking the machine ...'); },
+    readback: function (line) { makeLine(line); makeState('watching ...'); },
+    note: function (text, cls) { if (cls === 'amber') { makeLine(text, 'amber'); makeState(''); } },
+    done: function (slug, title) {
+      makeState('done');
+      const link = button('#/track/' + slug, '', function () { openTrack(slug); });
+      makeLine('done: ' + (title || slug) + '  ', '', link);
+    },
+    queued: function (slug) { makeState('queued next'); },
+    lost: function () { makeState(''); makeLine('lost the line. the request carries on without you.', 'amber'); }
   };
 
   /* ---------------- the request line (issue #26) ----------------
@@ -1008,8 +1092,10 @@
   function readBack(rec) {
     const rb = rec.readback || {}, t = rb.take || {};
     T.print('request ' + rec.id, 'mid');
-    T.print(fit('take: ' + [t.bpm != null ? t.bpm + ' bpm' : null, t.key, t.voice ? 'a voice' : 'instrumental', t.tier ? t.tier + ' tier' : null,
-      t.seeds && t.seeds.length ? t.seeds.length + (t.seeds.length === 1 ? ' seed' : ' seeds') : null].filter(Boolean).join(', ')));
+    const take = fit('take: ' + [t.bpm != null ? t.bpm + ' bpm' : null, t.key, t.voice ? 'a voice' : 'instrumental', t.tier ? t.tier + ' tier' : null,
+      t.seeds && t.seeds.length ? t.seeds.length + (t.seeds.length === 1 ? ' seed' : ' seeds') : null].filter(Boolean).join(', '));
+    T.print(take);
+    MAKE.readback(take);
     if (t.kit) T.print(fit('kit: ' + t.kit));
     if (t.lead) T.print(fit('lead: ' + t.lead));
     if (t.mood) T.print(fit('mood: ' + t.mood));
@@ -1020,11 +1106,11 @@
     if (kind === 'state') {
       if (d.state === cur.lastState) return;
       cur.lastState = d.state;
-      if (d.state === 'gated') T.print('waiting at the gate. a person has to say yes.', 'amber');
-      else if (d.state === 'approved') T.print('through the gate. in the queue.');
-      else if (d.state === 'rendering') T.print('rendering.');
-      else if (d.state === 'declined') T.print(fit('declined at the gate' + (d.note ? ': ' + d.note : '') + '. nothing was made.'), 'amber');
-      else if (d.state === 'failed') T.print(fit('failed' + (d.note ? ': ' + d.note : '') + '. nothing was made.'), 'amber');
+      if (d.state === 'gated') { T.print('waiting at the gate. a person has to say yes.', 'amber'); makeState('at the gate ...'); }
+      else if (d.state === 'approved') { T.print('through the gate. in the queue.'); makeState('queued ...'); }
+      else if (d.state === 'rendering') { T.print('rendering.'); makeState('rendering ...'); }
+      else if (d.state === 'declined') { const l = fit('declined at the gate' + (d.note ? ': ' + d.note : '') + '. nothing was made.'); T.print(l, 'amber'); MAKE.note(l, 'amber'); }
+      else if (d.state === 'failed') { const l = fit('failed' + (d.note ? ': ' + d.note : '') + '. nothing was made.'); T.print(l, 'amber'); MAKE.note(l, 'amber'); }
     } else if (kind === 'progress') {
       if (d.text) T.print(fit(d.text), 'mid');
     }
@@ -1035,11 +1121,12 @@
     if (REQ.active === cur) REQ.active = null;
     const res = final && final.result;
     if (!final || final.state !== 'done' || !res || !res.slug) {
-      if (final && final.state !== 'declined' && final.state !== 'failed') T.print('the request ended: ' + (final ? final.state : 'unknown') + '.', 'amber');
+      if (final && final.state !== 'declined' && final.state !== 'failed') { const l = 'the request ended: ' + (final ? final.state : 'unknown') + '.'; T.print(l, 'amber'); MAKE.note(l, 'amber'); }
       return;
     }
     T.print(fit('done: ' + (res.title || res.slug)));
     T.print(location.origin + location.pathname + '#/track/' + res.slug, 'amber');     // not permalink(): no query string (a test flag may carry a key)
+    MAKE.done(res.slug, res.title);
     const tries = [0, 1500, 4000, 8000];
     (function reload(i) {
       loadIndex().then(installIndex).then(function () {
@@ -1048,6 +1135,7 @@
         S.queue = S.queue.filter(function (x) { return x !== res.slug; });
         if (S.current !== res.slug) S.queue.unshift(res.slug);
         T.print('queued next: ' + res.slug);
+        MAKE.queued(res.slug);
       }).catch(function () {
         if (i + 1 < tries.length) setTimeout(function () { reload(i + 1); }, tries[i + 1]);
         else T.print('the catalogue has not caught up. the permalink will work when it does.', 'mid');
@@ -1059,6 +1147,7 @@
     cur.stopped = true;
     if (REQ.active === cur) REQ.active = null;
     T.print('lost the line. request ' + cur.id + ' carries on without you.', 'amber');
+    MAKE.lost();
   }
   function reqFollow(cur) {
     const base = reqBase(), ctl = new AbortController();
@@ -1108,12 +1197,19 @@
       return;
     }
     T.print('asking the machine ...', 'mid');
-    fetch(base + '/requests', { method: 'POST', headers: reqHeaders(true), body: JSON.stringify({ words: words }) })
+    MAKE.asking();
+    // `remix <slug> <words>` is the API's remix of a published track: same seed, one changed clause (api/README.md)
+    const rm = /^remix\s+(\S+)\s+(.+)$/.exec(words);
+    const call = rm && S.bySlug[rm[1]]
+      ? fetch(base + '/tracks/' + encodeURIComponent(rm[1]) + '/remix', { method: 'POST', headers: reqHeaders(true), body: JSON.stringify({ words: rm[2] }) })
+      : fetch(base + '/requests', { method: 'POST', headers: reqHeaders(true), body: JSON.stringify({ words: words }) });
+    call
       .then(function (r) { return r.json().catch(function () { return null; }).then(function (j) { return { ok: r.ok, status: r.status, body: j }; }); })
       .then(function (res) {
         if (!res.ok) {
           const e = res.body && res.body.error;
-          T.error(fit((e && e.message) || ('the line said ' + res.status)));
+          const l = fit((e && e.message) || ('the line said ' + res.status));
+          T.error(l); MAKE.note(l, 'amber');
           return;
         }
         const rec = res.body;
@@ -1121,7 +1217,7 @@
         readBack(rec);
         const cur = REQ.active = { id: rec.id, lastState: null, stopped: false, ctl: null };
         reqFollow(cur);
-      }, function () { T.error('the request line did not answer. try again.'); });
+      }, function () { T.error('the request line did not answer. try again.'); MAKE.note('the request line did not answer. try again.', 'amber'); });
   };
   st.openGuestbook = function () { location.hash = '#/guestbook'; if (S.view !== 'guestbook') route(); };
   st.sign = function (name, line) {
@@ -1446,11 +1542,14 @@
     el.hdrBack.addEventListener('click', function () { st.home(); });
     el.hdrSlug.addEventListener('click', function () { if (S.current) openTrack(S.current); });
     el.progress.addEventListener('click', function (e) { seekTo(TH().progressHit(el.progress, e.clientX, content())); });
-    // the volume widget answers the click: 1..10 sets it, 0 is the mute
-    el.vol.addEventListener('click', function (e) {
-      const k = volWidget ? volWidget.hit(e.clientX, e.clientY) : 0;
-      if (k > 0) setVol(k); else st.mute();
-    });
+    // the volume fader (volume.js): a drag sets the gain live and prints once on release; the word or glyph mutes
+    NOBODY.volume.mount(el.vol, { set: setVol, mute: function () { st.mute(); } });
+    // MAKE A TRACK (issue #51)
+    el.makeForm.addEventListener('submit', function (e) { e.preventDefault(); makeSubmit(); });
+    el.makeRemix.addEventListener('click', function () { if (S.current) st.remixThis(S.current); else T.print('nothing is playing to remix.', 'mid'); });
+    el.makeWords.addEventListener('keydown', function (e) { e.stopPropagation(); if (e.key === 'Escape') { e.preventDefault(); if (el.makeWords.value) el.makeWords.value = ''; else el.makeWords.blur(); } });
+    el.makeWords.addEventListener('focus', function () { if (phone()) setTimeout(function () { el.makeForm.scrollIntoView({ block: 'center' }); }, 300); });
+    makeIdle();
     el.npSlug.addEventListener('click', function () { if (S.current) openTrack(S.current); });
     el.spectrum.addEventListener('click', function () { S.scopeMode = S.scopeMode === 'bars' ? 'scope5' : 'bars'; A.setMode(S.scopeMode); T.print(S.scopeMode === 'scope5' ? 'scope: five rows. the old green screen way.' : 'bars: ' + A.bands + ' bands.', 'mid'); });
     el.promptRow.addEventListener('click', function () { T.focus(); });

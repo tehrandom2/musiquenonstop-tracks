@@ -38,7 +38,9 @@
   --text: #f3f2fa;
   --dim: #a9a8bd;
   --faint: #8b8ba3;
-  --accent: hsl(var(--h) 96% 66%);
+  /* 70 % lightness: the accent reads at 5.0:1 or better on the card at every hue (12.15 wrote 66 %, which measured 4.25:1 at
+     the violet-blue hues around 255 once the catalogue's order changed which track the harness measured; issue #51) */
+  --accent: hsl(var(--h) 96% 70%);
   --accent-hot: hsl(calc(var(--h) + 18) 100% 82%);
   --accent-2: hsl(calc(var(--h) + 42) 98% 62%);
   --accent-soft: hsl(var(--h) 90% 60% / .16);
@@ -192,15 +194,27 @@ body {
 
 /* transmitter (12.15): the dock. the big scrubber with the loudness profile is the widget; the fat buttons are icons */
 .transmitter > .row:first-child { align-items: center; }
-.vol { display: inline-flex; align-items: center; gap: 8px; }
-.vol svg { display: block; overflow: visible; }
-.vol .spk { width: 18px; height: 18px; color: var(--dim); }
-.vol.muted .spk { color: var(--warn); }
-.vol .slider { width: 110px; height: 18px; }
-.vol .slider .track { stroke: rgb(255 255 255 / .15); stroke-width: 4; stroke-linecap: round; }
-.vol .slider .fillr { stroke: var(--accent); stroke-width: 4; stroke-linecap: round; }
-.vol .slider .thumb { fill: #fff; stroke: var(--accent-soft); stroke-width: 4; }
-.vol.muted .slider .fillr { stroke: var(--faint); }
+/* the volume fader (12.0 controls) is the dock's slider: the speaker glyph instead of the word (this theme uses icons), the
+   accent fill, a white handle; muted strikes the glyph in the warning colour */
+.vol .vol-word { display: none; }
+.vol .vol-spk { display: block; color: var(--dim); }
+.vol .vol-mute:hover .vol-spk, .vol .vol-mute:focus-visible .vol-spk { color: var(--text); }
+.vol.muted .vol-spk { color: var(--warn); }
+.vol .vol-track { background: rgb(255 255 255 / .15); }
+.vol .vol-fill { background: var(--accent); }
+.vol .vol-handle { background: #fff; box-shadow: 0 0 0 4px var(--accent-soft); }
+.vol .vol-rail:focus-visible .vol-handle, .vol.dragging .vol-handle { box-shadow: 0 0 0 3px var(--accent), 0 0 16px var(--accent-glow); }
+.vol .vol-read { font-family: var(--mono); font-size: var(--fs); color: var(--text); font-variant-numeric: tabular-nums; }
+.vol.muted .vol-fill { background: var(--faint); }
+.vol.muted .vol-read { color: var(--warn); }
+
+/* MAKE A TRACK (12.0 controls): the grotesk input on the dock, the accent as the mark */
+.make-form .make-mark { color: var(--accent); }
+.make-form #makeWords { font-family: var(--head); font-weight: 500; color: var(--text); caret-color: var(--accent); border-bottom: 1px solid var(--line-2); }
+.make-form #makeWords::placeholder { color: var(--dim); opacity: 1; }
+.make-form #makeWords:focus { border-bottom-color: var(--accent); box-shadow: 0 1px 0 var(--accent-soft); }
+.make-line { font-family: var(--head); }
+.make-line.amber { color: var(--warn); }
 .np-slug { font-family: var(--display); font-weight: 800; font-size: 19px; letter-spacing: -.02em; color: var(--text); line-height: 1.1; }
 .np-slug:hover, .np-slug:focus-visible { color: var(--accent-hot); }
 .tuning-state .np-slug { color: var(--accent-hot); }
@@ -257,10 +271,11 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
 .cat-row.playing .mark { color: var(--accent-hot); }
 /* a played row keeps the row colour; its `.` mark and the state word say it played (12.0, legibility) */
 .cat-row.played { color: var(--dim); }
-.cat-row.played .mark { color: var(--faint); }
+.cat-row.played .mark { color: var(--dim); }
 .cat-row.tuning { color: var(--warn); }
-.cat-row .plus { color: var(--faint); visibility: hidden; }
-.cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: var(--accent); }
+.cat-row .plus, .cat-row .rmx { color: var(--faint); visibility: hidden; }
+.cat-row:hover .plus, .cat-row.hl .plus, .cat-row:hover .rmx, .cat-row.hl .rmx { visibility: visible; color: var(--accent); }
+.cat-row:hover .rmx { text-decoration: underline; text-decoration-color: hsl(var(--h) 90% 60% / .6); }
 .cat-row:hover, .cat-row.hl { color: var(--text); background: rgb(255 255 255 / .05); }
 .cat-row:hover *, .cat-row.hl * { color: var(--text); }
 .cat-row:hover .mark, .cat-row.hl .mark { color: var(--accent-hot); }
@@ -313,16 +328,17 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
   .header .chip::before { content: none; }
   .np-slug { font-size: 15px; }
 
-  .vol .slider { width: 70px; }
   .progress { grid-template-columns: 4.5ch minmax(0, 1fr) 4.5ch; gap: 6px; }
 
   .fat { gap: 6px; }
   .footer-buttons .left { line-height: calc(var(--row) * 1.4); }
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
+  /* the 40-column row keeps its whole width on the phone: no inset, so `+ remix` stays on the card (issue #51) */
+  .cat-row { padding-left: 0; padding-right: 0; }
   .footer .odo-row { gap: 2ch; }
 }
 @media (hover: none) {
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
 }
 
 /* reduced motion (12.8): the grain, the orbit, the hue drift, the rises stop; the data still moves. */

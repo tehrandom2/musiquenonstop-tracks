@@ -8,7 +8,8 @@ The default look until the owner flips `defaultTheme` in `../../config.js`.
   amber and the warnings to green. Every text tone reads at 4.5:1 or better on the glass (12.0, legibility).
 - **Type.** VT323 as the one face (a terminal has one); IBM Plex Mono for the printouts (`cat`).
 - **The widget.** None. The CRT mounts nothing in the transmitter card: the progress bar is typed
-  (`####....`), the dial is text ticks, the volume is `vol ####......`, the analyser is typed cells and the
+  (`####....`), the dial is text ticks, the volume is the shared fader (`volume.js`, design 12.0 controls) in
+  the green with a `--hot` handle, the analyser is typed cells and the
   scope a line of glyphs. `widget()` answers `null`.
 - **Behind the page.** The glass: a barrel filter (dropped on a slow machine by a twelve-frame probe, read once
   the tube has warmed), scanlines at 10 % that flicker a little, a rolling bar, phosphor noise, a flicker, the

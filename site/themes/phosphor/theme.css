@@ -308,7 +308,27 @@ body {
 .header .up { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
 
 /* transmitter (2.2, 2.3, 5.2, 5.3) */
-.transmitter .vol { color: var(--p1); }
+/* the volume fader (12.0 controls) in phosphor: the word in the green, a dim track, a mid fill, the handle in --hot with the bloom */
+.vol { color: var(--p1); }
+.vol .vol-word { color: var(--p1); text-shadow: var(--bloom); }
+.vol .vol-track { background: var(--p1-ghost); box-shadow: inset 0 0 0 1px var(--p1-dim); }
+.vol .vol-fill { background: var(--p1-mid); }
+.vol .vol-handle { background: var(--hot); box-shadow: 0 0 4px var(--hot), 0 0 10px rgb(var(--p1-rgb) / .6); }
+.vol .vol-rail:focus-visible .vol-handle, .vol.dragging .vol-handle { box-shadow: 0 0 0 2px var(--glass), 0 0 0 3px var(--p1), 0 0 10px rgb(var(--p1-rgb) / .6); }
+.vol .vol-read { color: var(--p1); text-shadow: var(--bloom); }
+.vol.muted .vol-word { color: var(--p3); text-shadow: var(--bloom-amber); text-decoration: line-through; text-decoration-thickness: 2px; }
+.vol.muted .vol-fill { background: var(--p1-dim); }
+.vol.muted .vol-read { color: var(--p3); text-shadow: var(--bloom-amber); }
+.vol .vol-mute:hover, .vol .vol-mute:focus-visible { background: var(--p1); color: var(--glass); }
+.vol .vol-mute:hover .vol-word, .vol .vol-mute:focus-visible .vol-word { color: var(--glass); text-shadow: none; }
+
+/* MAKE A TRACK (12.0 controls): the prompt mark and the input in the green, the placeholder in the mid tone */
+.make-form .make-mark { color: var(--p1); }
+.make-form #makeWords { color: var(--p1); text-shadow: var(--bloom); caret-color: var(--hot); border-bottom: 1px dotted var(--p1-dim); }
+.make-form #makeWords::placeholder { color: var(--p1-mid); opacity: 1; text-shadow: none; }
+.make-form #makeWords:focus { border-bottom-color: var(--p1); }
+.make-line.amber { color: var(--p3); text-shadow: var(--bloom-amber); }
+.make-line .bk { color: var(--p1); text-shadow: var(--bloom); }
 /* the playing slug breathes with the bass (--beat, written on :root by visuals.js) */
 .np-row .np-slug {
   color: var(--p1);
@@ -346,8 +366,9 @@ body {
 /* a played row keeps the row colour and loses the glow; its `.` mark and the state word say it played (12.0, legibility) */
 .cat-row.played { color: var(--p1-mid); text-shadow: none; }
 .cat-row.tuning { color: var(--p3); text-shadow: var(--bloom-amber); }
-.cat-row .plus { color: var(--p1-mid); text-shadow: none; visibility: hidden; }
-.cat-row:hover .plus, .cat-row.hl .plus { visibility: visible; color: inherit; }
+.cat-row .plus, .cat-row .rmx { color: var(--p1-mid); text-shadow: none; visibility: hidden; }
+.cat-row:hover .plus, .cat-row.hl .plus, .cat-row:hover .rmx, .cat-row.hl .rmx { visibility: visible; color: inherit; }
+.cat-row:hover .rmx { text-decoration: underline; }
 .cat-row:hover *, .cat-row.hl * { color: var(--glass) !important; text-shadow: none !important; }
 .cat-row .slug-link { text-decoration: none; }
 .cat-row:hover .slug-link { text-decoration: underline; }
@@ -437,10 +458,10 @@ body {
   .fat { position: relative; margin-left: -1ch; margin-right: -1ch; padding: calc(var(--row) * .7) 1ch calc(var(--row) * .25); border-top: 0; }
   .fat::before { content: "├" var(--fr-dash); left: 0; bottom: auto; width: calc(100% - 1ch); }
   .fat::after { content: "┤"; right: 0; bottom: auto; width: 1ch; }
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
 }
 @media (hover: none) {
-  .cat-row .plus { visibility: visible; }
+  .cat-row .plus, .cat-row .rmx { visibility: visible; }
 }
 
 /* the page header at 390 px (station.css hides the name and the bar; the slug keeps the data colour with its ellipsis) */

@@ -12,7 +12,7 @@ NOBODY.themes.arena = (function () {
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TAU = Math.PI * 2, BUCKETS = 200;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
-  let stage = null, vignette = null, grain = null, scrub = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, slider = null, chipWatch = null, orbit = null;
+  let stage = null, vignette = null, grain = null, scrub = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, chipWatch = null, orbit = null;
   const hues = {}, profiles = {};
   function el(id) { return ctx.el[id] || document.getElementById(id); }
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
@@ -76,7 +76,7 @@ NOBODY.themes.arena = (function () {
     document.documentElement.style.removeProperty('--h');
     el('scope').textContent = ''; scopeCanvas = null; scopeCtx = null;
     el('progress').textContent = ''; scrub = null; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
-    el('dial').textContent = ''; dialStrip = null; slider = null; el('vol').textContent = '';
+    el('dial').textContent = ''; dialStrip = null;
     el('towerStatic').textContent = ''; el('towerStatic').hidden = true;
     glass.classList.remove('closing', 'bloom-on');
   };
@@ -272,37 +272,9 @@ NOBODY.themes.arena = (function () {
     };
   }
   TH.dial = function (dialEl, f, locked, note) { if (!dialStrip) dialStrip = makeDialStrip(dialEl); dialStrip.set(f, locked, note); };
-  // the volume is a slider (12.15): a speaker icon that mutes, a rail with a white thumb; a click on the rail sets 1..10
-  function svgEl(name, attrs) { const e = document.createElementNS('http://www.w3.org/2000/svg', name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
-  function makeSlider(host) {
-    host.textContent = '';
-    const spk = svgEl('svg', { class: 'spk', viewBox: '0 0 24 24', 'aria-hidden': 'true' });
-    spk.innerHTML = '<path d="M11 5 6 9H2v6h4l5 4z" fill="currentColor"/><path class="waves" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="cross" d="m23 9-6 6M17 9l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"/>';
-    const sl = svgEl('svg', { class: 'slider', viewBox: '0 0 110 18', 'aria-hidden': 'true' });
-    const track = svgEl('line', { class: 'track', x1: 4, y1: 9, x2: 106, y2: 9 });
-    const fill = svgEl('line', { class: 'fillr', x1: 4, y1: 9, x2: 4, y2: 9 });
-    const thumb = svgEl('circle', { class: 'thumb', cx: 4, cy: 9, r: 5 });
-    sl.appendChild(track); sl.appendChild(fill); sl.appendChild(thumb);
-    host.appendChild(spk); host.appendChild(sl);
-    return {
-      set: function (v, muted) {
-        const x = 4 + v / 10 * 102;
-        fill.setAttribute('x2', x.toFixed(1)); thumb.setAttribute('cx', x.toFixed(1));
-        host.classList.toggle('muted', !!muted);
-        spk.querySelector('.waves').style.display = muted ? 'none' : ''; spk.querySelector('.cross').style.display = muted ? '' : 'none';
-      },
-      hit: function (x) {
-        const r = sl.getBoundingClientRect();
-        if (x < r.left - 2) return 0;
-        return clamp(Math.ceil((x - r.left) / r.width * 10), 1, 10);
-      }
-    };
-  }
-  TH.volume = function (volEl, v, muted) {
-    if (!slider || !volEl.querySelector('svg')) slider = makeSlider(volEl);
-    slider.set(v, muted);
-    return { hit: function (x) { return slider.hit(x); } };
-  };
+  // the icon slider of 12.15 is now the shared fader (volume.js, 12.0 controls): the speaker glyph mutes, the rail sets 0..10;
+  // this theme styles it (the glyph instead of the word, the accent fill, the white handle) and decorates nothing
+  TH.volume = function () {};
   // dead air: an empty orbit turning in the card, lit for nobody
   TH.towerStart = function (hostEl, staticEl) {
     if (!orbit || orbit.parentNode !== hostEl) {

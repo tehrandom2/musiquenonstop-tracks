@@ -243,7 +243,7 @@ NOBODY.vis = (function () {
     return [+m[1], +m[2], +m[3], a];
   };
   V.over = function (top, under) { const a = top[3] == null ? 1 : top[3]; return [top[0] * a + under[0] * (1 - a), top[1] * a + under[1] * (1 - a), top[2] * a + under[2] * (1 - a), 1]; };
-  const LABELS = '.label, .chip, .page h2 > span:first-child, .boot-wait, .odo-label, .help-head .label';
+  const LABELS = '.label, .chip, .page h2 > span:first-child, .boot-wait, .odo-label, .help-head .label, .vol-word';
   function describe(e) {
     const parts = [];
     let a = e;
@@ -301,7 +301,8 @@ NOBODY.vis = (function () {
         byEl.set(e, entry); out.push(entry);
       }
       entry.text += (entry.text ? ' ' : '') + n.nodeValue.replace(/\s+/g, ' ').trim();
-      rects.forEach(function (r) { entry.rects.push({ x: Math.floor(r.left), y: Math.floor(r.top), w: Math.ceil(r.right) - Math.floor(r.left), h: Math.ceil(r.bottom) - Math.floor(r.top) }); });
+      // rounded inward: the sampled pixels are the text box's own, never a sliver of the canvas or the row above it
+      rects.forEach(function (r) { const x = Math.ceil(r.left), y = Math.ceil(r.top), w = Math.floor(r.right) - x, h = Math.floor(r.bottom) - y; if (w >= 1 && h >= 1) entry.rects.push({ x: x, y: y, w: w, h: h }); });
     }
     out.forEach(function (b) { b.text = b.text.slice(0, 60); });
     return out;

@@ -39,6 +39,7 @@
 <script src="synth.js" defer></script>
 <script src="visuals.js" defer></script>
 <script src="terminal.js" defer></script>
+<script src="volume.js" defer></script>
 <script src="themes/phosphor/theme.js" defer></script>
 <script src="themes/city/theme.js" defer></script>
 <script src="themes/tapedeck/theme.js" defer></script>
@@ -73,7 +74,17 @@
       <section class="band card transmitter" id="transmitter">
         <div class="row">
           <span class="label" id="txLabel">NOW PLAYING</span>
-          <button class="bare vol" id="vol" aria-label="volume">vol ..........</button>
+          <!-- the volume fader (design 12.0, controls): theme-independent markup, wired by volume.js, styled by each theme's
+               tokens. a theme may restyle it and may decorate the .vol-deco slot; it never removes it. -->
+          <div class="vol" id="vol" role="group" aria-label="volume">
+            <button class="bare vol-mute" id="volMute" type="button" aria-label="mute" aria-pressed="false"><span class="vol-word">VOL</span><svg class="vol-spk" viewBox="0 0 24 24" aria-hidden="true"><path class="spk-body" d="M11 5 6 9H2v6h4l5 4z"/><path class="spk-waves" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="spk-cross" d="m22 9-6 6M16 9l6 6"/></svg></button>
+            <div class="vol-rail" id="volRail" role="slider" tabindex="0" aria-label="volume" aria-valuemin="0" aria-valuemax="10" aria-valuenow="7" aria-valuetext="7 of 10">
+              <div class="vol-track"><div class="vol-fill" id="volFill"></div></div>
+              <div class="vol-handle" id="volHandle"></div>
+            </div>
+            <span class="vol-read" id="volRead">7/10</span>
+            <span class="vol-deco" id="volDeco" aria-hidden="true"></span>
+          </div>
         </div>
         <div class="row np-row">
           <button class="bare np-slug" id="npSlug">-</button>
@@ -101,6 +112,20 @@
           <button class="bk" id="fatNext" aria-label="next">&gt;|</button>
           <button class="bk" id="fatQueue" aria-label="queue the highlighted">+</button>
         </div>
+      </section>
+
+      <!-- MAKE A TRACK (design 12.0, controls): the request line up front, under NOW PLAYING on every theme. submitting runs the
+           terminal's own `request <words>` flow; the card narrates the read-back and the result. without a request line it says so. -->
+      <section class="band card make" id="make">
+        <div class="row">
+          <span class="label">MAKE A TRACK</span>
+          <span class="right mid make-state" id="makeState"></span>
+        </div>
+        <form class="make-form" id="makeForm" autocomplete="off">
+          <label class="ps1 make-mark" for="makeWords">&gt; </label><input id="makeWords" type="text" placeholder="ask the machine for a track..." autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send" maxlength="200" aria-label="ask the machine for a track">
+          <span class="make-buttons"><button class="bk" id="makeSend" type="submit">request</button> <button class="bk" id="makeRemix" type="button">remix what's playing</button></span>
+        </form>
+        <div class="make-line mid" id="makeLine"></div>
       </section>
 
       <section class="band card catalogue" id="catalogue">
