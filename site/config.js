@@ -16,6 +16,6 @@ window.NOBODY_CONFIG = {
   requestLine: null,
   requestApi: null,
   requestKey: null,
-  defaultTheme: "city",
+  defaultTheme: "campfire",
   source: "https://github.com/tehrandom2/nobody-fm"
 };
