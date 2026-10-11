@@ -1371,10 +1371,22 @@ NOBODY.themes = NOBODY.themes || {};
         camp: function () { ctx.setLayout('camp'); }
       };
     };
-    function inCamp() { return UI.layout === 'camp'; }
+    // the camp is the view only on the home screen in the camp layout with no overlay open (issue #77): a track page, the
+    // guestbook or help send the camp's boards away, the same way the scope does, and its keys go back to the station
+    function inCamp() { return UI.layout === 'camp' && !UI.away; }
+    function syncAway() {
+      const help = el('help'), away = UI.view !== 'home' || !!(help && !help.hidden);
+      document.body.classList.toggle('camp-page', UI.view !== 'home');
+      if (away === UI.away) return;
+      UI.away = away;
+      document.body.classList.toggle('camp-away', away);
+      if (away) { closeJournal(); if (scene && scene.C.scoped) setScope(false); if (UI.hDown) mallowUp(); document.body.classList.remove('camp-toasting'); }
+      else placeBar();
+    }
     TH.keys = function (e) {
       if (!scene) return false;
       const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      if (UI.away && k !== 'f') return false;
       if (k === 'f') { ctx.setLayout(inCamp() ? 'deck' : 'camp'); return true; }
       if (!inCamp()) {
         if (k === 'z' || k === 'h' || k === 'l' || k === 'w' || k === 'e' || k === 'x') ctx.setLayout('camp');
@@ -1455,8 +1467,10 @@ NOBODY.themes = NOBODY.themes || {};
       el('hdrBar').textContent = ''; el('hdrBar').className = 'hdr-rail'; el('hdrBar').appendChild(document.createElement('i'));
       el('dial').innerHTML = '<span class="dial-band"><i></i></span><span class="dial-read"></span>';
       const words = el('makeWords'); if (words) { UI.placeholder = words.getAttribute('placeholder'); words.setAttribute('placeholder', 'ask the sky for a track...'); }
-      UI.layout = 'camp';
+      UI.layout = 'camp'; UI.view = S.view === 'home' ? 'home' : 'page'; UI.away = null;
       buildUi();
+      UI.helpWatch = new MutationObserver(syncAway); UI.helpWatch.observe(el('help'), { attributes: true, attributeFilter: ['hidden'] });
+      syncAway();
       sceneUp();
       nocampTimer = setTimeout(function () { if (!scene) document.body.classList.add('nocamp'); }, 2000);
       if (window.NOBODY_NOCDN) document.body.classList.add('nocamp');
@@ -1472,7 +1486,8 @@ NOBODY.themes = NOBODY.themes || {};
       el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
       el('dial').textContent = '';
       const words = el('makeWords'); if (words && UI.placeholder) words.setAttribute('placeholder', UI.placeholder);
-      document.body.classList.remove('nocamp', 'camp-scoped', 'camp-journal-open', 'camp-toasting');
+      document.body.classList.remove('nocamp', 'camp-scoped', 'camp-journal-open', 'camp-toasting', 'camp-away', 'camp-page');
+      if (UI.helpWatch) { UI.helpWatch.disconnect(); UI.helpWatch = null; }
       glass.classList.remove('closing', 'bloom-on');
       el('towerStatic').textContent = ''; el('towerStatic').hidden = true;
       window.removeEventListener('keyup', onKeyUp); window.removeEventListener('keydown', onKeyCapture, true); window.removeEventListener('wheel', onWheel); window.removeEventListener('resize', placeBar);
@@ -1544,7 +1559,7 @@ NOBODY.themes = NOBODY.themes || {};
         duckFor();
         return Promise.resolve();
       }
-      if (to === 'page' || to === 'guestbook') { closeJournal(); if (scene && scene.C.scoped) setScope(false); }
+      if (to === 'page' || to === 'guestbook' || to === 'home' || to === 'dead') { UI.view = to === 'home' || to === 'dead' ? 'home' : to; syncAway(); }
       if (info.slug && scene) scene.setPlaying(info.slug);
       return Promise.resolve();
     };

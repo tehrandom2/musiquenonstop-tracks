@@ -327,6 +327,9 @@ body[data-layout="camp"] #catalogue .cat-row .plus { right: 6ch; }
 body[data-layout="camp"] #catalogue .cat-row .rmx { right: 0; }
 body[data-layout="camp"] #footer { display: none; }
 body[data-layout="camp"] #page { grid-column: 1 / 4; grid-row: 2 / 6; min-height: 0; overflow: auto; }
+/* on a page the terminal sits under it across the width, never inside the page's box (issue #77) */
+body.camp-page[data-layout="camp"] #page { grid-row: 2 / 5; }
+body.camp-page[data-layout="camp"] #terminal { grid-column: 1 / 4; }
 body[data-layout="camp"] #transmitter #spectrum, body[data-layout="camp"] #transmitter #baseline, body[data-layout="camp"] #transmitter #scope { display: none; }
 body[data-layout="camp"] #transmitter .readout { max-height: calc(var(--row) * 2); overflow: hidden; }
 body[data-layout="camp"] .terminal .log { height: calc(var(--row) * 2); max-height: none; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
@@ -337,6 +340,10 @@ body[data-layout="camp"] #main > *, .camp-legend, .camp-bar, .camp-credit { tran
 body.camp-scoped[data-layout="camp"] #main > *, body.camp-scoped .camp-legend, body.camp-scoped .camp-bar, body.camp-scoped .camp-credit,
 body.camp-toasting[data-layout="camp"] #main > *:not(#header), body.camp-toasting .camp-legend, body.camp-toasting .camp-credit, body.camp-toasting .camp-hint {
   opacity: 0; visibility: hidden; transform: translateY(14px); pointer-events: none; transition: opacity 220ms ease-in, transform 220ms ease-in, visibility 0s linear 220ms;
+}
+/* the camp's boards belong to the camp view only (issue #77): a track page, the guestbook or help sends them away */
+body.camp-away .camp-legend, body.camp-away .camp-bar, body.camp-away .camp-credit, body.camp-away .camp-hint, body.camp-away .camp-scope, body.camp-away .camp-journal {
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 220ms ease-in, visibility 0s linear 220ms;
 }
 body:not([data-layout="camp"]) .camp-legend, body:not([data-layout="camp"]) .camp-bar, body:not([data-layout="camp"]) .camp-credit, body:not([data-layout="camp"]) .camp-scope, body:not([data-layout="camp"]) .camp-hint { display: none; }
 body.ui-hidden .camp-legend, body.ui-hidden .camp-bar, body.ui-hidden .camp-credit, body.ui-hidden .camp-scope, body.ui-hidden .camp-hint, body.ui-hidden .camp-journal { display: none; }
