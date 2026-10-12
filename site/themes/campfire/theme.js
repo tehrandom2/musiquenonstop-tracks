@@ -2289,6 +2289,7 @@ NOBODY.themes = NOBODY.themes || {};
       const c = sy.ctx; AU.on = true; AU.c = c; AU.nodes = [];
       AU.bus = c.createGain(); AU.bus.gain.value = campGain(); AU.bus.connect(sy.gain);
       AU.amb = c.createGain(); AU.amb.gain.value = ambWant(); AU.amb.connect(AU.bus);
+      biteLoad();
       const d = document.getElementById('deck');
       if (d && !AU.deckL) { AU.deckL = ambSync; ['play', 'playing', 'pause', 'ended', 'emptied'].forEach(function (t) { d.addEventListener(t, AU.deckL); }); }
       const noiseSrc = function () { const s = c.createBufferSource(); s.buffer = sy.noise; s.loop = true; s.start(0, Math.random() * 1.9); AU.nodes.push(s); return s; };
@@ -2423,15 +2424,21 @@ NOBODY.themes = NOBODY.themes || {};
         o.connect(g); g.connect(lp); o.start(t); o.stop(t + 1.2);
       });
     }
+    // the bite: a rendered clip (audio/bite.mp3: a crunch and a chew, then a soft "all better" chime 21 dB under the
+    // crunch), on the camp bus so the camp sounds switch and level apply. fetched on the first marshmallow, decoded once.
+    const BITE_URL = 'themes/campfire/audio/bite.mp3', BITE_GAIN = 0.7;
+    function biteLoad() {
+      if (AU.biteBuf || AU.biteLoading || !AU.c) return;
+      AU.biteLoading = fetch(BITE_URL).then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+        .then(function (a) { return AU.c.decodeAudioData(a); })
+        .then(function (b) { AU.biteBuf = b; }, function () { AU.biteLoading = null; });
+    }
     function biteSound() {
       if (!AU.on) return;
-      const c = AU.c, sy = SY(), t = c.currentTime + 0.42;
-      [0, 0.36].forEach(function (d) {
-        const src = c.createBufferSource(); src.buffer = sy.noise;
-        const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900;
-        const g = c.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(0.04, t + d + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + d + 0.12);
-        src.connect(lp); lp.connect(g); g.connect(AU.bus); src.start(t + d, Math.random(), 0.15);
-      });
+      if (!AU.biteBuf) { biteLoad(); return; }
+      const c = AU.c, src = c.createBufferSource(), g = c.createGain();
+      src.buffer = AU.biteBuf; g.gain.value = BITE_GAIN;
+      src.connect(g); g.connect(AU.bus); src.start(c.currentTime + 0.42);
     }
     function preview(slug, s, pan) {
       if (!AU.pv) return;
