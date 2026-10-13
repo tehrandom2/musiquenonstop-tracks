@@ -91,6 +91,7 @@ body {
 
 /* the city behind everything (12.3) and the CSS grid that stands in for it without the CDN (12.11) */
 .city { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
+body[data-layout="air"] .city { touch-action: none; }
 .cssgrid { display: none; }
 body.nocity .city { display: none; }
 body.nocity .cssgrid {

@@ -161,14 +161,11 @@ function makeCityScene(THREE, P) {
   // zoom scales the orbit (the wheel), tilt raises it (a vertical drag), userAt pauses the orbit's own turn after a drag (issue #63)
   const cam = { target: new THREE.Vector3(0, 2, 0), r: 24, h: 18, speed: 0.02, angle: 0.6, side: 0, sideNow: 0, zoom: 1, zoomT: 1, tilt: 0, userAt: -1e9 };
   const pose = { pos: new THREE.Vector3(), look: new THREE.Vector3() };
-  let flight = null, tunnelUntil = 0, tunnelFade = 0, parallax = { x: 0, y: 0, tx: 0, ty: 0 };
+  let ticking = false, flight = null, tunnelUntil = 0, tunnelFade = 0, parallax = { x: 0, y: 0, tx: 0, ty: 0 };
   let bootT = null, deadBlocks = 0, deadAt = 0, pulse = 0, bass = 0, chromaAmt = 0.0022, filterK = 0, filterOn = 0, liftK = 0, liftT = 0;
-  // the camera on rails (city-flythrough 4): street, flight or orbit; every value a damped spring with a 220 ms time constant.
-  // the game camera of issue #63 on top: yaw and up orbit the camera around the point it looks at on the street (a drag), pan turns
-  // the look around the camera itself (shift-drag, z, x), drive is a held W/S or up/down, travel the distance a tap or a wheel
-  // notch still owes, glance the look leaning into an armed turn
-  const NAV = { mode: 'orbit', x: 1, z: 1, y: 2.6, h: 0, hv: 0, speed: 0, tspeed: 0, lat: 0, tlat: 0, turn: 0, turnAt: 0, path: null, pathLen: 0, pathT: 0, pathDur: 0, onLand: null, cruise: false, cruiseAt: 0, cruising: false, lastInput: -1e9, endSaid: 0, flightSlug: null,
-    yaw: 0, up: 0, pan: 0, panNow: 0, glance: 0, glanceNow: 0, drive: 0, driveAt: 0, travel: 0, focus: null };
+  // the camera's mode: orbit (the deck, the page, standby), or in the air (issue #110) free, glide (an explicit request easing it to a
+  // tower) or auto (the hidden mode's auto-fly). focus is the tower the last glide went to; airPose where the listener left the air
+  const NAV = { mode: 'orbit', lastInput: -1e9, lastAim: -1e9, focus: null, glideSlug: null, onLand: null, auto: false, autoNow: false, autoSaid: false, airPose: null };
   const routeState = { stops: [], points: [], len: 0, list: [] };
   const perf = { ring: new Float32Array(120), n: 0, at: 0, p50: 0, p95: 0, checkedAt: 0, over: 0, under: 0 };
   let cursor = null; // the cursor tower (a tower object) or null
@@ -542,36 +539,31 @@ function makeCityScene(THREE, P) {
     route.geometry.dispose(); route.geometry = g; route.visible = pts.length > 1;
   }
 
-  /* ---- the camera (12.3, 12.5, city-flythrough 4) ---- */
+  /* ---- the camera (12.3, 12.5, city-flythrough 4 and 21) ---- */
   function orbitPose(pos, look) {
     const r = cam.r * cam.zoom, h = clamp(cam.h * cam.zoom + cam.tilt, 0.6, 24);
     pos.set(cam.target.x + Math.cos(cam.angle) * r, cam.target.y + h, cam.target.z + Math.sin(cam.angle) * r);
     look.copy(cam.target);
   }
-  const fwd = new THREE.Vector3(), rgt = new THREE.Vector3(), focusP = new THREE.Vector3();
-  // the street camera orbits a focus four units ahead on the street: with no drag it is the rail camera of city-flythrough 4 (on
-  // the street's line, looking down it); a drag swings it around the focus and lifts it over the roofs for an overview
-  function streetPose(pos, look) {
-    fwd.set(Math.sin(NAV.h), 0, Math.cos(NAV.h)); rgt.set(fwd.z, 0, -fwd.x);
-    focusP.set(NAV.x, 0, NAV.z).addScaledVector(rgt, NAV.lat).addScaledVector(fwd, 4);
-    const yaw = NAV.h + NAV.yaw, dist = 4 + NAV.up * 0.8;
-    pos.set(focusP.x - Math.sin(yaw) * dist, NAV.y + NAV.up, focusP.z - Math.cos(yaw) * dist);
-    look.set(focusP.x, Math.max(0.2, NAV.y - 0.3 - NAV.up * 0.55), focusP.z);
-  }
-  // the pan (shift-drag, z, x) and the glance into an armed turn turn the look around the camera, never move it
-  function panLook(pos, look, a) {
-    if (Math.abs(a) < 1e-4) return;
-    const dx = look.x - pos.x, dz = look.z - pos.z, c = Math.cos(a), s = Math.sin(a);
-    look.x = pos.x + dx * c + dz * s; look.z = pos.z - dx * s + dz * c;
-  }
-  function wantedPose(pos, look) {
-    if (NAV.mode === 'street' || NAV.mode === 'flight') streetPose(pos, look); else orbitPose(pos, look);
-    panLook(pos, look, NAV.panNow + NAV.glanceNow);
-  }
+  // free flight in the air (issue #110, city-flythrough 21): the camera goes where it is pointed. a position, a yaw and a pitch; a held
+  // key sets the velocity the camera eases toward, a tap or a wheel notch owes a short distance, a drag aims. nothing else moves it
+  const FREE = { pos: new THREE.Vector3(1, 5, -10), yaw: 0, pitch: -0.15, vel: new THREE.Vector3(), want: { f: 0, s: 0, u: 0, turn: 0 }, touch: { f: 0, s: 0 }, held: 0, turnV: 0, owe: new THREE.Vector3(), oweYaw: 0, bank: 0 };
+  const FLY_SPEED = 3.5, DASH_SPEED = 9, PITCH_MAX = 1.35;
+  const viewDir = new THREE.Vector3(), flatR = new THREE.Vector3(), tmpW = new THREE.Vector3(), tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3(), tmpC = new THREE.Vector3(), tmpT = new THREE.Vector3();
+  function dirOf(yaw, pitch, out) { const c = Math.cos(pitch); return out.set(Math.sin(yaw) * c, Math.sin(pitch), Math.cos(yaw) * c); }
+  // the screen's right for a yaw (three.js looks down -z with y up, so fwd x up)
+  function rightOf(yaw, out) { return out.set(-Math.cos(yaw), 0, Math.sin(yaw)); }
+  function smooth(a, b, v) { const k = clamp((v - a) / (b - a), 0, 1); return k * k * (3 - 2 * k); }
+  function freePose(pos, look) { pos.copy(FREE.pos); look.copy(FREE.pos).addScaledVector(dirOf(FREE.yaw, FREE.pitch, viewDir), 10); }
+  function airMode() { return NAV.mode === 'free' || NAV.mode === 'glide' || NAV.mode === 'auto'; }
+  function wantedPose(pos, look) { if (airMode()) freePose(pos, look); else orbitPose(pos, look); }
+  // the scene's clock: real time, or the harness's stepped clock (a GIF frame per tick, whatever the capture costs)
+  let manual = false, vnow = null;
+  function tnow() { return vnow != null ? vnow : performance.now(); }
   function fly(ms, bump) {
     if (reduced) { ms = 0; }
     if (ms <= 0) { flight = null; return; }
-    flight = { from: { pos: pose.pos.clone(), look: pose.look.clone() }, t0: performance.now(), ms: ms, bump: bump || 0 };
+    flight = { from: { pos: pose.pos.clone(), look: pose.look.clone() }, t0: tnow(), ms: ms, bump: bump || 0 };
     C.flying = true;
   }
   function targetFor(slug) {
@@ -580,137 +572,270 @@ function makeCityScene(THREE, P) {
     return new THREE.Vector3(t.x, Math.max(1.5, t.blocks * 0.25), t.z);
   }
   // orbits wider than 12.3 wrote (9 / 4.5 and 5.5 / 2.2): at those radii the neighbouring towers' blocks filled the frame;
-  // 13 / 6.5 and 7.5 / 3 keep the playing tower large and the city readable around it (departure, noted in 12.13). air is the
-  // orbit of the fly-through's home view (city-flythrough 5): the page's radius, the tower left of centre, the rail on the right
-  const VIEWS = { standby: { r: 26, h: 19, speed: 0.02 }, home: { r: 13, h: 6.5, speed: 0.045 }, air: { r: 7.5, h: 3, speed: 0.045 }, page: { r: 7.5, h: 3, speed: 0.045 }, guestbook: { r: 15, h: 8, speed: 0.03 }, dead: { r: 12, h: 5, speed: 0.04 } };
+  // 13 / 6.5 and 7.5 / 3 keep the playing tower large and the city readable around it (departure, noted in 12.13). the air has no
+  // orbit since issue #110: it is free flight, and a glide lands on a vantage over the tower (vantage below)
+  const VIEWS = { standby: { r: 26, h: 19, speed: 0.02 }, home: { r: 13, h: 6.5, speed: 0.045 }, air: { r: 7.5, h: 3, speed: 0 }, page: { r: 7.5, h: 3, speed: 0.045 }, guestbook: { r: 15, h: 8, speed: 0.03 }, dead: { r: 12, h: 5, speed: 0.04 } };
   function homeView() { return C.layout === 'air' ? 'air' : 'home'; }
   function applyView(view, ms) {
     if (view === 'home') view = homeView();
     const v = VIEWS[view] || VIEWS.home;
+    const wasAir = C.view === 'air' && airMode();
+    // leaving the air keeps where the listener left the camera: coming back (f, the page closed) glides back there
+    if (wasAir && view !== 'air') { NAV.airPose = { pos: FREE.pos.clone(), yaw: FREE.yaw, pitch: FREE.pitch }; AUTO.on = false; }
     C.view = view;
     cam.r = v.r; cam.h = v.h; cam.speed = reduced ? 0 : v.speed;
-    // on air the tower is panned to about 87 % of the width on desktop: the halo lands beside the cards, the cards' panels carry the rest.
-    // in the air the tower sits left of centre, beside the rail
-    cam.side = C.phone ? 0 : (view === 'home' || view === 'page' || view === 'guestbook') ? v.r * 0.7 : view === 'air' ? -v.r * 0.22 : 0;
+    // on air the tower is panned to about 87 % of the width on desktop: the halo lands beside the cards, the cards' panels carry the rest
+    cam.side = C.phone ? 0 : (view === 'home' || view === 'page' || view === 'guestbook') ? v.r * 0.7 : 0;
     cam.target.copy(view === 'standby' || view === 'dead' ? new THREE.Vector3(0, 2, 0) : targetFor(C.playing));
-    NAV.focus = C.playing;
     dead.visible = view === 'dead';
     filler.visible = view !== 'dead';
     cat.visible = view !== 'dead';
-    if (NAV.mode !== 'orbit') { NAV.mode = 'orbit'; NAV.path = null; }
+    if (view === 'air') {
+      if (wasAir) return; // already flying: nothing moves
+      const ap = NAV.airPose, t = towerOf(C.playing);
+      let dest = null;
+      if (ap) dest = { pos: ap.pos, look: ap.pos.clone().addScaledVector(dirOf(ap.yaw, ap.pitch, tmpW), 10) };
+      else if (t) dest = vantage(t, pose.pos);
+      else dest = { pos: new THREE.Vector3(1, 6, -12), look: new THREE.Vector3(1, 2, 8) };
+      NAV.focus = ap ? null : C.playing;
+      glide(dest.pos, dest.look, { ms: ms, bump: 0.5 });
+      return;
+    }
+    NAV.focus = C.playing;
+    if (NAV.mode !== 'orbit') { NAV.mode = 'orbit'; AUTO.on = false; NAV.glideSlug = null; NAV.onLand = null; }
     fly(ms, view === 'page' ? 0 : 1.5);
   }
   function inAir() { return C.layout === 'air' && C.view === 'air'; }
   // the orbit's current angle, so leaving or entering it never jumps
   function angleFrom(px, pz) { cam.angle = Math.atan2(pz - cam.target.z, px - cam.target.x); }
-  // leave the orbit onto the nearest street, heading the way the camera already looks
-  function toStreet() {
-    if (NAV.mode === 'street') return;
-    const c = nearestWalk(pose.pos.x, pose.pos.z);
-    NAV.x = wx(c.cx); NAV.z = wz(c.cz);
-    const dx = pose.look.x - pose.pos.x, dz = pose.look.z - pose.pos.z;
-    const h = Math.atan2(dx, dz);
-    NAV.hv = Math.round(h / (Math.PI / 2)) * (Math.PI / 2);
-    // a heading with no street that way turns to one that has
-    if (!aheadWalkable(NAV.hv, c)) { for (let i = 1; i < 4; i++) { const hh = NAV.hv + i * Math.PI / 2; if (aheadWalkable(hh, c)) { NAV.hv = hh; break; } } }
-    NAV.h = NAV.hv; NAV.speed = 0; NAV.tspeed = 0; NAV.lat = 0; NAV.tlat = 0; NAV.turn = 0;
-    // the height the orbit had carries over, so leaving it from high up never drops the camera to the street in one go
-    NAV.yaw = 0; NAV.pan = 0; NAV.glance = 0; NAV.travel = 0; NAV.up = clamp((pose.pos.y - NAV.y) * 0.6, 0, 12);
-    NAV.mode = 'street'; NAV.path = null;
-    fly(reduced ? 0 : 500, 0);
-  }
-  // the street ahead to the first corner that turns `dir`, in units from the camera; 0 when the street ends first
-  function distToTurn(dir) {
-    const c = cellOf(NAV.x, NAV.z), d = headCell(NAV.hv), hh = NAV.hv + dir * Math.PI / 2;
-    for (let i = 1; i <= 24; i++) {
-      const cc = { cx: c.cx + d.dx * i, cz: c.cz + d.dz * i };
-      if (!walkable(cc.cx, cc.cz)) return 0;
-      if (aheadWalkable(hh, cc)) return Math.hypot(wx(cc.cx) - NAV.x, wz(cc.cz) - NAV.z);
-    }
-    return 0;
-  }
-  function headCell(h) { const sx = Math.round(Math.sin(h)), sz = Math.round(Math.cos(h)); return { dx: sx, dz: sz }; }
-  function aheadWalkable(h, c) { const d = headCell(h); return walkable(c.cx + d.dx, c.cz + d.dz); }
   function wrapAngle(a) { while (a > Math.PI) a -= 2 * Math.PI; while (a < -Math.PI) a += 2 * Math.PI; return a; }
-  // a flight along the streets to a tower's street-side cell (city-flythrough 5); lands in the orbit, or on the street without playing
-  function streetFlight(slug, opts) {
-    const t = towerOf(slug); if (!t) return false;
+  function bounds() {
+    const b = city.bounds || { cx0: -2, cx1: 1, cz0: 0, cz1: 4 };
+    return { x0: wx(b.cx0) - 8, x1: wx(b.cx1) + 8, z0: -10, z1: wz(b.cz1) + 8, y0: 0.9, y1: 30 };
+  }
+  // one frame of free flight: the wanted velocity from the held keys (and the phone's two fingers), eased in over about 200 ms and out
+  // over about 300; held, it builds from a slow cruise to a quick dash over a few seconds. then what a tap or a notch owes, the keyboard's
+  // turn, and the soft bounds. a still camera is exactly still: every small remainder is put to zero
+  function stepFree(dt) {
+    const w = FREE.want;
+    const f = clamp(w.f + FREE.touch.f, -1, 1), s = clamp(w.s + FREE.touch.s, -1, 1), u = clamp(w.u, -1, 1);
+    const moving = !!(f || s || u);
+    FREE.held = moving ? FREE.held + dt : 0;
+    const top = FLY_SPEED + (DASH_SPEED - FLY_SPEED) * smooth(0.8, 3.5, FREE.held);
+    dirOf(FREE.yaw, FREE.pitch, viewDir); rightOf(FREE.yaw, flatR);
+    tmpW.set(0, 0, 0).addScaledVector(viewDir, f).addScaledVector(flatR, s);
+    if (tmpW.lengthSq() > 1) tmpW.normalize();
+    tmpW.multiplyScalar(top); tmpW.y += u * top * 0.7;
+    FREE.vel.lerp(tmpW, 1 - Math.exp(-dt / (moving ? 0.2 : 0.3)));
+    if (!moving && FREE.vel.lengthSq() < 1e-6) FREE.vel.set(0, 0, 0);
+    FREE.pos.addScaledVector(FREE.vel, dt);
+    if (FREE.owe.lengthSq() > 0) {
+      const ko = 1 - Math.exp(-dt / 0.15);
+      if (FREE.owe.lengthSq() < 1e-8) { FREE.pos.add(FREE.owe); FREE.owe.set(0, 0, 0); } else { FREE.pos.addScaledVector(FREE.owe, ko); FREE.owe.multiplyScalar(1 - ko); }
+    }
+    // z / x: held, a turn rate; tapped, a short turn owed (a positive yaw turns left)
+    const tk = 1 - Math.exp(-dt / 0.15);
+    FREE.turnV += (-w.turn * 1.4 - FREE.turnV) * tk;
+    if (!w.turn && Math.abs(FREE.turnV) < 1e-4) FREE.turnV = 0;
+    FREE.yaw = wrapAngle(FREE.yaw + FREE.turnV * dt);
+    if (FREE.oweYaw) { if (Math.abs(FREE.oweYaw) < 1e-4) { FREE.yaw += FREE.oweYaw; FREE.oweYaw = 0; } else { const d = FREE.oweYaw * tk; FREE.yaw = wrapAngle(FREE.yaw + d); FREE.oweYaw -= d; } }
+    // above the street, under a ceiling, inside the city's edge: a soft push back, not a wall; glass is no obstacle
+    const b = bounds(), kb = 1 - Math.exp(-dt / 0.35), P = FREE.pos;
+    const push = function (axis, lo, hi) {
+      const v = P[axis], ex = v < lo ? v - lo : v > hi ? v - hi : 0;
+      if (!ex) return;
+      if (Math.abs(ex) < 1e-4) P[axis] -= ex; else P[axis] -= ex * kb;
+      if (ex * FREE.vel[axis] > 0) FREE.vel[axis] *= 1 - kb;
+    };
+    push('x', b.x0, b.x1); push('z', b.z0, b.z1); push('y', b.y0, b.y1);
+    if (P.y < 0.4) P.y = 0.4;
+    // the roll the auto-fly banked with levels out
+    if (FREE.bank) { FREE.bank -= FREE.bank * Math.min(1, dt / 0.5); if (Math.abs(FREE.bank) < 1e-4) FREE.bank = 0; }
+  }
+  // a vantage over a tower, on the side the camera comes from, facing it; on desktop the tower sits a little left of centre, beside the rail
+  function vantage(t, from) {
+    const top = t.blocks * 0.5;
+    let dx = from.x - t.x, dz = from.z - t.z; const d = Math.hypot(dx, dz);
+    if (d < 0.5) { dx = 0; dz = -1; } else { dx /= d; dz /= d; }
+    const r = Math.max(7.5, top * 0.9 + 4), b = bounds();
+    const pos = new THREE.Vector3(clamp(t.x + dx * r, b.x0, b.x1), clamp(top * 0.55 + 1.5, 3, 14), clamp(t.z + dz * r, b.z0, b.z1));
+    const fx = t.x - pos.x, fz = t.z - pos.z, fl = Math.hypot(fx, fz) || 1, side = C.phone ? 0 : 1.6;
+    const look = new THREE.Vector3(t.x - fz / fl * side, Math.max(1.2, top * 0.45), t.z + fx / fl * side);
+    return { pos: pos, look: look };
+  }
+  function setFreeFrom(pos, look) {
+    FREE.pos.copy(pos);
+    const dx = look.x - pos.x, dy = look.y - pos.y, dz = look.z - pos.z;
+    FREE.yaw = Math.atan2(dx, dz); FREE.pitch = clamp(Math.atan2(dy, Math.hypot(dx, dz)), -PITCH_MAX, PITCH_MAX);
+  }
+  function stillFree() { FREE.vel.set(0, 0, 0); FREE.owe.set(0, 0, 0); FREE.oweYaw = 0; FREE.turnV = 0; FREE.held = 0; }
+  // the camera exactly as it is on screen (the deck's side pan and the parallax baked in), as the free camera's pose
+  const camDir = new THREE.Vector3();
+  function snapCamera() {
+    if (!camera) return;
+    camera.getWorldDirection(camDir);
+    pose.pos.copy(camera.position); pose.look.copy(camera.position).addScaledVector(camDir, 10);
+    cam.sideNow = 0; parallax.x = parallax.tx = parallax.y = parallax.ty = 0;
+    setFreeFrom(pose.pos, pose.look);
+  }
+  // a glide (issue #110): an explicit request (a click on a tower, j / k, fly <slug>, the edge marker, district) eases the camera from
+  // exactly where it is to a pose, and lands in free flight
+  function glide(pos, look, opts) {
     opts = opts || {};
-    const from = NAV.mode === 'street' ? cellOf(NAV.x, NAV.z) : nearestWalk(pose.pos.x, pose.pos.z);
-    const cells = routeCells(from, t.street), pts = corners(cells);
-    const len = polyLen(pts);
-    if (len > 60 && !opts.cruise) return false; // too far: the tunnel
-    if (NAV.mode !== 'street') { NAV.x = wx(from.cx); NAV.z = wz(from.cz); const dx = pose.look.x - pose.pos.x, dz = pose.look.z - pose.pos.z; NAV.h = NAV.hv = Math.atan2(dx, dz); }
-    let speed = opts.speed || Math.max(12, len / 2.4);
-    let dur = len / speed; if (!opts.cruise) dur = Math.max(1.2, Math.min(2.4, dur || 1.2));
-    NAV.path = pts; NAV.pathLen = len; NAV.pathT = 0; NAV.pathDur = Math.max(0.2, dur); NAV.flightSlug = slug;
-    NAV.onLand = opts.land || 'orbit';
-    NAV.mode = 'flight'; NAV.speed = 0; NAV.tspeed = 0; NAV.lat = 0; NAV.tlat = 0; NAV.turn = 0;
-    C.flying = true;
-    fly(reduced ? 0 : 400, 0);
-    return true;
+    snapCamera();
+    const d = FREE.pos.distanceTo(pos);
+    setFreeFrom(pos, look); stillFree(); FREE.bank = 0;
+    AUTO.on = false;
+    NAV.mode = 'glide'; NAV.glideSlug = opts.slug || null; NAV.onLand = opts.land || null; C.flying = true;
+    const ms = opts.ms != null ? opts.ms : clamp(d / 12, 1.2, 2.4) * 1000;
+    fly(ms, opts.bump != null ? opts.bump : d > 30 ? 2.5 : 0.5);
+    if (!flight) landGlide();
+    return d;
   }
-  function landFlight() {
-    const slug = NAV.flightSlug, land = NAV.onLand;
-    NAV.path = null; NAV.flightSlug = null; C.flying = false;
-    if (land === 'orbit' || land === 'look') {
-      // 'look' (fly <slug>, issue #63) circles the tower without playing it, as j and k do: a tower seen from its own lot is all glass
-      const t = towerOf(slug);
-      if (t) { cam.target.copy(targetFor(slug)); angleFrom(pose.pos.x, pose.pos.z); NAV.focus = slug; }
-      NAV.mode = 'orbit';
-      fly(reduced ? 0 : 600, 0);
+  function landGlide() {
+    const slug = NAV.glideSlug, land = NAV.onLand;
+    NAV.mode = 'free'; NAV.glideSlug = null; NAV.onLand = null; C.flying = false; flight = null;
+    if (slug && C.onLand) C.onLand(slug, land);
+  }
+  function glideToTower(slug, land) {
+    const t = towerOf(slug); if (!t) return -1;
+    const v = vantage(t, camera ? camera.position : pose.pos);
+    NAV.focus = slug;
+    return glide(v.pos, v.look, { slug: slug, land: land });
+  }
+
+  /* the auto-fly (issue #110, the hidden mode): a slow continuous glide on a centripetal Catmull-Rom curve through waypoints that circle
+     the playing tower, between low streets and the roofs; the view leans toward the tower, the camera banks gently into the curves. it
+     starts exactly where the camera is, heading where it looks, and eases up to a drift; a track change sends the next waypoints toward
+     the new tower, so the curve carries the camera there over several seconds */
+  const AUTO = { on: false, pts: [], u: 0, speed: 0, vel: new THREE.Vector3(), acc: new THREE.Vector3(), look1: new THREE.Vector3(), look2: new THREE.Vector3(), ang: 0, sign: 1, high: false, bank: 0,
+    T: new THREE.Vector3(), a: 0, r: 10, h: 5, rng: rng(110) };
+  function crPoint(p, u, out) {
+    const p0 = p[0], p1 = p[1], p2 = p[2], p3 = p[3];
+    const t1 = Math.max(1e-4, Math.sqrt(p0.distanceTo(p1))), t2 = t1 + Math.max(1e-4, Math.sqrt(p1.distanceTo(p2))), t3 = t2 + Math.max(1e-4, Math.sqrt(p2.distanceTo(p3)));
+    const t = t1 + u * (t2 - t1);
+    const ax = function (k) {
+      const a1 = ((t1 - t) * p0[k] + t * p1[k]) / t1, a2 = ((t2 - t) * p1[k] + (t - t1) * p2[k]) / (t2 - t1), a3 = ((t3 - t) * p2[k] + (t - t2) * p3[k]) / (t3 - t2);
+      const b1 = ((t2 - t) * a1 + t * a2) / t2, b2 = ((t3 - t) * a2 + (t - t1) * a3) / (t3 - t1);
+      return ((t2 - t) * b1 + (t - t1) * b2) / (t2 - t1);
+    };
+    return out.set(ax('x'), ax('y'), ax('z'));
+  }
+  // how many units the curve covers per unit of its parameter, at u (a short chord either side)
+  const crA = new THREE.Vector3(), crB = new THREE.Vector3();
+  function crRate(p, u) { const a = Math.max(0, u - 0.002), b = Math.min(1, u + 0.002); return Math.max(1e-3, crPoint(p, b, crB).distanceTo(crPoint(p, a, crA)) / (b - a)); }
+  function focusTower() { return towerOf(C.playing); }
+  // the next waypoint; one that lands within 3 units of the last (the city's edge clamps both to a corner) is tried again further round
+  function nextWaypoint(prev, tries) {
+    const w = nextPoint(prev);
+    if ((tries || 0) < 4 && Math.hypot(w.x - prev.x, w.z - prev.z) < 3) { AUTO.ang += AUTO.sign * 0.9; return nextWaypoint(prev, (tries || 0) + 1); }
+    return w;
+  }
+  function nextPoint(prev) {
+    const t = focusTower(), R = AUTO.rng, b = bounds();
+    let x, y, z;
+    if (!t) {
+      AUTO.ang += AUTO.sign * (0.7 + R() * 0.4);
+      const r = 10 + R() * 8;
+      x = (b.x0 + b.x1) / 2 + Math.cos(AUTO.ang) * r; z = (b.z0 + b.z1) / 2 + Math.sin(AUTO.ang) * r; y = 3 + R() * 5;
     } else {
-      // on the street in front of the tower, facing it
-      NAV.mode = 'street'; NAV.speed = 0; NAV.tspeed = 0;
-      const t = towerOf(slug); if (t) { NAV.hv = Math.atan2(t.x - NAV.x, t.z - NAV.z); NAV.hv = Math.round(NAV.hv / (Math.PI / 2)) * (Math.PI / 2); }
+      const top = t.blocks * 0.5, d = Math.hypot(prev.x - t.x, prev.z - t.z);
+      if (d > 20) {
+        // far from the playing tower: the next point is a leg toward it, over the roofs
+        const nx = (t.x - prev.x) / d, nz = (t.z - prev.z) / d, step = Math.min(12, d - 12), side = (R() - 0.5) * 4;
+        x = prev.x + nx * step - nz * side; z = prev.z + nz * step + nx * side;
+        y = clamp(top + 1.5 + R() * 3, 4, 14);
+        AUTO.ang = Math.atan2(z - t.z, x - t.x);
+      } else {
+        AUTO.ang += AUTO.sign * (0.75 + R() * 0.45);
+        const r = Math.max(6.5, top * 0.6 + 4) + R() * 5;
+        if (R() < 0.5) AUTO.high = !AUTO.high;
+        y = AUTO.high ? clamp(top + 1.2 + R() * 2.5, 3.5, 16) : 1.6 + R() * 1.2;
+        x = t.x + Math.cos(AUTO.ang) * r; z = t.z + Math.sin(AUTO.ang) * r;
+      }
     }
-    if (C.onLand) C.onLand(slug, land);
+    // the altitude drifts: never more than 3.5 units up or down between two waypoints
+    y = clamp(y, prev.y - 3.5, prev.y + 3.5);
+    return new THREE.Vector3(clamp(x, b.x0 + 2, b.x1 - 2), clamp(y, 1.4, 20), clamp(z, b.z0 + 2, b.z1 - 2));
   }
-  // the speed the street wants this frame: a held key drives (7 units a second, 11 after a second and a half), a tap or a wheel
-  // notch finishes the distance it owes, otherwise the phone's drag or the cruise target (tspeed)
-  function wantSpeed() {
-    if (NAV.drive) return NAV.drive * (performance.now() - NAV.driveAt > 1500 ? 11 : 7);
-    if (Math.abs(NAV.travel) > 0.05) return Math.sign(NAV.travel) * clamp(Math.abs(NAV.travel) * 4, 3, 10);
-    return NAV.tspeed;
+  function autoStart() {
+    if (!inAir() || !camera) return;
+    snapCamera();
+    const p = FREE.pos.clone(), d = dirOf(FREE.yaw, clamp(FREE.pitch, -0.3, 0.3), new THREE.Vector3());
+    const ahead = p.clone().addScaledVector(d, 5); ahead.y = Math.max(1.4, ahead.y);
+    AUTO.pts = [p.clone().addScaledVector(d, -4), p.clone(), ahead];
+    const t = focusTower();
+    AUTO.ang = t ? Math.atan2(p.z - t.z, p.x - t.x) : 0; AUTO.sign = AUTO.rng() < 0.5 ? 1 : -1; AUTO.high = p.y > 4;
+    while (AUTO.pts.length < 5) AUTO.pts.push(nextWaypoint(AUTO.pts[AUTO.pts.length - 1]));
+    AUTO.u = 0; AUTO.vel.copy(FREE.vel); AUTO.speed = Math.min(1.3, FREE.vel.length()); AUTO.acc.set(0, 0, 0);
+    AUTO.look1.copy(pose.look); AUTO.look2.copy(pose.look); AUTO.bank = FREE.bank;
+    // prefers-reduced-motion: a very slow orbit of the playing tower, from where the camera is
+    const T = t ? tmpT.set(t.x, Math.max(1.2, t.blocks * 0.45), t.z) : tmpT.set(p.x + d.x * 10, 2, p.z + d.z * 10);
+    AUTO.T.copy(T); AUTO.a = Math.atan2(p.z - T.z, p.x - T.x); AUTO.r = Math.hypot(p.x - T.x, p.z - T.z); AUTO.h = p.y;
+    stillFree(); flight = null; C.flying = false; NAV.glideSlug = null; NAV.onLand = null;
+    AUTO.on = true; NAV.mode = 'auto'; NAV.autoNow = false;
+    if (!NAV.autoSaid) { NAV.autoSaid = true; say('cruise. nobody is flying this.', 'mid'); }
   }
-  // one frame of the street mode: the springs, the rail, the turns, the end of the street; a negative speed backs up the street
-  function stepStreet(dt) {
-    const k = spring(dt);
-    NAV.speed += (wantSpeed() - NAV.speed) * k;
-    NAV.lat += (NAV.tlat - NAV.lat) * k;
-    NAV.h += wrapAngle(NAV.hv - NAV.h) * k;
-    if (Math.abs(NAV.speed) < 0.01) { NAV.speed = 0; NAV.travel = 0; return; }
-    const sg = NAV.speed > 0 ? 1 : -1, hd = headCell(NAV.hv), d = { dx: hd.dx * sg, dz: hd.dz * sg };
-    const cur = cellOf(NAV.x, NAV.z);
-    const cx0 = wx(cur.cx), cz0 = wz(cur.cz);
-    const along = d.dx ? (NAV.x - cx0) * d.dx : (NAV.z - cz0) * d.dz; // signed distance past the cell centre, the way it travels
-    const step = Math.abs(NAV.speed) * dt;
-    // an armed turn at this cell's centre, when a street goes that way (forward only)
-    if (NAV.turn && sg > 0 && along <= 0 && along + step >= 0) {
-      const hh = NAV.hv + NAV.turn * Math.PI / 2;
-      if (aheadWalkable(hh, cur)) { NAV.x = cx0; NAV.z = cz0; NAV.hv = hh; NAV.turn = 0; NAV.glance = 0; return; }
-    }
-    // the end of the street: stop at the centre; forward, turn around
-    if (!walkable(cur.cx + d.dx, cur.cz + d.dz) && along + step >= 0) {
-      NAV.x = cx0; NAV.z = cz0; NAV.speed = 0; NAV.tspeed = 0; NAV.travel = 0;
-      // the wall answers: a sideways jolt the lateral spring takes back (backing up into it would otherwise show nothing)
-      NAV.lat = NAV.lat > 0 ? -0.35 : 0.35;
-      if (sg > 0) { NAV.hv += Math.PI; NAV.turn = 0; NAV.glance = 0; }
-      const now = performance.now();
-      if (now - NAV.endSaid > 2000) { NAV.endSaid = now; say('end of the street. the city is behind you.', 'mid'); }
+  function stepAuto(dt) {
+    const t = focusTower();
+    const T = t ? tmpT.set(t.x, Math.max(1.2, t.blocks * 0.45), t.z) : tmpT.copy(AUTO.T);
+    const kl = 1 - Math.exp(-dt / (reduced ? 3 : 1.4));
+    if (reduced) {
+      // the tower the orbit circles moves at most a unit a second, eased
+      tmpC.subVectors(T, AUTO.T); const L = tmpC.length();
+      if (L > 1e-4) AUTO.T.addScaledVector(tmpC, Math.min(L * (1 - Math.exp(-dt / 4)), dt) / L);
+      AUTO.a += 0.02 * dt;
+      AUTO.r += (clamp(AUTO.r, 8, 16) - AUTO.r) * (1 - Math.exp(-dt / 6)); AUTO.h += (clamp(AUTO.h, 3, 10) - AUTO.h) * (1 - Math.exp(-dt / 6));
+      tmpB.set(AUTO.T.x + Math.cos(AUTO.a) * AUTO.r, AUTO.h, AUTO.T.z + Math.sin(AUTO.a) * AUTO.r);
+      AUTO.vel.subVectors(tmpB, FREE.pos).divideScalar(Math.max(dt, 1e-3));
+      FREE.pos.copy(tmpB);
+      AUTO.look1.lerp(AUTO.T, kl); AUTO.look2.lerp(AUTO.look1, kl);
+      setFreeFrom(FREE.pos, AUTO.look2);
       return;
     }
-    NAV.x += d.dx * step; NAV.z += d.dz * step;
-    if (NAV.travel) { const left = Math.abs(NAV.travel) - step; NAV.travel = left > 0 ? Math.sign(NAV.travel) * left : 0; }
+    const p = AUTO.pts, dist = Math.hypot(FREE.pos.x - T.x, FREE.pos.z - T.z);
+    AUTO.speed += ((t && dist > 22 ? 2.4 : 1.3) - AUTO.speed) * (1 - Math.exp(-dt / 2.5));
+    // along the curve by distance, not by its parameter: what is left at the end of a segment is carried into the next one as
+    // distance, so a short segment never throws the camera along a long one
+    let left = AUTO.speed * dt;
+    for (let k = 0; k < 8 && left > 1e-7; k++) {
+      const rate = crRate(p, AUTO.u), du = left / rate;
+      if (AUTO.u + du < 1) { AUTO.u += du; left = 0; }
+      else { left -= (1 - AUTO.u) * rate; p.shift(); p.push(nextWaypoint(p[p.length - 1])); AUTO.u = 0; }
+    }
+    crPoint(p, AUTO.u, tmpB);
+    if (AUTO.u < 0.996) crPoint(p, AUTO.u + 0.004, tmpA).sub(tmpB); else tmpA.copy(tmpB).sub(crPoint(p, AUTO.u - 0.004, tmpA));
+    const tan = tmpA.normalize();
+    tmpC.subVectors(tmpB, FREE.pos).divideScalar(Math.max(dt, 1e-3));
+    AUTO.acc.lerp(tmpW.subVectors(tmpC, AUTO.vel).divideScalar(Math.max(dt, 1e-3)), 1 - Math.exp(-dt / 0.6));
+    AUTO.vel.copy(tmpC);
+    FREE.pos.copy(tmpB);
+    // where it looks: ahead along the curve, leaning toward the playing tower as it comes near; two easings, so a track change turns the
+    // view over a few seconds without a kink
+    const w = 0.25 + 0.45 * smooth(40, 12, dist);
+    tmpW.copy(FREE.pos).addScaledVector(tan, 8); tmpW.y -= 1;
+    tmpW.lerp(T, w);
+    AUTO.look1.lerp(tmpW, kl); AUTO.look2.lerp(AUTO.look1, kl);
+    setFreeFrom(FREE.pos, AUTO.look2);
+    // the bank: into the curve, from the sideways acceleration, at most about 8 degrees
+    const lat = AUTO.acc.dot(rightOf(FREE.yaw, flatR));
+    AUTO.bank += (clamp(lat * 0.6, -0.14, 0.14) - AUTO.bank) * (1 - Math.exp(-dt / 0.8));
+    FREE.bank = AUTO.bank;
   }
-  const tmpP2 = new THREE.Vector3(), tmpD = new THREE.Vector3();
-  function stepFlight(dt) {
-    NAV.pathT += dt;
-    const kk = clamp(NAV.pathT / NAV.pathDur, 0, 1), e = kk < 0.5 ? 2 * kk * kk : 1 - Math.pow(-2 * kk + 2, 2) / 2;
-    const p = pointAlong(NAV.path, e * NAV.pathLen, tmpP2, tmpD);
-    NAV.x = p.x; NAV.z = p.z;
-    if (NAV.pathLen > 0.01) { NAV.hv = Math.atan2(tmpD.x, tmpD.z); NAV.h += wrapAngle(NAV.hv - NAV.h) * Math.min(1, spring(dt) * 1.6); }
-    if (kk >= 1) landFlight();
+  // any input takes the camera at once, from exactly where it is: a glide stops, the auto-fly hands over (its drift eases out)
+  function takeHand(said) {
+    if (!airMode() || NAV.mode === 'free') return;
+    const wasAuto = NAV.mode === 'auto', v = wasAuto ? AUTO.vel.clone() : null;
+    snapCamera(); stillFree();
+    if (v && v.length() < 4) FREE.vel.copy(v);
+    flight = null; C.flying = false; NAV.glideSlug = null; NAV.onLand = null; AUTO.on = false;
+    NAV.mode = 'free';
+    if (wasAuto && said) say('landed. your hands.', 'mid');
+  }
+  // the hidden mode (or `cruise`) asks for the auto-fly: at once, then again after 20 s without input
+  function autoTick() {
+    if (!NAV.auto || !inAir() || NAV.mode !== 'free' || flight) return;
+    if (NAV.autoNow || tnow() - NAV.lastInput > 20000) autoStart();
   }
 
   /* ---- the public face: what the theme drives ---- */
@@ -730,7 +855,7 @@ function makeCityScene(THREE, P) {
       window.addEventListener('resize', sizeUp);
       if (!reduced) {
         // no parallax in the air (issue #63): the pointer points and drags there, and a camera that chased it moved the tower under it
-        window.addEventListener('pointermove', function (e) { if (NAV.mode === 'flight') return; const k = inAir() ? 0 : 1; parallax.tx = (e.clientX / innerWidth - 0.5) * 1.6 * k; parallax.ty = -(e.clientY / innerHeight - 0.5) * 0.8 * k; }, { passive: true });
+        window.addEventListener('pointermove', function (e) { if (airMode()) return; const k = inAir() ? 0 : 1; parallax.tx = (e.clientX / innerWidth - 0.5) * 1.6 * k; parallax.ty = -(e.clientY / innerHeight - 0.5) * 0.8 * k; }, { passive: true });
         if (C.phone) window.addEventListener('deviceorientation', function (e) { if (e.gamma == null) return; parallax.tx = Math.max(-1, Math.min(1, e.gamma / 30)) * 0.8; parallax.ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30)) * 0.4; }, { passive: true });
       }
       C.running = true;
@@ -768,7 +893,6 @@ function makeCityScene(THREE, P) {
     buildBridges();
     if (C.playing) { const t = towerOf(C.playing); blockUniforms.uPlaying.value = t ? t.id : -99; cam.target.copy(targetFor(C.playing)); placeBeam(); }
     if (cursor) cursor = towerOf(cursor.slug);
-    if (NAV.mode === 'street') { const c = nearestWalk(NAV.x, NAV.z); NAV.x = wx(c.cx); NAV.z = wz(c.cz); }
     if (routeState.list.length) buildRoute(routeState.list, C.playing);
     if (C.filterSlugs) C.setFilter(C.filterWords, C.filterSlugs);
   };
@@ -787,19 +911,23 @@ function makeCityScene(THREE, P) {
     if (!scene) return;
     placeBeam();
     if (follow === false) return;
-    cam.target.copy(targetFor(slug)); NAV.focus = slug;
-    if (ms > 0) {
-      if (inAir() && t && streetFlight(slug, { land: 'orbit' })) { const s = routeState.stops; say('flying to ' + slug + '.' + (s.length && s[0].slug === slug ? ' ' + s[0].words + '.' : ''), 'mid'); return; }
-      if (inAir() && t) say('flying across town to ' + slug + '.', 'mid');
-      NAV.mode = 'orbit'; NAV.path = null;
-      fly(ms, 3); if (withTunnel && !reduced) C.tunnel(ms);
+    cam.target.copy(targetFor(slug));
+    // in the air the camera moves for a track only when the listener picked it (follow), by a glide; never in the auto-fly, which drifts there
+    if (airMode()) {
+      if (ms > 0 && t && inAir() && NAV.mode !== 'auto') {
+        const d = glideToTower(slug, 'play');
+        if (d > 60) { say('flying across town to ' + slug + '.', 'mid'); if (withTunnel && !reduced) C.tunnel(1800); } else say('flying to ' + slug + '.', 'mid');
+      }
+      return;
     }
+    NAV.focus = slug;
+    if (ms > 0) { fly(ms, 3); if (withTunnel && !reduced) C.tunnel(ms); }
   };
   C.tunnel = function (ms) { tunnelUntil = performance.now() + (ms || 1200); C.tunnelOn = true; };
   C.setView = function (view, ms) { if (!scene) { C.view = view; return; } applyView(view, ms == null ? settings.flight : ms); };
   C.setLayout = function (name, ms) {
     C.layout = name;
-    cam.zoomT = 1; cam.tilt = 0; NAV.yaw = 0; NAV.up = 0; NAV.pan = 0; NAV.glance = 0; NAV.drive = 0; NAV.travel = 0;
+    cam.zoomT = 1; cam.tilt = 0; C.release();
     if (!scene) return;
     if (C.view === 'home' || C.view === 'air') applyView('home', ms == null ? settings.flight : ms);
   };
@@ -837,12 +965,6 @@ function makeCityScene(THREE, P) {
     cat.userData.list.forEach(function (t) { const v = set[t.slug] ? 1 : 0.25; for (let k = 0; k < t.blocks; k++) a.array[i++] = v; if (t.voice) a.array[i++] = v; });
     a.needsUpdate = true;
     filterOn = words ? 1 : 0;
-    if (words && slugs && slugs.length && NAV.mode === 'street') {
-      // the city points: the heading turns toward the nearest lit tower, the camera does not move
-      let best = null, bd = 1e9;
-      slugs.forEach(function (s) { const t = towerOf(s); if (!t) return; const d = Math.hypot(t.x - NAV.x, t.z - NAV.z); if (d < bd) { bd = d; best = t; } });
-      if (best) { const h = Math.atan2(best.x - NAV.x, best.z - NAV.z); NAV.hv = Math.round(h / (Math.PI / 2)) * (Math.PI / 2); }
-    }
   };
   C.litCount = function () { return C.filterSlugs ? C.filterSlugs.length : null; };
   // the cursor tower (city-flythrough 5): from the pointer or from the station's highlight
@@ -851,153 +973,83 @@ function makeCityScene(THREE, P) {
   C.towers = function () { return towers; };
   C.city = function () { return city; };
   C.nav = function () { return NAV; };
-  // steering (city-flythrough 4): the station's keys, the wheel and the pointer come through these
-  C.input = function () { NAV.lastInput = performance.now(); if (NAV.cruising) { NAV.cruising = false; NAV.cruise = false; if (NAV.mode === 'flight') { NAV.onLand = 'street'; } say('landed. your hands.', 'mid'); } };
-  // the listener is flying when they steered or aimed the pointer at the city lately (the rotation then leaves the camera alone)
-  C.recentInput = function (ms) { return performance.now() - Math.max(NAV.lastInput, NAV.lastAim || -1e9) < ms; };
-  // a steering input during a flight takes the camera: the flight stops where it is, on its street, heading the way it went
-  function takeFlight() {
-    if (NAV.mode !== 'flight' || NAV.cruising) return;
-    NAV.path = null; NAV.flightSlug = null; C.flying = false;
-    NAV.hv = Math.round(NAV.hv / (Math.PI / 2)) * (Math.PI / 2);
-    const c = cellOf(NAV.x, NAV.z), d = headCell(NAV.hv);
-    if (d.dx) NAV.z = wz(c.cz); else NAV.x = wx(c.cx); // back on the street's centre line
-    NAV.mode = 'street'; NAV.speed = 0; NAV.tspeed = 0;
-  }
-  function onStreet() { if (NAV.mode === 'orbit') toStreet(); else takeFlight(); }
-  /* the game camera (issue #63; docs/city-flythrough.md, controls, second pass). every input below moves the picture within a frame:
-     a held key sets a speed, a tap still owes a block, a turn either happens at once (at a corner) or leans the look into it and
-     drives there, the wheel zooms the orbit or moves along the street, a drag swings the camera around what it looks at. */
-  // W / S / up / down: on, the camera drives that way along the street (-1 backs up); off, it coasts to a stop after the block it owes
-  C.drive = function (dir, on) {
+  // steering (city-flythrough 21): the station's keys, the wheel and the pointer come through these; every one takes the camera at once
+  C.input = function () { NAV.lastInput = tnow(); NAV.autoNow = false; takeHand(true); };
+  // the listener is flying when they steered or aimed the pointer at the city lately
+  C.recentInput = function (ms) { return tnow() - Math.max(NAV.lastInput, NAV.lastAim || -1e9) < ms; };
+  /* free flight (issue #110): w s / up down along the view, a d / left right strafe, e rises and shift sinks, z x turn; a key held eases
+     in and builds speed, a tap moves a little; the wheel moves along the view; a drag aims. the aim stays where the listener leaves it */
+  C.move = function (axis, dir, on) {
     if (!inAir()) return false;
-    if (!on) { if (NAV.drive === dir) NAV.drive = 0; return true; }
-    C.input(); onStreet();
-    if (NAV.drive !== dir) { NAV.drive = dir; NAV.driveAt = performance.now(); }
-    if (Math.sign(NAV.speed) !== dir || Math.abs(NAV.speed) < 3) NAV.speed = dir * 3;
-    NAV.travel = dir * 2; NAV.tspeed = 0;
-    return true;
-  };
-  // the old speed notch, kept for the phone's drag: 0 only drops the camera from the orbit onto the street
-  C.accel = function (notches) {
-    if (!inAir()) return false;
-    C.input(); onStreet();
-    if (notches) NAV.tspeed = clamp(NAV.tspeed + notches * 2, 0, 16);
-    return true;
-  };
-  // A / D / left / right: at a corner that turns that way, turn now; otherwise arm the turn, lean the look into it and drive to it.
-  // twice fast is a U-turn; the same way again later cancels
-  C.turn = function (dir) {
-    if (!inAir()) return false;
-    C.input(); onStreet();
-    const now = performance.now();
-    if (NAV.turn === dir && now - NAV.turnAt < 400) { NAV.hv += Math.PI; NAV.turn = 0; NAV.glance = 0; NAV.travel = 0; return 'u-turn'; }
-    const c = cellOf(NAV.x, NAV.z), hh = NAV.hv + dir * Math.PI / 2;
-    if (Math.hypot(NAV.x - wx(c.cx), NAV.z - wz(c.cz)) < 0.7 && aheadWalkable(hh, c)) {
-      // a second press at the same corner turns again: two quarter turns are the U-turn
-      NAV.x = wx(c.cx); NAV.z = wz(c.cz); NAV.hv = hh; NAV.turn = 0; NAV.glance = 0;
-      return 'now';
+    const w = FREE.want;
+    if (!on) { if (w[axis] === dir) w[axis] = 0; return true; }
+    C.input(); NAV.focus = null;
+    if (w[axis] !== dir) {
+      w[axis] = dir;
+      // a tap still moves: a short distance (or a short turn) owed that way
+      if (axis === 'turn') FREE.oweYaw -= dir * 0.12;
+      else if (axis === 'f') FREE.owe.addScaledVector(dirOf(FREE.yaw, FREE.pitch, viewDir), dir * 0.6);
+      else if (axis === 's') FREE.owe.addScaledVector(rightOf(FREE.yaw, flatR), dir * 0.6);
+      else FREE.owe.y += dir * 0.6;
     }
-    NAV.turn = NAV.turn === dir ? 0 : dir; NAV.turnAt = now;
-    NAV.glance = NAV.turn * 0.35;
-    if (NAV.turn && !NAV.drive && Math.abs(NAV.speed) < 1) { const d = distToTurn(dir); NAV.travel = d > 0 ? d + 2 : 2; NAV.speed = 3; }
-    return NAV.turn ? 'armed' : 'cancelled';
+    return true;
   };
-  // the wheel: in the orbit it zooms (in toward the tower, out over the city); on the street it moves along it, a notch a block
+  C.release = function () { FREE.want.f = FREE.want.s = FREE.want.u = FREE.want.turn = 0; FREE.touch.f = FREE.touch.s = 0; };
+  // the phone's two fingers: forward and sideways, each -1..1, held while the fingers are down
+  C.touchMove = function (f, s) { if (!inAir()) return false; if (f || s) C.input(); FREE.touch.f = clamp(f, -1, 1); FREE.touch.s = clamp(s, -1, 1); return true; };
   C.wheel = function (deltaY) {
     if (!inAir()) return false;
-    C.input();
-    const n = clamp(deltaY / 100, -3, 3);
-    if (NAV.mode === 'orbit') { cam.zoomT = clamp(cam.zoomT * Math.pow(1.18, n), 0.45, 3.2); cam.zoom += (cam.zoomT - cam.zoom) * 0.35; cam.userAt = performance.now(); return 'zoom'; }
-    takeFlight();
-    NAV.travel = clamp(NAV.travel - n * 2, -12, 12);
-    if (Math.abs(NAV.speed) < 3) NAV.speed = Math.sign(NAV.travel || -n) * 3;
+    C.input(); NAV.focus = null;
+    FREE.owe.addScaledVector(dirOf(FREE.yaw, FREE.pitch, viewDir), -clamp(deltaY / 100, -3, 3) * 1.6);
     return 'move';
   };
-  // a drag: dx swings the camera around what it looks at (the tower in the orbit, the street ahead on the street), dy raises it
+  // a drag aims: x is the yaw, y the pitch (clamped short of straight up and down); nothing springs back
   C.look = function (dx, dy) {
     if (!inAir()) return false;
     C.input();
-    if (NAV.mode === 'orbit') { cam.angle -= dx * 0.006; cam.tilt = clamp(cam.tilt + dy * 0.04, -cam.h * cam.zoom + 0.6, 16); cam.userAt = performance.now(); }
-    else { NAV.yaw = wrapAngle(NAV.yaw - dx * 0.006); NAV.up = clamp(NAV.up + dy * 0.03, -0.8, 12); }
+    // the aim is the drag's alone: a turn still owed from a tapped z or x, or easing out of a held one, ends here
+    FREE.oweYaw = 0; FREE.turnV = 0;
+    FREE.yaw = wrapAngle(FREE.yaw - dx * 0.0045); FREE.pitch = clamp(FREE.pitch - dy * 0.0045, -PITCH_MAX, PITCH_MAX);
     return true;
   };
-  // the pan: shift-drag and z / x turn the look around the camera; it eases back once the camera drives
-  C.pan = function (rad, now) {
-    if (!inAir()) return false;
-    C.input();
-    NAV.pan = clamp(NAV.pan + rad, -1.2, 1.2); if (now) NAV.panNow = NAV.pan;
-    cam.userAt = performance.now();
-    return true;
-  };
-  // j / k in the air (issue #63): the camera glides to the next tower and circles it, without playing it
-  C.visit = function (slug) {
-    if (!inAir()) return false;
-    const t = towerOf(slug); if (!t) return false;
-    C.input();
-    NAV.mode = 'orbit'; NAV.path = null; C.flying = false; NAV.drive = 0; NAV.travel = 0; NAV.pan = 0; NAV.glance = 0;
-    cam.target.copy(targetFor(slug)); NAV.focus = slug; angleFrom(pose.pos.x, pose.pos.z);
-    fly(reduced ? 0 : 650, 0.6);
-    return true;
-  };
-  C.focus = function () { return NAV.mode === 'orbit' ? NAV.focus : null; };
-  // the orbit holds still while the pointer is on a tower, so the tower never slides out from under it; it turns again 3 s after
-  C.hold = function () { cam.userAt = NAV.lastAim = performance.now(); };
+  // j / k in the air: the camera glides to the tower and faces it, without playing it
+  C.visit = function (slug) { if (!inAir() || !towerOf(slug)) return false; C.input(); glideToTower(slug, 'look'); return true; };
+  C.focus = function () { return NAV.focus; };
+  C.hold = function () { NAV.lastAim = tnow(); };
   // the hovered tower lifts and brightens (issue #63); the bracket and the readout are the theme's
   C.setHover = function (slug) { const t = slug ? towerOf(slug) : null, id = t ? t.id : -99; if (blockUniforms.uHover.value !== id) { blockUniforms.uHover.value = id; liftK = 0; } liftT = t ? 1 : 0; };
-  C.drift = function (k) { NAV.tlat = clamp(k, -1, 1) * 0.6; };
-  C.armTurn = function (dir) { if (NAV.mode === 'street' && NAV.turn !== dir) { NAV.turn = dir; NAV.turnAt = performance.now(); } };
-  // fly to a tower without playing it: lands on the street in front of it
+  // fly <slug>: glide to the tower without playing it; beyond 60 units through the tunnel
   C.flyTo = function (slug) {
     if (!inAir()) return 'deck';
-    const t = towerOf(slug); if (!t) return 'unknown';
+    if (!towerOf(slug)) return 'unknown';
     C.input();
-    if (!streetFlight(slug, { land: 'look' })) { NAV.mode = 'orbit'; cam.target.copy(targetFor(slug)); NAV.focus = slug; fly(settings.flight, 3); C.tunnel(settings.flight); NAV.flightSlug = slug; return 'tunnel'; }
-    return 'street';
+    const d = glideToTower(slug, 'look');
+    if (d > 60 && !reduced) { C.tunnel(1800); return 'tunnel'; }
+    return 'near';
   };
   C.flyToCell = function (cx, cz) {
     if (!inAir()) return false;
     C.input();
-    const from = NAV.mode === 'street' ? cellOf(NAV.x, NAV.z) : nearestWalk(pose.pos.x, pose.pos.z);
-    const to = nearestWalk(wx(cx), wz(cz));
-    const pts = corners(routeCells(from, to)), len = polyLen(pts);
-    if (NAV.mode !== 'street') { NAV.x = wx(from.cx); NAV.z = wz(from.cz); const dx = pose.look.x - pose.pos.x, dz = pose.look.z - pose.pos.z; NAV.h = NAV.hv = Math.atan2(dx, dz); }
-    NAV.path = pts; NAV.pathLen = len; NAV.pathT = 0; NAV.pathDur = Math.max(1.2, Math.min(4, len / 16)); NAV.flightSlug = null; NAV.onLand = 'street'; NAV.mode = 'flight'; C.flying = true;
-    fly(reduced ? 0 : 400, 0);
+    const x = wx(cx), z = wz(cz);
+    glide(new THREE.Vector3(x, 6, z - 6), new THREE.Vector3(x, 2, z + 10), {});
     return true;
   };
-  C.back = function () { // esc: back to the orbit of the playing tower
-    if (NAV.mode === 'orbit' && !flight) return false;
-    C.input();
-    NAV.mode = 'orbit'; NAV.path = null; C.flying = false; NAV.drive = 0; NAV.travel = 0; NAV.pan = 0; NAV.glance = 0;
-    cam.target.copy(targetFor(C.playing)); NAV.focus = C.playing; angleFrom(pose.pos.x, pose.pos.z);
-    fly(reduced ? 0 : 700, 1);
-    return true;
-  };
-  // the cruise (city-flythrough 10): armed by the hidden interface, it leaves after 4 s without input and follows the route to the next stop
-  C.cruise = function (on) { NAV.cruise = !!on; NAV.cruising = false; NAV.cruiseAt = performance.now() + 4000; if (!on && NAV.mode === 'flight') NAV.onLand = 'orbit'; };
-  C.cruising = function () { return NAV.cruising; };
-  function startCruise(remaining) {
-    const s = routeState.stops[0];
-    if (!s || !inAir()) { NAV.cruising = true; return; }
-    const from = NAV.mode === 'street' ? cellOf(NAV.x, NAV.z) : nearestWalk(pose.pos.x, pose.pos.z);
-    const len = polyLen(corners(routeCells(from, s.tower.street)));
-    const speed = clamp(len / Math.max(1, remaining || 60), 1.5, 6);
-    NAV.cruising = true;
-    streetFlight(s.slug, { land: 'street', cruise: true, speed: speed });
-    say('cruise. nobody is flying this.', 'mid');
-  }
-  C.cruiseTick = function (remaining) {
-    if (!NAV.cruise || NAV.cruising || !scene) return;
-    if (performance.now() < NAV.cruiseAt || performance.now() - NAV.lastInput < 4000) return;
-    startCruise(remaining);
-  };
+  // the edge marker: back to the playing tower, still in the air
+  C.back = function () { if (!inAir()) return false; C.input(); glideToTower(C.playing, 'look'); return true; };
+  // the auto-fly (city-flythrough 21): the hidden mode asks for it, and `cruise`; off, it stops where it is
+  C.cruise = function (on) { NAV.auto = !!on; NAV.autoNow = !!on; if (!on) takeHand(false); };
+  C.cruising = function () { return NAV.mode === 'auto'; };
+  C.speed = function () { return airMode() ? (NAV.mode === 'auto' ? AUTO.vel.length() : FREE.vel.length()) : 0; };
+  // the stepped clock (the harness's GIFs) and the per-frame trace (its smoothness rows)
+  C.manual = function (on) { manual = !!on; vnow = on ? performance.now() : null; clock.last = 0; };
+  C.tick = function (ms) { if (!manual) return; vnow += ms; ticking = true; try { frame(vnow); } finally { ticking = false; } };
+  C.trace = function (on) { const out = C.traceLog || null; C.traceLog = on ? [] : null; return out; };
   C.where = function () {
-    const c = NAV.mode === 'street' || NAV.mode === 'flight' ? cellOf(NAV.x, NAV.z) : nearestWalk(pose.pos.x, pose.pos.z);
+    const x = camera ? camera.position.x : 0, z = camera ? camera.position.z : 0, c = cellOf(x, z);
     let day = null; city.days.forEach(function (d) { if (c.cz >= d.cz0 - 1 && c.cz <= d.cz1) day = d.day; });
     let district = null; city.districts.forEach(function (s) { if (c.cx >= s.cx0 - 1 && c.cx <= s.cx1 + 1) district = s.name; });
-    const hv = NAV.mode === 'orbit' ? Math.atan2(pose.look.x - pose.pos.x, pose.look.z - pose.pos.z) : NAV.hv;
-    const q = Math.round(hv / (Math.PI / 2)) & 3, heading = ['north', 'east', 'south', 'west'][q];
+    if (camera) camera.getWorldDirection(camDir); else camDir.set(0, 0, 1);
+    const q = Math.round(Math.atan2(camDir.x, camDir.z) / (Math.PI / 2)) & 3, heading = ['north', 'east', 'south', 'west'][q];
     const off = c.cx === 0 ? 'on the avenue' : Math.abs(c.cx) + (Math.abs(c.cx) === 1 ? ' block ' : ' blocks ') + (c.cx > 0 ? 'east' : 'west') + ' of the avenue';
     return { day: day, district: district, heading: heading, mode: NAV.mode, cell: c, text: (day || 'the edge') + (district ? ' and ' + district : ''), off: off };
   };
@@ -1009,7 +1061,7 @@ function makeCityScene(THREE, P) {
   };
   C.cameraXZ = function () { return { x: camera ? camera.position.x : 0, z: camera ? camera.position.z : 0 }; };
   // where the camera is and what it looks at, for the harness's "every input moves the picture" rows
-  C.cameraPose = function () { const r = function (v) { return +v.toFixed(3); }; return camera ? { x: r(camera.position.x), y: r(camera.position.y), z: r(camera.position.z), lx: r(pose.look.x), ly: r(pose.look.y), lz: r(pose.look.z), zoom: r(cam.zoom), yaw: r(NAV.yaw), up: r(NAV.up), pan: r(NAV.panNow) } : null; };
+  C.cameraPose = function () { const r = function (v) { return +v.toFixed(3); }; return camera ? { x: r(camera.position.x), y: r(camera.position.y), z: r(camera.position.z), lx: r(pose.look.x), ly: r(pose.look.y), lz: r(pose.look.z), zoom: r(cam.zoom), yaw: +FREE.yaw.toFixed(6), pitch: +FREE.pitch.toFixed(6), bank: r(FREE.bank) } : null; };
   // picking (city-flythrough 5, sharpened by issue #63): the pointer against each tower's own screen shape (its axis from foot to top,
   // its projected half width), within a margin and 60 units; where shapes overlap, the one whose axis the pointer is closest to (relative
   // to its width) wins, so a near tower's wide glass never swallows the tower the pointer is on
@@ -1041,8 +1093,8 @@ function makeCityScene(THREE, P) {
   function ease(k) { return k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; }
   function frame(now) {
     if (!C.running) return;
-    requestAnimationFrame(frame);
-    if (document.hidden) { clock.last = 0; return; }
+    if (!ticking) { requestAnimationFrame(frame); if (manual) return; }
+    if (document.hidden && !ticking) { clock.last = 0; return; }
     const dt = clock.last ? Math.min(0.1, (now - clock.last) / 1000) : 0.016;
     clock.last = now; clock.t += dt;
     const t0 = performance.now();
@@ -1071,15 +1123,12 @@ function makeCityScene(THREE, P) {
     beamUniforms.uPulse.value = reduced ? 0 : pulse;
     beam.scale.set(1 + 0.5 * pulse, 1, 1 + 0.5 * pulse);
 
-    // the camera: the orbit turns (not for three seconds after a drag), the street advances, the flight follows its path
-    if (now - cam.userAt > 3000) cam.angle += cam.speed * dt;
-    if (NAV.mode === 'street') stepStreet(dt); else if (NAV.mode === 'flight') stepFlight(dt);
-    // the game camera's springs (issue #63): the zoom and the look are quick (120 ms), the swing and the pan ease home while it drives
+    // the camera: the orbit turns on its own (never in the air), the free camera flies, the auto-fly glides on its curve
+    if (NAV.mode === 'orbit') cam.angle += cam.speed * dt;
+    if (NAV.mode === 'free') stepFree(dt); else if (NAV.mode === 'auto') stepAuto(dt);
+    autoTick();
     const kq = Math.min(1, dt / 0.12);
     cam.zoom += (cam.zoomT - cam.zoom) * kq;
-    if (NAV.mode === 'flight' || Math.abs(NAV.speed) > 1.5) { const kd = Math.min(1, dt / 1.2); NAV.yaw -= NAV.yaw * kd; NAV.pan -= NAV.pan * kd; }
-    NAV.panNow += (NAV.pan - NAV.panNow) * kq;
-    NAV.glanceNow += (NAV.glance - NAV.glanceNow) * Math.min(1, dt / 0.2);
     liftK += (liftT - liftK) * Math.min(1, dt / 0.12);
     blockUniforms.uLift.value = reduced ? liftT : liftK;
     wantedPose(tmpV, tmpP);
@@ -1087,18 +1136,22 @@ function makeCityScene(THREE, P) {
       const k = Math.min(1, (now - flight.t0) / flight.ms), e = ease(k);
       pose.pos.lerpVectors(flight.from.pos, tmpV, e); pose.pos.y += Math.sin(Math.PI * k) * flight.bump;
       pose.look.lerpVectors(flight.from.look, tmpP, e);
-      if (k >= 1) { flight = null; if (NAV.mode !== 'flight') C.flying = false; }
+      if (k >= 1) { flight = null; if (NAV.mode === 'glide') landGlide(); else C.flying = false; }
     } else { pose.pos.copy(tmpV); pose.look.copy(tmpP); }
-    parallax.x += (parallax.tx - parallax.x) * 0.08; parallax.y += (parallax.ty - parallax.y) * 0.08;
-    const wantSide = NAV.mode === 'orbit' ? cam.side : 0;
-    cam.sideNow += (wantSide - cam.sideNow) * Math.min(1, dt / 0.6);
     camera.position.copy(pose.pos);
     camera.lookAt(pose.look);
-    tmpR.set(1, 0, 0).applyQuaternion(camera.quaternion);
-    // the pan: camera and look-at move together along the camera's right axis, so the tower slides to the side of the frame
-    const px = NAV.mode === 'flight' ? 0 : parallax.x, py = NAV.mode === 'flight' ? 0 : parallax.y;
-    camera.position.addScaledVector(tmpR, px - cam.sideNow).addScaledVector(tmpU, py);
-    camera.lookAt(tmpP.copy(pose.look).addScaledVector(tmpR, -cam.sideNow));
+    if (airMode()) {
+      // in the air the camera is exactly the free pose: no side pan, no parallax; the auto-fly's bank rolls it round its view
+      if (FREE.bank) camera.rotateZ(-FREE.bank);
+    } else {
+      parallax.x += (parallax.tx - parallax.x) * 0.08; parallax.y += (parallax.ty - parallax.y) * 0.08;
+      cam.sideNow += (cam.side - cam.sideNow) * Math.min(1, dt / 0.6);
+      tmpR.set(1, 0, 0).applyQuaternion(camera.quaternion);
+      // the pan: camera and look-at move together along the camera's right axis, so the tower slides to the side of the frame
+      camera.position.addScaledVector(tmpR, parallax.x - cam.sideNow).addScaledVector(tmpU, parallax.y);
+      camera.lookAt(tmpP.copy(pose.look).addScaledVector(tmpR, -cam.sideNow));
+    }
+    if (C.traceLog && C.traceLog.length < 20000) { camera.getWorldDirection(camDir); C.traceLog.push({ t: +now.toFixed(1), dt: +dt.toFixed(4), mode: NAV.mode, x: camera.position.x, y: camera.position.y, z: camera.position.z, dx: camDir.x, dy: camDir.y, dz: camDir.z }); }
     sky.position.copy(camera.position);
     gridUniforms.uCam.value.set(camera.position.x, camera.position.z);
 
@@ -1188,7 +1241,7 @@ NOBODY.themes.city = (function () {
   let scopeCanvas = null, scopeCtx = null, dialStrip = null, pendingView = null;
   let gainHold = 1;
   // the fly-through's own elements (city-flythrough 5, 6, 8): one readout, one bracket, one edge marker, a few HUD chips
-  const UI = { readout: null, bracket: null, marker: null, hud: null, chips: [], pins: [], flyBtn: null, cursorSlug: null, readoutSlug: null, readoutAt: 0, readoutSettle: 0, readoutAtCursor: null, hover: null, pointerAt: 0, px: null, py: null, edgeAt: 0, edgeDir: 0, hint: 0, layout: 'deck', tap: null };
+  const UI = { readout: null, bracket: null, marker: null, hud: null, chips: [], pins: [], flyBtn: null, cursorSlug: null, readoutSlug: null, readoutAt: 0, readoutSettle: 0, readoutAtCursor: null, hover: null, pointerAt: 0, px: null, py: null, edgeAt: 0, edgeDir: 0, hint: 0, layout: 'deck', tap: null, fingers: new Map(), two: null };
   function el(id) { return ctx.el[id] || document.getElementById(id); }
   function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
   function say(text, cls) { if (ctx && ctx.T) ctx.T.print(text, cls); }
@@ -1219,12 +1272,12 @@ NOBODY.themes.city = (function () {
 
   /* ---- the interface paradigm (12.0, the hooks; city-flythrough 14) ---- */
   // the movement keys (issue #63): the arrows and w a s d together; while the city holds s, shift+s is the shuffle
-  TH.interface = function () { return { kind: 'flythrough', keys: ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', 'f', 'h', 'z', 'x'], layouts: V && V.phone() ? ['deck', 'air'] : ['air', 'deck'] }; };
+  TH.interface = function () { return { kind: 'flythrough', keys: ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', 'e', 'f', 'h', 'z', 'x'], layouts: V && V.phone() ? ['deck', 'air'] : ['air', 'deck'] }; };
   // TH.swatch: the picker's little square (station 12.0, the theme picker): the ground and two lights
   TH.swatch = ['#020309', '#19F0FF', '#FF2BD6'];
   TH.help = function () {
-    return [['drag', 'swing the camera round'], ['wheel', 'zoom, or along the street'], ['w s  up down', 'drive the street (hold)'], ['a d  left right', 'turn at the corner'], ['shift-drag z x', 'pan the view'],
-      ['click a tower', 'fly there and play it'], ['j k', 'the next tower in the city'], ['f  esc', 'the list view (the deck)'], ['h', 'the hint bar']];
+    return [['drag', 'aim the view'], ['wheel', 'along the view'], ['w s  up down', 'fly forward, back (hold)'], ['a d  left right', 'slide sideways'], ['e  shift', 'rise, sink'], ['z x', 'turn left, right'],
+      ['click a tower', 'fly there and play it'], ['j k', 'glide to the next tower'], ['f  esc', 'the list view (the deck)'], ['h', 'the hint bar']];
   };
   TH.commands = function () {
     return {
@@ -1235,7 +1288,7 @@ NOBODY.themes.city = (function () {
         if (!t) { say('nobody knows "' + a + '".', 'err'); return; }
         if (UI.layout !== 'air') ctx.setLayout('air');
         const how = scene.flyTo(t.slug);
-        if (how === 'tunnel') say('flying across town to ' + t.slug + '.', 'mid'); else if (how === 'street') say('flying to ' + t.slug + '.', 'mid');
+        if (how === 'tunnel') say('flying across town to ' + t.slug + '.', 'mid'); else if (how === 'near') say('flying to ' + t.slug + '.', 'mid');
       },
       deck: function () { ctx.setLayout('deck'); },
       route: function () {
@@ -1247,8 +1300,8 @@ NOBODY.themes.city = (function () {
         r.stops.forEach(function (s) { lines.push('  ' + s.n + '  ' + s.slug.padEnd(30).slice(0, 30) + ' ' + s.words); });
         ctx.T.printScroll(lines);
       },
-      cruise: function () { if (!scene) { say('no city here. the list is the city.', 'mid'); return; } if (UI.layout !== 'air') ctx.setLayout('air'); scene.cruise(true); scene.nav().cruiseAt = 0; scene.nav().lastInput = 0; scene.cruiseTick(remaining()); },
-      land: function () { if (!scene) return; if (scene.cruising()) scene.input(); else say('your hands already.', 'mid'); },
+      cruise: function () { if (!scene) { say('no city here. the list is the city.', 'mid'); return; } if (UI.layout !== 'air') ctx.setLayout('air'); scene.cruise(true); },
+      land: function () { if (!scene) return; if (scene.cruising()) { scene.cruise(false); say('landed. your hands.', 'mid'); } else say('your hands already.', 'mid'); },
       district: function (a) {
         if (!scene) { say('no city here. the list is the city.', 'mid'); return; }
         const d = scene.city().districts;
@@ -1261,14 +1314,15 @@ NOBODY.themes.city = (function () {
       where: function () {
         if (!scene) { say('no city here. the list is the city.', 'mid'); return; }
         const w = scene.where();
-        say(w.text + ', ' + w.off + ', heading ' + w.heading + (w.mode === 'orbit' ? ', in the orbit.' : '.'));
+        say(w.text + ', ' + w.off + ', heading ' + w.heading + (w.mode === 'auto' ? ', on the auto-fly.' : '.'));
       }
     };
   };
-  function remaining() { const d = ctx.deck; return d && d.duration ? Math.max(0, d.duration - d.currentTime) : 60; }
   /* ---- input (issue #63): the keys, the keyups, the pointer and the wheel reach the camera through these; #62 builds on them ---- */
-  // the key a held movement key drives: w / up forward, s / down back; a / d / left / right turn
-  const DRIVE = { ArrowUp: 1, w: 1, W: 1, ArrowDown: -1, s: -1, S: -1 }, TURN = { ArrowLeft: -1, a: -1, A: -1, ArrowRight: 1, d: 1, D: 1 };
+  // free flight (issue #110): each movement key is an axis and a way. w / up forward, s / down back, a / left and d / right sideways,
+  // e up (shift down, read by the theme's own listener: the station leaves modifiers alone), z / x turn. space stays the station's pause
+  const MOVE = { ArrowUp: ['f', 1], w: ['f', 1], W: ['f', 1], ArrowDown: ['f', -1], s: ['f', -1], S: ['f', -1], ArrowLeft: ['s', -1], a: ['s', -1], A: ['s', -1], ArrowRight: ['s', 1], d: ['s', 1], D: ['s', 1],
+    e: ['u', 1], E: ['u', 1], Shift: ['u', -1], z: ['turn', -1], Z: ['turn', -1], x: ['turn', 1], X: ['turn', 1] };
   TH.keys = function (e) {
     const k = e.key;
     // f works with or without the scene: without it the air says so and f is the way to the list (issue #63)
@@ -1276,13 +1330,15 @@ NOBODY.themes.city = (function () {
     if (k === 'f' || k === 'F') { ctx.setLayout('deck'); return true; }
     if (k === 'h' || k === 'H') { setHints(!UI.hintsOpen, true); return true; }
     if (!scene) return false;
-    if (DRIVE[k]) { if (!e.repeat) { scene.drive(DRIVE[k], true); used('move'); } return true; }
-    if (TURN[k]) { if (!e.repeat) { scene.turn(TURN[k]); used('move'); } return true; }
-    if (k === 'z' || k === 'Z' || k === 'x' || k === 'X') { scene.pan(/z/i.test(k) ? 0.22 : -0.22); used('look'); return true; }
+    const mv = MOVE[k];
+    if (mv) { if (!e.repeat) { scene.move(mv[0], mv[1], true); used(mv[0] === 'turn' ? 'look' : mv[0] === 'u' ? 'rise' : 'move'); } return true; }
     return false;
   };
-  function onKeyUp(e) { if (scene && DRIVE[e.key]) scene.drive(DRIVE[e.key], false); }
-  function releaseKeys() { if (scene) { scene.drive(1, false); scene.drive(-1, false); } }
+  // a key's way ends on its keyup, whatever case it came up in (shift changes w to W); both ways of the axis are let go
+  function onKeyUp(e) { const mv = MOVE[e.key] || MOVE[String(e.key).toLowerCase()]; if (scene && mv) { scene.move(mv[0], 1, false); scene.move(mv[0], -1, false); } }
+  function releaseKeys() { if (scene) scene.release(); }
+  // shift held sinks: the station never sees modifiers, so the theme listens for it itself, in the air, outside an input
+  function onShiftDown(e) { if (e.key !== 'Shift' || e.repeat || !scene || UI.layout !== 'air' || /^(INPUT|TEXTAREA)$/.test((e.target || {}).tagName || '')) return; scene.move('u', -1, true); used('rise'); }
   TH.layout = function (name) {
     UI.layout = name;
     if (UI.flyBtn) { UI.flyBtn.textContent = name === 'air' ? 'list view  F' : 'fly the city  F'; UI.flyBtn.title = name === 'air' ? 'F: the list view, the cards back in their column' : 'F: fly the city; click a tower to play it'; }
@@ -1321,7 +1377,7 @@ NOBODY.themes.city = (function () {
     scene.setFilter(words, slugs);
     if (words) say('find: ' + slugs.length + (slugs.length === 1 ? ' tower lit.' : ' towers lit.') + ' the rest went dark.', 'mid'); else say('find cleared. the city is back.', 'mid');
   };
-  // the hidden interface (#52) is the cruise (city-flythrough 10)
+  // the hidden interface (#52) is the auto-fly (city-flythrough 21); leaving it stops the camera where it is
   TH.hidden = function (on) {
     if (!scene) return;
     if (on) { if (UI.layout !== 'air') ctx.setLayout('air'); scene.cruise(true); }
@@ -1363,7 +1419,7 @@ NOBODY.themes.city = (function () {
     if (scene) { scene.dispose(); scene = null; }
     [canvas, cssgrid, horizon, scanrect, odoRing, UI.readout, UI.bracket, UI.marker, UI.hud, UI.flyWrap, UI.hints, UI.fallback].forEach(function (n) { if (n) n.remove(); });
     canvas = cssgrid = horizon = scanrect = odoRing = null; UI.readout = UI.bracket = UI.marker = UI.hud = UI.flyBtn = UI.flyWrap = UI.hints = UI.fallback = null; UI.chips = []; UI.pins = [];
-    window.removeEventListener('keyup', onKeyUp); window.removeEventListener('blur', releaseKeys); document.removeEventListener('visibilitychange', onVisibility);
+    window.removeEventListener('keyup', onKeyUp); window.removeEventListener('keydown', onShiftDown); window.removeEventListener('blur', releaseKeys); document.removeEventListener('visibilitychange', onVisibility);
     document.body.classList.remove('city-hints-open', 'city-hints-shut', 'city-down');
     el('scope').textContent = ''; scopeCanvas = null; scopeCtx = null;
     el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
@@ -1447,14 +1503,14 @@ NOBODY.themes.city = (function () {
       flash();
       glass.classList.add('bloom-on'); setTimeout(function () { glass.classList.remove('bloom-on'); }, 300);
       if (scene) scene.setView('home', 0); else pendingView = { view: 'home' };
-      if (UI.layout === 'air' && scene) say('on air over the city. drag to look, w a s d to move, click a tower to play it. f for the list.', 'mid');
+      if (UI.layout === 'air' && scene) say('on air over the city. drag to look, w a s d to fly, e and shift up and down, click a tower to play it. f for the list.', 'mid');
       return Promise.resolve();
     }
     if (to === 'tuning') {
       hideReadout();
       // the camera follows the music, except the station's own rotation while the listener is flying (issue #63): then only the beam
       // moves, and the edge marker shows the way
-      UI.follow = !(UI.layout === 'air' && !info.picked && scene && scene.recentInput(20000));
+      UI.follow = !(UI.layout === 'air' && (!info.picked || document.body.classList.contains('ui-hidden')));
       if (scene) scene.setPlaying(info.slug, info.ms || 1200, true, UI.follow); else pendingView = { view: 'home', playing: info.slug };
       return Promise.resolve();
     }
@@ -1475,7 +1531,7 @@ NOBODY.themes.city = (function () {
     setTimeout(function () { power.classList.add('fade'); setTimeout(function () { power.classList.remove('on', 'fade'); }, 140); }, 20);
   }
   function onLand(slug, how) {
-    if (!slug || how !== 'orbit') return;
+    if (!slug || how !== 'play') return;
     const t = trackOf(slug), w = scene.where();
     say('landed. ' + slug + '. ' + (t && t.project ? t.project : (w.district || 'downtown')) + (t && t.date ? ', ' + t.date : '') + '.', 'mid');
   }
@@ -1492,7 +1548,7 @@ NOBODY.themes.city = (function () {
     if (!scene) return Object.assign({ widget: null, running: false, nocity: document.body.classList.contains('nocity'), layout: UI.layout }, ui);
     const nav = scene.nav(), w = scene.where(), r = scene.route();
     return Object.assign({ widget: null, running: scene.running, frames: scene.frames, ms: +scene.ms.toFixed(1), bloom: scene.bloomOn, chroma: scene.chromaOn, view: scene.view, playing: scene.playing, flying: scene.flying, tunnel: scene.tunnelOn, phone: scene.phone, nocity: false,
-      layout: UI.layout, camera: { mode: nav.mode, street: w.text, along: w.off, heading: w.heading, speed: +nav.speed.toFixed(2), height: +nav.y.toFixed(2), cell: w.cell, focus: scene.focus(), pose: scene.cameraPose() },
+      layout: UI.layout, camera: { mode: nav.mode, street: w.text, along: w.off, heading: w.heading, speed: +scene.speed().toFixed(2), cell: w.cell, focus: scene.focus(), pose: scene.cameraPose() },
       cursor: UI.cursorSlug, hover: UI.hover ? UI.hover.slug : null, readout: UI.readout && !UI.readout.hidden ? UI.readoutSlug : null, route: r.stops.map(function (s) { return s.slug; }), routeAsked: r.list.slice(), lit: scene.litCount(), cruise: scene.cruising(), perf: scene.perf(), towers: scene.towers().length }, ui);
   };
 
@@ -1502,6 +1558,9 @@ NOBODY.themes.city = (function () {
     if (UI.layout !== 'air') return false;
     ctx.setLayout('deck'); return true;
   };
+  // the harness: the scene's stepped clock (GIF frames) and its per-frame camera trace (the smoothness rows)
+  TH.sceneApi = function () { return { manual: function (on) { if (scene) scene.manual(on); }, tick: function (ms) { if (scene) scene.tick(ms); } }; };
+  TH.trace = function (on) { return scene ? scene.trace(on) : null; };
   TH.pickAt = function (x, y) { const t = scene ? scene.pick(x, y, pickRadius()) : null; return t ? t.slug : null; };
   // the margin around a tower's own screen shape that still counts as pointing at it: a finger is wider than a pointer
   function pickRadius() { return V.phone() ? 36 : 14; }
@@ -1545,18 +1604,19 @@ NOBODY.themes.city = (function () {
     canvas.addEventListener('pointerdown', onPointerDown);
     canvas.addEventListener('pointermove', onPointerMove);
     canvas.addEventListener('pointerup', onPointerUp);
-    canvas.addEventListener('pointercancel', function () { UI.tap = null; dragCursor(false); });
+    canvas.addEventListener('pointercancel', function (e) { UI.fingers.delete(e.pointerId); UI.two = null; if (scene) scene.touchMove(0, 0); UI.tap = null; dragCursor(false); });
     canvas.addEventListener('lostpointercapture', function () { if (UI.tap && !UI.tap.touch) { UI.tap = null; dragCursor(false); } });
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('keydown', onAnyKey, true);
     window.addEventListener('keyup', onKeyUp);
+    window.addEventListener('keydown', onShiftDown);
     window.addEventListener('blur', releaseKeys);
     window.addEventListener('pointermove', onWindowMove, { passive: true });
     document.addEventListener('visibilitychange', onVisibility);
   }
   /* ---- the hint bar (issue #63): pinned at the bottom of the air, the controls a first-time player needs, each lighting up when used ---- */
-  const HINTS_DESK = [['look', 'drag', 'look'], ['zoom', 'wheel', 'zoom'], ['move', 'WASD', 'move'], ['play', 'click a tower', 'to play'], ['list', 'F', 'list view', 'list'], ['themes', 'T', 'themes', 'themes'], ['help', '?', 'help', 'help']];
-  const HINTS_PHONE = [['move', 'drag', 'to fly'], ['look', 'tap', 'a tower'], ['play', 'two taps', 'to play'], ['list', 'list', '', 'list']];
+  const HINTS_DESK = [['look', 'drag', 'look'], ['move', 'WASD', 'fly'], ['rise', 'E shift', 'up down'], ['play', 'click a tower', 'to play'], ['list', 'F', 'list view', 'list'], ['themes', 'T', 'themes', 'themes'], ['help', '?', 'help', 'help']];
+  const HINTS_PHONE = [['look', 'drag', 'to look'], ['move', 'two fingers', 'to fly'], ['tap', 'tap', 'a tower'], ['play', 'two taps', 'to play'], ['list', 'list', '', 'list']];
   function hintsKey() { try { return localStorage.getItem('nobody.cityhints'); } catch (e) { return null; } }
   function hintsSave(v) { try { localStorage.setItem('nobody.cityhints', v); } catch (e) {} }
   function buildHints() {
@@ -1631,7 +1691,8 @@ NOBODY.themes.city = (function () {
   }
   // a pointer moving over the open city is aiming: the orbit holds still under it (it turns again 3 s after the pointer rests)
   function onWindowMove(e) { UI.pointerAt = performance.now(); UI.px = e.clientX; UI.py = e.clientY; if (scene && e.target === canvas && UI.layout === 'air') scene.hold(); }
-  function onAnyKey(e) { if (scene && document.body.classList.contains('ui-hidden') && scene.cruising() && !/^(v|V|`|~|Escape)$/.test(e.key)) scene.input(); }
+  // a camera key takes the camera from the auto-fly; the station's own keys (play, skip, volume, v) leave it flying
+  function onAnyKey(e) { if (scene && scene.cruising() && (MOVE[e.key] || /^[jkJK]$/.test(e.key))) scene.input(); }
   // the wheel over the scene (not a card): the orbit zooms, the street moves; a trackpad's small deltas add up the same way
   function onWheel(e) {
     if (!scene || UI.layout !== 'air') return;
@@ -1643,33 +1704,35 @@ NOBODY.themes.city = (function () {
   function onPointerDown(e) {
     if (!scene || UI.layout !== 'air') return;
     if (e.pointerType !== 'touch' && e.button !== 0) return;
+    if (e.pointerType === 'touch') { UI.fingers.set(e.pointerId, { x: e.clientX, y: e.clientY }); UI.two = null; if (UI.fingers.size > 1 && UI.tap) { UI.tap.moved = true; return; } }
     UI.tap = { x: e.clientX, y: e.clientY, lx: e.clientX, ly: e.clientY, t: performance.now(), moved: false, touch: e.pointerType === 'touch', shift: e.shiftKey };
     try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
   }
   function onPointerMove(e) {
+    if (UI.fingers.has(e.pointerId)) UI.fingers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (!UI.tap || !scene) return;
     const dx = e.clientX - UI.tap.x, dy = e.clientY - UI.tap.y;
     if (!UI.tap.moved && Math.abs(dx) + Math.abs(dy) > (UI.tap.touch ? 8 : 5)) { UI.tap.moved = true; if (!UI.tap.touch) { dragCursor(true); hideReadout(); } }
-    // a mouse drag (issue #63): the camera swings round what it looks at and rises; with shift it pans
-    if (!UI.tap.touch && UI.tap.moved) {
-      const mx = e.clientX - UI.tap.lx, my = e.clientY - UI.tap.ly; UI.tap.lx = e.clientX; UI.tap.ly = e.clientY;
-      if (UI.tap.shift || e.shiftKey) { scene.pan(-mx * 0.004, true); used('look'); } else { scene.look(mx, my); used('look'); }
+    // a drag aims (issue #110): the mouse, or one finger on a phone; two fingers fly, from where they first came down
+    if (UI.tap.touch && UI.fingers.size >= 2) {
+      const ps = Array.from(UI.fingers.values()), mx = (ps[0].x + ps[1].x) / 2, my = (ps[0].y + ps[1].y) / 2;
+      if (!UI.two) UI.two = { x: mx, y: my };
+      const k = Math.min(innerWidth, innerHeight) / 4;
+      scene.touchMove(clamp(-(my - UI.two.y) / k, -1, 1), clamp((mx - UI.two.x) / k, -1, 1)); used('move');
+      UI.tap.moved = true;
       return;
     }
-    if (UI.tap.touch && UI.tap.moved) {
-      // one finger flies (city-flythrough 9): x steers and arms the turn, y is the speed
-      scene.input();
-      if (scene.nav().mode === 'orbit') scene.accel(0);
-      scene.drift(dx / innerWidth * 3);
-      if (Math.abs(dx) > innerWidth / 4) scene.armTurn(dx > 0 ? 1 : -1);
-      const nav = scene.nav(); if (nav.mode === 'street') nav.tspeed = Math.max(0, Math.min(16, -dy / innerHeight * 24));
+    if (UI.tap.moved) {
+      const mx = e.clientX - UI.tap.lx, my = e.clientY - UI.tap.ly; UI.tap.lx = e.clientX; UI.tap.ly = e.clientY;
+      scene.look(mx, my); used('look');
     }
   }
   function onPointerUp(e) {
+    const two = UI.fingers.size > 1 || UI.two; UI.fingers.delete(e.pointerId);
+    if (two) { if (scene) scene.touchMove(0, 0); UI.two = null; if (UI.fingers.size) return; }
     const tap = UI.tap; UI.tap = null;
     if (!tap || !scene || UI.layout !== 'air') return;
     try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
-    if (tap.touch) { const nav = scene.nav(); if (nav.mode === 'street') nav.tspeed = 0; }
     if (tap.moved) { dragCursor(false); return; }
     scene.input();
     const t = scene.pick(e.clientX, e.clientY, pickRadius());
@@ -1716,12 +1779,11 @@ NOBODY.themes.city = (function () {
     UI.frames = (UI.frames || 0) + 1; UI.lastNow = now; UI.frameAt = performance.now();
     if (UI.fallback && !UI.fallback.hidden) watchdog();
     const air = UI.layout === 'air', hidden = document.body.classList.contains('ui-hidden');
-    scene.cruiseTick(remaining());
     if (!air && !hidden) { if (!UI.readout.hidden) hideReadout(); UI.marker.hidden = true; UI.pins.forEach(function (p) { p.hidden = true; }); UI.chips.forEach(function (p) { p.hidden = true; }); if (canvas.style.cursor) canvas.style.cursor = ''; scene.setHover(null); return; }
     const nav = scene.nav();
     // the cursor follows the pointer when the pointer moves (the keys move it through highlight); not while a drag swings the camera
     const dragging = UI.tap && UI.tap.moved && !UI.tap.touch;
-    if (!V.phone() && !hidden && !dragging && now - UI.pointerAt < 3000 && UI.pointerAt > (UI.keyAt || 0) && UI.px != null && scene.view === 'air' && nav.mode !== 'flight') {
+    if (!V.phone() && !hidden && !dragging && now - UI.pointerAt < 3000 && UI.pointerAt > (UI.keyAt || 0) && UI.px != null && scene.view === 'air' && nav.mode !== 'glide') {
       const over = document.elementFromPoint(UI.px, UI.py);
       if (over === canvas) {
         const t = scene.pick(UI.px, UI.py, pickRadius());
