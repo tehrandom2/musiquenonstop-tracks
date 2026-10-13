@@ -34,12 +34,15 @@
   };
   const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
-  const deck = $('deck'), glass = $('glass'), power = $('power');
+  // two decks (issue #87): the next track loads into the one off air and crosses in; they swap ids, so `deck` and #deck are
+  // always the one on air
+  let deck = $('deck');
+  const decks = [deck, $('deckB')], glass = $('glass'), power = $('power');
   const el = {};
   ['boot', 'bootLines', 'banner', 'bootTagline', 'bootFreq', 'bootWait', 'main', 'headerMain', 'headerPage', 'chip', 'chip2', 'uptime', 'uptime2',
     'trackCount', 'hdrSlug', 'hdrTime', 'hdrBar', 'hdrBack', 'txLabel', 'vol', 'volDeco', 'npSlug', 'npMeta', 'readout', 'readoutText', 'readoutCursor',
     'make', 'makeState', 'makeForm', 'makeWords', 'makeSend', 'makeRemix', 'makeLine',
-    'progress', 'progressTime', 'dial', 'spectrum', 'baseline', 'scope', 'deadair', 'tower', 'towerStatic', 'reread', 'bed', 'fat', 'fatPrev', 'fatPlay', 'fatNext', 'fatQueue', 'licence',
+    'progress', 'progressTime', 'dial', 'nextUp', 'spectrum', 'baseline', 'scope', 'deadair', 'tower', 'towerStatic', 'reread', 'bed', 'fat', 'fatPrev', 'fatPlay', 'fatNext', 'fatQueue', 'licence',
     'catalogue', 'sortLabel', 'shuffleLabel', 'findBtn', 'catHead', 'catRows', 'catEmpty', 'page', 'terminal', 'log', 'cmd', 'cmdCursor', 'promptRow', 'hints',
     'visitorInline', 'wireTag', 'footer', 'odometer', 'countTag', 'help', 'helpTitle', 'helpBody', 'helpClose', 'stationName', 'stationName2', 'transmitter',
     'themeBtn', 'themes', 'themeList', 'themesClose', 'failRow', 'failRetry', 'failNext']
@@ -65,7 +68,7 @@
   NOBODY.theme = { current: null, name: null };
   function TH() { return NOBODY.theme.current; }
   function themeCtx() {
-    return { el: el, glass: glass, power: power, S: S, deck: deck, V: V, A: A, T: T, fmt: fmt, phone: phone, cols: cols, content: content,
+    return { el: el, glass: glass, power: power, S: S, get deck() { return deck; }, V: V, A: A, T: T, fmt: fmt, phone: phone, cols: cols, content: content,
       libs: function () { return NOBODY.libs || null; }, wantsTower: function () { return S.state === 'dead' || !!S.idle; }, print: T.print,
       // the actions (design 12.0, the interface hooks, issue #53): each is the station's own function, so a theme that owns the
       // browsing paradigm asks for the same things the keys and the commands do, and the log narrates them the same way
@@ -76,6 +79,7 @@
       remix: function (slug) { st.remixThis(slug); },
       // albums (issue #73): the same API as NOBODY.albums/album/albumOf/cover/playAlbum, plus the album page
       openAlbum: function (slug) { if (S.albumBySlug[slug]) openAlbum(slug); }, playAlbum: function (slug) { return playAlbum(slug); },
+      nextUp: function () { return nextUpInfo(); },
       // B-sides (issue #111): a theme's own automatic pick (a cruise, an auto-fly, a surprise) takes only a slug this says yes to
       inRotation: function (slug) { return inRotation(slug); },
       albums: function () { return S.albums.slice(); }, albumOf: function (track) { return albumOf(track); }, cover: function (x, size) { return coverUrl(x, size); },
@@ -103,6 +107,7 @@
     th.stationName(el.stationName); th.stationName(el.stationName2);
     th.catalogue(S.tracks);
     if (S.current) th.playing(S.current);
+    S.nextUpKey = null; drawNextUp();   // the new theme's nextUp hook hears the current answer (issue #87)
     drawVol();
     A.resize();
     themeInterface(th);
@@ -409,7 +414,7 @@
     if (S.onAir) return;
     if (!S.booted) finishBoot();
     S.onAir = true; S.airSince = Date.now();
-    const ok = SY.create(deck, !FILE, MUTE);
+    const ok = SY.create(deck, !FILE, MUTE, decks[1]);
     try { const v = parseInt(localStorage.getItem('nobody.vol'), 10); if (!isNaN(v)) SY.volume = v; } catch (err) {}
     SY.setVolume(SY.volume, deck, FILE || !ok);
     if (FILE || !ok) { A.ghost = true; }
@@ -473,22 +478,12 @@
     if (!t) { S.skipped = (S.skipped || 0) + 1; if (S.skipped > S.tracks.length + 1) { S.skipped = 0; T.error('nothing in the queue plays. dead air.'); return; } next(); return; }
     S.skipped = 0;
     const token = ++S.tuningToken;
+    // a jump by hand never crossfades (issue #87): whatever was crossing in or fading out stops here, and the tuning plays
+    cutFade();
     if (S.current && S.current !== slug) { S.played.add(S.current); S.history.push(S.current); }
     S.current = slug; S.state = 'tuning'; S.picked = !!picked;
-    el.failRow.hidden = true;
-    hideDead();
-    setChip('TUNING', 'tuning');
-    el.txLabel.textContent = 'TUNING';
-    el.readout.classList.add('tuning'); el.readout.classList.remove('typing');
-    el.transmitter.classList.add('tuning-state');
-    document.body.classList.add('amber-cursor');
-    if (S.readoutTyper) S.readoutTyper.cancel();
-    el.readoutText.textContent = '.'.repeat(Math.max(10, Math.min(47, content() - 20))) + ' locking ...';
-    el.readoutCursor.classList.add('dimcur');
-    el.npMeta.textContent = metaText(t, true);
-    V.scramble(el.npSlug, slug, 1100);
-    el.progress.hidden = true; el.dial.hidden = false;
-    A.tuning = true; A.setTrack(slug, t.bpm);
+    tuningLook(slug, t);
+    A.tuning = true;
     // the theme's own switch sound (issue #103), or the station's static when it has none
     // a hidden tab (issue #114) has no dial to watch: no switch sound and no hold, the next track plays as soon as it loads.
     // a tuning that starts while another is still holding stops the old one's sound first
@@ -547,6 +542,54 @@
       nowPlaying(t);
     }
   }
+  // what the screen does between two tracks, whether the deck tunes (a jump) or crosses (the end of a track, issue #87)
+  function tuningLook(slug, t) {
+    el.failRow.hidden = true;
+    hideDead();
+    setChip('TUNING', 'tuning');
+    el.txLabel.textContent = 'TUNING';
+    el.readout.classList.add('tuning'); el.readout.classList.remove('typing');
+    el.transmitter.classList.add('tuning-state');
+    document.body.classList.add('amber-cursor');
+    if (S.readoutTyper) S.readoutTyper.cancel();
+    el.readoutText.textContent = '.'.repeat(Math.max(10, Math.min(47, content() - 20))) + ' locking ...';
+    el.readoutCursor.classList.add('dimcur');
+    el.npMeta.textContent = metaText(t, true);
+    V.scramble(el.npSlug, slug, 1100);
+    el.progress.hidden = true; el.dial.hidden = false;
+    A.setTrack(slug, t.bpm);
+  }
+  // the crossfade's half of a track change (issue #87): the next track is already on air on the other deck and the last one is
+  // fading under it, so there is no static and no load; the dial still sweeps (for the crossfade's length, at least the 1.2 s
+  // of 5.1) and the theme still gets its tuning move, with `crossfade` in the info. the analyser reads the real music throughout.
+  function glide(slug, secs) {
+    const t = S.bySlug[slug], token = ++S.tuningToken, ms = Math.max(1200, Math.round(secs * 1000));
+    if (S.current && S.current !== slug) { S.played.add(S.current); S.history.push(S.current); }
+    S.current = slug; S.state = 'tuning'; S.picked = false;
+    tuningLook(slug, t);
+    TH().playing(slug);
+    TH().transition('playing', 'tuning', { slug: slug, ms: ms, crossfade: secs });
+    T.print((XF.secs ? 'crossfade ' + secs.toFixed(1) + ' s' : 'gapless') + ' ... 88.8 ... found: ' + slug);
+    document.title = 'nobody fm: tuning';
+    mediaSession(t);
+    markRows();
+    const started = performance.now(), from = 88.8 - 0.6 - Math.random() * 1.2;
+    let done = false;
+    function land() {
+      if (done || token !== S.tuningToken) return;
+      done = true;
+      S.state = deck.paused ? 'paused' : 'playing';
+      nowPlaying(t);
+      if (deck.paused) setChip('PAUSED');
+    }
+    (function sweep() {
+      if (done || token !== S.tuningToken) return;
+      const k = Math.min(1, (performance.now() - started) / ms);
+      drawDial(from + (88.8 - from) * (1 - Math.pow(1 - k, 2)));
+      if (k < 1) requestAnimationFrame(sweep); else land();
+    })();
+    setTimeout(land, ms + 50);   // no frames on a locked phone: the clock lands it
+  }
   // why a file did not load, in words: over http a HEAD request says whether it is there at all; the media error says the rest
   function failReason(src, why) {
     if (why) return Promise.resolve(why);
@@ -603,9 +646,10 @@
     S.readoutTyper = V.type(el.readoutText, t.prompt || t.idea || '', typingSpeed(t.prompt || t.idea || '', 60));
     S.readoutTyper.promise.then(function (finished) { if (finished) el.readout.classList.remove('typing'); });
     document.title = 'nobody fm: ' + t.slug;
+    // the queue never runs dry while on air, so next up always has an answer (issue #87)
+    if (!S.queue.length) refill();
     mediaSession(t);
     markRows();
-    S.preloaded = false;
     clearIdle();
     if (S.pendingPage) { const p = S.pendingPage; S.pendingPage = null; if (p.indexOf('album:') === 0) openAlbum(p.slice(6)); else openTrack(p); }
   }
@@ -620,15 +664,41 @@
   function next() {
     if (!S.tracks.length) return;
     if (S.repeat && S.current) { S.repeat = false; replay('once more: ' + S.current); return; }
-    if (!S.queue.length) {
-      const rest = rotation().filter(function (s) { return s !== S.current; });
-      // one track in the catalogue (issue #25): there is nothing else to tune to, so it plays again and says so
-      if (!rest.length && S.current) { replay('one track. it never stops: ' + S.current + ' again.'); return; }
-      S.queue = rest;
-      shuffleArray(S.queue);
-      T.print('queue empty. refilled, shuffled. nobody stops.');
-    }
+    // one track in the catalogue (issue #25): there is nothing else to tune to, so it plays again and says so
+    if (!S.queue.length && !refill() && S.current) { replay('one track. it never stops: ' + S.current + ' again.'); return; }
     tuneTo(S.queue.shift());
+  }
+  // the queue never runs dry: the rest of the rotation (B-sides never, issue #111), shuffled, an album kept whole and in its
+  // order (issue #87). false when there is nothing but the track on air
+  function refill() {
+    const rest = rotation().filter(function (s) { return s !== S.current; });
+    if (!rest.length) return false;
+    S.queue = shuffleRuns(rest);
+    T.print('queue empty. refilled, shuffled. nobody stops.');
+    return true;
+  }
+  // a shuffle that never shuffles inside an album: each album in the list is one run in album order, each single a run of one
+  function shuffleRuns(list) { const runs = albumRuns(list); shuffleArray(runs); return [].concat.apply([], runs); }
+  // shuffle off: the runs back in the catalogue's order (each by its oldest track), the album on air first so it plays on
+  function orderRuns(list) {
+    const order = chronological(), cur = S.albumOfSlug[S.current];
+    const first = function (r) { return Math.min.apply(null, r.map(function (s) { return order.indexOf(s); })); };
+    const runs = albumRuns(list).sort(function (a, b) {
+      const ca = cur && S.albumOfSlug[a[0]] === cur ? 0 : 1, cb = cur && S.albumOfSlug[b[0]] === cur ? 0 : 1;
+      return (ca - cb) || (first(a) - first(b));
+    });
+    return [].concat.apply([], runs);
+  }
+  function albumRuns(list) {
+    const runs = [], seen = {};
+    list.forEach(function (s) {
+      const a = S.albumOfSlug[s];
+      if (!a) { runs.push([s]); return; }
+      if (seen[a.slug]) return;
+      seen[a.slug] = true;
+      runs.push(a.tracks.filter(function (x) { return list.indexOf(x) >= 0; }));
+    });
+    return runs;
   }
   function prev() {
     if (deck.currentTime > 3 || !S.history.length) { deck.currentTime = 0; return; }
@@ -652,18 +722,20 @@
     if (S.state === 'dead') return;
     if (S.state === 'failed') { st.retry(); return; }
     if (deck.paused) { const p = deck.play(); if (p && p.catch) p.catch(function () {}); S.state = 'playing'; setChip('ON AIR'); clearIdle(); T.print('on air.'); }
-    else { deck.pause(); S.state = 'paused'; setChip('PAUSED'); T.print('paused. the transmitter hums.'); armIdle(); }
+    else { cutFade(); deck.pause(); S.state = 'paused'; setChip('PAUSED'); T.print('paused. the transmitter hums.'); armIdle(); }
     markRows();
   }
-  deck.addEventListener('ended', function () { S.state = 'ended'; next(); });
-  deck.addEventListener('timeupdate', function () {
-    if (S.state !== 'playing' && S.state !== 'paused') return;
-    drawProgress();
-    if (!S.preloaded && deck.duration && deck.currentTime / deck.duration > 0.5 && S.queue.length) {
-      S.preloaded = true;
-      const nt = S.bySlug[S.queue[0]];
-      if (nt) { S.preloader = new Audio(); S.preloader.preload = 'auto'; S.preloader.crossOrigin = 'anonymous'; S.preloader.src = trackUrl(nt, 'mp3'); S.preloader.load(); }
-    }
+  // both decks carry the listeners; only the one on air is heard from (the other is loading, or fading out)
+  decks.forEach(function (d) {
+    d.addEventListener('ended', function () { if (d !== deck) return; S.state = 'ended'; next(); });
+    d.addEventListener('timeupdate', function () {
+      if (d !== deck || (S.state !== 'playing' && S.state !== 'paused')) return;
+      drawProgress();
+      positionState();
+      continuity();
+    });
+    ['seeking', 'pause', 'ratechange'].forEach(function (ev) { d.addEventListener(ev, function () { if (d === deck) { clearTimeout(XF.timer); XF.timer = 0; } }); });
+    ['play', 'pause'].forEach(function (ev) { d.addEventListener(ev, function () { if (d === deck && 'mediaSession' in navigator) navigator.mediaSession.playbackState = d.paused ? 'paused' : 'playing'; }); });
   });
   function drawProgress() {
     const d = deck.duration || (S.bySlug[S.current] || {}).duration || 0, c = deck.currentTime || 0;
@@ -701,14 +773,139 @@
       }
       S.mediaArt = art[art.length - 1].src;
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: t.title || t.slug, artist: 'nobody fm', album: a ? albumTitle(a) : '88.8 the transmitter nobody can find', artwork: art
+        title: t.title || t.slug, artist: 'NOBODY FM', album: a ? albumTitle(a) : '88.8 the transmitter nobody can find', artwork: art
       });
-      navigator.mediaSession.setActionHandler('play', togglePlay);
-      navigator.mediaSession.setActionHandler('pause', togglePlay);
-      navigator.mediaSession.setActionHandler('nexttrack', next);
-      navigator.mediaSession.setActionHandler('previoustrack', prev);
-      navigator.mediaSession.setActionHandler('seekto', function (d) { if (d && d.seekTime != null) { deck.currentTime = d.seekTime; } });
+      if (!S.mediaHandlers) { S.mediaHandlers = true; mediaHandlers(); }
+      positionState(true);
     } catch (e) {}
+  }
+  // the lock screen's and the media keys' buttons (issue #87): play and pause say what they mean (a play while playing does not
+  // pause), next and previous are the station's, the seeks move the deck on air
+  function mediaHandlers() {
+    const ms = navigator.mediaSession, set = function (name, fn) { try { ms.setActionHandler(name, fn); } catch (e) {} };
+    set('play', function () { if (!S.onAir || deck.paused) togglePlay(); });
+    set('pause', function () { if (S.onAir && !deck.paused) togglePlay(); });
+    set('stop', function () { if (S.onAir) st.stop(); });
+    set('nexttrack', function () { if (S.onAir && S.state !== 'dead') next(); });
+    set('previoustrack', function () { if (S.onAir && S.state !== 'dead') prev(); });
+    set('seekto', function (d) { if (d && d.seekTime != null && deck.duration) { if (d.fastSeek && deck.fastSeek) deck.fastSeek(d.seekTime); else deck.currentTime = Math.max(0, Math.min(deck.duration - 0.1, d.seekTime)); positionState(true); } });
+    set('seekbackward', function (d) { seekBy(-((d && d.seekOffset) || 10)); positionState(true); });
+    set('seekforward', function (d) { seekBy((d && d.seekOffset) || 10); positionState(true); });
+  }
+  // the lock screen's scrubber: where the deck on air is, at most once a second unless something moved it
+  function positionState(now) {
+    if (!('mediaSession' in navigator) || !navigator.mediaSession.setPositionState) return;
+    const d = deck.duration;
+    if (!d || !isFinite(d) || (!now && performance.now() - (S.posAt || 0) < 1000)) return;
+    S.posAt = performance.now();
+    try { navigator.mediaSession.setPositionState({ duration: d, position: Math.min(d, deck.currentTime || 0), playbackRate: deck.playbackRate || 1 }); } catch (e) {}
+  }
+
+  /* ---------------- continuity (issue #87): the crossfade, the gapless join, next up ---------------- */
+  // XF.secs is the crossfade in seconds: `crossfade` in config.js (4 by default), then this browser's `xfade <s>`, then ?xfade= for
+  // one visit; 0 is a gapless join (a 50 ms equal-power cross, so the join does not click). once the track on air is past half way
+  // or within 30 s of its end, the next one in the queue loads into the deck off air; XF.secs before the end it starts there at
+  // gain 0 and the two channel gains cross (cos and sin, synth.js), then the decks swap ids. a jump by hand (next, prev, a play,
+  // an album) never crosses: it tunes as it always did. no preload, so no crossfade, on a reduced-data connection (saveData), and
+  // none from a file URL or without the audio graph, where the gains do not exist: the track ends and the next one tunes.
+  const XF = { secs: 4, armed: null, timer: 0, fade: null };
+  (function () {
+    let v = CFG.crossfade;
+    try { const k = localStorage.getItem('nobody.xfade'); if (k != null && k !== '') v = k; } catch (e) {}
+    if (qs.get('xfade') != null) v = qs.get('xfade');
+    v = parseFloat(v); if (!isNaN(v)) XF.secs = Math.max(0, Math.min(12, v));
+  })();
+  function saveData() { const c = navigator.connection; return !!(c && c.saveData); }
+  function offAir() { return deck === decks[0] ? decks[1] : decks[0]; }
+  // what plays when this track ends, or null when it is this one again (repeat) or nothing is known yet
+  function upNext() { if (S.repeat || !S.queue.length || S.queue[0] === S.current) return null; return S.queue[0]; }
+  function joinSecs() { return Math.max(0.05, Math.min(XF.secs, (deck.duration || 0) / 3)); }
+  function continuity() {
+    if (S.state !== 'playing' || deck.paused || !deck.duration || !isFinite(deck.duration) || saveData()) return;
+    const slug = upNext(); if (!slug) return;
+    const left = deck.duration - deck.currentTime;
+    if ((!XF.armed || XF.armed.slug !== slug) && (deck.currentTime / deck.duration > 0.5 || left < 30)) arm(slug);
+    if (!SY.deckConnected || XF.timer || !XF.armed || XF.armed.slug !== slug) return;
+    const lead = left - joinSecs();
+    if (lead < 1.5) XF.timer = setTimeout(join, Math.max(0, lead * 1000 / (deck.playbackRate || 1) - 20));
+  }
+  function arm(slug) {
+    const d = offAir(), t = S.bySlug[slug]; if (!t) return;
+    if (FILE && d.hasAttribute('crossorigin')) d.removeAttribute('crossorigin');
+    if (SY.chans) SY.level(d, 0);
+    d.pause(); d.preload = 'auto'; d.src = trackUrl(t, 'mp3'); d.load();
+    XF.armed = { slug: slug, el: d };
+  }
+  function join() {
+    XF.timer = 0;
+    const a = XF.armed, slug = upNext();
+    // not loaded in time, or the queue changed under it: the track ends and the next one tunes, as before
+    if (!a || a.slug !== slug || a.el !== offAir() || S.state !== 'playing' || deck.paused || a.el.readyState < 3) return;
+    const from = deck, to = a.el, secs = Math.max(0.05, Math.min(joinSecs(), from.duration - from.currentTime));
+    XF.armed = null;
+    S.queue.shift();
+    SY.level(to, 0);
+    const p = to.play();
+    if (p && p.catch) p.catch(function () { if (deck === to && to.paused) { cutFade(); tuneTo(slug); } });
+    SY.crossfade(from, to, secs);
+    from.id = 'deckB'; to.id = 'deck'; deck = to;
+    XF.fade = { from: from, to: to, slug: slug, secs: secs, timer: setTimeout(endFade, secs * 1000 + 150) };
+    glide(slug, secs);
+  }
+  // the fade ran its course: the old deck stops and lets go of its file
+  function endFade() {
+    const f = XF.fade; if (!f) return;
+    XF.fade = null; clearTimeout(f.timer);
+    f.from.pause(); SY.level(f.from, 0);
+    f.from.removeAttribute('src'); f.from.load();
+  }
+  // a jump, a pause or a stop: the deck on air is the only one heard, at full channel gain, at once
+  function cutFade() {
+    clearTimeout(XF.timer); XF.timer = 0;
+    if (XF.fade) { const f = XF.fade; XF.fade = null; clearTimeout(f.timer); f.from.pause(); f.from.removeAttribute('src'); f.from.load(); }
+    const o = offAir(); if (!o.paused) o.pause();
+    if (SY.chans) { SY.level(deck, 1); SY.level(o, 0); }
+  }
+  // next up (issue #87): the track the queue plays next, for the transmitter's line, a theme's `nextUp(info)` hook and
+  // NOBODY.nextUp(). info = { slug, title, album, n, of, in } (album, n and of only on an album; `in` the seconds to the join)
+  function nextUpInfo() {
+    const slug = upNext(), t = slug && S.bySlug[slug];
+    if (!t) return null;
+    const a = albumOf(t), d = deck.duration;
+    const info = { slug: slug, title: t.title || slug, album: a ? albumTitle(a) : null, n: a ? a.tracks.indexOf(slug) + 1 : null, of: a ? a.tracks.length : null };
+    info.in = d && isFinite(d) && S.state === 'playing' ? Math.max(0, +(d - deck.currentTime - (SY.deckConnected && !saveData() ? joinSecs() : 0)).toFixed(1)) : null;
+    return info;
+  }
+  function drawNextUp() {
+    const info = S.onAir && S.state !== 'dead' ? nextUpInfo() : null;
+    const key = (info ? info.slug : '') + (S.repeat ? ':repeat' : '');
+    if (key === S.nextUpKey) return;
+    S.nextUpKey = key;
+    el.nextUp.textContent = '';
+    if (info) {
+      el.nextUp.appendChild(span('next up ', 'label'));
+      el.nextUp.appendChild(span(info.title));
+      if (info.album) el.nextUp.appendChild(span('  ' + info.album + ' ' + info.n + '/' + info.of, 'mid'));
+    }
+    el.nextUp.hidden = !info;
+    const th = TH(); if (th && th.nextUp) th.nextUp(info);
+  }
+  NOBODY.nextUp = function () { return nextUpInfo(); };
+  NOBODY.crossfade = function () { return { secs: XF.secs, saveData: saveData(), graph: !!SY.deckConnected, armed: XF.armed ? XF.armed.slug : null, fading: !!XF.fade, onAir: deck.id }; };
+  st.xfade = function (arg) {
+    if (arg == null || arg === '') { T.print('crossfade ' + XF.secs + ' s' + (XF.secs ? '' : ' (gapless)') + (saveData() ? '. reduced data is on: no preload, so the next track tunes.' : !SY.deckConnected && S.onAir ? '. no audio graph here: the next track tunes.' : '.') + ' xfade <0..12> sets it, 0 is gapless.'); return; }
+    const v = parseFloat(arg);
+    if (isNaN(v) || v < 0 || v > 12) { T.error('xfade 0..12 (seconds; 0 is gapless)'); return; }
+    XF.secs = v; clearTimeout(XF.timer); XF.timer = 0;
+    try { localStorage.setItem('nobody.xfade', String(v)); } catch (e) {}
+    T.print(v ? 'crossfade ' + v + ' s between tracks. a jump by hand still tunes.' : 'gapless: the next track starts as this one ends.');
+  };
+
+  // installable (issue #87): the manifest is in index.html; the service worker caches the station's shell, never a track
+  function registerShell() {
+    if (FILE || !('serviceWorker' in navigator) || !window.isSecureContext) return;
+    const go = function () { navigator.serviceWorker.register('sw.js').catch(function () {}); };
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
   }
 
   /* ---------------- dead air (2.4) and the idle tower (5.6) ---------------- */
@@ -718,6 +915,7 @@
     el.txLabel.textContent = ''; el.npSlug.textContent = ''; el.npMeta.textContent = ''; el.readoutText.textContent = '';
     el.readout.hidden = true; el.progress.hidden = true; el.spectrum.hidden = true; el.baseline.hidden = true; el.scope.hidden = true; el.dial.hidden = true;
     el.deadair.hidden = false;
+    drawNextUp();
     el.catEmpty.hidden = false; el.catRows.textContent = ''; el.catHead.textContent = '';
     el.hints.textContent = ''; el.hints.appendChild(hintButton('r', 're-read now', function () { rereadNow(); })); el.hints.appendChild(span('   ')); el.hints.appendChild(hintButton('?', 'help', function () { st.help(true); }));
     document.title = 'nobody fm: dead air';
@@ -884,7 +1082,7 @@
     const th = TH(); if (th && th.highlight) th.highlight(hlSlug());
   }
   // what the theme is told on every queue change and every find (12.0, issue #53); a theme without the hook is skipped
-  function tellQueue() { const th = TH(); if (th && th.queue) th.queue(S.queue.slice(0, 6), S.current); }
+  function tellQueue() { const th = TH(); if (th && th.queue) th.queue(S.queue.slice(0, 6), S.current); drawNextUp(); }
   function tellFilter() { const th = TH(); if (th && th.filter) th.filter(S.filter, (S.visible || []).map(function (b) { return b.dataset.slug; })); }
   function hlSlug() { return S.hl >= 0 && S.visible[S.hl] ? S.visible[S.hl].dataset.slug : null; }
   function hintButton(key, label, fn) {
@@ -1245,9 +1443,9 @@
   const HELP_CMDS = [
     'request <words>   remix [slug] [words]', 'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10',
     'list [words]    find <words>   info [slug]', 'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     guestbook   sign   count',
-    'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast   album [slug]', '', 'a few others. nobody documents everything.'
+    'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast   album [slug]   xfade [s]', '', 'a few others. nobody documents everything.'
   ];
-  const HELP_WORDS = ['request', 'remix', 'play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'album', 'cat', 'tree', 'seed', 'prompt', 'take', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'clear', 'reboot', 'home'];
+  const HELP_WORDS = ['request', 'remix', 'play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'album', 'cat', 'tree', 'seed', 'prompt', 'take', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'xfade', 'clear', 'reboot', 'home'];
   function helpLines() {
     const out = [];
     const n = Math.max(HELP_KEYS.length, HELP_CMDS.length);
@@ -1289,7 +1487,7 @@
     playNow(t.slug);
   };
   st.pause = function () { if (!deck.paused) togglePlay(); else T.print('already paused.', 'mid'); };
-  st.stop = function () { deck.pause(); deck.currentTime = 0; S.state = 'paused'; setChip('PAUSED'); drawProgress(); T.print('stopped. rewound. the transmitter hums.'); markRows(); armIdle(); };
+  st.stop = function () { cutFade(); deck.pause(); deck.currentTime = 0; S.state = 'paused'; setChip('PAUSED'); drawProgress(); T.print('stopped. rewound. the transmitter hums.'); markRows(); armIdle(); };
   st.next = next; st.prev = prev;
   st.queueAdd = function (a) {
     const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
@@ -1304,12 +1502,12 @@
   };
   st.toggleShuffle = function () {
     S.shuffle = !S.shuffle;
-    if (S.shuffle) shuffleArray(S.queue); else S.queue = chronological().filter(function (s) { return S.queue.indexOf(s) >= 0; });
+    S.queue = S.shuffle ? shuffleRuns(S.queue) : orderRuns(S.queue);
     el.shuffleLabel.textContent = S.shuffle ? 'shuffle on' : 'shuffle off';
     T.print('shuffle ' + (S.shuffle ? 'on. the queue is reordered.' : 'off. the queue is in order.'));
     tellQueue();
   };
-  st.repeatOnce = function () { S.repeat = !S.repeat; T.print(S.repeat ? 'repeat: this one once more.' : 'repeat off.'); };
+  st.repeatOnce = function () { S.repeat = !S.repeat; T.print(S.repeat ? 'repeat: this one once more.' : 'repeat off.'); drawNextUp(); };
   st.setVol = setVol;
   st.volText = function () { T.print('vol ' + SY.volume + '/10' + (SY.muted ? ' (muted)' : '')); };
   st.list = function (words) {
@@ -2072,7 +2270,8 @@
     runBoot(!warm);
     // over http the mute is the gain node after the analyser (5.1); the element itself stays at 1 so the
     // analyser is fed. from a file URL the element is the volume, so the mute lands on it.
-    deck.volume = (MUTE && FILE) ? 0 : 1;
+    decks.forEach(function (d) { d.volume = (MUTE && FILE) ? 0 : 1; });
+    registerShell();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

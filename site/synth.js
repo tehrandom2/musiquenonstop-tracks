@@ -1,7 +1,9 @@
 /* nobody fm: the audio chain and everything synthesised in the browser (design 5.1, 5.4).
    nothing here is fetched; nobody who built it could hear it. the graph is:
-   deck -> MediaElementSource -> Analyser (fft 2048, smoothing .82) -> Gain -> destination
-   the analyser sits before the gain, so a muted page (gain 0) still feeds it the full signal. */
+   deck  -> MediaElementSource -> channel Gain -+
+   deckB -> MediaElementSource -> channel Gain -+-> Analyser (fft 2048, smoothing .82) -> duck Gain -> Gain -> destination
+   the analyser sits before the gain, so a muted page (gain 0) still feeds it the full signal. the two channel gains are the
+   crossfade (issue #87): the element on air sits at 1, the other at 0 until the next track crosses in. */
 window.NOBODY = window.NOBODY || {};
 NOBODY.synth = (function () {
   const S = {
@@ -20,7 +22,7 @@ NOBODY.synth = (function () {
   function curve(v) { return Math.pow(Math.max(0, Math.min(10, v)) / 10, 2); }
 
   // built inside the first human act (4.1). connectDeck is false from a file URL (the file-URL rule, 5.1).
-  S.create = function (deck, connectDeck, mute) {
+  S.create = function (deck, connectDeck, mute, deckB) {
     if (S.ctx) return true;
     try {
       const AC = window.AudioContext || window.webkitAudioContext;
@@ -38,8 +40,13 @@ NOBODY.synth = (function () {
       S.duckGain.connect(S.gain);
       S.gain.connect(S.ctx.destination);
       if (connectDeck) {
-        S.source = S.ctx.createMediaElementSource(deck);
-        S.source.connect(S.analyser);
+        S.chans = [deck, deckB].filter(Boolean).map(function (el, i) {
+          const src = S.ctx.createMediaElementSource(el), g = S.ctx.createGain();
+          g.gain.value = i ? 0 : 1;
+          src.connect(g); g.connect(S.analyser);
+          return { el: el, source: src, gain: g };
+        });
+        S.source = S.chans[0].source;
         S.deckConnected = true;
       }
       // the noise buffer, 2 s of Math.random, shared by the tuning static and the dead-air bed
@@ -73,6 +80,27 @@ NOBODY.synth = (function () {
     const t = S.ctx.currentTime;
     S.duckGain.gain.cancelScheduledValues(t);
     S.duckGain.gain.setTargetAtTime(Math.max(0, Math.min(1, level)), t, Math.max(0.01, seconds || 0.15) / 3);
+  };
+
+  // the crossfade (issue #87). chan(el) is an element's channel gain; level(el, v) sets it now, cancelling any curve;
+  // crossfade(out, in, seconds) runs the equal-power pair (cos and sin of the same quarter turn, so the power sums to 1
+  // all the way across) and returns when it ends, in the context's clock
+  function chan(el) { return (S.chans || []).find(function (c) { return c.el === el; }) || null; }
+  S.chan = function (el) { const c = chan(el); return c ? c.gain : null; };
+  S.level = function (el, v) {
+    const c = chan(el); if (!c) return;
+    const t = S.ctx.currentTime;
+    c.gain.gain.cancelScheduledValues(t);
+    c.gain.gain.setValueAtTime(v, t);
+  };
+  S.crossfade = function (outEl, inEl, seconds) {
+    const a = chan(outEl), b = chan(inEl); if (!a || !b) return 0;
+    const n = 64, down = new Float32Array(n), up = new Float32Array(n), t = S.ctx.currentTime, dur = Math.max(0.02, seconds);
+    for (let i = 0; i < n; i++) { const x = i / (n - 1) * Math.PI / 2; down[i] = Math.cos(x); up[i] = Math.sin(x); }
+    [a, b].forEach(function (c) { c.gain.gain.cancelScheduledValues(t); });
+    a.gain.gain.setValueCurveAtTime(down, t, dur);
+    b.gain.gain.setValueCurveAtTime(up, t, dur);
+    return t + dur;
   };
 
   S.setMuted = function (m, deck, fileMode) {

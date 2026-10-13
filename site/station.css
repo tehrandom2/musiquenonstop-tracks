@@ -126,6 +126,11 @@ body[data-interface]:not([data-interface=""]) .glass .band, body[data-interface]
 }
 .progress { cursor: pointer; margin-top: calc(var(--row) * .5); }
 .dial { margin-top: calc(var(--row) * .5); white-space: pre; }
+/* next up (issue #87): one line under the bar, the title cut at the card's edge, never wrapped */
+.next-up { justify-content: flex-start; gap: 0; }
+.next-up[hidden] { display: none; }
+.next-up > span:nth-child(2) { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.next-up > span { flex: 0 0 auto; }
 #spectrum {
   display: block;
   width: 100%;

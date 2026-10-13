@@ -23,6 +23,8 @@
 <meta name="twitter:image" content="img/nobody-cover-1400.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23050705'/%3E%3Cpath fill='%2341FF6A' d='M3 9h2v4H3zM7 4h2v9H7zM11 7h2v6h-2z'/%3E%3C/svg%3E">
 <style>html{background:#050705;color-scheme:dark}body{margin:0;background:#050705}</style>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="img/icon-180.png">
 <link rel="stylesheet" href="station.css">
 <script src="config.js"></script>
 <!-- the theme (design 12.0): ?theme= for one visit, then what this browser chose, then config.js. the stylesheet is
@@ -110,6 +112,7 @@
         <div class="fail-row" id="failRow" hidden><button class="bk" id="failRetry" type="button">try again</button> <button class="bk" id="failNext" type="button">next</button></div>
         <div class="progress" id="progress"></div>
         <div class="dial" id="dial" hidden></div>
+        <div class="row next-up" id="nextUp" aria-live="polite" hidden></div>
         <canvas id="spectrum" aria-label="spectrum analyser, 32 bands from 60 Hz to 20 kHz, drawn from the audio that is playing"></canvas>
         <pre class="baseline dim" id="baseline"></pre>
         <div class="scope" id="scope"></div>
@@ -197,6 +200,8 @@
 </div>
 
 <audio id="deck" preload="auto" crossorigin="anonymous"></audio>
+<!-- the second deck (issue #87): the next track loads here and crosses in; the two swap ids, so #deck is always the one on air -->
+<audio id="deckB" preload="auto" crossorigin="anonymous"></audio>
 <noscript><p class="noscript">nobody fm needs javascript to boot. the catalogue is in tracks/index.json.</p></noscript>
 <!-- the one module on the page (design 5.7, 12.11): a file URL may import from https but not from itself, so the
      station's own code stays classic and only the library imports live here. the themes take what they need from

@@ -11,6 +11,8 @@
 //              `theme <name>` in the terminal changes it for that browser; ?theme=<name> for one visit.
 // themeStart: a theme's opening track, by slug. A visit with no track or album link starts there, and that track's album
 //              plays on from it before the rest of the catalogue.
+// crossfade:  seconds the end of one track and the start of the next overlap (issue #87; 4 when unset, 0 is a gapless join).
+//              `xfade <s>` in the terminal changes it for that browser; ?xfade=<s> for one visit. a jump by hand always tunes.
 // A ?tracks=<base> query on the page URL overrides tracksBase for that visit (used by the test catalogue).
 window.NOBODY_CONFIG = {
   tracksBase: "../tracks/",
@@ -20,5 +22,6 @@ window.NOBODY_CONFIG = {
   requestKey: null,
   defaultTheme: "campfire",
   themeStart: { campfire: "the-long-way-up" },
+  crossfade: 4,
   source: "https://github.com/tehrandom2/nobody-fm"
 };
