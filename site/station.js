@@ -76,6 +76,8 @@
       remix: function (slug) { st.remixThis(slug); },
       // albums (issue #73): the same API as NOBODY.albums/album/albumOf/cover/playAlbum, plus the album page
       openAlbum: function (slug) { if (S.albumBySlug[slug]) openAlbum(slug); }, playAlbum: function (slug) { return playAlbum(slug); },
+      // B-sides (issue #111): a theme's own automatic pick (a cruise, an auto-fly, a surprise) takes only a slug this says yes to
+      inRotation: function (slug) { return inRotation(slug); },
       albums: function () { return S.albums.slice(); }, albumOf: function (track) { return albumOf(track); }, cover: function (x, size) { return coverUrl(x, size); },
       setHighlight: function (slug) { setHighlight(slug); },
       setLayout: function (name) { st.setLayout(name); },
@@ -242,6 +244,12 @@
     return tracks.length;
   }
   function chronological() { return S.tracks.slice().reverse().map(function (t) { return t.slug; }); }
+  /* B-sides (issue #111): a track the index marks "side": "b" (gen/b-sides.json) stays on the site, and the listener may pick it, queue
+     it or play its album, but nothing automatic ever picks it: every automatic pick, the station's and a theme's (design 12.0), asks
+     inRotation first. a catalogue with no A-side at all still plays, all of it, rather than go silent */
+  function inRotation(slug) { const t = S.bySlug[slug]; return !!t && t.side !== 'b'; }
+  function rotation() { const all = chronological(), on = all.filter(inRotation); return on.length ? on : all; }
+  function isBSide(t) { return !!t && t.side === 'b'; }
 
   /* ---------------- albums (issue #73): the index's `albums`, each track's segments ----------------
      an album is { slug, title, project, cover_400, cover_1400, tracks, description, credits, licence }; its tracks are
@@ -297,6 +305,7 @@
   NOBODY.albumOf = function (track) { return albumOf(track); };
   NOBODY.cover = function (x, size) { return coverUrl(x, size); };
   NOBODY.playAlbum = function (slug) { return playAlbum(slug); };
+  NOBODY.inRotation = function (slug) { return inRotation(slug); };
 
   /* ---------------- boot (2.1, 7) ---------------- */
   let bootCursor = null, bootTypers = [], bootDone = false, bootIndexPromise = null;
@@ -413,13 +422,15 @@
       else if (!ok) T.print('no audio graph in this browser. the analyser is guessing.', 'amber');
       if (MUTE) T.print('muted by the harness: gain to the speakers is 0. the analyser still reads.', 'amber');
       if (!S.tracks.length) { deadAir(); return; }
-      S.queue = chronological();
-      // a shared link (?play=<slug>) or the theme's opening track (config themeStart) starts the station, and its album plays on
+      S.queue = rotation();
+      // a shared link (?play=<slug>) or the theme's opening track (config themeStart) starts the station, and its album plays on.
+      // the opening track is chosen (the listener's link, or the owner's own pick), so a B-side opens too; the album playing on
+      // from it is the station's, so it skips the B-sides (issue #111)
       const shared = new URLSearchParams(location.search).get('play');
       const open = shared && S.bySlug[shared] ? shared : (CFG.themeStart || {})[S.theme];
       if (open && S.bySlug[open] && !/^#\/(track|album)\//.test(location.hash)) {
         const alb = S.albumOfSlug[open];
-        const run = alb ? alb.tracks.slice(alb.tracks.indexOf(open)).concat(alb.tracks.slice(0, alb.tracks.indexOf(open))) : [open];
+        const run = [open].concat(alb ? alb.tracks.slice(alb.tracks.indexOf(open) + 1).concat(alb.tracks.slice(0, alb.tracks.indexOf(open))).filter(inRotation) : []);
         S.queue = run.concat(S.queue.filter(function (s) { return run.indexOf(s) < 0; }));
       }
       const m = /^#\/track\/([^/?]+)/.exec(location.hash);
@@ -603,7 +614,7 @@
     if (!S.tracks.length) return;
     if (S.repeat && S.current) { S.repeat = false; replay('once more: ' + S.current); return; }
     if (!S.queue.length) {
-      const rest = chronological().filter(function (s) { return s !== S.current; });
+      const rest = rotation().filter(function (s) { return s !== S.current; });
       // one track in the catalogue (issue #25): there is nothing else to tune to, so it plays again and says so
       if (!rest.length && S.current) { replay('one track. it never stops: ' + S.current + ' again.'); return; }
       S.queue = rest;
@@ -618,13 +629,14 @@
     S.played.delete(slug);
     const cur = S.current;
     S.current = null; // so tuneTo pushes nothing onto the history
-    if (cur) { S.queue.unshift(cur); S.played.delete(cur); }
+    // the track left behind comes back next, unless it is a B-side: then the rotation does (issue #111)
+    if (cur && inRotation(cur)) { S.queue.unshift(cur); S.played.delete(cur); }
     tuneTo(slug, true);
   }
   function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const x = a[i]; a[i] = a[j]; a[j] = x; } }
   function playNow(slug) {
     if (!S.bySlug[slug]) return;
-    if (S.current && S.current !== slug) S.queue.unshift(S.current);
+    if (S.current && S.current !== slug && inRotation(S.current)) S.queue.unshift(S.current);
     S.queue = S.queue.filter(function (s) { return s !== slug; });
     tuneTo(slug, true);
   }
@@ -729,7 +741,7 @@
       el.catEmpty.hidden = true;
       buildCatalogue();
       T.print('catalogue read. ' + n + ' tracks. ' + voiceCount() + ' has a voice.');
-      S.queue = chronological();
+      S.queue = rotation();
       tuneTo(S.queue.shift());
     });
   }
@@ -811,12 +823,17 @@
     // the row ends in `+ remix` (issue #51): 7 columns, taken from the lineage column on desktop; on the phone the row is 35 columns
     // (a 13-character slug), the width the narrowest card gives it (the arena's, 2ch of padding each side). one blank column always
     // stands before the `+`, so a long lineage or the voice mark never runs into it (issue #88)
+    // a B-side (issue #111) carries a quiet `b-side` at the end of the row (`b` on the phone), taken from the last column's width
+    const bs = isBSide(t);
     if (phone()) {
       const g = stt === 'playing' ? '*' : stt === 'tuning' ? '~' : stt === 'played' ? '.' : 'q';
-      return { num: pad(n, 2), slug: pad(slug, 13) + ' ', rest: pad(t.bpm, 3) + ' ' + pad(keyShort(t.key), 2) + ' ' + g + (t.voice ? 'v' : ' ') + ' ' };
+      return { num: pad(n, 2), slug: pad(slug, bs ? 11 : 13) + ' ', rest: pad(t.bpm, 3) + ' ' + pad(keyShort(t.key), 2) + ' ' + g + (t.voice ? 'v' : ' ') + ' ', bside: bs ? 'b' : '' };
     }
-    return { num: pad(n, 2), slug: pad(slug, 28), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(t.slug === S.current && S.state === 'failed' ? 'no signal' : stt, 9) + '  ' + pad(alb || lin || tag, lw) + ' ' };
+    const bw = bs && lw >= 14 ? 7 : 0;
+    return { num: pad(n, 2), slug: pad(slug, 28), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(t.slug === S.current && S.state === 'failed' ? 'no signal' : stt, 9) + '  ' + pad(alb || lin || tag, lw - bw) + ' ', bside: bw ? 'b-side' : '' };
   }
+  // the B-side mark (issue #111): plain text in the theme's own type and its mid tone; a theme may restyle .bside
+  function bsideTag(text) { const s = span(text || 'b-side', 'bside mid'); s.title = 'b-side: on the site, never in the rotation'; return s; }
   function renderRows() {
     const items = displayOrder();
     el.catRows.textContent = '';
@@ -834,6 +851,7 @@
       sl.addEventListener('click', function (e) { e.stopPropagation(); openTrack(t.slug); });
       b.appendChild(sl);
       b.appendChild(span(r.rest));
+      if (r.bside) { b.appendChild(bsideTag(r.bside)); b.appendChild(span(' ')); }
       const plus = span('+', 'plus'); plus.title = 'queue ' + t.slug;
       plus.addEventListener('click', function (e) { e.stopPropagation(); st.queueAdd(t.slug); });
       b.appendChild(plus);
@@ -981,10 +999,13 @@
       r.appendChild(span(pad(i + 1, 3)));
       r.appendChild(span(stt === 'playing' || stt === 'tuning' ? '>' : stt === 'played' ? '.' : ' ', 'mark'));
       r.appendChild(span(' '));
-      const sl = span(pad(s, phone() ? Math.max(12, content() - 12) : 40), 'slug-link'); sl.title = 'open ' + s;
+      // a B-side says so beside its time (issue #111), from the title's width (two of the slug's columns on the phone)
+      const bs = isBSide(t), tw = Math.max(0, content() - 64);
+      const sl = span(pad(s, phone() ? Math.max(12, content() - 12) - (bs ? 2 : 0) : 40), 'slug-link'); sl.title = 'open ' + s;
       sl.addEventListener('click', function (e) { e.stopPropagation(); openTrack(s); });
       r.appendChild(sl);
-      r.appendChild(span(' ' + pad(fmt(t.duration), 5) + (phone() ? '' : pad(t.bpm != null ? t.bpm + ' bpm' : '', 9) + pad(t.title || '', Math.max(0, content() - 64)))));
+      r.appendChild(span(' ' + pad(fmt(t.duration), 5) + (phone() ? '' : pad(t.bpm != null ? t.bpm + ' bpm' : '', 9) + pad(t.title || '', bs ? Math.max(0, tw - 7) : tw))));
+      if (bs) { if (phone()) r.appendChild(span(' ')); r.appendChild(bsideTag(phone() ? 'b' : 'b-side')); if (!phone()) r.appendChild(span(' ')); }
       r.addEventListener('click', function () { playNow(s); });
       list.appendChild(r);
     });
@@ -1031,7 +1052,9 @@
     openPage('track');
     const p = el.page;
     const copyBtn = button('copy', '', function () { copyText(permalink(slug), permalink(slug)); });
-    const head = div('row'); head.appendChild(span('TRACK ' + S.num[slug] + ' of ' + S.tracks.length, 'label'));
+    const head = div('row'), hl = span(''); hl.appendChild(span('TRACK ' + S.num[slug] + ' of ' + S.tracks.length, 'label'));
+    if (isBSide(t)) { hl.appendChild(span('  ')); hl.appendChild(bsideTag()); }
+    head.appendChild(hl);
     const hr = span(''); hr.appendChild(span(phone() ? '' : '#/track/' + slug + ' ', 'mid')); hr.appendChild(phone() ? button('< back', '', function () { st.home(); }) : copyBtn);
     head.appendChild(hr); p.appendChild(head);
     p.appendChild(span(slug, 'page-title'));
@@ -2016,7 +2039,7 @@
     if (d.getHours() === 2 && d.getMinutes() === 0 && S.onAir && S.state !== 'dead') {
       if (!el.chip.classList.contains('twoam')) { el.chip.textContent = '[ON AIR] 2 a.m.'; el.chip.classList.add('twoam', 'tuning'); }
       const day = d.toDateString();
-      if (S.twoAmDone !== day) { S.twoAmDone = day; const bus = S.tracks.find(function (t) { return /bus-shelter/.test(t.slug); }); if (bus && bus.slug !== S.current) { S.queue.unshift(bus.slug); T.print('2 a.m. the bus shelter is next.', 'amber'); markRows(); } }
+      if (S.twoAmDone !== day) { S.twoAmDone = day; const bus = S.tracks.find(function (t) { return /bus-shelter/.test(t.slug); }); if (bus && bus.slug !== S.current && inRotation(bus.slug)) { S.queue.unshift(bus.slug); T.print('2 a.m. the bus shelter is next.', 'amber'); markRows(); } }
     } else if (el.chip.classList.contains('twoam')) { el.chip.classList.remove('twoam', 'tuning'); setChip(S.state === 'paused' ? 'PAUSED' : 'ON AIR'); }
   }, 1000);
 

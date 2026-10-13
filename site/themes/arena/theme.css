@@ -299,6 +299,8 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
    column from the field before it, inside the row's own inset */
 .cat-rows { margin: 0 -1ch; }
 .cat-row .plus { margin-left: .5ch; }
+/* the b-side tag (issue #111) on the lit row takes the row's own colour: the dim tone over the playing row's wash is 4.3:1 */
+.cat-row.playing .bside, .cat-row.tuning .bside { color: inherit; }
 /* a played row keeps the row colour; its `.` mark and the state word say it played (12.0, legibility) */
 .cat-row.played { color: var(--dim); }
 .cat-row.played .mark { color: var(--dim); }
