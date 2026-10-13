@@ -117,7 +117,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "the-reel-room",
@@ -232,7 +233,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "the-long-way-up",
@@ -457,7 +459,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "stones-that-remember",
@@ -679,7 +682,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "home-fire-one-more-song",
@@ -795,7 +799,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "harmonica-farthest-out",
@@ -906,7 +911,8 @@
             "clean": "no"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "hand-drum-hot-sand",
@@ -1021,7 +1027,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "flute-on-a-rolling-sea",
@@ -1132,7 +1139,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "first-light-through-the-pines",
@@ -1245,7 +1253,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "downriver-single-note",
@@ -1356,7 +1365,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "banjo-on-falling-ground",
@@ -1467,7 +1477,8 @@
             "clean": "partly"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "a-whistle-on-the-moon",
@@ -1579,7 +1590,8 @@
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "a-lantern-nobody-lit",
@@ -1694,7 +1706,8 @@
             "clean": "no"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "shoosting-64-wall-of-grain-warmer-slower-kettle",
@@ -4281,7 +4294,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-4",
@@ -4363,7 +4377,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-3",
@@ -4445,7 +4460,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-2",
@@ -4527,7 +4543,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-1",
@@ -4610,7 +4627,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-5",
@@ -4692,7 +4710,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-4",
@@ -4774,7 +4793,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-3",
@@ -4856,7 +4876,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-2",
@@ -4936,7 +4957,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-1",
@@ -5019,7 +5041,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-5",
@@ -5101,7 +5124,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-4",
@@ -5181,7 +5205,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-3",
@@ -5261,7 +5286,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-2",
@@ -5347,7 +5373,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-1",
@@ -5434,7 +5461,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-5",
@@ -5516,7 +5544,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-4",
@@ -5605,7 +5634,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-3",
@@ -5688,7 +5718,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-2",
@@ -5775,7 +5806,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-1",
@@ -5857,7 +5889,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-5",
@@ -5940,7 +5973,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-4",
@@ -6022,7 +6056,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-3",
@@ -6104,7 +6139,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-2",
@@ -6188,7 +6224,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-1",
@@ -6270,7 +6307,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-5",
@@ -6352,7 +6390,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-4",
@@ -6434,7 +6473,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-3",
@@ -6516,7 +6556,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-2",
@@ -6602,7 +6643,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-1",
@@ -6684,7 +6726,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-5",
@@ -6764,7 +6807,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-4",
@@ -6846,7 +6890,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-3",
@@ -6926,7 +6971,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-2",
@@ -7009,7 +7055,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-1",
@@ -7091,7 +7138,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-5",
@@ -7171,7 +7219,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-4",
@@ -7251,7 +7300,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-3",
@@ -7333,7 +7383,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-2",
@@ -7415,7 +7466,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-1",
@@ -7497,7 +7549,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-5",
@@ -7583,7 +7636,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-4",
@@ -7669,7 +7723,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-3",
@@ -7753,7 +7808,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-2",
@@ -7841,7 +7897,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-1",
@@ -7925,7 +7982,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-5",
@@ -8011,7 +8069,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-4",
@@ -8105,7 +8164,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-3",
@@ -8191,7 +8251,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-2",
@@ -8277,7 +8338,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-1",
@@ -8367,7 +8429,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-5",
@@ -8455,7 +8518,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-4",
@@ -8547,7 +8611,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-3",
@@ -8633,7 +8698,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-2",
@@ -8719,7 +8785,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-1",
@@ -8803,7 +8870,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-5",
@@ -8891,7 +8959,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-4",
@@ -8981,7 +9050,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-3",
@@ -9072,7 +9142,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-2",
@@ -9158,7 +9229,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-1",
@@ -9258,7 +9330,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-5",
@@ -9345,7 +9418,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-4",
@@ -9429,7 +9503,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-3",
@@ -9519,7 +9594,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-2",
@@ -9605,7 +9681,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-1",
@@ -9695,7 +9772,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-5",
@@ -9781,7 +9859,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-4",
@@ -9865,7 +9944,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-3",
@@ -9951,7 +10031,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-2",
@@ -10037,7 +10118,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-1",
@@ -10121,7 +10203,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-5",
@@ -10209,7 +10292,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-4",
@@ -10293,7 +10377,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-3",
@@ -10377,7 +10462,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-2",
@@ -10463,7 +10549,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-1",
@@ -10551,7 +10638,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-5",
@@ -10635,7 +10723,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-4",
@@ -10721,7 +10810,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-3",
@@ -10807,7 +10897,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-2",
@@ -10894,7 +10985,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-1",
@@ -10978,7 +11070,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-5",
@@ -11062,7 +11155,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-4",
@@ -11162,7 +11256,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-3",
@@ -11248,7 +11343,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-2",
@@ -11335,7 +11431,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-1",
@@ -11422,7 +11519,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-5",
@@ -11508,7 +11606,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-4",
@@ -11595,7 +11694,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-3",
@@ -11681,7 +11781,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-2",
@@ -11773,7 +11874,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-1",
@@ -11857,7 +11959,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-5",
@@ -11941,7 +12044,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-4",
@@ -12043,7 +12147,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-3",
@@ -12127,7 +12232,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-2",
@@ -12217,7 +12323,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-1",
@@ -12301,7 +12408,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-5",
@@ -12385,7 +12493,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-4",
@@ -12469,7 +12578,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-3",
@@ -12557,7 +12667,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-2",
@@ -12651,7 +12762,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-1",
@@ -12735,7 +12847,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-5",
@@ -12819,7 +12932,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-4",
@@ -12907,7 +13021,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-3",
@@ -12991,7 +13106,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-2",
@@ -13078,7 +13194,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-1",
@@ -13162,7 +13279,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-5",
@@ -13248,7 +13366,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-4",
@@ -13338,7 +13457,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-3",
@@ -13424,7 +13544,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-2",
@@ -13511,7 +13632,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-1",
@@ -13603,7 +13725,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-5",
@@ -13687,7 +13810,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-4",
@@ -13774,7 +13898,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-3",
@@ -13858,7 +13983,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-2",
@@ -13942,7 +14068,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-1",
@@ -14026,7 +14153,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-5",
@@ -14114,7 +14242,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-4",
@@ -14205,7 +14334,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-3",
@@ -14289,7 +14419,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-2",
@@ -14375,7 +14506,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-1",
@@ -14459,7 +14591,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bootleg-westcoast-b",
@@ -15019,7 +15152,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-4",
@@ -15103,7 +15237,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-3",
@@ -15187,7 +15322,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-2",
@@ -15273,7 +15409,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-1",
@@ -15359,7 +15496,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-5",
@@ -15445,7 +15583,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-4",
@@ -15529,7 +15668,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-3",
@@ -15615,7 +15755,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-2",
@@ -15701,7 +15842,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-1",
@@ -15787,7 +15929,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-5",
@@ -15873,7 +16016,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-4",
@@ -15957,7 +16101,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-3",
@@ -16041,7 +16186,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-2",
@@ -16131,7 +16277,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-1",
@@ -16217,7 +16364,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-5",
@@ -16301,7 +16449,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-4",
@@ -16385,7 +16534,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-3",
@@ -16469,7 +16619,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-2",
@@ -16555,7 +16706,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-1",
@@ -16639,7 +16791,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-5",
@@ -16721,7 +16874,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-4",
@@ -16804,7 +16958,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-3",
@@ -16879,7 +17034,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-2",
@@ -16956,7 +17112,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-1",
@@ -17031,7 +17188,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-5",
@@ -17108,7 +17266,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-4",
@@ -17185,7 +17344,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-3",
@@ -17260,7 +17420,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-2",
@@ -17335,7 +17496,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-1",
@@ -17422,7 +17584,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-5",
@@ -17502,7 +17665,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-4",
@@ -17579,7 +17743,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-3",
@@ -17656,7 +17821,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-2",
@@ -17734,7 +17900,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-1",
@@ -17809,7 +17976,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-5",
@@ -17884,7 +18052,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-4",
@@ -17959,7 +18128,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-3",
@@ -18041,7 +18211,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-2",
@@ -18124,7 +18295,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-1",
@@ -18199,7 +18371,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-electroclash-wave",
@@ -18279,7 +18452,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-electroclash-build",
@@ -18359,7 +18533,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-electroclash-alt-wave",
@@ -18438,7 +18613,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-electroclash-alt-build",
@@ -18516,7 +18692,8 @@
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "shoosting-75-last-round",
