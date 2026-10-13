@@ -490,8 +490,12 @@
     el.progress.hidden = true; el.dial.hidden = false;
     A.tuning = true; A.setTrack(slug, t.bpm);
     // the theme's own switch sound (issue #103), or the station's static when it has none
-    const th = TH(), own = th.transitionSound && th.transitionSound(1.2, { slug: slug });
-    const stopNoise = typeof own === 'function' ? own : SY.tuning(1.2);
+    // a hidden tab (issue #114) has no dial to watch: no switch sound and no hold, the next track plays as soon as it loads.
+    // a tuning that starts while another is still holding stops the old one's sound first
+    const away = document.hidden;
+    if (S.stopNoise) S.stopNoise();
+    const th = TH(), own = away ? null : th.transitionSound && th.transitionSound(1.2, { slug: slug });
+    const stopNoise = S.stopNoise = away ? function () {} : typeof own === 'function' ? own : SY.tuning(1.2);
     // the theme's between-tracks move (12.5): in the city, the camera leaves through the tunnel for the next tower
     TH().playing(slug);
     TH().transition('playing', 'tuning', { slug: slug, ms: 1200, picked: !!picked });
@@ -520,13 +524,16 @@
     deck.addEventListener('canplay', onReady);
     deck.addEventListener('error', onError);
     // "locking ..." never sits forever: 8 s after the tuning started it becomes the failure line (issue #63)
-    const failTimer = setTimeout(function () { if (!ready && !failed && token === S.tuningToken) { deck.removeAttribute('src'); deck.load(); onFail('no answer in 8 s'); } }, 8000);
+    // and the switch sound never outlives it: whatever happened, it stops by then
+    const failTimer = setTimeout(function () { stopNoise(); if (!ready && !failed && token === S.tuningToken) { deck.removeAttribute('src'); deck.load(); onFail('no answer in 8 s'); } }, 8000);
+    // the hold ends on a timer, not on the dial (issue #114): a background tab runs no animation frames, and a hold that waited
+    // for the sweep left the switch sound on, a hum, and the next track waiting until the tab came back
+    setTimeout(function () { if (token === S.tuningToken && !timeUp) { timeUp = true; go(); } }, away ? 0 : 1200);
     (function sweep() {
-      if (token !== S.tuningToken) return;
+      if (token !== S.tuningToken || timeUp) return;
       const k = Math.min(1, (performance.now() - started) / 1200);
-      const f = from + (88.8 - from) * (1 - Math.pow(1 - k, 2));
-      drawDial(f);
-      if (k < 1) requestAnimationFrame(sweep); else { timeUp = true; go(); }
+      drawDial(from + (88.8 - from) * (1 - Math.pow(1 - k, 2)));
+      if (k < 1) requestAnimationFrame(sweep);
     })();
     function go() {
       if (token !== S.tuningToken || failed) return;
@@ -1636,11 +1643,16 @@
     const stopNoise = SY.tuning(3.2);
     if (SY.gain) { SY.gain.gain.setTargetAtTime(0, SY.ctx.currentTime, 0.05); } else deck.volume = 0;
     setChip('TUNING', 'tuning');
+    // the sweep draws while the tab is shown; the timers run the dial back either way (issue #114: no frames in a background tab)
+    let swept = false;
     (function sweep() {
+      if (swept) return;
       const k = Math.min(1, (performance.now() - t0) / 1000);
       drawDial(start + (Math.min(91.6, Math.max(86, target)) - start) * k);
       if (k < 1) requestAnimationFrame(sweep);
-      else {
+    })();
+    setTimeout(function () {
+        swept = true;
         drawDial(target, false, 'static');
         setTimeout(function () {
           stopNoise(); A.tuning = false; S.dialBusy = false;
@@ -1649,8 +1661,7 @@
           setChip(S.state === 'paused' ? 'PAUSED' : 'ON AIR');
           T.print(f >= 108 ? 'end of the band. nobody goes further.' : 'nobody there. back to 88.8.');
         }, 2000);
-      }
-    })();
+    }, 1000);
   };
   st.phosphor = function (which) {
     const amber = which === 'amber';
