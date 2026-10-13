@@ -35,10 +35,31 @@ behind the page came across, nothing else did. The station's voice, commands and
   the dock's slider: the speaker glyph mutes, the accent fills the rail, a white handle; the
   counter in glowing display digits; dead air is an empty orbit turning in the card.
 
+## The cover (issue #89)
+
+- **The palette comes from the cover.** When the playing track is on an album with art, the cover's 400 px
+  webp is read once into a 48 px copy and a 24-bin hue histogram (each pixel weighted by how colourful and
+  how lit it is, greys and blacks left out): the heaviest bin is `--h`, the heaviest bin at least 50 degrees
+  away is `--h2` (the second hue: the aurora's third glow, the slow horizon layer, the middle lamp, the title's
+  last gradient stop). Only the hues move; saturation and lightness stay the tokens', so the contrast the
+  accent measured at every hue still holds. A cover with too little colour, a cover that cannot be read (another
+  origin without CORS), an album without art, a track on no album and the second scheme all keep the track's
+  colour, as before.
+- **The cover hangs behind the stage.** Blurred once into a 256 px canvas with feathered edges and stretched to
+  the height of the window, centred under the truss: dim on its own, lifted by the bass, fading through black
+  when the album changes. Three lamps on the truss sweep pools of light across it and the kick fires them: each
+  pool is the banner's own patch, feathered and added back, with a little of the lamp's colour, and a faint
+  beam from the lamp. An album without art hangs the station's placeholder (`img/nobody-cover-<size>.webp`);
+  a track on no album hangs nothing.
+- **The truss.** A rig across the top of the page: a lattice between two rails, seven lamps whose glow follows
+  the bass, and the album's title on an opaque plate in the middle while an album plays. It belongs to the
+  stage, behind the glass: the screen starts below it and a scrolled card passes over it.
+- **The album API** is the station's (issue #73, design 12.19): `NOBODY.albumOf(track)` and `NOBODY.cover(album, 400)`.
+
 ## Files
 
-`theme.css` (tokens, faces, glass, the icon buttons), `theme.js` (the scrubber, the profile, the stage,
-the strings). The fonts are in `../../vendor/` with their licences in `../../vendor/LICENSES.md`:
+`theme.css` (tokens, faces, glass, the icon buttons, the truss), `theme.js` (the scrubber, the profile, the stage,
+the cover's palette and banner, the truss, the strings). The fonts are in `../../vendor/` with their licences in `../../vendor/LICENSES.md`:
 Unbounded, Space Grotesk and JetBrains Mono, all SIL Open Font License 1.1, from the Google Fonts builds via
 the `@fontsource-variable` 5.2.6 packages.
 

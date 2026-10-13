@@ -25,10 +25,14 @@
   font-display: block;
 }
 @property --h { syntax: "<number>"; inherits: true; initial-value: 285; }
+/* the second hue (issue #89): the cover's accent when an album with art plays, the track's hue plus a step otherwise */
+@property --h2 { syntax: "<number>"; inherits: true; initial-value: 323; }
 
 :root {
   color-scheme: dark;
   --h: 285;
+  --h2: 323;
+  --truss: 32px;
   --ink: #06060b;
   --ink-2: #0c0d15;
   --glass: rgb(13 13 22 / .58);
@@ -42,7 +46,7 @@
      the violet-blue hues around 255 once the catalogue's order changed which track the harness measured; issue #51) */
   --accent: hsl(var(--h) 96% 70%);
   --accent-hot: hsl(calc(var(--h) + 18) 100% 82%);
-  --accent-2: hsl(calc(var(--h) + 42) 98% 62%);
+  --accent-2: hsl(var(--h2) 98% 62%);
   --accent-soft: hsl(var(--h) 90% 60% / .16);
   --accent-glow: hsl(var(--h) 100% 62% / .55);
   --warn: #ffc857;
@@ -60,7 +64,7 @@
   --display: "Unbounded", "Arial Black", sans-serif;
   --head: "Space Grotesk", "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", "Courier New", monospace;
-  transition: --h 1.4s cubic-bezier(.2, .7, .2, 1);
+  transition: --h 1.4s cubic-bezier(.2, .7, .2, 1), --h2 1.4s cubic-bezier(.2, .7, .2, 1);
 }
 /* the second scheme (12.0): the cheat code and `amber` lock the stage on a sunset hue (the module sets --h to 36
    and stops following the track); the warnings go cold. */
@@ -72,6 +76,7 @@
     --gap: 10px;
     --fs: calc(max(15px, calc((100vw - 24px) / 40 / .6)) + var(--big));
     --print-fs: calc(15px + var(--big));
+    --truss: 28px;
   }
 }
 
@@ -94,6 +99,26 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 1.2s steps(6) infinite; }
 @keyframes grain { 0% { transform: translate(0, 0); } 20% { transform: translate(-3%, 2%); } 40% { transform: translate(2%, -3%); } 60% { transform: translate(-2%, -1%); } 80% { transform: translate(3%, 3%); } 100% { transform: translate(0, 0); } }
+
+/* the top truss (issue #89): the rig the lamps hang from, across the top of the stage. it is the stage's, behind the glass: the
+   screen starts below it, and a scrolled card passes over it rather than under it, so no word of the station's is ever covered.
+   lamps glow on the beat; an album playing puts its title on a plate in the middle (an opaque plate: words never sit on the
+   moving picture). */
+.screen { padding-top: calc(var(--truss) + var(--gutter) * .5); }
+#main { min-height: calc(100vh - var(--truss) - var(--gutter) * 1.5); } /* the skeleton's one screen, less the truss: no scroll on a short page */
+.truss { position: fixed; left: 0; right: 0; top: 0; height: var(--truss); z-index: 0; pointer-events: none; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, #0c0d16, #07070d); border-bottom: 1px solid var(--line-2); box-shadow: 0 8px 22px -10px rgb(0 0 0 / .9); }
+.truss-rig { position: absolute; left: 0; right: 0; top: 5px; bottom: 5px; display: flex; justify-content: space-around; align-items: flex-end;
+  background: linear-gradient(var(--line-2), var(--line-2)) top / 100% 1px no-repeat, linear-gradient(var(--line-2), var(--line-2)) bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(60deg, transparent 0 11px, rgb(255 255 255 / .09) 11px 12px), repeating-linear-gradient(-60deg, transparent 0 11px, rgb(255 255 255 / .09) 11px 12px); }
+.truss-rig i { position: relative; top: 6px; width: 12px; height: 7px; border-radius: 0 0 6px 6px; background: #2a2b3a;
+  box-shadow: 0 5px 16px calc(var(--beat) * 7px) hsl(var(--h) 100% 72% / calc(.2 + var(--beat) * .65)); }
+.truss-rig i:nth-child(2), .truss-rig i:nth-child(4), .truss-rig i:nth-child(6) { background: hsl(var(--h) 60% calc(40% + var(--beat) * 45%)); }
+.truss-rig i:nth-child(4) { box-shadow: 0 5px 16px calc(var(--beat) * 7px) hsl(var(--h2) 100% 72% / calc(.2 + var(--beat) * .65)); }
+.truss-title { position: relative; max-width: calc(100vw - 2 * var(--gutter) - 24px); box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--mono); font-weight: 600; font-size: var(--fs); line-height: calc(var(--truss) - 8px); letter-spacing: .14em; text-transform: uppercase; color: var(--text);
+  padding: 0 1.4ch; background: #0d0e17; border: 1px solid hsl(var(--h) 90% 60% / .5); border-radius: 7px; box-shadow: 0 0 22px -6px var(--accent-glow); }
+.truss-title[hidden] { display: none; }
 
 /* text treatments */
 .mid, .mid * { color: var(--dim); }
@@ -230,12 +255,12 @@ body {
 .progress .wave canvas { width: 100%; height: 100%; display: block; }
 .progress .hover { position: absolute; bottom: calc(100% + 6px); transform: translateX(-50%); padding: 3px 7px; border-radius: 6px; background: #fff; color: #07070c; font-family: var(--mono); font-size: var(--fs); font-weight: 600; pointer-events: none; opacity: 0; transition: opacity .15s; white-space: nowrap; z-index: 2; }
 .progress .wave:hover .hover { opacity: 1; }
-.dial { position: relative; height: calc(var(--row) * 2.4); overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.dial { position: relative; height: calc(var(--row) * 3.3); overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .dial .dial-strip { position: absolute; left: 0; top: 0; white-space: pre; color: var(--dim); will-change: transform; }
 .dial .dial-strip .labels { margin-left: -1.5ch; color: var(--faint); }
 .dial.locked .dial-strip, .dial.locked .dial-strip .labels { color: var(--accent); }
 .dial::after { content: ""; position: absolute; left: 50%; top: 0; height: calc(var(--row) * 1.6); width: 2px; background: #fff; box-shadow: 0 0 10px var(--accent); }
-.dial .dial-read { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); font-family: var(--mono); font-weight: 600; font-size: var(--fs); letter-spacing: .12em; color: var(--accent); }
+.dial .dial-read { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); font-family: var(--mono); font-weight: 600; font-size: var(--fs); letter-spacing: .12em; color: var(--accent); white-space: pre; padding: 0 1ch; background: #0d0e17; }
 #spectrum { height: calc(var(--row) * 4.5); }
 .baseline .ghost-tag { color: var(--warn); }
 .scope { display: flex; align-items: center; gap: 1ch; margin-top: calc(var(--row) * .3); white-space: normal; }
@@ -269,6 +294,11 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
 .cat-row { position: relative; box-sizing: border-box; color: var(--dim); padding: 0 1ch; border-radius: 10px; transition: background .25s; }
 .cat-row.playing { color: var(--text); background: linear-gradient(90deg, hsl(var(--h) 90% 60% / .2), hsl(var(--h) 90% 60% / .04) 60%, transparent); box-shadow: inset 0 0 0 1px hsl(var(--h) 90% 60% / .28); }
 .cat-row.playing .mark { color: var(--accent-hot); }
+/* the rows' inset field reaches 1ch into the card's margin instead of shifting the text, so the rows sit on the header's columns
+   and the last column is not cut (issue #89; the list scrolls, so the list itself is widened, not the row); the `+` keeps a half
+   column from the field before it, inside the row's own inset */
+.cat-rows { margin: 0 -1ch; }
+.cat-row .plus { margin-left: .5ch; }
 /* a played row keeps the row colour; its `.` mark and the state word say it played (12.0, legibility) */
 .cat-row.played { color: var(--dim); }
 .cat-row.played .mark { color: var(--dim); }
@@ -305,6 +335,9 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
 @keyframes riseIn { from { transform: translateX(-50%) translateY(24px); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
 .page h2 { margin: var(--row) 0 calc(var(--row) * .2); align-items: baseline; }
 .page .page-title { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(22px, 2.6vw, 34px); letter-spacing: -.03em; line-height: 1.02; margin: calc(var(--row) * .3) 0; color: var(--text); text-transform: none; }
+.page .page-title + .row { flex-wrap: wrap; } /* the asked line wraps in full instead of being cut, the numbers beside it or under it (issue #89) */
+.page .page-title + .row > span { white-space: pre-wrap; min-width: 0; }
+.page .page-title + .row > span:first-child { flex: 1 1 24ch; }
 .page .why-text { color: var(--text); font-family: var(--head); font-size: var(--fs); line-height: 1.5; }
 .page .catview { border-left: 1px solid var(--line-2); }
 .gb-form input { color: var(--text); caret-color: var(--accent); border-bottom: 1px solid var(--line-2); }
@@ -321,20 +354,24 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
 
 /* phone (12.9, 40 columns) */
 @media (max-width: 900px) {
-  .header-page .left { white-space: pre; gap: 1ch; } /* the skeleton's 390 px page header (12.0): playing: <slug...>  <time>  [chip] */
+  /* the skeleton's 390 px page header (12.0): playing: <slug...>  <time>  [chip]. the markup's literal spaces collapse here and the
+     gaps are the layout, and the chip drops its tracking, so the slug keeps a readable stub instead of one letter (issue #89) */
+  .header-page .left { white-space: normal; gap: 1ch; }
+  .header-page .chip { letter-spacing: .02em; }
   /* the wide display face does not fit a 40-column header beside the frequency and the chip; the grotesk does */
   .header .hot-name { font-family: var(--head); font-weight: 700; font-size: 15px; letter-spacing: 0; transform: none; }
   .header .right { gap: 1ch; }
   .header .chip::before { content: none; }
   .np-slug { font-size: 15px; }
+  .np-row .meta { white-space: pre-wrap; } /* a long key ("A flat major") wraps the seed onto the next line instead of cutting it (issue #89) */
 
   .progress { grid-template-columns: 4.5ch minmax(0, 1fr) 4.5ch; gap: 6px; }
 
   .fat { gap: 6px; }
   .footer-buttons .left { line-height: calc(var(--row) * 1.4); }
   .cat-row .plus, .cat-row .rmx { visibility: visible; }
-  /* the 40-column row keeps its whole width on the phone: no inset, so `+ remix` stays on the card (issue #51) */
-  .cat-row { padding-left: 0; padding-right: 0; }
+  /* the 40-column row keeps its whole width on the phone (issue #51): the list reaches into the card's margin as on desktop, so
+     the row's inset costs no column and `+ remix` stays on the card (issue #89) */
   .footer .odo-row { gap: 2ch; }
 }
 @media (hover: none) {

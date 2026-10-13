@@ -12,13 +12,20 @@ NOBODY.themes.arena = (function () {
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TAU = Math.PI * 2, BUCKETS = 200;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
-  let stage = null, vignette = null, grain = null, scrub = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, chipWatch = null, orbit = null;
+  let stage = null, vignette = null, grain = null, scrub = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, chipWatch = null, orbit = null, truss = null;
   const hues = {}, profiles = {};
+  // what the stage hangs and how it is lit (issue #89): the playing track's album, its cover, the palette sampled from it
+  const look = { slug: null, album: null, coverUrl: null, kind: null, palette: null, source: 'track', h: 285, h2: 323, img: null, loaded: false, error: null };
+  const palettes = {};
   function el(id) { return ctx.el[id] || document.getElementById(id); }
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function ease(dt, rate) { return 1 - Math.exp(-dt * rate); }
   function hashStr(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
   function amberLocked() { return document.documentElement.dataset.phosphor === 'amber'; }
+  function hueDist(a, b) { return ((((b - a) % 360) + 540) % 360) - 180; }
+
+  // the album API is the station core's (#73, design 12.19): NOBODY.albumOf and NOBODY.cover; the placeholder is img/nobody-cover-<size>.webp
+  function isPlaceholder(u) { return !u || /nobody-cover-\d+\.webp(\?|$)/.test(u); }
 
   /* ---- strings (12.0): the stage's own eight lines, at the station's times ---- */
   TH.strings = {
@@ -52,6 +59,7 @@ NOBODY.themes.arena = (function () {
     document.body.insertBefore(grain, document.body.firstChild);
     document.body.insertBefore(vignette, document.body.firstChild);
     document.body.insertBefore(stage.cv, document.body.firstChild);
+    truss = makeTruss(); document.body.appendChild(truss);
     // the widget slot (12.0): the scrubber lives in the progress element, which the station hands to progress() anyway
     scrub = makeScrubber(el('progress'));
     el('scope').textContent = '';
@@ -70,10 +78,12 @@ NOBODY.themes.arena = (function () {
   };
   TH.dispose = function () {
     if (stage) { stage.stop(); stage.cv.remove(); stage = null; }
-    [vignette, grain, orbit].forEach(function (n) { if (n) n.remove(); }); vignette = grain = orbit = null;
+    [vignette, grain, orbit, truss].forEach(function (n) { if (n) n.remove(); }); vignette = grain = orbit = truss = null;
+    document.body.classList.remove('arena-album');
+    look.slug = look.coverUrl = look.img = null;
     if (chipWatch) { chipWatch.disconnect(); chipWatch = null; }
     document.body.classList.remove('is-playing');
-    document.documentElement.style.removeProperty('--h');
+    document.documentElement.style.removeProperty('--h'); document.documentElement.style.removeProperty('--h2');
     el('scope').textContent = ''; scopeCanvas = null; scopeCtx = null;
     el('progress').textContent = ''; scrub = null; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
     el('dial').textContent = ''; dialStrip = null;
@@ -101,14 +111,22 @@ NOBODY.themes.arena = (function () {
       const u = ((isSlow ? slow++ : fast++) * PHI + (isSlow ? 0.2 : 0.05)) % 1;
       hues[t.slug] = Math.round(isSlow ? 170 + u * 105 : 288 + u * 112) % 360;
     });
+    // the station installs the index's albums before this hook: hang what the playing track's album has
+    if (S && S.current) setLook(S.current);
   };
   function hueOf(slug) { if (amberLocked()) return 36; if (slug && hues[slug] != null) return hues[slug]; return slug ? hashStr(slug) % 360 : 285; }
+  // the page's two hues: the cover's dominant and accent when the playing track's album has art that could be read, the
+  // track's own hue otherwise (and always under the second scheme). only the hues move: saturation and lightness stay
+  // the tokens', so every accent keeps the contrast 12.15 measured at every hue.
   function setHue(slug) {
-    const h = hueOf(slug);
-    document.documentElement.style.setProperty('--h', String(h));
-    if (stage) stage.targetHue = h;
+    const p = !amberLocked() && look.slug === slug && look.palette;
+    const h = p ? p.h : hueOf(slug), h2 = p ? p.h2 : h + 38;
+    look.source = p ? 'cover' : 'track'; look.h = h; look.h2 = h2;
+    document.documentElement.style.setProperty('--h', String(Math.round(h)));
+    document.documentElement.style.setProperty('--h2', String(Math.round(h2)));
+    if (stage) { stage.targetHue = h; stage.targetHue2 = h2; stage.targetSpread = p ? 0 : 38; }
   }
-  TH.playing = function (slug) { setHue(slug); if (scrub) scrub.draw(); };
+  TH.playing = function (slug) { setLook(slug); if (scrub) scrub.draw(); };
   // the switch sound (issue #103): a low swell into the next track's colour, no hiss. the hue picks the root, one semitone
   // per 30 degrees up from A1; root, fifth and octave glide up a whole tone into it as a lowpass opens over the triangle
   TH.transitionSound = function (seconds, info) {
@@ -126,6 +144,91 @@ NOBODY.themes.arena = (function () {
     });
   };
   TH.scheme = function () { setHue(S.current); };
+
+  /* ---- the cover (issue #89): the album's art hangs behind the stage as a soft banner, the stage takes its palette, the
+     truss carries the album's title. a track with no album hangs nothing; an album with no art hangs the core's
+     placeholder and keeps the track's colour ---- */
+  function setLook(slug) {
+    const t = slug && S.bySlug[slug];
+    const album = t ? NOBODY.albumOf(t) : null;
+    const url = album ? NOBODY.cover(album, 400) : null;
+    look.slug = slug; look.album = album;
+    trussTitle(album ? (album.title || album.slug) : '');
+    if (!album) { look.coverUrl = null; look.kind = null; look.palette = null; look.img = null; look.loaded = false; if (stage) stage.hang(null); setHue(slug); return; }
+    look.kind = isPlaceholder(url) ? 'placeholder' : 'cover';
+    look.palette = look.kind === 'cover' ? palettes[url] || null : null;
+    setHue(slug);
+    if (look.coverUrl === url && look.img) return;
+    look.coverUrl = url; look.loaded = false; look.error = null; look.img = null;
+    loadImage(url, function (img, readable) {
+      if (look.coverUrl !== url) return;
+      look.img = img; look.loaded = !!img; look.error = img ? null : 'not loaded';
+      if (img && look.kind === 'cover' && readable && palettes[url] === undefined) palettes[url] = paletteOf(img);
+      look.palette = look.kind === 'cover' ? palettes[url] || null : null;
+      if (stage) stage.hang(img);
+      setHue(look.slug);
+    });
+  }
+  // same origin needs nothing; a cover on another origin is asked for with CORS so its colours can be read, and drawn
+  // without them (the palette then stays the track's) when the server will not say yes
+  function loadImage(url, done) {
+    const img = new Image();
+    img.decoding = 'async';
+    img.crossOrigin = 'anonymous';
+    img.onload = function () { done(img, true); };
+    img.onerror = function () {
+      const plain = new Image();
+      plain.onload = function () { done(plain, false); };
+      plain.onerror = function () { done(null, false); };
+      plain.src = url;
+    };
+    img.src = url;
+  }
+  // the dominant and the accent hue of a picture: a 24-bin hue histogram of a 48 px copy, each pixel weighted by how
+  // colourful and how lit it is, greys and blacks left out. the accent is the heaviest bin at least 50 degrees from the
+  // dominant one, or a step along the wheel when the picture has one colour. a picture with too little colour has no
+  // palette, and the stage keeps the track's.
+  function paletteOf(img) {
+    try {
+      const N = 48, c = document.createElement('canvas'); c.width = N; c.height = N;
+      const g = c.getContext('2d', { willReadFrequently: true }); g.drawImage(img, 0, 0, N, N);
+      const d = g.getImageData(0, 0, N, N).data, bins = new Float64Array(24), sx = new Float64Array(24), sy = new Float64Array(24);
+      let total = 0;
+      for (let i = 0; i < d.length; i += 4) {
+        const r = d[i] / 255, gg = d[i + 1] / 255, b = d[i + 2] / 255, mx = Math.max(r, gg, b), mn = Math.min(r, gg, b), ch = mx - mn;
+        if (mx < 0.12 || ch < 0.1) continue;
+        let h = mx === r ? ((gg - b) / ch) % 6 : mx === gg ? (b - r) / ch + 2 : (r - gg) / ch + 4;
+        h = (h * 60 + 360) % 360;
+        const w = ch * mx, k = Math.floor(h / 15) % 24;
+        bins[k] += w; sx[k] += Math.cos(h * Math.PI / 180) * w; sy[k] += Math.sin(h * Math.PI / 180) * w; total += w;
+      }
+      if (total / (N * N) < 0.06) return null;
+      const sm = bins.map(function (v, k) { return v * 2 + bins[(k + 23) % 24] + bins[(k + 1) % 24]; });
+      let top = 0; for (let k = 1; k < 24; k++) if (sm[k] > sm[top]) top = k;
+      const meanHue = function (k) { let x = 0, y = 0; for (let j = -1; j <= 1; j++) { const q = (k + j + 24) % 24; x += sx[q]; y += sy[q]; } return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360; };
+      const h = meanHue(top);
+      let acc = -1;
+      for (let k = 0; k < 24; k++) { if (Math.abs(hueDist(h, k * 15 + 7.5)) < 50) continue; if (acc < 0 || sm[k] > sm[acc]) acc = k; }
+      const h2 = acc >= 0 && sm[acc] > sm[top] * 0.12 ? meanHue(acc) : (h + 38) % 360;
+      return { h: Math.round(h), h2: Math.round(h2), colourful: +(total / (N * N)).toFixed(3) };
+    } catch (e) { return null; } // a picture from another origin without CORS: its pixels cannot be read
+  }
+  // the top truss (issue #89): a rig across the top of the stage, its lamps on the beat, the album's title on a plate
+  function makeTruss() {
+    const t = document.createElement('div'); t.className = 'truss'; t.id = 'arenaTruss';
+    const rig = document.createElement('div'); rig.className = 'truss-rig'; rig.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < 7; i++) rig.appendChild(document.createElement('i'));
+    const plate = document.createElement('span'); plate.className = 'truss-title'; plate.hidden = true;
+    t.appendChild(rig); t.appendChild(plate);
+    return t;
+  }
+  function trussTitle(text) {
+    if (!truss) return;
+    const plate = truss.querySelector('.truss-title');
+    if (plate.textContent !== text) plate.textContent = text;
+    plate.hidden = !text; plate.title = text ? 'album: ' + text : '';
+    document.body.classList.toggle('arena-album', !!text);
+  }
 
   /* ---- transitions (12.0): a flash for the boot and the key, tracers for the tuning, the lights down for a reboot ---- */
   TH.transition = function (from, to, info) {
@@ -382,10 +485,33 @@ NOBODY.themes.arena = (function () {
     const NB = 96, NW = 160;
     const Z = { cv: cv, w: 0, h: 0, dpr: 1, scale: 1, running: true, raf: 0, frames: 0, ms: 0, T: 0, last: 0, mix: 0,
       bars: new Float32Array(NB), slow: new Float32Array(NB), wave: new Float32Array(NW), prevLow: new Float32Array(8),
-      bass: 0, mid: 0, high: 0, kick: 0, flux: 0, fluxAvg: 0, lastBeat: -10, hue: 285, targetHue: 285, tracers: [], sparks: [], shocks: [], dust: [], work: 0, slowN: 0, quickN: 0, times: [] };
+      bass: 0, mid: 0, high: 0, kick: 0, flux: 0, fluxAvg: 0, lastBeat: -10, hue: 285, targetHue: 285, hue2: 323, targetHue2: 323, spread: 38, targetSpread: 38,
+      tracers: [], sparks: [], shocks: [], dust: [], work: 0, slowN: 0, quickN: 0, times: [],
+      banner: null, bannerIn: 0, light: 0, lights: [], gaps: new Float32Array(120), gapI: 0 };
+    // the time between frames (the last 120), for the report: what a viewer gets, compositor included, not only the drawing
+    Z.frameTimes = function () {
+      const n = Math.min(120, Z.gapI), a = Array.prototype.slice.call(Z.gaps, 0, n).sort(function (x, y) { return x - y; });
+      return n ? { p50: +a[Math.floor(n * 0.5)].toFixed(1), p95: +a[Math.min(n - 1, Math.floor(n * 0.95))].toFixed(1) } : null;
+    };
+    // the banner (issue #89): the cover blurred once into a small canvas with its edges feathered, then stretched huge each
+    // frame, which is the soft focus for the price of one drawImage. hang(null) takes it down; it fades out, then goes.
+    Z.hang = function (img) {
+      if (!img) { Z.next = null; return; }
+      const B = 256, c = document.createElement('canvas'); c.width = B; c.height = B;
+      const bg = c.getContext('2d');
+      try { bg.filter = 'blur(5px)'; } catch (e) { /* no canvas filters: the stretch alone softens it */ }
+      bg.drawImage(img, -8, -8, B + 16, B + 16); bg.filter = 'none';
+      bg.globalCompositeOperation = 'destination-in';
+      const fx = bg.createLinearGradient(0, 0, B, 0); fx.addColorStop(0, 'rgba(0,0,0,0)'); fx.addColorStop(0.16, '#000'); fx.addColorStop(0.84, '#000'); fx.addColorStop(1, 'rgba(0,0,0,0)');
+      bg.fillStyle = fx; bg.fillRect(0, 0, B, B);
+      const fy = bg.createLinearGradient(0, 0, 0, B); fy.addColorStop(0, '#000'); fy.addColorStop(0.7, '#000'); fy.addColorStop(1, 'rgba(0,0,0,0)');
+      bg.fillStyle = fy; bg.fillRect(0, 0, B, B);
+      Z.next = c;
+    };
+    Z.next = null;
     Z.size = function () {
       Z.dpr = Math.min(window.devicePixelRatio || 1, 1.5) * Z.scale;
-      Z.w = innerWidth; Z.h = innerHeight;
+      Z.w = innerWidth; Z.h = innerHeight; Z.trussH = truss ? truss.offsetHeight : 0;
       cv.width = Math.round(Z.w * Z.dpr); cv.height = Math.round(Z.h * Z.dpr);
       soft.width = Math.max(2, Math.round(Z.w / SOFT)); soft.height = Math.max(2, Math.round(Z.h / SOFT));
       if (!Z.dust.length) { const n = reduced ? 30 : Math.round(clamp(Z.w * Z.h / 16000, 40, 110)); for (let i = 0; i < n; i++) Z.dust.push({ x: Math.random() * Z.w, y: Math.random() * Z.h, z: 0.15 + Math.random() * 0.85, ph: Math.random() * TAU }); }
@@ -441,7 +567,14 @@ NOBODY.themes.arena = (function () {
       } else if (live && Z.T - Z.lastBeat > 60 / (A.bpm || 72)) { Z.beat(0.4); }
       else if (!live && Z.T - Z.lastBeat > (60 / 70) * 2) { Z.beat(0.22); }
       Z.kick *= Math.exp(-dt * 5.5);
-      Z.hue += (((((Z.targetHue - Z.hue) % 360) + 540) % 360) - 180) * ease(dt, 1.8);
+      Z.hue += hueDist(Z.hue, Z.targetHue) * ease(dt, 1.8);
+      Z.hue2 += hueDist(Z.hue2, Z.targetHue2) * ease(dt, 1.8);
+      Z.spread += (Z.targetSpread - Z.spread) * ease(dt, 1.8);
+      // the banner swaps through black: the old one fades out, the new one fades in
+      if (Z.next !== Z.banner) { Z.bannerIn -= dt * 2.5; if (Z.bannerIn <= 0) { Z.bannerIn = 0; Z.banner = Z.next; } }
+      else if (Z.banner) Z.bannerIn = Math.min(1, Z.bannerIn + dt * (reduced ? 4 : 0.8));
+      // the light on the banner: the bass holds it up, the kick hits it
+      Z.light = clamp(0.25 * Z.bass + 0.85 * Z.kick, 0, 1);
     }
     function step(dt) {
       for (const t of Z.tracers) {
@@ -479,7 +612,8 @@ NOBODY.themes.arena = (function () {
       for (let i = -half; i <= half; i++) { const idx = Math.min(src.length - 1, Math.floor(Math.abs(i) * 1.9)); const v = Math.pow(src[idx], 1.3); pts.push((i + half) / (half * 2) * w, baseY - dir * v * amp); }
       return pts;
     }
-    const LAYERS = [['slow', 45, 0.2], ['bars', 0, 0.34]];
+    const LAYERS = [['slow', 1, 0.2], ['bars', 0, 0.34]]; // the slow layer takes the second hue
+    function layerHue(L) { return L[1] ? Z.hue2 + 7 : Z.hue; }
     function draw(dim) {
       const w = Z.w, h = Z.h, hue = Z.hue;
       g.setTransform(Z.dpr, 0, 0, Z.dpr, 0, 0); g.globalCompositeOperation = 'source-over'; g.globalAlpha = 1;
@@ -493,13 +627,14 @@ NOBODY.themes.arena = (function () {
         const cx = w * (0.5 + 0.38 * Math.sin(Z.T * 0.045 + k * 2.1)), cy = h * (0.42 + 0.32 * Math.cos(Z.T * 0.037 + k * 1.3));
         const rad = big * (0.5 + 0.08 * k + 0.12 * Z.bass), a = (0.12 + 0.2 * Z.bass + Z.kick * 0.06) * dim;
         const gr = g.createRadialGradient(cx, cy, 0, cx, cy, rad);
-        gr.addColorStop(0, 'hsla(' + (hue + (k - 1) * 38) + ', 95%, 52%, ' + a + ')'); gr.addColorStop(0.55, 'hsla(' + (hue + (k - 1) * 38 + 20) + ', 95%, 45%, ' + a * 0.35 + ')'); gr.addColorStop(1, 'hsla(' + hue + ', 95%, 40%, 0)');
+        const kh = k === 0 ? hue - Z.spread : k === 1 ? hue : Z.hue2;
+        gr.addColorStop(0, 'hsla(' + kh + ', 95%, 52%, ' + a + ')'); gr.addColorStop(0.55, 'hsla(' + (kh + 20) + ', 95%, 45%, ' + a * 0.35 + ')'); gr.addColorStop(1, 'hsla(' + hue + ', 95%, 40%, 0)');
         sg.fillStyle = gr; sg.fillRect(0, 0, w, h);
       }
       const amp = h * 0.3;
       for (const L of LAYERS) {
         const pts = horizonPoints(Z[L[0]], w, h + 2, amp, 1);
-        const gr = g.createLinearGradient(0, h - amp, 0, h); gr.addColorStop(0, 'hsla(' + (hue + L[1]) + ', 100%, 60%, 0)'); gr.addColorStop(1, 'hsla(' + (hue + L[1]) + ', 100%, 58%, ' + L[2] * dim + ')');
+        const lh = layerHue(L), gr = g.createLinearGradient(0, h - amp, 0, h); gr.addColorStop(0, 'hsla(' + lh + ', 100%, 60%, 0)'); gr.addColorStop(1, 'hsla(' + lh + ', 100%, 58%, ' + L[2] * dim + ')');
         sg.fillStyle = gr; sg.beginPath(); sg.moveTo(0, h + 2); smoothPath(sg, pts); sg.lineTo(w, h + 2); sg.closePath(); sg.fill();
       }
       const top = horizonPoints(Z.slow, w, -2, h * 0.14, -1);
@@ -507,10 +642,11 @@ NOBODY.themes.arena = (function () {
       sg.fillStyle = tg; sg.beginPath(); sg.moveTo(0, -2); smoothPath(sg, top); sg.lineTo(w, -2); sg.closePath(); sg.fill();
       g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'low';
       g.drawImage(soft, 0, 0, w, h);
+      if (Z.banner && Z.bannerIn > 0) drawBanner(dim);
       g.globalCompositeOperation = 'lighter';
       // the horizon's lines
       g.lineWidth = 1.4;
-      for (const L of LAYERS) { const pts = horizonPoints(Z[L[0]], w, h + 2, amp, 1); g.strokeStyle = 'hsla(' + (hue + L[1] + 15) + ', 100%, 78%, ' + L[2] * 1.4 * dim + ')'; g.beginPath(); g.moveTo(pts[0], pts[1]); smoothPath(g, pts); g.stroke(); }
+      for (const L of LAYERS) { const pts = horizonPoints(Z[L[0]], w, h + 2, amp, 1); g.strokeStyle = 'hsla(' + (layerHue(L) + 15) + ', 100%, 78%, ' + L[2] * 1.4 * dim + ')'; g.beginPath(); g.moveTo(pts[0], pts[1]); smoothPath(g, pts); g.stroke(); }
       // the ribbon across the upper third
       const y0 = h * 0.26, ramp = h * (0.05 + Z.bass * 0.09 + Z.kick * 0.03);
       for (let layer = 2; layer >= 0; layer--) {
@@ -543,6 +679,41 @@ NOBODY.themes.arena = (function () {
       for (const s of Z.sparks) { const u = 1 - s.age / s.life; g.strokeStyle = 'hsla(' + (s.hue + 20) + ', 100%, 75%, ' + u + ')'; g.lineWidth = 1.2; g.beginPath(); g.moveTo(s.x, s.y); g.lineTo(s.x - s.vx * 0.025, s.y - s.vy * 0.025); g.stroke(); }
       if (Z.kick > 0.55) { g.fillStyle = 'hsla(' + hue + ', 100%, 60%, ' + (Z.kick - 0.55) * 0.07 * dim + ')'; g.fillRect(0, 0, w, h); }
     }
+    // the banner hangs from the truss, centred, as tall as the window: dim by itself, lifted by the bass; three lamps on the
+    // truss sweep across it and the kick fires them, each pool of light the banner again, added, inside the lamp's ellipse
+    function drawBanner(dim) {
+      const w = Z.w, h = Z.h, top = trussPx(), size = Math.max(Math.min(w * 0.94, (h - top) * 1.12), Math.min(w, 520));
+      const x = (w - size) / 2, y = top - size * 0.04, fade = Z.bannerIn * dim;
+      g.globalCompositeOperation = 'source-over';
+      g.globalAlpha = (0.2 + 0.16 * Z.bass + 0.1 * Z.light) * fade;
+      g.drawImage(Z.banner, x, y, size, size);
+      g.globalCompositeOperation = 'lighter';
+      Z.lights.length = 0;
+      for (let i = 0; i < 3; i++) {
+        const sx = w * (1.5 + 2 * i) / 7, sway = reduced ? 0 : Math.sin(Z.T * (0.31 + i * 0.07) + i * 2.1);
+        const px = x + size * (0.5 + 0.34 * sway + (i - 1) * 0.12), py = y + size * (0.42 + 0.18 * Math.cos(Z.T * (0.23 + i * 0.05) + i));
+        const hit = clamp(0.08 + Z.light * (0.75 + 0.25 * Math.sin(Z.T * 1.3 + i * 2)), 0, 1), rx = size * (0.16 + 0.05 * Z.bass), ry = rx * 0.78;
+        Z.lights.push(hit);
+        // the beam from the lamp to the pool
+        const beam = g.createLinearGradient(sx, top, px, py);
+        beam.addColorStop(0, 'hsla(' + (i === 1 ? Z.hue2 : Z.hue) + ', 100%, 85%, ' + 0.16 * hit * fade + ')'); beam.addColorStop(1, 'hsla(' + Z.hue + ', 100%, 70%, 0)');
+        g.globalAlpha = 1; g.fillStyle = beam;
+        g.beginPath(); g.moveTo(sx - 6, top); g.lineTo(sx + 6, top); g.lineTo(px + rx, py); g.lineTo(px - rx, py); g.closePath(); g.fill();
+        // the pool: the banner's patch under the lamp, feathered on a small canvas, added back with a little of the lamp's colour
+        const B = Z.banner.width, k = B / size;
+        pg.globalCompositeOperation = 'copy'; pg.globalAlpha = 1;
+        pg.drawImage(Z.banner, (px - rx - x) * k, (py - ry - y) * k, 2 * rx * k, 2 * ry * k, 0, 0, POOL, POOL);
+        pg.globalCompositeOperation = 'source-over';
+        pg.fillStyle = 'hsla(' + (i === 1 ? Z.hue2 : Z.hue) + ', 100%, 82%, .22)'; pg.fillRect(0, 0, POOL, POOL);
+        pg.globalCompositeOperation = 'destination-in'; pg.fillStyle = poolMask; pg.fillRect(0, 0, POOL, POOL);
+        g.globalAlpha = 0.7 * hit * fade; g.drawImage(pool, px - rx, py - ry, 2 * rx, 2 * ry);
+      }
+      g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
+    }
+    function trussPx() { return Z.trussH; }
+    const POOL = 96, pool = document.createElement('canvas'); pool.width = pool.height = POOL;
+    const pg = pool.getContext('2d'), poolMask = pg.createRadialGradient(POOL / 2, POOL / 2, 0, POOL / 2, POOL / 2, POOL / 2);
+    poolMask.addColorStop(0, '#000'); poolMask.addColorStop(0.45, 'rgba(0,0,0,.75)'); poolMask.addColorStop(1, 'rgba(0,0,0,0)');
     // smooth beats sharp: a machine that cannot draw a frame inside its budget draws it smaller, not less often
     function adapt(ms) {
       Z.ms += (ms - Z.ms) * 0.05; Z.frames++;
@@ -557,6 +728,7 @@ NOBODY.themes.arena = (function () {
       if (!Z.running) return;
       Z.raf = requestAnimationFrame(frame);
       if (document.hidden) { Z.last = 0; return; }
+      if (Z.last) { Z.gaps[Z.gapI++ % 120] = now - Z.last; }
       const dt = Math.min(0.05, Z.last ? (now - Z.last) / 1000 : 1 / 60); Z.last = now;
       const t0 = performance.now();
       Z.T += dt;
@@ -593,7 +765,11 @@ NOBODY.themes.arena = (function () {
   TH.state = function () {
     const p = S && S.current ? profileOf(S.current) : null;
     return { widget: 'scrubber', profile: !p ? 'none' : p.decoded ? 'decoded' : p.seen > 0 ? 'live' : 'none', buckets: p ? (p.decoded ? BUCKETS : p.seen) : 0, hue: stage ? Math.round(stage.hue) : null,
-      stage: stage ? { running: stage.running, frames: stage.frames, ms: +stage.ms.toFixed(1), scale: stage.scale, kick: +stage.kick.toFixed(2), tracers: stage.tracers.length } : null };
+      stage: stage ? { running: stage.running, frames: stage.frames, ms: +stage.ms.toFixed(1), between: stage.frameTimes(), scale: stage.scale, kick: +stage.kick.toFixed(2), tracers: stage.tracers.length } : null,
+      // issue #89: where the colour came from, what hangs behind the stage, how hard the lamps hit it, what the truss says
+      palette: { source: look.source, h: Math.round(look.h), h2: Math.round(look.h2), sampled: look.palette ? Object.assign({}, look.palette) : null },
+      backdrop: { kind: look.kind, url: look.coverUrl, loaded: look.loaded, hung: !!(stage && stage.banner), in: stage ? +stage.bannerIn.toFixed(2) : 0, light: stage ? +stage.light.toFixed(3) : 0, lamps: stage ? stage.lights.map(function (v) { return +v.toFixed(3); }) : [] },
+      truss: truss ? { title: (truss.querySelector('.truss-title') || {}).textContent || '', shown: !truss.querySelector('.truss-title').hidden, h: truss.offsetHeight } : null };
   };
   return TH;
 })();
