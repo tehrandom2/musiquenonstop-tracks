@@ -20,12 +20,14 @@ street grid, one per track, the camera flying the streets between them.
 - **The fly-through.** Two layouts of the home view: the air (the cards folded to the edges, the city in hand) and
   the deck (the cards in their column). Tempo is a tower's height, duration its width, loudness its glow, brightness
   its crown, boominess its base, the tier its hue, a voice its beacon, age its edge light; `project` or a mood family
-  is its district, the date its street. Keys in the air: `up`/`down` speed, `left`/`right` a turn at the next street,
-  `f` the air or the deck, `j`/`k` the cursor tower, `enter` fly in and play, `q` route it next, `esc` back to the
-  orbit then the deck, `shift`+`left`/`right` the 5 s seek. The pointer hovers a tower for its readout and clicks to
-  fly in; the wheel is the speed; on a phone one finger flies and a tap is the hover, a second tap flies in. Commands:
-  `fly [slug]`, `deck`, `route`, `cruise`, `land`, `district [name]`, `where`. The hidden mode is the cruise. Without
-  the scene the list is the city.
+  is its district, the date its street. In the air (issue #63, `docs/city-flythrough.md` section 20): a drag swings the
+  camera, shift-drag or `z`/`x` pans, the wheel zooms the orbit or moves along the street, `w`/`s` or `up`/`down` held
+  drive the street, `a`/`d` or `left`/`right` turn at the corner, a click on a tower plays it (the pointer is a hand
+  there and the tower lifts), `j`/`k` glide to the next tower, `enter` plays the cursor tower, `q` queues it, `f` or
+  `esc` the list view (the deck), `h` the hint bar, `t` the themes, `shift`+`left`/`right` the 5 s seek, `shift`+`s`
+  the shuffle. On a phone one finger flies and a tap is the hover, a second tap plays. Commands: `fly [slug]`, `deck`,
+  `route`, `cruise`, `land`, `district [name]`, `where`. The hidden mode is the cruise. Without the scene, or when it
+  stops drawing, the air says so and `f` is the list.
 
 Files: `theme.css`, `theme.js`. Fonts: Orbitron and IBM Plex Mono, both SIL Open Font License 1.1, in
 `../../vendor/` with the licences in `../../vendor/LICENSES.md`. The harness runs this theme's Chrome on

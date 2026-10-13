@@ -242,6 +242,27 @@ body[data-interface]:not([data-interface=""]) .glass .band, body[data-interface]
 .gb-entry .gb-line { white-space: pre-wrap; overflow-wrap: anywhere; }
 .gb-more { margin-top: var(--row); }
 
+/* the theme picker (design 12.0, issue #63): the THEME button in the header reads as a button in every theme (a frame in the text's own
+   colour); the overlay lists one swatch per theme, its key, its name and its line. the colours of the swatch are the theme module's own */
+.theme-btn { display: inline-flex; align-items: center; padding: 0 .7ch; border: 1px solid currentColor; border-radius: 3px; line-height: 1.4; vertical-align: middle; }
+.theme-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.themes.overlay { width: min(100vw - 2 * var(--gutter), 72ch); }
+.theme-list { display: flex; flex-direction: column; gap: .3em; margin-top: calc(var(--row) * .5); }
+.theme-pick {
+  display: grid; grid-template-columns: 2ch 3.4em 10ch 1fr; grid-template-areas: "key sw name on" ". . blurb blurb";
+  align-items: center; column-gap: 1ch; text-align: left; white-space: normal; padding: .3em .8ch; border-radius: 4px; border: 1px solid transparent;
+}
+.theme-pick:hover, .theme-pick:focus-visible { border-color: currentColor; }
+.theme-pick .tp-key { grid-area: key; }
+.theme-pick .tp-swatch { grid-area: sw; display: inline-flex; gap: 4px; align-items: center; justify-content: center; height: 1.5em; border-radius: 4px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .25); }
+.theme-pick .tp-swatch i { width: .65em; height: .65em; border-radius: 50%; }
+.theme-pick .tp-name { grid-area: name; white-space: pre; }
+.theme-pick .tp-on { grid-area: on; white-space: pre; }
+.theme-pick .tp-blurb { grid-area: blurb; white-space: normal; }
+@media (max-width: 900px) { .theme-pick { grid-template-columns: 2ch 3.4em 1fr auto; } }
+/* a picked track that did not load (issue #63): the two ways on, under the readout's line */
+.fail-row { margin-top: calc(var(--row) * .3); white-space: pre; }
+
 /* help overlay */
 .overlay {
   position: fixed;
@@ -262,7 +283,8 @@ body[data-interface]:not([data-interface=""]) .glass .band, body[data-interface]
 
 /* phone (40 columns) */
 @media (max-width: 900px) {
-  .tagline-h, .header .up, #shuffleLabel { display: none; }
+  /* the header at 390 px keeps the name, the frequency, the chip and THEME (issue #63); the track count is the catalogue's to say */
+  .tagline-h, .header .up, #shuffleLabel, .header #trackCount { display: none; }
   .np-row { flex-direction: column; align-items: flex-start; gap: 0; }
   /* the fader takes the card's full width under the label; the hit area stays 44 px */
   .transmitter > .row:first-child { flex-wrap: wrap; }

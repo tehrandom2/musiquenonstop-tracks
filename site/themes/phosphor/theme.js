@@ -5,7 +5,7 @@
 window.NOBODY = window.NOBODY || {};
 NOBODY.themes = NOBODY.themes || {};
 NOBODY.themes.phosphor = (function () {
-  const TH = { name: 'phosphor', blurb: 'green phosphor on curved glass. the first build.' };
+  const TH = { name: 'phosphor', blurb: 'green phosphor on curved glass. the first build.', swatch: ['#050705', '#41FF6A', '#FFB000'] };
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ctx = null, V = null, A = null, glass = null, power = null;
   let timers = [], overlays = [], defs = null;

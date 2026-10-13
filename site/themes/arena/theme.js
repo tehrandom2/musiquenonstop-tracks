@@ -8,7 +8,7 @@
 window.NOBODY = window.NOBODY || {};
 NOBODY.themes = NOBODY.themes || {};
 NOBODY.themes.arena = (function () {
-  const TH = { name: 'arena', blurb: 'a dark stage. one big scrubber, icon buttons, the page re-tints to the track.' };
+  const TH = { name: 'arena', blurb: 'a dark stage. one big scrubber, icon buttons, the page re-tints to the track.', swatch: ['#06060b', '#b98cff', '#ffffff'] };
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TAU = Math.PI * 2, BUCKETS = 200;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;

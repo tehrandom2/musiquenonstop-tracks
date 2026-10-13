@@ -41,7 +41,8 @@
     'make', 'makeState', 'makeForm', 'makeWords', 'makeSend', 'makeRemix', 'makeLine',
     'progress', 'progressTime', 'dial', 'spectrum', 'baseline', 'scope', 'deadair', 'tower', 'towerStatic', 'reread', 'bed', 'fat', 'fatPrev', 'fatPlay', 'fatNext', 'fatQueue', 'licence',
     'catalogue', 'sortLabel', 'shuffleLabel', 'findBtn', 'catHead', 'catRows', 'catEmpty', 'page', 'terminal', 'log', 'cmd', 'cmdCursor', 'promptRow', 'hints',
-    'visitorInline', 'wireTag', 'footer', 'odometer', 'countTag', 'help', 'helpTitle', 'helpBody', 'helpClose', 'stationName', 'stationName2', 'transmitter']
+    'visitorInline', 'wireTag', 'footer', 'odometer', 'countTag', 'help', 'helpTitle', 'helpBody', 'helpClose', 'stationName', 'stationName2', 'transmitter',
+    'themeBtn', 'themes', 'themeList', 'themesClose', 'failRow', 'failRetry', 'failNext']
     .forEach(function (id) { el[id] = $(id); });
 
   const BANNER = [
@@ -84,10 +85,13 @@
       filter: function () { return S.filter; }, visible: function () { return (S.visible || []).map(function (b) { return b.dataset.slug; }); },
       hidden: function () { return st.hidden(); }, layout: function () { return S.layout || null; } };
   }
-  // the keys a theme may claim for its paradigm (12.0): the arrows, and letters the station's own table does not use
+  // the keys a theme may claim for its paradigm (12.0): the arrows, and letters the station's own table does not use. t is the
+  // station's since issue #63 (the theme picker). the movement keys w a s d may be claimed together with the arrows: a is read by the
+  // cheat code before any claim, and s, the station's shuffle, is shift+s while a theme holds it
   // `v` is the hidden mode's visualizer key; a theme that says visualizer: false (issue #82) has no station visualizer and may claim it
   // `+`, `=`, `-` and Home (issue #84): a theme with a map may zoom with them; a key the theme does not take is the volume again
-  const CLAIMABLE = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'd', 'h', 'l', 'o', 'u', 'w', 'x', 'y', 'z', 'e', 't', 'v', '+', '=', '-', 'Home'];
+  const CLAIMABLE = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'f', 'd', 'h', 'l', 'o', 'u', 'w', 'x', 'y', 'z', 'e', 'v', '+', '=', '-', 'Home'];
+  const MOVEMENT = ['w', 'a', 's', 'd'];
   const IFACE = { kind: null, keys: [], arrows: false, layouts: [], viz: true };
   function themeInit(name) {
     const th = THEMES[name]; if (!th) return false;
@@ -113,8 +117,8 @@
     document.body.dataset.interface = IFACE.kind || '';
     // a theme without a paradigm may still add commands (issue #88: phosphor's `album` and `art`); it claims no key and no layout
     if (!iface) { delete document.body.dataset.layout; S.layout = null; if (th.commands) T.extend(S.theme, th.commands()); return; }
-    const refused = [];
-    (iface.keys || []).forEach(function (k) { if (CLAIMABLE.indexOf(k) >= 0) IFACE.keys.push(k); else refused.push(k); });
+    const refused = [], withArrows = (iface.keys || []).some(function (k) { return /^Arrow/.test(k); });
+    (iface.keys || []).forEach(function (k) { if (CLAIMABLE.indexOf(k) >= 0 || (withArrows && MOVEMENT.indexOf(k) >= 0)) IFACE.keys.push(k); else refused.push(k); });
     IFACE.arrows = IFACE.keys.some(function (k) { return /^Arrow/.test(k); });
     if (refused.length) T.print(S.theme + ' asked for ' + refused.join(', ') + '. the station keeps those keys. refused.', 'amber');
     if (th.commands) T.extend(S.theme, th.commands());
@@ -429,7 +433,7 @@
       S.pendingAlbum = null;
       if (al) S.queue = al.tracks.concat(S.queue.filter(function (s) { return al.tracks.indexOf(s) < 0; }));
       setChip('ON AIR');
-      tuneTo(S.queue.shift());
+      tuneTo(S.queue.shift(), !!(m && S.bySlug[decodeURIComponent(m[1])]));
       route();
     });
   }
@@ -450,14 +454,17 @@
       r.querySelector('.mark').textContent = stt === 'playing' || stt === 'tuning' ? '>' : stt === 'played' ? '.' : ' ';
     });
   }
-  function tuneTo(slug) {
+  // picked: the listener chose this track (enter, a click, play, prev, a permalink), not the station's own rotation (issue #63). a picked
+  // track that does not load stays chosen and says why, with [ try again ] and [ next ]; the rotation still skips on, as it always has
+  function tuneTo(slug, picked) {
     const t = S.bySlug[slug];
     // a slug that is not in the catalogue is skipped, but never forever (issue #25)
     if (!t) { S.skipped = (S.skipped || 0) + 1; if (S.skipped > S.tracks.length + 1) { S.skipped = 0; T.error('nothing in the queue plays. dead air.'); return; } next(); return; }
     S.skipped = 0;
     const token = ++S.tuningToken;
     if (S.current && S.current !== slug) { S.played.add(S.current); S.history.push(S.current); }
-    S.current = slug; S.state = 'tuning';
+    S.current = slug; S.state = 'tuning'; S.picked = !!picked;
+    el.failRow.hidden = true;
     hideDead();
     setChip('TUNING', 'tuning');
     el.txLabel.textContent = 'TUNING';
@@ -476,7 +483,7 @@
     const stopNoise = typeof own === 'function' ? own : SY.tuning(1.2);
     // the theme's between-tracks move (12.5): in the city, the camera leaves through the tunnel for the next tower
     TH().playing(slug);
-    TH().transition('playing', 'tuning', { slug: slug, ms: 1200 });
+    TH().transition('playing', 'tuning', { slug: slug, ms: 1200, picked: !!picked });
     T.print('tuning ... 88.8 ... found: ' + slug);
     document.title = 'nobody fm: tuning';
     markRows();
@@ -486,14 +493,23 @@
     deck.pause();
     // from a file URL the deck is not in the graph (5.1), and a crossorigin element cannot load file-to-file
     if (FILE && deck.hasAttribute('crossorigin')) deck.removeAttribute('crossorigin');
-    deck.src = trackUrl(t, 'mp3');
+    const src = trackUrl(t, 'mp3');
+    deck.src = src;
     deck.load();
     function onReady() { ready = true; cleanup(); go(); }
-    function onFail() { failed = true; cleanup(); if (token !== S.tuningToken) return; stopNoise(); T.error('the file for ' + slug + ' did not load. next.'); setTimeout(next, 600); }
-    function cleanup() { deck.removeEventListener('canplay', onReady); deck.removeEventListener('error', onFail); }
+    function onError() { onFail(null); }
+    function onFail(why) {
+      if (failed) return;
+      failed = true; cleanup(); clearTimeout(failTimer);
+      if (token !== S.tuningToken) return;
+      stopNoise();
+      failReason(src, why).then(function (reason) { if (token === S.tuningToken) tuneFailed(slug, reason, picked); });
+    }
+    function cleanup() { deck.removeEventListener('canplay', onReady); deck.removeEventListener('error', onError); }
     deck.addEventListener('canplay', onReady);
-    deck.addEventListener('error', onFail);
-    const failTimer = setTimeout(function () { if (!ready && !failed && token === S.tuningToken) onFail(); }, 15000);
+    deck.addEventListener('error', onError);
+    // "locking ..." never sits forever: 8 s after the tuning started it becomes the failure line (issue #63)
+    const failTimer = setTimeout(function () { if (!ready && !failed && token === S.tuningToken) { deck.removeAttribute('src'); deck.load(); onFail('no answer in 8 s'); } }, 8000);
     (function sweep() {
       if (token !== S.tuningToken) return;
       const k = Math.min(1, (performance.now() - started) / 1200);
@@ -513,6 +529,38 @@
       nowPlaying(t);
     }
   }
+  // why a file did not load, in words: over http a HEAD request says whether it is there at all; the media error says the rest
+  function failReason(src, why) {
+    if (why) return Promise.resolve(why);
+    const code = deck.error ? deck.error.code : 0;
+    const media = code === 2 ? 'the network dropped it' : code === 3 ? 'it would not decode' : code === 4 ? 'the browser could not read it' : 'it did not load';
+    if (FILE) return Promise.resolve(code === 4 ? 'the file is missing or unreadable' : media);
+    const ctl = new AbortController(), to = setTimeout(function () { ctl.abort(); }, 3000);
+    return fetch(src, { method: 'HEAD', cache: 'no-store', signal: ctl.signal })
+      .then(function (r) { clearTimeout(to); return r.ok ? media : 'the file is missing (http ' + r.status + ')'; })
+      .catch(function () { clearTimeout(to); return 'the network did not answer'; });
+  }
+  // a picked track that failed stays the current one, says so in the readout and the log, and offers the two ways on (issue #63);
+  // a track of the station's own rotation skips on to the next, as before
+  function tuneFailed(slug, reason, picked) {
+    const line = 'could not load ' + slug + ': ' + reason + '.';
+    A.tuning = false;
+    el.dial.hidden = true; el.progress.hidden = false;
+    if (!picked) { T.error(line + ' next.'); setTimeout(next, 600); return; }
+    S.state = 'failed';
+    setChip('NO SIGNAL', 'dead');
+    el.txLabel.textContent = 'NO SIGNAL';
+    el.readout.classList.add('tuning'); el.readout.classList.remove('typing');
+    el.transmitter.classList.remove('tuning-state');
+    if (S.readoutTyper) S.readoutTyper.cancel();
+    el.readoutText.textContent = line;
+    el.readoutCursor.classList.add('dimcur');
+    el.failRow.hidden = false;
+    T.error(line);
+    document.title = 'nobody fm: no signal';
+    markRows();
+  }
+  st.retry = function () { if (S.current) tuneTo(S.current, true); };
   function metaText(t, tuning) {
     const seed = tuning ? 'seed .....' : 'seed ' + (t.seed != null ? t.seed : '-');
     if (phone()) return t.bpm + ' bpm  ' + (t.key || '') + '  ' + fmt(t.duration) + '  ' + seed;
@@ -530,7 +578,7 @@
     drawDial(88.8, true);
     el.progress.hidden = false; el.dial.hidden = true;
     A.tuning = false;
-    TH().transition('tuning', 'playing', { slug: t.slug });
+    TH().transition('tuning', 'playing', { slug: t.slug, picked: !!S.picked });
     hideHint(t.title || t.slug);
     el.readout.classList.add('typing');
     // the typing finishes within 2 s whatever the prompt's length, or on any key (issue #43)
@@ -571,18 +619,19 @@
     const cur = S.current;
     S.current = null; // so tuneTo pushes nothing onto the history
     if (cur) { S.queue.unshift(cur); S.played.delete(cur); }
-    tuneTo(slug);
+    tuneTo(slug, true);
   }
   function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const x = a[i]; a[i] = a[j]; a[j] = x; } }
   function playNow(slug) {
     if (!S.bySlug[slug]) return;
     if (S.current && S.current !== slug) S.queue.unshift(S.current);
     S.queue = S.queue.filter(function (s) { return s !== slug; });
-    tuneTo(slug);
+    tuneTo(slug, true);
   }
   function togglePlay() {
     if (!S.onAir) { goOnAir(null); return; }
     if (S.state === 'dead') return;
+    if (S.state === 'failed') { st.retry(); return; }
     if (deck.paused) { const p = deck.play(); if (p && p.catch) p.catch(function () {}); S.state = 'playing'; setChip('ON AIR'); clearIdle(); T.print('on air.'); }
     else { deck.pause(); S.state = 'paused'; setChip('PAUSED'); T.print('paused. the transmitter hums.'); armIdle(); }
     markRows();
@@ -714,7 +763,8 @@
     return out;
   }
   function stateOf(t) {
-    if (t.slug === S.current) return S.state === 'tuning' ? 'tuning' : 'playing';
+    // a picked track that failed keeps the amber of a tuning row; its word says what happened (rowText)
+    if (t.slug === S.current) return S.state === 'tuning' || S.state === 'failed' ? 'tuning' : 'playing';
     if (S.played.has(t.slug)) return 'played';
     return 'queued';
   }
@@ -765,7 +815,7 @@
       const g = stt === 'playing' ? '*' : stt === 'tuning' ? '~' : stt === 'played' ? '.' : 'q';
       return { num: pad(n, 2), slug: pad(slug, 13) + ' ', rest: pad(t.bpm, 3) + ' ' + pad(keyShort(t.key), 2) + ' ' + g + (t.voice ? 'v' : ' ') + ' ' };
     }
-    return { num: pad(n, 2), slug: pad(slug, 28), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(stt, 9) + '  ' + pad(alb || lin || tag, lw) + ' ' };
+    return { num: pad(n, 2), slug: pad(slug, 28), rest: String(t.bpm == null ? '' : t.bpm).padStart(3) + '  ' + pad(keyShort(t.key), 4) + '  ' + pad(fmt(t.duration), 4) + '  ' + pad(t.model, 5) + '  ' + pad(t.slug === S.current && S.state === 'failed' ? 'no signal' : stt, 9) + '  ' + pad(alb || lin || tag, lw) + ' ' };
   }
   function renderRows() {
     const items = displayOrder();
@@ -821,7 +871,7 @@
   function drawHints() {
     el.hints.textContent = '';
     if (S.state === 'dead') return;
-    const items = [['space', 'play/pause', togglePlay], ['n', 'next', next], ['p', 'prev', prev], ['/', 'find', function () { T.focus('find '); }], ['?', 'help', function () { st.help(true); }]];
+    const items = [['space', 'play/pause', togglePlay], ['n', 'next', next], ['p', 'prev', prev], ['/', 'find', function () { T.focus('find '); }], ['t', 'themes', function () { st.themePicker(true); }], ['?', 'help', function () { st.help(true); }]];
     items.forEach(function (it, i) { if (i) el.hints.appendChild(span('   ')); el.hints.appendChild(hintButton(it[0], it[1], it[2])); });
   }
 
@@ -1160,6 +1210,7 @@
   ];
   const HELP_HIDE = ['`', 'hide the interface (v: bars)'];
   HELP_KEYS.push(HELP_HIDE);
+  HELP_KEYS.push(['t', 'themes: the looks, one key each']);
   // request first (issue #51): making a track is the first thing the help offers
   const HELP_CMDS = [
     'request <words>   remix [slug] [words]', 'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10',
@@ -1180,8 +1231,9 @@
     if ((IFACE.kind || ext.length) && th && th.help) {
       out.push('');
       out.push(pad(S.theme + '>', 43) + (ext.length ? ext[0].commands.join('   ') : ''));
-      th.help().forEach(function (h) { out.push(pad(h[0], 11) + pad(h[1], 32)); });
+      th.help().forEach(function (h) { out.push(pad(h[0], 17) + pad(h[1], 32)); });
       if (IFACE.arrows) out.push('shift+left right   seek 5 s while ' + S.theme + ' holds the arrows');
+      if (IFACE.keys.indexOf('s') >= 0) out.push('shift+s            shuffle while ' + S.theme + ' holds s');
     }
     return out;
   }
@@ -1586,7 +1638,7 @@
   };
   st.help = function (open) {
     const show = open == null ? el.help.hidden : open;
-    if (show) { drawHelp(); el.help.hidden = false; V.scramble(el.helpTitle, 'HELP', 600); el.help.focus && el.help.focus(); }
+    if (show) { st.themePicker(false); drawHelp(); el.help.hidden = false; V.scramble(el.helpTitle, 'HELP', 600); el.help.focus && el.help.focus(); }
     else el.help.hidden = true;
   };
   st.helpScroll = function () {
@@ -1595,7 +1647,7 @@
   };
   st.home = function () { if (location.hash && location.hash !== '#/') location.hash = '#/'; else showHome(); st.help(false); };
   // esc: the overlay, then a page, then the theme's own paradigm (12.0, the interface hooks, issue #53: the city flies back to its orbit)
-  st.escape = function () { if (!el.help.hidden) { st.help(false); return; } if (S.view !== 'home') { st.home(); return; } if (IFACE.kind && TH() && TH().escape) TH().escape(); };
+  st.escape = function () { if (!el.themes.hidden) { st.themePicker(false); return; } if (!el.help.hidden) { st.help(false); return; } if (S.view !== 'home') { st.home(); return; } if (IFACE.kind && TH() && TH().escape) TH().escape(); };
   st.reboot = function () {
     T.print('power off.', 'mid');
     deck.pause(); S.onAir = false; S.state = 'standby'; S.current = null; S.played = new Set(); S.history = []; S.queue = [];
@@ -1606,6 +1658,42 @@
   };
   // what the harness and curious people can read: which theme is on and what its visuals are doing
   st.themeState = function () { const th = TH(); return Object.assign({ theme: S.theme }, th && th.state ? th.state() : {}); };
+  /* the theme picker (issue #63, design 12.0): a THEME button in the header and `t` open one swatch per registered theme, in the
+     order they registered, so a theme that lands later is listed with nothing else to change. a theme without a swatch gets a plain one */
+  function drawThemes() {
+    el.themeList.textContent = '';
+    Object.keys(THEMES).forEach(function (name, i) {
+      const th = THEMES[name], sw = th.swatch || ['#101010', '#a0a0a0', '#e0e0e0'];
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'theme-pick' + (name === S.theme ? ' on' : ''); b.dataset.theme = name;
+      b.setAttribute('aria-pressed', name === S.theme ? 'true' : 'false');
+      const chip = span('', 'tp-swatch'); chip.setAttribute('aria-hidden', 'true');
+      chip.style.background = sw[0]; sw.slice(1).forEach(function (c) { const dot = document.createElement('i'); dot.style.background = c; chip.appendChild(dot); });
+      b.appendChild(span(String(i + 1), 'tp-key')); b.appendChild(chip); b.appendChild(span(name, 'tp-name'));
+      b.appendChild(span(name === S.theme ? 'on' : '', 'tp-on'));
+      b.appendChild(span(th.blurb || '', 'tp-blurb mid'));
+      b.addEventListener('click', function (e) { e.stopPropagation(); pickTheme(name); });
+      el.themeList.appendChild(b);
+    });
+  }
+  function pickTheme(name) { st.themePicker(false); if (name === S.theme) { T.print('theme: ' + name + '. already.', 'mid'); return; } st.theme(name); }
+  st.themePicker = function (open) {
+    const show = open == null ? el.themes.hidden : !!open;
+    if (show) {
+      st.help(false); drawThemes(); el.themes.hidden = false; el.themeBtn.setAttribute('aria-expanded', 'true');
+      const on = el.themeList.querySelector('.theme-pick.on') || el.themeList.querySelector('.theme-pick'); if (on) on.focus();
+    } else if (!el.themes.hidden) { el.themes.hidden = true; el.themeBtn.setAttribute('aria-expanded', 'false'); if (el.themes.contains(document.activeElement)) document.activeElement.blur(); }
+  };
+  // the picker's keys: a digit picks, the arrows and j / k walk, enter picks the focused one, t or esc closes
+  function themesKey(e) {
+    const k = e.key, picks = [].slice.call(el.themeList.querySelectorAll('.theme-pick'));
+    if (k === 'Escape' || k === 't' || k === 'T') { st.themePicker(false); return true; }
+    if (/^[1-9]$/.test(k)) { const b = picks[+k - 1]; if (b) pickTheme(b.dataset.theme); return true; }
+    const i = picks.indexOf(document.activeElement);
+    if (k === 'ArrowDown' || k === 'ArrowRight' || k === 'j') { (picks[(i + 1) % picks.length] || picks[0]).focus(); return true; }
+    if (k === 'ArrowUp' || k === 'ArrowLeft' || k === 'k') { (picks[(i - 1 + picks.length) % picks.length] || picks[0]).focus(); return true; }
+    if (k === 'Enter' || k === ' ') { const b = picks[i]; if (b) pickTheme(b.dataset.theme); return true; }
+    return k !== 'Tab';
+  }
   // `theme` lists the themes; `theme <name>` swaps the stylesheet and the visuals module in place and remembers it (12.0)
   st.theme = function (a) {
     const names = Object.keys(THEMES);
@@ -1619,6 +1707,9 @@
     try { localStorage.setItem('nobody.theme', name); } catch (e) {}
     const link = document.getElementById('themeCss');
     const was = pageKind();
+    // leaving a theme's own paradigm for one without (issue #63): say where it went, in the station's voice, after the switch line
+    const from = S.theme, nextIface = THEMES[name].interface ? THEMES[name].interface() : null;
+    const leaving = IFACE.kind && !nextIface ? (IFACE.kind === 'flythrough' ? 'fly mode' : IFACE.kind) + ' is the ' + from + "'s. " + name + ' keeps the list. theme ' + from + ' flies again.' : null;
     themeRelease();
     if (TH()) TH().dispose();
     const done = function () {
@@ -1630,6 +1721,7 @@
       drawProgress(); drawCatHead(); renderRows();
       S.themeSwitching = false;
       T.print(THEMES[name].strings.switched);
+      if (leaving) T.print(leaving, 'mid');
     };
     link.onload = done; link.onerror = function () { T.error('the theme did not load. staying as we were.'); S.themeSwitching = false; themeInit(S.theme); };
     link.href = 'themes/' + name + '/theme.css';
@@ -1763,7 +1855,7 @@
     if (!HIDE.on) return false;
     if (k === 'Escape') { st.hideUi(false); return true; }
     if ((k === 'v' || k === 'V') && IFACE.viz) { st.hideViz(); return true; }
-    if ('/:?gicqjk'.indexOf(k) >= 0 || k === 'Tab' || k === 'Enter') return true;
+    if ('/:?gicqjktT'.indexOf(k) >= 0 || k === 'Tab' || k === 'Enter') return true;
     // play and the volume keep working; with no interface their answer is one word over the scene
     if (k === ' ' || k === '-' || k === '=' || k === '+' || k === 'm') {
       setTimeout(function () { hideHint(k === ' ' ? (deck.paused ? 'paused' : 'on air') : k === 'm' ? (SY.muted ? 'muted' : 'volume ' + SY.volume) : 'volume ' + SY.volume); }, 0);
@@ -1803,22 +1895,29 @@
     }
     if (inInput(e)) return;
     if (hideKey(e)) { e.preventDefault(); return; }
+    if (!el.themes.hidden) { if (!e.ctrlKey && !e.metaKey && !e.altKey && themesKey(e)) e.preventDefault(); return; }
     if (!el.help.hidden) { if (e.key === '?' || e.key === 'Escape') { e.preventDefault(); st.help(false); } return; }
     if (e.ctrlKey || e.metaKey) return;
     const k = e.key;
-    // a theme's claimed keys go to the theme first (12.0, issue #53); while it holds the arrows the 5 s seek is shift + arrows
+    // a theme's claimed keys go to the theme first (12.0, issue #53); while it holds the arrows the 5 s seek is shift + arrows, and
+    // while it holds s (issue #63) the shuffle is shift + s
     if (IFACE.kind && TH() && TH().keys && !e.altKey) {
-      const claimed = IFACE.keys.indexOf(k) >= 0 || (k.length === 1 && IFACE.keys.indexOf(k.toLowerCase()) >= 0);
-      if (claimed && !(e.shiftKey && /^Arrow/.test(k))) { if (TH().keys(e)) { e.preventDefault(); return; } }
+      const lower = k.length === 1 ? k.toLowerCase() : k;
+      const claimed = IFACE.keys.indexOf(k) >= 0 || IFACE.keys.indexOf(lower) >= 0;
+      const stationShift = e.shiftKey && (/^Arrow/.test(k) || lower === 's');
+      if (claimed && !stationShift) { if (TH().keys(e)) { e.preventDefault(); return; } }
       if (IFACE.arrows && e.shiftKey && (k === 'ArrowLeft' || k === 'ArrowRight')) { seekBy(k === 'ArrowLeft' ? -5 : 5); e.preventDefault(); return; }
+      if (stationShift && lower === 's' && IFACE.keys.indexOf('s') >= 0) { st.toggleShuffle(); e.preventDefault(); return; }
     }
     let handled = true;
     switch (k) {
       case ' ': togglePlay(); break;
       case 'n': next(); break;
       case 'p': prev(); break;
-      case 'j': if (S.visible && S.visible.length) { S.hl = (S.hl + 1) % S.visible.length; highlight(); } break;
-      case 'k': if (S.visible && S.visible.length) { S.hl = (S.hl - 1 + S.visible.length) % S.visible.length; highlight(); } break;
+      // j and k move the one cursor; a theme with its own order (the city in the air: the next tower) takes the step (12.0, issue #63)
+      case 'j': if (!themeStep(1) && S.visible && S.visible.length) { S.hl = (S.hl + 1) % S.visible.length; highlight(); } break;
+      case 'k': if (!themeStep(-1) && S.visible && S.visible.length) { S.hl = (S.hl - 1 + S.visible.length) % S.visible.length; highlight(); } break;
+      case 't': case 'T': st.themePicker(); break;
       case 'Enter': if (hlSlug()) playNow(hlSlug()); break;
       case 'q': if (hlSlug()) st.queueAdd(hlSlug()); else T.print('highlight a row first: j and k.', 'mid'); break;
       case 's': st.toggleShuffle(); break;
@@ -1842,6 +1941,7 @@
     }
     if (handled) e.preventDefault();
   });
+  function themeStep(dir) { const th = TH(); return !!(IFACE.kind && th && th.step && th.step(dir)); }
   function cheat() {
     const amber = document.documentElement.dataset.phosphor === 'amber';
     document.documentElement.dataset.phosphor = amber ? '' : 'amber';
@@ -1881,6 +1981,12 @@
     el.shuffleLabel.addEventListener('click', function () { st.toggleShuffle(); });
     el.findBtn.addEventListener('click', function () { T.focus('find '); });
     el.helpClose.addEventListener('click', function () { st.help(false); });
+    // the theme picker (issue #63) and the two ways on from a track that did not load
+    el.themeBtn.addEventListener('click', function (e) { e.stopPropagation(); st.themePicker(); });
+    el.themesClose.addEventListener('click', function () { st.themePicker(false); });
+    document.addEventListener('click', function (e) { if (!el.themes.hidden && !el.themes.contains(e.target) && !el.themeBtn.contains(e.target)) st.themePicker(false); });
+    el.failRetry.addEventListener('click', function () { st.retry(); });
+    el.failNext.addEventListener('click', function () { next(); });
     document.querySelectorAll('[data-cmd]').forEach(function (b) { b.addEventListener('click', function () { T.run(b.dataset.cmd, true); }); });
     el.fatPrev.addEventListener('click', prev); el.fatNext.addEventListener('click', next); el.fatPlay.addEventListener('click', togglePlay);
     el.fatQueue.addEventListener('click', function () { if (hlSlug()) st.queueAdd(hlSlug()); else if (S.queue.length) st.queueList(); else T.print('nothing highlighted.', 'mid'); });

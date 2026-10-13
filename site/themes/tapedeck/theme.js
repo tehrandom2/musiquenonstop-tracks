@@ -6,7 +6,7 @@
 window.NOBODY = window.NOBODY || {};
 NOBODY.themes = NOBODY.themes || {};
 NOBODY.themes.tapedeck = (function () {
-  const TH = { name: 'tapedeck', blurb: 'a cassette on a painting desk. one lamp, warm bars, the reels turn.' };
+  const TH = { name: 'tapedeck', blurb: 'a cassette on a painting desk. one lamp, warm bars, the reels turn.', swatch: ['#1b130e', '#ffb45f', '#e2553b'] };
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
   let viz = null, cassette = null, jcard = null, towerCassette = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, knob = null, chipWatch = null;

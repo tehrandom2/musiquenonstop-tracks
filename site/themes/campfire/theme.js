@@ -1794,7 +1794,7 @@ NOBODY.themes = NOBODY.themes || {};
 
   /* ================= the theme module ================= */
   NOBODY.themes.campfire = (function () {
-    const TH = { name: 'campfire', blurb: 'a fire on a small planet, a sky full of signals, a scope, marshmallows.' };
+    const TH = { name: 'campfire', blurb: 'a fire on a small planet, a sky full of signals, a scope, marshmallows.', swatch: ['#0b1430', '#ff9a45', '#9fd3ff'] };
     let ctx = null, V = null, A = null, glass = null, power = null, S = null;
     let scene = null, canvas = null, painted = null, nocampTimer = 0, pendingView = null;
     const UI = { scopeEl: null, legend: null, bar: null, hint: null, credit: null, journal: null, meterBars: [], lockRing: null, freqBtn: null, targetEl: null, strengthEl: null, mallowBtn: null, mallowChip: null, scopeBtn: null, layout: 'camp', journalSlug: null, journalAt: 0, journalHover: false, lockSlug: null, lockAt: 0, ptr: null, pinch: null, rightScope: false, zDown: 0, hDown: 0, hToast: 0, hKey: false, jkAt: 0, selfHL: false, placeholder: null, hintAt: 0, freqAt: 0, frames: 0, golden: 0, goldenVisit: 0 };

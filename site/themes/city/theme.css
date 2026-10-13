@@ -446,8 +446,52 @@ body[data-layout="air"] #make .make-line:empty { display: none; }
   body[data-layout="air"] #page { grid-column: 1; grid-row: 2 / 4; }
   body[data-layout="air"] #transmitter .readout { max-height: calc(var(--row) * 2); }
 }
-/* the [ fly ] bracket in the catalogue's control row */
-.cat-controls .city-fly { color: var(--cyan); }
+/* the fly / list view button in the catalogue's control row (issue #63): a real button, framed and lit, with a focus ring; in the air the
+   control row wraps so the button is never clipped by the rail */
+/* the frame sits outside the word's own line box (padding above and below), so the bright border is never what is behind the text */
+.cat-controls .city-fly { display: inline-block; line-height: 1.2; color: var(--ink); border: 1px solid rgb(var(--cyan-rgb) / .75); background: rgb(var(--cyan-rgb) / .12); border-radius: 4px; padding: 3px 1ch; box-shadow: 0 0 10px rgb(var(--cyan-rgb) / .25); }
+.cat-controls .city-fly::before, .cat-controls .city-fly::after { content: none; }
+.cat-controls .city-fly:hover { background: rgb(var(--cyan-rgb) / .22); border-color: var(--cyan); }
+.cat-controls .city-fly:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+body[data-layout="air"] #catalogue > .row:first-child { flex-wrap: wrap; white-space: normal; row-gap: 4px; }
+body[data-layout="air"] #catalogue .cat-controls { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 2ch; white-space: normal; min-width: 0; }
+body[data-layout="air"] #catalogue .cat-controls > * { white-space: pre; }
+
+/* the THEME button and the picker (design 12.0, issue #63) */
+.theme-btn { color: var(--cyan); border-color: rgb(var(--cyan-rgb) / .6); background: rgb(var(--cyan-rgb) / .08); }
+.theme-btn .label { color: var(--ink); background: none; padding-bottom: 0; }
+.theme-btn:hover, .theme-btn:focus-visible, .theme-btn[aria-expanded="true"] { border-color: var(--cyan); background: rgb(var(--cyan-rgb) / .18); box-shadow: var(--glow-data); }
+.theme-pick { color: var(--ink); }
+.theme-pick:hover, .theme-pick:focus-visible { border-color: var(--cyan); background: rgb(var(--cyan-rgb) / .10); }
+.theme-pick .tp-key { color: var(--cyan); }
+.theme-pick .tp-name { font-family: var(--display); font-weight: 600; letter-spacing: .06em; }
+.theme-pick .tp-on { color: var(--green); }
+.theme-pick.on .tp-name { color: var(--cyan); }
+.fail-row .bk { color: var(--ink); }
+
+/* the hint bar (issue #63): pinned at the bottom of the open city, the controls a first-time player needs, each lighting up when used */
+.city-hints { grid-area: scene; align-self: end; justify-self: center; z-index: 1; pointer-events: auto; --pad: 8px; max-width: 100%; box-sizing: border-box;
+  display: flex; align-items: center; gap: 2ch; white-space: normal; animation: riseUp 420ms cubic-bezier(.2, .9, .3, 1) both; }
+@keyframes riseUp { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+.city-hints .ch-items { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 2px 2.4ch; }
+.city-hints .ch-item { white-space: pre; color: var(--ink); border-radius: 3px; padding: 0 .3ch; }
+.city-hints .ch-key { color: var(--cyan); }
+.city-hints .ch-btn .ch-key { text-decoration: underline; text-decoration-color: rgb(var(--cyan-rgb) / .6); text-underline-offset: 3px; }
+.city-hints .ch-btn:hover, .city-hints .ch-btn:focus-visible { background: rgb(var(--cyan-rgb) / .14); }
+.city-hints .ch-item.used { animation: chUsed 900ms ease-out; }
+@keyframes chUsed { 0%, 30% { background: rgb(var(--cyan-rgb) / .28); box-shadow: 0 0 12px rgb(var(--cyan-rgb) / .5); } 100% { background: transparent; box-shadow: none; } }
+.city-hints .ch-shut { flex: 0 0 auto; color: var(--ink-mid); white-space: pre; padding: 0 .5ch; }
+.city-hints .ch-shut:hover, .city-hints .ch-shut:focus-visible { color: var(--ink); background: rgb(var(--cyan-rgb) / .12); }
+.city-hints.shut { gap: 0; }
+.city-hints.shut .ch-items { display: none; }
+.city-hints.shut .ch-shut { color: var(--ink); }
+body.ui-hidden .city-hints { display: none; }
+/* the honest air (issue #63): a scene that does not draw says so in the middle of the open city, with the way to the list */
+.city-fallback { grid-area: scene; align-self: center; justify-self: center; z-index: 1; pointer-events: auto; --pad: 12px; max-width: min(56ch, 100%); box-sizing: border-box; white-space: normal; }
+.city-fallback .fb-line { margin: .4em 0 .6em; color: var(--ink); white-space: normal; }
+.city-fallback .bk { color: var(--ink); }
+@media (max-width: 900px) { .city-hints { gap: 1ch; } .city-hints .ch-items { column-gap: 1.6ch; } }
+@media (prefers-reduced-motion: reduce) { .city-hints, .city-hints .ch-item.used { animation: none; } }
 
 /* the readout anchored to the cursor tower (city-flythrough 3.2): a small card, opaque panel, the slug in the display face */
 .city-readout {
