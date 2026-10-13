@@ -6,16 +6,16 @@ blue sky turns slowly, and every track in the catalogue is a signal out there am
 scope and sweep the sky on a frequency: the track itself fades in, low-passed and distant, clearer as you home in; hold
 steady, or press `l`, and it locks on, plays, and goes into the camp journal. And there are marshmallows.
 
-campfire is a fan tribute inspired by Outer Wilds (Mobius Digital). Not affiliated with or endorsed by its makers. Nothing here is theirs; everything was made from scratch.
+campfire: a tribute to quiet space adventures, made from scratch here. Nothing in it is anyone else's.
 
 ## What is ours
 
 Everything. The scene is three.js primitives (an icosahedron for the planet, cones and cylinders for the pines and the
 logs, a lathe for the marshmallow), our own shaders (the sky, the flames, the worlds, the marshmallow's toast), our own Web
 Audio synthesis (the fire's crackle and breath, the wind, the scope's static, the lock chime, a short plucked-and-reed
-ident in our own phrase). No art, models, textures, screenshots, music, sounds, logo, fonts, names or terms of the game
-are used, traced or referenced as images. The game's name appears in the credit line above and in the same line in the
-theme's footer, nowhere else.
+ident in our own phrase). No art, models, textures, screenshots, music, sounds, logo, fonts, names or terms of anyone
+else's work are used, traced or referenced as images. No game, studio or character is named anywhere in the theme; the
+credit line above is shown in the theme's footer and under the camp (issue #116).
 
 ## The worlds
 

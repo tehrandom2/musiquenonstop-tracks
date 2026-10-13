@@ -11,9 +11,9 @@ window.NOBODY = window.NOBODY || {};
 NOBODY.themes = NOBODY.themes || {};
 (function () {
   'use strict';
-  // the credit (issue #64, "the line we hold"): the one place the game this tribute is inspired by is named, shown in the
-  // footer and under the camp. nothing of the game is used anywhere; its name appears nowhere else in this theme.
-  const CREDIT = 'campfire is a fan tribute inspired by Outer Wilds (Mobius Digital). Not affiliated with or endorsed by its makers. Nothing here is theirs; everything was made from scratch.';
+  // the credit (issues #64 and #116): our own words, naming no game, studio or person, shown in the footer and under the
+  // camp. nothing of anyone else's is used anywhere in this theme.
+  const CREDIT = "campfire: a tribute to quiet space adventures, made from scratch here. Nothing in it is anyone else's.";
 
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function smooth(a, b, x) { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
