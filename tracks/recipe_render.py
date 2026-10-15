@@ -85,6 +85,8 @@ def post(audio: np.ndarray, rate: int, cfg: dict) -> np.ndarray:
     if len(audio) >= 4 * n:
         t = np.linspace(0.0, np.pi / 2, n, dtype=np.float32)[:, None]
         audio = np.concatenate([audio[:n] * np.sin(t) + audio[-n:] * np.cos(t), audio[n:-n]], axis=0).astype(np.float32)
+    if cfg.get("chain", "").startswith("peak-normalise"):     # the race chain: the recorded gain is the whole master
+        return (audio * 10 ** (cfg["gain_db"] / 20)).astype(np.float32)
     sos = signal.butter(cfg["highpass_order"], cfg["highpass_hz"], "highpass", fs=out_rate, output="sos")
     y = signal.sosfilt(sos, np.concatenate([audio, audio]), axis=0)[len(audio):]   # two copies, keep the second: no start-up step at the loop point
     knee = cfg["master_soft_knee"]
