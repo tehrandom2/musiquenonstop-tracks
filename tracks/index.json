@@ -3,6 +3,110 @@
   "written": "2026-10-15T03:29:30-04:00",
   "tracks": [
     {
+      "slug": "halftime-electronic-apex",
+      "title": "Halftime Electronic, Apex",
+      "project": "fastaf",
+      "idea": "halftime electronic race music, 140 bpm, half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half: halftime electronic race music",
+      "request": "halftime electronic race music, 140 bpm, half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half",
+      "mood": "",
+      "bpm": 140,
+      "key": "F minor",
+      "seed": 805787,
+      "model": "best",
+      "duration": 159.27,
+      "date": "2026-10-15",
+      "rendered_at": "2026-10-15T03:29:29-04:00",
+      "voice": false,
+      "prompt": "Halftime electronic race music, 140 bpm, half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half, a heavy reese sub bass with snarling mid-range growls, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"halftime electronic race music, 140 bpm, half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half\". \"the race profile (the requester's key, or the owner's choice)\" I took as: halftime electronic race music at 140 bpm, genre first and short; the words lead; the profile adds the bass, the kick, the arrangement; the key and the length (the model's choice, 120 to 240 s) left to the model. \"140 bpm\" I took as: 140 bpm, as the words say, in place of the race band. \"halftime electronic race music\" I took as: the frame, in the requester's own words, ahead of the tempo. \"half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half\" I took as: the colour, in the requester's own words and order. \"half-time\" I took as: a half-time feel at 140 bpm: a feel, not a halved tempo. So I wrote it at 140 bpm in F minor (the model chose the key), 167 seconds (the model's choice), with no voice, under the race gates. It is meant to loop: the last 3 seconds are crossfaded onto the first 3 and removed. I rendered 6 seeds and threw away 4: 805789 (passed, but outranked by the kept takes); 805790 (seam level -7.9 dB tail to head); 805792 (onset rate 7.0/s outside 1.5-6.5); 805788 (1.9s of near-silence (limit 0.5)). Seed 805787 is the take.",
+      "rejected": [
+        {
+          "seed": 805789,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 805790,
+          "reason": "seam level -7.9 dB tail to head"
+        },
+        {
+          "seed": 805792,
+          "reason": "onset rate 7.0/s outside 1.5-6.5"
+        },
+        {
+          "seed": 805788,
+          "reason": "1.9s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        805787,
+        805791
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.81,
+        "lufs_target": null,
+        "peak_dbfs": -2.0,
+        "silence_s": 0.0,
+        "brightness_pct": 2.27,
+        "boominess_pct": 53.38,
+        "onsets_per_s": 4.53,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": null,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "halftime-electronic-apex/halftime-electronic-apex.mp3",
+        "notes": "halftime-electronic-apex/notes.md",
+        "recipe": "halftime-electronic-apex/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -17.16,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7023587,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "halftime-electronic-apex/halftime-electronic-apex.mp3",
+          "halftime-electronic-apex/halftime-electronic-apex-take2.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 3 s, from 1:26)",
+        "longest_still_s": 3.0,
+        "from_s": 86.0,
+        "chroma_cos": 0.997,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.291,
+        "flag_at_s": 30.0
+      },
+      "side": "b"
+    },
+    {
       "slug": "modern-hard-hitting-slipstream",
       "title": "Modern Hard-hitting, Slipstream",
       "project": "fastaf",
