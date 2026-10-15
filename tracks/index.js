@@ -106,7 +106,8 @@ window.NOBODY_INDEX = {
         "flux_of_median": 0.18,
         "flag_at_s": 30.0
       },
-      "side": "b"
+      "side": "b",
+      "audition": true
     },
     {
       "slug": "darksynth-neon-last-lap",
@@ -210,7 +211,8 @@ window.NOBODY_INDEX = {
         "flux_of_median": 0.336,
         "flag_at_s": 30.0
       },
-      "side": "b"
+      "side": "b",
+      "audition": true
     },
     {
       "slug": "cinematic-drum-full-throttle",
@@ -512,7 +514,8 @@ window.NOBODY_INDEX = {
         ],
         "ears": null
       },
-      "side": "b"
+      "side": "b",
+      "audition": true
     },
     {
       "slug": "modern-dubstep-left-on",
@@ -608,7 +611,8 @@ window.NOBODY_INDEX = {
         ],
         "ears": null
       },
-      "side": "b"
+      "side": "b",
+      "audition": true
     },
     {
       "slug": "the-signals-line-up",
