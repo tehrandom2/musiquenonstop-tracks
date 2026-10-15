@@ -3,6 +3,110 @@ window.NOBODY_INDEX = {
   "written": "2026-10-15T03:48:35-04:00",
   "tracks": [
     {
+      "slug": "darksynth-neon-last-lap",
+      "title": "Darksynth Neon, Last Lap",
+      "project": "fastaf",
+      "idea": "darksynth, 155 bpm, neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop: darksynth",
+      "request": "darksynth, 155 bpm, neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 155,
+      "key": "E♭ minor",
+      "seed": 136588,
+      "model": "best",
+      "duration": 138.33,
+      "date": "2026-10-15",
+      "rendered_at": "2026-10-15T03:48:34-04:00",
+      "voice": false,
+      "prompt": "Darksynth, 155 bpm, neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop, a growling reese sub bass with a snarling mid-range, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"darksynth, 155 bpm, neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop\". \"the race profile (the requester's key, or the owner's choice)\" I took as: darksynth at 155 bpm, genre first and short; the words lead; the profile adds the bass, the arrangement; the key and the length (the model's choice, 120 to 240 s) left to the model. \"155 bpm\" I took as: 155 bpm, as the words say, in place of the race band. \"darksynth\" I took as: the frame, in the requester's own words, ahead of the tempo. \"neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop\" I took as: the colour, in the requester's own words and order. So I wrote it at 155 bpm in E♭ minor (the model chose the key), 144 seconds (the model's choice), with no voice, under the race gates. It is meant to loop: the last 3 seconds are crossfaded onto the first 3 and removed. I rendered 6 seeds and threw away 4: 136593 (passed, but outranked by the kept takes); 136592 (passed, but outranked by the kept takes); 136590 (boomy: 75.6% below 60 Hz (ceiling 69)); 136591 (tempo 102 vs asked 155). Seed 136588 is the take.",
+      "rejected": [
+        {
+          "seed": 136593,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 136592,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 136590,
+          "reason": "boomy: 75.6% below 60 Hz (ceiling 69)"
+        },
+        {
+          "seed": 136591,
+          "reason": "tempo 102 vs asked 155"
+        }
+      ],
+      "takes": [
+        136588,
+        136589
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -17.32,
+        "lufs_target": null,
+        "peak_dbfs": -2.33,
+        "silence_s": 0.0,
+        "brightness_pct": 0.36,
+        "boominess_pct": 15.26,
+        "onsets_per_s": 4.05,
+        "seam_db": -2.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": null,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "darksynth-neon-last-lap/darksynth-neon-last-lap.mp3",
+        "notes": "darksynth-neon-last-lap/notes.md",
+        "recipe": "darksynth-neon-last-lap/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -17.75,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6100336,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "darksynth-neon-last-lap/darksynth-neon-last-lap.mp3",
+          "darksynth-neon-last-lap/darksynth-neon-last-lap-take2.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 4 s, from 0:02)",
+        "longest_still_s": 4.0,
+        "from_s": 2.0,
+        "chroma_cos": 0.989,
+        "onsets_per_s": 0.33,
+        "flux_of_median": 0.336,
+        "flag_at_s": 30.0
+      },
+      "side": "b"
+    },
+    {
       "slug": "cinematic-drum-full-throttle",
       "title": "Cinematic Drum, Full Throttle",
       "project": "fastaf",
