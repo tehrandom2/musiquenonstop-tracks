@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-15T04:50:20-04:00",
+  "written": "2026-10-15T04:54:31-04:00",
   "tracks": [
     {
       "slug": "electronic-race-last-lap",
