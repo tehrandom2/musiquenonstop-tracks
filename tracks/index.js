@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-15T04:35:39-04:00",
+  "written": "2026-10-15T04:50:20-04:00",
   "tracks": [
     {
       "slug": "aggressive-jump-up-slipstream",
