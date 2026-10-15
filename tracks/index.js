@@ -3,6 +3,110 @@ window.NOBODY_INDEX = {
   "written": "2026-10-15T03:33:45-04:00",
   "tracks": [
     {
+      "slug": "cinematic-drum-full-throttle",
+      "title": "Cinematic Drum, Full Throttle",
+      "project": "fastaf",
+      "idea": "cinematic drum and bass, 150 bpm, desert canyon at dawn, soaring synth leads, rolling sub, evolving second half, bigger second drop: cinematic drum and bass",
+      "request": "cinematic drum and bass, 150 bpm, desert canyon at dawn, soaring synth leads, rolling sub, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 150,
+      "key": "B minor",
+      "seed": 230367,
+      "model": "fast",
+      "duration": 163.5,
+      "date": "2026-10-15",
+      "rendered_at": "2026-10-15T03:33:45-04:00",
+      "voice": false,
+      "prompt": "Cinematic drum and bass, 150 bpm, desert canyon at dawn, soaring synth leads, rolling sub, evolving second half, bigger second drop, half-time drop every 32 bars, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"cinematic drum and bass, 150 bpm, desert canyon at dawn, soaring synth leads, rolling sub, evolving second half, bigger second drop\". \"the race profile (the requester's key, or the owner's choice)\" I took as: cinematic drum and bass at 150 bpm, genre first and short; the words lead; the profile adds the half-time drop, the kick, the arrangement; the key and the length (the model's choice, 120 to 240 s) left to the model. \"150 bpm\" I took as: 150 bpm, as the words say, in place of the race band. \"cinematic drum and bass\" I took as: the frame, in the requester's own words, ahead of the tempo. \"desert canyon at dawn, soaring synth leads, rolling sub, evolving second half, bigger second drop\" I took as: the colour, in the requester's own words and order. So I wrote it at 150 bpm in B minor (the model chose the key), 170 seconds (the model's choice), with no voice, under the race gates. It is meant to loop: the last 3 seconds are crossfaded onto the first 3 and removed. I rendered 6 seeds and threw away 4: 230365 (passed, but outranked by the kept takes); 230366 (passed, but outranked by the kept takes); 230369 (onset rate 7.1/s outside 1.5-6.5); 230368 (seam level -5.6 dB tail to head). Seed 230367 is the take.",
+      "rejected": [
+        {
+          "seed": 230365,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 230366,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 230369,
+          "reason": "onset rate 7.1/s outside 1.5-6.5"
+        },
+        {
+          "seed": 230368,
+          "reason": "seam level -5.6 dB tail to head"
+        }
+      ],
+      "takes": [
+        230367,
+        230364
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.4,
+        "lufs_target": null,
+        "peak_dbfs": -2.21,
+        "silence_s": 0.05,
+        "brightness_pct": 1.25,
+        "boominess_pct": 44.91,
+        "onsets_per_s": 4.46,
+        "seam_db": 1.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": null,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "cinematic-drum-full-throttle/cinematic-drum-full-throttle.mp3",
+        "notes": "cinematic-drum-full-throttle/notes.md",
+        "recipe": "cinematic-drum-full-throttle/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "race",
+        "seam_step_x": 0.1,
+        "decoded_lufs": -16.78,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7210419,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "cinematic-drum-full-throttle/cinematic-drum-full-throttle.mp3",
+          "cinematic-drum-full-throttle/cinematic-drum-full-throttle-take2.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 2 s, from 0:16)",
+        "longest_still_s": 2.0,
+        "from_s": 16.0,
+        "chroma_cos": 0.986,
+        "onsets_per_s": 1.0,
+        "flux_of_median": 0.435,
+        "flag_at_s": 30.0
+      },
+      "side": "b"
+    },
+    {
       "slug": "halftime-electronic-apex",
       "title": "Halftime Electronic, Apex",
       "project": "fastaf",
