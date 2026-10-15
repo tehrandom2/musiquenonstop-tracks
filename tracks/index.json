@@ -103,8 +103,7 @@
         "onsets_per_s": 1.0,
         "flux_of_median": 0.435,
         "flag_at_s": 30.0
-      },
-      "side": "b"
+      }
     },
     {
       "slug": "halftime-electronic-apex",
@@ -207,8 +206,7 @@
         "onsets_per_s": 0.0,
         "flux_of_median": 0.291,
         "flag_at_s": 30.0
-      },
-      "side": "b"
+      }
     },
     {
       "slug": "modern-hard-hitting-slipstream",
