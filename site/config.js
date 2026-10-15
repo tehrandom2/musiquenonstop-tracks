@@ -5,6 +5,8 @@
 // requestApi:  the station API's address (api/README.md), e.g. "https://api.example.org"; null means `request <words>` points at
 //              requestLine instead. requestKey is that API's public requester key (pinned to a project, rate limited, CORS for this
 //              origin); it goes in a header, so treat it as public. null sends none.
+// turnstileSiteKey: the Cloudflare Turnstile site key when the request line checks for a human (the Worker's TURNSTILE_SECRET);
+//              public by design. null sends no token.
 // defaultTheme: the look a first visit gets (design 12.0): "phosphor" (the green CRT), "city" (the city at night),
 //              "tapedeck" (a cassette on a painting desk), "arena" (a dark stage that takes the colour of the track) or
 //              "campfire" (a fire on a small planet, a sky of signals, a scope and marshmallows).
@@ -18,8 +20,9 @@ window.NOBODY_CONFIG = {
   tracksBase: "../tracks/",
   backend: null,
   requestLine: null,
-  requestApi: null,
-  requestKey: null,
+  requestApi: "https://wire.advancedstudios.net",
+  requestKey: "station-ylDR7DWlQkIi4dhejPsGMc_s",
+  turnstileSiteKey: "0x4AAAAAAFXNXIKKfqo-zOEX",
   defaultTheme: "campfire",
   themeStart: { campfire: "the-long-way-up" },
   crossfade: 4,

@@ -19,7 +19,12 @@
   (function () {
     const qa = qs.get('requestApi');
     if (!qa) return;
-    try { if (/^(127\.0\.0\.1|localhost|\[::1\])$/.test(new URL(qa).hostname)) { CFG.requestApi = qa; CFG.requestKey = qs.get('requestKey') || null; } } catch (e) {}
+    try {
+      if (/^(127\.0\.0\.1|localhost|\[::1\])$/.test(new URL(qa).hostname)) {
+        CFG.requestApi = qa; CFG.requestKey = qs.get('requestKey') || null;
+        if (qs.get('turnstileSiteKey')) CFG.turnstileSiteKey = qs.get('turnstileSiteKey');   // the harness's Turnstile test key
+      }
+    } catch (e) {}
   })();
   if (!/\/$/.test(CFG.tracksBase)) CFG.tracksBase += '/';
 
@@ -1778,6 +1783,39 @@
       })();
     }).then(function () { if (!ended) poll(); }, function (e) { if (!ended && !cur.stopped && !(e && e.name === 'AbortError')) poll(); });
   }
+  // the edge's human check (Cloudflare Turnstile, issue #90): with CFG.turnstileSiteKey set, each submission carries a fresh
+  // token. the script loads on the first request only; the widget stays out of sight unless Turnstile wants a tap, and is
+  // removed once it has answered (a token is good for one check).
+  let tsLoad = null;
+  function loadTurnstile() {
+    if (window.turnstile) return Promise.resolve(window.turnstile);
+    if (!tsLoad) tsLoad = new Promise(function (res, rej) {
+      const s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      s.async = true;
+      s.onload = function () { window.turnstile ? res(window.turnstile) : rej(new Error('no turnstile')); };
+      s.onerror = function () { tsLoad = null; rej(new Error('the human check did not load')); };
+      document.head.appendChild(s);
+    });
+    return tsLoad;
+  }
+  function humanToken() {
+    const key = CFG.turnstileSiteKey;
+    if (!key) return Promise.resolve(null);
+    return loadTurnstile().then(function (ts) {
+      return new Promise(function (res, rej) {
+        const box = document.createElement('div');
+        box.style.cssText = 'position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999';
+        document.body.appendChild(box);
+        let id = null;
+        const t = setTimeout(function () { end(rej, new Error('the human check timed out')); }, 60000);
+        function end(f, v) { clearTimeout(t); try { if (id !== null) ts.remove(id); } catch (e) {} box.remove(); f(v); }
+        id = ts.render(box, { sitekey: key, appearance: 'interaction-only', action: 'request',
+          callback: function (tok) { end(res, tok); },
+          'error-callback': function () { end(rej, new Error('the human check failed')); return true; } });
+      });
+    });
+  }
   st.request = function (a) {
     const words = (a || '').trim();
     const base = reqBase();
@@ -1794,9 +1832,12 @@
     MAKE.asking();
     // `remix <slug> <words>` is the API's remix of a published track: same seed, one changed clause (api/README.md)
     const rm = /^remix\s+(\S+)\s+(.+)$/.exec(words);
-    const call = rm && S.bySlug[rm[1]]
-      ? fetch(base + '/tracks/' + encodeURIComponent(rm[1]) + '/remix', { method: 'POST', headers: reqHeaders(true), body: JSON.stringify({ words: rm[2] }) })
-      : fetch(base + '/requests', { method: 'POST', headers: reqHeaders(true), body: JSON.stringify({ words: words }) });
+    const call = humanToken().then(function (tok) {
+      const extra = tok ? { turnstile: tok } : {};
+      return rm && S.bySlug[rm[1]]
+        ? fetch(base + '/tracks/' + encodeURIComponent(rm[1]) + '/remix', { method: 'POST', headers: reqHeaders(true), body: JSON.stringify(Object.assign({ words: rm[2] }, extra)) })
+        : fetch(base + '/requests', { method: 'POST', headers: reqHeaders(true), body: JSON.stringify(Object.assign({ words: words }, extra)) });
+    });
     call
       .then(function (r) { return r.json().catch(function () { return null; }).then(function (j) { return { ok: r.ok, status: r.status, body: j }; }); })
       .then(function (res) {
@@ -1811,7 +1852,10 @@
         readBack(rec);
         const cur = REQ.active = { id: rec.id, lastState: null, stopped: false, ctl: null };
         reqFollow(cur);
-      }, function () { T.error('the request line did not answer. try again.'); MAKE.note('the request line did not answer. try again.', 'amber'); });
+      }, function (e) {
+        const l = e && /human check/.test(e.message) ? e.message + '. try again.' : 'the request line did not answer. try again.';
+        T.error(l); MAKE.note(l, 'amber');
+      });
   };
   st.openGuestbook = function () { location.hash = '#/guestbook'; if (S.view !== 'guestbook') route(); };
   st.sign = function (name, line) {
