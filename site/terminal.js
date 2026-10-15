@@ -88,6 +88,8 @@ NOBODY.term = (function () {
   cmds.queue = function (a) { return a ? st().queueAdd(a) : st().queueList(); };
   cmds.shuffle = function () { return st().toggleShuffle(); };
   cmds.repeat = function () { return st().repeatOnce(); };
+  cmds.audition = function (a) { return st().audition(a); };
+  cmds.auditions = cmds.audition;
   cmds.xfade = function (a) { return st().xfade(a); };
   cmds.crossfade = cmds.xfade;
   cmds.vol = function (a) { return a === '' ? st().volText() : st().setVol(a); };

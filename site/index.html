@@ -104,9 +104,11 @@
           </div>
         </div>
         <div class="row np-row">
-          <button class="bare np-slug" id="npSlug">-</button>
+          <span class="np-head"><span class="aud-badge amber" id="audBadge" title="auditioning: the owner has not decided this one yet" hidden>AUDITION</span><button class="bare np-slug" id="npSlug">-</button></span>
           <span class="meta mid" id="npMeta"></span>
         </div>
+        <!-- the audition session (issue #148), on every theme: the button, and the track's place in the session (3 of 11) -->
+        <div class="row aud-row" id="audRow" hidden><span class="left"><button class="bk" id="audBtn" type="button">audition</button> <span class="mid aud-line" id="audLine"></span></span></div>
         <div class="readout" id="readout"><span class="mid mark">&gt; </span><span id="readoutText"></span><span class="cursor" id="readoutCursor"></span></div>
         <!-- a track the listener picked that did not load (issue #63): the readout says why, these are the two ways on -->
         <div class="fail-row" id="failRow" hidden><button class="bk" id="failRetry" type="button">try again</button> <button class="bk" id="failNext" type="button">next</button></div>

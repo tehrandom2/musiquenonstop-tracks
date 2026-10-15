@@ -47,7 +47,7 @@
   ['boot', 'bootLines', 'banner', 'bootTagline', 'bootFreq', 'bootWait', 'main', 'headerMain', 'headerPage', 'chip', 'chip2', 'uptime', 'uptime2',
     'trackCount', 'hdrSlug', 'hdrTime', 'hdrBar', 'hdrBack', 'txLabel', 'vol', 'volDeco', 'npSlug', 'npMeta', 'readout', 'readoutText', 'readoutCursor',
     'make', 'makeState', 'makeForm', 'makeWords', 'makeSend', 'makeRemix', 'makeLine',
-    'progress', 'progressTime', 'dial', 'nextUp', 'spectrum', 'baseline', 'scope', 'deadair', 'tower', 'towerStatic', 'reread', 'bed', 'fat', 'fatPrev', 'fatPlay', 'fatNext', 'fatQueue', 'licence',
+    'audBadge', 'audRow', 'audBtn', 'audLine', 'progress', 'progressTime', 'dial', 'nextUp', 'spectrum', 'baseline', 'scope', 'deadair', 'tower', 'towerStatic', 'reread', 'bed', 'fat', 'fatPrev', 'fatPlay', 'fatNext', 'fatQueue', 'licence',
     'catalogue', 'sortLabel', 'shuffleLabel', 'findBtn', 'catHead', 'catRows', 'catEmpty', 'page', 'terminal', 'log', 'cmd', 'cmdCursor', 'promptRow', 'hints',
     'visitorInline', 'wireTag', 'footer', 'odometer', 'countTag', 'help', 'helpTitle', 'helpBody', 'helpClose', 'stationName', 'stationName2', 'transmitter',
     'themeBtn', 'themes', 'themeList', 'themesClose', 'failRow', 'failRetry', 'failNext']
@@ -250,6 +250,7 @@
     tracks.forEach(function (t, i) { S.bySlug[t.slug] = t; S.num[t.slug] = tracks.length - i; });
     installAlbums(idx);
     el.trackCount.textContent = tracks.length + (tracks.length === 1 ? ' track' : ' tracks');
+    drawAudition();
     if (TH()) TH().catalogue(tracks);
     return tracks.length;
   }
@@ -260,6 +261,39 @@
   function inRotation(slug) { const t = S.bySlug[slug]; return !!t && t.side !== 'b'; }
   function rotation() { const all = chronological(), on = all.filter(inRotation); return on.length ? on : all; }
   function isBSide(t) { return !!t && t.side === 'b'; }
+  /* auditions (issue #148): a track the index tags "audition": true (gen/auditions.json) is new and the owner has not decided it.
+     the audition session (`audition`, or the button on the now-playing card) plays only those, newest first, says where each one
+     is in the session (3 of 11) and puts an AUDITION badge on the now-playing card; when none are left it says so and the rotation
+     picks up. outside the session nothing changes: an auditioning B-side is still a B-side, never picked by anything automatic. */
+  function isAudition(t) { return !!t && t.audition === true; }
+  function auditions() { return S.tracks.filter(isAudition).map(function (t) { return t.slug; }); }   // S.tracks is newest first
+  function inSession(slug) { return !!S.aud && S.aud.list.indexOf(slug) >= 0; }
+  function startAudition(list) {
+    S.aud = { list: list, heard: {} };
+    T.print('audition: ' + list.length + ' undecided track' + (list.length === 1 ? '' : 's') + ', newest first. nothing else until they are done.');
+  }
+  // the station landed on slug: inside the session it counts as heard; off the list, or the station's own pick after the last
+  // audition (S.aud.over, set by the refill), the session is over. a pick by hand (prev, play) inside the list carries on
+  function audSync(slug) {
+    if (!S.aud) return;
+    if (inSession(slug) && (S.picked || !S.aud.over)) { S.aud.heard[slug] = true; S.aud.over = false; return; }
+    const a = S.aud, left = a.list.filter(function (s) { return !a.heard[s]; }).length;
+    endAudition(left ? 'audition over, ' + left + ' not heard. back to the rotation. audition picks it up again.' : 'no auditions left. back to the rotation.');
+  }
+  function endAudition(line) {
+    const list = S.aud ? S.aud.list : [];
+    S.aud = null;
+    S.queue = S.queue.filter(function (s) { return list.indexOf(s) < 0; });
+    T.print(line, 'mid');
+    drawAudition(); drawNextUp(); tellQueue();
+  }
+  function drawAudition() {
+    const n = auditions().length, pos = S.aud ? S.aud.list.indexOf(S.current) : -1;
+    el.audBadge.hidden = !(S.current && isAudition(S.bySlug[S.current]));
+    el.audRow.hidden = !S.aud && !n;
+    el.audBtn.textContent = S.aud ? 'end audition' : 'audition';
+    el.audLine.textContent = S.aud ? (pos >= 0 ? pos + 1 + ' of ' + S.aud.list.length : '') : n + ' undecided, newest first';
+  }
 
   /* ---------------- albums (issue #73): the index's `albums`, each track's segments ----------------
      an album is { slug, title, project, cover_400, cover_1400, tracks, description, credits, licence }; its tracks are
@@ -453,6 +487,10 @@
       const al = S.albumBySlug[S.pendingAlbum] || (ma && S.albumBySlug[decodeURIComponent(ma[1])]);
       S.pendingAlbum = null;
       if (al) S.queue = al.tracks.concat(S.queue.filter(function (s) { return al.tracks.indexOf(s) < 0; }));
+      // `audition` before the key (issue #148): the session opens the station
+      const aud = S.audStart ? auditions() : [];
+      S.audStart = false;
+      if (aud.length) { startAudition(aud); S.queue = aud.slice(); }
       setChip('ON AIR');
       tuneTo(S.queue.shift(), !!(m && S.bySlug[decodeURIComponent(m[1])]));
       route();
@@ -487,6 +525,7 @@
     cutFade();
     if (S.current && S.current !== slug) { S.played.add(S.current); S.history.push(S.current); }
     S.current = slug; S.state = 'tuning'; S.picked = !!picked;
+    audSync(slug);
     tuningLook(slug, t);
     A.tuning = true;
     // the theme's own switch sound (issue #103), or the station's static when it has none
@@ -551,6 +590,7 @@
   function tuningLook(slug, t) {
     el.failRow.hidden = true;
     hideDead();
+    drawAudition();
     setChip('TUNING', 'tuning');
     el.txLabel.textContent = 'TUNING';
     el.readout.classList.add('tuning'); el.readout.classList.remove('typing');
@@ -571,6 +611,7 @@
     const t = S.bySlug[slug], token = ++S.tuningToken, ms = Math.max(1200, Math.round(secs * 1000));
     if (S.current && S.current !== slug) { S.played.add(S.current); S.history.push(S.current); }
     S.current = slug; S.state = 'tuning'; S.picked = false;
+    audSync(slug);
     tuningLook(slug, t);
     TH().playing(slug);
     TH().transition('playing', 'tuning', { slug: slug, ms: ms, crossfade: secs });
@@ -676,10 +717,13 @@
   // the queue never runs dry: the rest of the rotation (B-sides never, issue #111), shuffled, an album kept whole and in its
   // order (issue #87). false when there is nothing but the track on air
   function refill() {
-    const rest = rotation().filter(function (s) { return s !== S.current; });
+    let rest = rotation().filter(function (s) { return s !== S.current; });
+    // after the last audition (issue #148) the rotation picks up with a track from outside the session, so the session ends
+    if (S.aud && rest.some(function (s) { return !inSession(s); })) rest = rest.filter(function (s) { return !inSession(s); });
     if (!rest.length) return false;
+    if (S.aud) S.aud.over = true;
     S.queue = shuffleRuns(rest);
-    T.print('queue empty. refilled, shuffled. nobody stops.');
+    T.print(S.aud ? 'that is the last audition. the rotation picks up after it.' : 'queue empty. refilled, shuffled. nobody stops.');
     return true;
   }
   // a shuffle that never shuffles inside an album: each album in the list is one run in album order, each single a run of one
@@ -712,13 +756,14 @@
     const cur = S.current;
     S.current = null; // so tuneTo pushes nothing onto the history
     // the track left behind comes back next, unless it is a B-side: then the rotation does (issue #111)
-    if (cur && inRotation(cur)) { S.queue.unshift(cur); S.played.delete(cur); }
+    // in the audition session (issue #148), an audition comes back too
+    if (cur && (inRotation(cur) || inSession(cur))) { S.queue.unshift(cur); S.played.delete(cur); }
     tuneTo(slug, true);
   }
   function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const x = a[i]; a[i] = a[j]; a[j] = x; } }
   function playNow(slug) {
     if (!S.bySlug[slug]) return;
-    if (S.current && S.current !== slug && inRotation(S.current)) S.queue.unshift(S.current);
+    if (S.current && S.current !== slug && (inRotation(S.current) || (inSession(S.current) && inSession(slug)))) S.queue.unshift(S.current);
     S.queue = S.queue.filter(function (s) { return s !== slug; });
     tuneTo(slug, true);
   }
@@ -1448,9 +1493,9 @@
   const HELP_CMDS = [
     'request <words>   remix [slug] [words]', 'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10',
     'list [words]    find <words>   info [slug]', 'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     guestbook   sign   count',
-    'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast   album [slug]   xfade [s]', '', 'a few others. nobody documents everything.'
+    'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast   album [slug]   xfade [s]', 'audition [off]  the undecided, newest first', '', 'a few others. nobody documents everything.'
   ];
-  const HELP_WORDS = ['request', 'remix', 'play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'album', 'cat', 'tree', 'seed', 'prompt', 'take', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'xfade', 'clear', 'reboot', 'home'];
+  const HELP_WORDS = ['request', 'remix', 'play', 'pause', 'stop', 'next', 'prev', 'queue', 'shuffle', 'repeat', 'vol 5', 'list', 'find', 'info', 'album', 'cat', 'tree', 'seed', 'prompt', 'take', 'guestbook', 'sign', 'count', 'uptime', 'dial 88.8', 'amber', 'green', 'theme', 'big', 'contrast', 'xfade', 'audition', 'clear', 'reboot', 'home'];
   function helpLines() {
     const out = [];
     const n = Math.max(HELP_KEYS.length, HELP_CMDS.length);
@@ -1511,6 +1556,20 @@
     el.shuffleLabel.textContent = S.shuffle ? 'shuffle on' : 'shuffle off';
     T.print('shuffle ' + (S.shuffle ? 'on. the queue is reordered.' : 'off. the queue is in order.'));
     tellQueue();
+  };
+  // the audition session (issue #148): `audition` starts it (or starts over), `audition off` ends it
+  st.audition = function (a) {
+    if (/^(off|stop|end|done)$/i.test(String(a || '').trim())) { if (S.aud) endAudition('audition ended. back to the rotation.'); else T.print('no audition on.', 'mid'); return; }
+    const list = auditions();
+    if (!list.length) { T.print('nothing to audition: every new track is decided. the rotation plays on.', 'mid'); if (S.aud) endAudition('no auditions left. back to the rotation.'); if (!S.onAir) goOnAir(null); return; }
+    if (!S.onAir) { S.audStart = true; goOnAir(null); return; }
+    startAudition(list);
+    S.queue = list.slice(1);
+    tuneTo(list[0], true);
+  };
+  st.auditionState = function () {
+    return { on: !!S.aud, list: S.aud ? S.aud.list.slice() : auditions(), pos: S.aud ? S.aud.list.indexOf(S.current) + 1 : 0,
+      badge: !el.audBadge.hidden, row: el.audRow.hidden ? '' : el.audBtn.textContent + ' | ' + el.audLine.textContent };
   };
   st.repeatOnce = function () { S.repeat = !S.repeat; T.print(S.repeat ? 'repeat: this one once more.' : 'repeat off.'); drawNextUp(); };
   st.setVol = setVol;
@@ -2263,6 +2322,7 @@
     document.addEventListener('click', function (e) { if (!el.themes.hidden && !el.themes.contains(e.target) && !el.themeBtn.contains(e.target)) st.themePicker(false); });
     el.failRetry.addEventListener('click', function () { st.retry(); });
     el.failNext.addEventListener('click', function () { next(); });
+    el.audBtn.addEventListener('click', function () { T.run(S.aud ? 'audition off' : 'audition', true); });
     document.querySelectorAll('[data-cmd]').forEach(function (b) { b.addEventListener('click', function () { T.run(b.dataset.cmd, true); }); });
     el.fatPrev.addEventListener('click', prev); el.fatNext.addEventListener('click', next); el.fatPlay.addEventListener('click', togglePlay);
     el.fatQueue.addEventListener('click', function () { if (hlSlug()) st.queueAdd(hlSlug()); else if (S.queue.length) st.queueList(); else T.print('nothing highlighted.', 'mid'); });
