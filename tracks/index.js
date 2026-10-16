@@ -532,9 +532,7 @@ window.NOBODY_INDEX = {
         "onsets_per_s": 0.0,
         "flux_of_median": 0.18,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "darksynth-neon-last-lap",
@@ -637,9 +635,7 @@ window.NOBODY_INDEX = {
         "onsets_per_s": 0.33,
         "flux_of_median": 0.336,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "cinematic-drum-full-throttle",
