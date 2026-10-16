@@ -10,6 +10,10 @@ GPUs and driver stacks can drift a little, so compare duration and peak rather t
 The post-processing is the recipe's `post` block, applied in this order: resample to 44.1 kHz, trim the silent tail, bake the
 loop (equal-power crossfade of the last N seconds onto the first N, then removed), 4th-order 60 Hz high-pass with a soft knee,
 one gain in dB, soft limiter. Nothing here plays audio.
+
+A section edit (a recipe with `edits`) renders the base take from the recipe's own fields first, then applies each edit in order
+on the music model named in it (no LM): a `repaint` regenerates [start, end] seconds with its own caption and seed and keeps the
+rest of the take. The `post` block then runs once, on the edited take.
 """
 from __future__ import annotations
 
@@ -72,6 +76,46 @@ def render_raw(dit, llm, r: dict, save_dir: Path) -> Path:
     return Path(res.audios[0]["path"])
 
 
+def render_edit(dit, r: dict, edit: dict, src: Path, save_dir: Path) -> Path:
+    """One section edit of the recipe's `edits`: ACE's repaint of [start, end] seconds of `src` (the take before this edit, as
+    ACE wrote it: 48 kHz, no post). Outside the range ACE splices `src` back in; the LM is not used."""
+    from acestep.inference import GenerationConfig, GenerationParams, generate_music
+    if edit.get("task") != "repaint":
+        raise ValueError(f"unknown edit task {edit.get('task')!r}")
+    p = GenerationParams(
+        task_type="repaint", src_audio=str(src), repainting_start=float(edit["start"]), repainting_end=float(edit["end"]),
+        repaint_mode=edit.get("mode", "balanced"), repaint_strength=float(edit.get("strength", 0.5)),
+        caption=edit["caption"], lyrics=r["lyrics"], instrumental=r["instrumental"], bpm=r["bpm"], keyscale=r["keyscale"],
+        timesignature=r["timesignature"], duration=float(r["duration"]), seed=int(edit["seed"]),
+        inference_steps=edit["inference_steps"], guidance_scale=edit["guidance_scale"], shift=edit["shift"],
+        enable_normalization=edit.get("enable_normalization", True), normalization_db=edit.get("normalization_db", -1.0))
+    p.vocal_language = r.get("vocal_language") or "unknown"
+    p.thinking = False
+    p.use_cot_metas = p.use_cot_caption = p.use_cot_language = False
+    cfg = GenerationConfig(batch_size=1, use_random_seed=False, seeds=[int(edit["seed"])], audio_format="wav")
+    res = generate_music(dit, None, p, cfg, save_dir=str(save_dir))
+    if not res.success or not res.audios:
+        raise RuntimeError(f"repaint failed: {res.error}")
+    return Path(res.audios[0]["path"])
+
+
+def render_chain(load_dit, r: dict, work: Path, edits: list | None = None) -> Path:
+    """The recipe's base render, then each of its `edits` in order (or the `edits` given). `load_dit(model)` returns a music model
+    for a recipe `model` block, loaded without the LM. Each edit reads a copy of the take before it, alone in its own folder:
+    with an ACE side file beside the source, ACE would use its cached latents instead of encoding the audio."""
+    import shutil
+    if not r.get("audio_codes"):
+        raise ValueError("a recipe without audio codes needs the planner LM: render_raw it with an LM instead")
+    work.mkdir(parents=True, exist_ok=True)
+    raw = render_raw(load_dit(r["model"]), None, r, work)
+    for i, edit in enumerate((r.get("edits") or []) if edits is None else edits):
+        src = work / f"src-{i}" / "src.wav"
+        src.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(raw, src)
+        raw = render_edit(load_dit(edit["model"]), r, edit, src, work)
+    return raw
+
+
 def post(audio: np.ndarray, rate: int, cfg: dict) -> np.ndarray:
     out_rate = cfg["resample_hz"]
     if rate != out_rate:
@@ -116,10 +160,22 @@ def main() -> None:
     work = Path(a.work) if a.work else out.parent / "raw"
     work.mkdir(parents=True, exist_ok=True)
     t0 = time.perf_counter()
-    dit, llm = init_handlers(Path(a.ace_dir), r["model"], need_lm=not r.get("audio_codes"))
-    print(f"models loaded in {time.perf_counter() - t0:.0f}s", flush=True)
-    t1 = time.perf_counter()
-    raw = render_raw(dit, llm, r, work)
+    if r.get("edits"):      # a section edit: the base take, then each repaint on the music model alone
+        loaded = {}
+
+        def load_dit(model: dict):
+            if model["dit_config"] not in loaded:
+                loaded.clear()      # one music model on the card at a time
+                loaded[model["dit_config"]] = init_handlers(Path(a.ace_dir), model, need_lm=False)[0]
+            return loaded[model["dit_config"]]
+        raw = render_chain(load_dit, r, work)
+        print(f"rendered the base and {len(r['edits'])} edit(s) in {time.perf_counter() - t0:.0f}s (model loads included)", flush=True)
+        t1 = t0
+    else:
+        dit, llm = init_handlers(Path(a.ace_dir), r["model"], need_lm=not r.get("audio_codes"))
+        print(f"models loaded in {time.perf_counter() - t0:.0f}s", flush=True)
+        t1 = time.perf_counter()
+        raw = render_raw(dit, llm, r, work)
     audio, rate = sf.read(str(raw), dtype="float32", always_2d=True)
     final = post(audio, rate, r["post"])
     sf.write(str(out), final, r["post"]["resample_hz"], subtype="FLOAT")
