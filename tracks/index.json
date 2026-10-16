@@ -97,6 +97,7 @@
         "flux_of_median": 0.071,
         "flag_at_s": 30.0
       },
+      "side": "b",
       "audition": true
     },
     {
@@ -194,6 +195,7 @@
         "flux_of_median": 0.465,
         "flag_at_s": 30.0
       },
+      "side": "b",
       "audition": true
     },
     {
