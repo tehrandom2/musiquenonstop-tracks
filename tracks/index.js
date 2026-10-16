@@ -3,6 +3,111 @@ window.NOBODY_INDEX = {
   "written": "2026-10-16T05:02:34-04:00",
   "tracks": [
     {
+      "slug": "melodic-dubstep-apex",
+      "title": "Melodic Dubstep, Apex",
+      "project": "fastaf",
+      "idea": "melodic dubstep, 175 bpm, tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop: melodic dubstep",
+      "request": "melodic dubstep, 175 bpm, tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 175,
+      "key": "E♭ major",
+      "seed": 129316,
+      "model": "fast",
+      "duration": 112.54,
+      "date": "2026-10-15",
+      "rendered_at": "2026-10-16T05:02:34-04:00",
+      "voice": false,
+      "prompt": "Melodic dubstep, 175 bpm, tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop, a rolling reese sub bass with a growling mid-range, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"melodic dubstep, 175 bpm, tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop\". \"the race profile (the requester's key, or the owner's choice)\" I took as: melodic dubstep at 175 bpm, genre first and short; the words lead; the profile adds the bass, the kick, the arrangement; the key and the length (the model's choice, 120 to 240 s) left to the model. \"175 bpm\" I took as: 175 bpm, as the words say, in place of the race band. \"melodic dubstep\" I took as: the frame, in the requester's own words, ahead of the tempo. \"tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop\" I took as: the colour, in the requester's own words and order. \"half-time\" I took as: a half-time feel at 175 bpm: a feel, not a halved tempo. So I wrote it at 175 bpm in E♭ major (the model chose the key), 120 seconds (the model's 28 s, held to 120 to 240 s), with no voice, under the race gates. It is meant to loop: the last 3 seconds are crossfaded onto the first 3 and removed. I rendered 6 seeds and threw away 4: 129313 (passed, but outranked by the kept takes); 129315 (passed, but outranked by the kept takes); 129312 (seam level +5.8 dB tail to head); 129311 (seam level +7.2 dB tail to head). Seed 129316 is the take.",
+      "rejected": [
+        {
+          "seed": 129313,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 129315,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 129312,
+          "reason": "seam level +5.8 dB tail to head"
+        },
+        {
+          "seed": 129311,
+          "reason": "seam level +7.2 dB tail to head"
+        }
+      ],
+      "takes": [
+        129316,
+        129314
+      ],
+      "numbers": {
+        "tempo_bpm": 84.8,
+        "lufs": -13.62,
+        "lufs_target": null,
+        "peak_dbfs": -2.64,
+        "silence_s": 0.15,
+        "brightness_pct": 1.11,
+        "boominess_pct": 35.97,
+        "onsets_per_s": 5.71,
+        "seam_db": 1.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": null,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "melodic-dubstep-apex/melodic-dubstep-apex.mp3",
+        "notes": "melodic-dubstep-apex/notes.md",
+        "recipe": "melodic-dubstep-apex/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "race",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -14.03,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4963083,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "melodic-dubstep-apex/melodic-dubstep-apex.mp3",
+          "melodic-dubstep-apex/melodic-dubstep-apex-take2.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch",
+        "longest_still_s": 0.0,
+        "from_s": 0.0,
+        "chroma_cos": 0.0,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.0,
+        "flag_at_s": 30.0
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "euphoric-liquid-redline-fuzzy-overdriven-texture",
       "title": "Euphoric Liquid, Redline, Fuzzy Overdriven Texture",
       "project": null,
