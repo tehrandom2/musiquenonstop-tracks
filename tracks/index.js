@@ -3,6 +3,103 @@ window.NOBODY_INDEX = {
   "written": "2026-10-16T01:34:07-04:00",
   "tracks": [
     {
+      "slug": "euphoric-liquid-redline-little-pretty-dont",
+      "title": "Euphoric Liquid, Redline, Little Pretty Dont",
+      "project": null,
+      "idea": "euphoric liquid drum and bass, 165 bpm, final lap, anthemic chords, rolling breaks, evolving second half, massive second drop: euphoric liquid drum and bass",
+      "request": "little too pretty, dont mind the track but make it more fuzzy and distorted",
+      "mood": "",
+      "bpm": 165,
+      "key": "G major",
+      "seed": 283307,
+      "model": "best",
+      "duration": 194.0,
+      "date": "2026-10-16",
+      "rendered_at": "2026-10-16T01:34:06-04:00",
+      "voice": false,
+      "prompt": "Euphoric liquid drum and bass, 165 bpm, final lap, anthemic chords, rolling breaks, evolving second half, massive second drop, little too pretty, dont mind the track but make it more fuzzy and distorted, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "This is a variation of euphoric-liquid-redline, a track of the station. From it I took the seed (283307), the tempo (165 bpm), the key (G major), its length (a 197.0 s render), the best tier and its prompt, word for word. You asked for \"little too pretty, dont mind the track but make it more fuzzy and distorted\". It shares \"distorted\" with the clause \"a heavy distorted reese bass locked to the kick\", so that clause is what I swapped for your words; every other clause is the parent's. \"the race profile (the requester's key, or the owner's choice)\" I took as: euphoric liquid drum and bass at 165 bpm, genre first and short; the words lead; the profile adds the bass, the kick, the arrangement; the key and the length (the model's choice, 120 to 240 s) left to the model. \"165 bpm\" I took as: 165 bpm, as the words say, in place of the race band. \"euphoric liquid drum and bass\" I took as: the frame, in the requester's own words, ahead of the tempo. \"final lap, anthemic chords, rolling breaks, evolving second half, massive second drop\" I took as: the colour, in the requester's own words and order. So I wrote it at 165 bpm in G major (the model chose the key), 197 seconds (the model's choice), with no voice, under the race gates. I rendered 1 seed and kept it. Seed 283307 is the take, but it did not clear every gate: tempo 109 vs asked 165; 1.5s of near-silence (limit 0.5).",
+      "rejected": [],
+      "takes": [
+        283307
+      ],
+      "numbers": {
+        "tempo_bpm": 109.0,
+        "lufs": -17.32,
+        "lufs_target": null,
+        "peak_dbfs": -2.47,
+        "silence_s": 1.45,
+        "brightness_pct": 2.26,
+        "boominess_pct": 41.45,
+        "onsets_per_s": 4.89,
+        "seam_db": -0.7
+      },
+      "checks": {
+        "tempo": false,
+        "loudness": null,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": {
+        "parent": "euphoric-liquid-redline",
+        "seed": 283307,
+        "changed": {
+          "from": "a heavy distorted reese bass locked to the kick",
+          "to": "little too pretty, dont mind the track but make it more fuzzy and distorted"
+        },
+        "request": "little too pretty, dont mind the track but make it more fuzzy and distorted",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "euphoric-liquid-redline-little-pretty-dont/euphoric-liquid-redline-little-pretty-dont.mp3",
+        "notes": "euphoric-liquid-redline-little-pretty-dont/notes.md",
+        "recipe": "euphoric-liquid-redline-little-pretty-dont/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -17.65,
+        "failed": [
+          "tempo 109 vs asked 165",
+          "1.5s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 8555400,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "euphoric-liquid-redline-little-pretty-dont/euphoric-liquid-redline-little-pretty-dont.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 4 s, from 2:08)",
+        "longest_still_s": 4.0,
+        "from_s": 128.0,
+        "chroma_cos": 0.986,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.465,
+        "flag_at_s": 30.0
+      },
+      "audition": true
+    },
+    {
       "slug": "liquid-drum-slipstream",
       "title": "Liquid Drum, Slipstream",
       "project": "fastaf",
