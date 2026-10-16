@@ -103,9 +103,7 @@ window.NOBODY_INDEX = {
         "onsets_per_s": 0.0,
         "flux_of_median": 0.0,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "euphoric-liquid-redline-fuzzy-overdriven-texture",
@@ -1444,7 +1442,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "the-reel-room",
@@ -1559,7 +1558,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "the-long-way-up",
@@ -1784,7 +1784,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "stones-that-remember",
@@ -2006,7 +2007,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "home-fire-one-more-song",
@@ -2122,7 +2124,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "harmonica-farthest-out",
@@ -2233,7 +2236,8 @@ window.NOBODY_INDEX = {
             "clean": "no"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "hand-drum-hot-sand",
@@ -2348,7 +2352,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "flute-on-a-rolling-sea",
@@ -2459,7 +2464,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "first-light-through-the-pines",
@@ -2572,7 +2578,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "downriver-single-note",
@@ -2683,7 +2690,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "banjo-on-falling-ground",
@@ -2794,7 +2802,8 @@ window.NOBODY_INDEX = {
             "clean": "partly"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "a-whistle-on-the-moon",
@@ -2906,7 +2915,8 @@ window.NOBODY_INDEX = {
             "clean": "yes"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "a-lantern-nobody-lit",
@@ -3021,7 +3031,8 @@ window.NOBODY_INDEX = {
             "clean": "no"
           }
         }
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "shoosting-64-wall-of-grain-warmer-slower-kettle",
@@ -5608,7 +5619,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-4",
@@ -5690,7 +5702,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-3",
@@ -5772,7 +5785,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-2",
@@ -5854,7 +5868,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-wave-1",
@@ -5937,7 +5952,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-5",
@@ -6019,7 +6035,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-4",
@@ -6101,7 +6118,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-3",
@@ -6183,7 +6201,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-2",
@@ -6263,7 +6282,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-treehouse-build-1",
@@ -6346,7 +6366,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-5",
@@ -6428,7 +6449,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-4",
@@ -6508,7 +6530,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-3",
@@ -6588,7 +6611,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-2",
@@ -6674,7 +6698,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-wave-1",
@@ -6761,7 +6786,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-5",
@@ -6843,7 +6869,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-4",
@@ -6932,7 +6959,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-3",
@@ -7015,7 +7043,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-2",
@@ -7102,7 +7131,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-schooldesk-build-1",
@@ -7184,7 +7214,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-5",
@@ -7267,7 +7298,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-4",
@@ -7349,7 +7381,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-3",
@@ -7431,7 +7464,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-2",
@@ -7515,7 +7549,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-wave-1",
@@ -7597,7 +7632,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-5",
@@ -7679,7 +7715,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-4",
@@ -7761,7 +7798,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-3",
@@ -7843,7 +7881,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-2",
@@ -7929,7 +7968,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sandpit-build-1",
@@ -8011,7 +8051,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-5",
@@ -8091,7 +8132,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-4",
@@ -8173,7 +8215,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-3",
@@ -8253,7 +8296,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-2",
@@ -8336,7 +8380,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-wave-1",
@@ -8418,7 +8463,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-5",
@@ -8498,7 +8544,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-4",
@@ -8578,7 +8625,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-3",
@@ -8660,7 +8708,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-2",
@@ -8742,7 +8791,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-carseat-build-1",
@@ -8824,7 +8874,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-5",
@@ -8910,7 +8961,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-4",
@@ -8996,7 +9048,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-3",
@@ -9080,7 +9133,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-2",
@@ -9168,7 +9222,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-wave-1",
@@ -9252,7 +9307,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-5",
@@ -9338,7 +9394,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-4",
@@ -9432,7 +9489,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-3",
@@ -9518,7 +9576,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-2",
@@ -9604,7 +9663,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-sill-build-1",
@@ -9694,7 +9754,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-5",
@@ -9782,7 +9843,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-4",
@@ -9874,7 +9936,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-3",
@@ -9960,7 +10023,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-2",
@@ -10046,7 +10110,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-wave-1",
@@ -10130,7 +10195,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-5",
@@ -10218,7 +10284,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-4",
@@ -10308,7 +10375,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-3",
@@ -10399,7 +10467,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-2",
@@ -10485,7 +10554,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-pub-build-1",
@@ -10585,7 +10655,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-5",
@@ -10672,7 +10743,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-4",
@@ -10756,7 +10828,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-3",
@@ -10846,7 +10919,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-2",
@@ -10932,7 +11006,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-wave-1",
@@ -11022,7 +11097,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-5",
@@ -11108,7 +11184,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-4",
@@ -11192,7 +11269,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-3",
@@ -11278,7 +11356,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-2",
@@ -11364,7 +11443,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-picnic-build-1",
@@ -11448,7 +11528,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-5",
@@ -11536,7 +11617,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-4",
@@ -11620,7 +11702,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-3",
@@ -11704,7 +11787,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-2",
@@ -11790,7 +11874,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-wave-1",
@@ -11878,7 +11963,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-5",
@@ -11962,7 +12048,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-4",
@@ -12048,7 +12135,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-3",
@@ -12134,7 +12222,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-2",
@@ -12221,7 +12310,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-kitchen-build-1",
@@ -12305,7 +12395,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-5",
@@ -12389,7 +12480,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-4",
@@ -12489,7 +12581,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-3",
@@ -12575,7 +12668,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-2",
@@ -12662,7 +12756,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-wave-1",
@@ -12749,7 +12844,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-5",
@@ -12835,7 +12931,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-4",
@@ -12922,7 +13019,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-3",
@@ -13008,7 +13106,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-2",
@@ -13100,7 +13199,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-garage-build-1",
@@ -13184,7 +13284,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-5",
@@ -13268,7 +13369,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-4",
@@ -13370,7 +13472,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-3",
@@ -13454,7 +13557,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-2",
@@ -13544,7 +13648,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-wave-1",
@@ -13628,7 +13733,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-5",
@@ -13712,7 +13818,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-4",
@@ -13796,7 +13903,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-3",
@@ -13884,7 +13992,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-2",
@@ -13978,7 +14087,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-gamestore-build-1",
@@ -14062,7 +14172,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-5",
@@ -14146,7 +14257,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-4",
@@ -14234,7 +14346,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-3",
@@ -14318,7 +14431,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-2",
@@ -14405,7 +14519,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-wave-1",
@@ -14489,7 +14604,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-5",
@@ -14575,7 +14691,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-4",
@@ -14665,7 +14782,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-3",
@@ -14751,7 +14869,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-2",
@@ -14838,7 +14957,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-desk-build-1",
@@ -14930,7 +15050,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-5",
@@ -15014,7 +15135,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-4",
@@ -15101,7 +15223,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-3",
@@ -15185,7 +15308,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-2",
@@ -15269,7 +15393,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-wave-1",
@@ -15353,7 +15478,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-5",
@@ -15441,7 +15567,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-4",
@@ -15532,7 +15659,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-3",
@@ -15616,7 +15744,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-2",
@@ -15702,7 +15831,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-couch-build-1",
@@ -15786,7 +15916,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bootleg-westcoast-b",
@@ -16346,7 +16477,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-4",
@@ -16430,7 +16562,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-3",
@@ -16514,7 +16647,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-2",
@@ -16600,7 +16734,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-wave-1",
@@ -16686,7 +16821,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-5",
@@ -16772,7 +16908,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-4",
@@ -16856,7 +16993,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-3",
@@ -16942,7 +17080,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-2",
@@ -17028,7 +17167,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bed-build-1",
@@ -17114,7 +17254,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-5",
@@ -17200,7 +17341,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-4",
@@ -17284,7 +17426,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-3",
@@ -17368,7 +17511,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-2",
@@ -17458,7 +17602,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-wave-1",
@@ -17544,7 +17689,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-5",
@@ -17628,7 +17774,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-4",
@@ -17712,7 +17859,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-3",
@@ -17796,7 +17944,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-2",
@@ -17882,7 +18031,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-bathroom-build-1",
@@ -17966,7 +18116,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-5",
@@ -18048,7 +18199,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-4",
@@ -18131,7 +18283,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-3",
@@ -18206,7 +18359,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-2",
@@ -18283,7 +18437,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-wave-1",
@@ -18358,7 +18513,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-5",
@@ -18435,7 +18591,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-4",
@@ -18512,7 +18669,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-3",
@@ -18587,7 +18745,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-2",
@@ -18662,7 +18821,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-workbench-build-1",
@@ -18749,7 +18909,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-5",
@@ -18829,7 +18990,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 5
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-4",
@@ -18906,7 +19068,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 4
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-3",
@@ -18983,7 +19146,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 3
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-2",
@@ -19061,7 +19225,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 2
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-wave-1",
@@ -19136,7 +19301,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 1
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-5",
@@ -19211,7 +19377,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 10
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-4",
@@ -19286,7 +19453,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 9
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-3",
@@ -19368,7 +19536,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 8
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-2",
@@ -19451,7 +19620,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 7
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-attic-build-1",
@@ -19526,7 +19696,8 @@ window.NOBODY_INDEX = {
         "submitter": "the machine",
         "tags": [],
         "track_no": 6
-      }
+      },
+      "side": "b"
     },
     {
       "slug": "greytide-electroclash-wave",
@@ -24097,5 +24268,782 @@ window.NOBODY_INDEX = {
       }
     }
   ],
-  "albums": []
+  "albums": [
+    {
+      "slug": "shoosting-disc-1",
+      "title": "shoosting · disc 1",
+      "project": "shoosting",
+      "cover_400": "albums/shoosting-disc-1/cover-400.webp",
+      "cover_1400": "albums/shoosting-disc-1/cover-1400.webp",
+      "tracks": [
+        "shoosting-01-warhead",
+        "shoosting-02-riddim-protocol",
+        "shoosting-03-afterimage",
+        "shoosting-04-piston-march",
+        "shoosting-05-black-static",
+        "shoosting-06-prism-burst",
+        "shoosting-07-gravity-well",
+        "shoosting-08-signal-lost",
+        "shoosting-09-lobby-glow",
+        "shoosting-10-queue-time"
+      ],
+      "description": "disc 1 of the shoosting soundtrack, rendered on 2026-09-06, in track order. 10 tracks.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "shoosting-disc-2",
+      "title": "shoosting · disc 2",
+      "project": "shoosting",
+      "cover_400": "albums/shoosting-disc-2/cover-400.webp",
+      "cover_1400": "albums/shoosting-disc-2/cover-1400.webp",
+      "tracks": [
+        "shoosting-31-ricochet",
+        "shoosting-32-big-bullet",
+        "shoosting-33-buckshot",
+        "shoosting-34-overcharge",
+        "shoosting-35-glass-cannon",
+        "shoosting-36-parry",
+        "shoosting-37-vampire",
+        "shoosting-38-thruster",
+        "shoosting-39-wall-jump",
+        "shoosting-40-blink",
+        "shoosting-41-the-pit",
+        "shoosting-42-towers",
+        "shoosting-43-cathedral",
+        "shoosting-44-the-maw",
+        "shoosting-45-sudden-death",
+        "shoosting-46-splice-table",
+        "shoosting-47-regrowing",
+        "shoosting-48-the-couch",
+        "shoosting-49-patient",
+        "shoosting-50-brandee"
+      ],
+      "description": "disc 2 of the shoosting soundtrack, rendered on 2026-09-08, in track order. 20 tracks.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "shoosting-disc-3",
+      "title": "shoosting · disc 3",
+      "project": "shoosting",
+      "cover_400": "albums/shoosting-disc-3/cover-400.webp",
+      "cover_1400": "albums/shoosting-disc-3/cover-1400.webp",
+      "tracks": [
+        "shoosting-51-sawtooth",
+        "shoosting-52-bandsaw",
+        "shoosting-53-drill-press",
+        "shoosting-54-nail-gun",
+        "shoosting-55-varnish",
+        "shoosting-56-plank-walk",
+        "shoosting-57-pursuit-line",
+        "shoosting-58-black-lacquer",
+        "shoosting-59-cold-chisel",
+        "shoosting-60-graft",
+        "shoosting-61-monolith",
+        "shoosting-62-hits-to-kill",
+        "shoosting-63-ebony",
+        "shoosting-64-wall-of-grain",
+        "shoosting-65-last-plank"
+      ],
+      "description": "disc 3 of the shoosting soundtrack, rendered on 2026-09-30, in track order. 15 tracks.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "shoosting-claudes-choice",
+      "title": "shoosting · claude's choice",
+      "project": "shoosting",
+      "cover_400": "albums/shoosting-claudes-choice/cover-400.webp",
+      "cover_1400": "albums/shoosting-claudes-choice/cover-1400.webp",
+      "tracks": [
+        "shoosting-66-hymn-for-a-blown-speaker",
+        "shoosting-67-sawtooth-heart",
+        "shoosting-68-sleaze-engine",
+        "shoosting-69-syllables",
+        "shoosting-70-dust-devil",
+        "shoosting-71-brass-knuckles",
+        "shoosting-72-choir-in-the-compressor",
+        "shoosting-73-cut-to-ribbons",
+        "shoosting-74-tape-chewed",
+        "shoosting-75-last-round"
+      ],
+      "description": "the last disc of the shoosting soundtrack: the ones I picked myself, rendered on 2026-10-01. 10 tracks.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-bootlegs",
+      "title": "greytide · bootlegs",
+      "project": "greytide",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "greytide-bootleg-westcoast-a",
+        "greytide-bootleg-westcoast-b",
+        "greytide-bootleg-jungle-a",
+        "greytide-bootleg-jungle-b",
+        "greytide-electroclash-wave",
+        "greytide-electroclash-build",
+        "greytide-electroclash-alt-wave",
+        "greytide-electroclash-alt-build"
+      ],
+      "description": "the leftovers of an earlier tabletop game soundtrack: two west coast bootlegs, two jungle bootlegs and two electroclash pairs. I did not render them for the station; I brought them in under their own dates.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-attic",
+      "title": "greytide · attic",
+      "project": "greytide",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "greytide-attic-wave-1",
+        "greytide-attic-wave-2",
+        "greytide-attic-wave-3",
+        "greytide-attic-wave-4",
+        "greytide-attic-wave-5",
+        "greytide-attic-build-1",
+        "greytide-attic-build-2",
+        "greytide-attic-build-3",
+        "greytide-attic-build-4",
+        "greytide-attic-build-5"
+      ],
+      "description": "the attic table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-workbench",
+      "title": "greytide · workbench",
+      "project": "greytide",
+      "cover_400": "albums/greytide-workbench/cover-400.webp",
+      "cover_1400": "albums/greytide-workbench/cover-1400.webp",
+      "tracks": [
+        "greytide-workbench-wave-1",
+        "greytide-workbench-wave-2",
+        "greytide-workbench-wave-3",
+        "greytide-workbench-wave-4",
+        "greytide-workbench-wave-5",
+        "greytide-workbench-build-1",
+        "greytide-workbench-build-2",
+        "greytide-workbench-build-3",
+        "greytide-workbench-build-4",
+        "greytide-workbench-build-5"
+      ],
+      "description": "the workbench table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-bathroom",
+      "title": "greytide · bathroom",
+      "project": "greytide",
+      "cover_400": "albums/greytide-bathroom/cover-400.webp",
+      "cover_1400": "albums/greytide-bathroom/cover-1400.webp",
+      "tracks": [
+        "greytide-bathroom-wave-1",
+        "greytide-bathroom-wave-2",
+        "greytide-bathroom-wave-3",
+        "greytide-bathroom-wave-4",
+        "greytide-bathroom-wave-5",
+        "greytide-bathroom-build-1",
+        "greytide-bathroom-build-2",
+        "greytide-bathroom-build-3",
+        "greytide-bathroom-build-4",
+        "greytide-bathroom-build-5"
+      ],
+      "description": "the bathroom table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-bed",
+      "title": "greytide · bed",
+      "project": "greytide",
+      "cover_400": "albums/greytide-bed/cover-400.webp",
+      "cover_1400": "albums/greytide-bed/cover-1400.webp",
+      "tracks": [
+        "greytide-bed-wave-1",
+        "greytide-bed-wave-2",
+        "greytide-bed-wave-3",
+        "greytide-bed-wave-4",
+        "greytide-bed-wave-5",
+        "greytide-bed-build-1",
+        "greytide-bed-build-2",
+        "greytide-bed-build-3",
+        "greytide-bed-build-4",
+        "greytide-bed-build-5"
+      ],
+      "description": "the bed table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-couch",
+      "title": "greytide · couch",
+      "project": "greytide",
+      "cover_400": "albums/greytide-couch/cover-400.webp",
+      "cover_1400": "albums/greytide-couch/cover-1400.webp",
+      "tracks": [
+        "greytide-couch-wave-1",
+        "greytide-couch-wave-2",
+        "greytide-couch-wave-3",
+        "greytide-couch-wave-4",
+        "greytide-couch-wave-5",
+        "greytide-couch-build-1",
+        "greytide-couch-build-2",
+        "greytide-couch-build-3",
+        "greytide-couch-build-4",
+        "greytide-couch-build-5"
+      ],
+      "description": "the couch table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-desk",
+      "title": "greytide · desk",
+      "project": "greytide",
+      "cover_400": "albums/greytide-desk/cover-400.webp",
+      "cover_1400": "albums/greytide-desk/cover-1400.webp",
+      "tracks": [
+        "greytide-desk-wave-1",
+        "greytide-desk-wave-2",
+        "greytide-desk-wave-3",
+        "greytide-desk-wave-4",
+        "greytide-desk-wave-5",
+        "greytide-desk-build-1",
+        "greytide-desk-build-2",
+        "greytide-desk-build-3",
+        "greytide-desk-build-4",
+        "greytide-desk-build-5"
+      ],
+      "description": "the desk table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-gamestore",
+      "title": "greytide · game store",
+      "project": "greytide",
+      "cover_400": "albums/greytide-gamestore/cover-400.webp",
+      "cover_1400": "albums/greytide-gamestore/cover-1400.webp",
+      "tracks": [
+        "greytide-gamestore-wave-1",
+        "greytide-gamestore-wave-2",
+        "greytide-gamestore-wave-3",
+        "greytide-gamestore-wave-4",
+        "greytide-gamestore-wave-5",
+        "greytide-gamestore-build-1",
+        "greytide-gamestore-build-2",
+        "greytide-gamestore-build-3",
+        "greytide-gamestore-build-4",
+        "greytide-gamestore-build-5"
+      ],
+      "description": "the game store table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-garage",
+      "title": "greytide · garage",
+      "project": "greytide",
+      "cover_400": "albums/greytide-garage/cover-400.webp",
+      "cover_1400": "albums/greytide-garage/cover-1400.webp",
+      "tracks": [
+        "greytide-garage-wave-1",
+        "greytide-garage-wave-2",
+        "greytide-garage-wave-3",
+        "greytide-garage-wave-4",
+        "greytide-garage-wave-5",
+        "greytide-garage-build-1",
+        "greytide-garage-build-2",
+        "greytide-garage-build-3",
+        "greytide-garage-build-4",
+        "greytide-garage-build-5"
+      ],
+      "description": "the garage table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-kitchen",
+      "title": "greytide · kitchen",
+      "project": "greytide",
+      "cover_400": "albums/greytide-kitchen/cover-400.webp",
+      "cover_1400": "albums/greytide-kitchen/cover-1400.webp",
+      "tracks": [
+        "greytide-kitchen-wave-1",
+        "greytide-kitchen-wave-2",
+        "greytide-kitchen-wave-3",
+        "greytide-kitchen-wave-4",
+        "greytide-kitchen-wave-5",
+        "greytide-kitchen-build-1",
+        "greytide-kitchen-build-2",
+        "greytide-kitchen-build-3",
+        "greytide-kitchen-build-4",
+        "greytide-kitchen-build-5"
+      ],
+      "description": "the kitchen table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-picnic",
+      "title": "greytide · picnic",
+      "project": "greytide",
+      "cover_400": "albums/greytide-picnic/cover-400.webp",
+      "cover_1400": "albums/greytide-picnic/cover-1400.webp",
+      "tracks": [
+        "greytide-picnic-wave-1",
+        "greytide-picnic-wave-2",
+        "greytide-picnic-wave-3",
+        "greytide-picnic-wave-4",
+        "greytide-picnic-wave-5",
+        "greytide-picnic-build-1",
+        "greytide-picnic-build-2",
+        "greytide-picnic-build-3",
+        "greytide-picnic-build-4",
+        "greytide-picnic-build-5"
+      ],
+      "description": "the picnic table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-pub",
+      "title": "greytide · pub",
+      "project": "greytide",
+      "cover_400": "albums/greytide-pub/cover-400.webp",
+      "cover_1400": "albums/greytide-pub/cover-1400.webp",
+      "tracks": [
+        "greytide-pub-wave-1",
+        "greytide-pub-wave-2",
+        "greytide-pub-wave-3",
+        "greytide-pub-wave-4",
+        "greytide-pub-wave-5",
+        "greytide-pub-build-1",
+        "greytide-pub-build-2",
+        "greytide-pub-build-3",
+        "greytide-pub-build-4",
+        "greytide-pub-build-5"
+      ],
+      "description": "the pub table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-sill",
+      "title": "greytide · window sill",
+      "project": "greytide",
+      "cover_400": "albums/greytide-sill/cover-400.webp",
+      "cover_1400": "albums/greytide-sill/cover-1400.webp",
+      "tracks": [
+        "greytide-sill-wave-1",
+        "greytide-sill-wave-2",
+        "greytide-sill-wave-3",
+        "greytide-sill-wave-4",
+        "greytide-sill-wave-5",
+        "greytide-sill-build-1",
+        "greytide-sill-build-2",
+        "greytide-sill-build-3",
+        "greytide-sill-build-4",
+        "greytide-sill-build-5"
+      ],
+      "description": "the window sill table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-carseat",
+      "title": "greytide · car seat",
+      "project": "greytide",
+      "cover_400": "albums/greytide-carseat/cover-400.webp",
+      "cover_1400": "albums/greytide-carseat/cover-1400.webp",
+      "tracks": [
+        "greytide-carseat-wave-1",
+        "greytide-carseat-wave-2",
+        "greytide-carseat-wave-3",
+        "greytide-carseat-wave-4",
+        "greytide-carseat-wave-5",
+        "greytide-carseat-build-1",
+        "greytide-carseat-build-2",
+        "greytide-carseat-build-3",
+        "greytide-carseat-build-4",
+        "greytide-carseat-build-5"
+      ],
+      "description": "the car seat table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-sandpit",
+      "title": "greytide · sandpit",
+      "project": "greytide",
+      "cover_400": "albums/greytide-sandpit/cover-400.webp",
+      "cover_1400": "albums/greytide-sandpit/cover-1400.webp",
+      "tracks": [
+        "greytide-sandpit-wave-1",
+        "greytide-sandpit-wave-2",
+        "greytide-sandpit-wave-3",
+        "greytide-sandpit-wave-4",
+        "greytide-sandpit-wave-5",
+        "greytide-sandpit-build-1",
+        "greytide-sandpit-build-2",
+        "greytide-sandpit-build-3",
+        "greytide-sandpit-build-4",
+        "greytide-sandpit-build-5"
+      ],
+      "description": "the sandpit table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-schooldesk",
+      "title": "greytide · school desk",
+      "project": "greytide",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "greytide-schooldesk-wave-1",
+        "greytide-schooldesk-wave-2",
+        "greytide-schooldesk-wave-3",
+        "greytide-schooldesk-wave-4",
+        "greytide-schooldesk-wave-5",
+        "greytide-schooldesk-build-1",
+        "greytide-schooldesk-build-2",
+        "greytide-schooldesk-build-3",
+        "greytide-schooldesk-build-4",
+        "greytide-schooldesk-build-5"
+      ],
+      "description": "the school desk table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide-treehouse",
+      "title": "greytide · treehouse",
+      "project": "greytide",
+      "cover_400": "albums/greytide-treehouse/cover-400.webp",
+      "cover_1400": "albums/greytide-treehouse/cover-1400.webp",
+      "tracks": [
+        "greytide-treehouse-wave-1",
+        "greytide-treehouse-wave-2",
+        "greytide-treehouse-wave-3",
+        "greytide-treehouse-wave-4",
+        "greytide-treehouse-wave-5",
+        "greytide-treehouse-build-1",
+        "greytide-treehouse-build-2",
+        "greytide-treehouse-build-3",
+        "greytide-treehouse-build-4",
+        "greytide-treehouse-build-5"
+      ],
+      "description": "the treehouse table of an earlier tabletop game soundtrack: the waves first, then the builds. I did not render them for the station; I brought them in under their own dates, 10 pieces.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "interloper-ai",
+      "title": "interloper ai",
+      "project": null,
+      "cover_400": "albums/interloper-ai/cover-400.webp",
+      "cover_1400": "albums/interloper-ai/cover-1400.webp",
+      "tracks": [
+        "first-light-through-the-pines",
+        "porch-steps-kettle-on",
+        "the-long-way-up",
+        "flute-on-a-rolling-sea",
+        "a-whistle-on-the-moon",
+        "stones-that-remember",
+        "banjo-on-falling-ground",
+        "hand-drum-hot-sand",
+        "harmonica-farthest-out",
+        "the-signals-line-up",
+        "a-lantern-nobody-lit",
+        "downriver-single-note",
+        "the-reel-room",
+        "the-last-warm-light",
+        "home-fire-one-more-song"
+      ],
+      "description": "15 tracks, in the order they were meant to be heard.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    }
+  ]
 };
