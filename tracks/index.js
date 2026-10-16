@@ -97,8 +97,7 @@ window.NOBODY_INDEX = {
         "flux_of_median": 0.071,
         "flag_at_s": 30.0
       },
-      "side": "b",
-      "audition": true
+      "side": "b"
     },
     {
       "slug": "euphoric-liquid-redline-little-pretty-dont",
@@ -194,9 +193,7 @@ window.NOBODY_INDEX = {
         "onsets_per_s": 0.0,
         "flux_of_median": 0.465,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "liquid-drum-slipstream",
