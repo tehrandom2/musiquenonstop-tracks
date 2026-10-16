@@ -299,9 +299,7 @@ window.NOBODY_INDEX = {
         "onsets_per_s": 0.0,
         "flux_of_median": 0.121,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "electronic-race-last-lap",
@@ -411,9 +409,7 @@ window.NOBODY_INDEX = {
         "onsets_per_s": 0.75,
         "flux_of_median": 0.445,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "aggressive-jump-up-slipstream",
@@ -516,9 +512,7 @@ window.NOBODY_INDEX = {
         "onsets_per_s": 0.0,
         "flux_of_median": 0.201,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "euphoric-liquid-redline",
