@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 89.95,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.0,
+      "lufs": -20.2,
+      "sub_pct": 15.5,
+      "air_pct": 9.37,
+      "onsets_per_s": 3.5
+    },
+    {
+      "kind": "build",
+      "start": 6.0,
+      "end": 11.5,
+      "lufs": -19.1,
+      "sub_pct": 0.0,
+      "air_pct": 8.18,
+      "onsets_per_s": 3.45
+    },
+    {
+      "kind": "drop",
+      "start": 11.5,
+      "end": 89.95,
+      "lufs": -16.1,
+      "sub_pct": 18.6,
+      "air_pct": 6.33,
+      "onsets_per_s": 5.12
+    }
+  ],
+  "slug": "telephone-exchange-still-open"
+}

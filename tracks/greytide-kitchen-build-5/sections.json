@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 90.75,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 51.0,
+      "lufs": -15.9,
+      "sub_pct": 1.8,
+      "air_pct": 0.18,
+      "onsets_per_s": 2.61
+    },
+    {
+      "kind": "break",
+      "start": 51.0,
+      "end": 55.5,
+      "lufs": -20.9,
+      "sub_pct": 1.8,
+      "air_pct": 0.18,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 55.5,
+      "end": 90.75,
+      "lufs": -17.1,
+      "sub_pct": 2.4,
+      "air_pct": 0.14,
+      "onsets_per_s": 2.84
+    }
+  ],
+  "slug": "greytide-kitchen-build-5"
+}

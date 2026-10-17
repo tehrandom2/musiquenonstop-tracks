@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "duration": 178.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 3.0,
+      "lufs": -28.9,
+      "sub_pct": 0.0,
+      "air_pct": 1.09,
+      "onsets_per_s": 1.67
+    },
+    {
+      "kind": "build",
+      "start": 3.0,
+      "end": 27.5,
+      "lufs": -20.1,
+      "sub_pct": 0.0,
+      "air_pct": 0.84,
+      "onsets_per_s": 3.22
+    },
+    {
+      "kind": "drop",
+      "start": 27.5,
+      "end": 39.5,
+      "lufs": -16.7,
+      "sub_pct": 0.0,
+      "air_pct": 1.06,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "break",
+      "start": 39.5,
+      "end": 64.5,
+      "lufs": -22.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.26,
+      "onsets_per_s": 4.76
+    },
+    {
+      "kind": "drop",
+      "start": 64.5,
+      "end": 81.5,
+      "lufs": -17.6,
+      "sub_pct": 0.0,
+      "air_pct": 0.68,
+      "onsets_per_s": 2.71
+    },
+    {
+      "kind": "break",
+      "start": 81.5,
+      "end": 84.0,
+      "lufs": -26.9,
+      "sub_pct": 0.0,
+      "air_pct": 0.85,
+      "onsets_per_s": 4.8
+    },
+    {
+      "kind": "drop",
+      "start": 84.0,
+      "end": 98.0,
+      "lufs": -16.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.96,
+      "onsets_per_s": 2.71
+    },
+    {
+      "kind": "break",
+      "start": 98.0,
+      "end": 102.0,
+      "lufs": -23.3,
+      "sub_pct": 0.0,
+      "air_pct": 0.32,
+      "onsets_per_s": 4.25
+    },
+    {
+      "kind": "drop",
+      "start": 102.0,
+      "end": 171.5,
+      "lufs": -20.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.25,
+      "onsets_per_s": 4.69
+    },
+    {
+      "kind": "outro",
+      "start": 171.5,
+      "end": 178.98,
+      "lufs": -26.7,
+      "sub_pct": 0.3,
+      "air_pct": 0.04,
+      "onsets_per_s": 4.15
+    }
+  ],
+  "slug": "shoosting-72-choir-in-the-compressor"
+}

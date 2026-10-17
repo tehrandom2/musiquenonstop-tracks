@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "duration": 177.62,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -22.5,
+      "sub_pct": 20.6,
+      "air_pct": 0.52,
+      "onsets_per_s": 3.27
+    },
+    {
+      "kind": "build",
+      "start": 5.5,
+      "end": 13.5,
+      "lufs": -20.8,
+      "sub_pct": 13.1,
+      "air_pct": 1.18,
+      "onsets_per_s": 4.12
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 43.0,
+      "lufs": -16.0,
+      "sub_pct": 45.0,
+      "air_pct": 1.52,
+      "onsets_per_s": 4.58
+    },
+    {
+      "kind": "break",
+      "start": 43.0,
+      "end": 68.5,
+      "lufs": -18.9,
+      "sub_pct": 22.6,
+      "air_pct": 11.14,
+      "onsets_per_s": 3.88
+    },
+    {
+      "kind": "drop",
+      "start": 68.5,
+      "end": 97.5,
+      "lufs": -15.9,
+      "sub_pct": 43.0,
+      "air_pct": 2.34,
+      "onsets_per_s": 4.45
+    },
+    {
+      "kind": "break",
+      "start": 97.5,
+      "end": 102.5,
+      "lufs": -23.7,
+      "sub_pct": 25.7,
+      "air_pct": 0.03,
+      "onsets_per_s": 5.0
+    },
+    {
+      "kind": "drop",
+      "start": 102.5,
+      "end": 135.5,
+      "lufs": -15.3,
+      "sub_pct": 36.1,
+      "air_pct": 2.17,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "break",
+      "start": 135.5,
+      "end": 137.0,
+      "lufs": -20.7,
+      "sub_pct": 0.0,
+      "air_pct": 0.37,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 137.0,
+      "end": 166.5,
+      "lufs": -15.6,
+      "sub_pct": 44.1,
+      "air_pct": 2.24,
+      "onsets_per_s": 4.51
+    },
+    {
+      "kind": "outro",
+      "start": 166.5,
+      "end": 177.62,
+      "lufs": -19.7,
+      "sub_pct": 30.9,
+      "air_pct": 1.91,
+      "onsets_per_s": 3.87
+    }
+  ],
+  "slug": "shoosting-06-prism-burst"
+}

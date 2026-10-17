@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 93.74,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.0,
+      "lufs": -18.6,
+      "sub_pct": 6.6,
+      "air_pct": 0.62,
+      "onsets_per_s": 4.4
+    },
+    {
+      "kind": "build",
+      "start": 5.0,
+      "end": 16.5,
+      "lufs": -19.8,
+      "sub_pct": 6.3,
+      "air_pct": 0.07,
+      "onsets_per_s": 3.48
+    },
+    {
+      "kind": "drop",
+      "start": 16.5,
+      "end": 93.74,
+      "lufs": -16.0,
+      "sub_pct": 10.0,
+      "air_pct": 0.89,
+      "onsets_per_s": 4.23
+    }
+  ],
+  "slug": "greytide-kitchen-wave-3"
+}

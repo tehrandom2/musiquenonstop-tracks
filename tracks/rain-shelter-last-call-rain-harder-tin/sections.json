@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 89.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 89.98,
+      "lufs": -16.4,
+      "sub_pct": 11.7,
+      "air_pct": 0.41,
+      "onsets_per_s": 2.99
+    }
+  ],
+  "slug": "rain-shelter-last-call-rain-harder-tin"
+}

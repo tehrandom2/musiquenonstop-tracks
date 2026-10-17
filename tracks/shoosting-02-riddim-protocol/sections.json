@@ -1,0 +1,116 @@
+{
+  "format": 1,
+  "duration": 178.1,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 12.5,
+      "lufs": -18.3,
+      "sub_pct": 64.2,
+      "air_pct": 1.24,
+      "onsets_per_s": 2.32
+    },
+    {
+      "kind": "break",
+      "start": 12.5,
+      "end": 15.0,
+      "lufs": -18.2,
+      "sub_pct": 46.1,
+      "air_pct": 2.48,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 15.0,
+      "end": 24.5,
+      "lufs": -18.1,
+      "sub_pct": 44.3,
+      "air_pct": 1.83,
+      "onsets_per_s": 2.32
+    },
+    {
+      "kind": "break",
+      "start": 24.5,
+      "end": 28.0,
+      "lufs": -19.4,
+      "sub_pct": 29.4,
+      "air_pct": 2.05,
+      "onsets_per_s": 2.57
+    },
+    {
+      "kind": "build",
+      "start": 28.0,
+      "end": 37.5,
+      "lufs": -19.6,
+      "sub_pct": 41.7,
+      "air_pct": 1.19,
+      "onsets_per_s": 2.32
+    },
+    {
+      "kind": "drop",
+      "start": 37.5,
+      "end": 80.5,
+      "lufs": -16.6,
+      "sub_pct": 44.7,
+      "air_pct": 2.73,
+      "onsets_per_s": 3.58
+    },
+    {
+      "kind": "break",
+      "start": 80.5,
+      "end": 82.5,
+      "lufs": -19.3,
+      "sub_pct": 42.7,
+      "air_pct": 0.73,
+      "onsets_per_s": 1.0
+    },
+    {
+      "kind": "build",
+      "start": 82.5,
+      "end": 93.5,
+      "lufs": -18.3,
+      "sub_pct": 61.2,
+      "air_pct": 1.55,
+      "onsets_per_s": 3.45
+    },
+    {
+      "kind": "drop",
+      "start": 93.5,
+      "end": 111.0,
+      "lufs": -15.9,
+      "sub_pct": 69.0,
+      "air_pct": 1.34,
+      "onsets_per_s": 3.2
+    },
+    {
+      "kind": "break",
+      "start": 111.0,
+      "end": 114.5,
+      "lufs": -19.5,
+      "sub_pct": 69.9,
+      "air_pct": 0.5,
+      "onsets_per_s": 0.86
+    },
+    {
+      "kind": "build",
+      "start": 114.5,
+      "end": 118.5,
+      "lufs": -18.6,
+      "sub_pct": 60.2,
+      "air_pct": 0.86,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 118.5,
+      "end": 178.1,
+      "lufs": -15.9,
+      "sub_pct": 41.8,
+      "air_pct": 2.55,
+      "onsets_per_s": 3.15
+    }
+  ],
+  "slug": "shoosting-02-riddim-protocol"
+}

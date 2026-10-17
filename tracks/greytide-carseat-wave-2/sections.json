@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 88.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 33.0,
+      "lufs": -16.7,
+      "sub_pct": 14.0,
+      "air_pct": 0.93,
+      "onsets_per_s": 2.73
+    },
+    {
+      "kind": "break",
+      "start": 33.0,
+      "end": 34.0,
+      "lufs": -24.8,
+      "sub_pct": 0.1,
+      "air_pct": 0.01,
+      "onsets_per_s": 3.0
+    },
+    {
+      "kind": "drop",
+      "start": 34.0,
+      "end": 44.0,
+      "lufs": -16.0,
+      "sub_pct": 12.0,
+      "air_pct": 0.88,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "break",
+      "start": 44.0,
+      "end": 45.5,
+      "lufs": -21.6,
+      "sub_pct": 2.8,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 45.5,
+      "end": 67.5,
+      "lufs": -15.9,
+      "sub_pct": 12.7,
+      "air_pct": 0.88,
+      "onsets_per_s": 2.73
+    },
+    {
+      "kind": "break",
+      "start": 67.5,
+      "end": 68.5,
+      "lufs": -27.0,
+      "sub_pct": 0.0,
+      "air_pct": 0.01,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 68.5,
+      "end": 88.98,
+      "lufs": -16.3,
+      "sub_pct": 13.4,
+      "air_pct": 0.8,
+      "onsets_per_s": 2.39
+    }
+  ],
+  "slug": "greytide-carseat-wave-2"
+}

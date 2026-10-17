@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 96.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 92.0,
+      "lufs": -16.4,
+      "sub_pct": 8.3,
+      "air_pct": 1.14,
+      "onsets_per_s": 2.96
+    },
+    {
+      "kind": "outro",
+      "start": 92.0,
+      "end": 96.98,
+      "lufs": -26.1,
+      "sub_pct": 0.0,
+      "air_pct": 0.12,
+      "onsets_per_s": 3.22
+    }
+  ],
+  "slug": "greytide-bathroom-build-3"
+}

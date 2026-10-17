@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 71.79,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 71.79,
+      "lufs": -19.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.04,
+      "onsets_per_s": 2.16
+    }
+  ],
+  "slug": "stones-that-remember"
+}

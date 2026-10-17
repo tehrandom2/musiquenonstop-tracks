@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 192.66,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 2.5,
+      "lufs": -26.9,
+      "sub_pct": 0.5,
+      "air_pct": 0.0,
+      "onsets_per_s": 6.4
+    },
+    {
+      "kind": "build",
+      "start": 2.5,
+      "end": 11.5,
+      "lufs": -23.1,
+      "sub_pct": 0.0,
+      "air_pct": 0.16,
+      "onsets_per_s": 4.78
+    },
+    {
+      "kind": "drop",
+      "start": 11.5,
+      "end": 92.0,
+      "lufs": -15.4,
+      "sub_pct": 13.1,
+      "air_pct": 2.14,
+      "onsets_per_s": 3.71
+    },
+    {
+      "kind": "break",
+      "start": 92.0,
+      "end": 104.0,
+      "lufs": -27.7,
+      "sub_pct": 1.4,
+      "air_pct": 0.66,
+      "onsets_per_s": 4.58
+    },
+    {
+      "kind": "drop",
+      "start": 104.0,
+      "end": 184.0,
+      "lufs": -15.4,
+      "sub_pct": 10.2,
+      "air_pct": 1.74,
+      "onsets_per_s": 3.7
+    },
+    {
+      "kind": "outro",
+      "start": 184.0,
+      "end": 192.66,
+      "lufs": -28.0,
+      "sub_pct": 0.0,
+      "air_pct": 0.04,
+      "onsets_per_s": 5.77
+    }
+  ],
+  "slug": "euphoric-liquid-redline"
+}

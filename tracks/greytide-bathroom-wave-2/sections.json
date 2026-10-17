@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 91.66,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 10.5,
+      "lufs": -19.5,
+      "sub_pct": 3.2,
+      "air_pct": 0.27,
+      "onsets_per_s": 2.95
+    },
+    {
+      "kind": "body",
+      "start": 10.5,
+      "end": 91.66,
+      "lufs": -16.2,
+      "sub_pct": 11.0,
+      "air_pct": 0.62,
+      "onsets_per_s": 2.91
+    }
+  ],
+  "slug": "greytide-bathroom-wave-2"
+}

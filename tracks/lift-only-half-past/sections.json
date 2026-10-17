@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 90.16,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -18.2,
+      "sub_pct": 21.2,
+      "air_pct": 2.78,
+      "onsets_per_s": 2.55
+    },
+    {
+      "kind": "drop",
+      "start": 5.5,
+      "end": 14.5,
+      "lufs": -17.4,
+      "sub_pct": 24.8,
+      "air_pct": 2.54,
+      "onsets_per_s": 2.89
+    },
+    {
+      "kind": "break",
+      "start": 14.5,
+      "end": 16.5,
+      "lufs": -17.5,
+      "sub_pct": 26.8,
+      "air_pct": 3.85,
+      "onsets_per_s": 3.0
+    },
+    {
+      "kind": "drop",
+      "start": 16.5,
+      "end": 90.16,
+      "lufs": -16.2,
+      "sub_pct": 20.8,
+      "air_pct": 1.84,
+      "onsets_per_s": 2.91
+    }
+  ],
+  "slug": "lift-only-half-past"
+}

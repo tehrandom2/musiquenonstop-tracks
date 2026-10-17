@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 115.42,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 115.42,
+      "lufs": -18.5,
+      "sub_pct": 0.0,
+      "air_pct": 0.47,
+      "onsets_per_s": 1.65
+    }
+  ],
+  "slug": "harmonica-farthest-out"
+}

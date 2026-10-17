@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "duration": 178.43,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.0,
+      "lufs": -23.7,
+      "sub_pct": 50.4,
+      "air_pct": 0.04,
+      "onsets_per_s": 3.75
+    },
+    {
+      "kind": "build",
+      "start": 4.0,
+      "end": 25.5,
+      "lufs": -19.4,
+      "sub_pct": 32.5,
+      "air_pct": 5.89,
+      "onsets_per_s": 2.56
+    },
+    {
+      "kind": "drop",
+      "start": 25.5,
+      "end": 56.5,
+      "lufs": -16.8,
+      "sub_pct": 38.9,
+      "air_pct": 2.15,
+      "onsets_per_s": 5.13
+    },
+    {
+      "kind": "break",
+      "start": 56.5,
+      "end": 64.5,
+      "lufs": -19.4,
+      "sub_pct": 18.8,
+      "air_pct": 1.26,
+      "onsets_per_s": 4.25
+    },
+    {
+      "kind": "drop",
+      "start": 64.5,
+      "end": 112.5,
+      "lufs": -16.9,
+      "sub_pct": 60.4,
+      "air_pct": 2.86,
+      "onsets_per_s": 4.48
+    },
+    {
+      "kind": "break",
+      "start": 112.5,
+      "end": 126.0,
+      "lufs": -16.7,
+      "sub_pct": 22.3,
+      "air_pct": 2.12,
+      "onsets_per_s": 5.33
+    },
+    {
+      "kind": "drop",
+      "start": 126.0,
+      "end": 137.5,
+      "lufs": -16.2,
+      "sub_pct": 49.3,
+      "air_pct": 2.8,
+      "onsets_per_s": 4.96
+    },
+    {
+      "kind": "break",
+      "start": 137.5,
+      "end": 140.0,
+      "lufs": -25.8,
+      "sub_pct": 1.1,
+      "air_pct": 2.58,
+      "onsets_per_s": 4.8
+    },
+    {
+      "kind": "drop",
+      "start": 140.0,
+      "end": 178.43,
+      "lufs": -16.8,
+      "sub_pct": 56.1,
+      "air_pct": 2.57,
+      "onsets_per_s": 5.02
+    }
+  ],
+  "slug": "shoosting-44-the-maw"
+}

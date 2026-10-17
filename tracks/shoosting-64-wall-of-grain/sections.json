@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 174.3,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 17.5,
+      "lufs": -21.0,
+      "sub_pct": 21.7,
+      "air_pct": 0.18,
+      "onsets_per_s": 6.86
+    },
+    {
+      "kind": "drop",
+      "start": 17.5,
+      "end": 91.5,
+      "lufs": -16.4,
+      "sub_pct": 27.3,
+      "air_pct": 2.59,
+      "onsets_per_s": 5.78
+    },
+    {
+      "kind": "break",
+      "start": 91.5,
+      "end": 96.5,
+      "lufs": -23.2,
+      "sub_pct": 53.7,
+      "air_pct": 2.12,
+      "onsets_per_s": 0.6
+    },
+    {
+      "kind": "build",
+      "start": 96.5,
+      "end": 128.5,
+      "lufs": -20.3,
+      "sub_pct": 28.8,
+      "air_pct": 0.8,
+      "onsets_per_s": 3.31
+    },
+    {
+      "kind": "drop",
+      "start": 128.5,
+      "end": 166.5,
+      "lufs": -14.5,
+      "sub_pct": 45.0,
+      "air_pct": 3.61,
+      "onsets_per_s": 6.24
+    },
+    {
+      "kind": "outro",
+      "start": 166.5,
+      "end": 174.3,
+      "lufs": -23.4,
+      "sub_pct": 2.1,
+      "air_pct": 0.31,
+      "onsets_per_s": 6.54
+    }
+  ],
+  "slug": "shoosting-64-wall-of-grain"
+}

@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 94.86,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 94.86,
+      "lufs": -14.8,
+      "sub_pct": 21.0,
+      "air_pct": 3.29,
+      "onsets_per_s": 4.72
+    }
+  ],
+  "slug": "greytide-electroclash-build"
+}

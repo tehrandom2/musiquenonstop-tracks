@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "duration": 170.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 22.5,
+      "lufs": -16.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.17,
+      "onsets_per_s": 1.91
+    },
+    {
+      "kind": "break",
+      "start": 22.5,
+      "end": 24.0,
+      "lufs": -20.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.63,
+      "onsets_per_s": 0.67
+    },
+    {
+      "kind": "drop",
+      "start": 24.0,
+      "end": 51.5,
+      "lufs": -14.8,
+      "sub_pct": 2.1,
+      "air_pct": 0.27,
+      "onsets_per_s": 2.18
+    },
+    {
+      "kind": "break",
+      "start": 51.5,
+      "end": 80.0,
+      "lufs": -20.1,
+      "sub_pct": 0.0,
+      "air_pct": 0.16,
+      "onsets_per_s": 2.21
+    },
+    {
+      "kind": "drop",
+      "start": 80.0,
+      "end": 91.0,
+      "lufs": -16.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.9,
+      "onsets_per_s": 3.18
+    },
+    {
+      "kind": "break",
+      "start": 91.0,
+      "end": 94.5,
+      "lufs": -20.3,
+      "sub_pct": 0.0,
+      "air_pct": 0.67,
+      "onsets_per_s": 2.57
+    },
+    {
+      "kind": "build",
+      "start": 94.5,
+      "end": 112.0,
+      "lufs": -18.1,
+      "sub_pct": 3.7,
+      "air_pct": 0.05,
+      "onsets_per_s": 2.69
+    },
+    {
+      "kind": "drop",
+      "start": 112.0,
+      "end": 121.5,
+      "lufs": -15.5,
+      "sub_pct": 3.4,
+      "air_pct": 0.04,
+      "onsets_per_s": 2.84
+    },
+    {
+      "kind": "outro",
+      "start": 121.5,
+      "end": 170.0,
+      "lufs": -20.8,
+      "sub_pct": 0.6,
+      "air_pct": 0.08,
+      "onsets_per_s": 2.0
+    }
+  ],
+  "slug": "the-reel-room"
+}

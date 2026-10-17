@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "duration": 178.38,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 13.5,
+      "lufs": -20.2,
+      "sub_pct": 36.2,
+      "air_pct": 11.07,
+      "onsets_per_s": 3.41
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 32.5,
+      "lufs": -16.3,
+      "sub_pct": 54.5,
+      "air_pct": 0.69,
+      "onsets_per_s": 2.21
+    },
+    {
+      "kind": "break",
+      "start": 32.5,
+      "end": 54.0,
+      "lufs": -18.0,
+      "sub_pct": 48.4,
+      "air_pct": 2.09,
+      "onsets_per_s": 4.19
+    },
+    {
+      "kind": "drop",
+      "start": 54.0,
+      "end": 82.5,
+      "lufs": -15.9,
+      "sub_pct": 59.6,
+      "air_pct": 2.61,
+      "onsets_per_s": 4.56
+    },
+    {
+      "kind": "break",
+      "start": 82.5,
+      "end": 96.0,
+      "lufs": -19.4,
+      "sub_pct": 42.4,
+      "air_pct": 0.64,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 96.0,
+      "end": 118.5,
+      "lufs": -16.2,
+      "sub_pct": 60.1,
+      "air_pct": 0.61,
+      "onsets_per_s": 2.18
+    },
+    {
+      "kind": "break",
+      "start": 118.5,
+      "end": 126.0,
+      "lufs": -17.9,
+      "sub_pct": 43.1,
+      "air_pct": 2.81,
+      "onsets_per_s": 5.2
+    },
+    {
+      "kind": "drop",
+      "start": 126.0,
+      "end": 178.38,
+      "lufs": -15.5,
+      "sub_pct": 56.6,
+      "air_pct": 2.23,
+      "onsets_per_s": 4.49
+    }
+  ],
+  "slug": "shoosting-07-gravity-well"
+}

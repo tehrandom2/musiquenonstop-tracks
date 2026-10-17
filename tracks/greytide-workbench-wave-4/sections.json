@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 90.78,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.0,
+      "lufs": -22.3,
+      "sub_pct": 11.1,
+      "air_pct": 1.23,
+      "onsets_per_s": 5.91
+    },
+    {
+      "kind": "body",
+      "start": 11.0,
+      "end": 90.78,
+      "lufs": -16.2,
+      "sub_pct": 14.5,
+      "air_pct": 1.7,
+      "onsets_per_s": 4.32
+    }
+  ],
+  "slug": "greytide-workbench-wave-4"
+}

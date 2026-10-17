@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 91.1,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 10.5,
+      "lufs": -18.6,
+      "sub_pct": 16.1,
+      "air_pct": 1.25,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "body",
+      "start": 10.5,
+      "end": 91.1,
+      "lufs": -16.2,
+      "sub_pct": 13.0,
+      "air_pct": 1.43,
+      "onsets_per_s": 2.83
+    }
+  ],
+  "slug": "greytide-carseat-wave-4"
+}

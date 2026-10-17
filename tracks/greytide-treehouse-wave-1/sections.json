@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 93.15,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 13.5,
+      "lufs": -20.4,
+      "sub_pct": 10.9,
+      "air_pct": 0.81,
+      "onsets_per_s": 3.33
+    },
+    {
+      "kind": "body",
+      "start": 13.5,
+      "end": 93.15,
+      "lufs": -16.0,
+      "sub_pct": 17.3,
+      "air_pct": 1.83,
+      "onsets_per_s": 2.36
+    }
+  ],
+  "slug": "greytide-treehouse-wave-1"
+}

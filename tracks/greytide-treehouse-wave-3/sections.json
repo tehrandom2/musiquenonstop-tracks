@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 87.66,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.5,
+      "lufs": -19.3,
+      "sub_pct": 24.1,
+      "air_pct": 1.15,
+      "onsets_per_s": 2.92
+    },
+    {
+      "kind": "build",
+      "start": 6.5,
+      "end": 14.0,
+      "lufs": -19.5,
+      "sub_pct": 26.9,
+      "air_pct": 1.62,
+      "onsets_per_s": 2.8
+    },
+    {
+      "kind": "drop",
+      "start": 14.0,
+      "end": 87.66,
+      "lufs": -16.1,
+      "sub_pct": 16.6,
+      "air_pct": 0.79,
+      "onsets_per_s": 3.46
+    }
+  ],
+  "slug": "greytide-treehouse-wave-3"
+}

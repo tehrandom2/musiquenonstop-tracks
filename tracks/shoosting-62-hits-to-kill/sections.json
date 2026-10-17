@@ -1,0 +1,179 @@
+{
+  "format": 1,
+  "duration": 177.78,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -23.2,
+      "sub_pct": 59.4,
+      "air_pct": 1.06,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "build",
+      "start": 5.5,
+      "end": 30.0,
+      "lufs": -19.1,
+      "sub_pct": 34.5,
+      "air_pct": 1.17,
+      "onsets_per_s": 3.92
+    },
+    {
+      "kind": "drop",
+      "start": 30.0,
+      "end": 41.5,
+      "lufs": -16.3,
+      "sub_pct": 36.5,
+      "air_pct": 2.05,
+      "onsets_per_s": 6.78
+    },
+    {
+      "kind": "break",
+      "start": 41.5,
+      "end": 45.0,
+      "lufs": -18.7,
+      "sub_pct": 28.3,
+      "air_pct": 2.94,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 45.0,
+      "end": 56.5,
+      "lufs": -16.3,
+      "sub_pct": 37.0,
+      "air_pct": 2.29,
+      "onsets_per_s": 6.7
+    },
+    {
+      "kind": "break",
+      "start": 56.5,
+      "end": 60.0,
+      "lufs": -19.0,
+      "sub_pct": 29.3,
+      "air_pct": 3.48,
+      "onsets_per_s": 3.43
+    },
+    {
+      "kind": "drop",
+      "start": 60.0,
+      "end": 72.0,
+      "lufs": -15.5,
+      "sub_pct": 35.1,
+      "air_pct": 3.53,
+      "onsets_per_s": 6.5
+    },
+    {
+      "kind": "break",
+      "start": 72.0,
+      "end": 75.0,
+      "lufs": -18.4,
+      "sub_pct": 40.1,
+      "air_pct": 2.81,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 75.0,
+      "end": 86.5,
+      "lufs": -16.0,
+      "sub_pct": 36.4,
+      "air_pct": 2.54,
+      "onsets_per_s": 6.78
+    },
+    {
+      "kind": "break",
+      "start": 86.5,
+      "end": 90.0,
+      "lufs": -19.1,
+      "sub_pct": 36.7,
+      "air_pct": 3.05,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 90.0,
+      "end": 103.5,
+      "lufs": -15.7,
+      "sub_pct": 65.8,
+      "air_pct": 1.62,
+      "onsets_per_s": 4.37
+    },
+    {
+      "kind": "break",
+      "start": 103.5,
+      "end": 105.0,
+      "lufs": -18.8,
+      "sub_pct": 0.0,
+      "air_pct": 15.84,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 105.0,
+      "end": 118.0,
+      "lufs": -15.3,
+      "sub_pct": 63.5,
+      "air_pct": 2.07,
+      "onsets_per_s": 4.85
+    },
+    {
+      "kind": "break",
+      "start": 118.0,
+      "end": 120.0,
+      "lufs": -19.0,
+      "sub_pct": 36.7,
+      "air_pct": 11.32,
+      "onsets_per_s": 4.5
+    },
+    {
+      "kind": "drop",
+      "start": 120.0,
+      "end": 133.0,
+      "lufs": -18.4,
+      "sub_pct": 90.2,
+      "air_pct": 0.25,
+      "onsets_per_s": 2.69
+    },
+    {
+      "kind": "break",
+      "start": 133.0,
+      "end": 135.0,
+      "lufs": -20.9,
+      "sub_pct": 19.1,
+      "air_pct": 7.84,
+      "onsets_per_s": 8.0
+    },
+    {
+      "kind": "drop",
+      "start": 135.0,
+      "end": 161.5,
+      "lufs": -16.3,
+      "sub_pct": 38.9,
+      "air_pct": 2.39,
+      "onsets_per_s": 5.36
+    },
+    {
+      "kind": "break",
+      "start": 161.5,
+      "end": 165.0,
+      "lufs": -20.2,
+      "sub_pct": 37.3,
+      "air_pct": 7.43,
+      "onsets_per_s": 2.29
+    },
+    {
+      "kind": "drop",
+      "start": 165.0,
+      "end": 177.78,
+      "lufs": -15.7,
+      "sub_pct": 30.7,
+      "air_pct": 3.41,
+      "onsets_per_s": 6.57
+    }
+  ],
+  "slug": "shoosting-62-hits-to-kill"
+}

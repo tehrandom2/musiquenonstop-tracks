@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 92.99,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 3.0,
+      "lufs": -29.2,
+      "sub_pct": 0.1,
+      "air_pct": 0.14,
+      "onsets_per_s": 3.33
+    },
+    {
+      "kind": "drop",
+      "start": 3.0,
+      "end": 75.0,
+      "lufs": -15.9,
+      "sub_pct": 16.0,
+      "air_pct": 1.15,
+      "onsets_per_s": 2.65
+    },
+    {
+      "kind": "outro",
+      "start": 75.0,
+      "end": 92.99,
+      "lufs": -21.8,
+      "sub_pct": 6.4,
+      "air_pct": 0.02,
+      "onsets_per_s": 1.45
+    }
+  ],
+  "slug": "greytide-picnic-wave-5"
+}

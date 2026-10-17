@@ -1,0 +1,125 @@
+{
+  "format": 1,
+  "duration": 178.46,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -23.7,
+      "sub_pct": 75.4,
+      "air_pct": 0.52,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "build",
+      "start": 5.5,
+      "end": 41.0,
+      "lufs": -19.8,
+      "sub_pct": 42.6,
+      "air_pct": 0.35,
+      "onsets_per_s": 3.44
+    },
+    {
+      "kind": "drop",
+      "start": 41.0,
+      "end": 53.0,
+      "lufs": -15.4,
+      "sub_pct": 31.8,
+      "air_pct": 1.13,
+      "onsets_per_s": 8.42
+    },
+    {
+      "kind": "break",
+      "start": 53.0,
+      "end": 55.0,
+      "lufs": -22.1,
+      "sub_pct": 5.3,
+      "air_pct": 2.47,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "drop",
+      "start": 55.0,
+      "end": 96.5,
+      "lufs": -17.5,
+      "sub_pct": 52.2,
+      "air_pct": 0.54,
+      "onsets_per_s": 3.4
+    },
+    {
+      "kind": "break",
+      "start": 96.5,
+      "end": 110.5,
+      "lufs": -21.1,
+      "sub_pct": 54.5,
+      "air_pct": 1.03,
+      "onsets_per_s": 3.07
+    },
+    {
+      "kind": "drop",
+      "start": 110.5,
+      "end": 122.0,
+      "lufs": -15.6,
+      "sub_pct": 27.1,
+      "air_pct": 3.87,
+      "onsets_per_s": 5.74
+    },
+    {
+      "kind": "break",
+      "start": 122.0,
+      "end": 124.0,
+      "lufs": -19.1,
+      "sub_pct": 41.7,
+      "air_pct": 1.46,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "build",
+      "start": 124.0,
+      "end": 136.5,
+      "lufs": -18.0,
+      "sub_pct": 34.5,
+      "air_pct": 4.61,
+      "onsets_per_s": 4.08
+    },
+    {
+      "kind": "drop",
+      "start": 136.5,
+      "end": 148.5,
+      "lufs": -15.5,
+      "sub_pct": 47.3,
+      "air_pct": 3.22,
+      "onsets_per_s": 4.92
+    },
+    {
+      "kind": "break",
+      "start": 148.5,
+      "end": 150.5,
+      "lufs": -18.3,
+      "sub_pct": 15.5,
+      "air_pct": 9.66,
+      "onsets_per_s": 3.5
+    },
+    {
+      "kind": "drop",
+      "start": 150.5,
+      "end": 175.0,
+      "lufs": -15.1,
+      "sub_pct": 51.8,
+      "air_pct": 2.25,
+      "onsets_per_s": 3.88
+    },
+    {
+      "kind": "outro",
+      "start": 175.0,
+      "end": 178.46,
+      "lufs": -30.1,
+      "sub_pct": 6.8,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.02
+    }
+  ],
+  "slug": "shoosting-43-cathedral"
+}

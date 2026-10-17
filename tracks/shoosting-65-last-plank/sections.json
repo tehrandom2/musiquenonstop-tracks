@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 173.58,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 21.0,
+      "lufs": -19.6,
+      "sub_pct": 19.2,
+      "air_pct": 1.05,
+      "onsets_per_s": 3.19
+    },
+    {
+      "kind": "body",
+      "start": 21.0,
+      "end": 173.58,
+      "lufs": -16.7,
+      "sub_pct": 33.9,
+      "air_pct": 2.35,
+      "onsets_per_s": 5.75
+    }
+  ],
+  "slug": "shoosting-65-last-plank"
+}

@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 94.54,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 22.0,
+      "lufs": -19.6,
+      "sub_pct": 2.9,
+      "air_pct": 0.57,
+      "onsets_per_s": 3.14
+    },
+    {
+      "kind": "drop",
+      "start": 22.0,
+      "end": 38.5,
+      "lufs": -16.4,
+      "sub_pct": 11.2,
+      "air_pct": 0.57,
+      "onsets_per_s": 4.55
+    },
+    {
+      "kind": "break",
+      "start": 38.5,
+      "end": 40.0,
+      "lufs": -22.1,
+      "sub_pct": 39.2,
+      "air_pct": 7.21,
+      "onsets_per_s": 4.67
+    },
+    {
+      "kind": "drop",
+      "start": 40.0,
+      "end": 87.5,
+      "lufs": -15.6,
+      "sub_pct": 13.2,
+      "air_pct": 1.89,
+      "onsets_per_s": 3.37
+    },
+    {
+      "kind": "outro",
+      "start": 87.5,
+      "end": 94.54,
+      "lufs": -17.3,
+      "sub_pct": 9.9,
+      "air_pct": 1.01,
+      "onsets_per_s": 3.27
+    }
+  ],
+  "slug": "greytide-bathroom-build-5"
+}

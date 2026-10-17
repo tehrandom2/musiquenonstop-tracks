@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 94.02,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -21.7,
+      "sub_pct": 8.0,
+      "air_pct": 0.59,
+      "onsets_per_s": 2.91
+    },
+    {
+      "kind": "body",
+      "start": 5.5,
+      "end": 91.5,
+      "lufs": -16.3,
+      "sub_pct": 8.2,
+      "air_pct": 1.08,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "outro",
+      "start": 91.5,
+      "end": 94.02,
+      "lufs": -22.5,
+      "sub_pct": 0.2,
+      "air_pct": 0.0,
+      "onsets_per_s": 3.18
+    }
+  ],
+  "slug": "greytide-carseat-wave-5"
+}

@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 95.1,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 14.5,
+      "lufs": -20.7,
+      "sub_pct": 4.4,
+      "air_pct": 1.19,
+      "onsets_per_s": 3.86
+    },
+    {
+      "kind": "drop",
+      "start": 14.5,
+      "end": 95.1,
+      "lufs": -16.1,
+      "sub_pct": 8.1,
+      "air_pct": 0.53,
+      "onsets_per_s": 3.2
+    }
+  ],
+  "slug": "greytide-garage-wave-5"
+}

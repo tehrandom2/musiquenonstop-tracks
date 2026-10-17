@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 90.58,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 90.58,
+      "lufs": -16.4,
+      "sub_pct": 3.6,
+      "air_pct": 1.56,
+      "onsets_per_s": 3.5
+    }
+  ],
+  "slug": "greytide-pub-build-1"
+}

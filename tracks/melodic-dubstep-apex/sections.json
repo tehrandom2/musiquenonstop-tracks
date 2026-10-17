@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 112.54,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.0,
+      "lufs": -20.4,
+      "sub_pct": 53.8,
+      "air_pct": 0.38,
+      "onsets_per_s": 4.2
+    },
+    {
+      "kind": "build",
+      "start": 5.0,
+      "end": 11.5,
+      "lufs": -19.6,
+      "sub_pct": 4.1,
+      "air_pct": 1.25,
+      "onsets_per_s": 4.15
+    },
+    {
+      "kind": "drop",
+      "start": 11.5,
+      "end": 34.5,
+      "lufs": -14.1,
+      "sub_pct": 34.2,
+      "air_pct": 1.06,
+      "onsets_per_s": 5.61
+    },
+    {
+      "kind": "break",
+      "start": 34.5,
+      "end": 45.0,
+      "lufs": -17.6,
+      "sub_pct": 12.4,
+      "air_pct": 3.84,
+      "onsets_per_s": 4.67
+    },
+    {
+      "kind": "drop",
+      "start": 45.0,
+      "end": 112.54,
+      "lufs": -13.2,
+      "sub_pct": 37.4,
+      "air_pct": 1.13,
+      "onsets_per_s": 6.19
+    }
+  ],
+  "slug": "melodic-dubstep-apex"
+}

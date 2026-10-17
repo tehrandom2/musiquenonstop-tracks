@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 91.7,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 91.7,
+      "lufs": -16.4,
+      "sub_pct": 7.6,
+      "air_pct": 0.85,
+      "onsets_per_s": 3.01
+    }
+  ],
+  "slug": "server-room-after-hours"
+}

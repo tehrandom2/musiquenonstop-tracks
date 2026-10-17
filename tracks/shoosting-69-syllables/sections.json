@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "duration": 174.06,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.0,
+      "lufs": -24.7,
+      "sub_pct": 0.0,
+      "air_pct": 0.01,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "build",
+      "start": 6.0,
+      "end": 13.0,
+      "lufs": -22.0,
+      "sub_pct": 18.2,
+      "air_pct": 0.1,
+      "onsets_per_s": 1.14
+    },
+    {
+      "kind": "drop",
+      "start": 13.0,
+      "end": 27.0,
+      "lufs": -20.5,
+      "sub_pct": 25.5,
+      "air_pct": 0.12,
+      "onsets_per_s": 2.21
+    },
+    {
+      "kind": "break",
+      "start": 27.0,
+      "end": 29.5,
+      "lufs": -21.7,
+      "sub_pct": 26.9,
+      "air_pct": 0.2,
+      "onsets_per_s": 2.4
+    },
+    {
+      "kind": "drop",
+      "start": 29.5,
+      "end": 73.5,
+      "lufs": -18.5,
+      "sub_pct": 18.8,
+      "air_pct": 0.18,
+      "onsets_per_s": 1.7
+    },
+    {
+      "kind": "break",
+      "start": 73.5,
+      "end": 93.5,
+      "lufs": -19.6,
+      "sub_pct": 0.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 1.45
+    },
+    {
+      "kind": "drop",
+      "start": 93.5,
+      "end": 137.0,
+      "lufs": -17.7,
+      "sub_pct": 16.2,
+      "air_pct": 0.22,
+      "onsets_per_s": 1.72
+    },
+    {
+      "kind": "break",
+      "start": 137.0,
+      "end": 142.0,
+      "lufs": -23.7,
+      "sub_pct": 0.0,
+      "air_pct": 0.12,
+      "onsets_per_s": 0.4
+    },
+    {
+      "kind": "drop",
+      "start": 142.0,
+      "end": 165.5,
+      "lufs": -18.1,
+      "sub_pct": 16.6,
+      "air_pct": 0.31,
+      "onsets_per_s": 1.57
+    },
+    {
+      "kind": "outro",
+      "start": 165.5,
+      "end": 174.06,
+      "lufs": -23.3,
+      "sub_pct": 25.3,
+      "air_pct": 0.5,
+      "onsets_per_s": 1.75
+    }
+  ],
+  "slug": "shoosting-69-syllables"
+}

@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 92.54,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 2.0,
+      "lufs": -25.3,
+      "sub_pct": 8.5,
+      "air_pct": 0.05,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "build",
+      "start": 2.0,
+      "end": 11.5,
+      "lufs": -19.7,
+      "sub_pct": 18.0,
+      "air_pct": 0.04,
+      "onsets_per_s": 3.16
+    },
+    {
+      "kind": "drop",
+      "start": 11.5,
+      "end": 71.0,
+      "lufs": -16.0,
+      "sub_pct": 12.7,
+      "air_pct": 0.52,
+      "onsets_per_s": 2.54
+    },
+    {
+      "kind": "break",
+      "start": 71.0,
+      "end": 75.0,
+      "lufs": -19.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.14,
+      "onsets_per_s": 2.75
+    },
+    {
+      "kind": "drop",
+      "start": 75.0,
+      "end": 92.54,
+      "lufs": -16.2,
+      "sub_pct": 11.1,
+      "air_pct": 0.59,
+      "onsets_per_s": 2.34
+    }
+  ],
+  "slug": "greytide-picnic-build-2"
+}

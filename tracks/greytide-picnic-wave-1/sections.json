@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 89.02,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 89.02,
+      "lufs": -16.4,
+      "sub_pct": 8.1,
+      "air_pct": 1.85,
+      "onsets_per_s": 3.92
+    }
+  ],
+  "slug": "greytide-picnic-wave-1"
+}

@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 89.45,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 82.5,
+      "lufs": -17.0,
+      "sub_pct": 5.0,
+      "air_pct": 1.35,
+      "onsets_per_s": 2.65
+    },
+    {
+      "kind": "outro",
+      "start": 82.5,
+      "end": 89.45,
+      "lufs": -21.5,
+      "sub_pct": 4.7,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.01
+    }
+  ],
+  "slug": "greytide-sandpit-build-3"
+}

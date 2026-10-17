@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 87.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 51.5,
+      "lufs": -16.2,
+      "sub_pct": 8.6,
+      "air_pct": 0.77,
+      "onsets_per_s": 2.93
+    },
+    {
+      "kind": "break",
+      "start": 51.5,
+      "end": 56.5,
+      "lufs": -20.1,
+      "sub_pct": 11.6,
+      "air_pct": 0.23,
+      "onsets_per_s": 2.8
+    },
+    {
+      "kind": "drop",
+      "start": 56.5,
+      "end": 87.98,
+      "lufs": -16.4,
+      "sub_pct": 6.8,
+      "air_pct": 0.63,
+      "onsets_per_s": 2.7
+    }
+  ],
+  "slug": "modern-dubstep-left-on"
+}

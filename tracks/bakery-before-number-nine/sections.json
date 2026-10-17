@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 91.61,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 2.0,
+      "lufs": -24.5,
+      "sub_pct": 14.6,
+      "air_pct": 0.24,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "build",
+      "start": 2.0,
+      "end": 11.0,
+      "lufs": -19.8,
+      "sub_pct": 11.7,
+      "air_pct": 0.42,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 11.0,
+      "end": 91.61,
+      "lufs": -16.2,
+      "sub_pct": 9.5,
+      "air_pct": 1.62,
+      "onsets_per_s": 2.79
+    }
+  ],
+  "slug": "bakery-before-number-nine"
+}

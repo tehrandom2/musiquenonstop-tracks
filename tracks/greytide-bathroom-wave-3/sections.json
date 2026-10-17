@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 95.86,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 8.0,
+      "lufs": -19.4,
+      "sub_pct": 5.0,
+      "air_pct": 1.22,
+      "onsets_per_s": 2.75
+    },
+    {
+      "kind": "drop",
+      "start": 8.0,
+      "end": 53.0,
+      "lufs": -16.7,
+      "sub_pct": 5.3,
+      "air_pct": 1.42,
+      "onsets_per_s": 2.91
+    },
+    {
+      "kind": "break",
+      "start": 53.0,
+      "end": 54.0,
+      "lufs": -27.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.45,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 54.0,
+      "end": 75.5,
+      "lufs": -16.4,
+      "sub_pct": 5.1,
+      "air_pct": 1.74,
+      "onsets_per_s": 3.12
+    },
+    {
+      "kind": "break",
+      "start": 75.5,
+      "end": 76.5,
+      "lufs": -24.8,
+      "sub_pct": 0.0,
+      "air_pct": 14.23,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 76.5,
+      "end": 95.86,
+      "lufs": -15.2,
+      "sub_pct": 5.0,
+      "air_pct": 1.74,
+      "onsets_per_s": 3.31
+    }
+  ],
+  "slug": "greytide-bathroom-wave-3"
+}

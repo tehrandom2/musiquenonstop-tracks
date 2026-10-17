@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 96.38,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 8.5,
+      "lufs": -26.4,
+      "sub_pct": 0.2,
+      "air_pct": 0.09,
+      "onsets_per_s": 3.41
+    },
+    {
+      "kind": "build",
+      "start": 8.5,
+      "end": 13.5,
+      "lufs": -19.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.37,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 59.0,
+      "lufs": -16.1,
+      "sub_pct": 3.5,
+      "air_pct": 0.38,
+      "onsets_per_s": 2.77
+    },
+    {
+      "kind": "break",
+      "start": 59.0,
+      "end": 64.0,
+      "lufs": -18.6,
+      "sub_pct": 0.0,
+      "air_pct": 0.19,
+      "onsets_per_s": 3.2
+    },
+    {
+      "kind": "drop",
+      "start": 64.0,
+      "end": 92.0,
+      "lufs": -15.8,
+      "sub_pct": 7.1,
+      "air_pct": 0.25,
+      "onsets_per_s": 2.71
+    },
+    {
+      "kind": "outro",
+      "start": 92.0,
+      "end": 96.38,
+      "lufs": -23.2,
+      "sub_pct": 5.6,
+      "air_pct": 0.27,
+      "onsets_per_s": 2.74
+    }
+  ],
+  "slug": "condensation"
+}

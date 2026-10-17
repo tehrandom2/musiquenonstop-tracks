@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 175.38,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 7.0,
+      "lufs": -25.4,
+      "sub_pct": 0.1,
+      "air_pct": 0.04,
+      "onsets_per_s": 7.71
+    },
+    {
+      "kind": "build",
+      "start": 7.0,
+      "end": 48.0,
+      "lufs": -19.0,
+      "sub_pct": 55.7,
+      "air_pct": 0.52,
+      "onsets_per_s": 6.2
+    },
+    {
+      "kind": "drop",
+      "start": 48.0,
+      "end": 114.5,
+      "lufs": -16.2,
+      "sub_pct": 71.3,
+      "air_pct": 1.13,
+      "onsets_per_s": 5.14
+    },
+    {
+      "kind": "break",
+      "start": 114.5,
+      "end": 130.0,
+      "lufs": -28.1,
+      "sub_pct": 41.8,
+      "air_pct": 0.01,
+      "onsets_per_s": 7.61
+    },
+    {
+      "kind": "drop",
+      "start": 130.0,
+      "end": 166.5,
+      "lufs": -16.2,
+      "sub_pct": 72.4,
+      "air_pct": 2.03,
+      "onsets_per_s": 5.95
+    },
+    {
+      "kind": "outro",
+      "start": 166.5,
+      "end": 175.38,
+      "lufs": -21.4,
+      "sub_pct": 63.4,
+      "air_pct": 0.0,
+      "onsets_per_s": 7.21
+    }
+  ],
+  "slug": "shoosting-61-monolith"
+}

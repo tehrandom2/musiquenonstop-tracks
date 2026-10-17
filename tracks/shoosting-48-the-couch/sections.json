@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 172.87,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 8.5,
+      "lufs": -19.5,
+      "sub_pct": 9.5,
+      "air_pct": 2.49,
+      "onsets_per_s": 6.12
+    },
+    {
+      "kind": "build",
+      "start": 8.5,
+      "end": 25.5,
+      "lufs": -19.0,
+      "sub_pct": 28.8,
+      "air_pct": 1.42,
+      "onsets_per_s": 5.94
+    },
+    {
+      "kind": "drop",
+      "start": 25.5,
+      "end": 83.0,
+      "lufs": -15.3,
+      "sub_pct": 13.1,
+      "air_pct": 2.99,
+      "onsets_per_s": 5.72
+    },
+    {
+      "kind": "break",
+      "start": 83.0,
+      "end": 96.0,
+      "lufs": -18.9,
+      "sub_pct": 6.3,
+      "air_pct": 0.03,
+      "onsets_per_s": 4.38
+    },
+    {
+      "kind": "drop",
+      "start": 96.0,
+      "end": 164.0,
+      "lufs": -14.4,
+      "sub_pct": 13.8,
+      "air_pct": 2.76,
+      "onsets_per_s": 5.84
+    },
+    {
+      "kind": "outro",
+      "start": 164.0,
+      "end": 172.87,
+      "lufs": -21.1,
+      "sub_pct": 11.9,
+      "air_pct": 2.49,
+      "onsets_per_s": 4.4
+    }
+  ],
+  "slug": "shoosting-48-the-couch"
+}

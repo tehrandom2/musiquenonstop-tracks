@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 176.74,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 27.0,
+      "lufs": -19.2,
+      "sub_pct": 43.6,
+      "air_pct": 2.35,
+      "onsets_per_s": 5.52
+    },
+    {
+      "kind": "drop",
+      "start": 27.0,
+      "end": 83.5,
+      "lufs": -17.5,
+      "sub_pct": 20.8,
+      "air_pct": 2.86,
+      "onsets_per_s": 5.68
+    },
+    {
+      "kind": "break",
+      "start": 83.5,
+      "end": 96.0,
+      "lufs": -21.3,
+      "sub_pct": 16.0,
+      "air_pct": 5.88,
+      "onsets_per_s": 4.8
+    },
+    {
+      "kind": "drop",
+      "start": 96.0,
+      "end": 109.0,
+      "lufs": -15.5,
+      "sub_pct": 47.4,
+      "air_pct": 2.53,
+      "onsets_per_s": 7.46
+    },
+    {
+      "kind": "break",
+      "start": 109.0,
+      "end": 109.5,
+      "lufs": null,
+      "sub_pct": null,
+      "air_pct": null,
+      "onsets_per_s": null
+    },
+    {
+      "kind": "drop",
+      "start": 109.5,
+      "end": 165.5,
+      "lufs": -16.7,
+      "sub_pct": 39.2,
+      "air_pct": 3.19,
+      "onsets_per_s": 5.73
+    },
+    {
+      "kind": "outro",
+      "start": 165.5,
+      "end": 176.74,
+      "lufs": -23.1,
+      "sub_pct": 7.3,
+      "air_pct": 1.9,
+      "onsets_per_s": 5.96
+    }
+  ],
+  "slug": "shoosting-34-overcharge"
+}

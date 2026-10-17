@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 95.78,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 12.0,
+      "lufs": -20.4,
+      "sub_pct": 4.4,
+      "air_pct": 0.39,
+      "onsets_per_s": 2.33
+    },
+    {
+      "kind": "body",
+      "start": 12.0,
+      "end": 95.78,
+      "lufs": -16.9,
+      "sub_pct": 6.0,
+      "air_pct": 1.31,
+      "onsets_per_s": 2.66
+    }
+  ],
+  "slug": "greytide-garage-build-5"
+}

@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 93.18,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 9.5,
+      "lufs": -19.6,
+      "sub_pct": 19.7,
+      "air_pct": 2.88,
+      "onsets_per_s": 4.53
+    },
+    {
+      "kind": "body",
+      "start": 9.5,
+      "end": 93.18,
+      "lufs": -17.2,
+      "sub_pct": 17.7,
+      "air_pct": 1.05,
+      "onsets_per_s": 4.0
+    }
+  ],
+  "slug": "greytide-desk-wave-2"
+}

@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "duration": 176.1,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 10.5,
+      "lufs": -26.6,
+      "sub_pct": 0.0,
+      "air_pct": 0.44,
+      "onsets_per_s": 0.1
+    },
+    {
+      "kind": "drop",
+      "start": 10.5,
+      "end": 29.0,
+      "lufs": -16.7,
+      "sub_pct": 43.7,
+      "air_pct": 1.46,
+      "onsets_per_s": 3.03
+    },
+    {
+      "kind": "break",
+      "start": 29.0,
+      "end": 31.0,
+      "lufs": -18.7,
+      "sub_pct": 30.2,
+      "air_pct": 1.52,
+      "onsets_per_s": 1.0
+    },
+    {
+      "kind": "drop",
+      "start": 31.0,
+      "end": 49.5,
+      "lufs": -17.8,
+      "sub_pct": 39.5,
+      "air_pct": 0.48,
+      "onsets_per_s": 3.3
+    },
+    {
+      "kind": "break",
+      "start": 49.5,
+      "end": 61.0,
+      "lufs": -18.9,
+      "sub_pct": 41.5,
+      "air_pct": 0.13,
+      "onsets_per_s": 3.74
+    },
+    {
+      "kind": "drop",
+      "start": 61.0,
+      "end": 93.5,
+      "lufs": -16.5,
+      "sub_pct": 38.9,
+      "air_pct": 1.46,
+      "onsets_per_s": 3.11
+    },
+    {
+      "kind": "break",
+      "start": 93.5,
+      "end": 117.0,
+      "lufs": -17.9,
+      "sub_pct": 41.8,
+      "air_pct": 0.72,
+      "onsets_per_s": 3.74
+    },
+    {
+      "kind": "drop",
+      "start": 117.0,
+      "end": 155.5,
+      "lufs": -15.5,
+      "sub_pct": 35.4,
+      "air_pct": 1.17,
+      "onsets_per_s": 3.32
+    },
+    {
+      "kind": "break",
+      "start": 155.5,
+      "end": 156.5,
+      "lufs": -22.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.62,
+      "onsets_per_s": 6.0
+    },
+    {
+      "kind": "drop",
+      "start": 156.5,
+      "end": 176.1,
+      "lufs": -14.3,
+      "sub_pct": 35.8,
+      "air_pct": 2.04,
+      "onsets_per_s": 3.01
+    }
+  ],
+  "slug": "shoosting-63-ebony"
+}

@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 104.34,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 7.0,
+      "lufs": -20.2,
+      "sub_pct": 4.5,
+      "air_pct": 2.09,
+      "onsets_per_s": 2.71
+    },
+    {
+      "kind": "build",
+      "start": 7.0,
+      "end": 18.0,
+      "lufs": -18.6,
+      "sub_pct": 6.9,
+      "air_pct": 1.87,
+      "onsets_per_s": 3.09
+    },
+    {
+      "kind": "drop",
+      "start": 18.0,
+      "end": 62.0,
+      "lufs": -16.2,
+      "sub_pct": 9.6,
+      "air_pct": 3.33,
+      "onsets_per_s": 3.34
+    },
+    {
+      "kind": "break",
+      "start": 62.0,
+      "end": 73.5,
+      "lufs": -19.5,
+      "sub_pct": 0.0,
+      "air_pct": 3.86,
+      "onsets_per_s": 3.04
+    },
+    {
+      "kind": "drop",
+      "start": 73.5,
+      "end": 99.0,
+      "lufs": -16.0,
+      "sub_pct": 8.8,
+      "air_pct": 4.55,
+      "onsets_per_s": 3.06
+    },
+    {
+      "kind": "outro",
+      "start": 99.0,
+      "end": 104.34,
+      "lufs": -19.1,
+      "sub_pct": 9.2,
+      "air_pct": 1.16,
+      "onsets_per_s": 3.18
+    }
+  ],
+  "slug": "greytide-bootleg-westcoast-a"
+}

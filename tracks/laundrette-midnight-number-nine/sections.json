@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 88.86,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 18.0,
+      "lufs": -18.4,
+      "sub_pct": 4.2,
+      "air_pct": 1.44,
+      "onsets_per_s": 2.56
+    },
+    {
+      "kind": "build",
+      "start": 18.0,
+      "end": 31.5,
+      "lufs": -16.5,
+      "sub_pct": 5.3,
+      "air_pct": 0.64,
+      "onsets_per_s": 2.52
+    },
+    {
+      "kind": "drop",
+      "start": 31.5,
+      "end": 54.5,
+      "lufs": -16.1,
+      "sub_pct": 11.0,
+      "air_pct": 1.36,
+      "onsets_per_s": 2.57
+    },
+    {
+      "kind": "break",
+      "start": 54.5,
+      "end": 56.5,
+      "lufs": -18.9,
+      "sub_pct": 19.0,
+      "air_pct": 4.24,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "drop",
+      "start": 56.5,
+      "end": 67.5,
+      "lufs": -15.6,
+      "sub_pct": 5.0,
+      "air_pct": 1.26,
+      "onsets_per_s": 2.55
+    },
+    {
+      "kind": "break",
+      "start": 67.5,
+      "end": 69.5,
+      "lufs": -19.3,
+      "sub_pct": 21.1,
+      "air_pct": 4.03,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "drop",
+      "start": 69.5,
+      "end": 88.86,
+      "lufs": -15.8,
+      "sub_pct": 5.3,
+      "air_pct": 1.44,
+      "onsets_per_s": 2.48
+    }
+  ],
+  "slug": "laundrette-midnight-number-nine"
+}

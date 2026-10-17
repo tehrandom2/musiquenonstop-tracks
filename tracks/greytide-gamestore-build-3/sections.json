@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 92.3,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 25.0,
+      "lufs": -17.8,
+      "sub_pct": 11.2,
+      "air_pct": 0.25,
+      "onsets_per_s": 2.2
+    },
+    {
+      "kind": "drop",
+      "start": 25.0,
+      "end": 73.5,
+      "lufs": -15.8,
+      "sub_pct": 9.2,
+      "air_pct": 0.21,
+      "onsets_per_s": 2.02
+    },
+    {
+      "kind": "break",
+      "start": 73.5,
+      "end": 75.5,
+      "lufs": -25.7,
+      "sub_pct": 18.3,
+      "air_pct": 0.18,
+      "onsets_per_s": 1.5
+    },
+    {
+      "kind": "drop",
+      "start": 75.5,
+      "end": 88.5,
+      "lufs": -16.6,
+      "sub_pct": 10.0,
+      "air_pct": 0.24,
+      "onsets_per_s": 2.46
+    },
+    {
+      "kind": "outro",
+      "start": 88.5,
+      "end": 92.3,
+      "lufs": -18.1,
+      "sub_pct": 13.8,
+      "air_pct": 0.17,
+      "onsets_per_s": 2.37
+    }
+  ],
+  "slug": "greytide-gamestore-build-3"
+}

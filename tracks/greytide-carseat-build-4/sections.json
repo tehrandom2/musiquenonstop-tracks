@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 93.65,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 53.5,
+      "lufs": -16.4,
+      "sub_pct": 3.4,
+      "air_pct": 0.84,
+      "onsets_per_s": 1.83
+    },
+    {
+      "kind": "break",
+      "start": 53.5,
+      "end": 58.0,
+      "lufs": -19.8,
+      "sub_pct": 0.3,
+      "air_pct": 0.0,
+      "onsets_per_s": 1.33
+    },
+    {
+      "kind": "drop",
+      "start": 58.0,
+      "end": 88.5,
+      "lufs": -16.0,
+      "sub_pct": 5.2,
+      "air_pct": 2.11,
+      "onsets_per_s": 2.13
+    },
+    {
+      "kind": "outro",
+      "start": 88.5,
+      "end": 93.65,
+      "lufs": -19.7,
+      "sub_pct": 0.2,
+      "air_pct": 0.0,
+      "onsets_per_s": 1.94
+    }
+  ],
+  "slug": "greytide-carseat-build-4"
+}

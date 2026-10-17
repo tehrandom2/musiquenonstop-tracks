@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 91.85,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.5,
+      "lufs": -19.2,
+      "sub_pct": 14.3,
+      "air_pct": 1.04,
+      "onsets_per_s": 4.15
+    },
+    {
+      "kind": "body",
+      "start": 6.5,
+      "end": 91.85,
+      "lufs": -16.8,
+      "sub_pct": 13.7,
+      "air_pct": 1.23,
+      "onsets_per_s": 4.05
+    }
+  ],
+  "slug": "greytide-pub-wave-2"
+}

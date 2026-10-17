@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 90.74,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 90.74,
+      "lufs": -16.4,
+      "sub_pct": 29.3,
+      "air_pct": 0.36,
+      "onsets_per_s": 3.39
+    }
+  ],
+  "slug": "hotel-corridor-small-hours"
+}

@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 93.2,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 9.0,
+      "lufs": -19.2,
+      "sub_pct": 16.6,
+      "air_pct": 0.52,
+      "onsets_per_s": 3.67
+    },
+    {
+      "kind": "drop",
+      "start": 9.0,
+      "end": 36.5,
+      "lufs": -15.9,
+      "sub_pct": 14.9,
+      "air_pct": 0.59,
+      "onsets_per_s": 3.38
+    },
+    {
+      "kind": "break",
+      "start": 36.5,
+      "end": 42.5,
+      "lufs": -19.9,
+      "sub_pct": 17.7,
+      "air_pct": 0.53,
+      "onsets_per_s": 3.17
+    },
+    {
+      "kind": "drop",
+      "start": 42.5,
+      "end": 68.5,
+      "lufs": -16.0,
+      "sub_pct": 14.6,
+      "air_pct": 0.6,
+      "onsets_per_s": 3.31
+    },
+    {
+      "kind": "break",
+      "start": 68.5,
+      "end": 74.5,
+      "lufs": -19.9,
+      "sub_pct": 17.8,
+      "air_pct": 0.55,
+      "onsets_per_s": 3.17
+    },
+    {
+      "kind": "drop",
+      "start": 74.5,
+      "end": 93.2,
+      "lufs": -15.8,
+      "sub_pct": 14.3,
+      "air_pct": 0.64,
+      "onsets_per_s": 3.32
+    }
+  ],
+  "slug": "greytide-garage-wave-3"
+}

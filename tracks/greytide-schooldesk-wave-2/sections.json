@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 92.3,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 9.5,
+      "lufs": -24.3,
+      "sub_pct": 4.2,
+      "air_pct": 5.27,
+      "onsets_per_s": 3.26
+    },
+    {
+      "kind": "drop",
+      "start": 9.5,
+      "end": 34.0,
+      "lufs": -16.2,
+      "sub_pct": 12.0,
+      "air_pct": 2.44,
+      "onsets_per_s": 3.35
+    },
+    {
+      "kind": "break",
+      "start": 34.0,
+      "end": 42.0,
+      "lufs": -19.1,
+      "sub_pct": 8.9,
+      "air_pct": 3.85,
+      "onsets_per_s": 2.12
+    },
+    {
+      "kind": "drop",
+      "start": 42.0,
+      "end": 92.3,
+      "lufs": -15.9,
+      "sub_pct": 12.5,
+      "air_pct": 2.12,
+      "onsets_per_s": 3.2
+    }
+  ],
+  "slug": "greytide-schooldesk-wave-2"
+}

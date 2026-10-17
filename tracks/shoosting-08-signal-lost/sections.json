@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 175.22,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 13.5,
+      "lufs": -22.9,
+      "sub_pct": 40.3,
+      "air_pct": 3.46,
+      "onsets_per_s": 2.96
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 29.0,
+      "lufs": -17.1,
+      "sub_pct": 60.2,
+      "air_pct": 4.85,
+      "onsets_per_s": 4.71
+    },
+    {
+      "kind": "break",
+      "start": 29.0,
+      "end": 41.0,
+      "lufs": -18.4,
+      "sub_pct": 13.8,
+      "air_pct": 11.32,
+      "onsets_per_s": 8.33
+    },
+    {
+      "kind": "drop",
+      "start": 41.0,
+      "end": 131.0,
+      "lufs": -16.2,
+      "sub_pct": 46.2,
+      "air_pct": 5.45,
+      "onsets_per_s": 4.27
+    },
+    {
+      "kind": "break",
+      "start": 131.0,
+      "end": 147.0,
+      "lufs": -19.3,
+      "sub_pct": 30.9,
+      "air_pct": 9.43,
+      "onsets_per_s": 5.0
+    },
+    {
+      "kind": "drop",
+      "start": 147.0,
+      "end": 175.22,
+      "lufs": -15.2,
+      "sub_pct": 28.2,
+      "air_pct": 7.62,
+      "onsets_per_s": 4.68
+    }
+  ],
+  "slug": "shoosting-08-signal-lost"
+}

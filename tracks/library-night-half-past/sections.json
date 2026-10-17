@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 94.74,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.5,
+      "lufs": -22.3,
+      "sub_pct": 2.7,
+      "air_pct": 0.39,
+      "onsets_per_s": 2.22
+    },
+    {
+      "kind": "build",
+      "start": 4.5,
+      "end": 11.0,
+      "lufs": -20.6,
+      "sub_pct": 4.8,
+      "air_pct": 0.1,
+      "onsets_per_s": 2.46
+    },
+    {
+      "kind": "drop",
+      "start": 11.0,
+      "end": 94.74,
+      "lufs": -16.2,
+      "sub_pct": 7.3,
+      "air_pct": 1.35,
+      "onsets_per_s": 2.84
+    }
+  ],
+  "slug": "library-night-half-past"
+}

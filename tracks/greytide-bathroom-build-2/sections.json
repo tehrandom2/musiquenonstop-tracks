@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 91.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.0,
+      "lufs": -19.0,
+      "sub_pct": 10.9,
+      "air_pct": 2.46,
+      "onsets_per_s": 3.83
+    },
+    {
+      "kind": "drop",
+      "start": 6.0,
+      "end": 45.0,
+      "lufs": -16.0,
+      "sub_pct": 12.5,
+      "air_pct": 1.19,
+      "onsets_per_s": 3.79
+    },
+    {
+      "kind": "break",
+      "start": 45.0,
+      "end": 55.0,
+      "lufs": -20.2,
+      "sub_pct": 1.0,
+      "air_pct": 0.02,
+      "onsets_per_s": 1.3
+    },
+    {
+      "kind": "drop",
+      "start": 55.0,
+      "end": 91.98,
+      "lufs": -16.1,
+      "sub_pct": 12.4,
+      "air_pct": 1.12,
+      "onsets_per_s": 3.89
+    }
+  ],
+  "slug": "greytide-bathroom-build-2"
+}

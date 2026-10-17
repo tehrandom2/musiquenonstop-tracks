@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 176.63,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 35.0,
+      "lufs": -18.4,
+      "sub_pct": 0.1,
+      "air_pct": 0.39,
+      "onsets_per_s": 3.2
+    },
+    {
+      "kind": "break",
+      "start": 35.0,
+      "end": 36.0,
+      "lufs": -25.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.09,
+      "onsets_per_s": 1.0
+    },
+    {
+      "kind": "drop",
+      "start": 36.0,
+      "end": 95.5,
+      "lufs": -19.1,
+      "sub_pct": 4.2,
+      "air_pct": 0.71,
+      "onsets_per_s": 3.98
+    },
+    {
+      "kind": "break",
+      "start": 95.5,
+      "end": 97.5,
+      "lufs": -29.5,
+      "sub_pct": 0.0,
+      "air_pct": 0.6,
+      "onsets_per_s": 3.5
+    },
+    {
+      "kind": "drop",
+      "start": 97.5,
+      "end": 131.0,
+      "lufs": -18.5,
+      "sub_pct": 0.1,
+      "air_pct": 0.44,
+      "onsets_per_s": 3.13
+    },
+    {
+      "kind": "break",
+      "start": 131.0,
+      "end": 143.0,
+      "lufs": -21.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.31,
+      "onsets_per_s": 4.25
+    },
+    {
+      "kind": "drop",
+      "start": 143.0,
+      "end": 176.63,
+      "lufs": -19.1,
+      "sub_pct": 5.5,
+      "air_pct": 0.97,
+      "onsets_per_s": 4.28
+    }
+  ],
+  "slug": "shoosting-67-sawtooth-heart"
+}

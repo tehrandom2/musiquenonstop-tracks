@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 87.94,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 7.5,
+      "lufs": -21.8,
+      "sub_pct": 1.6,
+      "air_pct": 1.31,
+      "onsets_per_s": 1.87
+    },
+    {
+      "kind": "body",
+      "start": 7.5,
+      "end": 87.94,
+      "lufs": -16.3,
+      "sub_pct": 1.1,
+      "air_pct": 0.81,
+      "onsets_per_s": 3.31
+    }
+  ],
+  "slug": "greytide-treehouse-build-5"
+}

@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 90.42,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 64.0,
+      "lufs": -16.2,
+      "sub_pct": 18.8,
+      "air_pct": 0.23,
+      "onsets_per_s": 2.31
+    },
+    {
+      "kind": "break",
+      "start": 64.0,
+      "end": 67.0,
+      "lufs": -20.4,
+      "sub_pct": 29.5,
+      "air_pct": 0.34,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 67.0,
+      "end": 90.42,
+      "lufs": -16.8,
+      "sub_pct": 18.3,
+      "air_pct": 0.15,
+      "onsets_per_s": 2.78
+    }
+  ],
+  "slug": "greytide-kitchen-wave-2"
+}

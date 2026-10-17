@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 146.94,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 22.5,
+      "lufs": -21.7,
+      "sub_pct": 0.0,
+      "air_pct": 0.06,
+      "onsets_per_s": 2.89
+    },
+    {
+      "kind": "drop",
+      "start": 22.5,
+      "end": 117.5,
+      "lufs": -16.9,
+      "sub_pct": 1.6,
+      "air_pct": 0.2,
+      "onsets_per_s": 3.68
+    },
+    {
+      "kind": "break",
+      "start": 117.5,
+      "end": 118.0,
+      "lufs": null,
+      "sub_pct": null,
+      "air_pct": null,
+      "onsets_per_s": null
+    },
+    {
+      "kind": "build",
+      "start": 118.0,
+      "end": 125.0,
+      "lufs": -18.6,
+      "sub_pct": 0.0,
+      "air_pct": 0.03,
+      "onsets_per_s": 1.71
+    },
+    {
+      "kind": "drop",
+      "start": 125.0,
+      "end": 138.5,
+      "lufs": -16.4,
+      "sub_pct": 1.2,
+      "air_pct": 0.28,
+      "onsets_per_s": 3.11
+    },
+    {
+      "kind": "outro",
+      "start": 138.5,
+      "end": 146.94,
+      "lufs": -22.7,
+      "sub_pct": 0.0,
+      "air_pct": 0.03,
+      "onsets_per_s": 0.95
+    }
+  ],
+  "slug": "first-light-through-the-pines"
+}

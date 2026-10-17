@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 94.82,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 9.5,
+      "lufs": -17.8,
+      "sub_pct": 4.2,
+      "air_pct": 2.46,
+      "onsets_per_s": 2.11
+    },
+    {
+      "kind": "drop",
+      "start": 9.5,
+      "end": 26.5,
+      "lufs": -15.5,
+      "sub_pct": 5.8,
+      "air_pct": 1.3,
+      "onsets_per_s": 2.12
+    },
+    {
+      "kind": "break",
+      "start": 26.5,
+      "end": 35.5,
+      "lufs": -17.9,
+      "sub_pct": 5.9,
+      "air_pct": 2.62,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 35.5,
+      "end": 77.0,
+      "lufs": -16.0,
+      "sub_pct": 5.4,
+      "air_pct": 1.48,
+      "onsets_per_s": 1.9
+    },
+    {
+      "kind": "outro",
+      "start": 77.0,
+      "end": 94.82,
+      "lufs": -17.6,
+      "sub_pct": 3.7,
+      "air_pct": 1.71,
+      "onsets_per_s": 1.96
+    }
+  ],
+  "slug": "greytide-bed-build-5"
+}

@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 88.9,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 51.0,
+      "lufs": -16.5,
+      "sub_pct": 10.9,
+      "air_pct": 3.01,
+      "onsets_per_s": 3.14
+    },
+    {
+      "kind": "break",
+      "start": 51.0,
+      "end": 53.0,
+      "lufs": -18.3,
+      "sub_pct": 11.9,
+      "air_pct": 0.97,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 53.0,
+      "end": 65.0,
+      "lufs": -18.3,
+      "sub_pct": 8.9,
+      "air_pct": 0.74,
+      "onsets_per_s": 2.58
+    },
+    {
+      "kind": "break",
+      "start": 65.0,
+      "end": 67.0,
+      "lufs": -19.4,
+      "sub_pct": 10.9,
+      "air_pct": 0.93,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "drop",
+      "start": 67.0,
+      "end": 88.9,
+      "lufs": -15.3,
+      "sub_pct": 10.5,
+      "air_pct": 2.21,
+      "onsets_per_s": 3.11
+    }
+  ],
+  "slug": "greytide-garage-build-3"
+}

@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 92.93,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 2.0,
+      "lufs": -22.9,
+      "sub_pct": 0.5,
+      "air_pct": 0.38,
+      "onsets_per_s": 3.0
+    },
+    {
+      "kind": "build",
+      "start": 2.0,
+      "end": 24.5,
+      "lufs": -19.2,
+      "sub_pct": 2.8,
+      "air_pct": 0.1,
+      "onsets_per_s": 2.8
+    },
+    {
+      "kind": "drop",
+      "start": 24.5,
+      "end": 92.93,
+      "lufs": -15.8,
+      "sub_pct": 5.7,
+      "air_pct": 1.21,
+      "onsets_per_s": 2.94
+    }
+  ],
+  "slug": "greytide-pub-build-2"
+}

@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "duration": 178.06,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -22.9,
+      "sub_pct": 34.6,
+      "air_pct": 1.02,
+      "onsets_per_s": 2.91
+    },
+    {
+      "kind": "build",
+      "start": 5.5,
+      "end": 31.0,
+      "lufs": -19.0,
+      "sub_pct": 56.3,
+      "air_pct": 3.78,
+      "onsets_per_s": 3.76
+    },
+    {
+      "kind": "drop",
+      "start": 31.0,
+      "end": 43.0,
+      "lufs": -15.7,
+      "sub_pct": 43.7,
+      "air_pct": 2.18,
+      "onsets_per_s": 3.5
+    },
+    {
+      "kind": "break",
+      "start": 43.0,
+      "end": 54.5,
+      "lufs": -16.6,
+      "sub_pct": 30.8,
+      "air_pct": 5.36,
+      "onsets_per_s": 4.7
+    },
+    {
+      "kind": "drop",
+      "start": 54.5,
+      "end": 95.5,
+      "lufs": -15.6,
+      "sub_pct": 50.8,
+      "air_pct": 2.47,
+      "onsets_per_s": 4.66
+    },
+    {
+      "kind": "break",
+      "start": 95.5,
+      "end": 101.5,
+      "lufs": -19.3,
+      "sub_pct": 48.8,
+      "air_pct": 4.83,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "build",
+      "start": 101.5,
+      "end": 109.5,
+      "lufs": -21.1,
+      "sub_pct": 0.0,
+      "air_pct": 2.25,
+      "onsets_per_s": 2.25
+    },
+    {
+      "kind": "drop",
+      "start": 109.5,
+      "end": 133.5,
+      "lufs": -14.7,
+      "sub_pct": 37.6,
+      "air_pct": 3.58,
+      "onsets_per_s": 4.67
+    },
+    {
+      "kind": "break",
+      "start": 133.5,
+      "end": 137.0,
+      "lufs": -17.4,
+      "sub_pct": 3.6,
+      "air_pct": 15.15,
+      "onsets_per_s": 5.43
+    },
+    {
+      "kind": "drop",
+      "start": 137.0,
+      "end": 178.06,
+      "lufs": -15.0,
+      "sub_pct": 59.9,
+      "air_pct": 2.14,
+      "onsets_per_s": 4.29
+    }
+  ],
+  "slug": "shoosting-42-towers"
+}

@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 93.06,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 93.06,
+      "lufs": -16.4,
+      "sub_pct": 5.5,
+      "air_pct": 0.52,
+      "onsets_per_s": 3.29
+    }
+  ],
+  "slug": "greytide-garage-build-1"
+}

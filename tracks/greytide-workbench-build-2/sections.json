@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 91.89,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 8.0,
+      "lufs": -18.7,
+      "sub_pct": 2.6,
+      "air_pct": 1.9,
+      "onsets_per_s": 3.25
+    },
+    {
+      "kind": "body",
+      "start": 8.0,
+      "end": 87.5,
+      "lufs": -16.1,
+      "sub_pct": 6.6,
+      "air_pct": 1.0,
+      "onsets_per_s": 3.47
+    },
+    {
+      "kind": "outro",
+      "start": 87.5,
+      "end": 91.89,
+      "lufs": -21.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.24,
+      "onsets_per_s": 2.96
+    }
+  ],
+  "slug": "greytide-workbench-build-2"
+}

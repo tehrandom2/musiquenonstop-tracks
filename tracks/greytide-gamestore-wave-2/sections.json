@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 92.86,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 12.5,
+      "lufs": -20.3,
+      "sub_pct": 6.2,
+      "air_pct": 1.11,
+      "onsets_per_s": 2.16
+    },
+    {
+      "kind": "body",
+      "start": 12.5,
+      "end": 92.86,
+      "lufs": -16.2,
+      "sub_pct": 11.7,
+      "air_pct": 1.47,
+      "onsets_per_s": 3.31
+    }
+  ],
+  "slug": "greytide-gamestore-wave-2"
+}

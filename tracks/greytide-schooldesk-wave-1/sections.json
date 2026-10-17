@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 81.22,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 2.5,
+      "lufs": -24.4,
+      "sub_pct": 5.6,
+      "air_pct": 4.39,
+      "onsets_per_s": 2.4
+    },
+    {
+      "kind": "build",
+      "start": 2.5,
+      "end": 16.0,
+      "lufs": -20.2,
+      "sub_pct": 2.4,
+      "air_pct": 3.41,
+      "onsets_per_s": 3.04
+    },
+    {
+      "kind": "drop",
+      "start": 16.0,
+      "end": 81.22,
+      "lufs": -16.0,
+      "sub_pct": 13.3,
+      "air_pct": 0.77,
+      "onsets_per_s": 3.51
+    }
+  ],
+  "slug": "greytide-schooldesk-wave-1"
+}

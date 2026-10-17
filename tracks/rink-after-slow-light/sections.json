@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 95.3,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.0,
+      "lufs": -18.6,
+      "sub_pct": 13.4,
+      "air_pct": 0.8,
+      "onsets_per_s": 3.64
+    },
+    {
+      "kind": "drop",
+      "start": 11.0,
+      "end": 45.5,
+      "lufs": -16.2,
+      "sub_pct": 7.4,
+      "air_pct": 0.43,
+      "onsets_per_s": 2.84
+    },
+    {
+      "kind": "break",
+      "start": 45.5,
+      "end": 55.5,
+      "lufs": -20.8,
+      "sub_pct": 13.8,
+      "air_pct": 1.3,
+      "onsets_per_s": 2.1
+    },
+    {
+      "kind": "drop",
+      "start": 55.5,
+      "end": 95.3,
+      "lufs": -15.7,
+      "sub_pct": 8.2,
+      "air_pct": 0.78,
+      "onsets_per_s": 2.81
+    }
+  ],
+  "slug": "rink-after-slow-light"
+}

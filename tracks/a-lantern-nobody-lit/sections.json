@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 158.34,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 155.5,
+      "lufs": -17.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.6,
+      "onsets_per_s": 2.37
+    },
+    {
+      "kind": "outro",
+      "start": 155.5,
+      "end": 158.34,
+      "lufs": -25.6,
+      "sub_pct": 0.0,
+      "air_pct": 0.01,
+      "onsets_per_s": 2.47
+    }
+  ],
+  "slug": "a-lantern-nobody-lit"
+}

@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 178.43,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 41.0,
+      "lufs": -19.6,
+      "sub_pct": 27.8,
+      "air_pct": 4.43,
+      "onsets_per_s": 4.15
+    },
+    {
+      "kind": "drop",
+      "start": 41.0,
+      "end": 81.0,
+      "lufs": -16.0,
+      "sub_pct": 55.9,
+      "air_pct": 2.54,
+      "onsets_per_s": 5.38
+    },
+    {
+      "kind": "break",
+      "start": 81.0,
+      "end": 96.5,
+      "lufs": -22.1,
+      "sub_pct": 50.8,
+      "air_pct": 2.24,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 96.5,
+      "end": 127.0,
+      "lufs": -16.6,
+      "sub_pct": 48.3,
+      "air_pct": 1.87,
+      "onsets_per_s": 3.8
+    },
+    {
+      "kind": "break",
+      "start": 127.0,
+      "end": 137.0,
+      "lufs": -18.1,
+      "sub_pct": 15.3,
+      "air_pct": 12.25,
+      "onsets_per_s": 5.0
+    },
+    {
+      "kind": "drop",
+      "start": 137.0,
+      "end": 178.43,
+      "lufs": -15.7,
+      "sub_pct": 51.7,
+      "air_pct": 3.94,
+      "onsets_per_s": 2.61
+    }
+  ],
+  "slug": "shoosting-39-wall-jump"
+}

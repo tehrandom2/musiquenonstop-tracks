@@ -1,0 +1,125 @@
+{
+  "format": 1,
+  "duration": 176.34,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 13.0,
+      "lufs": -18.6,
+      "sub_pct": 38.1,
+      "air_pct": 0.36,
+      "onsets_per_s": 4.54
+    },
+    {
+      "kind": "break",
+      "start": 13.0,
+      "end": 15.0,
+      "lufs": -21.8,
+      "sub_pct": 0.2,
+      "air_pct": 6.15,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 15.0,
+      "end": 28.0,
+      "lufs": -16.4,
+      "sub_pct": 38.6,
+      "air_pct": 2.07,
+      "onsets_per_s": 6.31
+    },
+    {
+      "kind": "break",
+      "start": 28.0,
+      "end": 52.5,
+      "lufs": -19.1,
+      "sub_pct": 31.1,
+      "air_pct": 2.47,
+      "onsets_per_s": 5.55
+    },
+    {
+      "kind": "drop",
+      "start": 52.5,
+      "end": 95.5,
+      "lufs": -16.1,
+      "sub_pct": 40.1,
+      "air_pct": 2.1,
+      "onsets_per_s": 4.26
+    },
+    {
+      "kind": "break",
+      "start": 95.5,
+      "end": 97.5,
+      "lufs": -19.4,
+      "sub_pct": 0.0,
+      "air_pct": 1.99,
+      "onsets_per_s": 5.0
+    },
+    {
+      "kind": "drop",
+      "start": 97.5,
+      "end": 110.5,
+      "lufs": -15.3,
+      "sub_pct": 45.5,
+      "air_pct": 2.22,
+      "onsets_per_s": 6.08
+    },
+    {
+      "kind": "break",
+      "start": 110.5,
+      "end": 112.5,
+      "lufs": -18.9,
+      "sub_pct": 0.3,
+      "air_pct": 10.07,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 112.5,
+      "end": 123.0,
+      "lufs": -18.0,
+      "sub_pct": 86.6,
+      "air_pct": 1.42,
+      "onsets_per_s": 4.86
+    },
+    {
+      "kind": "break",
+      "start": 123.0,
+      "end": 135.0,
+      "lufs": -18.5,
+      "sub_pct": 45.6,
+      "air_pct": 5.75,
+      "onsets_per_s": 7.42
+    },
+    {
+      "kind": "drop",
+      "start": 135.0,
+      "end": 148.0,
+      "lufs": -15.2,
+      "sub_pct": 46.1,
+      "air_pct": 1.79,
+      "onsets_per_s": 6.15
+    },
+    {
+      "kind": "break",
+      "start": 148.0,
+      "end": 150.0,
+      "lufs": -19.9,
+      "sub_pct": 0.2,
+      "air_pct": 4.91,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 150.0,
+      "end": 176.34,
+      "lufs": -15.2,
+      "sub_pct": 46.1,
+      "air_pct": 2.1,
+      "onsets_per_s": 6.07
+    }
+  ],
+  "slug": "shoosting-51-sawtooth"
+}

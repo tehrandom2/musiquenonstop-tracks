@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 159.27,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 30.5,
+      "lufs": -20.0,
+      "sub_pct": 83.7,
+      "air_pct": 1.88,
+      "onsets_per_s": 3.87
+    },
+    {
+      "kind": "drop",
+      "start": 30.5,
+      "end": 84.5,
+      "lufs": -16.1,
+      "sub_pct": 51.7,
+      "air_pct": 2.8,
+      "onsets_per_s": 4.39
+    },
+    {
+      "kind": "break",
+      "start": 84.5,
+      "end": 93.5,
+      "lufs": -26.5,
+      "sub_pct": 45.3,
+      "air_pct": 3.72,
+      "onsets_per_s": 4.78
+    },
+    {
+      "kind": "build",
+      "start": 93.5,
+      "end": 116.5,
+      "lufs": -23.3,
+      "sub_pct": 56.7,
+      "air_pct": 3.02,
+      "onsets_per_s": 4.39
+    },
+    {
+      "kind": "drop",
+      "start": 116.5,
+      "end": 159.27,
+      "lufs": -16.0,
+      "sub_pct": 45.3,
+      "air_pct": 2.23,
+      "onsets_per_s": 5.54
+    }
+  ],
+  "slug": "halftime-electronic-apex"
+}

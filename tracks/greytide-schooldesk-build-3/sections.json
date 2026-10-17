@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 94.38,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -20.3,
+      "sub_pct": 0.0,
+      "air_pct": 10.37,
+      "onsets_per_s": 6.36
+    },
+    {
+      "kind": "body",
+      "start": 5.5,
+      "end": 88.0,
+      "lufs": -16.1,
+      "sub_pct": 15.7,
+      "air_pct": 0.38,
+      "onsets_per_s": 2.99
+    },
+    {
+      "kind": "outro",
+      "start": 88.0,
+      "end": 94.38,
+      "lufs": -20.2,
+      "sub_pct": 0.0,
+      "air_pct": 10.69,
+      "onsets_per_s": 5.8
+    }
+  ],
+  "slug": "greytide-schooldesk-build-3"
+}

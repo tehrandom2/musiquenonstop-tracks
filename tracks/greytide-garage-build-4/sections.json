@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 92.9,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 8.0,
+      "lufs": -22.0,
+      "sub_pct": 6.9,
+      "air_pct": 1.46,
+      "onsets_per_s": 1.25
+    },
+    {
+      "kind": "build",
+      "start": 8.0,
+      "end": 12.0,
+      "lufs": -23.3,
+      "sub_pct": 0.0,
+      "air_pct": 1.06,
+      "onsets_per_s": 0.75
+    },
+    {
+      "kind": "drop",
+      "start": 12.0,
+      "end": 92.9,
+      "lufs": -16.3,
+      "sub_pct": 10.6,
+      "air_pct": 0.95,
+      "onsets_per_s": 3.29
+    }
+  ],
+  "slug": "greytide-garage-build-4"
+}

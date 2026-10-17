@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 91.92,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 91.92,
+      "lufs": -17.6,
+      "sub_pct": 8.6,
+      "air_pct": 1.42,
+      "onsets_per_s": 2.98
+    }
+  ],
+  "slug": "greytide-schooldesk-build-1"
+}

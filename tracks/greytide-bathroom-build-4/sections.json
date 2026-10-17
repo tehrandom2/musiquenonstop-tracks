@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "duration": 91.94,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.5,
+      "lufs": -22.4,
+      "sub_pct": 0.0,
+      "air_pct": 5.98,
+      "onsets_per_s": 3.11
+    },
+    {
+      "kind": "build",
+      "start": 4.5,
+      "end": 11.5,
+      "lufs": -22.1,
+      "sub_pct": 0.0,
+      "air_pct": 1.73,
+      "onsets_per_s": 2.71
+    },
+    {
+      "kind": "drop",
+      "start": 11.5,
+      "end": 25.5,
+      "lufs": -15.4,
+      "sub_pct": 12.3,
+      "air_pct": 0.87,
+      "onsets_per_s": 2.36
+    },
+    {
+      "kind": "break",
+      "start": 25.5,
+      "end": 29.5,
+      "lufs": -17.1,
+      "sub_pct": 13.7,
+      "air_pct": 2.57,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "drop",
+      "start": 29.5,
+      "end": 44.5,
+      "lufs": -15.7,
+      "sub_pct": 12.1,
+      "air_pct": 1.31,
+      "onsets_per_s": 2.4
+    },
+    {
+      "kind": "break",
+      "start": 44.5,
+      "end": 48.5,
+      "lufs": -17.3,
+      "sub_pct": 10.6,
+      "air_pct": 2.97,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "drop",
+      "start": 48.5,
+      "end": 64.5,
+      "lufs": -15.7,
+      "sub_pct": 8.7,
+      "air_pct": 1.42,
+      "onsets_per_s": 2.56
+    },
+    {
+      "kind": "break",
+      "start": 64.5,
+      "end": 67.5,
+      "lufs": -18.0,
+      "sub_pct": 11.6,
+      "air_pct": 2.17,
+      "onsets_per_s": 2.33
+    },
+    {
+      "kind": "drop",
+      "start": 67.5,
+      "end": 83.5,
+      "lufs": -15.6,
+      "sub_pct": 12.5,
+      "air_pct": 1.31,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "outro",
+      "start": 83.5,
+      "end": 91.94,
+      "lufs": -19.9,
+      "sub_pct": 6.7,
+      "air_pct": 7.05,
+      "onsets_per_s": 2.61
+    }
+  ],
+  "slug": "greytide-bathroom-build-4"
+}

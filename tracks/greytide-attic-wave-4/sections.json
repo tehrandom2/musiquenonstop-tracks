@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 94.41,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 19.5,
+      "lufs": -19.2,
+      "sub_pct": 0.0,
+      "air_pct": 1.38,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 19.5,
+      "end": 73.0,
+      "lufs": -15.1,
+      "sub_pct": 13.7,
+      "air_pct": 1.3,
+      "onsets_per_s": 2.3
+    },
+    {
+      "kind": "outro",
+      "start": 73.0,
+      "end": 94.41,
+      "lufs": -19.2,
+      "sub_pct": 0.0,
+      "air_pct": 1.63,
+      "onsets_per_s": 2.62
+    }
+  ],
+  "slug": "greytide-attic-wave-4"
+}

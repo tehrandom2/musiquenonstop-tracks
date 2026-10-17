@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 92.01,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 13.5,
+      "lufs": -18.7,
+      "sub_pct": 8.4,
+      "air_pct": 0.79,
+      "onsets_per_s": 1.85
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 22.5,
+      "lufs": -18.3,
+      "sub_pct": 6.5,
+      "air_pct": 0.59,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "break",
+      "start": 22.5,
+      "end": 25.5,
+      "lufs": -19.0,
+      "sub_pct": 4.0,
+      "air_pct": 0.54,
+      "onsets_per_s": 1.67
+    },
+    {
+      "kind": "drop",
+      "start": 25.5,
+      "end": 71.0,
+      "lufs": -17.2,
+      "sub_pct": 4.6,
+      "air_pct": 0.59,
+      "onsets_per_s": 2.02
+    },
+    {
+      "kind": "outro",
+      "start": 71.0,
+      "end": 92.01,
+      "lufs": -18.4,
+      "sub_pct": 5.6,
+      "air_pct": 0.61,
+      "onsets_per_s": 1.71
+    }
+  ],
+  "slug": "greytide-garage-wave-4"
+}

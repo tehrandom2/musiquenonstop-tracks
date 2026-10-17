@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "duration": 160.71,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.5,
+      "lufs": -25.6,
+      "sub_pct": 0.0,
+      "air_pct": 2.12,
+      "onsets_per_s": 4.89
+    },
+    {
+      "kind": "build",
+      "start": 4.5,
+      "end": 31.0,
+      "lufs": -18.4,
+      "sub_pct": 33.7,
+      "air_pct": 1.05,
+      "onsets_per_s": 4.19
+    },
+    {
+      "kind": "drop",
+      "start": 31.0,
+      "end": 42.0,
+      "lufs": -15.5,
+      "sub_pct": 49.0,
+      "air_pct": 1.92,
+      "onsets_per_s": 5.09
+    },
+    {
+      "kind": "break",
+      "start": 42.0,
+      "end": 54.5,
+      "lufs": -18.3,
+      "sub_pct": 52.3,
+      "air_pct": 4.95,
+      "onsets_per_s": 5.28
+    },
+    {
+      "kind": "drop",
+      "start": 54.5,
+      "end": 79.5,
+      "lufs": -13.0,
+      "sub_pct": 32.3,
+      "air_pct": 2.52,
+      "onsets_per_s": 4.72
+    },
+    {
+      "kind": "break",
+      "start": 79.5,
+      "end": 82.0,
+      "lufs": -22.7,
+      "sub_pct": 67.1,
+      "air_pct": 0.04,
+      "onsets_per_s": 3.6
+    },
+    {
+      "kind": "drop",
+      "start": 82.0,
+      "end": 107.0,
+      "lufs": -14.6,
+      "sub_pct": 20.3,
+      "air_pct": 2.57,
+      "onsets_per_s": 4.48
+    },
+    {
+      "kind": "break",
+      "start": 107.0,
+      "end": 109.5,
+      "lufs": -19.3,
+      "sub_pct": 17.0,
+      "air_pct": 1.35,
+      "onsets_per_s": 3.2
+    },
+    {
+      "kind": "drop",
+      "start": 109.5,
+      "end": 160.71,
+      "lufs": -14.0,
+      "sub_pct": 38.3,
+      "air_pct": 2.13,
+      "onsets_per_s": 4.51
+    }
+  ],
+  "slug": "shoosting-09-lobby-glow"
+}

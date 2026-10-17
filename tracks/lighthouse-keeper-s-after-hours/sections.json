@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 92.54,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 9.5,
+      "lufs": -21.0,
+      "sub_pct": 8.6,
+      "air_pct": 0.64,
+      "onsets_per_s": 1.16
+    },
+    {
+      "kind": "body",
+      "start": 9.5,
+      "end": 92.54,
+      "lufs": -16.2,
+      "sub_pct": 16.8,
+      "air_pct": 0.61,
+      "onsets_per_s": 2.57
+    }
+  ],
+  "slug": "lighthouse-keeper-s-after-hours"
+}

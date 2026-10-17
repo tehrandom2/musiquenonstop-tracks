@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 90.44,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 22.5,
+      "lufs": -16.4,
+      "sub_pct": 12.3,
+      "air_pct": 0.68,
+      "onsets_per_s": 2.49
+    },
+    {
+      "kind": "break",
+      "start": 22.5,
+      "end": 26.0,
+      "lufs": -20.2,
+      "sub_pct": 14.1,
+      "air_pct": 0.5,
+      "onsets_per_s": 0.86
+    },
+    {
+      "kind": "drop",
+      "start": 26.0,
+      "end": 72.5,
+      "lufs": -16.1,
+      "sub_pct": 13.5,
+      "air_pct": 0.65,
+      "onsets_per_s": 2.52
+    },
+    {
+      "kind": "break",
+      "start": 72.5,
+      "end": 76.0,
+      "lufs": -19.8,
+      "sub_pct": 16.9,
+      "air_pct": 0.47,
+      "onsets_per_s": 0.86
+    },
+    {
+      "kind": "drop",
+      "start": 76.0,
+      "end": 90.44,
+      "lufs": -16.6,
+      "sub_pct": 14.0,
+      "air_pct": 0.65,
+      "onsets_per_s": 2.15
+    }
+  ],
+  "slug": "greytide-attic-wave-2"
+}

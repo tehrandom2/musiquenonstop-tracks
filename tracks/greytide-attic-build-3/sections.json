@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 93.21,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 93.21,
+      "lufs": -16.5,
+      "sub_pct": 16.7,
+      "air_pct": 0.31,
+      "onsets_per_s": 1.97
+    }
+  ],
+  "slug": "greytide-attic-build-3"
+}

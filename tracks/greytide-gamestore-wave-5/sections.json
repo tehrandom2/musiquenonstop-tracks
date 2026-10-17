@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 91.77,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 10.5,
+      "lufs": -22.4,
+      "sub_pct": 1.4,
+      "air_pct": 1.33,
+      "onsets_per_s": 1.33
+    },
+    {
+      "kind": "build",
+      "start": 10.5,
+      "end": 18.5,
+      "lufs": -21.6,
+      "sub_pct": 9.4,
+      "air_pct": 0.37,
+      "onsets_per_s": 1.5
+    },
+    {
+      "kind": "drop",
+      "start": 18.5,
+      "end": 91.77,
+      "lufs": -16.0,
+      "sub_pct": 7.7,
+      "air_pct": 1.01,
+      "onsets_per_s": 2.96
+    }
+  ],
+  "slug": "greytide-gamestore-wave-5"
+}

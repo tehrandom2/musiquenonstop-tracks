@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 90.78,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.5,
+      "lufs": -18.7,
+      "sub_pct": 1.2,
+      "air_pct": 0.11,
+      "onsets_per_s": 3.56
+    },
+    {
+      "kind": "build",
+      "start": 4.5,
+      "end": 10.5,
+      "lufs": -23.0,
+      "sub_pct": 0.0,
+      "air_pct": 0.02,
+      "onsets_per_s": 5.33
+    },
+    {
+      "kind": "drop",
+      "start": 10.5,
+      "end": 48.0,
+      "lufs": -16.5,
+      "sub_pct": 12.3,
+      "air_pct": 1.66,
+      "onsets_per_s": 3.01
+    },
+    {
+      "kind": "break",
+      "start": 48.0,
+      "end": 51.5,
+      "lufs": -22.9,
+      "sub_pct": 5.9,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.86
+    },
+    {
+      "kind": "drop",
+      "start": 51.5,
+      "end": 90.78,
+      "lufs": -15.7,
+      "sub_pct": 10.8,
+      "air_pct": 1.83,
+      "onsets_per_s": 2.95
+    }
+  ],
+  "slug": "greytide-couch-wave-1"
+}

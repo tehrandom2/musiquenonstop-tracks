@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 93.51,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 86.5,
+      "lufs": -16.3,
+      "sub_pct": 12.4,
+      "air_pct": 1.31,
+      "onsets_per_s": 3.38
+    },
+    {
+      "kind": "outro",
+      "start": 86.5,
+      "end": 93.51,
+      "lufs": -17.7,
+      "sub_pct": 7.9,
+      "air_pct": 1.21,
+      "onsets_per_s": 1.43
+    }
+  ],
+  "slug": "greytide-pub-build-4"
+}

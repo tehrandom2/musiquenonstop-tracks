@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "duration": 177.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.5,
+      "lufs": -23.9,
+      "sub_pct": 0.0,
+      "air_pct": 0.35,
+      "onsets_per_s": 1.39
+    },
+    {
+      "kind": "drop",
+      "start": 11.5,
+      "end": 33.5,
+      "lufs": -15.7,
+      "sub_pct": 0.0,
+      "air_pct": 0.46,
+      "onsets_per_s": 2.32
+    },
+    {
+      "kind": "break",
+      "start": 33.5,
+      "end": 49.0,
+      "lufs": -23.2,
+      "sub_pct": 0.2,
+      "air_pct": 0.54,
+      "onsets_per_s": 3.42
+    },
+    {
+      "kind": "build",
+      "start": 49.0,
+      "end": 56.0,
+      "lufs": -23.2,
+      "sub_pct": 0.3,
+      "air_pct": 0.47,
+      "onsets_per_s": 3.29
+    },
+    {
+      "kind": "drop",
+      "start": 56.0,
+      "end": 146.5,
+      "lufs": -15.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.6,
+      "onsets_per_s": 2.66
+    },
+    {
+      "kind": "break",
+      "start": 146.5,
+      "end": 149.5,
+      "lufs": -29.0,
+      "sub_pct": 0.1,
+      "air_pct": 1.28,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 149.5,
+      "end": 165.0,
+      "lufs": -17.3,
+      "sub_pct": 0.0,
+      "air_pct": 0.4,
+      "onsets_per_s": 1.61
+    },
+    {
+      "kind": "outro",
+      "start": 165.0,
+      "end": 177.0,
+      "lufs": -17.9,
+      "sub_pct": 0.0,
+      "air_pct": 0.34,
+      "onsets_per_s": 1.67
+    }
+  ],
+  "slug": "home-fire-one-more-song"
+}

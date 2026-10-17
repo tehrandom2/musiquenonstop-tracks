@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 92.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 92.98,
+      "lufs": -16.4,
+      "sub_pct": 18.1,
+      "air_pct": 0.48,
+      "onsets_per_s": 3.08
+    }
+  ],
+  "slug": "greytide-kitchen-build-2"
+}

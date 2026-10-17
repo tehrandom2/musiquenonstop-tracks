@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 178.58,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.0,
+      "lufs": -26.0,
+      "sub_pct": 0.1,
+      "air_pct": 13.99,
+      "onsets_per_s": 4.64
+    },
+    {
+      "kind": "build",
+      "start": 11.0,
+      "end": 27.0,
+      "lufs": -18.7,
+      "sub_pct": 12.5,
+      "air_pct": 3.98,
+      "onsets_per_s": 4.38
+    },
+    {
+      "kind": "drop",
+      "start": 27.0,
+      "end": 40.0,
+      "lufs": -14.9,
+      "sub_pct": 33.1,
+      "air_pct": 1.75,
+      "onsets_per_s": 5.54
+    },
+    {
+      "kind": "break",
+      "start": 40.0,
+      "end": 42.5,
+      "lufs": -17.0,
+      "sub_pct": 25.6,
+      "air_pct": 4.97,
+      "onsets_per_s": 4.4
+    },
+    {
+      "kind": "drop",
+      "start": 42.5,
+      "end": 165.5,
+      "lufs": -14.8,
+      "sub_pct": 45.6,
+      "air_pct": 3.86,
+      "onsets_per_s": 4.89
+    },
+    {
+      "kind": "outro",
+      "start": 165.5,
+      "end": 178.58,
+      "lufs": -17.1,
+      "sub_pct": 33.1,
+      "air_pct": 1.82,
+      "onsets_per_s": 2.91
+    }
+  ],
+  "slug": "shoosting-32-big-bullet"
+}

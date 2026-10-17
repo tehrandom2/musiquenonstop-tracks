@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 173.34,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 43.5,
+      "lufs": -18.4,
+      "sub_pct": 41.1,
+      "air_pct": 1.93,
+      "onsets_per_s": 5.2
+    },
+    {
+      "kind": "break",
+      "start": 43.5,
+      "end": 45.5,
+      "lufs": -23.4,
+      "sub_pct": 1.5,
+      "air_pct": 3.75,
+      "onsets_per_s": 7.0
+    },
+    {
+      "kind": "drop",
+      "start": 45.5,
+      "end": 173.34,
+      "lufs": -17.8,
+      "sub_pct": 40.9,
+      "air_pct": 3.04,
+      "onsets_per_s": 5.48
+    }
+  ],
+  "slug": "shoosting-55-varnish"
+}

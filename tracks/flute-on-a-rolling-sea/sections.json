@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 114.93,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 111.0,
+      "lufs": -18.4,
+      "sub_pct": 0.0,
+      "air_pct": 0.06,
+      "onsets_per_s": 2.69
+    },
+    {
+      "kind": "outro",
+      "start": 111.0,
+      "end": 114.93,
+      "lufs": -18.9,
+      "sub_pct": 0.0,
+      "air_pct": 0.08,
+      "onsets_per_s": 1.53
+    }
+  ],
+  "slug": "flute-on-a-rolling-sea"
+}

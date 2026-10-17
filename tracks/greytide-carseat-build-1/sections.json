@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 92.41,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 92.41,
+      "lufs": -16.4,
+      "sub_pct": 21.9,
+      "air_pct": 0.74,
+      "onsets_per_s": 3.52
+    }
+  ],
+  "slug": "greytide-carseat-build-1"
+}

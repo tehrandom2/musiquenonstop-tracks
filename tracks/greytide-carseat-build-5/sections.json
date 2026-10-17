@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 90.86,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.5,
+      "lufs": -19.8,
+      "sub_pct": 4.7,
+      "air_pct": 0.42,
+      "onsets_per_s": 1.57
+    },
+    {
+      "kind": "body",
+      "start": 11.5,
+      "end": 90.86,
+      "lufs": -16.2,
+      "sub_pct": 7.4,
+      "air_pct": 0.48,
+      "onsets_per_s": 3.24
+    }
+  ],
+  "slug": "greytide-carseat-build-5"
+}

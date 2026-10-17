@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 175.62,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 80.0,
+      "lufs": -16.9,
+      "sub_pct": 31.0,
+      "air_pct": 2.36,
+      "onsets_per_s": 6.51
+    },
+    {
+      "kind": "break",
+      "start": 80.0,
+      "end": 91.5,
+      "lufs": -22.3,
+      "sub_pct": 64.2,
+      "air_pct": 0.23,
+      "onsets_per_s": 1.39
+    },
+    {
+      "kind": "drop",
+      "start": 91.5,
+      "end": 124.0,
+      "lufs": -16.1,
+      "sub_pct": 44.1,
+      "air_pct": 0.45,
+      "onsets_per_s": 2.37
+    },
+    {
+      "kind": "break",
+      "start": 124.0,
+      "end": 144.5,
+      "lufs": -20.7,
+      "sub_pct": 27.8,
+      "air_pct": 6.16,
+      "onsets_per_s": 6.15
+    },
+    {
+      "kind": "drop",
+      "start": 144.5,
+      "end": 175.62,
+      "lufs": -14.9,
+      "sub_pct": 34.8,
+      "air_pct": 3.98,
+      "onsets_per_s": 5.98
+    }
+  ],
+  "slug": "shoosting-57-pursuit-line"
+}

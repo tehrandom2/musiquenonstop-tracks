@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 178.42,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -23.5,
+      "sub_pct": 0.0,
+      "air_pct": 0.1,
+      "onsets_per_s": 2.36
+    },
+    {
+      "kind": "build",
+      "start": 5.5,
+      "end": 13.0,
+      "lufs": -23.6,
+      "sub_pct": 0.0,
+      "air_pct": 0.11,
+      "onsets_per_s": 1.87
+    },
+    {
+      "kind": "drop",
+      "start": 13.0,
+      "end": 178.42,
+      "lufs": -20.7,
+      "sub_pct": 9.6,
+      "air_pct": 1.22,
+      "onsets_per_s": 1.85
+    }
+  ],
+  "slug": "shoosting-73-cut-to-ribbons"
+}

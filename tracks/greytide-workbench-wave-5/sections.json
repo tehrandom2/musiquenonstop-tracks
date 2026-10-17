@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 93.34,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 7.5,
+      "lufs": -19.2,
+      "sub_pct": 1.6,
+      "air_pct": 1.25,
+      "onsets_per_s": 3.33
+    },
+    {
+      "kind": "body",
+      "start": 7.5,
+      "end": 93.34,
+      "lufs": -16.3,
+      "sub_pct": 3.7,
+      "air_pct": 1.65,
+      "onsets_per_s": 4.09
+    }
+  ],
+  "slug": "greytide-workbench-wave-5"
+}

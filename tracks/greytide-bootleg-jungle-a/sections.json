@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 95.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 14.0,
+      "lufs": -17.7,
+      "sub_pct": 8.4,
+      "air_pct": 3.04,
+      "onsets_per_s": 4.29
+    },
+    {
+      "kind": "break",
+      "start": 14.0,
+      "end": 25.0,
+      "lufs": -19.6,
+      "sub_pct": 1.8,
+      "air_pct": 4.54,
+      "onsets_per_s": 4.18
+    },
+    {
+      "kind": "drop",
+      "start": 25.0,
+      "end": 51.0,
+      "lufs": -16.4,
+      "sub_pct": 8.8,
+      "air_pct": 2.2,
+      "onsets_per_s": 4.08
+    },
+    {
+      "kind": "break",
+      "start": 51.0,
+      "end": 52.5,
+      "lufs": -19.5,
+      "sub_pct": 10.2,
+      "air_pct": 3.78,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 52.5,
+      "end": 95.98,
+      "lufs": -16.4,
+      "sub_pct": 7.7,
+      "air_pct": 3.37,
+      "onsets_per_s": 3.98
+    }
+  ],
+  "slug": "greytide-bootleg-jungle-a"
+}

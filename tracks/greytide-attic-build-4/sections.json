@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 89.69,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.5,
+      "lufs": -22.2,
+      "sub_pct": 4.0,
+      "air_pct": 0.94,
+      "onsets_per_s": 0.62
+    },
+    {
+      "kind": "body",
+      "start": 6.5,
+      "end": 87.0,
+      "lufs": -16.3,
+      "sub_pct": 3.1,
+      "air_pct": 2.03,
+      "onsets_per_s": 3.93
+    },
+    {
+      "kind": "outro",
+      "start": 87.0,
+      "end": 89.69,
+      "lufs": -19.6,
+      "sub_pct": 4.6,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.23
+    }
+  ],
+  "slug": "greytide-attic-build-4"
+}

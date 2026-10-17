@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 90.38,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 90.38,
+      "lufs": -16.4,
+      "sub_pct": 20.5,
+      "air_pct": 0.35,
+      "onsets_per_s": 3.13
+    }
+  ],
+  "slug": "greytide-couch-build-2"
+}

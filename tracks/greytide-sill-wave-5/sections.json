@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 89.69,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 89.69,
+      "lufs": -17.1,
+      "sub_pct": 6.9,
+      "air_pct": 1.29,
+      "onsets_per_s": 3.51
+    }
+  ],
+  "slug": "greytide-sill-wave-5"
+}

@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 92.42,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 44.5,
+      "lufs": -16.3,
+      "sub_pct": 12.7,
+      "air_pct": 1.12,
+      "onsets_per_s": 3.03
+    },
+    {
+      "kind": "break",
+      "start": 44.5,
+      "end": 49.5,
+      "lufs": -21.8,
+      "sub_pct": 2.5,
+      "air_pct": 0.85,
+      "onsets_per_s": 1.4
+    },
+    {
+      "kind": "build",
+      "start": 49.5,
+      "end": 54.0,
+      "lufs": -21.3,
+      "sub_pct": 0.2,
+      "air_pct": 0.91,
+      "onsets_per_s": 1.56
+    },
+    {
+      "kind": "drop",
+      "start": 54.0,
+      "end": 87.0,
+      "lufs": -15.5,
+      "sub_pct": 11.0,
+      "air_pct": 1.42,
+      "onsets_per_s": 3.06
+    },
+    {
+      "kind": "outro",
+      "start": 87.0,
+      "end": 92.42,
+      "lufs": -23.7,
+      "sub_pct": 4.3,
+      "air_pct": 0.03,
+      "onsets_per_s": 2.95
+    }
+  ],
+  "slug": "greytide-carseat-wave-3"
+}

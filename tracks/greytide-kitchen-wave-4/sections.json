@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 90.06,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 9.0,
+      "lufs": -18.0,
+      "sub_pct": 4.2,
+      "air_pct": 0.93,
+      "onsets_per_s": 4.11
+    },
+    {
+      "kind": "body",
+      "start": 9.0,
+      "end": 90.06,
+      "lufs": -16.3,
+      "sub_pct": 8.2,
+      "air_pct": 0.62,
+      "onsets_per_s": 3.33
+    }
+  ],
+  "slug": "greytide-kitchen-wave-4"
+}

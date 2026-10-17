@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 91.18,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.0,
+      "lufs": -20.1,
+      "sub_pct": 5.6,
+      "air_pct": 1.71,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "body",
+      "start": 6.0,
+      "end": 91.18,
+      "lufs": -16.3,
+      "sub_pct": 11.0,
+      "air_pct": 1.74,
+      "onsets_per_s": 4.52
+    }
+  ],
+  "slug": "greytide-sandpit-build-5"
+}

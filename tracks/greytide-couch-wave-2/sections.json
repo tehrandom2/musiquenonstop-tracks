@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 88.78,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 88.78,
+      "lufs": -16.4,
+      "sub_pct": 2.7,
+      "air_pct": 1.35,
+      "onsets_per_s": 3.11
+    }
+  ],
+  "slug": "greytide-couch-wave-2"
+}

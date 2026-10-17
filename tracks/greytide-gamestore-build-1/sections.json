@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 93.3,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 10.5,
+      "lufs": -18.4,
+      "sub_pct": 11.6,
+      "air_pct": 1.35,
+      "onsets_per_s": 2.76
+    },
+    {
+      "kind": "body",
+      "start": 10.5,
+      "end": 93.3,
+      "lufs": -16.2,
+      "sub_pct": 10.6,
+      "air_pct": 1.26,
+      "onsets_per_s": 2.44
+    }
+  ],
+  "slug": "greytide-gamestore-build-1"
+}

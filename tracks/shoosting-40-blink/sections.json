@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "duration": 178.42,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 13.5,
+      "lufs": -22.5,
+      "sub_pct": 81.3,
+      "air_pct": 3.37,
+      "onsets_per_s": 2.3
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 40.0,
+      "lufs": -15.9,
+      "sub_pct": 19.3,
+      "air_pct": 2.26,
+      "onsets_per_s": 3.96
+    },
+    {
+      "kind": "break",
+      "start": 40.0,
+      "end": 41.0,
+      "lufs": -20.4,
+      "sub_pct": 0.0,
+      "air_pct": 2.18,
+      "onsets_per_s": 5.0
+    },
+    {
+      "kind": "drop",
+      "start": 41.0,
+      "end": 52.5,
+      "lufs": -18.0,
+      "sub_pct": 64.0,
+      "air_pct": 4.35,
+      "onsets_per_s": 4.61
+    },
+    {
+      "kind": "break",
+      "start": 52.5,
+      "end": 54.0,
+      "lufs": -18.5,
+      "sub_pct": 9.7,
+      "air_pct": 12.67,
+      "onsets_per_s": 4.67
+    },
+    {
+      "kind": "drop",
+      "start": 54.0,
+      "end": 65.5,
+      "lufs": -16.5,
+      "sub_pct": 48.2,
+      "air_pct": 3.58,
+      "onsets_per_s": 4.7
+    },
+    {
+      "kind": "break",
+      "start": 65.5,
+      "end": 73.5,
+      "lufs": -20.0,
+      "sub_pct": 19.0,
+      "air_pct": 6.54,
+      "onsets_per_s": 5.0
+    },
+    {
+      "kind": "build",
+      "start": 73.5,
+      "end": 82.0,
+      "lufs": -19.6,
+      "sub_pct": 24.6,
+      "air_pct": 9.82,
+      "onsets_per_s": 4.59
+    },
+    {
+      "kind": "drop",
+      "start": 82.0,
+      "end": 106.5,
+      "lufs": -16.4,
+      "sub_pct": 54.7,
+      "air_pct": 4.69,
+      "onsets_per_s": 4.49
+    },
+    {
+      "kind": "break",
+      "start": 106.5,
+      "end": 109.5,
+      "lufs": -19.9,
+      "sub_pct": 0.0,
+      "air_pct": 3.4,
+      "onsets_per_s": 4.67
+    },
+    {
+      "kind": "drop",
+      "start": 109.5,
+      "end": 134.5,
+      "lufs": -16.2,
+      "sub_pct": 52.5,
+      "air_pct": 4.56,
+      "onsets_per_s": 4.52
+    },
+    {
+      "kind": "break",
+      "start": 134.5,
+      "end": 137.0,
+      "lufs": -18.0,
+      "sub_pct": 0.1,
+      "air_pct": 4.47,
+      "onsets_per_s": 4.8
+    },
+    {
+      "kind": "drop",
+      "start": 137.0,
+      "end": 166.0,
+      "lufs": -16.2,
+      "sub_pct": 57.4,
+      "air_pct": 2.89,
+      "onsets_per_s": 5.62
+    },
+    {
+      "kind": "outro",
+      "start": 166.0,
+      "end": 178.42,
+      "lufs": -20.2,
+      "sub_pct": 19.6,
+      "air_pct": 0.95,
+      "onsets_per_s": 1.85
+    }
+  ],
+  "slug": "shoosting-40-blink"
+}

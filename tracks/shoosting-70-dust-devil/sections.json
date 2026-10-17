@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "duration": 178.74,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 10.5,
+      "lufs": -25.1,
+      "sub_pct": 0.5,
+      "air_pct": 0.05,
+      "onsets_per_s": 2.29
+    },
+    {
+      "kind": "build",
+      "start": 10.5,
+      "end": 30.5,
+      "lufs": -22.7,
+      "sub_pct": 1.0,
+      "air_pct": 0.54,
+      "onsets_per_s": 2.3
+    },
+    {
+      "kind": "drop",
+      "start": 30.5,
+      "end": 69.5,
+      "lufs": -18.1,
+      "sub_pct": 0.3,
+      "air_pct": 0.3,
+      "onsets_per_s": 3.72
+    },
+    {
+      "kind": "break",
+      "start": 69.5,
+      "end": 77.0,
+      "lufs": -22.4,
+      "sub_pct": 0.1,
+      "air_pct": 0.02,
+      "onsets_per_s": 4.4
+    },
+    {
+      "kind": "drop",
+      "start": 77.0,
+      "end": 101.0,
+      "lufs": -16.9,
+      "sub_pct": 0.3,
+      "air_pct": 0.18,
+      "onsets_per_s": 3.79
+    },
+    {
+      "kind": "break",
+      "start": 101.0,
+      "end": 106.5,
+      "lufs": -22.0,
+      "sub_pct": 0.1,
+      "air_pct": 0.02,
+      "onsets_per_s": 3.27
+    },
+    {
+      "kind": "drop",
+      "start": 106.5,
+      "end": 142.0,
+      "lufs": -17.8,
+      "sub_pct": 0.3,
+      "air_pct": 0.16,
+      "onsets_per_s": 3.55
+    },
+    {
+      "kind": "break",
+      "start": 142.0,
+      "end": 144.5,
+      "lufs": -21.1,
+      "sub_pct": 0.1,
+      "air_pct": 0.02,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 144.5,
+      "end": 166.5,
+      "lufs": -18.9,
+      "sub_pct": 0.3,
+      "air_pct": 0.28,
+      "onsets_per_s": 3.86
+    },
+    {
+      "kind": "outro",
+      "start": 166.5,
+      "end": 178.74,
+      "lufs": -23.9,
+      "sub_pct": 0.1,
+      "air_pct": 0.12,
+      "onsets_per_s": 2.61
+    }
+  ],
+  "slug": "shoosting-70-dust-devil"
+}

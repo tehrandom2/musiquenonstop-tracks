@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 93.93,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 59.5,
+      "lufs": -16.5,
+      "sub_pct": 7.4,
+      "air_pct": 1.53,
+      "onsets_per_s": 3.7
+    },
+    {
+      "kind": "break",
+      "start": 59.5,
+      "end": 80.5,
+      "lufs": -26.6,
+      "sub_pct": 0.2,
+      "air_pct": 3.02,
+      "onsets_per_s": 2.57
+    },
+    {
+      "kind": "drop",
+      "start": 80.5,
+      "end": 93.93,
+      "lufs": -14.1,
+      "sub_pct": 6.8,
+      "air_pct": 2.68,
+      "onsets_per_s": 3.8
+    }
+  ],
+  "slug": "greytide-workbench-wave-1"
+}

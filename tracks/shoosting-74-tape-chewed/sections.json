@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 177.31,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 92.0,
+      "lufs": -15.3,
+      "sub_pct": 2.3,
+      "air_pct": 1.53,
+      "onsets_per_s": 3.71
+    },
+    {
+      "kind": "break",
+      "start": 92.0,
+      "end": 98.0,
+      "lufs": -19.1,
+      "sub_pct": 3.1,
+      "air_pct": 1.22,
+      "onsets_per_s": 4.83
+    },
+    {
+      "kind": "drop",
+      "start": 98.0,
+      "end": 147.0,
+      "lufs": -17.2,
+      "sub_pct": 4.5,
+      "air_pct": 2.08,
+      "onsets_per_s": 4.35
+    },
+    {
+      "kind": "outro",
+      "start": 147.0,
+      "end": 177.31,
+      "lufs": -20.7,
+      "sub_pct": 0.6,
+      "air_pct": 4.6,
+      "onsets_per_s": 3.63
+    }
+  ],
+  "slug": "shoosting-74-tape-chewed"
+}

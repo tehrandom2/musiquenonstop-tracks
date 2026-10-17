@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "duration": 174.7,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 8.5,
+      "lufs": -22.0,
+      "sub_pct": 0.2,
+      "air_pct": 4.31,
+      "onsets_per_s": 6.59
+    },
+    {
+      "kind": "drop",
+      "start": 8.5,
+      "end": 24.0,
+      "lufs": -16.6,
+      "sub_pct": 54.1,
+      "air_pct": 1.42,
+      "onsets_per_s": 6.32
+    },
+    {
+      "kind": "break",
+      "start": 24.0,
+      "end": 26.0,
+      "lufs": -25.2,
+      "sub_pct": 0.1,
+      "air_pct": 3.43,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 26.0,
+      "end": 41.5,
+      "lufs": -16.7,
+      "sub_pct": 52.9,
+      "air_pct": 1.53,
+      "onsets_per_s": 6.45
+    },
+    {
+      "kind": "break",
+      "start": 41.5,
+      "end": 43.5,
+      "lufs": -19.5,
+      "sub_pct": 46.5,
+      "air_pct": 0.1,
+      "onsets_per_s": 3.0
+    },
+    {
+      "kind": "drop",
+      "start": 43.5,
+      "end": 59.0,
+      "lufs": -15.5,
+      "sub_pct": 48.2,
+      "air_pct": 3.64,
+      "onsets_per_s": 6.0
+    },
+    {
+      "kind": "break",
+      "start": 59.0,
+      "end": 61.0,
+      "lufs": -19.4,
+      "sub_pct": 0.0,
+      "air_pct": 45.09,
+      "onsets_per_s": 5.5
+    },
+    {
+      "kind": "drop",
+      "start": 61.0,
+      "end": 76.5,
+      "lufs": -14.7,
+      "sub_pct": 45.0,
+      "air_pct": 3.89,
+      "onsets_per_s": 5.42
+    },
+    {
+      "kind": "break",
+      "start": 76.5,
+      "end": 82.5,
+      "lufs": -19.9,
+      "sub_pct": 55.3,
+      "air_pct": 4.64,
+      "onsets_per_s": 2.83
+    },
+    {
+      "kind": "build",
+      "start": 82.5,
+      "end": 96.0,
+      "lufs": -21.4,
+      "sub_pct": 74.2,
+      "air_pct": 0.03,
+      "onsets_per_s": 2.07
+    },
+    {
+      "kind": "drop",
+      "start": 96.0,
+      "end": 129.0,
+      "lufs": -15.1,
+      "sub_pct": 43.0,
+      "air_pct": 1.52,
+      "onsets_per_s": 4.36
+    },
+    {
+      "kind": "break",
+      "start": 129.0,
+      "end": 131.0,
+      "lufs": -19.6,
+      "sub_pct": 0.1,
+      "air_pct": 4.88,
+      "onsets_per_s": 5.0
+    },
+    {
+      "kind": "drop",
+      "start": 131.0,
+      "end": 167.0,
+      "lufs": -14.7,
+      "sub_pct": 46.1,
+      "air_pct": 2.0,
+      "onsets_per_s": 4.69
+    },
+    {
+      "kind": "outro",
+      "start": 167.0,
+      "end": 174.7,
+      "lufs": -29.3,
+      "sub_pct": 82.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.47
+    }
+  ],
+  "slug": "shoosting-58-black-lacquer"
+}

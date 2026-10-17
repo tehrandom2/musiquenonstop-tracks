@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 86.5,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.5,
+      "lufs": -22.1,
+      "sub_pct": 1.4,
+      "air_pct": 0.58,
+      "onsets_per_s": 3.11
+    },
+    {
+      "kind": "build",
+      "start": 4.5,
+      "end": 19.0,
+      "lufs": -20.1,
+      "sub_pct": 6.7,
+      "air_pct": 0.27,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 19.0,
+      "end": 86.5,
+      "lufs": -16.0,
+      "sub_pct": 4.3,
+      "air_pct": 0.13,
+      "onsets_per_s": 2.15
+    }
+  ],
+  "slug": "greytide-sill-build-3"
+}

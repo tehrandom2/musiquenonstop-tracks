@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 172.51,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 172.51,
+      "lufs": -16.9,
+      "sub_pct": 33.9,
+      "air_pct": 3.43,
+      "onsets_per_s": 4.63
+    }
+  ],
+  "slug": "shoosting-56-plank-walk"
+}

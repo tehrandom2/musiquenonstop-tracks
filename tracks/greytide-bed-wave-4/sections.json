@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 92.22,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 92.22,
+      "lufs": -16.5,
+      "sub_pct": 5.4,
+      "air_pct": 0.27,
+      "onsets_per_s": 3.39
+    }
+  ],
+  "slug": "greytide-bed-wave-4"
+}

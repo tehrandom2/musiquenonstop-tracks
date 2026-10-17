@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 117.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 21.0,
+      "lufs": -16.1,
+      "sub_pct": 0.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.81
+    },
+    {
+      "kind": "break",
+      "start": 21.0,
+      "end": 57.0,
+      "lufs": -19.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.78
+    },
+    {
+      "kind": "drop",
+      "start": 57.0,
+      "end": 66.5,
+      "lufs": -18.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.95
+    },
+    {
+      "kind": "break",
+      "start": 66.5,
+      "end": 68.5,
+      "lufs": -29.5,
+      "sub_pct": 0.0,
+      "air_pct": 0.01,
+      "onsets_per_s": 1.5
+    },
+    {
+      "kind": "drop",
+      "start": 68.5,
+      "end": 83.0,
+      "lufs": -18.7,
+      "sub_pct": 0.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.9
+    },
+    {
+      "kind": "outro",
+      "start": 83.0,
+      "end": 117.0,
+      "lufs": -20.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.53
+    }
+  ],
+  "slug": "a-whistle-on-the-moon"
+}

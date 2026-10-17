@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 91.78,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.5,
+      "lufs": -19.4,
+      "sub_pct": 8.9,
+      "air_pct": 1.49,
+      "onsets_per_s": 3.56
+    },
+    {
+      "kind": "build",
+      "start": 4.5,
+      "end": 29.0,
+      "lufs": -23.7,
+      "sub_pct": 1.5,
+      "air_pct": 9.51,
+      "onsets_per_s": 3.18
+    },
+    {
+      "kind": "drop",
+      "start": 29.0,
+      "end": 91.78,
+      "lufs": -15.8,
+      "sub_pct": 4.9,
+      "air_pct": 0.65,
+      "onsets_per_s": 3.68
+    }
+  ],
+  "slug": "greytide-picnic-build-4"
+}

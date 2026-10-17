@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 161.82,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 15.5,
+      "lufs": -17.6,
+      "sub_pct": 25.4,
+      "air_pct": 0.23,
+      "onsets_per_s": 3.23
+    },
+    {
+      "kind": "build",
+      "start": 15.5,
+      "end": 22.5,
+      "lufs": -16.8,
+      "sub_pct": 29.3,
+      "air_pct": 0.94,
+      "onsets_per_s": 3.29
+    },
+    {
+      "kind": "drop",
+      "start": 22.5,
+      "end": 60.5,
+      "lufs": -14.5,
+      "sub_pct": 35.6,
+      "air_pct": 2.1,
+      "onsets_per_s": 5.47
+    },
+    {
+      "kind": "break",
+      "start": 60.5,
+      "end": 70.5,
+      "lufs": -14.9,
+      "sub_pct": 26.7,
+      "air_pct": 1.56,
+      "onsets_per_s": 8.3
+    },
+    {
+      "kind": "drop",
+      "start": 70.5,
+      "end": 109.5,
+      "lufs": -14.6,
+      "sub_pct": 50.5,
+      "air_pct": 0.87,
+      "onsets_per_s": 4.1
+    },
+    {
+      "kind": "break",
+      "start": 109.5,
+      "end": 117.5,
+      "lufs": -19.7,
+      "sub_pct": 57.9,
+      "air_pct": 0.01,
+      "onsets_per_s": 2.12
+    },
+    {
+      "kind": "drop",
+      "start": 117.5,
+      "end": 161.82,
+      "lufs": -13.8,
+      "sub_pct": 54.1,
+      "air_pct": 0.78,
+      "onsets_per_s": 3.75
+    }
+  ],
+  "slug": "dark-neurofunk-slipstream"
+}

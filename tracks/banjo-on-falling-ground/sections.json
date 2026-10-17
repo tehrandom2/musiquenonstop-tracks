@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 115.43,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 115.43,
+      "lufs": -18.5,
+      "sub_pct": 0.2,
+      "air_pct": 0.08,
+      "onsets_per_s": 2.23
+    }
+  ],
+  "slug": "banjo-on-falling-ground"
+}

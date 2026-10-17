@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 90.18,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 90.18,
+      "lufs": -16.4,
+      "sub_pct": 4.7,
+      "air_pct": 1.14,
+      "onsets_per_s": 2.86
+    }
+  ],
+  "slug": "greytide-sill-wave-3"
+}

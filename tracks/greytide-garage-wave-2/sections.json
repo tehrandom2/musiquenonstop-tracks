@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 92.26,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 90.0,
+      "lufs": -16.4,
+      "sub_pct": 8.2,
+      "air_pct": 0.8,
+      "onsets_per_s": 2.94
+    },
+    {
+      "kind": "outro",
+      "start": 90.0,
+      "end": 92.26,
+      "lufs": -30.6,
+      "sub_pct": 4.1,
+      "air_pct": 19.79,
+      "onsets_per_s": 0.44
+    }
+  ],
+  "slug": "greytide-garage-wave-2"
+}

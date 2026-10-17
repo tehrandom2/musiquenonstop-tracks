@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 174.5,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 72.0,
+      "lufs": -15.2,
+      "sub_pct": 32.4,
+      "air_pct": 2.26,
+      "onsets_per_s": 5.92
+    },
+    {
+      "kind": "break",
+      "start": 72.0,
+      "end": 74.5,
+      "lufs": -17.4,
+      "sub_pct": 0.6,
+      "air_pct": 3.29,
+      "onsets_per_s": 7.2
+    },
+    {
+      "kind": "drop",
+      "start": 74.5,
+      "end": 174.5,
+      "lufs": -14.4,
+      "sub_pct": 29.0,
+      "air_pct": 4.38,
+      "onsets_per_s": 6.88
+    }
+  ],
+  "slug": "shoosting-60-graft"
+}

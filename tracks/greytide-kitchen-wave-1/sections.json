@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 94.31,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.0,
+      "lufs": -21.4,
+      "sub_pct": 6.4,
+      "air_pct": 1.3,
+      "onsets_per_s": 2.6
+    },
+    {
+      "kind": "build",
+      "start": 5.0,
+      "end": 10.5,
+      "lufs": -21.2,
+      "sub_pct": 6.6,
+      "air_pct": 1.09,
+      "onsets_per_s": 2.18
+    },
+    {
+      "kind": "drop",
+      "start": 10.5,
+      "end": 51.5,
+      "lufs": -15.8,
+      "sub_pct": 4.7,
+      "air_pct": 2.39,
+      "onsets_per_s": 2.9
+    },
+    {
+      "kind": "break",
+      "start": 51.5,
+      "end": 57.5,
+      "lufs": -19.6,
+      "sub_pct": 5.3,
+      "air_pct": 0.28,
+      "onsets_per_s": 1.83
+    },
+    {
+      "kind": "drop",
+      "start": 57.5,
+      "end": 89.5,
+      "lufs": -15.9,
+      "sub_pct": 4.8,
+      "air_pct": 2.34,
+      "onsets_per_s": 2.88
+    },
+    {
+      "kind": "outro",
+      "start": 89.5,
+      "end": 94.31,
+      "lufs": -19.4,
+      "sub_pct": 5.0,
+      "air_pct": 0.29,
+      "onsets_per_s": 1.66
+    }
+  ],
+  "slug": "greytide-kitchen-wave-1"
+}

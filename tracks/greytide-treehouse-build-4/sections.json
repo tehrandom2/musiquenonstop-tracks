@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 97.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 93.0,
+      "lufs": -16.4,
+      "sub_pct": 30.7,
+      "air_pct": 0.69,
+      "onsets_per_s": 4.09
+    },
+    {
+      "kind": "outro",
+      "start": 93.0,
+      "end": 97.0,
+      "lufs": -28.0,
+      "sub_pct": 8.3,
+      "air_pct": 0.41,
+      "onsets_per_s": 1.75
+    }
+  ],
+  "slug": "greytide-treehouse-build-4"
+}

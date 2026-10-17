@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 174.05,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.5,
+      "lufs": -24.1,
+      "sub_pct": 65.0,
+      "air_pct": 0.0,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "build",
+      "start": 5.5,
+      "end": 13.5,
+      "lufs": -26.3,
+      "sub_pct": 0.1,
+      "air_pct": 0.01,
+      "onsets_per_s": 2.12
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 83.0,
+      "lufs": -16.5,
+      "sub_pct": 36.9,
+      "air_pct": 1.04,
+      "onsets_per_s": 3.81
+    },
+    {
+      "kind": "break",
+      "start": 83.0,
+      "end": 96.0,
+      "lufs": -21.7,
+      "sub_pct": 5.2,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.77
+    },
+    {
+      "kind": "drop",
+      "start": 96.0,
+      "end": 164.5,
+      "lufs": -14.8,
+      "sub_pct": 34.5,
+      "air_pct": 2.74,
+      "onsets_per_s": 4.53
+    },
+    {
+      "kind": "outro",
+      "start": 164.5,
+      "end": 174.05,
+      "lufs": -31.9,
+      "sub_pct": 1.3,
+      "air_pct": 1.31,
+      "onsets_per_s": 1.36
+    }
+  ],
+  "slug": "shoosting-50-brandee"
+}

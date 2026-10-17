@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 143.35,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 143.35,
+      "lufs": -16.4,
+      "sub_pct": 1.7,
+      "air_pct": 2.11,
+      "onsets_per_s": 3.43
+    }
+  ],
+  "slug": "downriver-single-note"
+}

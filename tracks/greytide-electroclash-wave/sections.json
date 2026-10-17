@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 94.7,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 83.5,
+      "lufs": -16.9,
+      "sub_pct": 18.6,
+      "air_pct": 5.38,
+      "onsets_per_s": 4.19
+    },
+    {
+      "kind": "outro",
+      "start": 83.5,
+      "end": 94.7,
+      "lufs": -20.2,
+      "sub_pct": 0.0,
+      "air_pct": 6.27,
+      "onsets_per_s": 2.14
+    }
+  ],
+  "slug": "greytide-electroclash-wave"
+}

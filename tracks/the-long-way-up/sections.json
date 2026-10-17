@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 174.61,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.0,
+      "lufs": -23.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.02,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "build",
+      "start": 4.0,
+      "end": 28.5,
+      "lufs": -19.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.05,
+      "onsets_per_s": 3.27
+    },
+    {
+      "kind": "drop",
+      "start": 28.5,
+      "end": 138.0,
+      "lufs": -15.1,
+      "sub_pct": 1.5,
+      "air_pct": 0.3,
+      "onsets_per_s": 2.77
+    },
+    {
+      "kind": "outro",
+      "start": 138.0,
+      "end": 174.61,
+      "lufs": -20.5,
+      "sub_pct": 1.1,
+      "air_pct": 0.23,
+      "onsets_per_s": 1.78
+    }
+  ],
+  "slug": "the-long-way-up"
+}

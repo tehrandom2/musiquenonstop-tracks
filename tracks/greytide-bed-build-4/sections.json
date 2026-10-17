@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 93.13,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 13.5,
+      "lufs": -24.7,
+      "sub_pct": 0.0,
+      "air_pct": 2.13,
+      "onsets_per_s": 1.33
+    },
+    {
+      "kind": "drop",
+      "start": 13.5,
+      "end": 82.5,
+      "lufs": -15.9,
+      "sub_pct": 10.7,
+      "air_pct": 0.87,
+      "onsets_per_s": 2.12
+    },
+    {
+      "kind": "outro",
+      "start": 82.5,
+      "end": 93.13,
+      "lufs": -27.5,
+      "sub_pct": 0.0,
+      "air_pct": 4.91,
+      "onsets_per_s": 1.32
+    }
+  ],
+  "slug": "greytide-bed-build-4"
+}

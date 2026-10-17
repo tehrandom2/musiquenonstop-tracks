@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 194.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 2.0,
+      "lufs": -24.2,
+      "sub_pct": 32.2,
+      "air_pct": 9.9,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "build",
+      "start": 2.0,
+      "end": 71.0,
+      "lufs": -19.1,
+      "sub_pct": 15.6,
+      "air_pct": 4.09,
+      "onsets_per_s": 6.06
+    },
+    {
+      "kind": "drop",
+      "start": 71.0,
+      "end": 117.0,
+      "lufs": -16.0,
+      "sub_pct": 50.3,
+      "air_pct": 1.97,
+      "onsets_per_s": 4.7
+    },
+    {
+      "kind": "break",
+      "start": 117.0,
+      "end": 132.5,
+      "lufs": -20.5,
+      "sub_pct": 4.1,
+      "air_pct": 5.37,
+      "onsets_per_s": 1.68
+    },
+    {
+      "kind": "build",
+      "start": 132.5,
+      "end": 167.0,
+      "lufs": -18.1,
+      "sub_pct": 14.5,
+      "air_pct": 4.16,
+      "onsets_per_s": 5.51
+    },
+    {
+      "kind": "drop",
+      "start": 167.0,
+      "end": 190.5,
+      "lufs": -15.9,
+      "sub_pct": 49.9,
+      "air_pct": 1.88,
+      "onsets_per_s": 4.64
+    },
+    {
+      "kind": "outro",
+      "start": 190.5,
+      "end": 194.0,
+      "lufs": -22.5,
+      "sub_pct": 32.8,
+      "air_pct": 10.36,
+      "onsets_per_s": 2.57
+    }
+  ],
+  "slug": "euphoric-liquid-redline-little-pretty-dont"
+}

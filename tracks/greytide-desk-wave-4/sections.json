@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 89.74,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 17.0,
+      "lufs": -16.2,
+      "sub_pct": 12.1,
+      "air_pct": 1.94,
+      "onsets_per_s": 3.29
+    },
+    {
+      "kind": "break",
+      "start": 17.0,
+      "end": 57.0,
+      "lufs": -18.1,
+      "sub_pct": 23.9,
+      "air_pct": 5.17,
+      "onsets_per_s": 3.33
+    },
+    {
+      "kind": "drop",
+      "start": 57.0,
+      "end": 89.74,
+      "lufs": -15.0,
+      "sub_pct": 10.0,
+      "air_pct": 1.57,
+      "onsets_per_s": 3.3
+    }
+  ],
+  "slug": "greytide-desk-wave-4"
+}

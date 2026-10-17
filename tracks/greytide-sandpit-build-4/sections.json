@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 92.53,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.5,
+      "lufs": -20.3,
+      "sub_pct": 6.0,
+      "air_pct": 2.06,
+      "onsets_per_s": 2.89
+    },
+    {
+      "kind": "build",
+      "start": 4.5,
+      "end": 12.0,
+      "lufs": -22.4,
+      "sub_pct": 0.4,
+      "air_pct": 0.03,
+      "onsets_per_s": 2.13
+    },
+    {
+      "kind": "drop",
+      "start": 12.0,
+      "end": 53.0,
+      "lufs": -16.1,
+      "sub_pct": 16.2,
+      "air_pct": 2.09,
+      "onsets_per_s": 4.59
+    },
+    {
+      "kind": "break",
+      "start": 53.0,
+      "end": 54.5,
+      "lufs": -25.2,
+      "sub_pct": 49.9,
+      "air_pct": 0.0,
+      "onsets_per_s": 1.33
+    },
+    {
+      "kind": "drop",
+      "start": 54.5,
+      "end": 92.53,
+      "lufs": -16.0,
+      "sub_pct": 16.7,
+      "air_pct": 2.24,
+      "onsets_per_s": 4.55
+    }
+  ],
+  "slug": "greytide-sandpit-build-4"
+}

@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 95.94,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 95.94,
+      "lufs": -16.4,
+      "sub_pct": 8.5,
+      "air_pct": 0.75,
+      "onsets_per_s": 2.35
+    }
+  ],
+  "slug": "greenhouse-thunderstorm-after-hours"
+}

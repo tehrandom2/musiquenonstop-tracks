@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 90.74,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 7.0,
+      "lufs": -21.1,
+      "sub_pct": 12.7,
+      "air_pct": 3.65,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "build",
+      "start": 7.0,
+      "end": 11.0,
+      "lufs": -21.4,
+      "sub_pct": 12.0,
+      "air_pct": 4.5,
+      "onsets_per_s": 2.25
+    },
+    {
+      "kind": "drop",
+      "start": 11.0,
+      "end": 56.5,
+      "lufs": -15.7,
+      "sub_pct": 16.0,
+      "air_pct": 1.25,
+      "onsets_per_s": 2.2
+    },
+    {
+      "kind": "break",
+      "start": 56.5,
+      "end": 66.5,
+      "lufs": -20.9,
+      "sub_pct": 22.6,
+      "air_pct": 0.01,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 66.5,
+      "end": 90.74,
+      "lufs": -15.5,
+      "sub_pct": 17.3,
+      "air_pct": 1.53,
+      "onsets_per_s": 2.27
+    }
+  ],
+  "slug": "greytide-desk-build-5"
+}

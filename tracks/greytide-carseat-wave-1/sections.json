@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 87.49,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 68.0,
+      "lufs": -16.0,
+      "sub_pct": 30.2,
+      "air_pct": 1.02,
+      "onsets_per_s": 2.76
+    },
+    {
+      "kind": "outro",
+      "start": 68.0,
+      "end": 87.49,
+      "lufs": -19.4,
+      "sub_pct": 29.9,
+      "air_pct": 1.19,
+      "onsets_per_s": 1.23
+    }
+  ],
+  "slug": "greytide-carseat-wave-1"
+}

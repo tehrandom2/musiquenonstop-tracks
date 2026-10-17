@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 93.97,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 10.5,
+      "lufs": -18.4,
+      "sub_pct": 17.3,
+      "air_pct": 1.29,
+      "onsets_per_s": 2.57
+    },
+    {
+      "kind": "drop",
+      "start": 10.5,
+      "end": 80.0,
+      "lufs": -16.2,
+      "sub_pct": 17.2,
+      "air_pct": 1.49,
+      "onsets_per_s": 2.62
+    },
+    {
+      "kind": "break",
+      "start": 80.0,
+      "end": 83.0,
+      "lufs": -17.6,
+      "sub_pct": 17.0,
+      "air_pct": 3.0,
+      "onsets_per_s": 2.33
+    },
+    {
+      "kind": "drop",
+      "start": 83.0,
+      "end": 93.97,
+      "lufs": -16.3,
+      "sub_pct": 19.7,
+      "air_pct": 1.72,
+      "onsets_per_s": 2.64
+    }
+  ],
+  "slug": "greytide-treehouse-wave-4"
+}

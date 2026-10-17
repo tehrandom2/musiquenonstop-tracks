@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 95.62,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.0,
+      "lufs": -18.7,
+      "sub_pct": 4.4,
+      "air_pct": 0.26,
+      "onsets_per_s": 3.27
+    },
+    {
+      "kind": "body",
+      "start": 11.0,
+      "end": 95.62,
+      "lufs": -16.2,
+      "sub_pct": 8.9,
+      "air_pct": 1.15,
+      "onsets_per_s": 2.56
+    }
+  ],
+  "slug": "greytide-picnic-build-1"
+}

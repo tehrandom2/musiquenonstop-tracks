@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "duration": 91.59,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 12.5,
+      "lufs": -20.4,
+      "sub_pct": 7.8,
+      "air_pct": 5.09,
+      "onsets_per_s": 2.96
+    },
+    {
+      "kind": "body",
+      "start": 12.5,
+      "end": 91.59,
+      "lufs": -16.0,
+      "sub_pct": 15.2,
+      "air_pct": 2.29,
+      "onsets_per_s": 3.89
+    }
+  ],
+  "slug": "greytide-couch-build-4"
+}

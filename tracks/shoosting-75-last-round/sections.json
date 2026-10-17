@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "duration": 179.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 7.5,
+      "lufs": -23.2,
+      "sub_pct": 0.0,
+      "air_pct": 0.75,
+      "onsets_per_s": 2.53
+    },
+    {
+      "kind": "build",
+      "start": 7.5,
+      "end": 45.5,
+      "lufs": -21.6,
+      "sub_pct": 20.2,
+      "air_pct": 1.01,
+      "onsets_per_s": 1.89
+    },
+    {
+      "kind": "drop",
+      "start": 45.5,
+      "end": 66.0,
+      "lufs": -17.5,
+      "sub_pct": 21.8,
+      "air_pct": 2.79,
+      "onsets_per_s": 2.98
+    },
+    {
+      "kind": "break",
+      "start": 66.0,
+      "end": 69.0,
+      "lufs": -19.5,
+      "sub_pct": 0.0,
+      "air_pct": 3.3,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "drop",
+      "start": 69.0,
+      "end": 123.5,
+      "lufs": -15.4,
+      "sub_pct": 27.3,
+      "air_pct": 4.25,
+      "onsets_per_s": 2.73
+    },
+    {
+      "kind": "break",
+      "start": 123.5,
+      "end": 127.0,
+      "lufs": -23.2,
+      "sub_pct": 2.9,
+      "air_pct": 6.66,
+      "onsets_per_s": 3.71
+    },
+    {
+      "kind": "build",
+      "start": 127.0,
+      "end": 134.0,
+      "lufs": -20.2,
+      "sub_pct": 0.0,
+      "air_pct": 5.43,
+      "onsets_per_s": 2.86
+    },
+    {
+      "kind": "drop",
+      "start": 134.0,
+      "end": 167.0,
+      "lufs": -14.9,
+      "sub_pct": 25.1,
+      "air_pct": 5.29,
+      "onsets_per_s": 2.64
+    },
+    {
+      "kind": "outro",
+      "start": 167.0,
+      "end": 179.98,
+      "lufs": -23.7,
+      "sub_pct": 0.0,
+      "air_pct": 2.74,
+      "onsets_per_s": 0.69
+    }
+  ],
+  "slug": "shoosting-75-last-round"
+}

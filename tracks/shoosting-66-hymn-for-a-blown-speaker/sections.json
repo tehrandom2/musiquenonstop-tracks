@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "duration": 180.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.0,
+      "lufs": -31.9,
+      "sub_pct": 0.1,
+      "air_pct": 0.28,
+      "onsets_per_s": 2.2
+    },
+    {
+      "kind": "build",
+      "start": 5.0,
+      "end": 35.5,
+      "lufs": -22.0,
+      "sub_pct": 33.3,
+      "air_pct": 0.65,
+      "onsets_per_s": 1.84
+    },
+    {
+      "kind": "drop",
+      "start": 35.5,
+      "end": 104.0,
+      "lufs": -15.9,
+      "sub_pct": 48.4,
+      "air_pct": 1.44,
+      "onsets_per_s": 3.33
+    },
+    {
+      "kind": "break",
+      "start": 104.0,
+      "end": 108.5,
+      "lufs": -21.8,
+      "sub_pct": 0.6,
+      "air_pct": 1.27,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "build",
+      "start": 108.5,
+      "end": 117.0,
+      "lufs": -20.6,
+      "sub_pct": 0.1,
+      "air_pct": 0.8,
+      "onsets_per_s": 1.88
+    },
+    {
+      "kind": "drop",
+      "start": 117.0,
+      "end": 135.5,
+      "lufs": -15.8,
+      "sub_pct": 58.5,
+      "air_pct": 0.22,
+      "onsets_per_s": 2.97
+    },
+    {
+      "kind": "break",
+      "start": 135.5,
+      "end": 144.5,
+      "lufs": -17.8,
+      "sub_pct": 0.0,
+      "air_pct": 0.02,
+      "onsets_per_s": 2.33
+    },
+    {
+      "kind": "drop",
+      "start": 144.5,
+      "end": 175.0,
+      "lufs": -14.4,
+      "sub_pct": 33.1,
+      "air_pct": 1.38,
+      "onsets_per_s": 5.38
+    },
+    {
+      "kind": "outro",
+      "start": 175.0,
+      "end": 180.0,
+      "lufs": -24.1,
+      "sub_pct": 49.1,
+      "air_pct": 0.0,
+      "onsets_per_s": 3.6
+    }
+  ],
+  "slug": "shoosting-66-hymn-for-a-blown-speaker"
+}

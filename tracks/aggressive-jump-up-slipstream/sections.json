@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "duration": 111.06,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.0,
+      "lufs": -16.3,
+      "sub_pct": 27.0,
+      "air_pct": 2.2,
+      "onsets_per_s": 4.27
+    },
+    {
+      "kind": "drop",
+      "start": 11.0,
+      "end": 25.0,
+      "lufs": -14.8,
+      "sub_pct": 32.2,
+      "air_pct": 2.31,
+      "onsets_per_s": 4.86
+    },
+    {
+      "kind": "break",
+      "start": 25.0,
+      "end": 28.0,
+      "lufs": -25.5,
+      "sub_pct": 66.7,
+      "air_pct": 0.19,
+      "onsets_per_s": 5.33
+    },
+    {
+      "kind": "build",
+      "start": 28.0,
+      "end": 34.5,
+      "lufs": -19.6,
+      "sub_pct": 0.0,
+      "air_pct": 3.14,
+      "onsets_per_s": 6.0
+    },
+    {
+      "kind": "drop",
+      "start": 34.5,
+      "end": 56.5,
+      "lufs": -13.9,
+      "sub_pct": 38.3,
+      "air_pct": 3.11,
+      "onsets_per_s": 5.27
+    },
+    {
+      "kind": "break",
+      "start": 56.5,
+      "end": 63.5,
+      "lufs": -17.2,
+      "sub_pct": 52.8,
+      "air_pct": 1.42,
+      "onsets_per_s": 2.86
+    },
+    {
+      "kind": "drop",
+      "start": 63.5,
+      "end": 93.0,
+      "lufs": -14.2,
+      "sub_pct": 30.7,
+      "air_pct": 1.77,
+      "onsets_per_s": 5.08
+    },
+    {
+      "kind": "break",
+      "start": 93.0,
+      "end": 96.0,
+      "lufs": -17.5,
+      "sub_pct": 3.8,
+      "air_pct": 11.49,
+      "onsets_per_s": 7.0
+    },
+    {
+      "kind": "drop",
+      "start": 96.0,
+      "end": 111.06,
+      "lufs": -13.0,
+      "sub_pct": 45.2,
+      "air_pct": 3.75,
+      "onsets_per_s": 5.25
+    }
+  ],
+  "slug": "aggressive-jump-up-slipstream"
+}

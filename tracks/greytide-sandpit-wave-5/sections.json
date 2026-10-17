@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 92.48,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 92.48,
+      "lufs": -16.4,
+      "sub_pct": 19.4,
+      "air_pct": 0.81,
+      "onsets_per_s": 3.69
+    }
+  ],
+  "slug": "greytide-sandpit-wave-5"
+}

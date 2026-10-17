@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 176.71,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 7.5,
+      "lufs": -25.0,
+      "sub_pct": 50.3,
+      "air_pct": 3.99,
+      "onsets_per_s": 1.33
+    },
+    {
+      "kind": "build",
+      "start": 7.5,
+      "end": 56.5,
+      "lufs": -17.6,
+      "sub_pct": 39.7,
+      "air_pct": 1.94,
+      "onsets_per_s": 3.16
+    },
+    {
+      "kind": "drop",
+      "start": 56.5,
+      "end": 85.0,
+      "lufs": -15.4,
+      "sub_pct": 50.8,
+      "air_pct": 1.73,
+      "onsets_per_s": 4.25
+    },
+    {
+      "kind": "break",
+      "start": 85.0,
+      "end": 89.0,
+      "lufs": -19.3,
+      "sub_pct": 21.2,
+      "air_pct": 4.0,
+      "onsets_per_s": 3.0
+    },
+    {
+      "kind": "drop",
+      "start": 89.0,
+      "end": 129.0,
+      "lufs": -13.9,
+      "sub_pct": 46.2,
+      "air_pct": 1.87,
+      "onsets_per_s": 4.47
+    },
+    {
+      "kind": "break",
+      "start": 129.0,
+      "end": 132.0,
+      "lufs": -18.0,
+      "sub_pct": 42.5,
+      "air_pct": 1.56,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 132.0,
+      "end": 176.71,
+      "lufs": -14.4,
+      "sub_pct": 52.6,
+      "air_pct": 2.09,
+      "onsets_per_s": 4.63
+    }
+  ],
+  "slug": "shoosting-04-piston-march"
+}

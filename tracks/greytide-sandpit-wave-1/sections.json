@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 92.18,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 12.0,
+      "lufs": -17.7,
+      "sub_pct": 11.7,
+      "air_pct": 0.59,
+      "onsets_per_s": 4.08
+    },
+    {
+      "kind": "drop",
+      "start": 12.0,
+      "end": 60.5,
+      "lufs": -15.8,
+      "sub_pct": 13.3,
+      "air_pct": 0.42,
+      "onsets_per_s": 4.04
+    },
+    {
+      "kind": "break",
+      "start": 60.5,
+      "end": 67.5,
+      "lufs": -21.8,
+      "sub_pct": 8.1,
+      "air_pct": 0.24,
+      "onsets_per_s": 1.14
+    },
+    {
+      "kind": "build",
+      "start": 67.5,
+      "end": 72.0,
+      "lufs": -21.5,
+      "sub_pct": 1.9,
+      "air_pct": 2.71,
+      "onsets_per_s": 0.67
+    },
+    {
+      "kind": "drop",
+      "start": 72.0,
+      "end": 92.18,
+      "lufs": -16.2,
+      "sub_pct": 13.2,
+      "air_pct": 0.49,
+      "onsets_per_s": 4.01
+    }
+  ],
+  "slug": "greytide-sandpit-wave-1"
+}

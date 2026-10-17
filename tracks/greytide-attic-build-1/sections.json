@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "duration": 91.98,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 3.0,
+      "lufs": -23.7,
+      "sub_pct": 1.9,
+      "air_pct": 0.0,
+      "onsets_per_s": 2.67
+    },
+    {
+      "kind": "build",
+      "start": 3.0,
+      "end": 12.5,
+      "lufs": -19.9,
+      "sub_pct": 2.3,
+      "air_pct": 0.0,
+      "onsets_per_s": 1.58
+    },
+    {
+      "kind": "drop",
+      "start": 12.5,
+      "end": 77.0,
+      "lufs": -15.8,
+      "sub_pct": 5.4,
+      "air_pct": 2.45,
+      "onsets_per_s": 2.22
+    },
+    {
+      "kind": "break",
+      "start": 77.0,
+      "end": 79.0,
+      "lufs": -20.2,
+      "sub_pct": 0.8,
+      "air_pct": 0.01,
+      "onsets_per_s": 1.0
+    },
+    {
+      "kind": "drop",
+      "start": 79.0,
+      "end": 91.98,
+      "lufs": -17.4,
+      "sub_pct": 1.4,
+      "air_pct": 0.0,
+      "onsets_per_s": 1.93
+    }
+  ],
+  "slug": "greytide-attic-build-1"
+}

@@ -1,0 +1,152 @@
+{
+  "format": 1,
+  "duration": 177.9,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 2.0,
+      "lufs": -21.1,
+      "sub_pct": 43.5,
+      "air_pct": 0.45,
+      "onsets_per_s": 1.5
+    },
+    {
+      "kind": "build",
+      "start": 2.0,
+      "end": 8.5,
+      "lufs": -20.7,
+      "sub_pct": 10.8,
+      "air_pct": 1.5,
+      "onsets_per_s": 4.46
+    },
+    {
+      "kind": "drop",
+      "start": 8.5,
+      "end": 36.5,
+      "lufs": -16.9,
+      "sub_pct": 70.5,
+      "air_pct": 1.47,
+      "onsets_per_s": 4.29
+    },
+    {
+      "kind": "break",
+      "start": 36.5,
+      "end": 38.0,
+      "lufs": -18.9,
+      "sub_pct": 0.0,
+      "air_pct": 40.23,
+      "onsets_per_s": 3.33
+    },
+    {
+      "kind": "drop",
+      "start": 38.0,
+      "end": 51.0,
+      "lufs": -16.1,
+      "sub_pct": 66.2,
+      "air_pct": 3.08,
+      "onsets_per_s": 4.31
+    },
+    {
+      "kind": "break",
+      "start": 51.0,
+      "end": 101.0,
+      "lufs": -19.6,
+      "sub_pct": 39.1,
+      "air_pct": 2.5,
+      "onsets_per_s": 3.36
+    },
+    {
+      "kind": "drop",
+      "start": 101.0,
+      "end": 114.0,
+      "lufs": -16.6,
+      "sub_pct": 70.0,
+      "air_pct": 0.42,
+      "onsets_per_s": 4.31
+    },
+    {
+      "kind": "break",
+      "start": 114.0,
+      "end": 115.5,
+      "lufs": -21.3,
+      "sub_pct": 2.3,
+      "air_pct": 4.96,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 115.5,
+      "end": 129.0,
+      "lufs": -16.1,
+      "sub_pct": 69.1,
+      "air_pct": 0.71,
+      "onsets_per_s": 4.37
+    },
+    {
+      "kind": "break",
+      "start": 129.0,
+      "end": 130.5,
+      "lufs": -20.8,
+      "sub_pct": 0.0,
+      "air_pct": 14.25,
+      "onsets_per_s": 4.0
+    },
+    {
+      "kind": "drop",
+      "start": 130.5,
+      "end": 143.5,
+      "lufs": -15.7,
+      "sub_pct": 71.9,
+      "air_pct": 1.13,
+      "onsets_per_s": 5.46
+    },
+    {
+      "kind": "break",
+      "start": 143.5,
+      "end": 145.0,
+      "lufs": -22.8,
+      "sub_pct": 0.2,
+      "air_pct": 22.2,
+      "onsets_per_s": 6.67
+    },
+    {
+      "kind": "drop",
+      "start": 145.0,
+      "end": 158.5,
+      "lufs": -15.5,
+      "sub_pct": 71.7,
+      "air_pct": 2.06,
+      "onsets_per_s": 5.93
+    },
+    {
+      "kind": "break",
+      "start": 158.5,
+      "end": 160.0,
+      "lufs": -19.2,
+      "sub_pct": 0.0,
+      "air_pct": 40.38,
+      "onsets_per_s": 5.33
+    },
+    {
+      "kind": "drop",
+      "start": 160.0,
+      "end": 173.0,
+      "lufs": -15.6,
+      "sub_pct": 71.2,
+      "air_pct": 2.09,
+      "onsets_per_s": 6.38
+    },
+    {
+      "kind": "outro",
+      "start": 173.0,
+      "end": 177.9,
+      "lufs": -20.4,
+      "sub_pct": 62.4,
+      "air_pct": 5.81,
+      "onsets_per_s": 3.06
+    }
+  ],
+  "slug": "shoosting-53-drill-press"
+}

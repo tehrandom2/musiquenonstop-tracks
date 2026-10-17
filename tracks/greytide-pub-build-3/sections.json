@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "duration": 90.7,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 6.0,
+      "lufs": -19.3,
+      "sub_pct": 20.6,
+      "air_pct": 0.16,
+      "onsets_per_s": 1.83
+    },
+    {
+      "kind": "body",
+      "start": 6.0,
+      "end": 85.5,
+      "lufs": -16.2,
+      "sub_pct": 18.5,
+      "air_pct": 0.78,
+      "onsets_per_s": 2.92
+    },
+    {
+      "kind": "outro",
+      "start": 85.5,
+      "end": 90.7,
+      "lufs": -18.7,
+      "sub_pct": 20.3,
+      "air_pct": 0.09,
+      "onsets_per_s": 2.31
+    }
+  ],
+  "slug": "greytide-pub-build-3"
+}

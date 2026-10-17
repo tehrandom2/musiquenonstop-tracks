@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 117.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 117.0,
+      "lufs": -18.4,
+      "sub_pct": 0.0,
+      "air_pct": 2.17,
+      "onsets_per_s": 2.49
+    }
+  ],
+  "slug": "hand-drum-hot-sand"
+}

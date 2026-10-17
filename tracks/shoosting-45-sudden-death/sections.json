@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "duration": 175.7,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "drop",
+      "start": 0.0,
+      "end": 30.0,
+      "lufs": -16.3,
+      "sub_pct": 61.0,
+      "air_pct": 3.24,
+      "onsets_per_s": 4.4
+    },
+    {
+      "kind": "break",
+      "start": 30.0,
+      "end": 53.0,
+      "lufs": -19.0,
+      "sub_pct": 28.8,
+      "air_pct": 5.98,
+      "onsets_per_s": 4.3
+    },
+    {
+      "kind": "drop",
+      "start": 53.0,
+      "end": 83.0,
+      "lufs": -16.1,
+      "sub_pct": 22.9,
+      "air_pct": 4.02,
+      "onsets_per_s": 5.37
+    },
+    {
+      "kind": "break",
+      "start": 83.0,
+      "end": 89.0,
+      "lufs": -26.0,
+      "sub_pct": 12.2,
+      "air_pct": 6.66,
+      "onsets_per_s": 7.67
+    },
+    {
+      "kind": "drop",
+      "start": 89.0,
+      "end": 119.0,
+      "lufs": -16.1,
+      "sub_pct": 55.4,
+      "air_pct": 3.54,
+      "onsets_per_s": 4.63
+    },
+    {
+      "kind": "break",
+      "start": 119.0,
+      "end": 135.5,
+      "lufs": -19.3,
+      "sub_pct": 38.4,
+      "air_pct": 2.41,
+      "onsets_per_s": 2.91
+    },
+    {
+      "kind": "drop",
+      "start": 135.5,
+      "end": 172.0,
+      "lufs": -16.1,
+      "sub_pct": 42.4,
+      "air_pct": 8.17,
+      "onsets_per_s": 6.96
+    },
+    {
+      "kind": "outro",
+      "start": 172.0,
+      "end": 175.7,
+      "lufs": -27.1,
+      "sub_pct": 12.3,
+      "air_pct": 3.26,
+      "onsets_per_s": 8.65
+    }
+  ],
+  "slug": "shoosting-45-sudden-death"
+}

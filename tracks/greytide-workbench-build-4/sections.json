@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "duration": 93.13,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 11.0,
+      "lufs": -18.8,
+      "sub_pct": 2.4,
+      "air_pct": 1.2,
+      "onsets_per_s": 5.18
+    },
+    {
+      "kind": "drop",
+      "start": 11.0,
+      "end": 33.0,
+      "lufs": -15.5,
+      "sub_pct": 6.0,
+      "air_pct": 1.89,
+      "onsets_per_s": 4.09
+    },
+    {
+      "kind": "break",
+      "start": 33.0,
+      "end": 44.0,
+      "lufs": -22.4,
+      "sub_pct": 0.1,
+      "air_pct": 0.33,
+      "onsets_per_s": 0.82
+    },
+    {
+      "kind": "drop",
+      "start": 44.0,
+      "end": 67.0,
+      "lufs": -15.3,
+      "sub_pct": 7.6,
+      "air_pct": 1.49,
+      "onsets_per_s": 3.74
+    },
+    {
+      "kind": "break",
+      "start": 67.0,
+      "end": 71.5,
+      "lufs": -22.9,
+      "sub_pct": 0.1,
+      "air_pct": 2.08,
+      "onsets_per_s": 1.11
+    },
+    {
+      "kind": "build",
+      "start": 71.5,
+      "end": 78.5,
+      "lufs": -21.2,
+      "sub_pct": 0.2,
+      "air_pct": 0.54,
+      "onsets_per_s": 0.86
+    },
+    {
+      "kind": "drop",
+      "start": 78.5,
+      "end": 93.13,
+      "lufs": -15.2,
+      "sub_pct": 5.4,
+      "air_pct": 1.45,
+      "onsets_per_s": 3.56
+    }
+  ],
+  "slug": "greytide-workbench-build-4"
+}

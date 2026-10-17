@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "duration": 162.55,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 5.0,
+      "lufs": -22.5,
+      "sub_pct": 35.7,
+      "air_pct": 6.02,
+      "onsets_per_s": 3.4
+    },
+    {
+      "kind": "build",
+      "start": 5.0,
+      "end": 27.0,
+      "lufs": -21.4,
+      "sub_pct": 69.4,
+      "air_pct": 2.41,
+      "onsets_per_s": 2.64
+    },
+    {
+      "kind": "drop",
+      "start": 27.0,
+      "end": 94.0,
+      "lufs": -16.1,
+      "sub_pct": 28.3,
+      "air_pct": 5.55,
+      "onsets_per_s": 3.78
+    },
+    {
+      "kind": "break",
+      "start": 94.0,
+      "end": 94.5,
+      "lufs": null,
+      "sub_pct": null,
+      "air_pct": null,
+      "onsets_per_s": null
+    },
+    {
+      "kind": "drop",
+      "start": 94.5,
+      "end": 151.0,
+      "lufs": -14.4,
+      "sub_pct": 42.6,
+      "air_pct": 4.43,
+      "onsets_per_s": 4.74
+    },
+    {
+      "kind": "outro",
+      "start": 151.0,
+      "end": 162.55,
+      "lufs": -18.9,
+      "sub_pct": 0.0,
+      "air_pct": 4.59,
+      "onsets_per_s": 3.29
+    }
+  ],
+  "slug": "electronic-race-last-lap"
+}

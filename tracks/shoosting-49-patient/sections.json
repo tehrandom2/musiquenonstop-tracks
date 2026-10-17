@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "duration": 177.1,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 3.0,
+      "lufs": -32.7,
+      "sub_pct": 64.0,
+      "air_pct": 0.01,
+      "onsets_per_s": 3.33
+    },
+    {
+      "kind": "build",
+      "start": 3.0,
+      "end": 32.5,
+      "lufs": -20.4,
+      "sub_pct": 44.8,
+      "air_pct": 0.81,
+      "onsets_per_s": 1.29
+    },
+    {
+      "kind": "drop",
+      "start": 32.5,
+      "end": 45.0,
+      "lufs": -17.3,
+      "sub_pct": 48.0,
+      "air_pct": 0.77,
+      "onsets_per_s": 2.48
+    },
+    {
+      "kind": "break",
+      "start": 45.0,
+      "end": 46.0,
+      "lufs": -21.4,
+      "sub_pct": 0.0,
+      "air_pct": 15.55,
+      "onsets_per_s": 2.0
+    },
+    {
+      "kind": "drop",
+      "start": 46.0,
+      "end": 110.5,
+      "lufs": -15.2,
+      "sub_pct": 41.3,
+      "air_pct": 1.07,
+      "onsets_per_s": 2.87
+    },
+    {
+      "kind": "break",
+      "start": 110.5,
+      "end": 118.0,
+      "lufs": -22.7,
+      "sub_pct": 19.1,
+      "air_pct": 0.21,
+      "onsets_per_s": 1.2
+    },
+    {
+      "kind": "build",
+      "start": 118.0,
+      "end": 123.0,
+      "lufs": -21.9,
+      "sub_pct": 0.0,
+      "air_pct": 0.4,
+      "onsets_per_s": 1.6
+    },
+    {
+      "kind": "drop",
+      "start": 123.0,
+      "end": 165.5,
+      "lufs": -14.4,
+      "sub_pct": 44.0,
+      "air_pct": 0.82,
+      "onsets_per_s": 2.71
+    },
+    {
+      "kind": "outro",
+      "start": 165.5,
+      "end": 177.1,
+      "lufs": -26.6,
+      "sub_pct": 20.5,
+      "air_pct": 0.01,
+      "onsets_per_s": 1.72
+    }
+  ],
+  "slug": "shoosting-49-patient"
+}

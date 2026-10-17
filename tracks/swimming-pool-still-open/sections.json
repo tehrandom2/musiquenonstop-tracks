@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 93.78,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 4.0,
+      "lufs": -18.2,
+      "sub_pct": 39.0,
+      "air_pct": 0.81,
+      "onsets_per_s": 2.5
+    },
+    {
+      "kind": "drop",
+      "start": 4.0,
+      "end": 75.0,
+      "lufs": -16.4,
+      "sub_pct": 41.6,
+      "air_pct": 0.54,
+      "onsets_per_s": 2.56
+    },
+    {
+      "kind": "break",
+      "start": 75.0,
+      "end": 79.0,
+      "lufs": -20.2,
+      "sub_pct": 42.7,
+      "air_pct": 0.0,
+      "onsets_per_s": 0.25
+    },
+    {
+      "kind": "drop",
+      "start": 79.0,
+      "end": 93.78,
+      "lufs": -15.8,
+      "sub_pct": 44.5,
+      "air_pct": 0.34,
+      "onsets_per_s": 2.71
+    }
+  ],
+  "slug": "swimming-pool-still-open"
+}

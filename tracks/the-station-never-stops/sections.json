@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "duration": 57.0,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "body",
+      "start": 0.0,
+      "end": 57.0,
+      "lufs": -16.4,
+      "sub_pct": 10.7,
+      "air_pct": 3.66,
+      "onsets_per_s": 3.4
+    }
+  ],
+  "slug": "the-station-never-stops"
+}

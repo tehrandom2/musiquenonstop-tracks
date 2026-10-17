@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "duration": 90.14,
+  "hop_s": 0.5,
+  "sections": [
+    {
+      "kind": "intro",
+      "start": 0.0,
+      "end": 16.0,
+      "lufs": -22.7,
+      "sub_pct": 0.1,
+      "air_pct": 0.09,
+      "onsets_per_s": 2.06
+    },
+    {
+      "kind": "build",
+      "start": 16.0,
+      "end": 23.0,
+      "lufs": -19.5,
+      "sub_pct": 0.2,
+      "air_pct": 0.05,
+      "onsets_per_s": 0.43
+    },
+    {
+      "kind": "drop",
+      "start": 23.0,
+      "end": 70.5,
+      "lufs": -14.9,
+      "sub_pct": 26.0,
+      "air_pct": 1.2,
+      "onsets_per_s": 4.36
+    },
+    {
+      "kind": "outro",
+      "start": 70.5,
+      "end": 90.14,
+      "lufs": -21.0,
+      "sub_pct": 0.1,
+      "air_pct": 0.13,
+      "onsets_per_s": 1.68
+    }
+  ],
+  "slug": "greytide-desk-build-2"
+}
