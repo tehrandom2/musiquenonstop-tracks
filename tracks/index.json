@@ -210,9 +210,7 @@
         "onsets_per_s": 0.0,
         "flux_of_median": 0.267,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "melodic-dubstep-apex",
