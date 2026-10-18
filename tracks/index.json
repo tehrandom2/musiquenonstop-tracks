@@ -3,6 +3,111 @@
   "written": "2026-10-18T04:02:37-04:00",
   "tracks": [
     {
+      "slug": "frantic-drumstep-redline",
+      "title": "Frantic Drumstep, Redline",
+      "project": "fastaf",
+      "idea": "frantic drumstep, 178 bpm, storm at supersonic speed, glitchy fills, evolving second half, bigger second drop: frantic drumstep",
+      "request": "frantic drumstep, 178 bpm, storm at supersonic speed, glitchy fills, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 178,
+      "key": "B♭ minor",
+      "seed": 704633,
+      "model": "fast",
+      "duration": 112.48,
+      "date": "2026-10-15",
+      "rendered_at": "2026-10-18T04:02:37-04:00",
+      "voice": false,
+      "prompt": "Frantic drumstep, 178 bpm, storm at supersonic speed, glitchy fills, evolving second half, bigger second drop, a snarling neuro reese bass over a deep clean sub, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"frantic drumstep, 178 bpm, storm at supersonic speed, glitchy fills, evolving second half, bigger second drop\". \"the race profile (the requester's key, or the owner's choice)\" I took as: frantic drumstep at 178 bpm, genre first and short; the words lead; the profile adds the bass, the kick, the arrangement; the key and the length (the model's choice, 120 to 240 s) left to the model. \"178 bpm\" I took as: 178 bpm, as the words say, in place of the race band. \"frantic drumstep\" I took as: the frame, in the requester's own words, ahead of the tempo. \"storm at supersonic speed, glitchy fills, evolving second half, bigger second drop\" I took as: the colour, in the requester's own words and order. So I wrote it at 178 bpm in B♭ minor (the model chose the key), 120 seconds (the model's 113 s, held to 120 to 240 s), with no voice, under the race gates. It is meant to loop: the last 3 seconds are crossfaded onto the first 3 and removed. I rendered 6 seeds and threw away 4: 704629 (0.7s of near-silence (limit 0.5)); 704631 (tempo 72 vs asked 178); 704632 (tempo 120 vs asked 178); 704630 (1.2s of near-silence (limit 0.5) and others). Seed 704633 is the take.",
+      "rejected": [
+        {
+          "seed": 704629,
+          "reason": "0.7s of near-silence (limit 0.5)"
+        },
+        {
+          "seed": 704631,
+          "reason": "tempo 72 vs asked 178"
+        },
+        {
+          "seed": 704632,
+          "reason": "tempo 120 vs asked 178"
+        },
+        {
+          "seed": 704630,
+          "reason": "1.2s of near-silence (limit 0.5); seam level -30.5 dB tail to head"
+        }
+      ],
+      "takes": [
+        704633,
+        704634
+      ],
+      "numbers": {
+        "tempo_bpm": 87.8,
+        "lufs": -15.89,
+        "lufs_target": null,
+        "peak_dbfs": -2.46,
+        "silence_s": 0.25,
+        "brightness_pct": 1.86,
+        "boominess_pct": 15.99,
+        "onsets_per_s": 5.13,
+        "seam_db": -0.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": null,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "frantic-drumstep-redline/frantic-drumstep-redline.mp3",
+        "notes": "frantic-drumstep-redline/notes.md",
+        "recipe": "frantic-drumstep-redline/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "race",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.3,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4960503,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "frantic-drumstep-redline/frantic-drumstep-redline.mp3",
+          "frantic-drumstep-redline/frantic-drumstep-redline-take2.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 2 s, from 1:05)",
+        "longest_still_s": 2.0,
+        "from_s": 65.0,
+        "chroma_cos": 0.993,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.278,
+        "flag_at_s": 30.0
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "techno-tinged-race-green-light",
       "title": "Techno-tinged Race, Green Light",
       "project": "fastaf",
