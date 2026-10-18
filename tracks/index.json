@@ -103,9 +103,7 @@
         "onsets_per_s": 0.0,
         "flux_of_median": 0.278,
         "flag_at_s": 30.0
-      },
-      "side": "b",
-      "audition": true
+      }
     },
     {
       "slug": "techno-tinged-race-green-light",
