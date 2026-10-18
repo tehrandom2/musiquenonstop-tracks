@@ -3,6 +3,113 @@ window.NOBODY_INDEX = {
   "written": "2026-10-18T03:57:59-04:00",
   "tracks": [
     {
+      "slug": "techno-tinged-race-green-light",
+      "title": "Techno-tinged Race, Green Light",
+      "project": "fastaf",
+      "idea": "techno-tinged race music, 176 bpm, industrial foundry full of sparks, pounding drums, evolving second half, bigger second drop: techno-tinged race music",
+      "request": "techno-tinged race music, 176 bpm, industrial foundry full of sparks, pounding drums, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 176,
+      "key": "G# minor",
+      "seed": 647852,
+      "model": "best",
+      "duration": 232.95,
+      "date": "2026-10-15",
+      "rendered_at": "2026-10-18T03:57:57-04:00",
+      "voice": false,
+      "prompt": "Techno-tinged race music, 176 bpm, industrial foundry full of sparks, pounding drums, evolving second half, bigger second drop, a heavy distorted reese bass locked to the kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"techno-tinged race music, 176 bpm, industrial foundry full of sparks, pounding drums, evolving second half, bigger second drop\". \"the race profile (the requester's key, or the owner's choice)\" I took as: techno-tinged race music at 176 bpm, genre first and short; the words lead; the profile adds the bass, the arrangement; the key and the length (the model's choice, 120 to 240 s) left to the model. \"176 bpm\" I took as: 176 bpm, as the words say, in place of the race band. \"techno-tinged race music\" I took as: the frame, in the requester's own words, ahead of the tempo. \"industrial foundry full of sparks, pounding drums, evolving second half, bigger second drop\" I took as: the colour, in the requester's own words and order. So I wrote it at 176 bpm in G# minor (the model chose the key), 240 seconds (the model's choice), with no voice, under the race gates. It is meant to loop: the last 3 seconds are crossfaded onto the first 3 and removed. I rendered 6 seeds and threw away 5: 647855 (boomy: 71.4% below 60 Hz (ceiling 69)); 647857 (tempo 139 vs asked 176); 647854 (onset rate 6.6/s outside 1.5-6.5); 647856 (1.4s of near-silence (limit 0.5) and others), and 1 more (all listed below). Seed 647852 is the take.",
+      "rejected": [
+        {
+          "seed": 647855,
+          "reason": "boomy: 71.4% below 60 Hz (ceiling 69)"
+        },
+        {
+          "seed": 647857,
+          "reason": "tempo 139 vs asked 176"
+        },
+        {
+          "seed": 647854,
+          "reason": "onset rate 6.6/s outside 1.5-6.5"
+        },
+        {
+          "seed": 647856,
+          "reason": "1.4s of near-silence (limit 0.5); seam level -6.6 dB tail to head"
+        },
+        {
+          "seed": 647853,
+          "reason": "onset rate 6.6/s outside 1.5-6.5; seam level -11.7 dB tail to head"
+        }
+      ],
+      "takes": [
+        647852
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -18.2,
+        "lufs_target": null,
+        "peak_dbfs": -2.23,
+        "silence_s": 0.0,
+        "brightness_pct": 1.5,
+        "boominess_pct": 33.87,
+        "onsets_per_s": 3.93,
+        "seam_db": -1.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": null,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "techno-tinged-race-green-light/techno-tinged-race-green-light.mp3",
+        "notes": "techno-tinged-race-green-light/notes.md",
+        "recipe": "techno-tinged-race-green-light/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -18.59,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 10272994,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "techno-tinged-race-green-light/techno-tinged-race-green-light.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 17 s, from 1:30)",
+        "longest_still_s": 17.0,
+        "from_s": 90.0,
+        "chroma_cos": 0.992,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.267,
+        "flag_at_s": 30.0
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "melodic-dubstep-apex",
       "title": "Melodic Dubstep, Apex",
       "project": "fastaf",
