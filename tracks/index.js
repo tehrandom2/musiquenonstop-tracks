@@ -3,6 +3,112 @@ window.NOBODY_INDEX = {
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "euphoric-liquid-redline-little-pretty-dont-sick-drop",
+      "title": "Euphoric Liquid, Redline, Little Pretty Dont (Sick Drop mix)",
+      "project": null,
+      "idea": "euphoric liquid drum and bass, 165 bpm, final lap, anthemic chords, rolling breaks, evolving second half, massive second drop: euphoric liquid drum and bass",
+      "request": "little too pretty, dont mind the track but make it more fuzzy and distorted",
+      "mood": "",
+      "bpm": 165,
+      "key": "G major",
+      "seed": 283307,
+      "model": "best",
+      "duration": 194.0,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:45:33-04:00",
+      "voice": false,
+      "prompt": "Euphoric liquid drum and bass, 165 bpm, final lap, anthemic chords, rolling breaks, evolving second half, massive second drop, little too pretty, dont mind the track but make it more fuzzy and distorted, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Euphoric Liquid, Redline, Little Pretty Dont\", rendered on 2026-10-16; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 109.0,
+        "lufs": -15.9,
+        "lufs_target": null,
+        "peak_dbfs": -1.0,
+        "silence_s": 1.45,
+        "brightness_pct": 2.26,
+        "boominess_pct": 41.45,
+        "onsets_per_s": 4.89,
+        "seam_db": -0.7
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 5
+      },
+      "lineage": {
+        "parent": "euphoric-liquid-redline-little-pretty-dont",
+        "seed": 283307,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "euphoric-liquid-redline-little-pretty-dont-sick-drop/euphoric-liquid-redline-little-pretty-dont-sick-drop.mp3",
+        "notes": "euphoric-liquid-redline-little-pretty-dont-sick-drop/notes.md",
+        "recipe": "euphoric-liquid-redline-little-pretty-dont-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -17.65,
+        "failed": [
+          "tempo 109 vs asked 165",
+          "1.5s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 8555400,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "euphoric-liquid-redline-little-pretty-dont-sick-drop/euphoric-liquid-redline-little-pretty-dont-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 4 s, from 2:08)",
+        "longest_still_s": 4.0,
+        "from_s": 128.0,
+        "chroma_cos": 0.986,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.465,
+        "flag_at_s": 30.0
+      },
+      "stems": {
+        "drums": "euphoric-liquid-redline-little-pretty-dont/stems/euphoric-liquid-redline-little-pretty-dont-drums.ogg",
+        "bass": "euphoric-liquid-redline-little-pretty-dont/stems/euphoric-liquid-redline-little-pretty-dont-bass.ogg",
+        "vocals": "euphoric-liquid-redline-little-pretty-dont/stems/euphoric-liquid-redline-little-pretty-dont-vocals.ogg",
+        "other": "euphoric-liquid-redline-little-pretty-dont/stems/euphoric-liquid-redline-little-pretty-dont-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "aggressive-jump-up-slipstream-sick-drop",
       "title": "Aggressive Jump-up, Slipstream (Sick Drop mix)",
       "project": "fastaf",
@@ -25675,6 +25781,7 @@ window.NOBODY_INDEX = {
       "cover_400": "albums/sick-drop-demo/cover-400.webp",
       "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
       "tracks": [
+        "euphoric-liquid-redline-little-pretty-dont-sick-drop",
         "aggressive-jump-up-slipstream-sick-drop",
         "modern-hard-hitting-slipstream-sick-drop",
         "electronic-race-last-lap-sick-drop",
