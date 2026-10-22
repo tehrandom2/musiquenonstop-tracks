@@ -1,0 +1,33 @@
+{
+  "slug": "sick-drop-demo",
+  "title": "Sick Drop Demo",
+  "project": "fastaf",
+  "description": "Our snowboard game's soundtrack as it plays at S tier, when you ride clean: each track with its generated risers, fills and synth layers. A demo, for the owner's ears first.",
+  "tracks": [
+    "halftime-electronic-apex-sick-drop",
+    "darksynth-neon-last-lap-sick-drop",
+    "cinematic-drum-full-throttle-sick-drop",
+    "dark-neurofunk-slipstream-sick-drop",
+    "euphoric-liquid-redline-little-pretty-dont-sick-drop",
+    "aggressive-jump-up-slipstream-sick-drop",
+    "modern-hard-hitting-slipstream-sick-drop",
+    "electronic-race-last-lap-sick-drop",
+    "liquid-drum-slipstream-sick-drop",
+    "melodic-dubstep-apex-sick-drop"
+  ],
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the machine"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}
