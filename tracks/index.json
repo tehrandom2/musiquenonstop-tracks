@@ -3,6 +3,109 @@
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "aggressive-jump-up-slipstream-sick-drop",
+      "title": "Aggressive Jump-up, Slipstream (Sick Drop mix)",
+      "project": "fastaf",
+      "idea": "aggressive jump-up, 168 bpm, engine about to overheat, distorted wobble bass, evolving second half, bigger second drop: aggressive jump-up",
+      "request": "aggressive jump-up, 168 bpm, engine about to overheat, distorted wobble bass, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 168,
+      "key": "F# minor",
+      "seed": 489416,
+      "model": "fast",
+      "duration": 111.06,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:44:33-04:00",
+      "voice": false,
+      "prompt": "Aggressive jump-up, 168 bpm, engine about to overheat, distorted wobble bass, evolving second half, bigger second drop, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Aggressive Jump-up, Slipstream\", rendered on 2026-10-15; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 81.5,
+        "lufs": -12.8,
+        "lufs_target": null,
+        "peak_dbfs": -0.9,
+        "silence_s": 0.05,
+        "brightness_pct": 2.52,
+        "boominess_pct": 36.14,
+        "onsets_per_s": 4.95,
+        "seam_db": -0.2
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 6
+      },
+      "lineage": {
+        "parent": "aggressive-jump-up-slipstream",
+        "seed": 489416,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "aggressive-jump-up-slipstream-sick-drop/aggressive-jump-up-slipstream-sick-drop.mp3",
+        "notes": "aggressive-jump-up-slipstream-sick-drop/notes.md",
+        "recipe": "aggressive-jump-up-slipstream-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "race",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -14.57,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4897731,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "aggressive-jump-up-slipstream-sick-drop/aggressive-jump-up-slipstream-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 3 s, from 0:26)",
+        "longest_still_s": 3.0,
+        "from_s": 26.0,
+        "chroma_cos": 0.996,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.201,
+        "flag_at_s": 30.0
+      },
+      "stems": {
+        "drums": "aggressive-jump-up-slipstream/stems/aggressive-jump-up-slipstream-drums.ogg",
+        "bass": "aggressive-jump-up-slipstream/stems/aggressive-jump-up-slipstream-bass.ogg",
+        "vocals": "aggressive-jump-up-slipstream/stems/aggressive-jump-up-slipstream-vocals.ogg",
+        "other": "aggressive-jump-up-slipstream/stems/aggressive-jump-up-slipstream-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "modern-hard-hitting-slipstream-sick-drop",
       "title": "Modern Hard-hitting, Slipstream (Sick Drop mix)",
       "project": "fastaf",
@@ -25572,6 +25675,7 @@
       "cover_400": "albums/sick-drop-demo/cover-400.webp",
       "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
       "tracks": [
+        "aggressive-jump-up-slipstream-sick-drop",
         "modern-hard-hitting-slipstream-sick-drop",
         "electronic-race-last-lap-sick-drop",
         "liquid-drum-slipstream-sick-drop",
