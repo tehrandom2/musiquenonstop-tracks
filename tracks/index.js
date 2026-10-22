@@ -3,6 +3,109 @@ window.NOBODY_INDEX = {
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "melodic-dubstep-apex-sick-drop",
+      "title": "Melodic Dubstep, Apex (Sick Drop mix)",
+      "project": "fastaf",
+      "idea": "melodic dubstep, 175 bpm, tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop: melodic dubstep",
+      "request": "melodic dubstep, 175 bpm, tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 175,
+      "key": "E♭ major",
+      "seed": 129316,
+      "model": "fast",
+      "duration": 112.54,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:40:33-04:00",
+      "voice": false,
+      "prompt": "Melodic dubstep, 175 bpm, tropical bay at sunset, bright leads, huge half-time drop, evolving second half, bigger second drop, a rolling reese sub bass with a growling mid-range, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Melodic Dubstep, Apex\", rendered on 2026-10-15; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 84.8,
+        "lufs": -12.3,
+        "lufs_target": null,
+        "peak_dbfs": -1.2,
+        "silence_s": 0.15,
+        "brightness_pct": 1.11,
+        "boominess_pct": 35.97,
+        "onsets_per_s": 5.71,
+        "seam_db": 1.1
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 10
+      },
+      "lineage": {
+        "parent": "melodic-dubstep-apex",
+        "seed": 129316,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "melodic-dubstep-apex-sick-drop/melodic-dubstep-apex-sick-drop.mp3",
+        "notes": "melodic-dubstep-apex-sick-drop/notes.md",
+        "recipe": "melodic-dubstep-apex-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "race",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -14.03,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4963083,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "melodic-dubstep-apex-sick-drop/melodic-dubstep-apex-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch",
+        "longest_still_s": 0.0,
+        "from_s": 0.0,
+        "chroma_cos": 0.0,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.0,
+        "flag_at_s": 30.0
+      },
+      "stems": {
+        "drums": "melodic-dubstep-apex/stems/melodic-dubstep-apex-drums.ogg",
+        "bass": "melodic-dubstep-apex/stems/melodic-dubstep-apex-bass.ogg",
+        "vocals": "melodic-dubstep-apex/stems/melodic-dubstep-apex-vocals.ogg",
+        "other": "melodic-dubstep-apex/stems/melodic-dubstep-apex-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "frantic-drumstep-redline",
       "title": "Frantic Drumstep, Redline",
       "project": "fastaf",
@@ -25152,6 +25255,28 @@ window.NOBODY_INDEX = {
         {
           "role": "cover",
           "name": "cover art made with Google's Gemini image model from the conductor's prompts; no artist or brand"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "sick-drop-demo",
+      "title": "Sick Drop Demo",
+      "project": "fastaf",
+      "cover_400": "albums/sick-drop-demo/cover-400.webp",
+      "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
+      "tracks": [
+        "melodic-dubstep-apex-sick-drop"
+      ],
+      "description": "Our snowboard game's soundtrack as it plays at S tier, when you ride clean: each track with its generated risers, fills and synth layers. A demo, for the owner's ears first.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
         }
       ],
       "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
