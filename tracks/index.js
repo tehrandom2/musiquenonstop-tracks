@@ -3,6 +3,109 @@ window.NOBODY_INDEX = {
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "darksynth-neon-last-lap-sick-drop",
+      "title": "Darksynth Neon, Last Lap (Sick Drop mix)",
+      "project": "fastaf",
+      "idea": "darksynth, 155 bpm, neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop: darksynth",
+      "request": "darksynth, 155 bpm, neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 155,
+      "key": "E♭ minor",
+      "seed": 136588,
+      "model": "best",
+      "duration": 138.33,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:48:33-04:00",
+      "voice": false,
+      "prompt": "Darksynth, 155 bpm, neon towers blurring past, glassy arpeggios, driving drums, evolving second half, bigger second drop, a growling reese sub bass with a snarling mid-range, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Darksynth Neon, Last Lap\", rendered on 2026-10-15; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.0,
+        "lufs_target": null,
+        "peak_dbfs": -1.4,
+        "silence_s": 0.0,
+        "brightness_pct": 0.36,
+        "boominess_pct": 15.26,
+        "onsets_per_s": 4.05,
+        "seam_db": -2.9
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 2
+      },
+      "lineage": {
+        "parent": "darksynth-neon-last-lap",
+        "seed": 136588,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "darksynth-neon-last-lap-sick-drop/darksynth-neon-last-lap-sick-drop.mp3",
+        "notes": "darksynth-neon-last-lap-sick-drop/notes.md",
+        "recipe": "darksynth-neon-last-lap-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -17.75,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6100336,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "darksynth-neon-last-lap-sick-drop/darksynth-neon-last-lap-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 4 s, from 0:02)",
+        "longest_still_s": 4.0,
+        "from_s": 2.0,
+        "chroma_cos": 0.989,
+        "onsets_per_s": 0.33,
+        "flux_of_median": 0.336,
+        "flag_at_s": 30.0
+      },
+      "stems": {
+        "drums": "darksynth-neon-last-lap/stems/darksynth-neon-last-lap-drums.ogg",
+        "bass": "darksynth-neon-last-lap/stems/darksynth-neon-last-lap-bass.ogg",
+        "vocals": "darksynth-neon-last-lap/stems/darksynth-neon-last-lap-vocals.ogg",
+        "other": "darksynth-neon-last-lap/stems/darksynth-neon-last-lap-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "cinematic-drum-full-throttle-sick-drop",
       "title": "Cinematic Drum, Full Throttle (Sick Drop mix)",
       "project": "fastaf",
@@ -25987,6 +26090,7 @@ window.NOBODY_INDEX = {
       "cover_400": "albums/sick-drop-demo/cover-400.webp",
       "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
       "tracks": [
+        "darksynth-neon-last-lap-sick-drop",
         "cinematic-drum-full-throttle-sick-drop",
         "dark-neurofunk-slipstream-sick-drop",
         "euphoric-liquid-redline-little-pretty-dont-sick-drop",
