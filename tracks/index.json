@@ -3,6 +3,99 @@
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "modern-hard-hitting-slipstream-sick-drop",
+      "title": "Modern Hard-hitting, Slipstream (Sick Drop mix)",
+      "project": "fastaf",
+      "idea": "modern hard-hitting electronic race music, present-day production, 170 bpm, hypersonic run through a chrome tunnel, tense build into a massive drop, huge punchy drums, deep bass: modern hard-hitting electronic race music, present-day production, 170 bpm, hypersonic run through a chrome tunnel, tense build into a massive drop, huge punchy drums, deep bass",
+      "request": "modern hard-hitting electronic race music, present-day production, 170 bpm, hypersonic run through a chrome tunnel, tense build into a massive drop, huge punchy drums, deep bass",
+      "mood": "bright and determined, never grim",
+      "bpm": 169,
+      "key": "D minor",
+      "seed": 111814,
+      "model": "best",
+      "duration": 205.17,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:43:33-04:00",
+      "voice": false,
+      "prompt": "Present-day hard-hitting electronic race music, 169 bpm, in D minor, modern, clean, wide and punchy present-day production, hard-hitting modern drums: a heavy punchy kick, a snapping layered snare and quick clean hat rolls, a sharp stabbing modern synth chord used as an instrument, a growling mid-range modern bass with a clean sub under it, modern hard-hitting electronic race music, present-day production, 170 bpm, hypersonic run through a chrome tunnel, tense build into a massive drop, huge punchy drums, deep bass, bright and determined, never grim, an intro of filtered drums and a rising pad, a build-up with a snare roll and a riser, then a big drop at around 0:30 to 0:45 into the full hard-hitting drums, then a full-length driving body that keeps developing, with a second build into a bigger drop, loopable, instrumental, no vocals, no singing, no speech, no retro, no vintage, no lo-fi, no tape hiss, no vinyl crackle, no chiptune, no arcade sounds, no nostalgic mood, no old-era jungle, no pirate-radio sound, no big-beat, no chopped vintage funk breaks",
+      "lyrics": null,
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Modern Hard-hitting, Slipstream\", rendered on 2026-10-15; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -14.7,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.0,
+        "silence_s": 0.0,
+        "brightness_pct": 1.44,
+        "boominess_pct": 1.98,
+        "onsets_per_s": 5.01,
+        "seam_db": 0.5
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 7
+      },
+      "lineage": {
+        "parent": "modern-hard-hitting-slipstream",
+        "seed": 111814,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "modern-hard-hitting-slipstream-sick-drop/modern-hard-hitting-slipstream-sick-drop.mp3",
+        "notes": "modern-hard-hitting-slipstream-sick-drop/notes.md",
+        "recipe": "modern-hard-hitting-slipstream-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "jungle",
+        "seam_step_x": 0.23,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 9047961,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "modern-hard-hitting-slipstream-sick-drop/modern-hard-hitting-slipstream-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "stems": {
+        "drums": "modern-hard-hitting-slipstream/stems/modern-hard-hitting-slipstream-drums.ogg",
+        "bass": "modern-hard-hitting-slipstream/stems/modern-hard-hitting-slipstream-bass.ogg",
+        "vocals": "modern-hard-hitting-slipstream/stems/modern-hard-hitting-slipstream-vocals.ogg",
+        "other": "modern-hard-hitting-slipstream/stems/modern-hard-hitting-slipstream-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "electronic-race-last-lap-sick-drop",
       "title": "Electronic Race, Last Lap (Sick Drop mix)",
       "project": "fastaf",
@@ -25479,6 +25572,7 @@
       "cover_400": "albums/sick-drop-demo/cover-400.webp",
       "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
       "tracks": [
+        "modern-hard-hitting-slipstream-sick-drop",
         "electronic-race-last-lap-sick-drop",
         "liquid-drum-slipstream-sick-drop",
         "melodic-dubstep-apex-sick-drop"
