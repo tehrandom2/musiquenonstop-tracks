@@ -3,6 +3,109 @@
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "dark-neurofunk-slipstream-sick-drop",
+      "title": "Dark Neurofunk, Slipstream (Sick Drop mix)",
+      "project": "fastaf",
+      "idea": "dark neurofunk, 160 bpm, bioluminescent underwater tunnel, snarling reese bass, tight drums, evolving second half, bigger second drop: dark neurofunk",
+      "request": "dark neurofunk, 160 bpm, bioluminescent underwater tunnel, snarling reese bass, tight drums, evolving second half, bigger second drop",
+      "mood": "",
+      "bpm": 160,
+      "key": "B major",
+      "seed": 622359,
+      "model": "fast",
+      "duration": 161.82,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:46:33-04:00",
+      "voice": false,
+      "prompt": "Dark neurofunk, 160 bpm, bioluminescent underwater tunnel, snarling reese bass, tight drums, evolving second half, bigger second drop, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Dark Neurofunk, Slipstream\", rendered on 2026-10-15; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -13.0,
+        "lufs_target": null,
+        "peak_dbfs": -0.9,
+        "silence_s": 0.0,
+        "brightness_pct": 1.01,
+        "boominess_pct": 46.09,
+        "onsets_per_s": 4.42,
+        "seam_db": 0.6
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 4
+      },
+      "lineage": {
+        "parent": "dark-neurofunk-slipstream",
+        "seed": 622359,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "dark-neurofunk-slipstream-sick-drop/dark-neurofunk-slipstream-sick-drop.mp3",
+        "notes": "dark-neurofunk-slipstream-sick-drop/notes.md",
+        "recipe": "dark-neurofunk-slipstream-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "race",
+        "seam_step_x": 0.1,
+        "decoded_lufs": -14.78,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7136469,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "dark-neurofunk-slipstream-sick-drop/dark-neurofunk-slipstream-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 4 s, from 1:48)",
+        "longest_still_s": 4.0,
+        "from_s": 108.0,
+        "chroma_cos": 0.998,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.18,
+        "flag_at_s": 30.0
+      },
+      "stems": {
+        "drums": "dark-neurofunk-slipstream/stems/dark-neurofunk-slipstream-drums.ogg",
+        "bass": "dark-neurofunk-slipstream/stems/dark-neurofunk-slipstream-bass.ogg",
+        "vocals": "dark-neurofunk-slipstream/stems/dark-neurofunk-slipstream-vocals.ogg",
+        "other": "dark-neurofunk-slipstream/stems/dark-neurofunk-slipstream-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "euphoric-liquid-redline-little-pretty-dont-sick-drop",
       "title": "Euphoric Liquid, Redline, Little Pretty Dont (Sick Drop mix)",
       "project": null,
@@ -25781,6 +25884,7 @@
       "cover_400": "albums/sick-drop-demo/cover-400.webp",
       "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
       "tracks": [
+        "dark-neurofunk-slipstream-sick-drop",
         "euphoric-liquid-redline-little-pretty-dont-sick-drop",
         "aggressive-jump-up-slipstream-sick-drop",
         "modern-hard-hitting-slipstream-sick-drop",
