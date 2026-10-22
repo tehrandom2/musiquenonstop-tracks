@@ -3,6 +3,116 @@
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "electronic-race-last-lap-sick-drop",
+      "title": "Electronic Race, Last Lap (Sick Drop mix)",
+      "project": "fastaf",
+      "idea": "vocal electronic race music, 170 bpm, soaring female vocal hook, chasing the sound barrier, evolving second half: vocal electronic race music",
+      "request": "vocal electronic race music, 170 bpm, soaring female vocal hook, chasing the sound barrier, evolving second half",
+      "mood": "",
+      "bpm": 170,
+      "key": "F minor",
+      "seed": 581067,
+      "model": "best",
+      "duration": 162.55,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:42:33-04:00",
+      "voice": true,
+      "prompt": "Vocal electronic race music, 170 bpm, soaring female vocal hook, chasing the sound barrier, evolving second half, a clean, powerful lead vocal riding the beat, confident, close and dry with a short delay on the line ends, a snarling neuro reese bass over a deep clean sub, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, no choir",
+      "lyrics": "[Intro - filtered drums and a rising pad, instrumental]\n\n[Verse - a confident modern vocal over the driving beat]\nelectronic in the night, soaring in the light\nWake up slow, with the race down low\nAll through the town the window comes down\nI count the female, I count the kettle, I count them again\nelectronic by the door, window on the floor\nHold on tight to the kettle tonight\nNothing to fear when the soaring is here\nRound and around goes the race sound\n\n[Build - a snare roll and a riser, the vocal climbs, then the big drop]\nOne more time for the electronic\n\n[Hook - big and chantable over the full drums, a small group on the last word]\nsoaring, soaring, keep it going on\nkettle and female, all night long\nwindow, window, keep it going on\nNever mind the dark, the race is gone\n\n[Hook - big and chantable over the full drums, a small group on the last word]\nsoaring, soaring, keep it going on\nkettle and female, all night long\nwindow, window, keep it going on\nNever mind the dark, the race is gone",
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Electronic Race, Last Lap\", rendered on 2026-10-15; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -14.2,
+        "lufs_target": null,
+        "peak_dbfs": -0.9,
+        "silence_s": 0.0,
+        "brightness_pct": 4.35,
+        "boominess_pct": 37.92,
+        "onsets_per_s": 3.7,
+        "seam_db": -0.9
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 8
+      },
+      "lineage": {
+        "parent": "electronic-race-last-lap",
+        "seed": 581067,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "electronic-race-last-lap-sick-drop/electronic-race-last-lap-sick-drop.mp3",
+        "notes": "electronic-race-last-lap-sick-drop/notes.md",
+        "recipe": "electronic-race-last-lap-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -15.95,
+        "failed": [
+          "tempo 139 vs asked 170"
+        ],
+        "words_not_ours": [
+          "cattle",
+          "oh",
+          "my",
+          "god"
+        ],
+        "stripped": [],
+        "installed_samples": 7168360,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "electronic-race-last-lap-sick-drop/electronic-race-last-lap-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 5 s, from 0:15)",
+        "longest_still_s": 5.0,
+        "from_s": 15.0,
+        "chroma_cos": 0.988,
+        "onsets_per_s": 0.75,
+        "flux_of_median": 0.445,
+        "flag_at_s": 30.0
+      },
+      "stems": {
+        "drums": "electronic-race-last-lap/stems/electronic-race-last-lap-drums.ogg",
+        "bass": "electronic-race-last-lap/stems/electronic-race-last-lap-bass.ogg",
+        "vocals": "electronic-race-last-lap/stems/electronic-race-last-lap-vocals.ogg",
+        "other": "electronic-race-last-lap/stems/electronic-race-last-lap-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "liquid-drum-slipstream-sick-drop",
       "title": "Liquid Drum, Slipstream (Sick Drop mix)",
       "project": "fastaf",
@@ -25369,6 +25479,7 @@
       "cover_400": "albums/sick-drop-demo/cover-400.webp",
       "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
       "tracks": [
+        "electronic-race-last-lap-sick-drop",
         "liquid-drum-slipstream-sick-drop",
         "melodic-dubstep-apex-sick-drop"
       ],
