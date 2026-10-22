@@ -3,6 +3,109 @@
   "written": "2026-10-22T01:51:19-04:00",
   "tracks": [
     {
+      "slug": "halftime-electronic-apex-sick-drop",
+      "title": "Halftime Electronic, Apex (Sick Drop mix)",
+      "project": "fastaf",
+      "idea": "halftime electronic race music, 140 bpm, half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half: halftime electronic race music",
+      "request": "halftime electronic race music, 140 bpm, half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half",
+      "mood": "",
+      "bpm": 140,
+      "key": "F minor",
+      "seed": 805787,
+      "model": "best",
+      "duration": 159.27,
+      "date": "2026-10-22",
+      "rendered_at": "2026-10-22T01:49:33-04:00",
+      "voice": false,
+      "prompt": "Halftime electronic race music, 140 bpm, half-time drop every 32 bars, slow menace before a launch, crushing drop, evolving second half, a heavy reese sub bass with snarling mid-range growls, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, instrumental, no vocals",
+      "lyrics": null,
+      "why": "This is the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team. It starts from \"Halftime Electronic, Apex\", rendered on 2026-10-15; that track's own why and its recipe are about the original, not this mix. Nobody here can hear: the game team checked it by numbers.",
+      "rejected": [],
+      "takes": [],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -15.4,
+        "lufs_target": null,
+        "peak_dbfs": -1.4,
+        "silence_s": 0.0,
+        "brightness_pct": 2.27,
+        "boominess_pct": 53.38,
+        "onsets_per_s": 4.53,
+        "seam_db": 0.3
+      },
+      "checks": {
+        "tempo": null,
+        "loudness": null,
+        "peak": null,
+        "silence": null,
+        "brightness": null,
+        "boominess": null,
+        "onsets": null,
+        "seam": null,
+        "words": null
+      },
+      "segments": {
+        "album": "Sick Drop Demo",
+        "submitter": "the machine",
+        "tags": [
+          "sick drop"
+        ],
+        "track_no": 1
+      },
+      "lineage": {
+        "parent": "halftime-electronic-apex",
+        "seed": 805787,
+        "changed": {
+          "from": null,
+          "to": "the Sick Drop game's S-tier mix: what plays when you ride clean. The original track plus generated layers (risers into the drops, fills, synth layers, drop booms) mixed in by the game team"
+        },
+        "request": "the Sick Drop game's S-tier mix",
+        "pair": false
+      },
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "halftime-electronic-apex-sick-drop/halftime-electronic-apex-sick-drop.mp3",
+        "notes": "halftime-electronic-apex-sick-drop/notes.md",
+        "recipe": "halftime-electronic-apex-sick-drop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM acestep-5Hz-lm-4B)",
+        "profile": "race",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -17.16,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7023587,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "halftime-electronic-apex-sick-drop/halftime-electronic-apex-sick-drop.mp3"
+        ],
+        "ears": null,
+        "game_mix": "S tier",
+        "source": "Sick Drop game build, 2026-10-21"
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch (longest still stretch 3 s, from 1:26)",
+        "longest_still_s": 3.0,
+        "from_s": 86.0,
+        "chroma_cos": 0.997,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.291,
+        "flag_at_s": 30.0
+      },
+      "stems": {
+        "drums": "halftime-electronic-apex/stems/halftime-electronic-apex-drums.ogg",
+        "bass": "halftime-electronic-apex/stems/halftime-electronic-apex-bass.ogg",
+        "vocals": "halftime-electronic-apex/stems/halftime-electronic-apex-vocals.ogg",
+        "other": "halftime-electronic-apex/stems/halftime-electronic-apex-other.ogg"
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "darksynth-neon-last-lap-sick-drop",
       "title": "Darksynth Neon, Last Lap (Sick Drop mix)",
       "project": "fastaf",
@@ -26090,6 +26193,7 @@
       "cover_400": "albums/sick-drop-demo/cover-400.webp",
       "cover_1400": "albums/sick-drop-demo/cover-1400.webp",
       "tracks": [
+        "halftime-electronic-apex-sick-drop",
         "darksynth-neon-last-lap-sick-drop",
         "cinematic-drum-full-throttle-sick-drop",
         "dark-neurofunk-slipstream-sick-drop",
