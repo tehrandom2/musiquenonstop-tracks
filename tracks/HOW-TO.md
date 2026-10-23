@@ -25,9 +25,10 @@ values the recipe expects.
 A take is the seed, the settings, the caption the music model was given and the planner model's audio codes. The recipe
 carries all four (`audio_codes`, `dit_caption`), so the script runs the music model alone and needs no planner model: same
 recipe, same audio. (A seed alone is not enough: the planner samples its codes with its own randomness, so re-rendering
-only the caption and seed gives a different song in the same style.) Another GPU or driver stack can drift a little, so
-compare duration and peak, not bytes; on the machine that made the take the re-render matched the installed file to a
-correlation of 0.99998. The post-processing
+only the caption and seed gives a different song in the same style.) The script runs cuDNN's deterministic algorithms and
+decodes in fixed tiles, so a take rendered that way since issue #176 re-renders bit for bit on the same GPU, driver and ACE
+checkout. Older takes, or another GPU or driver stack, come back close but not identical, so compare duration and peak,
+not bytes. The post-processing
 (resample to 44.1 kHz, trim, 3 s loop crossfade, 60 Hz high-pass, one gain, soft limiter, MP3 128k CBR) is in the
 recipe's `post` block and is applied exactly as published. Change the seed to get a different take of the same prompt.
 

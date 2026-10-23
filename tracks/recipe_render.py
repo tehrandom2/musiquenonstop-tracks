@@ -4,8 +4,10 @@
 
 Dependencies: the ACE-Step package (from --ace-dir) with its CUDA torch, plus numpy, scipy and soundfile (all in an ACE-Step
 environment). ffmpeg only if you ask for --mp3. The checkout must hold checkpoints/<dit_config> and checkpoints/<lm> named in
-the recipe. The same seed, caption, lyrics and settings on the same model give the same audio on the same kind of GPU; different
-GPUs and driver stacks can drift a little, so compare duration and peak rather than expecting identical bytes.
+the recipe. A recipe with audio codes re-renders bit for bit on the same GPU, driver and ACE checkout (docs/determinism.md):
+cuDNN runs its deterministic algorithms, the VAE decodes in fixed tiles, and torch's global generator is seeded before each call.
+Takes published before that was in place, or rendered on another card or driver stack, come back close but not identical,
+so compare duration and peak rather than bytes.
 
 The post-processing is the recipe's `post` block, applied in this order: resample to 44.1 kHz, trim the silent tail, bake the
 loop (equal-power crossfade of the last N seconds onto the first N, then removed), 4th-order 60 Hz high-pass with a soft knee,
@@ -20,6 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import subprocess
 import sys
 import time
@@ -30,8 +33,21 @@ import soundfile as sf
 from scipy import signal
 from scipy.signal import resample_poly
 
+VAE_DECODE_CHUNK = 128      # latent frames per VAE decode tile; ACE otherwise picks 128 to 512 from the VRAM free at that moment
+
+
+def deterministic() -> None:
+    """Make ACE repeat itself on one card (issue #176). Its diffusion is already repeatable; its VAE decode was not: cuDNN's
+    default convolution algorithms differ run to run (-40 dB between decodes of the same latents), and the decode tiles were
+    sized from free VRAM. Each edit's VAE encode of its source samples from torch's global generator, seeded in render_edit."""
+    os.environ["ACESTEP_VAE_DECODE_CHUNK_SIZE"] = str(VAE_DECODE_CHUNK)
+    import torch
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
 
 def init_handlers(ace_dir: Path, model: dict, need_lm: bool = True):
+    deterministic()
     sys.path.insert(0, str(ace_dir))
     from acestep.handler import AceStepHandler
     from acestep.llm_inference import LLMHandler
@@ -56,6 +72,7 @@ def init_handlers(ace_dir: Path, model: dict, need_lm: bool = True):
 
 def render_raw(dit, llm, r: dict, save_dir: Path) -> Path:
     from acestep.inference import GenerationConfig, GenerationParams, generate_music
+    import torch
     codes = r.get("audio_codes") or ""
     p = GenerationParams(
         caption=r["caption"], instrumental=r["instrumental"], lyrics=r["lyrics"], bpm=r["bpm"], keyscale=r["keyscale"],
@@ -70,6 +87,7 @@ def render_raw(dit, llm, r: dict, save_dir: Path) -> Path:
         p.thinking = False
         p.use_cot_metas = p.use_cot_caption = p.use_cot_language = False
     cfg = GenerationConfig(batch_size=1, use_random_seed=False, seeds=[int(r["seed"])], audio_format="wav")
+    torch.manual_seed(int(r["seed"]))     # the planner LM samples from torch's global generator; the seed parameter does not reach it
     res = generate_music(dit, llm, p, cfg, save_dir=str(save_dir))
     if not res.success or not res.audios:
         raise RuntimeError(f"generation failed: {res.error}")
@@ -80,6 +98,7 @@ def render_edit(dit, r: dict, edit: dict, src: Path, save_dir: Path) -> Path:
     """One section edit of the recipe's `edits`: ACE's repaint of [start, end] seconds of `src` (the take before this edit, as
     ACE wrote it: 48 kHz, no post). Outside the range ACE splices `src` back in; the LM is not used."""
     from acestep.inference import GenerationConfig, GenerationParams, generate_music
+    import torch
     if edit.get("task") != "repaint":
         raise ValueError(f"unknown edit task {edit.get('task')!r}")
     p = GenerationParams(
@@ -93,6 +112,7 @@ def render_edit(dit, r: dict, edit: dict, src: Path, save_dir: Path) -> Path:
     p.thinking = False
     p.use_cot_metas = p.use_cot_caption = p.use_cot_language = False
     cfg = GenerationConfig(batch_size=1, use_random_seed=False, seeds=[int(edit["seed"])], audio_format="wav")
+    torch.manual_seed(int(edit["seed"]))  # ACE's VAE encode of `src` samples its latents from torch's global generator
     res = generate_music(dit, None, p, cfg, save_dir=str(save_dir))
     if not res.success or not res.audios:
         raise RuntimeError(f"repaint failed: {res.error}")
