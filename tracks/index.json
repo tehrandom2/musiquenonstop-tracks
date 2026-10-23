@@ -3,6 +3,102 @@
   "written": "2026-10-23T01:09:38-04:00",
   "tracks": [
     {
+      "slug": "maximal-over-the-top-apex",
+      "title": "Maximal Over-the-top, Apex",
+      "project": null,
+      "idea": "150 bpm, a maximal, over-the-top brostep and riddim banger that tries far too hard: screeching formant bass, growling bass, metallic riddim wobbles, brutal half-time drops, comic excess, out-dubstepping the king of dubstep: a maximal",
+      "request": "150 bpm, a maximal, over-the-top brostep and riddim banger that tries far too hard: screeching formant bass, growling bass, metallic riddim wobbles, brutal half-time drops, comic excess, out-dubstepping the king of dubstep",
+      "mood": "",
+      "bpm": 150,
+      "key": "G minor",
+      "seed": 480700,
+      "model": "fast",
+      "duration": 208.3,
+      "date": "2026-10-23",
+      "rendered_at": "2026-10-23T01:09:36-04:00",
+      "voice": false,
+      "prompt": "A maximal, 150 bpm, over-the-top brostep and riddim banger that tries far too hard: screeching formant bass, growling bass, metallic riddim wobbles, brutal half-time drops, comic excess, out-dubstepping the king of dubstep, punchy sidechained kick, aggressive but readable arrangement with clear build and drop sections, an evolving second half with new chords, a moving bassline and a second, bigger drop, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"150 bpm, a maximal, over-the-top brostep and riddim banger that tries far too hard: screeching formant bass, growling bass, metallic riddim wobbles, brutal half-time drops, comic excess, out-dubstepping the king of dubstep\". \"the race profile (the requester's key, or the owner's choice)\" I took as: a maximal at 150 bpm, genre first and short; the words lead; the profile adds the kick, the arrangement, the evolving second half; the key and the length (the model's choice, 120 to 240 s) left to the model. \"150 bpm\" I took as: 150 bpm, as the words say, in place of the race band. \"a maximal\" I took as: the frame, in the requester's own words, ahead of the tempo. \"over-the-top brostep and riddim banger that tries far too hard: screeching formant bass, growling bass, metallic riddim wobbles, brutal half-time drops, comic excess, out-dubstepping the king of dubstep\" I took as: the colour, in the requester's own words and order. \"half-time\" I took as: a half-time feel at 150 bpm: a feel, not a halved tempo. \"wobble bass\" I took as: a wobble bass, in the requester's own words. So I wrote it at 150 bpm in G minor (the model chose the key), 215 seconds (the model's choice), with no voice, under the race gates. I rendered 4 seeds and threw away 2: 480701 (seam level +6.8 dB tail to head); 480699 (seam level -6.8 dB tail to head). Seed 480700 is the take.",
+      "rejected": [
+        {
+          "seed": 480701,
+          "reason": "seam level +6.8 dB tail to head"
+        },
+        {
+          "seed": 480699,
+          "reason": "seam level -6.8 dB tail to head"
+        }
+      ],
+      "takes": [
+        480700,
+        480698
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -15.51,
+        "lufs_target": null,
+        "peak_dbfs": -2.25,
+        "silence_s": 0.1,
+        "brightness_pct": 2.61,
+        "boominess_pct": 30.32,
+        "onsets_per_s": 3.57,
+        "seam_db": -1.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": null,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "maximal-over-the-top-apex/maximal-over-the-top-apex.mp3",
+        "notes": "maximal-over-the-top-apex/notes.md",
+        "recipe": "maximal-over-the-top-apex/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "race",
+        "seam_step_x": 0.49,
+        "decoded_lufs": -15.89,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 9186051,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "maximal-over-the-top-apex/maximal-over-the-top-apex.mp3",
+          "maximal-over-the-top-apex/maximal-over-the-top-apex-take2.mp3"
+        ],
+        "ears": null
+      },
+      "drone": {
+        "flag": false,
+        "line": "no flat stretch",
+        "longest_still_s": 0.0,
+        "from_s": 0.0,
+        "chroma_cos": 0.0,
+        "onsets_per_s": 0.0,
+        "flux_of_median": 0.0,
+        "flag_at_s": 30.0
+      },
+      "audition": true
+    },
+    {
       "slug": "halftime-electronic-apex-sick-drop",
       "title": "Halftime Electronic, Apex (Sick Drop mix)",
       "project": "fastaf",
