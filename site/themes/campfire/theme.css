@@ -711,3 +711,10 @@ body.camp-scoped .camp-zoom { z-index: 3; }
   .camp-reel.running .cr-reel .spokes, .camp-reel.running .cr-crank, .camp-reel.turning .cr-reel .spokes, .camp-reel.threading .cr-reel .spokes, .camp-reel .cr-projector .lamp { animation: none; }
   .camp-reel .cr-beam .dust circle { opacity: .4; }
 }
+
+/* the car view (issue #220): the night over the fire, gold type, the ember on the bars */
+:root {
+  --car-bg: rgb(5 7 15 / .84); --car-ink: var(--ink); --car-mid: var(--ink-mid); --car-accent: var(--gold); --car-accent2: var(--ember-deep); --car-line: rgb(var(--ember-rgb) / .35);
+  --car-btn: rgb(23 17 12 / .92); --car-btn-ink: var(--ink); --car-on-accent: #17110c; --car-face: var(--display); --car-body-face: var(--mono);
+}
+:root[data-view="car"] .car-title { font-weight: 700; color: var(--gold); }

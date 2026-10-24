@@ -542,3 +542,9 @@ body.ui-hidden .city-readout:not(.hint) { display: none; }
   .city-readout.hint { animation: roHintStill 3s steps(1) forwards; }
   @keyframes roHintStill { 0% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
 }
+
+/* the car view (issue #220): the city's glass, the cyan and the magenta, white ink */
+:root {
+  --car-bg: rgb(4 6 18 / .84); --car-ink: var(--ink); --car-mid: #B9C8E8; --car-accent: var(--cyan); --car-accent2: var(--magenta); --car-line: rgb(var(--cyan-rgb) / .35);
+  --car-btn: rgb(14 20 44 / .92); --car-btn-ink: var(--ink); --car-on-accent: #020309; --car-face: var(--mono); --car-title-face: var(--display);
+}

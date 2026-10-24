@@ -33,7 +33,10 @@
 (function () {
   var names = ['phosphor', 'city', 'tapedeck', 'arena', 'campfire'];
   var dark = { phosphor: '#050705', city: '#020309', tapedeck: '#120d0a', arena: '#06060b', campfire: '#05070f' };
-  var q = new URLSearchParams(location.search).get('theme'), saved = null;
+  var params = new URLSearchParams(location.search), q = params.get('theme'), saved = null;
+  // the car view (issue #220): a Tesla's browser says Tesla in its user agent; ?view=car turns it on anywhere, ?view=desk off
+  var view = params.get('view');
+  if (view === 'car' || (view !== 'desk' && /Tesla/.test(navigator.userAgent))) document.documentElement.dataset.view = 'car';
   try { saved = localStorage.getItem('nobody.theme'); } catch (e) {}
   var cfg = (window.NOBODY_CONFIG && window.NOBODY_CONFIG.defaultTheme) || 'phosphor';
   var t = names.indexOf(q) >= 0 ? q : names.indexOf(saved) >= 0 ? saved : names.indexOf(cfg) >= 0 ? cfg : 'phosphor';
@@ -188,6 +191,35 @@
     </div>
 
   </div>
+</div>
+
+<!-- the car view (issue #220): one landscape screen for a car's browser, over the theme's scene. shown only under html[data-view=car];
+     station.js fills it. parked: the visualizer, the title, the album, next up, a prompt line, the bar. drive: a still cover, a huge
+     title, next up, play and next. MAKE A TRACK and the terminal are behind [ more ]. -->
+<div class="car" id="car" aria-label="nobody fm, car view">
+  <div class="car-tap" id="carTap"><button class="car-tap-btn" id="carTapBtn" type="button">TAP TO TUNE IN</button><span class="car-tap-line">nobody fm  88.8  the transmitter nobody can find</span></div>
+  <div class="car-main" id="carMain">
+    <div class="car-state" id="carState">NOBODY FM 88.8</div>
+    <div class="car-title" id="carTitle" aria-live="polite"></div>
+    <div class="car-album" id="carAlbum"></div>
+    <div class="car-viz"><canvas id="carViz" aria-label="spectrum and scope, drawn from the audio that is playing"></canvas></div>
+    <div class="car-cover"><img id="carCover" alt=""></div>
+    <div class="car-up" id="carUp"></div>
+    <div class="car-prompt" id="carPrompt"></div>
+    <div class="car-progress"><div class="car-track"><div class="car-fill" id="carFill"></div></div><span class="car-time" id="carTime">0:00 / 0:00</span></div>
+  </div>
+  <nav class="car-bar" aria-label="transport">
+    <span class="car-transport">
+      <button class="car-btn car-prev" id="carPrev" type="button" aria-label="previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6v12l-9-6zM5 6h2.5v12H5z"/></svg></button>
+      <button class="car-btn car-play" id="carPlay" type="button" aria-label="play"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4.5v14H6zM13.5 5H18v14h-4.5z"/></svg></button>
+      <button class="car-btn car-next" id="carNext" type="button" aria-label="next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6v12l9-6zM16.5 6H19v12h-2.5z"/></svg></button>
+      <button class="car-btn car-keep" id="carKeep" type="button" aria-label="keep: this one once more" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4h3v6.5H20v3h-6.5V20h-3v-6.5H4v-3h6.5z"/></svg></button>
+    </span>
+    <span class="car-modes">
+      <button class="car-btn car-word" id="carDrive" type="button" aria-pressed="false">DRIVE</button>
+      <button class="car-btn car-word" id="carMore" type="button" aria-pressed="false">MORE</button>
+    </span>
+  </nav>
 </div>
 
 <!-- the theme picker (design 12.0, issue #63): one swatch per registered theme, drawn by station.js -->

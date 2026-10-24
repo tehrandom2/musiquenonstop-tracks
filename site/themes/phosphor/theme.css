@@ -508,3 +508,10 @@ body.ui-hidden .hide-tower { opacity: 1; }
 .log .art-print { margin: calc(var(--row) * .3) 0; min-height: 0; }
 /* the station's cover images (#73, the track page and the album page) are these blocks here: the CRT shows no photographs */
 .page .cover-art { display: none !important; }
+
+/* the car view (issue #220): the CRT's green, brighter and plainer for a screen read at arm's length in daylight */
+:root {
+  --car-bg: rgb(3 6 3 / .88); --car-ink: var(--hot); --car-mid: var(--p1); --car-accent: var(--p1); --car-accent2: var(--p1-dim); --car-line: var(--p1-dim);
+  --car-btn: #0A160C; --car-btn-ink: var(--hot); --car-on-accent: #031006; --car-face: "VT323", "Courier New", monospace; --car-body-face: "IBM Plex Mono", "Courier New", monospace;
+}
+:root[data-view="car"] .car-title { font-size: clamp(40px, 6vw, 72px); text-shadow: var(--bloom); }

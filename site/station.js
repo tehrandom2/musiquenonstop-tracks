@@ -50,7 +50,8 @@
     'audBadge', 'audRow', 'audBtn', 'audLine', 'progress', 'progressTime', 'dial', 'nextUp', 'spectrum', 'baseline', 'scope', 'deadair', 'tower', 'towerStatic', 'reread', 'bed', 'fat', 'fatPrev', 'fatPlay', 'fatNext', 'fatQueue', 'licence',
     'catalogue', 'sortLabel', 'shuffleLabel', 'findBtn', 'catHead', 'catRows', 'catEmpty', 'page', 'terminal', 'log', 'cmd', 'cmdCursor', 'promptRow', 'hints',
     'visitorInline', 'wireTag', 'footer', 'odometer', 'countTag', 'help', 'helpTitle', 'helpBody', 'helpClose', 'stationName', 'stationName2', 'transmitter',
-    'themeBtn', 'themes', 'themeList', 'themesClose', 'failRow', 'failRetry', 'failNext']
+    'themeBtn', 'themes', 'themeList', 'themesClose', 'failRow', 'failRetry', 'failNext',
+    'car', 'carTapBtn', 'carState', 'carTitle', 'carAlbum', 'carViz', 'carCover', 'carUp', 'carPrompt', 'carFill', 'carTime', 'carPrev', 'carPlay', 'carNext', 'carKeep', 'carDrive', 'carMore']
     .forEach(function (id) { el[id] = $(id); });
 
   const BANNER = [
@@ -116,6 +117,7 @@
     drawVol();
     A.resize();
     themeInterface(th);
+    if (CAR.on) { CAR.ink = null; CAR.coverSrc = ''; carSync(); if (S.current && S.onAir) mediaSession(S.bySlug[S.current]); }
     return true;
   }
   // the interface paradigm (12.0, issue #53): a theme that answers interface() claims keys, adds commands and names its layouts;
@@ -453,6 +455,7 @@
     if (S.onAir) return;
     if (!S.booted) finishBoot();
     S.onAir = true; S.airSince = Date.now();
+    carWake();
     const ok = SY.create(deck, !FILE, MUTE, decks[1]);
     try { const v = parseInt(localStorage.getItem('nobody.vol'), 10); if (!isNaN(v)) SY.volume = v; } catch (err) {}
     SY.setVolume(SY.volume, deck, FILE || !ok);
@@ -500,10 +503,11 @@
   function setChip(text, cls) {
     if (!cls && (text === 'PAUSED' || text === 'STANDBY')) cls = 'off';
     [el.chip, el.chip2].forEach(function (c) { c.textContent = '[' + text + ']'; c.className = 'bare chip' + (cls ? ' ' + cls : ''); });
+    carSync();
   }
 
   /* ---------------- the deck, the queue, tuning (2.3, 5.1) ---------------- */
-  function markRows() { renderRows(); tellQueue(); markAlbumRows(); }
+  function markRows() { renderRows(); tellQueue(); markAlbumRows(); carSync(); }
   // the album page's rows follow the deck like the catalogue's (issue #73)
   function markAlbumRows() {
     if (S.view !== 'album') return;
@@ -790,6 +794,7 @@
   function drawProgress() {
     const d = deck.duration || (S.bySlug[S.current] || {}).duration || 0, c = deck.currentTime || 0;
     TH().progress(el.progress, el.hdrBar, c, d, phone(), S.view, content());
+    carProgress(c, d);
     if (S.view !== 'home') el.hdrTime.textContent = fmt(c) + ' / ' + fmt(d);
   }
   // the volume fader is shared (volume.js, design 12.0 controls); a theme may only decorate the slot beside it
@@ -821,9 +826,11 @@
         art = S.artwork ? [{ src: S.artwork, sizes: '512x512', type: 'image/png' }]
           : [{ src: absUrl(PLACEHOLDER[400]), sizes: '400x400', type: 'image/webp' }, { src: absUrl(PLACEHOLDER[1400]), sizes: '1400x1400', type: 'image/webp' }];
       }
+      // the car view (issue #220): the title carries the album and the number, and every track has art of its own
+      if (CAR.on) art = carArt(t);
       S.mediaArt = art[art.length - 1].src;
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: t.title || t.slug, artist: 'NOBODY FM', album: a ? albumTitle(a) : '88.8 the transmitter nobody can find', artwork: art
+        title: CAR.on ? carLine(t) : t.title || t.slug, artist: 'NOBODY FM', album: a ? albumTitle(a) : '88.8 the transmitter nobody can find', artwork: art
       });
       if (!S.mediaHandlers) { S.mediaHandlers = true; mediaHandlers(); }
       positionState(true);
@@ -1571,7 +1578,7 @@
     return { on: !!S.aud, list: S.aud ? S.aud.list.slice() : auditions(), pos: S.aud ? S.aud.list.indexOf(S.current) + 1 : 0,
       badge: !el.audBadge.hidden, row: el.audRow.hidden ? '' : el.audBtn.textContent + ' | ' + el.audLine.textContent };
   };
-  st.repeatOnce = function () { S.repeat = !S.repeat; T.print(S.repeat ? 'repeat: this one once more.' : 'repeat off.'); drawNextUp(); };
+  st.repeatOnce = function () { S.repeat = !S.repeat; T.print(S.repeat ? 'repeat: this one once more.' : 'repeat off.'); drawNextUp(); carSync(); };
   st.setVol = setVol;
   st.volText = function () { T.print('vol ' + SY.volume + '/10' + (SY.muted ? ' (muted)' : '')); };
   st.list = function (words) {
@@ -2217,6 +2224,153 @@
     document.addEventListener('mousemove', hideCursorWake, { passive: true });
   }
 
+  /* ---------------- the car view (issue #220): one landscape screen for a car's browser, parked and drive ---------------- */
+  // on with a Tesla user agent or ?view=car, off with ?view=desk: decided in the head of the page as html[data-view=car], so the
+  // desktop and the phone never run any of this. parked: the bars and the scope, the title, the album and n/m, next up, a prompt
+  // line, the bar of thumb-size buttons; MAKE A TRACK and the terminal sit behind [ more ]. drive: a still cover, a huge title, next
+  // up, play and next, and nothing moves: every animation frame asked for is parked until the drive ends, and the CSS stops every
+  // animation. the browser cannot read the gear or the speed, so drive is a toggle, and the view falls into it after
+  // carDriveAfter minutes (config.js, 3 by default) with no touch; ?drive=1 opens in it. the Media Session gets a title that carries
+  // the album and the number (the car's now-playing card shows the title and the art, and the site's address where the artist would
+  // be), and art for every track: the album's cover, else the theme's own picture. ?carart=viz makes it a still of the visualizer.
+  const CAR = { on: document.documentElement.dataset.view === 'car', drive: false, more: false, idle: 0, g: null, ink: null, covers: {}, snap: null, coverSrc: '',
+    viz: qs.get('carart') === 'viz', after: Math.max(0.5, Number(CFG.carDriveAfter) || 3) * 60 * 1000 };
+  // test-only, with ?mute=1: ?driveafter=<seconds> so the harness can watch the view fall into drive
+  if (MUTE && Number(qs.get('driveafter')) > 0) CAR.after = Number(qs.get('driveafter')) * 1000;
+  const rafNative = window.requestAnimationFrame.bind(window), cafNative = window.cancelAnimationFrame.bind(window), parked = new Map();
+  let parkedId = 0;
+  if (CAR.on) {
+    window.requestAnimationFrame = function (cb) { if (!CAR.drive) return rafNative(cb); parkedId -= 1; parked.set(parkedId, cb); return parkedId; };
+    window.cancelAnimationFrame = function (id) { if (id < 0) parked.delete(id); else cafNative(id); };
+  }
+  function unpark() { const cbs = Array.from(parked.values()); parked.clear(); cbs.forEach(function (cb) { rafNative(cb); }); }
+  function carLine(t) {
+    const a = albumOf(t), title = t.title || t.slug;
+    return a ? title + ' · ' + albumTitle(a) + ' ' + trackNo(t.slug) + '/' + a.tracks.length : title + ' · ' + S.theme;
+  }
+  // the cover: the album's own art, else the theme's picture (drawn once per theme), else the station's placeholder
+  function carCover(t) {
+    const a = t && albumOf(t);
+    if (a && hasArt(a)) return absUrl(coverUrl(a, 1400));
+    if (!(S.theme in CAR.covers)) CAR.covers[S.theme] = TH().artwork() || absUrl(PLACEHOLDER[1400]);
+    return CAR.covers[S.theme];
+  }
+  function carArt(t) {
+    const a = albumOf(t);
+    if (a && hasArt(a)) return [{ src: absUrl(coverUrl(a, 400)), sizes: '400x400', type: 'image/webp' }, { src: absUrl(coverUrl(a, 1400)), sizes: '1400x1400', type: 'image/webp' }];
+    if (CAR.snap && CAR.snap.slug === t.slug) return [{ src: CAR.snap.src, sizes: '512x512', type: 'image/png' }];
+    const src = carCover(t), data = src.indexOf('data:') === 0;
+    return [{ src: src, sizes: data ? '512x512' : '1400x1400', type: data ? 'image/png' : 'image/webp' }];
+  }
+  function carSync() {
+    if (!CAR.on) return;
+    const t = S.bySlug[S.current], a = t && albumOf(t), info = S.onAir && S.state !== 'dead' ? nextUpInfo() : null;
+    el.car.classList.toggle('on-air', !!S.onAir);
+    el.carState.textContent = !S.onAir ? 'NOBODY FM  88.8' : S.state === 'dead' ? 'DEAD AIR' : S.state === 'tuning' ? 'TUNING  88.8' : S.state === 'failed' ? 'NO SIGNAL' : deck.paused ? 'PAUSED' : 'NOW PLAYING  88.8';
+    el.carTitle.textContent = t ? (t.title || t.slug) : S.state === 'dead' ? 'nothing in the catalogue yet' : 'nobody fm';
+    el.carAlbum.textContent = a ? albumTitle(a) + '  ' + trackNo(t.slug) + '/' + a.tracks.length : t ? 'a single  ·  ' + S.theme : '';
+    el.carUp.textContent = '';
+    if (S.repeat && t) { el.carUp.appendChild(span('NEXT UP', 'car-label')); el.carUp.appendChild(span('this one, once more')); }
+    else if (info) {
+      el.carUp.appendChild(span('NEXT UP', 'car-label')); el.carUp.appendChild(span(info.title));
+      if (info.album) el.carUp.appendChild(span(info.album + ' ' + info.n + '/' + info.of, 'car-up-album'));
+    }
+    el.carPrompt.textContent = t ? '> ' + (t.prompt || t.idea || '') : '';
+    const playing = S.onAir && !deck.paused && S.state !== 'dead' && S.state !== 'failed';
+    el.carPlay.classList.toggle('playing', playing);
+    el.carPlay.setAttribute('aria-label', playing ? 'pause' : 'play');
+    el.carKeep.setAttribute('aria-pressed', S.repeat ? 'true' : 'false');
+    el.carDrive.setAttribute('aria-pressed', CAR.drive ? 'true' : 'false');
+    el.carDrive.textContent = CAR.drive ? 'PARKED' : 'DRIVE';
+    el.carDrive.setAttribute('aria-label', CAR.drive ? 'drive view on: back to the parked view' : 'drive view: audio only, nothing moves');
+    el.carMore.setAttribute('aria-pressed', CAR.more ? 'true' : 'false');
+    el.carMore.textContent = CAR.more ? 'BACK' : 'MORE';
+    const src = t ? carCover(t) : '';
+    if (src !== CAR.coverSrc) { CAR.coverSrc = src; if (src) el.carCover.src = src; else el.carCover.removeAttribute('src'); }
+  }
+  function carProgress(c, d) {
+    if (!CAR.on || CAR.drive) return;
+    el.carFill.style.width = (d ? Math.min(100, c / d * 100) : 0).toFixed(2) + '%';
+    el.carTime.textContent = fmt(c) + ' / ' + fmt(d);
+  }
+  // once a frame while parked: 32 bars from the analyser's 64 bands in the theme's two inks, the scope under them
+  function carDraw() {
+    const cv = el.carViz, d = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.round(cv.clientWidth * d), h = Math.round(cv.clientHeight * d);
+    if (!w || !h) return;
+    if (!CAR.g) CAR.g = cv.getContext('2d');
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; CAR.ink = null; }
+    if (!CAR.ink) {
+      const cs = getComputedStyle(document.documentElement);
+      CAR.ink = cs.getPropertyValue('--car-accent').trim() || '#ffffff'; CAR.ink2 = cs.getPropertyValue('--car-accent2').trim() || CAR.ink;
+      CAR.wave = cs.getPropertyValue('--car-ink').trim() || '#ffffff';
+    }
+    const g = CAR.g, N = 32, scopeH = Math.round(h * 0.24), barsH = h - scopeH - 10 * d, bw = w / N, v = A.v64;
+    g.clearRect(0, 0, w, h);
+    const gr = g.createLinearGradient(0, barsH, 0, 0); gr.addColorStop(0, CAR.ink2); gr.addColorStop(1, CAR.ink);
+    g.fillStyle = gr;
+    for (let i = 0; i < N; i++) {
+      const raw = v ? v[Math.min(63, Math.floor(Math.pow(i / N, 1.3) * 64))] : 0;
+      const bh = Math.max(3 * d, Math.pow(Math.max(0.02, raw), 0.9) * barsH);
+      g.fillRect(Math.round(i * bw + bw * 0.12), Math.round(barsH - bh), Math.max(1, Math.round(bw * 0.76)), Math.round(bh));
+    }
+    const s = A.samples(160), mid = h - scopeH / 2;
+    g.strokeStyle = CAR.wave; g.lineWidth = 2 * d; g.globalAlpha = 0.9; g.beginPath();
+    for (let i = 0; i < s.length; i++) { const x = i / (s.length - 1) * w, y = mid - s[i] * scopeH * 0.45; if (i) g.lineTo(x, y); else g.moveTo(x, y); }
+    g.stroke(); g.globalAlpha = 1;
+    // ?carart=viz: 2.5 s into a track, a still of the bars becomes its artwork in the car's now-playing card
+    if (CAR.viz && S.state === 'playing' && deck.currentTime > 2.5 && (!CAR.snap || CAR.snap.slug !== S.current) && !hasArt(albumOf(S.current))) {
+      try {
+        const sq = document.createElement('canvas'); sq.width = sq.height = 512;
+        const sg = sq.getContext('2d'); sg.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--car-btn').trim() || '#000'; sg.fillRect(0, 0, 512, 512);
+        sg.drawImage(cv, 0, 0, w, h, 0, 512 * (1 - h / w) / 2, 512, 512 * h / w);
+        CAR.snap = { slug: S.current, src: sq.toDataURL('image/png') };
+        mediaSession(S.bySlug[S.current]);
+      } catch (e) { CAR.viz = false; }
+    }
+  }
+  st.drive = function (want) {
+    if (!CAR.on) return;
+    const on = want == null ? !CAR.drive : !!want;
+    if (on === CAR.drive) return;
+    CAR.drive = on;
+    if (on) st.carMore(false);
+    if (on) document.documentElement.dataset.drive = '1'; else delete document.documentElement.dataset.drive;
+    // what a theme started with element.animate() (phosphor's afterglow under a tap) is out of the CSS's reach: held, then let go
+    if (on) CAR.held = document.getAnimations().filter(function (a) { return a.playState === 'running'; }).map(function (a) { a.pause(); return a; });
+    else { (CAR.held || []).forEach(function (a) { try { a.play(); } catch (e) {} }); CAR.held = null; }
+    if (!on) { unpark(); drawProgress(); }
+    carSync(); carWake();
+  };
+  st.carMore = function (want) {
+    if (!CAR.on) return;
+    const on = want == null ? !CAR.more : !!want;
+    if (on === CAR.more) return;
+    CAR.more = on;
+    if (on) { if (CAR.drive) st.drive(false); document.documentElement.dataset.carmore = '1'; relayout(); } else delete document.documentElement.dataset.carmore;
+    carSync();
+  };
+  st.carState = function () { return { on: CAR.on, drive: CAR.drive, more: CAR.more, parked: parked.size, after: CAR.after, cover: CAR.coverSrc.slice(0, 60), snap: !!CAR.snap }; };
+  // a touch wakes the timer; no touch for CAR.after while on air and the view falls into drive
+  function carWake() {
+    clearTimeout(CAR.idle);
+    if (CAR.on && !CAR.drive && S.onAir) CAR.idle = setTimeout(function () { st.drive(true); }, CAR.after);
+  }
+  function carWire() {
+    if (!CAR.on) return;
+    el.carTapBtn.addEventListener('click', function () { if (!S.onAir) goOnAir(null); });
+    el.carPrev.addEventListener('click', function () { if (S.onAir && S.state !== 'dead') prev(); });
+    el.carPlay.addEventListener('click', togglePlay);
+    el.carNext.addEventListener('click', function () { if (S.onAir && S.state !== 'dead') next(); else if (!S.onAir) goOnAir(null); });
+    el.carKeep.addEventListener('click', function () { if (S.current) { st.repeatOnce(); carSync(); } });
+    el.carDrive.addEventListener('click', function () { st.drive(); });
+    el.carMore.addEventListener('click', function () { st.carMore(); });
+    ['pointerdown', 'keydown'].forEach(function (ev) { document.addEventListener(ev, carWake, { capture: true, passive: true }); });
+    decks.forEach(function (d) { ['play', 'pause'].forEach(function (ev) { d.addEventListener(ev, function () { if (d === deck) carSync(); }); }); });
+    if (qs.get('drive') === '1') st.drive(true);
+    carSync();
+  }
+
   /* ---------------- keys (4.2), the cheat code (4.5) ---------------- */
   function inInput(e) { const t = e.target; return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable); }
   document.addEventListener('keydown', function (e) {
@@ -2333,6 +2487,7 @@
     el.cmd.addEventListener('focus', function () { if (phone()) setTimeout(function () { el.promptRow.scrollIntoView({ block: 'center' }); }, 300); });
     window.addEventListener('resize', relayout);
     hideTouch();
+    carWire();
     // any key finishes a typing effect (issue #43); captured, so a key typed into the terminal counts too
     document.addEventListener('keydown', finishTypers, true);
   }
@@ -2343,6 +2498,7 @@
     // the numbers are read every frame (the city reads them too); the card is drawn only when it is on screen
     if (S.onAir) A.update(now, deck);
     if (S.onAir && S.view === 'home' && !el.spectrum.hidden && TH()) TH().frame(A, S, now);
+    if (CAR.on && S.onAir && !CAR.more) carDraw();
     if (A.ghost && !S.ghostNoted && S.onAir && !FILE && SY.ctx) { S.ghostNoted = true; T.print('analyser: no signal in the graph. guessing, and saying so.', 'amber'); }
   }
   setInterval(function () {

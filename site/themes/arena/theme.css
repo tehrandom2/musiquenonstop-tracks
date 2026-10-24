@@ -392,3 +392,10 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
 
 /* hidden mode (12.0, issue #52): the stage and its beam are the picture; the bars take the track's hue */
 :root { --hide-ink: var(--accent-hot); --hide-ink2: var(--accent-2); --hide-face: var(--display); }
+
+/* the car view (issue #220): the dark stage, white type, the track's hue on the bars and the play button */
+:root {
+  --car-bg: rgb(6 6 11 / .86); --car-ink: var(--text); --car-mid: #c4c3d6; --car-accent: var(--accent-hot); --car-accent2: var(--accent-2); --car-line: var(--line-2);
+  --car-btn: rgb(24 24 38 / .92); --car-btn-ink: var(--text); --car-on-accent: #07070c; --car-face: var(--head); --car-title-face: var(--display); --car-body-face: var(--mono);
+}
+:root[data-view="car"] .car-title { font-weight: 800; letter-spacing: -.02em; }
