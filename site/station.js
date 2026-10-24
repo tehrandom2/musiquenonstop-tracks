@@ -51,7 +51,7 @@
     'catalogue', 'sortLabel', 'shuffleLabel', 'findBtn', 'catHead', 'catRows', 'catEmpty', 'page', 'terminal', 'log', 'cmd', 'cmdCursor', 'promptRow', 'hints',
     'visitorInline', 'wireTag', 'footer', 'odometer', 'countTag', 'help', 'helpTitle', 'helpBody', 'helpClose', 'stationName', 'stationName2', 'transmitter',
     'themeBtn', 'themes', 'themeList', 'themesClose', 'failRow', 'failRetry', 'failNext',
-    'car', 'carTapBtn', 'carState', 'carTitle', 'carAlbum', 'carViz', 'carCover', 'carUp', 'carPrompt', 'carFill', 'carTime', 'carPrev', 'carPlay', 'carNext', 'carKeep', 'carDrive', 'carMore']
+    'car', 'carTapBtn', 'carState', 'carTitle', 'carAlbum', 'carViz', 'carCover', 'carUp', 'carPrompt', 'carFill', 'carTime', 'carPrev', 'carPlay', 'carNext', 'carKeep', 'carDrive', 'carMore', 'mineLine', 'carMine']
     .forEach(function (id) { el[id] = $(id); });
 
   const BANNER = [
@@ -188,6 +188,7 @@
     return s;
   }
   function trackUrl(t, kind) {
+    if (kind === 'mp3' && t.src) return t.src;   // a song of this browser's own, played before the catalogue has it (issue #226)
     const f = t.files || {};
     const rel = f[kind] || (kind === 'mp3' ? t.slug + '/' + t.slug + '.mp3' : kind === 'notes' ? t.slug + '/notes.md' : t.slug + '/recipe.json');
     return CFG.tracksBase + rel;
@@ -250,6 +251,8 @@
     tracks.sort(function (a, b) { return (when(b) - when(a)) || String(b.date || '').localeCompare(String(a.date || '')) || String(b.slug).localeCompare(String(a.slug)); });
     S.tracks = tracks; S.bySlug = {}; S.num = {};
     tracks.forEach(function (t, i) { S.bySlug[t.slug] = t; S.num[t.slug] = tracks.length - i; });
+    // a song of this browser's own that the index does not list yet stays playable by its slug, and out of the rotation (issue #226)
+    Object.keys(S.mineExtra || {}).forEach(function (s) { if (!S.bySlug[s]) S.bySlug[s] = S.mineExtra[s]; });
     installAlbums(idx);
     el.trackCount.textContent = tracks.length + (tracks.length === 1 ? ' track' : ' tracks');
     drawAudition();
@@ -496,6 +499,7 @@
       if (aud.length) { startAudition(aud); S.queue = aud.slice(); }
       setChip('ON AIR');
       tuneTo(S.queue.shift(), !!(m && S.bySlug[decodeURIComponent(m[1])]));
+      mineRequeue();   // a song of this browser's that is ready and not yet heard plays after the first track (issue #226)
       route();
     });
   }
@@ -698,6 +702,7 @@
     document.title = 'nobody fm: ' + t.slug;
     // the queue never runs dry while on air, so next up always has an answer (issue #87)
     if (!S.queue.length) refill();
+    minePlayed(t.slug);
     mediaSession(t);
     markRows();
     clearIdle();
@@ -922,6 +927,29 @@
     if (XF.fade) { const f = XF.fade; XF.fade = null; clearTimeout(f.timer); f.from.pause(); f.from.removeAttribute('src'); f.from.load(); }
     const o = offAir(); if (!o.paused) o.pause();
     if (SY.chans) { SY.level(deck, 1); SY.level(o, 0); }
+  }
+  // cross to slug now, mid-track, with the normal crossfade (issue #226: a song of this browser's own, played now): it loads on the
+  // deck off air and the join runs at once, the track it cuts comes back next as after a play by hand. where there is no crossfade
+  // (no graph, reduced data, paused, a fade already running) or the file does not come in 8 s, it tunes, as a play by hand does
+  function crossNow(slug) {
+    if (!S.bySlug[slug] || S.current === slug) return;
+    if (!SY.deckConnected || saveData() || S.state !== 'playing' || deck.paused || XF.fade) { playNow(slug); return; }
+    const cur = S.current;
+    S.queue = S.queue.filter(function (s) { return s !== slug; }); S.queue.unshift(slug);
+    if (!XF.armed || XF.armed.slug !== slug) arm(slug);
+    clearTimeout(XF.timer); XF.timer = 0;
+    const a = XF.armed, token = S.tuningToken;
+    let done = false;
+    const go = function () {
+      if (done) return;
+      done = true; clearTimeout(late); a.el.removeEventListener('canplay', go);
+      if (XF.armed !== a || S.tuningToken !== token || upNext() !== slug) return;
+      join();
+      if (S.current === slug && cur && inRotation(cur)) { S.queue = S.queue.filter(function (s) { return s !== cur; }); S.queue.unshift(cur); markRows(); }
+      else if (S.current !== slug) playNow(slug);
+    };
+    const late = setTimeout(function () { if (done) return; done = true; a.el.removeEventListener('canplay', go); if (S.tuningToken === token && S.current !== slug) playNow(slug); }, 8000);
+    if (a.el.readyState >= 3) go(); else a.el.addEventListener('canplay', go);
   }
   // next up (issue #87): the track the queue plays next, for the transmitter's line, a theme's `nextUp(info)` hook and
   // NOBODY.nextUp(). info = { slug, title, album, n, of, in } (album, n and of only on an album; `in` the seconds to the join)
@@ -1731,6 +1759,17 @@
       makeLine('done: ' + (title || slug) + '  ', '', link);
     },
     queued: function (slug) { makeState('queued next'); },
+    // a song of this browser's own (issue #226): the permalink, then [ play it now ]
+    ready: function (slug, title, now) {
+      makeState('queued next');
+      const b = span('');
+      b.appendChild(button('#/track/' + slug, '', function () { openTrack(slug); }));
+      b.appendChild(document.createTextNode(' '));
+      b.appendChild(button('play it now', 'mine-now', now));
+      makeLine('your song is ready: ' + (title || slug) + '  ', '', b);
+    },
+    waiting: function (title) { makeState('waiting ...'); makeLine(fit('ready, waiting to be published: ' + title), 'mid'); },
+    onAir: function (slug, title) { makeState('on air'); makeLine('on air: ' + (title || slug) + '  ', '', button('#/track/' + slug, '', function () { openTrack(slug); })); },
     lost: function () { makeState(''); makeLine('lost the line. the request carries on without you.', 'amber'); }
   };
 
@@ -1769,6 +1808,7 @@
     if (kind === 'state') {
       if (d.state === cur.lastState) return;
       cur.lastState = d.state;
+      mineState(cur.id, d.state, d.note);
       if (d.state === 'gated') { T.print('waiting at the gate. a person has to say yes.', 'amber'); makeState('at the gate ...'); }
       else if (d.state === 'approved') { T.print('through the gate. in the queue.'); makeState('queued ...'); }
       else if (d.state === 'rendering') { T.print('rendering.'); makeState('rendering ...'); }
@@ -1792,20 +1832,7 @@
     T.print(fit('done: ' + (res.title || res.slug)));
     T.print(location.origin + location.pathname + '#/track/' + res.slug, 'amber');     // not permalink(): no query string (a test flag may carry a key)
     MAKE.done(res.slug, res.title);
-    const tries = [0, 1500, 4000, 8000];
-    (function reload(i) {
-      loadIndex().then(installIndex).then(function () {
-        if (!S.bySlug[res.slug]) throw new Error('not in the index yet');
-        buildCatalogue();
-        S.queue = S.queue.filter(function (x) { return x !== res.slug; });
-        if (S.current !== res.slug) S.queue.unshift(res.slug);
-        T.print('queued next: ' + res.slug);
-        MAKE.queued(res.slug);
-      }).catch(function () {
-        if (i + 1 < tries.length) setTimeout(function () { reload(i + 1); }, tries[i + 1]);
-        else T.print('the catalogue has not caught up. the permalink will work when it does.', 'mid');
-      });
-    })(0);
+    mineDone(cur.id, res);   // ready when the catalogue lists it or its file answers, then it plays next (issue #226)
   }
   function reqLost(cur) {
     if (cur.stopped) return;
@@ -1822,7 +1849,7 @@
       fetch(base + '/requests/' + encodeURIComponent(cur.id) + '?wait=25', { headers: reqHeaders(false), signal: ctl.signal })
         .then(function (r) { return r.json(); })
         .then(function (rec) {
-          reqNarrate(cur, 'state', { state: rec.state, note: '' });
+          reqNarrate(cur, 'state', { state: rec.state, note: recNote(rec) });
           if (['done', 'failed', 'declined'].indexOf(rec.state) >= 0) reqDone(cur, { state: rec.state, result: rec.result });
           else setTimeout(poll, 1000);
         }).catch(function () { reqLost(cur); });
@@ -1848,6 +1875,199 @@
         });
       })();
     }).then(function () { if (!ended) poll(); }, function (e) { if (!ended && !cur.stopped && !(e && e.name === 'AbortError')) poll(); });
+  }
+  // what a request record says about why it ended: the gate's decision, or the error
+  function recNote(rec) {
+    if (!rec) return '';
+    if (rec.state === 'declined') return (rec.gate && rec.gate.decision && rec.gate.decision.why) || '';
+    if (rec.state === 'failed') return typeof rec.error === 'string' ? rec.error : (rec.error && rec.error.message) || '';
+    return '';
+  }
+
+  /* ---------------- play-on-ready (issue #226) ----------------
+     this browser's own requests, kept across a reload (nobody.requests). each open one is watched, by the request line's narration
+     while it is the one followed, else by a poll of GET /requests/{id}?wait= at most every 10 s, until done, declined or failed.
+     done with a file that answers: "your song is ready: <title>", it goes to the head of the queue and comes in at the next
+     crossfade; [ play it now ] crosses to it at once. once on air it is marked played and never queued again on its own. done
+     before the file is published: "ready, waiting to be published", and the record and the file are tried again on each poll
+     for up to 10 minutes. a song the index does not list yet plays from the result's mp3_url, outside the rotation. */
+  const MINE = { list: [], watching: {}, busy: {}, fresh: {},
+    poll: MUTE && Number(qs.get('reqpoll')) > 0 ? Number(qs.get('reqpoll')) * 1000 : 10000,   // test-only with ?mute=1: ?reqpoll=<s>
+    wait: 10 * 60 * 1000 };
+  const MINE_WORDS = { planning: 'being read back', planned: 'being read back', gated: 'at the gate', approved: 'in the queue', rendering: 'rendering' };
+  function mineSave() {
+    try { localStorage.setItem('nobody.requests', JSON.stringify(MINE.list.slice(-12))); } catch (e) {}
+  }
+  function mineGet(id) { return MINE.list.find(function (r) { return r.id === id; }) || null; }
+  function mineEnded(r) { return r.played || r.gaveUp || r.state === 'declined' || r.state === 'failed' || r.state === 'lost'; }
+  // still worth asking the line about: not ended, and not a done song that already plays
+  function mineOpen(r) { return !mineEnded(r) && !(r.state === 'done' && r.ready); }
+  function mineAdd(rec) {
+    if (!rec || !rec.id || mineGet(rec.id)) return;
+    const take = (rec.readback && rec.readback.take) || {};
+    MINE.list.push({ id: rec.id, state: rec.state || 'planning', title: take.title || rec.title || '', slug: take.slug || rec.slug || '', prompt: take.caption || '', at: Date.now() });
+    mineSave(); mineShow(); mineWatch(mineGet(rec.id));
+  }
+  function mineState(id, state, note) {
+    const r = mineGet(id);
+    if (!r || state === 'done' || r.state === state || mineEnded(r)) return;
+    r.state = state;
+    if (state === 'declined' || state === 'failed') {
+      r.note = note || ''; r.endedAt = Date.now(); MINE.fresh[id] = true;
+      // the narration says it for the request it follows; a request watched quietly says it here, in the same words
+      if (!(REQ.active && REQ.active.id === id)) T.print(mineText(r).text, 'amber');
+    }
+    mineSave(); mineShow();
+  }
+  function mineDone(id, res) {
+    const r = mineGet(id);
+    if (!r || r.ready || mineEnded(r)) return;
+    res = res || {};
+    r.state = 'done'; r.doneAt = r.doneAt || Date.now();
+    ['slug', 'title', 'bpm', 'key', 'seed', 'files'].forEach(function (k) { if (res[k] != null) r[k] = res[k]; });
+    if (res.mp3_url) r.src = res.mp3_url;
+    mineSave(); mineCheck(r);
+  }
+  function mineProbe(src) {
+    const ctl = new AbortController(), to = setTimeout(function () { ctl.abort(); }, 5000);
+    return fetch(src, { method: 'HEAD', cache: 'no-store', signal: ctl.signal })
+      .then(function (x) { clearTimeout(to); return x.ok; }, function () { clearTimeout(to); return false; });
+  }
+  // playable: the catalogue lists it (the index is read again, and installed when it has caught up), or its file answers
+  function mineCheck(r) {
+    if (!r.slug || r.ready || mineEnded(r) || MINE.busy[r.id]) return;
+    MINE.busy[r.id] = true;
+    loadIndex().then(function (idx) {
+      const listed = !!idx && Array.isArray(idx.tracks) && idx.tracks.some(function (t) { return t && t.slug === r.slug; });
+      if (listed && S.tracks.indexOf(S.bySlug[r.slug]) < 0) { installIndex(idx); buildCatalogue(); }
+      return listed || (r.src ? mineProbe(r.src) : false);
+    }).catch(function () { return r.src ? mineProbe(r.src) : false; }).then(function (ok) {
+      delete MINE.busy[r.id];
+      if (ok) {
+        r.ready = true; mineSave();
+        T.print(fit('your song is ready: ' + (r.title || r.slug) + '. it plays next.'), 'amber');
+        MAKE.ready(r.slug, r.title, function () { mineNow(r.id); });
+        mineQueue(r);
+        return;
+      }
+      if (Date.now() - r.doneAt > MINE.wait) {
+        r.gaveUp = true; r.endedAt = Date.now(); MINE.fresh[r.id] = true; mineSave();
+        const l = 'not published in 10 minutes. the permalink will work when it is.';
+        T.print(l, 'mid'); MAKE.note(l, 'amber');
+      } else if (!r.waitSaid) {
+        r.waitSaid = true; mineSave();
+        T.print(fit('ready, waiting to be published: ' + (r.title || r.slug)), 'mid');
+        MAKE.waiting(r.title || r.slug);
+      }
+      mineShow(); mineWatch(r);
+    });
+  }
+  // the track the deck plays: the catalogue's own entry, or one made from the result
+  function mineTrack(r) {
+    if (S.bySlug[r.slug]) return r.slug;
+    if (!r.src) return null;
+    const t = { slug: r.slug, title: r.title || r.slug, prompt: r.prompt || '', bpm: r.bpm, key: r.key, seed: r.seed, files: r.files || null, src: r.src, mine: true };
+    (S.mineExtra = S.mineExtra || {})[r.slug] = t;
+    S.bySlug[r.slug] = t;
+    return r.slug;
+  }
+  // ready and not yet heard: the head of the queue, so the crossfade at the end of this track takes it
+  function mineQueue(r) {
+    if (!r.ready || r.played) return;
+    if (S.onAir && S.tracks.length) {
+      const slug = mineTrack(r);
+      if (!slug) return;
+      if (S.current === slug) { minePlayed(slug); return; }
+      S.queue = S.queue.filter(function (s) { return s !== slug; }); S.queue.unshift(slug);
+      T.print('queued next: ' + slug);
+      markRows();
+    }
+    mineShow();
+  }
+  function mineRequeue() {
+    MINE.list.filter(function (r) { return r.ready && !r.played; }).reverse().forEach(mineQueue);
+  }
+  function mineNow(id) {
+    const r = mineGet(id);
+    if (!r || !r.ready) return;
+    if (r.played && S.current === r.slug) return;
+    const slug = mineTrack(r);
+    if (!slug) return;
+    T.print(fit('your song, now: ' + (r.title || slug)));
+    if (!S.onAir) { S.queue = S.queue.filter(function (s) { return s !== slug; }); S.queue.unshift(slug); goOnAir(null); return; }
+    crossNow(slug);
+  }
+  // on air: played once, never queued again on its own
+  function minePlayed(slug) {
+    let changed = false;
+    MINE.list.forEach(function (r) {
+      if (r.slug === slug && r.ready && !r.played) { r.played = true; changed = true; MAKE.onAir(slug, r.title); }
+    });
+    // an ending (declined, failed, not published) stays on the line until a track change half a minute later
+    Object.keys(MINE.fresh).forEach(function (id) { const r = mineGet(id); if (!r || Date.now() - (r.endedAt || 0) > 30000) delete MINE.fresh[id]; });
+    if (changed) mineSave();
+    mineShow();
+  }
+  function mineWatch(r) {
+    if (!r || MINE.watching[r.id] || !reqBase()) return;
+    MINE.watching[r.id] = true;
+    const base = reqBase();
+    (function poll() {
+      if (!mineOpen(r)) { delete MINE.watching[r.id]; return; }
+      // the request line's narration follows this one: it says when it ends
+      if (REQ.active && REQ.active.id === r.id && !REQ.active.stopped) { setTimeout(poll, MINE.poll); return; }
+      const t0 = Date.now();
+      fetch(base + '/requests/' + encodeURIComponent(r.id) + '?wait=25', { headers: reqHeaders(false), cache: 'no-store' })
+        .then(function (x) { if (x.status === 404) return { state: 'lost' }; if (!x.ok) throw new Error(x.status); return x.json(); })
+        .then(function (rec) {
+          if (!rec || !rec.state) return;
+          if (rec.state === 'lost') { r.state = 'lost'; mineSave(); mineShow(); return; }
+          if (rec.state === 'done') mineDone(r.id, rec.result);
+          else mineState(r.id, rec.state, recNote(rec));
+        }, function () {})
+        .then(function () { setTimeout(poll, Math.max(0, MINE.poll - (Date.now() - t0))); });
+    })();
+  }
+  // what the line says, for one request
+  function mineText(r) {
+    const title = r.title || r.slug || r.id;
+    if (r.state === 'declined') return { text: fit('declined at the gate' + (r.note ? ': ' + r.note : '') + '. nothing was made.'), cls: 'amber' };
+    if (r.state === 'failed') return { text: fit('your song failed' + (r.note ? ': ' + r.note : '') + '. nothing was made.'), cls: 'amber' };
+    if (r.gaveUp) return { text: fit('your song is not published yet. its permalink will work when it is.'), cls: 'mid' };
+    if (r.state === 'done' && r.ready) return { text: 'your song is ready: ' + title, cls: 'amber', ready: true };
+    if (r.state === 'done') return { text: 'ready, waiting to be published: ' + title, cls: 'mid' };
+    return { text: 'your song: ' + (MINE_WORDS[r.state] || r.state), cls: 'mid' };
+  }
+  // the one the line shows: a ready song first, then one waiting to be published, then the newest open one, then an ending just now
+  function mineTop() {
+    const l = MINE.list.slice().reverse();
+    const r = l.find(function (x) { return x.ready && !x.played; }) || l.find(function (x) { return x.state === 'done' && !x.ready && !mineEnded(x); }) ||
+      l.find(function (x) { return mineOpen(x); }) || l.find(function (x) { return MINE.fresh[x.id]; });
+    if (!r) return null;
+    return Object.assign({ id: r.id }, mineText(r));
+  }
+  function mineShow() {
+    const m = mineTop(), key = m ? m.id + m.text : '';
+    if (key !== MINE.shown) {
+      MINE.shown = key;
+      el.mineLine.textContent = '';
+      if (m) {
+        el.mineLine.appendChild(span(m.text, m.cls));
+        if (m.ready) el.mineLine.appendChild(button('play it now', 'mine-now', function () { mineNow(m.id); }));
+      }
+      el.mineLine.hidden = !m;
+    }
+    carSync();
+  }
+  st.mineState = function () { return { list: MINE.list.map(function (r) { return Object.assign({}, r); }), top: mineTop(), watching: Object.keys(MINE.watching), poll: MINE.poll }; };
+  // a reload: what had ended is let go; what is open is watched again; a ready song not yet heard plays after the first track
+  function mineInit() {
+    let l = [];
+    try { l = JSON.parse(localStorage.getItem('nobody.requests') || '[]'); } catch (e) {}
+    MINE.list = (Array.isArray(l) ? l : []).filter(function (r) { return r && r.id && !mineEnded(r) && Date.now() - (r.at || 0) < 24 * 3600 * 1000; });
+    mineSave();
+    MINE.list.forEach(function (r) { if (r.state === 'done' && !r.ready) delete r.waitSaid; mineWatch(r); });
+    mineShow();
   }
   // the edge's human check (Cloudflare Turnstile, issue #90): with CFG.turnstileSiteKey set, each submission carries a fresh
   // token. the script loads on the first request only; the widget stays out of sight unless Turnstile wants a tap, and is
@@ -1914,9 +2134,11 @@
           return;
         }
         const rec = res.body;
-        if (REQ.active) { REQ.active.stopped = true; if (REQ.active.ctl) REQ.active.ctl.abort(); T.print('no longer following ' + REQ.active.id + '.', 'mid'); }
+        // the one followed before goes on being watched quietly: when it is done it still plays here (issue #226)
+        if (REQ.active) { REQ.active.stopped = true; if (REQ.active.ctl) REQ.active.ctl.abort(); T.print('no longer narrating ' + REQ.active.id + '. it still plays here when it is done.', 'mid'); }
         readBack(rec);
         const cur = REQ.active = { id: rec.id, lastState: null, stopped: false, ctl: null };
+        mineAdd(rec);
         reqFollow(cur);
       }, function (e) {
         const l = e && /human check/.test(e.message) ? e.message + '. try again.' : 'the request line did not answer. try again.';
@@ -2275,6 +2497,10 @@
       el.carUp.appendChild(span('NEXT UP', 'car-label')); el.carUp.appendChild(span(info.title));
       if (info.album) el.carUp.appendChild(span(info.album + ' ' + info.n + '/' + info.of, 'car-up-album'));
     }
+    // this browser's own request, while it is open (issue #226)
+    const mine = mineTop();
+    el.carMine.textContent = mine ? mine.text : '';
+    el.carMine.classList.toggle('ready', !!(mine && mine.ready));
     el.carPrompt.textContent = t ? '> ' + (t.prompt || t.idea || '') : '';
     const playing = S.onAir && !deck.paused && S.state !== 'dead' && S.state !== 'failed';
     el.carPlay.classList.toggle('playing', playing);
@@ -2488,6 +2714,7 @@
     window.addEventListener('resize', relayout);
     hideTouch();
     carWire();
+    mineInit();
     // any key finishes a typing effect (issue #43); captured, so a key typed into the terminal counts too
     document.addEventListener('keydown', finishTypers, true);
   }

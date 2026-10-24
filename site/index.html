@@ -118,6 +118,8 @@
         <div class="progress" id="progress"></div>
         <div class="dial" id="dial" hidden></div>
         <div class="row next-up" id="nextUp" aria-live="polite" hidden></div>
+        <!-- this browser's own request (issue #226): "your song is ready: <title>" and its state, with [ play it now ] -->
+        <div class="row mine-line" id="mineLine" aria-live="polite" hidden></div>
         <canvas id="spectrum" aria-label="spectrum analyser, 32 bands from 60 Hz to 20 kHz, drawn from the audio that is playing"></canvas>
         <pre class="baseline dim" id="baseline"></pre>
         <div class="scope" id="scope"></div>
@@ -205,6 +207,7 @@
     <div class="car-viz"><canvas id="carViz" aria-label="spectrum and scope, drawn from the audio that is playing"></canvas></div>
     <div class="car-cover"><img id="carCover" alt=""></div>
     <div class="car-up" id="carUp"></div>
+    <div class="car-mine" id="carMine" aria-live="polite"></div>
     <div class="car-prompt" id="carPrompt"></div>
     <div class="car-progress"><div class="car-track"><div class="car-fill" id="carFill"></div></div><span class="car-time" id="carTime">0:00 / 0:00</span></div>
   </div>
