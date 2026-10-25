@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-25T18:55:35-04:00",
+  "written": "2026-10-25T19:56:59-04:00",
   "tracks": [
     {
       "slug": "please-hold-you-are-being-understood",
