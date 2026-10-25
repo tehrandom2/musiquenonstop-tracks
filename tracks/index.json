@@ -3,6 +3,120 @@
   "written": "2026-10-24T21:19:41-04:00",
   "tracks": [
     {
+      "slug": "lyrics-being-half-past",
+      "title": "Lyrics Being, Half Past",
+      "project": null,
+      "idea": "Make a song with lyrics about being driven around in a self driven car listening to tracks that are created by my request in realtime and delivered right to my dash in minutes. Call it: a corridor light left on in an empty house",
+      "request": "Make a song with lyrics about being driven around in a self driven car listening to tracks that are created by my request in realtime and delivered right to my dash in minutes. Call it",
+      "mood": "unhurried and a little wistful, never bleak",
+      "bpm": 88,
+      "key": "C# major",
+      "seed": 305043,
+      "model": "fast",
+      "duration": 92.66,
+      "date": "2026-10-24",
+      "rendered_at": "2026-10-24T21:19:40-04:00",
+      "voice": true,
+      "prompt": "Slow late-night groove, 88 bpm, in C# major, a warm male voice half-spoken close to the microphone, unhurried, with a short echo on the line ends, a drum kit of shoebox thumps, a stapler click and a paper-rustle shaker as the hat, a warm detuned electric piano used as an instrument, a warm sine sub on a half-time pattern, a corridor light left on in an empty house, unhurried and a little wistful, never bleak, an intro of the kit and one chord, then the groove opens up, steady loopable arrangement, no choir, no sung melody, no drops, no wobble bass, no build-ups, no aggressive drums",
+      "lyrics": "[Intro - the lead instrument alone for two bars, instrumental]\n\n[Verse - unhurried half-spoken delivery over the groove]\nlyrics in the night, driven in the light\nWake up slow, with the being down low\nAll through the town the window comes down\nI count the around, I count the kettle, I count them again\nlyrics by the door, window on the floor\nHold on tight to the kettle tonight\nNothing to fear when the driven is here\nRound and around goes the being sound\n\n[Bridge - the groove thins out, one line, then back in]\nOne more time for the lyrics\n\n[Hook - sung low and plain, repeated, a small group on the last word]\ndriven, driven, keep it going on\nkettle and around, all night long\nwindow, window, keep it going on\nNever mind the dark, the being is gone\n\n[Hook - sung low and plain, repeated, a small group on the last word]\ndriven, driven, keep it going on\nkettle and around, all night long\nwindow, window, keep it going on\nNever mind the dark, the being is gone",
+      "why": "You asked for \"Make a song with lyrics about being driven around in a self driven car listening to tracks that are created by my request in realtime and delivered right to my dash in minutes. Call it\". So I wrote it at 88 bpm in C# major, 100 seconds, with a voice, in words I wrote myself, under the mellow gates. I rendered 8 seeds and threw away 6: 305042 (13 of 120 heard words are not ours (11 %; limit 10 %, at least 40 heard): towel breeze gro); 305047 (23 of 120 heard words are not ours (19 %; limit 10 %, at least 40 heard): dyricks key buri); 305045 (1.0s of near-silence (limit 0.5) and others); 305041 (0.6s of near-silence (limit 0.5) and others), and 2 more (all listed below). Seed 305043 is the take, but it did not clear every gate: seam level +17.7 dB tail to head.",
+      "rejected": [
+        {
+          "seed": 305042,
+          "reason": "13 of 120 heard words are not ours (11 %; limit 10 %, at least 40 heard): towel breeze group stands out cuddling kettling kettling bean thank you tss"
+        },
+        {
+          "seed": 305047,
+          "reason": "23 of 120 heard words are not ours (19 %; limit 10 %, at least 40 heard): dyricks key buries be groove stands out line back bein' a scum"
+        },
+        {
+          "seed": 305045,
+          "reason": "1.0s of near-silence (limit 0.5); seam level +7.5 dB tail to head"
+        },
+        {
+          "seed": 305041,
+          "reason": "0.6s of near-silence (limit 0.5); 16 of 109 heard words are not ours (15 %; limit 10 %, at least 40 heard): oh be auto took a top end end of get a little"
+        },
+        {
+          "seed": 305048,
+          "reason": "harsh: 3.1% above 6 kHz (ceiling 2.5); 28 of 140 heard words are not ours (20 %; limit 10 %, at least 40 heard): p a cow terrors be inside groove thins out line then back"
+        },
+        {
+          "seed": 305046,
+          "reason": "harsh: 2.8% above 6 kHz (ceiling 2.5); boomy: 12.0% below 60 Hz (ceiling 12); 40 of 337 heard words are not ours (12 %; limit 10 %, at least 40 heard): okay this thank you kettling kettling kettling kettling kettling kettling kettling kettling"
+        }
+      ],
+      "takes": [
+        305043,
+        305044
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.28,
+        "silence_s": 0.25,
+        "brightness_pct": 1.89,
+        "boominess_pct": 10.21,
+        "onsets_per_s": 3.13,
+        "seam_db": 17.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": false,
+        "words": true
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "lyrics-being-half-past/lyrics-being-half-past.mp3",
+        "notes": "lyrics-being-half-past/notes.md",
+        "recipe": "lyrics-being-half-past/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "seam level +17.7 dB tail to head"
+        ],
+        "words_not_ours": [
+          "dyricks",
+          "kettling",
+          "diven",
+          "kettling",
+          "thought",
+          "thank",
+          "you"
+        ],
+        "stripped": [
+          "Norton Shores"
+        ],
+        "installed_samples": 4086337,
+        "loop": true,
+        "wordless": false,
+        "take_files": [
+          "lyrics-being-half-past/lyrics-being-half-past.mp3",
+          "lyrics-being-half-past/lyrics-being-half-past-take2.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "maximal-over-the-top-apex",
       "title": "Maximal Over-the-top, Apex",
       "project": null,
