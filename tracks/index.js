@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-24T21:19:41-04:00",
+  "written": "2026-10-25T18:55:35-04:00",
   "tracks": [
     {
       "slug": "lyrics-being-half-past",
