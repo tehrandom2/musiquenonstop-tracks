@@ -784,6 +784,106 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-opening-now",
+      "title": "Opening Now",
+      "project": "greytide",
+      "idea": "The last wave: the Unopened Box, the kit the painter is most afraid of, comes down off the highest stack; the lid cracks and fear turns into release",
+      "request": "The last wave: the Unopened Box, the kit the painter is most afraid of, comes down off the highest stack; the lid cracks and fear turns into release",
+      "mood": "colossal, dreadful, cathartic",
+      "bpm": 136,
+      "key": "E minor",
+      "seed": 3981010,
+      "model": "fast",
+      "duration": 174.34,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:19:48-04:00",
+      "voice": true,
+      "prompt": "Symphonic heavy rock finale, 136 bpm, E minor, colossal then cathartic: pounding drums with double-kick runs, crunching rhythm guitars in the mids with warm grit, a tight lean bass under the mids, a low brass and string section driving the E minor theme, a church organ, a big mixed choir, a strong male lead with a rough edge, in E minor; intro of low choir and a rattling box before the riff, menacing verses, a vast chorus, a half-time bridge of choir and organ that turns from dread to release, the final chorus lifted into a triumphant swell, the outro choir alone, warm saturation, no harsh highs",
+      "lyrics": "[Intro: low choir and a rattling box, then the riff]\n\n[Verse 1]\nHigh upon the highest stack I shook before you knew\nShrink-wrap like a winter coat, the cellophane still new\nFour hundred pieces, sixty pages, bought because a sale was on\nSomebody meant to open me, and then the year was gone\n\n[Pre-Chorus]\nCrack the lid, crack the lid\n\n[Chorus]\nNobody opened me, nobody tried\nFour hundred pieces waiting inside\nCrack me tonight and the grey pour out\nNobody opened me, so I'm opening now\n\n[Verse 2]\nArmoured till the lid gives way, the ballista bounces off\nThe cannon scuffs the cardboard and the shrink-wrap barely coughs\nThen the lid cracks open and a stream of grunts spills free\nA tray of ten grey pieces counts away the rest of me\n\n[Pre-Chorus]\nCrack the lid, crack the lid\n\n[Chorus]\nNobody opened me, nobody tried\nFour hundred pieces waiting inside\nCrack me tonight and the grey pour out\nNobody opened me, so I'm opening now\n\n[Bridge: half-time, choir and organ, dread turning to release]\nI'm what scares you, every unbuilt year\nEvery I'll get round to it, piled up here\nBut every piece that leaves the tray is one you finally freed\nMaybe being opened was the only thing I'd need\n\n[Final Chorus: lifted, the triumphant swell]\nNobody opened me, nobody tried\nFour hundred pieces waiting inside\nCrack me tonight and the grey pour out\nNobody opened me, so I'm opening now\n\n[Outro: choir alone]\nOpening now",
+      "why": "You asked for \"The last wave: the Unopened Box, the kit the painter is most afraid of, comes down off the highest stack; the lid cracks and fear turns into release\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in E minor, 178 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3981011 (0.6s of near-silence (limit 0.5) and others). Seed 3981010 is the take, but it did not clear every gate: harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3981011,
+          "reason": "0.6s of near-silence (limit 0.5); harsh: 2.5% above 6 kHz (ceiling 2.5); 235 of 358 heard words are not ours (66 %; limit 10 %, at least 40 heard): dawn d bye bye bye bye bye bye bye bye bye bye"
+        }
+      ],
+      "takes": [
+        3981010
+      ],
+      "numbers": {
+        "tempo_bpm": 134.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.75,
+        "silence_s": 0.2,
+        "brightness_pct": 2.75,
+        "boominess_pct": 8.09,
+        "onsets_per_s": 2.94,
+        "seam_db": -38.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:boss"
+        ],
+        "track_no": 138
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-opening-now/greytide-attic-opening-now.mp3",
+        "notes": "greytide-attic-opening-now/notes.md",
+        "recipe": "greytide-attic-opening-now/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "wrapped",
+          "cases",
+          "grave",
+          "fall",
+          "oh",
+          "laid",
+          "grape",
+          "hiled",
+          "when",
+          "waited",
+          "grave",
+          "wore"
+        ],
+        "stripped": [
+          "Unopened Box"
+        ],
+        "installed_samples": 7688463,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-opening-now/greytide-attic-opening-now.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29280,7 +29380,8 @@ window.NOBODY_INDEX = {
         "greytide-carseat-low-battery",
         "greytide-couch-the-pot-pays-double",
         "greytide-gamestore-the-fist-at-the-next-table",
-        "greytide-garage-encore-in-the-dark"
+        "greytide-garage-encore-in-the-dark",
+        "greytide-attic-opening-now"
       ],
       "description": "One long night at the painting desk, table by table: songs from the towers, the grey horde, the painter's hand and the tables themselves.",
       "credits": [
