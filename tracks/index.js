@@ -7910,6 +7910,114 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-twenty-stamps",
+      "title": "Twenty Stamps",
+      "project": "greytide",
+      "idea": "Wave ten, the boss: a stack of ten boxed games on the counter falls one box at a time as the towers hold the crossroads with the last stamps on the loyalty card",
+      "request": "Wave ten, the boss: a stack of ten boxed games on the counter falls one box at a time as the towers hold the crossroads with the last stamps on the loyalty card",
+      "mood": "anthemic, hoarse, triumphant",
+      "bpm": 144,
+      "key": "E minor",
+      "seed": 3951000,
+      "model": "fast",
+      "duration": 172.91,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:07:53-04:00",
+      "voice": true,
+      "prompt": "Stadium pop-punk anthem at 144 bpm in E minor, a big shop-floor band: two crunchy guitars, warm saturation in the mids, one on chords and one on a ringing lead line, a tight lean picked bass, bass under the mids, a pounding kit with a counter-bell on the hook, a gang chorus of the whole band; a hoarse, earnest male lead with a female voice on the harmony; mid start, high plateau, a bridge that drops to bass and claps, a key-held lifted final chorus in E minor, no harsh highs",
+      "lyrics": "[Intro - the riff, the bell three times]\nLast wave. Stack's on the counter.\n\n[Verse 1]\nTen boxed games stacked on the counter, that's the boss's life\nEvery time we hit it hard a box comes off the pile\nIt's the kit the owner's scared of, never opened, shrink-wrap tight\nFour hundred pieces walking and it wants to win tonight\nThe crossroads is a junction where the two roads cross and bleed\nEvery tower on the corner is the tower that we need\n\n[Pre-Chorus]\nPunch it out, punch it out\n(One stamp, one life)\n\n[Chorus]\nTwenty stamps on a loyalty card\nEvery one a life and we hold it hard\nGrey come down and the painted stand\nTwenty stamps in a tiny hand\n\n[Verse 2]\nThe ballista's got a chip in the shoulder from wave two\nThe Mage is wearing someone's card, the Lawyer's reading through\nThe die is back with its own people, the rulebook's on the mat\nThe case is shining down on us, and we can use that\nDown to seven, down to four, the card reader's in red\nA box comes off, a box comes off, and the boss is ahead\n\n[Pre-Chorus]\nPunch it out, punch it out\n(One stamp, one life)\n\n[Chorus]\nTwenty stamps on a loyalty card\nEvery one a life and we hold it hard\nGrey come down and the painted stand\nTwenty stamps in a tiny hand\n\n[Bridge - bass and claps, then the guitars come back one by one]\nWhen the shutter's up tomorrow and the kids come in to play\nThey'll see the board, they'll see the flock, they'll never know today\nThat three centimetres high we held the whole shop floor\nOne more box, one more box, one more\n\n[Final Chorus - lifted, the gang chorus doubled, the bell on every line]\nTwenty stamps on a loyalty card\nEvery one a life and we hold it hard\nGrey come down and the painted stand\nTwenty stamps in a tiny hand\n\n[Outro - the last box falls]\nDemo over. Thank you for playing.",
+      "why": "You asked for \"Wave ten, the boss: a stack of ten boxed games on the counter falls one box at a time as the towers hold the crossroads with the last stamps on the loyalty card\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 144 bpm in E minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 144 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3951001 (harsh: 3.4% above 6 kHz (ceiling 2.5) and others). Seed 3951000 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5); harsh: 3.1% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3951001,
+          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5); 29 of 279 heard words are not ours (10 %; limit 10 %, at least 40 heard): stacks open who everyone alike then great police just way mages car"
+        }
+      ],
+      "takes": [
+        3951000
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.77,
+        "silence_s": 0.6,
+        "brightness_pct": 3.14,
+        "boominess_pct": 6.58,
+        "onsets_per_s": 3.44,
+        "seam_db": -61.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:the-towers"
+        ],
+        "track_no": 121
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-twenty-stamps/greytide-gamestore-twenty-stamps.mp3",
+        "notes": "greytide-gamestore-twenty-stamps/notes.md",
+        "recipe": "greytide-gamestore-twenty-stamps/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)",
+          "harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "stacks",
+          "end",
+          "line",
+          "swimmy",
+          "everyone",
+          "heart",
+          "great",
+          "stain",
+          "steps",
+          "police",
+          "has",
+          "way",
+          "major",
+          "swearing",
+          "line",
+          "everyone",
+          "cray",
+          "seconds",
+          "everyone",
+          "quaid",
+          "pain"
+        ],
+        "stripped": [],
+        "installed_samples": 7625122,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-twenty-stamps/greytide-gamestore-twenty-stamps.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36465,6 +36573,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-gamestore-twenty-stamps",
         "greytide-garage-last-song-on-the-list",
         "greytide-kitchen-the-soup-goes-down",
         "greytide-picnic-the-snails-trail",
