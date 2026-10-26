@@ -108,6 +108,89 @@
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-the-fist-at-the-next-table",
+      "title": "The Fist at the Next Table",
+      "project": "greytide",
+      "idea": "A breather at wave nine: the other game ends, a fist goes up at the next table and a thump makes every grey dude on the board hop at once",
+      "request": "A breather at wave nine: the other game ends, a fist goes up at the next table and a thump makes every grey dude on the board hop at once",
+      "mood": "tense, rolling, cathartic",
+      "bpm": 172,
+      "key": "E minor",
+      "seed": 3950910,
+      "model": "fast",
+      "duration": 121.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:20:43-04:00",
+      "voice": false,
+      "prompt": "Instrumental liquid-into-dark drum and bass at 172 bpm in E minor, a tight studio crew: rolling amen-style breaks, a lean reese bass with saturation in the mids, bass under the mids, a tense string ostinato, a deep tom hit that lands like a table-thump, piano stabs in the gaps; starts mid with strings and half-time drums, a five-second build like a raised fist, a hard drop and long high plateau, one dip to strings, a lifted final drop, E minor, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"A breather at wave nine: the other game ends, a fist goes up at the next table and a thump makes every grey dude on the board hop at once\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 172 bpm in E minor, 130 seconds, with no voice, under the mellow gates. It has no beat to hold, so 172 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950911 (harsh: 3.1% above 6 kHz (ceiling 2.5) and others). Seed 3950910 is the take.",
+      "rejected": [
+        {
+          "seed": 3950911,
+          "reason": "harsh: 3.1% above 6 kHz (ceiling 2.5); boomy: 12.5% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        3950910
+      ],
+      "numbers": {
+        "tempo_bpm": 85.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.79,
+        "silence_s": 0.1,
+        "brightness_pct": 1.79,
+        "boominess_pct": 10.46,
+        "onsets_per_s": 3.15,
+        "seam_db": -71.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:the-next-table"
+        ],
+        "track_no": 136
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-the-fist-at-the-next-table/greytide-gamestore-the-fist-at-the-next-table.mp3",
+        "notes": "greytide-gamestore-the-fist-at-the-next-table/notes.md",
+        "recipe": "greytide-gamestore-the-fist-at-the-next-table/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 7.03,
+        "decoded_lufs": -16.39,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5370462,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-the-fist-at-the-next-table/greytide-gamestore-the-fist-at-the-next-table.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -28597,6 +28680,7 @@
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-gamestore-the-fist-at-the-next-table",
         "greytide-garage-encore-in-the-dark"
       ],
       "description": "One long night at the painting desk, table by table: songs from the towers, the grey horde, the painter's hand and the tables themselves.",
