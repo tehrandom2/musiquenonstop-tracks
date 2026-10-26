@@ -6608,6 +6608,96 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-the-other-way",
+      "title": "The Other Way",
+      "project": "greytide",
+      "idea": "Wave 7: someone bumps the table; the lazy Susan turns the other way from now on and the juice tips and spreads, and a dude with the wrong head who had learned every door has to learn them again.",
+      "request": "Wave 7: someone bumps the table; the lazy Susan turns the other way from now on and the juice tips and spreads, and a dude with the wrong head who had learned every door has to learn them again.",
+      "mood": "nervous, jangly, then laughing",
+      "bpm": 140,
+      "key": "F sharp minor",
+      "seed": 3920800,
+      "model": "fast",
+      "duration": 158.69,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:09:50-04:00",
+      "voice": true,
+      "prompt": "Wiry indie rock, 140 bpm, F sharp minor. A four-piece: two angular guitars, one jangling a fast arpeggio and one playing stabbing chords that flip direction, a tight lean bass in busy eighths well under the mids, a tight driving kit with a hi-hat on sixteenths. A nervous, wiry male lead with a yelping chorus double. Nervous, then laughing. Starts mid, a long chorus plateau, one dip to bass and voice, a lifted final chorus. F sharp minor, no harsh highs.",
+      "lyrics": "[Intro: jangling arpeggio and hi-hat]\n\n[Verse 1]\nI learned the turn like I learned my name\nFourth door on the left is the road to the end\nMy head's from a different army, I'm coping\nI counted the doors till they felt like friends\n\n[Pre-Chorus]\nThen the whole world jumped an inch to the right\nSomebody bumped the leg of the table\n\n[Chorus]\nNow it's turning the other way\nEverything I learned is going backwards today\nNow it's turning the other way\nAnd the juice is coming over, and it's coming to stay\n\n[Verse 2]\nAn orange tide spreading slow on the squares\nLike a sunrise that turned up in the wrong place\nThe towers all shuffle, the plan falls apart\nAnd I'm laughing out loud with somebody else's face\n\n[Pre-Chorus]\nAnd the whole world turns the way it wasn't before\nAnd nobody's sure where the doors are\n\n[Chorus]\nNow it's turning the other way\nEverything I learned is going backwards today\nNow it's turning the other way\nAnd the juice is coming over, and it's coming to stay\n\n[Bridge: bass and voice only]\nMaybe nobody knows where they're going\nMaybe the doors were never mine\nMaybe you learn the turn one more time\nAnd get off where you get off, and you're fine\n\n[Final Chorus: lifted, guitars doubled]\nNow it's turning the other way\nEverything I learned is going backwards today\nNow it's turning the other way\nAnd the juice is coming over, and it's coming to stay\n\n[Outro: the arpeggio, reversed direction]\nThe other way",
+      "why": "You asked for \"Wave 7: someone bumps the table; the lazy Susan turns the other way from now on and the juice tips and spreads, and a dude with the wrong head who had learned every door has to learn them again.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in F sharp minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3920801 (passed, but outranked by the kept takes). Seed 3920800 is the take.",
+      "rejected": [
+        {
+          "seed": 3920801,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3920800
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.48,
+        "silence_s": 0.35,
+        "brightness_pct": 2.06,
+        "boominess_pct": 5.39,
+        "onsets_per_s": 3.24,
+        "seam_db": -61.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:a wrong-head dude"
+        ],
+        "track_no": 98
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-the-other-way/greytide-kitchen-the-other-way.mp3",
+        "notes": "greytide-kitchen-the-other-way/notes.md",
+        "recipe": "greytide-kitchen-the-other-way/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.19,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "life",
+          "fell",
+          "bought",
+          "snow",
+          "rain",
+          "oh"
+        ],
+        "stripped": [],
+        "installed_samples": 6998115,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-the-other-way/greytide-kitchen-the-other-way.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35138,6 +35228,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-kitchen-the-other-way",
         "greytide-picnic-hot-sauce-line",
         "greytide-railway-trestle-over-the-gorge",
         "greytide-sandpit-prints-in-the-damp",
