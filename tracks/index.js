@@ -4685,6 +4685,109 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-five-limp-three-proud",
+      "title": "Five Limp, Three Proud",
+      "project": "greytide",
+      "idea": "Wave six: the Sandcastle Flag, limp five seconds and streaming three, boosts its moat and pays out treasure",
+      "request": "Wave six: the Sandcastle Flag, limp five seconds and streaming three, boosts its moat and pays out treasure",
+      "mood": "proud, rowdy, wry",
+      "bpm": 136,
+      "key": "F sharp minor",
+      "seed": 4050601,
+      "model": "fast",
+      "duration": 160.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:12:43-04:00",
+      "voice": true,
+      "prompt": "Stomping folk-rock shanty, 136 bpm, in F sharp minor, a seafront deck band: a driving accordion carrying the melody, a fiddle answering each line, a mandolin chopping offbeats, a tight lean bass under the mids, a kick-and-tambourine stomp with a bodhran on the chorus, a strong weathered female lead singing as a paper flag on a sandcastle, proud and wry, a rowdy crew chorus answering her, F sharp minor said again in the fiddle; arc: accordion intro, verses that sway, a chorus that stomps, a hushed bridge on fiddle and voice, a lifted final chorus with the full crew, no harsh highs",
+      "lyrics": "[Intro: accordion alone, then the stomp]\n\n[Verse 1]\nTwo tiers of sand and two red roofs\nA moat that holds the water's proof\nA striped paper flag on a garden cane\nI hang in the heat and I wait for the gain\n\n[Verse 2]\nFor five long seconds I sag and I sigh\nThen a gust comes over and I fly, I fly\nThe towers round me in the moat's embrace\nShoot harder and further for a little space\n\n[Pre-Chorus]\nHear the wind, hear the wind\nEight tiles round and the gust comes in\n\n[Chorus]\nFive limp, three proud, I fly for my crew\nFive limp, three proud, the coins come through\nThere's treasure under me and a chest at my feet\nFive limp, three proud, and the gust is sweet\n\n[Verse 3]\nA grey dude falls to the ballista's bolt\nA coin pops up from the chest with a jolt\nOne when I'm drooping, two when I stream\nThe richest flag in a hot afternoon dream\n\n[Chorus]\nFive limp, three proud, I fly for my crew\nFive limp, three proud, the coins come through\nThere's treasure under me and a chest at my feet\nFive limp, three proud, and the gust is sweet\n\n[Bridge: fiddle and voice, hushed]\nI never shoot and I never hold\nI just remind them they were painted bold\nA flag is a promise the wind keeps making\nThree seconds of glory worth all the waiting\n\n[Final Chorus: lifted, full crew]\nFive limp, three proud, I fly for my crew\nFive limp, three proud, the coins come through\nThere's treasure under me and a chest at my feet\nFive limp, three proud, and the gust is sweet\n\n[Outro: accordion slows to a stop]\nFive limp. Three proud.",
+      "why": "You asked for \"Wave six: the Sandcastle Flag, limp five seconds and streaming three, boosts its moat and pays out treasure\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in F sharp minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050600 (passed, but outranked by the kept takes). Seed 4050601 is the take.",
+      "rejected": [
+        {
+          "seed": 4050600,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        4050601
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.12,
+        "silence_s": 0.3,
+        "brightness_pct": 2.45,
+        "boominess_pct": 6.46,
+        "onsets_per_s": 2.99,
+        "seam_db": -23.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:sandcastle-flag"
+        ],
+        "track_no": 71
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-five-limp-three-proud/greytide-sandpit-five-limp-three-proud.mp3",
+        "notes": "greytide-sandpit-five-limp-three-proud/notes.md",
+        "recipe": "greytide-sandpit-five-limp-three-proud/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "tears",
+          "boat",
+          "waters",
+          "modes",
+          "you",
+          "limb",
+          "limb",
+          "limb",
+          "gustus",
+          "s***",
+          "worked",
+          "way",
+          "left",
+          "left",
+          "boys",
+          "left",
+          "finally"
+        ],
+        "stripped": [
+          "Sandcastle Flag"
+        ],
+        "installed_samples": 7090467,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-five-limp-three-proud/greytide-sandpit-five-limp-three-proud.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33194,6 +33297,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-sandpit-five-limp-three-proud",
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
