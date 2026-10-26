@@ -10553,6 +10553,105 @@
       "audition": true
     },
     {
+      "slug": "greytide-carseat-are-we-nearly-there",
+      "title": "Are We Nearly There",
+      "project": "greytide",
+      "idea": "wave 10: the snack bag, the thing they all crossed the seat for, sings to the belted-in towers as the car pulls off, the slide comes and the interior light comes on",
+      "request": "wave 10: the snack bag, the thing they all crossed the seat for, sings to the belted-in towers as the car pulls off, the slide comes and the interior light comes on",
+      "mood": "huge, tender, triumphant",
+      "bpm": 136,
+      "key": "E minor",
+      "seed": 4021001,
+      "model": "fast",
+      "duration": 176.38,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:04:02-04:00",
+      "voice": true,
+      "prompt": "Soaring heartland rock, 136 bpm, E minor, a big road band: a driving eighth-note electric guitar, a second guitar ringing a high melody, a tight lean bass pushing eighths, bass well under the mids, a steady powerful drum kit building to floor toms, a warm organ holding the chords, a raw hopeful male lead, a full gang chorus and a female harmony on the hook, in E minor, tender and triumphant, mid start, a long high plateau, a dip to organ and voice, a huge lifted final chorus, no harsh highs",
+      "lyrics": "[Intro - organ and the ringing guitar, then the band]\n\n[Verse 1]\nI'm a crinkled bag of something sweet\nAt the far end of the long back seat\nAll night they climbed up from the floor\nFor a bite of me, and nothing more\n\n[Pre-Chorus]\nAnd the painted ones were belted in\nThey didn't slide, they didn't give in\n\n[Chorus - gang chorus and harmony]\nAre we nearly there? (Hold on)\nThe snack bag's still ours\nAre we nearly there? (Hold on)\nTen waves, three hours\n\n[Verse 2]\nThe exit came, the long slide too\nThe dog was braced, the atlas knew\nThe buckle clicked, the tree spun round\nAnd not a grey one made the ground\n\n[Pre-Chorus]\nAnd the kid's asleep against the door\nNever knowing what the night was for\n\n[Chorus - gang chorus and harmony]\nAre we nearly there? (Hold on)\nThe snack bag's still ours\nAre we nearly there? (Hold on)\nTen waves, three hours\n\n[Bridge - organ and voice, the drums build back]\nThen the light inside comes on\nThe engine stops, the hum is gone\nSomebody lifts the kid and all the little ones go still\nLike they never moved, and never will\n\n[Final Chorus - lifted, everyone]\nAre we nearly there? (Hold on)\nThe snack bag's still ours\nAre we nearly there? (Hold on)\nTen waves, three hours\n\n[Outro - the organ alone, then one ringing chord]\nWe're here.",
+      "why": "You asked for \"wave 10: the snack bag, the thing they all crossed the seat for, sings to the belted-in towers as the car pulls off, the slide comes and the interior light comes on\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in E minor, 180 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4021000 (harsh: 2.6% above 6 kHz (ceiling 2.5)). Seed 4021001 is the take.",
+      "rejected": [
+        {
+          "seed": 4021000,
+          "reason": "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4021001
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.86,
+        "silence_s": 0.2,
+        "brightness_pct": 2.05,
+        "boominess_pct": 6.02,
+        "onsets_per_s": 2.75,
+        "seam_db": -49.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:carseat",
+          "pov:snack-bag"
+        ],
+        "track_no": 118
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-carseat-are-we-nearly-there/greytide-carseat-are-we-nearly-there.mp3",
+        "notes": "greytide-carseat-are-we-nearly-there/notes.md",
+        "recipe": "greytide-carseat-are-we-nearly-there/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.56,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "crazy",
+          "woman",
+          "backseat",
+          "built",
+          "it",
+          "oh",
+          "oh",
+          "that's",
+          "great",
+          "kids",
+          "to",
+          "do",
+          "weeks",
+          "bags",
+          "rishi"
+        ],
+        "stripped": [],
+        "installed_samples": 7778193,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-carseat-are-we-nearly-there/greytide-carseat-are-we-nearly-there.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39133,6 +39232,7 @@
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-carseat-are-we-nearly-there",
         "greytide-couch-alarm-six-thirty",
         "greytide-desk-about-to-be-painted",
         "greytide-gamestore-twenty-stamps",
