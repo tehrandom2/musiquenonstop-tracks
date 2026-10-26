@@ -4204,6 +4204,91 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-the-digger-revs",
+      "title": "The Digger Revs",
+      "project": "greytide",
+      "idea": "After wave three: the toy digger revs, trundles out, shoves a tower a centimetre aside and tips out a new mound",
+      "request": "After wave three: the toy digger revs, trundles out, shoves a tower a centimetre aside and tips out a new mound",
+      "mood": "heavy, lumbering, gleeful",
+      "bpm": 138,
+      "key": "D minor",
+      "seed": 4050400,
+      "model": "fast",
+      "duration": 137.74,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:13:29-04:00",
+      "voice": false,
+      "prompt": "Heavy desert stoner-rock groove, 138 bpm, in D minor, a power trio as a yellow toy digger: a fuzz baritone guitar riff that growls like an engine turning over, a tight lean bass under the mids locked to the riff, a big swung kit with a cowbell on the verse groove, a second guitar adding slow bends as the boom swings, the key D minor stated by the riff from the first bar; arc: a revving three-and-a-half-second build of feedback and toms, the full groove trundling forward, a half-time scoop section, a dip to bass and hats as the bucket tips, a final lift, then the groove rolls home and stops, warm saturation, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"After wave three: the toy digger revs, trundles out, shoves a tower a centimetre aside and tips out a new mound\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in D minor, 140 seconds, with no voice, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050401 (0.8s of near-silence (limit 0.5)). Seed 4050400 is the take, but it did not clear every gate: 1.0s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4050401,
+          "reason": "0.8s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4050400
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.02,
+        "silence_s": 0.95,
+        "brightness_pct": 1.41,
+        "boominess_pct": 2.32,
+        "onsets_per_s": 2.89,
+        "seam_db": -44.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:the-digger"
+        ],
+        "track_no": 46
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-the-digger-revs/greytide-sandpit-the-digger-revs.mp3",
+        "notes": "greytide-sandpit-the-digger-revs/notes.md",
+        "recipe": "greytide-sandpit-the-digger-revs/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.38,
+        "failed": [
+          "1.0s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6074319,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-the-digger-revs/greytide-sandpit-the-digger-revs.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32704,6 +32789,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-sandpit-the-digger-revs",
         "greytide-schooldesk-look-busy",
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
