@@ -9249,6 +9249,116 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-couch-who-wants-to-be-a-painter",
+      "title": "Who Wants To Be A Painter",
+      "project": "greytide",
+      "idea": "The quiz show on the screen opens the night: three one-way roads, the pot, the hearts, and a grey crowd that wants to win; told by the show itself.",
+      "request": "The quiz show on the screen opens the night: three one-way roads, the pot, the hearts, and a grey crowd that wants to win; told by the show itself.",
+      "mood": "cheeky, driving, showbiz",
+      "bpm": 138,
+      "key": "E minor",
+      "seed": 4030101,
+      "model": "fast",
+      "duration": 167.3,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:05:57-04:00",
+      "voice": true,
+      "prompt": "Late-night game-show funk rock, 138 bpm, E minor, driving and cheeky. A tight five-piece studio band: clipped funk guitar on the offbeat, a brass section of trumpet and two saxes firing quiz-show stingers between lines, a busy electric piano comping, tight lean bass well under the mids, crisp four-on-the-floor drums with tom fills. A smooth, grinning baritone male host on lead, a gang chorus answering the hook. Arc: brass fanfare intro, verses at mid energy, a long high chorus plateau, a dip to bass and claps for the whispered bridge, a lifted final chorus with the brass on top, a stinger ending. Still E minor, warm, no harsh highs.",
+      "lyrics": "[Intro: brass fanfare and a drum roll, the host counts the band in]\nGood evening, plastic people\nWelcome to the show\n\n[Verse 1]\nThree roads come down the staircase\nFrom the seam along the back\nThe high road, the middle, the low road\nAnd not one of them climbs back\nGrey dudes tumble from the gap\nLike a studio crowd let in\nNobody painted, nobody primed\nEverybody wants to win\n\n[Pre-Chorus]\nThe pot is glowing on the screen\nThe hearts are in the corner\nTwenty lives and ten long rounds\nAnd the remote is getting warmer\n\n[Chorus]\nWho wants to be a painter?\nTen, the remote is flashing\nWho wants to be a painter?\nFinal answer, hold the line\n\n[Verse 2]\nThe ballista on the ledge\nSays the answer's always B\nFor bolt, the cannon swears it's C\nFor crowd, and fires three\nThe grey ones never phone a friend\nThey never ask the room\nThey walk the welted edge in line\nAnd slide down into gloom\n\n[Pre-Chorus]\nThe pot is glowing on the screen\nThe hearts are in the corner\nTwenty lives and ten long rounds\nAnd the remote is getting warmer\n\n[Chorus]\nWho wants to be a painter?\nTen, the remote is flashing\nWho wants to be a painter?\nFinal answer, hold the line\n\n[Bridge: the band drops to bass and claps, the host whispers close]\nIs that your final answer?\nIs that your final coat?\nGrey is not a colour, friend\nIt's a promise no one wrote\n\n[Final Chorus: lifted, the gang chorus and the full brass on top]\nWho wants to be a painter?\nTen, the remote is flashing\nWho wants to be a painter?\nFinal answer, hold the line\nWho wants to be a painter?\nFinal answer, hold the line\n\n[Outro: one brass stinger]\nThat is correct\nNext question in ten",
+      "why": "You asked for \"The quiz show on the screen opens the night: three one-way roads, the pot, the hearts, and a grey crowd that wants to win; told by the show itself.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in E minor, 172 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4030100 (25 of 235 heard words are not ours (11 %; limit 10 %, at least 40 heard): host cops band r). Seed 4030101 is the take, but it did not clear every gate: 0.7s of near-silence (limit 0.5); harsh: 3.3% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4030100,
+          "reason": "25 of 235 heard words are not ours (11 %; limit 10 %, at least 40 heard): host cops band rows row gray thought going overline least both cannons"
+        }
+      ],
+      "takes": [
+        4030101
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.73,
+        "silence_s": 0.65,
+        "brightness_pct": 3.27,
+        "boominess_pct": 7.73,
+        "onsets_per_s": 3.96,
+        "seam_db": -55.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:couch",
+          "pov:the quiz show"
+        ],
+        "track_no": 5
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-couch-who-wants-to-be-a-painter/greytide-couch-who-wants-to-be-a-painter.mp3",
+        "notes": "greytide-couch-who-wants-to-be-a-painter/notes.md",
+        "recipe": "greytide-couch-who-wants-to-be-a-painter/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.7s of near-silence (limit 0.5)",
+          "harsh: 3.3% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "host",
+          "counts",
+          "bandier",
+          "gray",
+          "tender",
+          "mode",
+          "both",
+          "at",
+          "sea",
+          "engine",
+          "full",
+          "patron",
+          "timber",
+          "mold",
+          "thank",
+          "you",
+          "clay",
+          "color",
+          "wrong",
+          "general",
+          "moon",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7378005,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-couch-who-wants-to-be-a-painter/greytide-couch-who-wants-to-be-a-painter.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37738,6 +37848,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-couch-who-wants-to-be-a-painter",
         "greytide-kitchen-red-and-white-squares",
         "greytide-picnic-from-every-side",
         "greytide-railway-next-train",
