@@ -10188,6 +10188,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-carseat-tunnel-orange",
+      "title": "Tunnel Orange",
+      "project": "greytide",
+      "idea": "waves 7 and 8: a motorway tunnel; the passing light stops, everything is a steady orange, and nothing on the seat is lit",
+      "request": "waves 7 and 8: a motorway tunnel; the passing light stops, everything is a steady orange, and nothing on the seat is lit",
+      "mood": "hypnotic, sealed, uneasy",
+      "bpm": 128,
+      "key": "C minor",
+      "seed": 4020801,
+      "model": "fast",
+      "duration": 141.1,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:04:36-04:00",
+      "voice": false,
+      "prompt": "Dark minimal techno, 128 bpm, C minor, a machine ensemble with fixed jobs: a dry four-on-the-floor kick, a rolling tight lean bassline under a filter, bass well under the mids, a ticking hi-hat pattern, a droning orange-toned synth pad that never changes chord, a sparse dub chord stab with echo, a slow filter sweep as the long build, in C minor, hypnotic and uneasy, mid start, a long sealed plateau, a dip to the pad alone, a final lift as the tunnel ends, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"waves 7 and 8: a motorway tunnel; the passing light stops, everything is a steady orange, and nothing on the seat is lit\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in C minor, 144 seconds, with no voice, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4020800 (1.4s of near-silence (limit 0.5)). Seed 4020801 is the take.",
+      "rejected": [
+        {
+          "seed": 4020800,
+          "reason": "1.4s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4020801
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.35,
+        "silence_s": 0.1,
+        "brightness_pct": 0.54,
+        "boominess_pct": 7.06,
+        "onsets_per_s": 2.62,
+        "seam_db": -71.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:carseat",
+          "pov:the-tunnel"
+        ],
+        "track_no": 93
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-carseat-tunnel-orange/greytide-carseat-tunnel-orange.mp3",
+        "notes": "greytide-carseat-tunnel-orange/notes.md",
+        "recipe": "greytide-carseat-tunnel-orange/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6222294,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-carseat-tunnel-orange/greytide-carseat-tunnel-orange.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38745,6 +38828,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-carseat-tunnel-orange",
         "greytide-couch-still-wet-under-the-lid",
         "greytide-desk-never-cleaned-the-nozzle",
         "greytide-gamestore-closing-time-in-the-case",
