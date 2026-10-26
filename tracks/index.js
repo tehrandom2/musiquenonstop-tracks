@@ -4386,6 +4386,115 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-someone-turned-the-hose-on",
+      "title": "Someone Turned the Hose On",
+      "project": "greytide",
+      "idea": "Wave three: the hose comes on and floods the trench; the Bucket tower brags about water, half speed and fires put out",
+      "request": "Wave three: the hose comes on and floods the trench; the Bucket tower brags about water, half speed and fires put out",
+      "mood": "cheeky, splashy, triumphant",
+      "bpm": 162,
+      "key": "G minor",
+      "seed": 4050301,
+      "model": "fast",
+      "duration": 167.62,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:13:11-04:00",
+      "voice": true,
+      "prompt": "Ska-punk, 162 bpm, in G minor, a seven-piece garden-party band: a choppy offbeat guitar skank, a tight lean bass under the mids running fast walking lines, a punchy kit with snare rolls into every chorus, a trombone and trumpet section trading short stabs on the offbeat in strict turns, an organ bubble under the verses, a bright gravelly male lead singing as a red plastic bucket, cheeky and proud, a gang chorus shouting the hook back, still in G minor; arc: horn fanfare intro, mid-level verses, a big chorus, a dub breakdown with echo throws, a lifted final chorus with the horns in harmony, no harsh highs",
+      "lyrics": "[Intro: horn fanfare, then the skank kicks in]\n\n[Verse 1]\nThe hose has been dripping since the first wave came\nA brass little nozzle with a sleepy aim\nNow it bucks and it gurgles and it spits and it shakes\nAnd the head of the trench is about to awake\n\n[Verse 2]\nI'm a red plastic bucket with a white painted band\nI tip and I pour and I sweep back the sand\nSix centimetres backwards, a soak and a slow\nAnd the grey on the road don't know where to go\n\n[Pre-Chorus]\nHere comes the front at fifteen a second\nWading at half, just like I reckoned\n\n[Chorus]\nSomeone turned the hose on, the trench is a river\nSomeone turned the hose on, the grey dudes shiver\nKnee-deep and slow and the fire's gone out\nSomeone turned the hose on, that's what it's about\n\n[Verse 3]\nThe cannon was cooking on the trench side road\nA little fire tower with a burning load\nThe water came down and it hissed out the flame\nSo build on the castles, high and dry, that's the game\n\n[Chorus]\nSomeone turned the hose on, the trench is a river\nSomeone turned the hose on, the grey dudes shiver\nKnee-deep and slow and the fire's gone out\nSomeone turned the hose on, that's what it's about\n\n[Breakdown: dub, bass and echoed horns]\nEleven seconds held at every spot\nThen it drains away and the sand gets hot\nBut the damp keeps the prints of the ones in front\nAnd the ones behind get the slower hunt\n\n[Final Chorus: lifted, horns in harmony]\nSomeone turned the hose on, the trench is a river\nSomeone turned the hose on, the grey dudes shiver\nKnee-deep and slow and the fire's gone out\nSomeone turned the hose on, that's what it's about\n\n[Outro: horn stab, one last gurgle on the bass]\nWho turned the hose on?",
+      "why": "You asked for \"Wave three: the hose comes on and floods the trench; the Bucket tower brags about water, half speed and fires put out\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 162 bpm in G minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 162 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050300 (harsh: 3.2% above 6 kHz (ceiling 2.5)). Seed 4050301 is the take, but it did not clear every gate: harsh: 3.0% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4050300,
+          "reason": "harsh: 3.2% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4050301
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.47,
+        "silence_s": 0.25,
+        "brightness_pct": 3.03,
+        "boominess_pct": 4.85,
+        "onsets_per_s": 3.77,
+        "seam_db": -45.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:the-bucket"
+        ],
+        "track_no": 33
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-someone-turned-the-hose-on/greytide-sandpit-someone-turned-the-hose-on.mp3",
+        "notes": "greytide-sandpit-someone-turned-the-hose-on/notes.md",
+        "recipe": "greytide-sandpit-someone-turned-the-hose-on/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 3.0% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "pressed",
+          "centimeters",
+          "gray",
+          "waiting",
+          "reckon",
+          "turn",
+          "turn",
+          "great",
+          "dude",
+          "when",
+          "turn",
+          "turn",
+          "great",
+          "dude",
+          "turn",
+          "dam",
+          "huh",
+          "turn",
+          "turn",
+          "great",
+          "dude",
+          "when",
+          "turn"
+        ],
+        "stripped": [],
+        "installed_samples": 7392094,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-someone-turned-the-hose-on/greytide-sandpit-someone-turned-the-hose-on.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32882,6 +32991,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-sandpit-someone-turned-the-hose-on",
         "greytide-schooldesk-psst-someone-says-well-done",
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
