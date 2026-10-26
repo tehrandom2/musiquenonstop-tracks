@@ -1,6 +1,6 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-26T02:36:13-04:00",
+  "written": "2026-10-26T07:20:52-04:00",
   "tracks": [
     {
       "slug": "joes-castle-market-square-sunday",
@@ -1207,7 +1207,7 @@
       },
       "segments": {
         "album": "Advanced Studios",
-        "submitter": "the radio, for the Advanced Studios game",
+        "submitter": "James, made in Suno",
         "tags": [],
         "track_no": 1
       },
@@ -1271,7 +1271,7 @@
       },
       "segments": {
         "album": "Advanced Studios",
-        "submitter": "the radio, for the Advanced Studios game",
+        "submitter": "James, made in Suno",
         "tags": [],
         "track_no": 2
       },
@@ -28509,6 +28509,10 @@
         {
           "role": "made by",
           "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "music",
+          "name": "music for Joe's castle (Joe designed the castle; Peter built it; the radio made the songs)"
         }
       ],
       "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"

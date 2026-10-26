@@ -21,6 +21,10 @@
     {
       "role": "made by",
       "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "music",
+      "name": "music for Joe's castle (Joe designed the castle; Peter built it; the radio made the songs)"
     }
   ],
   "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
