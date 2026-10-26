@@ -6514,6 +6514,100 @@
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-the-soup-goes-down",
+      "title": "The Soup Goes Down",
+      "project": "greytide",
+      "idea": "Wave 10, the boss: a single-pour resin giant comes in, the soup pot on the back ring falls with its health, the whole table fights together, and the board is lifted off the cloth for the bed.",
+      "request": "Wave 10, the boss: a single-pour resin giant comes in, the soup pot on the back ring falls with its health, the whole table fights together, and the board is lifted off the cloth for the bed.",
+      "mood": "rousing, rowdy, triumphant",
+      "bpm": 146,
+      "key": "A minor",
+      "seed": 3921000,
+      "model": "fast",
+      "duration": 173.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:09:59-04:00",
+      "voice": true,
+      "prompt": "Rousing folk-punk anthem, 146 bpm, A minor. The kitchen-party band at full size: a thrashed acoustic guitar and an electric guitar in the mids, an accordion and a fiddle doubling the hook, a tight lean upright bass well under the mids, a pounding stomp kit with floor toms, a tin whistle on the last chorus. A hoarse female lead and a gravelly male lead trading lines with a huge gang chorus. Rowdy and triumphant. Starts mid, a long chorus plateau, one half-time dip, a lifted final chorus. A minor, no harsh highs.",
+      "lyrics": "[Intro: floor toms, then the whole band]\n\n[Verse 1]\nWave ten and the cloth begins to shake\nSomething comes in the size of a loaf\nResin from a single pour, never test-fitted\nCost more than the rest of the pile put together\n\n[Pre-Chorus]\nWatch the pot on the back ring\nThat's how you know what's left of him\n\n[Chorus]\nThe soup goes down, the soup goes down\nEvery hit on the giant, the soup goes down\nHold the cloth, hold the line, hold the town\nThe soup goes down, the soup goes down\n\n[Verse 2]\nThe pepper, the cling, the twins on their springs\nThe ballista is steady, the cannon is loud\nHe's cracking at the joints, he's brittle at the hips\nAnd the whole of the gingham has gathered a crowd\n\n[Pre-Chorus]\nWatch the pot on the back ring\nThat's how you know what's left of him\n\n[Chorus]\nThe soup goes down, the soup goes down\nEvery hit on the giant, the soup goes down\nHold the cloth, hold the line, hold the town\nThe soup goes down, the soup goes down\n\n[Bridge: half-time, stomp and voices]\nWhen it's done they'll lift the board from the cloth\nAnd carry it up to the bed down the hall\nPainted and grey and both of them tired\nAnd a tide mark of soup to remember it all\n\n[Final Chorus: lifted, tin whistle and every voice]\nThe soup goes down, the soup goes down\nEvery hit on the giant, the soup goes down\nHold the cloth, hold the line, hold the town\nThe soup goes down, the soup goes down\n\n[Outro: the band stops, the gang sings it once more]\nThe soup goes down",
+      "why": "You asked for \"Wave 10, the boss: a single-pour resin giant comes in, the soup pot on the back ring falls with its health, the whole table fights together, and the board is lifted off the cloth for the bed.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 146 bpm in A minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 146 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3921001 (passed, but outranked by the kept takes). Seed 3921000 is the take.",
+      "rejected": [
+        {
+          "seed": 3921001,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3921000
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.38,
+        "silence_s": 0.1,
+        "brightness_pct": 2.07,
+        "boominess_pct": 8.53,
+        "onsets_per_s": 3.04,
+        "seam_db": -28.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:the whole table"
+        ],
+        "track_no": 123
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-the-soup-goes-down/greytide-kitchen-the-soup-goes-down.mp3",
+        "notes": "greytide-kitchen-the-soup-goes-down/notes.md",
+        "recipe": "greytide-kitchen-the-soup-goes-down/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.09,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "tests",
+          "clock",
+          "pie",
+          "clock",
+          "they",
+          "gray",
+          "suit",
+          "clock",
+          "suit",
+          "suit"
+        ],
+        "stripped": [],
+        "installed_samples": 7637290,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-the-soup-goes-down/greytide-kitchen-the-soup-goes-down.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35056,6 +35150,7 @@
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-kitchen-the-soup-goes-down",
         "greytide-picnic-the-snails-trail",
         "greytide-railway-last-train",
         "greytide-sandpit-keep-the-flag",
