@@ -8018,6 +8018,103 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-staff-pick-honest",
+      "title": "Staff Pick (Best One. Honest.)",
+      "project": "greytide",
+      "idea": "Wave five, a staff hand stands a STAFF PICK card beside the Mage; half price, pinned in place, chosen for the first time and secretly thrilled",
+      "request": "Wave five, a staff hand stands a STAFF PICK card beside the Mage; half price, pinned in place, chosen for the first time and secretly thrilled",
+      "mood": "smooth, bashful, proud",
+      "bpm": 124,
+      "key": "F minor",
+      "seed": 3950600,
+      "model": "fast",
+      "duration": 137.58,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:07:44-04:00",
+      "voice": true,
+      "prompt": "Sleek disco-funk at 124 bpm in F minor, a polished shop-floor soul band: a tight syncopated bass guitar, lean, bass well under the mids, a crisp four-on-the-floor kit with open hats, a scratchy rhythm guitar on sixteenths, a string section stabbing the hook, an electric piano filling the gaps; a smooth, slightly embarrassed male falsetto lead with a confident female backing trio answering; mid start, high plateau, a bass-and-claps breakdown, a lifted final chorus, F minor, no harsh highs",
+      "lyrics": "[Intro - strings and guitar]\nAsk me.\n\n[Verse 1]\nA staff hand came down into the tray at wave five\nPut a little card beside me, standing up like it's alive\nIt says STAFF PICK in marker, BEST ONE, underlined\nThen HONEST, in brackets, like they'd almost changed their mind\nI'm the Mage, I'm blue and gold, my robes are dry-brushed bright\nI have never been anybody's favourite in the light\n\n[Pre-Chorus]\nThey're pointing at me, pointing at me\n(Half price, half price)\n\n[Chorus]\nStaff pick, best one, honest\nPin me where you put me down\nStaff pick, best one, honest\nI'm the only one in town\n\n[Verse 2]\nThe catch is that I cost you half and I can't move\nNot till the next wave comes, I'm pinned into the groove\nSo put me where it matters, put me on the bend\nI'll hold the crossroads like I'm owed it in the end\nThe other towers look at me and cough a little bit\nI'm wearing someone's handwriting, and I'm wearing it\n\n[Pre-Chorus]\nThey're pointing at me, pointing at me\n(Half price, half price)\n\n[Chorus]\nStaff pick, best one, honest\nPin me where you put me down\nStaff pick, best one, honest\nI'm the only one in town\n\n[Breakdown - bass and claps]\nSomebody chose me\nSomebody chose me\nNot for the paint job, for the work\nSomebody chose me\n\n[Final Chorus - lifted, strings soaring]\nStaff pick, best one, honest\nPin me where you put me down\nStaff pick, best one, honest\nI'm the only one in town\n\n[Outro - the falsetto alone]\nAsk me. Ask me.",
+      "why": "You asked for \"Wave five, a staff hand stands a STAFF PICK card beside the Mage; half price, pinned in place, chosen for the first time and secretly thrilled\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 124 bpm in F minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 124 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950601 (0.9s of near-silence (limit 0.5) and others). Seed 3950600 is the take, but it did not clear every gate: 0.8s of near-silence (limit 0.5); harsh: 3.2% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3950601,
+          "reason": "0.9s of near-silence (limit 0.5); harsh: 2.5% above 6 kHz (ceiling 2.5); 18 of 136 heard words are not ours (13 %; limit 10 %, at least 40 heard): aspenage aspenage yeah stop this moaning air grace grace step step this"
+        }
+      ],
+      "takes": [
+        3950600
+      ],
+      "numbers": {
+        "tempo_bpm": 124.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.51,
+        "silence_s": 0.8,
+        "brightness_pct": 3.21,
+        "boominess_pct": 6.28,
+        "onsets_per_s": 3.17,
+        "seam_db": -48.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:the-mage"
+        ],
+        "track_no": 68
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-staff-pick-honest/greytide-gamestore-staff-pick-honest.mp3",
+        "notes": "greytide-gamestore-staff-pick-honest/notes.md",
+        "recipe": "greytide-gamestore-staff-pick-honest/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.8s of near-silence (limit 0.5)",
+          "harsh: 3.2% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "picking",
+          "harvest",
+          "had",
+          "favorite",
+          "hope",
+          "old",
+          "stop",
+          "page",
+          "need",
+          "to"
+        ],
+        "stripped": [],
+        "installed_samples": 6067332,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-staff-pick-honest/greytide-gamestore-staff-pick-honest.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36543,6 +36640,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-gamestore-staff-pick-honest",
         "greytide-garage-the-roadie",
         "greytide-kitchen-knife-in-the-jam",
         "greytide-sandpit-five-limp-three-proud",
