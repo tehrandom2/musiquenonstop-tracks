@@ -12925,6 +12925,101 @@
       "audition": true
     },
     {
+      "slug": "greytide-attic-boo",
+      "title": "Boo",
+      "project": "greytide",
+      "idea": "The dust sheet ghost tower, a carefully painted knight hiding under a sheet, says boo; the haunted grey ones run back and take more from every hit",
+      "request": "The dust sheet ghost tower, a carefully painted knight hiding under a sheet, says boo; the haunted grey ones run back and take more from every hit",
+      "mood": "comic, spooky, hammy",
+      "bpm": 146,
+      "key": "E minor",
+      "seed": 3980500,
+      "model": "fast",
+      "duration": 163.42,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:00:34-04:00",
+      "voice": true,
+      "prompt": "Spooky surf rock, 146 bpm, E minor, comic and haunted: a driving surf drum beat with tom rolls, a dripping reverb-soaked lead guitar picking a fast E minor melody, a tight lean bass running under the mids, a wheezing combo organ, a wavering high synth like a ghostly whistle, a hammy male crooner lead with a female backing trio singing oohs and shouting the boo, in E minor; intro of reverb guitar and an organ swell, verses swaggering, a call and response chorus, a bridge of organ and voice, the final chorus lifted with the trio doubled, the outro a last spooky glide, no harsh highs",
+      "lyrics": "[Intro: reverb guitar and an organ swell]\n\n[Verse 1]\nUnder a dust sheet with two holes for eyes\nPainted beneath it, but that's a surprise\nI take a while to warm up, I take a while to brew\nBut when I finally say it, it's coming straight for you\n\n[Pre-Chorus]\nOoh, wait for it\nOoh, wait for it\n\n[Chorus: call and response]\nBoo! And the alley runs back\nEvery hit lands a quarter harder after that\nBoo! From under the sheet\nHaunted little grey ones on their wobbly feet\n\n[Verse 2]\nA dude that's been frightened is brave for a while\nHe walks right past me, I give him a smile\nA smile he can't see, for the sheet's in the way\nI'll get him on the next one, I've got all night to stay\n\n[Pre-Chorus]\nOoh, wait for it\nOoh, wait for it\n\n[Chorus: call and response]\nBoo! And the alley runs back\nEvery hit lands a quarter harder after that\nBoo! From under the sheet\nHaunted little grey ones on their wobbly feet\n\n[Bridge: organ and voice]\nUnder the sheet is a knight in blue\nPainted so carefully, nobody knew\nI'd show you my colours, I'd show you my shield\nBut the boo does the job, so the sheet stays sealed\n\n[Final Chorus: lifted, the trio doubled]\nBoo! And the alley runs back\nEvery hit lands a quarter harder after that\nBoo! From under the sheet\nHaunted little grey ones on their wobbly feet\n\n[Outro: a last spooky glide]\nBoo.",
+      "why": "You asked for \"The dust sheet ghost tower, a carefully painted knight hiding under a sheet, says boo; the haunted grey ones run back and take more from every hit\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 146 bpm in E minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 146 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980501 (0.7s of near-silence (limit 0.5)). Seed 3980500 is the take, but it did not clear every gate: 1.5s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3980501,
+          "reason": "0.7s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3980500
+      ],
+      "numbers": {
+        "tempo_bpm": 73.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.18,
+        "silence_s": 1.45,
+        "brightness_pct": 2.09,
+        "boominess_pct": 5.71,
+        "onsets_per_s": 2.73,
+        "seam_db": -10.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:tower"
+        ],
+        "track_no": 51
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-boo/greytide-attic-boo.mp3",
+        "notes": "greytide-attic-boo/notes.md",
+        "recipe": "greytide-attic-boo/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.14,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.5s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "if",
+          "some",
+          "sheep",
+          "gray",
+          "sheets",
+          "gray",
+          "colors",
+          "shields",
+          "haunting"
+        ],
+        "stripped": [],
+        "installed_samples": 7206751,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-boo/greytide-attic-boo.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -41463,6 +41558,7 @@
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
+        "greytide-attic-boo",
         "greytide-bathroom-you-know-the-way",
         "greytide-bed-short-fall",
         "greytide-carseat-new-car-smell",
