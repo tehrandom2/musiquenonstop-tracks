@@ -5551,6 +5551,114 @@
       "audition": true
     },
     {
+      "slug": "greytide-railway-last-train",
+      "title": "Last Train",
+      "project": "greytide",
+      "idea": "Wave ten: the boss stands on the line, the engine only takes a fifth off him, and every railway tower holds together; the green engine sings",
+      "request": "Wave ten: the boss stands on the line, the engine only takes a fifth off him, and every railway tower holds together; the green engine sings",
+      "mood": "anthemic, driving, kind",
+      "bpm": 146,
+      "key": "E minor",
+      "seed": 4061001,
+      "model": "fast",
+      "duration": 170.0,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:11:25-04:00",
+      "voice": true,
+      "prompt": "Anthemic motorik rock, 146 bpm, in E minor, the full railway band for the last stand: a pounding motorik kit with tom fills into every chorus, a tight lean driving bass under the mids on eighths, two guitars, one chugging and one ringing a high melody, a synth whistle motif from the departure board song, a horn pair joining from the conductor's band for the last chorus, a powerful male lead singing as the green engine, with a big gang choir of every tower on the hook, E minor stated in the riff; arc: a far whistle and hum intro, mid verses, a huge chorus, a breakdown to bass and wheels where the boss stands on the line, a long high final chorus lifted, an outro that pulls into the tunnel and fades, no harsh highs",
+      "lyrics": "[Intro: a far whistle, the hum of the rails]\n\n[Verse 1]\nGreen paint, black smokebox, a dome of brass\nSix red wheels and a tender of coal\nI've run this line since the first wave passed\nTunnel to tunnel and back to the hole\n\n[Verse 2]\nI knock the grunts off the ballast bed\nI never wished them a moment's harm\nThey're only plastic that never got read\nThey're only grey and they mean no alarm\n\n[Pre-Chorus]\nWave ten, wave ten, the board goes red\nSomething huge is standing on the line ahead\n\n[Chorus]\nLast train, last train, through the dark and home\nOut of the hill and into the hill\nEvery tower singing in the painted chrome\nLast train, last train, hold the line still\n\n[Verse 3]\nI hit the boss and he only shakes\nA fifth of him gone and the rest still stands\nSo it's not on me, it's on what it takes\nThe signal, the rail, the conductor's hands\n\n[Chorus]\nLast train, last train, through the dark and home\nOut of the hill and into the hill\nEvery tower singing in the painted chrome\nLast train, last train, hold the line still\n\n[Breakdown: bass and wheels, the boss on the track]\nThe gates come down, the water pours\nThe rail goes live, the signal roars\nThe ballista leans and the cannon booms\nAnd the painted crowd on the platform looms\n\n[Final Chorus: lifted, horns and full choir]\nLast train, last train, through the dark and home\nOut of the hill and into the hill\nEvery tower singing in the painted chrome\nLast train, last train, hold the line still\n\n[Outro: into the tunnel, fading]\nInto the hill. Hold the line still.",
+      "why": "You asked for \"Wave ten: the boss stands on the line, the engine only takes a fifth off him, and every railway tower holds together; the green engine sings\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 146 bpm in E minor, 178 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 146 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4061000 (harsh: 3.0% above 6 kHz (ceiling 2.5)). Seed 4061001 is the take, but it did not clear every gate: harsh: 3.0% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4061000,
+          "reason": "harsh: 3.0% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4061001
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.72,
+        "silence_s": 0.2,
+        "brightness_pct": 2.96,
+        "boominess_pct": 5.96,
+        "onsets_per_s": 3.49,
+        "seam_db": -41.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:railway",
+          "pov:the-engine"
+        ],
+        "track_no": 125
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-railway-last-train/greytide-railway-last-train.mp3",
+        "notes": "greytide-railway-last-train/notes.md",
+        "recipe": "greytide-railway-last-train/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 3.0% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "smoke",
+          "box",
+          "at",
+          "from",
+          "way",
+          "past",
+          "wish",
+          "cray",
+          "waitin'",
+          "waitin'",
+          "everything",
+          "cold",
+          "child",
+          "will",
+          "sing",
+          "crow",
+          "lifestyle",
+          "oh",
+          "time",
+          "was",
+          "robe",
+          "light"
+        ],
+        "stripped": [],
+        "installed_samples": 7497070,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-railway-last-train/greytide-railway-last-train.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -34085,6 +34193,7 @@
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-railway-last-train",
         "greytide-sandpit-keep-the-flag",
         "greytide-schooldesk-hold-them-till-the-bell",
         "greytide-sill-petal-by-petal",
