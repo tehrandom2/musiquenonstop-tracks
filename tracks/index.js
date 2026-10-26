@@ -5057,6 +5057,107 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-railway-the-sign-did-say",
+      "title": "The Sign Did Say",
+      "project": "greytide",
+      "idea": "Wave seven: the Third Rail and the Water Tower team up, soaking the grey and shocking them harder while the train runs",
+      "request": "Wave seven: the Third Rail and the Water Tower team up, soaking the grey and shocking them harder while the train runs",
+      "mood": "snarling, electric, gleeful",
+      "bpm": 150,
+      "key": "F minor",
+      "seed": 4060700,
+      "model": "fast",
+      "duration": 159.62,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:12:08-04:00",
+      "voice": true,
+      "prompt": "Snarling electro-punk big beat, 150 bpm, in F minor, a three-piece crackling with current: a breakbeat kit with a fat snare and crashing fills, a tight lean distorted bass under the mids buzzing on the root, a gritty bitcrushed synth riff in the mids, short zapping synth stabs answering each line, a sneering raspy male lead singing as the third rail, with a cool female voice as the water tower on the second verse, a gang shout on the hook, F minor stated twice; arc: a crackle and spark intro, punchy verses, a chorus that surges, a breakdown with only the bass hum and claps, a lifted final chorus at full voltage, a hard stop, warm saturation in the mids, no harsh highs",
+      "lyrics": "[Intro: a crackle, a spark, the beat]\n\n[Verse 1: the rail]\nTwo sleepers, ballast, a coil of cable\nA ceramic cap at each end of the table\nThree shades of grey on a rail of steel\nI don't aim, I just make you feel\n\n[Verse 2: the water tower]\nUp on my trestle with my hoops of iron\nMy spout swings out when the line needs firing\nI fill the engines and I soak the rest\nA wet grey dude takes the shock the best\n\n[Pre-Chorus]\nOnce a second, once a second\nCloser than you ever reckoned\n\n[Chorus]\nThe sign did say, the sign did say\nA yellow triangle in your way\nWet on the ballast and the line goes live\nThe sign did say, and you didn't arrive\n\n[Verse 3: the rail]\nWhen the train is running I'm twice as mean\nTwo and a bit, if you know what I mean\nThe painter did my bolt the wrong way round\nBut it still comes down on the grey ground\n\n[Chorus]\nThe sign did say, the sign did say\nA yellow triangle in your way\nWet on the ballast and the line goes live\nThe sign did say, and you didn't arrive\n\n[Breakdown: bass hum and claps]\nWet and live, wet and live\nOne and a half is what we give\nShe pours, I spark, the grey go still\nBuild us together, build us at will\n\n[Final Chorus: lifted, full voltage]\nThe sign did say, the sign did say\nA yellow triangle in your way\nWet on the ballast and the line goes live\nThe sign did say, and you didn't arrive\n\n[Outro: a last spark, hard stop]\nIt did say.",
+      "why": "You asked for \"Wave seven: the Third Rail and the Water Tower team up, soaking the grey and shocking them harder while the train runs\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 150 bpm in F minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 150 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4060701 (0.8s of near-silence (limit 0.5) and others). Seed 4060700 is the take, but it did not clear every gate: harsh: 3.4% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4060701,
+          "reason": "0.8s of near-silence (limit 0.5); harsh: 3.7% above 6 kHz (ceiling 2.5); 233 of 375 heard words are not ours (62 %; limit 10 %, at least 40 heard): palace trissel spars went boat around it's bop bop bop bop bop"
+        }
+      ],
+      "takes": [
+        4060700
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.61,
+        "silence_s": 0.15,
+        "brightness_pct": 3.44,
+        "boominess_pct": 5.62,
+        "onsets_per_s": 3.62,
+        "seam_db": -53.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:railway",
+          "pov:third-rail"
+        ],
+        "track_no": 84
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-railway-the-sign-did-say/greytide-railway-the-sign-did-say.mp3",
+        "notes": "greytide-railway-the-sign-did-say/notes.md",
+        "recipe": "greytide-railway-the-sign-did-say/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.3,
+        "decoded_lufs": -16.38,
+        "failed": [
+          "harsh: 3.4% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "vying",
+          "this",
+          "idea",
+          "boat",
+          "keep",
+          "war",
+          "great",
+          "can't",
+          "am",
+          "we're",
+          "glass",
+          "signed"
+        ],
+        "stripped": [
+          "Third Rail",
+          "Water Tower"
+        ],
+        "installed_samples": 7039380,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-railway-the-sign-did-say/greytide-railway-the-sign-did-say.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33572,6 +33673,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-railway-the-sign-did-say",
         "greytide-sandpit-the-lounger-shadow",
         "greytide-schooldesk-show-your-working",
         "greytide-sill-two-leaves",
