@@ -8592,6 +8592,108 @@
       "audition": true
     },
     {
+      "slug": "greytide-desk-swept-to-the-bits-box",
+      "title": "Swept to the Bits Box",
+      "project": "greytide",
+      "idea": "After wave 2 the painter's sleeve sweeps the fork signposts off the board into the bits box; the signpost tells it, among 114 spare arms.",
+      "request": "After wave 2 the painter's sleeve sweeps the fork signposts off the board into the bits box; the signpost tells it, among 114 spare arms.",
+      "mood": "bittersweet, bouncy, comic",
+      "bpm": 156,
+      "key": "D minor",
+      "seed": 3910300,
+      "model": "fast",
+      "duration": 158.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:06:55-04:00",
+      "voice": true,
+      "prompt": "Ska-punk, 156 bpm, D minor. A six-piece: upstroke guitar skanks on every offbeat, a tight lean bass walking fast well under the mids, a punchy kit with snare rolls into each chorus, a trombone and trumpet playing the hook in unison, an organ bubbling underneath. A raspy tenor male lead with a cheerful shouted gang chorus. Bittersweet and bouncy. Starts mid, a long high chorus plateau, one breakdown to bass and horns, a lifted final chorus. D minor, no harsh highs.",
+      "lyrics": "[Intro: horns state the hook over the skank]\n\n[Verse 1]\nI stood at the fork with two lines and an arrow\nFast and light go the short way, the rest go long\nI told every grey one exactly where to go\nTwo whole waves of pointing and I never got it wrong\n\n[Pre-Chorus]\nThen a sleeve came over the edge of the world\nWith a brush the size of a tree\n\n[Chorus]\nSwept to the bits box, swept to the bits box\nA hundred and fourteen arms and me\nSwept to the bits box, swept to the bits box\nThree spare heads that aren't mine, and me\n\n[Verse 2]\nMy brother at the join said a tower catches the fast\nHe said it in capitals, he said it louder than me\nNow the road has no voice and the horde has no map\nThey'll have to learn it like the rest of us, by feel\n\n[Pre-Chorus]\nThen a sleeve came over the edge of the world\nWith a brush the size of a tree\n\n[Chorus]\nSwept to the bits box, swept to the bits box\nA hundred and fourteen arms and me\nSwept to the bits box, swept to the bits box\nThree spare heads that aren't mine, and me\n\n[Breakdown: drums drop out, bass and horns]\nDown in the dark with the leftover parts\nAn arm says it waves, a head says it thinks\nNobody in here was ever the whole of a thing\nWe are the pieces that point the way\n\n[Final Chorus: lifted, gang on every line]\nSwept to the bits box, swept to the bits box\nA hundred and fourteen arms and me\nSwept to the bits box, swept to the bits box\nThree spare heads that aren't mine, and me\n\n[Outro]\nFast and light go the short way\nThe rest go long",
+      "why": "You asked for \"After wave 2 the painter's sleeve sweeps the fork signposts off the board into the bits box; the signpost tells it, among 114 spare arms.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 156 bpm in D minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 156 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3910301 (harsh: 3.0% above 6 kHz (ceiling 2.5) and others). Seed 3910300 is the take, but it did not clear every gate: harsh: 3.2% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3910301,
+          "reason": "harsh: 3.0% above 6 kHz (ceiling 2.5); 24 of 181 heard words are not ours (13 %; limit 10 %, at least 40 heard): four quick great joint sleep swap pit spots swap pit spots ohms"
+        }
+      ],
+      "takes": [
+        3910300
+      ],
+      "numbers": {
+        "tempo_bpm": 77.2,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.63,
+        "silence_s": 0.1,
+        "brightness_pct": 3.17,
+        "boominess_pct": 4.59,
+        "onsets_per_s": 3.59,
+        "seam_db": -49.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:desk",
+          "pov:the signpost"
+        ],
+        "track_no": 30
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-desk-swept-to-the-bits-box/greytide-desk-swept-to-the-bits-box.mp3",
+        "notes": "greytide-desk-swept-to-the-bits-box/notes.md",
+        "recipe": "greytide-desk-swept-to-the-bits-box/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 3.2% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "gray",
+          "spats",
+          "joint",
+          "fest",
+          "fear",
+          "sleep",
+          "knees",
+          "sweat",
+          "pits",
+          "bob",
+          "sweat",
+          "pits",
+          "knees",
+          "right",
+          "into",
+          "spades"
+        ],
+        "stripped": [],
+        "installed_samples": 6975754,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-desk-swept-to-the-bits-box/greytide-desk-swept-to-the-bits-box.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37097,6 +37199,7 @@
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-desk-swept-to-the-bits-box",
         "greytide-garage-tuner-needle",
         "greytide-kitchen-smells-good-behaves-badly",
         "greytide-sandpit-someone-turned-the-hose-on",
