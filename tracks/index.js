@@ -9910,6 +9910,100 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-carseat-you-are-here",
+      "title": "You Are Here",
+      "project": "greytide",
+      "idea": "the road atlas lies open and lights a stretch of real road yellow; every grey dude on it gets a map pin and takes more, until the page turns",
+      "request": "the road atlas lies open and lights a stretch of real road yellow; every grey dude on it gets a map pin and takes more, until the page turns",
+      "mood": "wistful, bright, certain",
+      "bpm": 136,
+      "key": "B minor",
+      "seed": 4020700,
+      "model": "fast",
+      "duration": 160.29,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:05:00-04:00",
+      "voice": true,
+      "prompt": "Bright melancholic synth-pop, 136 bpm, B minor, a synth band with roles: a sequenced tight lean synth bass, bass well under the mids, a crisp drum machine with a clap on two and four, a shimmering arpeggio turning like pages, a wide string pad, a clear wistful female lead, a soft male harmony on the hook, in B minor, wistful and certain, mid start, a long high plateau, a dip to arpeggio and voice, a lifted last chorus, no harsh highs",
+      "lyrics": "[Intro - the arpeggio turns, the pad swells]\n\n[Verse 1]\nI'm open on the seat at a page of roads\nRing roads, a bypass, the places no one goes\nI can't shoot a thing, but I can show you where\nA stretch of the seat goes yellow, and you're there\n\n[Pre-Chorus]\nSix seconds open, one to turn\nThree places only, that's what I learned\n\n[Chorus - harmony on the hook]\nYou are here, you are here\nA pin above your head\nYou are here, you are here\nEveryone can see you now\n\n[Verse 2]\nThe exit, the entrance, the stretch at my side\nRound and round the pages, wherever they ride\nA dude with a pin takes a third more pain\nAnd then I turn the page, and he's lost again\n\n[Pre-Chorus]\nSix seconds open, one to turn\nThree places only, that's what I learned\n\n[Chorus - harmony on the hook]\nYou are here, you are here\nA pin above your head\nYou are here, you are here\nEveryone can see you now\n\n[Bridge - arpeggio and voice]\nThe kid used to trace me with a finger in the dark\nHere's our house, here's the sea, here's the park\nNobody's ever lost if somebody can find them\nI'm the one who knows where they are\n\n[Final Chorus - lifted, the strings soar]\nYou are here, you are here\nA pin above your head\nYou are here, you are here\nEveryone can see you now\n\n[Outro - one page turns, the arpeggio stops]",
+      "why": "You asked for \"the road atlas lies open and lights a stretch of real road yellow; every grey dude on it gets a map pin and takes more, until the page turns\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in B minor, 166 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4020701 (harsh: 2.9% above 6 kHz (ceiling 2.5)). Seed 4020700 is the take, but it did not clear every gate: harsh: 2.6% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4020701,
+          "reason": "harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4020700
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -4.22,
+        "silence_s": 0.3,
+        "brightness_pct": 2.56,
+        "boominess_pct": 7.01,
+        "onsets_per_s": 3.62,
+        "seam_db": -29.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:carseat",
+          "pov:road-atlas"
+        ],
+        "track_no": 78
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-carseat-you-are-here/greytide-carseat-you-are-here.mp3",
+        "notes": "greytide-carseat-you-are-here/notes.md",
+        "recipe": "greytide-carseat-you-are-here/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "walking",
+          "parade",
+          "pinnacle",
+          "sight",
+          "two",
+          "up",
+          "scene",
+          "up"
+        ],
+        "stripped": [],
+        "installed_samples": 7068681,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-carseat-you-are-here/greytide-carseat-you-are-here.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38453,6 +38547,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-carseat-you-are-here",
         "greytide-couch-popcorn-over-the-board",
         "greytide-gamestore-last-weeks-meta",
         "greytide-garage-someone-kicked-the-fuzz",
