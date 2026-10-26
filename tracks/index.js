@@ -3641,6 +3641,107 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-schooldesk-out-of-the-pencil-case",
+      "title": "Out of the Pencil Case",
+      "project": "greytide",
+      "idea": "wave 1: the zip opens and a grey grunt climbs out of the pencil case onto the lid, eyes on the lunchbox at the far end",
+      "request": "wave 1: the zip opens and a grey grunt climbs out of the pencil case onto the lid, eyes on the lunchbox at the far end",
+      "mood": "scrappy, cheeky, hungry",
+      "bpm": 148,
+      "key": "E minor",
+      "seed": 4010100,
+      "model": "fast",
+      "duration": 162.66,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:14:27-04:00",
+      "voice": true,
+      "prompt": "Garage punk, 148 bpm, E minor, a scrappy four-piece: a scratchy overdriven rhythm guitar on a two-chord riff, a second guitar answering with short bent stabs, a busy pick-played bass in a tight lean line, bass well under the mids, a fast snare-driven beat with tom fills, a cocky male lead half-shouting, a gang chorus answering every hook, in E minor, cheeky and hungry, starts mid with the riff alone, a long high plateau, one stop-time dip, a lifted last chorus, warm saturation, no harsh highs",
+      "lyrics": "[Intro - the riff alone, then the drums crash in]\n\n[Verse 1]\nZip goes the pencil case, a silver grin\nTwenty of us tumble out and tumble in\nPast the chewed blue biro and the paper-clip chain\nGrey as the margin and we're grey again\n\n[Pre-Chorus]\nSomebody's slumped at the back of the row\nSomebody's bored, so we're ready to go\n\n[Chorus - gang shout, call and response]\nZip it open! (Here we come)\nGrey on the lid and we're ten to one\nLunchbox at the far end (far end)\nGrey till the bell, then we'll see who won\n\n[Verse 2]\nSome of us roll in the pencil groove\nFaster in the channel than our legs can move\nA marble went first and it showed us the way\nRolled to the end and it didn't stay\nThere's a compass on its needle drawing circles in the lead\nAnd a rubber band strung tight across the road ahead\n\n[Pre-Chorus]\nSomebody painted them, careful and slow\nNobody painted us, so here we go\n\n[Chorus - gang shout, call and response]\nZip it open! (Here we come)\nGrey on the lid and we're ten to one\nLunchbox at the far end (far end)\nGrey till the bell, then we'll see who won\n\n[Breakdown - stop-time, bass and snare only]\nArrows on the desk lid, this way, this way\nSignposts in biro, this way, this way\nWe don't read, we follow, this way, this way\n\n[Final Chorus - lifted, the whole band and the gang]\nZip it open! (Here we come)\nGrey on the lid and we're ten to one\nLunchbox at the far end (far end)\nGrey till the bell, then we'll see who won\n\n[Outro - the riff alone, a last shout]\nTen to one!",
+      "why": "You asked for \"wave 1: the zip opens and a grey grunt climbs out of the pencil case onto the lid, eyes on the lunchbox at the far end\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 148 bpm in E minor, 168 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 148 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4010101 (2.8s of near-silence (limit 0.5) and others). Seed 4010100 is the take, but it did not clear every gate: harsh: 2.7% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4010101,
+          "reason": "2.8s of near-silence (limit 0.5); 234 of 395 heard words are not ours (59 %; limit 10 %, at least 40 heard): sip bottle oh oh oh oh oh oh oh oh oh oh"
+        }
+      ],
+      "takes": [
+        4010100
+      ],
+      "numbers": {
+        "tempo_bpm": 73.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.77,
+        "silence_s": 0.3,
+        "brightness_pct": 2.68,
+        "boominess_pct": 5.49,
+        "onsets_per_s": 3.46,
+        "seam_db": -54.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:schooldesk",
+          "pov:grunt"
+        ],
+        "track_no": 10
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-schooldesk-out-of-the-pencil-case/greytide-schooldesk-out-of-the-pencil-case.mp3",
+        "notes": "greytide-schooldesk-out-of-the-pencil-case/notes.md",
+        "recipe": "greytide-schooldesk-out-of-the-pencil-case/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.7% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "simple",
+          "okay",
+          "believe",
+          "bar",
+          "bar",
+          "wait",
+          "snip",
+          "foreign",
+          "foreign",
+          "lit",
+          "signpost",
+          "borrow",
+          "gray",
+          "bar",
+          "gray"
+        ],
+        "stripped": [],
+        "installed_samples": 7173375,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-schooldesk-out-of-the-pencil-case/greytide-schooldesk-out-of-the-pencil-case.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32130,6 +32231,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
         "greytide-sill-the-guide-blew-away",
