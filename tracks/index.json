@@ -9150,6 +9150,105 @@
       "audition": true
     },
     {
+      "slug": "greytide-desk-about-to-be-painted",
+      "title": "About to Be Painted",
+      "project": "greytide",
+      "idea": "Wave 10 and the desk's last stand from a primed-only dude, about to be painted for years: shoved off the desk edge, he looks up at the world from the floor as the board is carried on toward the kitchen.",
+      "request": "Wave 10 and the desk's last stand from a primed-only dude, about to be painted for years: shoved off the desk edge, he looks up at the world from the floor as the board is carried on toward the kitchen.",
+      "mood": "anthemic, bruised, hopeful",
+      "bpm": 142,
+      "key": "E minor",
+      "seed": 3911000,
+      "model": "fast",
+      "duration": 172.06,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:06:07-04:00",
+      "voice": true,
+      "prompt": "Arena rock anthem, 142 bpm, E minor. A five-piece: a big minor riff on two overdriven guitars in the mids, one holding chords and one a high counter-melody, a tight lean bass in eighths well under the mids, huge tom-led drums, a piano doubling the chorus melody. A gravelly male lead with a soaring top line and a massive gang chorus. Bruised and hopeful. Starts mid on drums then the riff, a long high chorus plateau, one half-time dip, a lifted final chorus. E minor, warm saturation, no harsh highs.",
+      "lyrics": "[Intro: drums alone, then the riff]\n\n[Verse 1]\nThey primed me in a spring that nobody remembers\nOne quick coat outside and then back in the box\nI've been about to be painted ever since\nThrough every promise and every lost weekend\n\n[Pre-Chorus]\nTonight's the tenth wave and the edge is right there\nThe cannon is counting and the long guns stare\n\n[Chorus]\nAbout to be painted, about to be\nSomewhere on the shelf there's a colour for me\nKnock me off the edge, I'll fall slow as a seed\nAbout to be painted, about to be\n\n[Verse 2]\nThe gloss one shoves and I go over the side\nSeventy-five centimetres, a mile to me\nI land on the floor in the dust and the offcuts\nAnd look up at the world from underneath\n\n[Pre-Chorus]\nThe tenth wave is breaking on the edge up there\nAnd the painted ones are holding in the air\n\n[Chorus]\nAbout to be painted, about to be\nSomewhere on the shelf there's a colour for me\nKnock me off the edge, I'll fall slow as a seed\nAbout to be painted, about to be\n\n[Bridge: half-time, bass and toms]\nThey'll carry the board through to the kitchen soon\nPainted and grey in the same tired hands\nAnd the night goes on, and the night goes on\nAnd nobody's finished, and everyone stands\n\n[Final Chorus: lifted, the gang on every line]\nAbout to be painted, about to be\nSomewhere on the shelf there's a colour for me\nKnock me off the edge, I'll fall slow as a seed\nAbout to be painted, about to be\n\n[Outro: the riff, then one chord ringing]\nAbout to be painted",
+      "why": "You asked for \"Wave 10 and the desk's last stand from a primed-only dude, about to be painted for years: shoved off the desk edge, he looks up at the world from the floor as the board is carried on toward the kitchen.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 142 bpm in E minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 142 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3911001 (0.7s of near-silence (limit 0.5)). Seed 3911000 is the take, but it did not clear every gate: harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3911001,
+          "reason": "0.7s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3911000
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.22,
+        "silence_s": 0.15,
+        "brightness_pct": 2.82,
+        "boominess_pct": 3.17,
+        "onsets_per_s": 2.84,
+        "seam_db": -48.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:desk",
+          "pov:a primed-only dude"
+        ],
+        "track_no": 120
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-desk-about-to-be-painted/greytide-desk-about-to-be-painted.mp3",
+        "notes": "greytide-desk-about-to-be-painted/notes.md",
+        "recipe": "greytide-desk-about-to-be-painted/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "try",
+          "gun",
+          "color",
+          "shows",
+          "centimeters",
+          "tilt",
+          "stand",
+          "temp",
+          "color",
+          "need",
+          "gray",
+          "color",
+          "sea"
+        ],
+        "stripped": [],
+        "installed_samples": 7587898,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-desk-about-to-be-painted/greytide-desk-about-to-be-painted.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37717,6 +37816,7 @@
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-desk-about-to-be-painted",
         "greytide-gamestore-twenty-stamps",
         "greytide-garage-last-song-on-the-list",
         "greytide-kitchen-the-soup-goes-down",
