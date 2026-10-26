@@ -3,6 +3,103 @@
   "written": "2026-10-26T15:14:41-04:00",
   "tracks": [
     {
+      "slug": "greytide-treehouse-five-more-minutes",
+      "title": "Five More Minutes",
+      "project": "greytide",
+      "idea": "Wave nine: the call comes from the house, the garden light comes on, the wind drops and the floor stops swaying; the painter's hand has to go in and trusts the towers to finish; the hand's point of view.",
+      "request": "Wave nine: the call comes from the house, the garden light comes on, the wind drops and the floor stops swaying; the painter's hand has to go in and trusts the towers to finish; the hand's point of view.",
+      "mood": "bittersweet, aching, huge",
+      "bpm": 136,
+      "key": "E minor",
+      "seed": 4040911,
+      "model": "fast",
+      "duration": 171.42,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T15:14:31-04:00",
+      "voice": true,
+      "prompt": "Anthemic bittersweet indie rock, 136 bpm, E minor, aching and huge. A five-piece with every part in its lane: a driving eighth-note electric guitar, a second guitar ringing a high melody, a piano pounding the chords, tight lean bass under the mids, big steady drums with a floor-tom build. A clear, cracking young male lead singing as the hand that has to go in, a wide crowd chorus on the hook. Arc: piano and a distant call, a hushed verse, a long high chorus plateau, a quiet breakdown as the wind drops, a lifted final chorus with the crowd, a gentle outro on the piano. E minor, no harsh highs.",
+      "lyrics": "[Intro: piano alone, a call from far across the garden]\nDinner. Come in now.\n\n[Verse 1]\nThe garden light came on across the grass\nAnd somebody's calling my name\nThe wind dropped down and the floor stopped leaning\nWave nine and it's not the same\nI've lifted towers all evening\nI've carried the torch to the bend\nAnd now there's a voice from the house that says\nThat every good game has to end\n\n[Pre-Chorus]\nJust one more wave, just one more round\nDon't let the tin come down\n\n[Chorus]\nFive more minutes, five more minutes\nThe light's come on and they're calling me in\nFive more minutes, five more minutes\nHold the line and keep the tin\n\n[Verse 2]\nThe squirrel's on its stump and grinning\nThe balloons are dripping on the boards\nThe chalk says seven lives are left\nAnd the grey ones are coming in hordes\nI can't stay but I can trust you\nI painted every one of you right\nSo hold the floor when the hand is gone\nAnd tell me about it tonight\n\n[Pre-Chorus]\nJust one more wave, just one more round\nDon't let the tin come down\n\n[Chorus]\nFive more minutes, five more minutes\nThe light's come on and they're calling me in\nFive more minutes, five more minutes\nHold the line and keep the tin\n\n[Breakdown: guitars drop away, piano and voice, the floor is still]\nIt's still now, the tree has stopped\nNo more swaying in the dark\nIf you hear me on the ladder\nKeep the torch on, keep the spark\n\n[Final Chorus: lifted, the whole crowd]\nFive more minutes, five more minutes\nThe light's come on and they're calling me in\nFive more minutes, five more minutes\nHold the line and keep the tin\nFive more minutes, five more minutes\nHold the line and keep the tin\n\n[Outro: piano alone]\nComing. I'm coming.",
+      "why": "You asked for \"Wave nine: the call comes from the house, the garden light comes on, the wind drops and the floor stops swaying; the painter's hand has to go in and trusts the towers to finish; the hand's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in E minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040910 (1.0s of near-silence (limit 0.5) and others). Seed 4040911 is the take, but it did not clear every gate: 0.7s of near-silence (limit 0.5); harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4040910,
+          "reason": "1.0s of near-silence (limit 0.5); harsh: 2.7% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4040911
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.77,
+        "silence_s": 0.65,
+        "brightness_pct": 2.79,
+        "boominess_pct": 4.96,
+        "onsets_per_s": 2.87,
+        "seam_db": -47.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:the painter's hand"
+        ],
+        "track_no": 142
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-five-more-minutes/greytide-treehouse-five-more-minutes.mp3",
+        "notes": "greytide-treehouse-five-more-minutes/notes.md",
+        "recipe": "greytide-treehouse-five-more-minutes/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.7s of near-silence (limit 0.5)",
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "lights",
+          "squirrels",
+          "jock",
+          "gray",
+          "hoist",
+          "wait",
+          "lights",
+          "star",
+          "lights",
+          "team"
+        ],
+        "stripped": [],
+        "installed_samples": 7559611,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-five-more-minutes/greytide-treehouse-five-more-minutes.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "greytide-treehouse-duck",
       "title": "Duck",
       "project": "greytide",
@@ -42044,7 +42141,8 @@
         "greytide-attic-opening-now",
         "greytide-schooldesk-rubbed-out",
         "greytide-garage-ping-a-string-goes",
-        "greytide-treehouse-duck"
+        "greytide-treehouse-duck",
+        "greytide-treehouse-five-more-minutes"
       ],
       "description": "One long night at the painting desk, table by table: songs from the towers, the grey horde, the painter's hand and the tables themselves.",
       "credits": [
