@@ -6019,6 +6019,105 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-picnic-somebody-kicks-the-ball",
+      "title": "Somebody Kicks the Ball",
+      "project": "greytide",
+      "idea": "Wave nine: a foot's shadow crosses the gingham and the tennis ball rolls through, flattening grey and painted alike, then sits as a new hill; seen by the ladybird on the juice carton",
+      "request": "Wave nine: a foot's shadow crosses the gingham and the tennis ball rolls through, flattening grey and painted alike, then sits as a new hill; seen by the ladybird on the juice carton",
+      "mood": "rushing, awed, shaken",
+      "bpm": 150,
+      "key": "E minor",
+      "seed": 4000900,
+      "model": "fast",
+      "duration": 166.9,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:10:42-04:00",
+      "voice": true,
+      "prompt": "Big indie rock, 150 bpm, E minor: two driving guitars, one strummed and one playing a ringing high riff, a tight lean bass, bass under the mids, pumping eighths, a drummer on a huge floor tom pattern that rolls like something heavy, a bright tense female lead and a gang chorus; warm saturation, no harsh highs; starts mid with the ringing riff, a long rushing plateau, a sudden near-silent dip as the shadow passes, then a final lift with everything, E minor to the end",
+      "lyrics": "[Intro: the ringing riff, a low rumble under it]\nI saw it from the carton\n\n[Verse 1]\nI'm the ladybird who lives on the juice carton's top\nI fly when a wave starts, I land when they stop\nFrom up here I can see the whole red and white field\nThe towers in their corners, the grey with their shields\n\n[Pre-Chorus]\nThen a shadow, wide as the sky\nA foot comes over and the grass goes by\n\n[Chorus]\nSomebody kicks the ball\nAnd it rolls through it all\nThe grey and the painted\nFlat as a wall\nSomebody kicks the ball\n\n[Verse 2]\nIt came through the gingham like a yellow-green moon\nIt flattened a cannon and a grunt platoon\nThen it stopped in the middle, a hill on the plain\nAnd nobody's seeing past it again\n\n[Pre-Chorus]\nThen a shadow, wide as the sky\nA foot comes over and the grass goes by\n\n[Chorus]\nSomebody kicks the ball\nAnd it rolls through it all\nThe grey and the painted\nFlat as a wall\nSomebody kicks the ball\n\n[Breakdown: near silence, a single guitar note, then the drums rebuild]\nIt wasn't the horde and it wasn't the war\nIt was someone who doesn't know what we're for\nThe giants don't mean it, they're playing a game\nAnd we pick ourselves up all the same\n\n[Final Chorus: lifted, the gang roaring]\nSomebody kicks the ball\nAnd it rolls through it all\nThe grey and the painted\nFlat as a wall\nSomebody kicks the ball\n\n[Outro: the riff, the rumble fading]\nI saw it from the carton",
+      "why": "You asked for \"Wave nine: a foot's shadow crosses the gingham and the tennis ball rolls through, flattening grey and painted alike, then sits as a new hill; seen by the ladybird on the juice carton\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 150 bpm in E minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 150 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4000901 (1.0s of near-silence (limit 0.5) and others). Seed 4000900 is the take.",
+      "rejected": [
+        {
+          "seed": 4000901,
+          "reason": "1.0s of near-silence (limit 0.5); harsh: 2.5% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4000900
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.37,
+        "silence_s": 0.45,
+        "brightness_pct": 1.97,
+        "boominess_pct": 8.34,
+        "onsets_per_s": 3.06,
+        "seam_db": -50.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:picnic",
+          "pov:the ladybird"
+        ],
+        "track_no": 110
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-picnic-somebody-kicks-the-ball/greytide-picnic-somebody-kicks-the-ball.mp3",
+        "notes": "greytide-picnic-somebody-kicks-the-ball/notes.md",
+        "recipe": "greytide-picnic-somebody-kicks-the-ball/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "to",
+          "gray",
+          "is",
+          "gray",
+          "seen",
+          "gray",
+          "pain's",
+          "we'll",
+          "you",
+          "next",
+          "time",
+          "gray",
+          "curtain",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7360359,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-picnic-somebody-kicks-the-ball/greytide-picnic-somebody-kicks-the-ball.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -34551,6 +34650,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-picnic-somebody-kicks-the-ball",
         "greytide-railway-painted-passengers",
         "greytide-sandpit-the-cat-has-seen-them",
         "greytide-schooldesk-pack-away",
