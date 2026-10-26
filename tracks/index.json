@@ -1372,6 +1372,105 @@
       "audition": true
     },
     {
+      "slug": "greytide-workbench-hot-tip",
+      "title": "Hot Tip",
+      "project": "greytide",
+      "idea": "The soldering iron on the upper shelf, a tower who barely reaches the road, sings about the burn, the sparks and the solder blobs that cool from orange to silver",
+      "request": "The soldering iron on the upper shelf, a tower who barely reaches the road, sings about the burn, the sparks and the solder blobs that cool from orange to silver",
+      "mood": "hot, grinning, swaggering",
+      "bpm": 136,
+      "key": "E minor",
+      "seed": 3960400,
+      "model": "fast",
+      "duration": 152.54,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:18:00-04:00",
+      "voice": true,
+      "prompt": "Dirty swamp boogie rock at 136 bpm in E minor, a sweaty three-piece: a fuzzy slide guitar with warm saturation in the mids, a tight lean shuffling bass, bass under the mids, a stomping kit with a hissing hat like solder smoke, a harmonica answering the hook; a gravelly, grinning male lead and a rough gang chorus; starts mid on the riff, a long hot plateau, a stripped bridge on slide and stomp, a lifted final chorus, E minor, no harsh highs",
+      "lyrics": "[Intro - the slide riff, a hiss]\nMind the tip.\n\n[Verse 1]\nI barely reach the road, they tell me every night\nStand me on the upper shelf and I can't win a fight\nBut whatever I touch, it catches, and its armour falls away\nI'm a small hot point of honesty at the end of a long day\nFourteen seconds, cold, then grey to red to gold\nSmoke comes off me curling and the hiss is getting old\n\n[Pre-Chorus]\nHeat it up, heat it up\n(Three centimetres of the sun)\n\n[Chorus]\nHot tip, hot tip, I don't need to reach\nWalk beneath me, that's a lesson I can teach\nHot tip, hot tip, orange then to grey\nEverything I touch, I mend or melt away\n\n[Verse 2]\nI drop a blob of solder at the start of every heat\nIt's orange when it lands and silver when it's cooled and neat\nNine blobs on the shelf and every one's a little moon\nThe owner never cleans them, says he'll do it soon\nI was made to join the wires in a thing that played a song\nTonight I'm joining up the grey with something they did wrong\n\n[Pre-Chorus]\nHeat it up, heat it up\n(Three centimetres of the sun)\n\n[Chorus]\nHot tip, hot tip, I don't need to reach\nWalk beneath me, that's a lesson I can teach\nHot tip, hot tip, orange then to grey\nEverything I touch, I mend or melt away\n\n[Bridge - slide and stomp only]\nSparks come off me, bounce along the shelf\nLittle stars that light the road themselves\nI never asked for range, I never asked for more\nI just want them under me, that's what I'm for\n\n[Final Chorus - lifted, harmonica and gang chorus]\nHot tip, hot tip, I don't need to reach\nWalk beneath me, that's a lesson I can teach\nHot tip, hot tip, orange then to grey\nEverything I touch, I mend or melt away\n\n[Outro - the hiss fades]\nCooling. Silver.",
+      "why": "You asked for \"The soldering iron on the upper shelf, a tower who barely reaches the road, sings about the burn, the sparks and the solder blobs that cool from orange to silver\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in E minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960401 (27 of 211 heard words are not ours (13 %; limit 10 %, at least 40 heard): room armor hop o). Seed 3960400 is the take.",
+      "rejected": [
+        {
+          "seed": 3960401,
+          "reason": "27 of 211 heard words are not ours (13 %; limit 10 %, at least 40 heard): room armor hop one elongate great erected hisses all heated heated centimeters"
+        }
+      ],
+      "takes": [
+        3960400
+      ],
+      "numbers": {
+        "tempo_bpm": 134.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.24,
+        "silence_s": 0.25,
+        "brightness_pct": 2.38,
+        "boominess_pct": 2.27,
+        "onsets_per_s": 2.83,
+        "seam_db": -52.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:soldering-iron"
+        ],
+        "track_no": 50
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-hot-tip/greytide-workbench-hot-tip.mp3",
+        "notes": "greytide-workbench-hot-tip/notes.md",
+        "recipe": "greytide-workbench-hot-tip/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "chip",
+          "armor",
+          "greater",
+          "hisses",
+          "please",
+          "send",
+          "mattress",
+          "extended",
+          "comfort",
+          "chop",
+          "soda",
+          "everyone's",
+          "gray",
+          "lie",
+          "gray"
+        ],
+        "stripped": [],
+        "installed_samples": 6727030,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-hot-tip/greytide-workbench-hot-tip.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29862,6 +29961,7 @@
       "cover_1400": null,
       "tracks": [
         "greytide-workbench-station-one-one-way-only",
+        "greytide-workbench-hot-tip",
         "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-the-hordes-pulse",
