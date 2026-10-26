@@ -6698,6 +6698,99 @@
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-stretch-and-snap",
+      "title": "Stretch and Snap",
+      "project": "greytide",
+      "idea": "The cling film knight, a kitchen tower, stretches himself across the road, wraps whoever runs through like leftovers, then snaps and makes the wrapped ones pay.",
+      "request": "The cling film knight, a kitchen tower, stretches himself across the road, wraps whoever runs through like leftovers, then snaps and makes the wrapped ones pay.",
+      "mood": "theatrical, sly, taut",
+      "bpm": 132,
+      "key": "D minor",
+      "seed": 3920500,
+      "model": "fast",
+      "duration": 158.9,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:09:41-04:00",
+      "voice": true,
+      "prompt": "Dark cabaret tango, 132 bpm, D minor. A six-piece: an accordion carrying the hook in sharp staccato, pizzicato strings tightening each phrase, a tight lean double bass on the tango pulse well under the mids, a piano hammering the off-beats, a snare on the tango rolls, a violin wailing on the bridge. A theatrical baritone male lead with a sly female chorus answering. Taut and sly. Starts mid, a long chorus plateau, one rubato dip to accordion and voice, a lifted final chorus. D minor, no harsh highs.",
+      "lyrics": "[Intro: accordion and pizzicato]\n\n[Verse 1]\nI come off a roll with a serrated goodbye\nClear as a promise and thin as a lie\nI stretch from the jam jar right over the road\nAnd wait for the weight of the grey to arrive\n\n[Pre-Chorus]\nOne walks in, then two walk in, then ten\nClinging to each other like old friends\n\n[Chorus]\nStretch, stretch, stretch and snap\nWrap them in a parcel, send them back\nStretch, stretch, stretch and snap\nNobody gets through, nobody gets back\n\n[Verse 2]\nI hold them together the way you hold leftovers\nSaved for tomorrow and never eaten\nThen the tension rises to a note only I hear\nAnd the ones in my parcel pay for the evening\n\n[Pre-Chorus]\nOne walks in, then two walk in, then ten\nClinging to each other like old friends\n\n[Chorus]\nStretch, stretch, stretch and snap\nWrap them in a parcel, send them back\nStretch, stretch, stretch and snap\nNobody gets through, nobody gets back\n\n[Bridge: accordion and voice, slower]\nI never stuck to a thing that I loved\nI only stick to the thing that I hold\nA knight is whatever goes clear and goes thin\nAnd keeps the whole table from going cold\n\n[Final Chorus: lifted, the violin over everything]\nStretch, stretch, stretch and snap\nWrap them in a parcel, send them back\nStretch, stretch, stretch and snap\nNobody gets through, nobody gets back\n\n[Outro: one long accordion note, then a snap]\nSnap",
+      "why": "You asked for \"The cling film knight, a kitchen tower, stretches himself across the road, wraps whoever runs through like leftovers, then snaps and makes the wrapped ones pay.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in D minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3920501 (1.9s of near-silence (limit 0.5) and others). Seed 3920500 is the take, but it did not clear every gate: 0.9s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3920501,
+          "reason": "1.9s of near-silence (limit 0.5); harsh: 3.0% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3920500
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.01,
+        "silence_s": 0.85,
+        "brightness_pct": 1.72,
+        "boominess_pct": 4.81,
+        "onsets_per_s": 2.71,
+        "seam_db": -48.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:the cling film knight"
+        ],
+        "track_no": 57
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-stretch-and-snap/greytide-kitchen-stretch-and-snap.mp3",
+        "notes": "greytide-kitchen-stretch-and-snap/notes.md",
+        "recipe": "greytide-kitchen-stretch-and-snap/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "0.9s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "left",
+          "safe",
+          "no",
+          "car",
+          "so",
+          "night",
+          "step"
+        ],
+        "stripped": [],
+        "installed_samples": 7007479,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-stretch-and-snap/greytide-kitchen-stretch-and-snap.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35211,6 +35304,7 @@
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
+        "greytide-kitchen-stretch-and-snap",
         "greytide-picnic-behind-the-ants",
         "greytide-railway-no-ticket",
         "greytide-sandpit-every-fourth-one",
