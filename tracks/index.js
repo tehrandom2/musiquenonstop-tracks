@@ -7357,6 +7357,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-garage-tuner-needle",
+      "title": "Tuner Needle",
+      "project": "greytide",
+      "idea": "Between waves: the tuner pedal's needle swings and settles to in tune while the hand builds; a breather that still gallops",
+      "request": "Between waves: the tuner pedal's needle swings and settles to in tune while the hand builds; a breather that still gallops",
+      "mood": "bright, restless, between songs",
+      "bpm": 136,
+      "key": "D minor",
+      "seed": 3990300,
+      "model": "fast",
+      "duration": 131.26,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:08:43-04:00",
+      "voice": false,
+      "prompt": "Surf rock instrumental, 136 bpm, D minor: a reverb-drenched lead guitar picking a fast tremolo melody, a rhythm guitar chopping offbeat chords, a tight lean bass, bass under the mids, galloping on the root, a drummer on toms and a rolling snare, a small organ holding long chords underneath; spring reverb, no harsh highs; starts mid on the gallop, a long bright plateau of the tremolo melody, one dip to bass and toms, a final lift with both guitars in octaves, D minor, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Between waves: the tuner pedal's needle swings and settles to in tune while the hand builds; a breather that still gallops\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in D minor, 135 seconds, with no voice, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3990301 (0.6s of near-silence (limit 0.5)). Seed 3990300 is the take.",
+      "rejected": [
+        {
+          "seed": 3990301,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3990300
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.36,
+        "silence_s": 0.1,
+        "brightness_pct": 0.56,
+        "boominess_pct": 3.83,
+        "onsets_per_s": 2.99,
+        "seam_db": -51.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:garage",
+          "pov:the tuner pedal"
+        ],
+        "track_no": 31
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-garage-tuner-needle/greytide-garage-tuner-needle.mp3",
+        "notes": "greytide-garage-tuner-needle/notes.md",
+        "recipe": "greytide-garage-tuner-needle/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5788651,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-garage-tuner-needle/greytide-garage-tuner-needle.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35860,6 +35943,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-garage-tuner-needle",
         "greytide-kitchen-smells-good-behaves-badly",
         "greytide-sandpit-someone-turned-the-hose-on",
         "greytide-schooldesk-psst-someone-says-well-done",
