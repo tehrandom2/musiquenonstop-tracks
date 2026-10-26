@@ -8400,6 +8400,108 @@
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-four-tiles-no-map",
+      "title": "Four Tiles, No Map",
+      "project": "greytide",
+      "idea": "Wave two, a grey dude with a head from the wrong kit walks a road the seed has shuffled, and meets a painted tower's careful eye",
+      "request": "Wave two, a grey dude with a head from the wrong kit walks a road the seed has shuffled, and meets a painted tower's careful eye",
+      "mood": "wry, restless, driving",
+      "bpm": 142,
+      "key": "A minor",
+      "seed": 3950201,
+      "model": "fast",
+      "duration": 153.94,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:07:13-04:00",
+      "voice": true,
+      "prompt": "Post-punk at 142 bpm in A minor, a four-piece with jobs: a melodic lead bass high on the neck carrying the riff, tight and lean, bass under the mids; a choppy chorused guitar on offbeat stabs; a tom-heavy kit with a driving floor tom; a thin organ drone as the horizon; a weary baritone male lead, deadpan and funny, with a ragged gang chorus on the hook; enters mid, climbs through two choruses, a half-time breakdown on bass and toms, a lifted last chorus in A minor, no harsh highs",
+      "lyrics": "[Intro - the bass riff alone, then the kit]\n\n[Verse 1]\nI came out of the box with a head from a different kit\nThe neck is on with too much glue, I'm coping with it\nThey told me walk the road, so I'm walking down the road\nBut the road is not the road it was the last time that I strode\nThere's a chapel made of broken walls, a hole where something hit\nTwo hills with ramps and a zigzag and I don't remember it\n\n[Pre-Chorus]\nWho moved the world while I was in the box?\n(Shuffled! Shuffled!)\n\n[Chorus]\nFour tiles, no map\nThe road's been shuffled while we slept\nFour tiles, no map\nWalk it like a promise kept\n\n[Verse 2]\nThe seams are showing where the four squares meet\nA little ridge of nothing underneath my feet\nUp on the plateau stands a painted thing in red\nIt's got a careful eye and highlights on its head\nIt looks at me like I'm a job it hasn't done\nI look at it like it's a morning I could become\n\n[Pre-Chorus]\nWho moved the world while I was in the box?\n(Shuffled! Shuffled!)\n\n[Chorus]\nFour tiles, no map\nThe road's been shuffled while we slept\nFour tiles, no map\nWalk it like a promise kept\n\n[Breakdown - half time, bass and toms]\nChapel, crater, hills, the zig and zag\nSame four squares, a different bag\nSomebody's hand put the world in order\nI'm just grey and walking to the border\n\n[Final Chorus - lifted, gang chorus doubled]\nFour tiles, no map\nThe road's been shuffled while we slept\nFour tiles, no map\nWalk it like a promise kept\n\n[Outro - the riff, one last time, cut dead]\nNo map. Keep walking.",
+      "why": "You asked for \"Wave two, a grey dude with a head from the wrong kit walks a road the seed has shuffled, and meets a painted tower's careful eye\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 142 bpm in A minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 142 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950200 (0.8s of near-silence (limit 0.5) and others). Seed 3950201 is the take, but it did not clear every gate: 0.8s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3950200,
+          "reason": "0.8s of near-silence (limit 0.5); harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3950201
+      ],
+      "numbers": {
+        "tempo_bpm": 71.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.38,
+        "silence_s": 0.75,
+        "brightness_pct": 2.32,
+        "boominess_pct": 5.05,
+        "onsets_per_s": 3.35,
+        "seam_db": -61.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:grey-dude"
+        ],
+        "track_no": 16
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-four-tiles-no-map/greytide-gamestore-four-tiles-no-map.mp3",
+        "notes": "greytide-gamestore-four-tiles-no-map/notes.md",
+        "recipe": "greytide-gamestore-four-tiles-no-map/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "0.8s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "kid",
+          "shuffle",
+          "shuffle",
+          "promised",
+          "camp",
+          "car",
+          "shuffle",
+          "shuffle",
+          "promised",
+          "cat",
+          "great",
+          "child",
+          "snow",
+          "promised",
+          "cap",
+          "bye"
+        ],
+        "stripped": [],
+        "installed_samples": 6788831,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-four-tiles-no-map/greytide-gamestore-four-tiles-no-map.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36896,6 +36998,7 @@
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-gamestore-four-tiles-no-map",
         "greytide-garage-four-clicks-in",
         "greytide-kitchen-round-till-your-door-comes",
         "greytide-picnic-tick-tick-tick",
