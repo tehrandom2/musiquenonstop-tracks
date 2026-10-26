@@ -1759,6 +1759,92 @@
       "audition": true
     },
     {
+      "slug": "greytide-treehouse-you-are-on-your-own",
+      "title": "You Are On Your Own",
+      "project": "greytide",
+      "idea": "After wave two a gust snatches the guide's signposts and tape arrows off the floor and out over the doorway: you are on your own; the table's point of view.",
+      "request": "After wave two a gust snatches the guide's signposts and tape arrows off the floor and out over the doorway: you are on your own; the table's point of view.",
+      "mood": "wide, restless, gusting",
+      "bpm": 138,
+      "key": "E minor",
+      "seed": 4040300,
+      "model": "fast",
+      "duration": 121.54,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:17:27-04:00",
+      "voice": false,
+      "prompt": "Gusting post-rock, 138 bpm, E minor, wide and restless. A four-piece with every part in its lane: two electric guitars, one tremolo-picking a high figure and one ringing open chords with long delay, tight lean bass under the mids holding root notes, driving floor-tom drums building to full kit, a breathy wind texture in the gaps. Arc: wind and one guitar, the band joins at mid energy, a long high plateau as the gust takes everything, a dip to bass and wind, a final surging lift, then it lets go into wind. E minor, no harsh highs, instrumental, no vocals.",
+      "lyrics": null,
+      "why": "You asked for \"After wave two a gust snatches the guide's signposts and tape arrows off the floor and out over the doorway: you are on your own; the table's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in E minor, 136 seconds, with no voice, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040301 (1.1s of near-silence (limit 0.5)). Seed 4040300 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5); boomy: 13.1% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 4040301,
+          "reason": "1.1s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4040300
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.36,
+        "silence_s": 0.55,
+        "brightness_pct": 1.25,
+        "boominess_pct": 13.1,
+        "onsets_per_s": 3.89,
+        "seam_db": -35.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:the table"
+        ],
+        "track_no": 36
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-you-are-on-your-own/greytide-treehouse-you-are-on-your-own.mp3",
+        "notes": "greytide-treehouse-you-are-on-your-own/notes.md",
+        "recipe": "greytide-treehouse-you-are-on-your-own/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)",
+          "boomy: 13.1% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5359983,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-you-are-on-your-own/greytide-treehouse-you-are-on-your-own.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30250,6 +30336,7 @@
       "tracks": [
         "greytide-workbench-station-one-one-way-only",
         "greytide-workbench-eleven-seconds",
+        "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
         "greytide-workbench-hot-tip",
         "greytide-workbench-extremely-unsympathetic",
