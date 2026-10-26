@@ -13020,6 +13020,102 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-a-stack-fell",
+      "title": "A Stack Fell",
+      "project": "greytide",
+      "idea": "A grey dude in the alleys watches a leaning stack of kit boxes fall, bury his road and swing the bare bulb; the road is taped down again",
+      "request": "A grey dude in the alleys watches a leaning stack of kit boxes fall, bury his road and swing the bare bulb; the road is taped down again",
+      "mood": "heavy, suspenseful, awed",
+      "bpm": 132,
+      "key": "D minor",
+      "seed": 3980301,
+      "model": "fast",
+      "duration": 160.34,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:00:25-04:00",
+      "voice": true,
+      "prompt": "Industrial rock, 132 bpm, D minor, heavy and suspenseful: a pounding drum kit layered with clanking metal and cardboard-thud percussion, a tight lean bass pulsing eighths under the mids, a chugging distorted guitar in the mids, a cold pulsing synth arpeggio in D minor, long creaking textures before each chorus, a commanding male lead, half-spoken in the verses and sung full in the chorus, with a shouted gang answer, in D minor; intro of a creak and the pulse before the drums crash in, tense verses, a crushing chorus, a breakdown to drums and a chant, the final chorus lifted, the outro slowing like a swing coming to rest, no harsh highs",
+      "lyrics": "[Intro: a long creak and the synth pulse, then the drums crash in]\n\n[Verse 1]\nYellow and black at the edge of the top\nThe stack leans further every wave, it won't stop\nIt creaked on wave one and it groaned on wave two\nThe hatching on the shelf says it's coming for you\n\n[Pre-Chorus]\nShudder, shudder\nThree seconds long\n\n[Chorus]\nA stack fell, the road is redrawn\nThe alley I walked in is buried and gone\nThe bulb swings away and the shadows run wild\nA stack fell, the road is redrawn\n\n[Verse 2]\nMasking tape chevrons go down in the dust\nA glowing new ribbon, ten seconds of trust\nThe towers see further where the boxes once stood\nThe sight lines are open, and that isn't good\n\n[Pre-Chorus]\nShudder, shudder\nThree seconds long\n\n[Chorus]\nA stack fell, the road is redrawn\nThe alley I walked in is buried and gone\nThe bulb swings away and the shadows run wild\nA stack fell, the road is redrawn\n\n[Breakdown: drums and the gang chant]\nTwo and five and eight\nEvery stack has got a date\nNever random, never late\nTwo and five and eight\n\n[Final Chorus: lifted, the gang doubled]\nA stack fell, the road is redrawn\nThe alley I walked in is buried and gone\nThe bulb swings away and the shadows run wild\nA stack fell, the road is redrawn\n\n[Outro: the swing slows, the pulse fades]\nRedrawn",
+      "why": "You asked for \"A grey dude in the alleys watches a leaning stack of kit boxes fall, bury his road and swing the bare bulb; the road is taped down again\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in D minor, 168 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980300 (harsh: 3.8% above 6 kHz (ceiling 2.5)). Seed 3980301 is the take, but it did not clear every gate: harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3980300,
+          "reason": "harsh: 3.8% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3980301
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.33,
+        "silence_s": 0.3,
+        "brightness_pct": 2.75,
+        "boominess_pct": 8.96,
+        "onsets_per_s": 2.87,
+        "seam_db": -17.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:grey-dude"
+        ],
+        "track_no": 25
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-a-stack-fell/greytide-attic-a-stack-fell.mp3",
+        "notes": "greytide-attic-a-stack-fell/notes.md",
+        "recipe": "greytide-attic-a-stack-fell/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "sheathen",
+          "stole",
+          "ball",
+          "d",
+          "neverland",
+          "or",
+          "neverly",
+          "ball",
+          "reach",
+          "forward"
+        ],
+        "stripped": [],
+        "installed_samples": 7071173,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-a-stack-fell/greytide-attic-a-stack-fell.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -41533,6 +41629,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-attic-a-stack-fell",
         "greytide-bathroom-peck-peck",
         "greytide-bed-the-corner-fold",
         "greytide-carseat-two-point-six-seconds",
