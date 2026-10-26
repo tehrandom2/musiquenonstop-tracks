@@ -12363,6 +12363,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-the-tin-train",
+      "title": "The Tin Train",
+      "project": "greytide",
+      "idea": "Wave five: the old tinplate train set round the board whistles awake, its crossings flash and ring, and every lap carries grey dudes off the road",
+      "request": "Wave five: the old tinplate train set round the board whistles awake, its crossings flash and ring, and every lap carries grey dudes off the road",
+      "mood": "wound-up, joyful, rattling",
+      "bpm": 150,
+      "key": "C minor",
+      "seed": 3980800,
+      "model": "fast",
+      "duration": 134.54,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:01:24-04:00",
+      "voice": false,
+      "prompt": "Clattering electro-swing, 150 bpm, C minor, wound-up and joyful: a shuffling snare and kick like wheels on rail joints, a tight lean walking bass under the mids, a stride piano vamp in C minor, muted trumpet stabs in strict order with a clarinet answering, a ringing bell motif before every section, a two-note whistle call on a bright synth, a light vinyl crackle of dust, in C minor; intro sparse and asleep, a whistle wakes it, a long running plateau, a dip to bell and piano as the crossing flashes, then a final full-steam lift, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Wave five: the old tinplate train set round the board whistles awake, its crossings flash and ring, and every lap carries grey dudes off the road\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 150 bpm in C minor, 138 seconds, with no voice, under the mellow gates. It has no beat to hold, so 150 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980801 (passed, but outranked by the kept takes). Seed 3980800 is the take.",
+      "rejected": [
+        {
+          "seed": 3980801,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3980800
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.71,
+        "silence_s": 0.2,
+        "brightness_pct": 2.25,
+        "boominess_pct": 6.11,
+        "onsets_per_s": 3.49,
+        "seam_db": -60.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:tin-train"
+        ],
+        "track_no": 90
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-the-tin-train/greytide-attic-the-tin-train.mp3",
+        "notes": "greytide-attic-the-tin-train/notes.md",
+        "recipe": "greytide-attic-the-tin-train/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5933199,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-the-tin-train/greytide-attic-the-tin-train.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40935,6 +41018,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-attic-the-tin-train",
         "greytide-bathroom-scrub-it-off",
         "greytide-bed-lost-sock",
         "greytide-carseat-tunnel-orange",
