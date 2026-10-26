@@ -7253,6 +7253,110 @@
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-knife-in-the-jam",
+      "title": "Knife in the Jam",
+      "project": "greytide",
+      "idea": "A still-on-sprue dude, dragging his frame, wades into the jam patch at a third of his speed under the knife standing in the jar like a flag, and keeps going.",
+      "request": "A still-on-sprue dude, dragging his frame, wades into the jam patch at a third of his speed under the knife standing in the jar like a flag, and keeps going.",
+      "mood": "heavy, stubborn, wry",
+      "bpm": 112,
+      "key": "E minor",
+      "seed": 3920601,
+      "model": "fast",
+      "duration": 167.38,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:08:52-04:00",
+      "voice": true,
+      "prompt": "Swampy blues-rock stomp, 112 bpm, E minor. A four-piece: a fuzzed slide guitar playing the hook low in the mids, a second guitar on a chugging riff, a tight lean bass locked to the kick well under the mids, a heavy stomping kit with a big floor tom, a harmonica wailing between lines. A gravelly, weary male lead with a low gang chorus. Stubborn and wry. Starts mid, a long heavy chorus plateau, one dip to slide guitar and voice, a lifted final chorus. E minor, grit in the mids, no harsh highs.",
+      "lyrics": "[Intro: slide guitar over the stomp]\n\n[Verse 1]\nStill on the sprue and I'm dragging the frame\nEvery step costs me a step and a half\nI walked into the red shine, I walked into the jam\nNow I go at a third of the pace that I had\n\n[Pre-Chorus]\nUp on the jar there's a knife standing straight\nLike a flag on a mountain nobody climbed\n\n[Chorus]\nKnife in the jam, knife in the jam\nSprue on my ankle and I'm stuck where I am\nKnife in the jam, knife in the jam\nSlow as a Sunday, but I'm still who I am\n\n[Verse 2]\nThe pepper comes down and I sneeze till I sway\nThe cannon is counting the crowd that I make\nNo seeds and no sprue, says the label on the jar\nWell here I am, sprue and all, every step I take\n\n[Pre-Chorus]\nUp on the jar there's a knife standing straight\nLike a flag on a mountain nobody climbed\n\n[Chorus]\nKnife in the jam, knife in the jam\nSprue on my ankle and I'm stuck where I am\nKnife in the jam, knife in the jam\nSlow as a Sunday, but I'm still who I am\n\n[Bridge: slide guitar and voice only]\nI'm not trying to win, I'm trying to arrive\nSomewhere a little bit further along\nThere's a hob ring glowing at the end of the road\nAnd I'd like to see it before I am gone\n\n[Final Chorus: lifted, the gang on every line]\nKnife in the jam, knife in the jam\nSprue on my ankle and I'm stuck where I am\nKnife in the jam, knife in the jam\nSlow as a Sunday, but I'm still who I am\n\n[Outro: harmonica and stomp]\nStill who I am",
+      "why": "You asked for \"A still-on-sprue dude, dragging his frame, wades into the jam patch at a third of his speed under the knife standing in the jar like a flag, and keeps going.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 112 bpm in E minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 112 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3920600 (0.7s of near-silence (limit 0.5) and others). Seed 3920601 is the take, but it did not clear every gate: 0.8s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3920600,
+          "reason": "0.7s of near-silence (limit 0.5); 21 of 190 heard words are not ours (11 %; limit 10 %, at least 40 heard): spoo cost chart chain chain screw chair chair paper seats sprues job"
+        }
+      ],
+      "takes": [
+        3920601
+      ],
+      "numbers": {
+        "tempo_bpm": 111.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.85,
+        "silence_s": 0.75,
+        "brightness_pct": 1.79,
+        "boominess_pct": 3.66,
+        "onsets_per_s": 2.67,
+        "seam_db": -70.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:a still-on-sprue dude"
+        ],
+        "track_no": 70
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-knife-in-the-jam/greytide-kitchen-knife-in-the-jam.mp3",
+        "notes": "greytide-kitchen-knife-in-the-jam/notes.md",
+        "recipe": "greytide-kitchen-knife-in-the-jam/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.0,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "0.8s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "spruce",
+          "man",
+          "drinking",
+          "oh",
+          "jaw",
+          "hand",
+          "spruce",
+          "jaw",
+          "sprouting",
+          "jaw",
+          "climbs",
+          "jail",
+          "screw",
+          "sundae",
+          "sure",
+          "gang",
+          "line",
+          "screw"
+        ],
+        "stripped": [],
+        "installed_samples": 7381545,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-knife-in-the-jam/greytide-kitchen-knife-in-the-jam.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35776,6 +35880,7 @@
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-kitchen-knife-in-the-jam",
         "greytide-sandpit-five-limp-three-proud",
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
