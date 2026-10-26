@@ -8888,6 +8888,98 @@
       "audition": true
     },
     {
+      "slug": "greytide-desk-hold-still",
+      "title": "Hold Still",
+      "project": "greytide",
+      "idea": "Wave 9: the painter's hand finishes the half-painted mini in the helping hands, skin and teal sleeves and a gold point on a steel spear, and sets it down at the exit to flick the leakers away.",
+      "request": "Wave 9: the painter's hand finishes the half-painted mini in the helping hands, skin and teal sleeves and a gold point on a steel spear, and sets it down at the exit to flick the leakers away.",
+      "mood": "tender, devoted, rising",
+      "bpm": 72,
+      "key": "C minor",
+      "seed": 3910901,
+      "model": "fast",
+      "duration": 169.42,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:06:30-04:00",
+      "voice": true,
+      "prompt": "Slow-burning gospel soul waltz in 3/4, 72 bpm, C minor. A small band: a warm organ holding long chords, a piano playing rolling triplets, a tight lean bass well under the mids, brushed drums that switch to sticks for the last chorus, a three-voice backing choir. A rich female soul alto lead, intimate in the verses and full on the chorus. Tender and devoted. Starts soft but moving, a long chorus plateau, one dip to voice and organ, a lifted final chorus with the choir. C minor, no harsh highs.",
+      "lyrics": "[Intro: organ alone, then piano]\n\n[Verse 1]\nAll night you waited in the helping hands\nHalf a face, a grey arm, a spear with no shine\nI kept looking back at you between the waves\nTelling you soon now, soon, it's nearly time\n\n[Pre-Chorus]\nSkin on the cheek, warm and thin\nTeal on the sleeves, let the colour in\n\n[Chorus]\nHold still, hold still\nThis is the last thing I'll do\nA gold point on a steel spear\nAnd then they're counting on you\n\n[Verse 2]\nWave nine, I lift you out of the clips\nAnd set you down where the road runs out\nThe leakers come and you flick them back\nPaint still wet, and not a shadow of doubt\n\n[Pre-Chorus]\nSkin on the cheek, warm and thin\nTeal on the sleeves, let the colour in\n\n[Chorus]\nHold still, hold still\nThis is the last thing I'll do\nA gold point on a steel spear\nAnd then they're counting on you\n\n[Bridge: voice and organ only]\nNobody sees what you do when I'm gone\nNobody claps on a desk at two\nBut I'll know by the scuff on the rim of your base\nThat you stood there all night, that it was you\n\n[Final Chorus: lifted, the choir and the drums in full]\nHold still, hold still\nThis is the last thing I'll do\nA gold point on a steel spear\nAnd then they're counting on you\n\n[Outro: organ and choir]\nHold still",
+      "why": "You asked for \"Wave 9: the painter's hand finishes the half-painted mini in the helping hands, skin and teal sleeves and a gold point on a steel spear, and sets it down at the exit to flick the leakers away.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 72 bpm in C minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 72 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3910900 (passed, but outranked by the kept takes). Seed 3910901 is the take.",
+      "rejected": [
+        {
+          "seed": 3910900,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3910901
+      ],
+      "numbers": {
+        "tempo_bpm": 71.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.71,
+        "silence_s": 0.1,
+        "brightness_pct": 1.54,
+        "boominess_pct": 4.25,
+        "onsets_per_s": 2.58,
+        "seam_db": -10.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:desk",
+          "pov:the painter's hand"
+        ],
+        "track_no": 108
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-desk-hold-still/greytide-desk-hold-still.mp3",
+        "notes": "greytide-desk-hold-still/notes.md",
+        "recipe": "greytide-desk-hold-still/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": [
+          "whoa",
+          "coin",
+          "flip",
+          "color",
+          "oh",
+          "see",
+          "or",
+          "cold"
+        ],
+        "stripped": [],
+        "installed_samples": 7471407,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-desk-hold-still/greytide-desk-hold-still.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37445,6 +37537,7 @@
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-desk-hold-still",
         "greytide-kitchen-open-the-oven-door",
         "greytide-picnic-somebody-kicks-the-ball",
         "greytide-railway-painted-passengers",
