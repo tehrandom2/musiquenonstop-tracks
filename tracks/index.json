@@ -8502,6 +8502,96 @@
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-closing-time-in-the-case",
+      "title": "Closing Time in the Case",
+      "project": "greytide",
+      "idea": "Wave seven, closing time: the shop goes to half light and the display minis in the cabinet, too perfect ever to be played, become the light the towers fight by",
+      "request": "Wave seven, closing time: the shop goes to half light and the display minis in the cabinet, too perfect ever to be played, become the light the towers fight by",
+      "mood": "tender, luminous, bittersweet",
+      "bpm": 92,
+      "key": "A minor",
+      "seed": 3950800,
+      "model": "fast",
+      "duration": 165.66,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:07:05-04:00",
+      "voice": true,
+      "prompt": "Tender dream-pop at 92 bpm in A minor, a hushed four-piece: a soft lean bass guitar holding long roots, bass under the mids, brushed drums, a shimmering clean guitar with slow chorus, a glassy celesta motif as the strip light, a warm string pad swelling under the chorus; a breathy, close female lead with soft wordless harmonies; starts quiet, grows through two choruses, a near-silent bridge, a lifted last chorus, A minor, gentle, no harsh highs",
+      "lyrics": "[Intro - celesta and guitar]\n\n[Verse 1]\nWe stand in the case in the aisle, the best of the best\nEvery eye a perfect dot, a highlight on every crest\nWe were painted for the photograph, we were painted to be seen\nWe have never left the shelf, we have never touched the green\nWe watch the little ones out there, chipped and wonky proud\nHolding the road for twenty stamps against a grey crowd\n\n[Pre-Chorus]\nThe lights stutter once, twice, three times\n(And the shade swings low)\n\n[Chorus]\nClosing time, the shop goes dim\nAnd the light in the case is the light for them\nWe can't step down, we can't go out\nBut we can shine, we can shine\n\n[Verse 2]\nThe hanging shade swings off to the side and the shadows grow\nLong as the road, longer than the towers ever know\nThe only light that's left is ours, the strip along our shelf\nAnd every gunner on the green can see the road itself\nWe were made too good to play with, that was our mistake\nTonight we're the key light, and it's ours to make\n\n[Pre-Chorus]\nThe lights stutter once, twice, three times\n(And the shade swings low)\n\n[Chorus]\nClosing time, the shop goes dim\nAnd the light in the case is the light for them\nWe can't step down, we can't go out\nBut we can shine, we can shine\n\n[Bridge - near silence, voice and celesta]\nNobody plays with the perfect ones\nNobody risks us on the felt\nSo we do the one thing we were made for\nWe hold still, and we glow\n\n[Final Chorus - lifted, strings in full]\nClosing time, the shop goes dim\nAnd the light in the case is the light for them\nWe can't step down, we can't go out\nBut we can shine, we can shine\n\n[Outro - celesta alone]\nShine.",
+      "why": "You asked for \"Wave seven, closing time: the shop goes to half light and the display minis in the cabinet, too perfect ever to be played, become the light the towers fight by\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 92 bpm in A minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 92 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950801 (passed, but outranked by the kept takes). Seed 3950800 is the take.",
+      "rejected": [
+        {
+          "seed": 3950801,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3950800
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.48,
+        "silence_s": 0.2,
+        "brightness_pct": 1.07,
+        "boominess_pct": 3.68,
+        "onsets_per_s": 2.79,
+        "seam_db": -55.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:display-minis"
+        ],
+        "track_no": 96
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-closing-time-in-the-case/greytide-gamestore-closing-time-in-the-case.mp3",
+        "notes": "greytide-gamestore-closing-time-in-the-case/notes.md",
+        "recipe": "greytide-gamestore-closing-time-in-the-case/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": [
+          "art",
+          "gone",
+          "close",
+          "where",
+          "want",
+          "no"
+        ],
+        "stripped": [],
+        "installed_samples": 7305476,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-closing-time-in-the-case/greytide-gamestore-closing-time-in-the-case.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37047,6 +37137,7 @@
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-gamestore-closing-time-in-the-case",
         "greytide-garage-sulk-for-two",
         "greytide-kitchen-the-other-way",
         "greytide-picnic-hot-sauce-line",
