@@ -5742,6 +5742,110 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-picnic-tick-tick-tick",
+      "title": "Tick, Tick, Tick",
+      "project": "greytide",
+      "idea": "Wave three: the lawn sprinkler is turned on; it tells how its wet line lags behind the nozzle and soaks horde and towers alike",
+      "request": "Wave three: the lawn sprinkler is turned on; it tells how its wet line lags behind the nozzle and soaks horde and towers alike",
+      "mood": "cheeky, bouncy, splashy",
+      "bpm": 150,
+      "key": "D minor",
+      "seed": 4000201,
+      "model": "fast",
+      "duration": 158.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:11:08-04:00",
+      "voice": true,
+      "prompt": "Two-tone ska, 150 bpm, D minor: a choppy offbeat guitar skank that ticks like a sprinkler head, a tight lean bass, bass under the mids, walking busy lines, a drummer on a rimshot snare and a fast hi-hat, a trombone and trumpet pair trading short riffs in strict order, a cheeky female lead with a toasting male voice in the gaps; bright but no harsh highs; starts mid on the skank, a long bouncing plateau, one dip to bass and rimshots, a final lift with both horns, D minor",
+      "lyrics": "[Intro: the guitar skank alone, ticking]\nTick, tick, tick, tick\n\n[Verse 1]\nTwo waves I dripped on the edge of the lawn\nThe hose gave a shudder, the head gave a yawn\nThen somebody turned me, a quarter of a twist\nAnd I swung my three streams like a big wet fist\n\n[Pre-Chorus]\nListen for the tick\nListen for the tick\n\n[Chorus]\nTick, tick, tick, here comes the spray\nPushing the grey ones out of the way\nTick, tick, tick, soaked and slow\nWatch where the wet line's going to go\n\n[Verse 2]\nI land where I've been, not where I am\nThe water's a curve, it's a lag in the plan\nThe Mage gets a splash and it splutters and stops\nI'm fair to them all, the horde and the tops\n\n[Pre-Chorus]\nListen for the tick\nListen for the tick\n\n[Chorus]\nTick, tick, tick, here comes the spray\nPushing the grey ones out of the way\nTick, tick, tick, soaked and slow\nWatch where the wet line's going to go\n\n[Breakdown: bass and rimshots, toasted]\nDark wet marks on the red and white squares\nA grey dude shivers and nobody cares\nExcept me, I care, I'm a sprinkler, I'm sweet\nI just like to see them dancing on their feet\n\n[Final Chorus: lifted, horns blazing]\nTick, tick, tick, here comes the spray\nPushing the grey ones out of the way\nTick, tick, tick, soaked and slow\nWatch where the wet line's going to go\n\n[Outro: the skank, slowing to a drip]\nTick, tick, tick",
+      "why": "You asked for \"Wave three: the lawn sprinkler is turned on; it tells how its wet line lags behind the nozzle and soaks horde and towers alike\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 150 bpm in D minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 150 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4000200 (1.2s of near-silence (limit 0.5) and others). Seed 4000201 is the take.",
+      "rejected": [
+        {
+          "seed": 4000200,
+          "reason": "1.2s of near-silence (limit 0.5); harsh: 3.2% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4000201
+      ],
+      "numbers": {
+        "tempo_bpm": 73.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.29,
+        "silence_s": 0.2,
+        "brightness_pct": 2.28,
+        "boominess_pct": 7.67,
+        "onsets_per_s": 3.41,
+        "seam_db": -54.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:picnic",
+          "pov:the sprinkler"
+        ],
+        "track_no": 19
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-picnic-tick-tick-tick/greytide-picnic-tick-tick-tick.mp3",
+        "notes": "greytide-picnic-tick-tick-tick/notes.md",
+        "recipe": "greytide-picnic-tick-tick-tick/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "take",
+          "that",
+          "d***",
+          "d***",
+          "d***",
+          "d***",
+          "d***",
+          "so",
+          "dance",
+          "unfair",
+          "top",
+          "tape",
+          "tape",
+          "tape",
+          "gray",
+          "so",
+          "dense",
+          "gray",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 6975755,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-picnic-tick-tick-tick/greytide-picnic-tick-tick-tick.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -34236,6 +34340,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-picnic-tick-tick-tick",
         "greytide-railway-the-road-forks",
         "greytide-sandpit-find-your-own-way",
         "greytide-sill-the-guide-blew-away",
