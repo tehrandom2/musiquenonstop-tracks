@@ -8200,6 +8200,104 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-page-forty-two",
+      "title": "Page Forty-Two",
+      "project": "greytide",
+      "idea": "Wave three, the next table argues and slams a rulebook onto the mat; the Rules Lawyer, delighted, cites a page against the biggest dude",
+      "request": "Wave three, the next table argues and slams a rulebook onto the mat; the Rules Lawyer, delighted, cites a page against the biggest dude",
+      "mood": "fussy, funny, swinging",
+      "bpm": 132,
+      "key": "G minor",
+      "seed": 3950400,
+      "model": "fast",
+      "duration": 151.58,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:07:29-04:00",
+      "voice": true,
+      "prompt": "Electro-swing patter at 132 bpm in G minor, a tight courtroom combo: a walking upright-style bass, lean and dry, bass under the mids, a four-on-the-floor kick with brushed snare, clarinet and muted trumpet trading clipped phrases in strict order, a stride piano vamp, a gavel-like woodblock on the hook; a fast, nasal, fussy male patter vocal with a small female chorus answering; mid start, a long busy plateau, a stop-time bridge, a lifted last chorus, G minor throughout, no harsh highs",
+      "lyrics": "[Intro - stride piano, then the clarinet]\nObjection.\n\n[Verse 1]\nThe next table's arguing, four hands up in the air\nSomebody's rolled a thing that somebody says isn't fair\nAnd in the middle of it all a rulebook hits the mat\nSlammed open on the flock beside us, flat as flat\nIt blocks the sight of six good spaces, now it stays\nAnd I adjust my glasses: finally, a phrase\n\n[Pre-Chorus]\nOrder, order on the felt\n(Read it out, read it out)\n\n[Chorus]\nPage forty-two, subsection three\nNo armour, no shield, take it up with me\nThe biggest one stops, the biggest one hears\nI have read this book for years\n\n[Verse 2]\nThe grey big fellow brings a shield he's never met\nHe thinks it makes him safe, he has not read it yet\nI cite the rule, his armour is a lovely hat\nAnd everybody's arrows land on him like that\nI never fire a shot, I never raise a hand\nI only point at paper and the paper takes a stand\n\n[Pre-Chorus]\nOrder, order on the felt\n(Read it out, read it out)\n\n[Chorus]\nPage forty-two, subsection three\nNo armour, no shield, take it up with me\nThe biggest one stops, the biggest one hears\nI have read this book for years\n\n[Bridge - stop time, woodblock on every line]\nIs it legal? (It is now.)\nIs it fair? (It's on the page.)\nWas it printed in the errata? (Second edition, page ten.)\nThen I rest my case\n\n[Final Chorus - the whole combo, chorus doubled]\nPage forty-two, subsection three\nNo armour, no shield, take it up with me\nThe biggest one stops, the biggest one hears\nI have read this book for years\n\n[Outro]\nSustained. Next.",
+      "why": "You asked for \"Wave three, the next table argues and slams a rulebook onto the mat; the Rules Lawyer, delighted, cites a page against the biggest dude\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in G minor, 155 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950401 (passed, but outranked by the kept takes). Seed 3950400 is the take.",
+      "rejected": [
+        {
+          "seed": 3950401,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3950400
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.47,
+        "silence_s": 0.15,
+        "brightness_pct": 2.15,
+        "boominess_pct": 11.87,
+        "onsets_per_s": 3.18,
+        "seam_db": -60.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:rules-lawyer"
+        ],
+        "track_no": 43
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-page-forty-two/greytide-gamestore-page-forty-two.mp3",
+        "notes": "greytide-gamestore-page-forty-two/notes.md",
+        "recipe": "greytide-gamestore-page-forty-two/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.12,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "tables",
+          "are",
+          "doing",
+          "oh",
+          "phone",
+          "armor",
+          "great",
+          "armor",
+          "armor",
+          "armor",
+          "thank",
+          "you"
+        ],
+        "stripped": [
+          "Rules Lawyer"
+        ],
+        "installed_samples": 6684747,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-page-forty-two/greytide-gamestore-page-forty-two.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36711,6 +36809,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-gamestore-page-forty-two",
         "greytide-picnic-cannot-be-broken",
         "greytide-railway-eastbound-westbound",
         "greytide-sandpit-the-digger-revs",
