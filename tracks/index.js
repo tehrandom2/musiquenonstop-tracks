@@ -11322,6 +11322,96 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-bed-lost-sock",
+      "title": "Lost Sock",
+      "project": "greytide",
+      "idea": "The lost sock spent years in the gap behind the bed until a hand pulled it out; now it throws itself over the biggest grey dude, blindfolds him so every tower hits harder, and secretly pities anything headed for the dark it came from.",
+      "request": "The lost sock spent years in the gap behind the bed until a hand pulled it out; now it throws itself over the biggest grey dude, blindfolds him so every tower hits harder, and secretly pities anything headed for the dark it came from.",
+      "mood": "earnest, aching, defiant",
+      "bpm": 148,
+      "key": "E minor",
+      "seed": 3930800,
+      "model": "fast",
+      "duration": 160.1,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:02:54-04:00",
+      "voice": true,
+      "prompt": "Emo pop-punk, 148 bpm, E minor. The band: palm-muted rhythm guitar opening into big open chords, a bright lead guitar playing a high melodic hook, a tight punchy drum kit with driving eighth hats, a lean, melodic bass under the mids. An earnest male lead, cracking a little at the top, with shouted gang backing on the chorus. Mood: aching and defiant, found again. Arc: one palm-muted guitar, the band crashes in, a big open chorus, a half-time breakdown with call and response, the final chorus lifted with the gang. E minor throughout, no harsh highs.",
+      "lyrics": "[Intro: one palm-muted guitar]\n\n[Verse 1]\nFour years down the gap behind the bed\nwith the dust, a hair tie and a coin\nnobody looked, I heard them swear\nit's gone, just buy another pair\nthen a hand came reaching down the dark\nand pulled me blinking into air\nthey gave me a stripe, a coat of gloss\nand a job I didn't know was there\n\n[Pre-Chorus]\nNow I've got a purpose\nand a slow reload\n\n[Chorus]\nI was lost, now I'm thrown\nover the biggest one alone\nblindfold on, now you'll see\neverybody hits harder for me\n\n[Verse 2]\nI pick the biggest grey within my reach\nI go up soft and I come down wide\nhe walks in circles in the dark of me\nwhile the cannon finds his side\nI know the gap, I know that drop\nI know the cold behind the wall\nI'd rather stop them up here in the light\nthan lose them down there at all\n\n[Pre-Chorus]\nNow I've got a purpose\nand a slow reload\n\n[Chorus]\nI was lost, now I'm thrown\nover the biggest one alone\nblindfold on, now you'll see\neverybody hits harder for me\n\n[Breakdown: half-time, call and response]\nSlow reload (I'll be back)\nslow reload (I'll be back)\nnobody's lost (I'll be back)\nwhile I'm on watch\n\n[Final Chorus: lifted, gang backing]\nI was lost, now I'm thrown\nover the biggest one alone\nblindfold on, now you'll see\neverybody hits harder for me\n\n[Outro: one guitar]\nI was lost.",
+      "why": "You asked for \"The lost sock spent years in the gap behind the bed until a hand pulled it out; now it throws itself over the biggest grey dude, blindfolds him so every tower hits harder, and secretly pities anything headed for the dark it came from.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 148 bpm in E minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 148 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3930801 (harsh: 2.8% above 6 kHz (ceiling 2.5)). Seed 3930800 is the take, but it did not clear every gate: harsh: 3.1% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3930801,
+          "reason": "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3930800
+      ],
+      "numbers": {
+        "tempo_bpm": 97.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.34,
+        "silence_s": 0.15,
+        "brightness_pct": 3.08,
+        "boominess_pct": 5.06,
+        "onsets_per_s": 3.54,
+        "seam_db": -66.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bed",
+          "pov:the lost sock"
+        ],
+        "track_no": 92
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bed-lost-sock/greytide-bed-lost-sock.mp3",
+        "notes": "greytide-bed-lost-sock/notes.md",
+        "recipe": "greytide-bed-lost-sock/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.25,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "water",
+          "gray",
+          "relax",
+          "strong"
+        ],
+        "stripped": [],
+        "installed_samples": 7060548,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bed-lost-sock/greytide-bed-lost-sock.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39887,6 +39977,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-bed-lost-sock",
         "greytide-carseat-tunnel-orange",
         "greytide-couch-still-wet-under-the-lid",
         "greytide-desk-never-cleaned-the-nozzle",
