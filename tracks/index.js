@@ -8980,6 +8980,91 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-desk-every-shadow-turns",
+      "title": "Every Shadow Turns",
+      "project": "greytide",
+      "idea": "Instrumental breather, wave 5: the painter's arm nudges the light and every shadow on the desk swings to a new angle for the rest of the night.",
+      "request": "Instrumental breather, wave 5: the painter's arm nudges the light and every shadow on the desk swings to a new angle for the rest of the night.",
+      "mood": "cinematic, uneasy, sweeping",
+      "bpm": 132,
+      "key": "C minor",
+      "seed": 3910600,
+      "model": "fast",
+      "duration": 135.34,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:06:21-04:00",
+      "voice": false,
+      "prompt": "Cinematic synthwave, 132 bpm, C minor. An analog ensemble: a pulsing sequenced bass in sixteenths, tight and lean, well under the mids; a gated-reverb drum machine; a slow-filter pad that sweeps open like light swinging round a room; a bright lead synth with long glides carrying the melody; a plucked arpeggio answering it. Uneasy and sweeping. Starts mid on bass and drums, a long high lead plateau, one dip to the pad alone, a lifted final section. C minor, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Instrumental breather, wave 5: the painter's arm nudges the light and every shadow on the desk swings to a new angle for the rest of the night.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in C minor, 140 seconds, with no voice, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3910601 (harsh: 2.7% above 6 kHz (ceiling 2.5)). Seed 3910600 is the take, but it did not clear every gate: harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3910601,
+          "reason": "harsh: 2.7% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3910600
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.34,
+        "silence_s": 0.1,
+        "brightness_pct": 2.75,
+        "boominess_pct": 9.07,
+        "onsets_per_s": 3.53,
+        "seam_db": -53.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:desk",
+          "pov:the desk"
+        ],
+        "track_no": 67
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-desk-every-shadow-turns/greytide-desk-every-shadow-turns.mp3",
+        "notes": "greytide-desk-every-shadow-turns/notes.md",
+        "recipe": "greytide-desk-every-shadow-turns/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5968510,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-desk-every-shadow-turns/greytide-desk-every-shadow-turns.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37510,6 +37595,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-desk-every-shadow-turns",
         "greytide-gamestore-staff-pick-honest",
         "greytide-garage-the-roadie",
         "greytide-kitchen-knife-in-the-jam",
