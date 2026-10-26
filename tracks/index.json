@@ -3,6 +3,109 @@
   "written": "2026-10-26T02:36:13-04:00",
   "tracks": [
     {
+      "slug": "joes-castle-wall-walk",
+      "title": "Wall Walk",
+      "project": "joes-castle",
+      "idea": "two of the three wall archers on the wall walk, turning only their heads, counting the four roads and joking to stay brave",
+      "request": "two of the three wall archers on the wall walk, turning only their heads, counting the four roads and joking to stay brave",
+      "mood": "nervy, funny, brave",
+      "bpm": 150,
+      "key": "E minor",
+      "seed": 3380301,
+      "model": "fast",
+      "duration": 159.62,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T02:35:04-04:00",
+      "voice": true,
+      "prompt": "tight nervy folk-rock at 150 bpm in E minor, a four-piece on the wall: driving acoustic guitar strumming eighths, a clean electric guitar riff answering each line, tight lean bass locked to the kick, busy snare and floor tom, a fiddle stab on the hooks; two lead vocals in call and response, a bright male tenor asks and a dry female alto answers, a gang chorus shouts the hook; nervous, funny, brave; no harsh highs; a half-time breakdown, then the last chorus key up, E minor",
+      "lyrics": "[Intro: fast strummed riff, a snare roll, two voices count the roads]\nOne road! (Two road!)\nThree road! (Four!)\n\n[Verse 1]\nTurn and look (I can't, I'm a single piece)\nThen turn your head (it clicks round on the stud)\nWhat do you see? (Four roads and a moat)\nAnd? (A lot of grey and a lot of mud)\nThey built us facing out of the castle\nBacks to the town and the market square\nWhatever's coming, we see it coming\nWhatever's behind us, we trust is there\n\n[Pre-Chorus]\nThree of us, three arrows, three of them\nNearest first, then the next two in line\nEvery one and a quarter seconds\nAnd the quiet one says nothing, he's fine\n\n[Chorus]\nWall walk, wall walk, hold the height\n(How high?) High enough to fight\nHooks for hands and the string pulled tight\nWall walk, wall walk, all night\n\n[Verse 2]\nWhat's the height worth? (Four in the hundred a centimetre)\nAnd the most? (Thirty, that's the cap)\nAnd the ones still out beyond the moat?\n(A quarter more, put that on the map)\nYou see the orange? (That's a good one)\nYou see the flash? (That's a better one)\nTell me a joke (The grey walk into a castle)\nAnd? (They don't walk out, that's the one)\n\n[Chorus]\nWall walk, wall walk, hold the height\n(How high?) High enough to fight\nHooks for hands and the string pulled tight\nWall walk, wall walk, all night\n\n[Breakdown: half time, only drums and the two voices]\nYour hand is shaking (It's a clip, it can't shake)\nThen why's the arrow dancing? (That's the wind)\nIf I get knocked off the wall tonight\n(Then the kid clicks you back on again)\nSame stud, same wall, same face\nSame four roads in the morning grey\nFacing out, facing out\nThat's the only way we know to stay\n\n[Final Chorus: key up, the whole gang shouts]\nWall walk, wall walk, hold the height\n(How high?) High enough to fight\nHooks for hands and the string pulled tight\nWall walk, wall walk, all night\nWall walk, wall walk, hold the height\n(How high?) High enough to fight\nHooks for hands and the string pulled tight\nWall walk, wall walk, all night\n\n[Outro: the riff stops dead, one voice, then the other]\nFour roads\n(Still four)",
+      "why": "You asked for \"two of the three wall archers on the wall walk, turning only their heads, counting the four roads and joking to stay brave\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 150 bpm in E minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 150 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3380300 (1.0s of near-silence (limit 0.5) and others). Seed 3380301 is the take, but it did not clear every gate: 1.0s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3380300,
+          "reason": "1.0s of near-silence (limit 0.5); 244 of 447 heard words are not ours (55 %; limit 10 %, at least 40 heard): everyone needs fun hype we're centimeter count mo gray whoa whoa whoa"
+        }
+      ],
+      "takes": [
+        3380301
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.71,
+        "silence_s": 0.95,
+        "brightness_pct": 2.48,
+        "boominess_pct": 5.78,
+        "onsets_per_s": 3.46,
+        "seam_db": -57.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Joe's Castle",
+        "submitter": "music for Joe's castle",
+        "tags": [
+          "table:castle",
+          "pov:the wall archers"
+        ],
+        "track_no": 3
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "joes-castle-wall-walk/joes-castle-wall-walk.mp3",
+        "notes": "joes-castle-wall-walk/notes.md",
+        "recipe": "joes-castle-wall-walk/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.0s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "row",
+          "row",
+          "row",
+          "gray",
+          "we'll",
+          "be",
+          "right",
+          "everyone",
+          "centimeter",
+          "great",
+          "no",
+          "looks",
+          "pull",
+          "lies",
+          "win",
+          "waltz",
+          "oh"
+        ],
+        "stripped": [],
+        "installed_samples": 7039283,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "joes-castle-wall-walk/joes-castle-wall-walk.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-dead-zone",
       "title": "Dead Zone",
       "project": "joes-castle",
@@ -28096,6 +28199,7 @@
       "tracks": [
         "sir-brickalot",
         "joes-castle-dead-zone",
+        "joes-castle-wall-walk",
         "sir-brickalot-take-2"
       ],
       "description": "6 tracks, in the order they were meant to be heard.",
