@@ -1094,6 +1094,97 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-workbench-the-outline-on-the-pegboard",
+      "title": "The Outline on the Pegboard",
+      "project": "greytide",
+      "idea": "Mid-night quiet: the painted outline of the good hammer on the pegboard, empty while the hammer is out, sees the grey horde as outlines waiting to be filled in",
+      "request": "Mid-night quiet: the painted outline of the good hammer on the pegboard, empty while the hammer is out, sees the grey horde as outlines waiting to be filled in",
+      "mood": "tender, aching, hopeful",
+      "bpm": 88,
+      "key": "B minor",
+      "seed": 3960601,
+      "model": "fast",
+      "duration": 163.94,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:18:25-04:00",
+      "voice": true,
+      "prompt": "Tender alt-folk ballad at 88 bpm in B minor, a small night ensemble: a fingerpicked acoustic guitar in a rocking pattern, a soft lean upright bass, bass under the mids, brushed snare, a slow pedal steel sighing under the chorus, a warm low string pair in the last chorus; an intimate, weathered male lead, close and unhurried, with a soft female harmony on the hook; starts quiet, grows over two choruses, a near-silent bridge, a lifted final chorus, B minor, gentle, no harsh highs",
+      "lyrics": "[Intro - guitar alone]\n\n[Verse 1]\nOn the pegboard wall there's a black painted shape\nThe size of the good hammer, plus a centimetre and a half\nSomeone drew around it so they'd know where it belongs\nTHE GOOD HAMMER, says the label, NOT THE OTHER ONE\nThe hammer's out tonight, it's somewhere on the bench\nAnd the outline hangs there empty, waiting, patient as a fence\n\n[Pre-Chorus]\nEvery tool has a place\n(Every place has a shape)\n\n[Chorus]\nI'm the outline of the thing that's gone\nHold the shape and the shape holds on\nCome back home, come back home\nI'm the outline, I'm the outline\n\n[Verse 2]\nI look down at the belt and I see them going by\nEvery grey one is an outline of a colour in the sky\nNobody's filled them in yet, nobody drew around their place\nThey're walking to be finished, and I know that empty space\nSPANNERS (SOME) beside me, DRIVERS, ALL FLAT\nMEASURE TWICE, CUT ONCE, and underneath it, SHRUG, like that\n\n[Pre-Chorus]\nEvery tool has a place\n(Every place has a shape)\n\n[Chorus]\nI'm the outline of the thing that's gone\nHold the shape and the shape holds on\nCome back home, come back home\nI'm the outline, I'm the outline\n\n[Bridge - near silence, voice and pedal steel]\nA shape is just a promise\nSomebody meant to keep\nPaint is just a promise\nSomebody makes in their sleep\n\n[Final Chorus - lifted, strings in]\nI'm the outline of the thing that's gone\nHold the shape and the shape holds on\nCome back home, come back home\nI'm the outline, I'm the outline\n\n[Outro - guitar alone]\nCome back home.",
+      "why": "You asked for \"Mid-night quiet: the painted outline of the good hammer on the pegboard, empty while the hammer is out, sees the grey horde as outlines waiting to be filled in\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 88 bpm in B minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 88 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960600 (passed, but outranked by the kept takes). Seed 3960601 is the take.",
+      "rejected": [
+        {
+          "seed": 3960600,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3960601
+      ],
+      "numbers": {
+        "tempo_bpm": 87.8,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.07,
+        "silence_s": 0.35,
+        "brightness_pct": 1.22,
+        "boominess_pct": 4.1,
+        "onsets_per_s": 3.09,
+        "seam_db": -65.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:pegboard-outline"
+        ],
+        "track_no": 74
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-the-outline-on-the-pegboard/greytide-workbench-the-outline-on-the-pegboard.mp3",
+        "notes": "greytide-workbench-the-outline-on-the-pegboard/notes.md",
+        "recipe": "greytide-workbench-the-outline-on-the-pegboard/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": [
+          "centimeter",
+          "they",
+          "wrong",
+          "banner",
+          "tweets",
+          "seeing",
+          "up"
+        ],
+        "stripped": [],
+        "installed_samples": 7229823,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-the-outline-on-the-pegboard/greytide-workbench-the-outline-on-the-pegboard.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29583,6 +29674,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-under-the-lens",
         "greytide-gamestore-demo-ends-in-sixty",
