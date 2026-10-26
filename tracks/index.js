@@ -3742,6 +3742,95 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-schooldesk-look-busy",
+      "title": "Look Busy",
+      "project": "greytide",
+      "idea": "the teacher's patrol: footsteps and a shadow five seconds out, then every tower ducks and freezes; the one caught mid-shot is confiscated, and the hall monitor comes back for a second look",
+      "request": "the teacher's patrol: footsteps and a shadow five seconds out, then every tower ducks and freezes; the one caught mid-shot is confiscated, and the hall monitor comes back for a second look",
+      "mood": "tense, sly, funny",
+      "bpm": 132,
+      "key": "D minor",
+      "seed": 4010400,
+      "model": "fast",
+      "duration": 159.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:14:18-04:00",
+      "voice": true,
+      "prompt": "Tense spy funk, 132 bpm, D minor, a tight band: a muted wah guitar scratching sixteenths, a clavinet answering in short stabs, a dry tight lean bass with a creeping chromatic line, bass well under the mids, a crisp ghost-noted drum kit, a low baritone sax honking on the footsteps, a whispered-then-sung male lead, a hushed gang of backing voices going shhh, in D minor, sly and funny, mid start, stop-time freezes in every chorus, a long high plateau, a dip to a near silence, a lifted last chorus, no harsh highs",
+      "lyrics": "[Intro - wah guitar and the creeping bass, a sax honk like a footstep]\n\n[Verse 1]\nFive seconds of footsteps, a shadow on the lid\nA mustard cardigan coming, so we do what we always did\nBallista lowers its arm, the cannon looks at the floor\nThe grey ones stop in the middle like they've never walked before\n\n[Pre-Chorus - whispered]\nShhh. Shhh. She's at the second row.\nShhh. Shhh. Nobody let it show.\n\n[Chorus - stop-time, the band freezes on every line]\nShhh, look busy\nGuns down, heads down\nShhh, look busy\nWe're only toys around\n\n[Verse 2]\nThe glue stick was halfway through a swipe across the road\nThe rubber band was stretched and it was ready to unload\nAnd she saw a little twitch and her hand came down like weather\nConfiscated till the end of the wave, the band and the pin together\n\n[Pre-Chorus - whispered]\nShhh. Shhh. Then she walks away.\nShhh. Shhh. But that's not how she plays.\n\n[Chorus - stop-time, the band freezes on every line]\nShhh, look busy\nGuns down, heads down\nShhh, look busy\nWe're only toys around\n\n[Breakdown - near silence, one bass note, the sax counts nine]\nNine seconds later, the hall monitor\nComes back for a second look, a short one, at the door\nTwo seconds, hold it, hold it, hold it\n\n[Final Chorus - lifted, full band, the gang louder]\nShhh, look busy\nGuns down, heads down\nShhh, look busy\nWe're only toys around\n\n[Outro - the guitar unfreezes, the bass walks off]\nShe's gone. Carry on.",
+      "why": "You asked for \"the teacher's patrol: footsteps and a shadow five seconds out, then every tower ducks and freezes; the one caught mid-shot is confiscated, and the hall monitor comes back for a second look\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in D minor, 166 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4010401 (1.6s of near-silence (limit 0.5) and others). Seed 4010400 is the take.",
+      "rejected": [
+        {
+          "seed": 4010401,
+          "reason": "1.6s of near-silence (limit 0.5); 18 of 141 heard words are not ours (13 %; limit 10 %, at least 40 heard): least low canon gray won't freezes every line goes played freezes every"
+        }
+      ],
+      "takes": [
+        4010400
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.53,
+        "silence_s": 0.15,
+        "brightness_pct": 2.49,
+        "boominess_pct": 3.47,
+        "onsets_per_s": 2.95,
+        "seam_db": -60.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:schooldesk",
+          "pov:towers"
+        ],
+        "track_no": 47
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-schooldesk-look-busy/greytide-schooldesk-look-busy.mp3",
+        "notes": "greytide-schooldesk-look-busy/notes.md",
+        "recipe": "greytide-schooldesk-look-busy/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "sex",
+          "counts",
+          "shh",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7046502,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-schooldesk-look-busy/greytide-schooldesk-look-busy.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32241,6 +32330,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-schooldesk-look-busy",
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
