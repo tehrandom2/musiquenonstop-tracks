@@ -2052,6 +2052,99 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-treehouse-keep-out",
+      "title": "Keep Out",
+      "project": "greytide",
+      "idea": "The secret biscuit tin at the end of both roads, keep-out card on its lid, is the thing being defended; the tin's own fierce point of view.",
+      "request": "The secret biscuit tin at the end of both roads, keep-out card on its lid, is the thing being defended; the tin's own fierce point of view.",
+      "mood": "secretive, fierce, bright",
+      "bpm": 136,
+      "key": "D minor",
+      "seed": 4040201,
+      "model": "fast",
+      "duration": 154.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:17:02-04:00",
+      "voice": true,
+      "prompt": "Bright urgent indie pop, 136 bpm, D minor, secretive and fierce. A tight band with every part in its lane: a glockenspiel playing the hook melody, a jangling electric guitar in steady eighths, tight lean bass under the mids moving with the kick, a toy-piano counter-line, crisp drums with a tambourine on the backbeat. A clear, fierce young female lead with a whispered double on the verses and a chanted group on the hook. Arc: glockenspiel alone, a whispered verse at mid energy, a long high chorus, a breakdown to voice and toy piano, a lifted final chorus, a sudden lid-snap stop. D minor, no harsh highs.",
+      "lyrics": "[Intro: glockenspiel alone, then the band]\n\n[Verse 1: whispered double]\nI'm a tin with a tartan band\nAnd a card in felt-tip, signed by hand\nFour round biscuits and one with a bite\nHidden up the tree from the grown-up light\nNobody knows I'm here but the gang\nAnd a squirrel who heard the lid go bang\n\n[Pre-Chorus]\nTwo roads come and they both end here\nEverything grey wants what's in here\n\n[Chorus]\nKeep out, keep out, says the card on my lid\nKeep out, keep out, it's the best thing we hid\nKeep out, keep out, you can climb, you can crawl\nBut the tin is the treasure and the treasure is all\n\n[Verse 2]\nEvery grey one that reaches the end\nTakes a stroke off the chalk on the bend\nTwenty lines on a board by the wall\nFour and a slash and they're counting it all\nTorch on the floor and the conker's swing\nHold them away from the tin, that's the thing\n\n[Pre-Chorus]\nTwo roads come and they both end here\nEverything grey wants what's in here\n\n[Chorus]\nKeep out, keep out, says the card on my lid\nKeep out, keep out, it's the best thing we hid\nKeep out, keep out, you can climb, you can crawl\nBut the tin is the treasure and the treasure is all\n\n[Breakdown: voice and toy piano]\nA secret's only a secret\nWhile somebody keeps it shut\nAnd the bite out of the last one\nWas a promise, not a cut\n\n[Final Chorus: lifted, the group chanting with her]\nKeep out, keep out, says the card on my lid\nKeep out, keep out, it's the best thing we hid\nKeep out, keep out, you can climb, you can crawl\nBut the tin is the treasure and the treasure is all\nThe tin is the treasure and the treasure is all\n\n[Outro: one snap of the lid]",
+      "why": "You asked for \"The secret biscuit tin at the end of both roads, keep-out card on its lid, is the thing being defended; the tin's own fierce point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in D minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040200 (2.5s of near-silence (limit 0.5) and others). Seed 4040201 is the take.",
+      "rejected": [
+        {
+          "seed": 4040200,
+          "reason": "2.5s of near-silence (limit 0.5); harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4040201
+      ],
+      "numbers": {
+        "tempo_bpm": 137.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.25,
+        "silence_s": 0.25,
+        "brightness_pct": 1.89,
+        "boominess_pct": 6.79,
+        "onsets_per_s": 3.0,
+        "seam_db": -69.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:biscuit tin"
+        ],
+        "track_no": 23
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-keep-out/greytide-treehouse-keep-out.mp3",
+        "notes": "greytide-treehouse-keep-out/notes.md",
+        "recipe": "greytide-treehouse-keep-out/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 2.99,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "bag",
+          "coming",
+          "gray",
+          "battery",
+          "chips",
+          "chop",
+          "conker",
+          "monday",
+          "hit"
+        ],
+        "stripped": [],
+        "installed_samples": 6825814,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-keep-out/greytide-treehouse-keep-out.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30543,6 +30636,7 @@ window.NOBODY_INDEX = {
       "tracks": [
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
