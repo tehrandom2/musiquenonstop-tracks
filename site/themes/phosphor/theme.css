@@ -515,3 +515,43 @@ body.ui-hidden .hide-tower { opacity: 1; }
   --car-btn: #0A160C; --car-btn-ink: var(--hot); --car-on-accent: #031006; --car-face: "VT323", "Courier New", monospace; --car-body-face: "IBM Plex Mono", "Courier New", monospace;
 }
 :root[data-view="car"] .car-title { font-size: clamp(40px, 6vw, 72px); text-shadow: var(--bloom); }
+
+/* one view and the queue (issue #240, design 12.23): the band under the transmitter, two panes split by a rail, the story on the
+   left in tabs, the queue on the right as a list box; and the waterfall under the scope */
+.ph-deck { display: grid; grid-template-columns: minmax(0, 58fr) minmax(0, 40fr); gap: 0 2ch; align-items: start; }
+.ph-deck[hidden] { display: none; }
+.ph-pane { min-width: 0; }
+.ph-queue { position: relative; padding-left: 2ch; outline: none; }
+.ph-queue::before { content: var(--fr-rail); white-space: pre; position: absolute; left: 0; top: calc(var(--row) * -1); bottom: 0; overflow: hidden; width: 1ch; color: var(--frame); font-family: var(--frame-face); line-height: var(--row); pointer-events: none; }
+.ph-queue:focus-visible .label, .ph-queue:focus .label { background: var(--p1); color: var(--glass); text-shadow: none; }
+.ph-tabs { display: flex; flex-wrap: wrap; gap: 0 2ch; margin: 2px 0 4px; }
+.ph-tabs .bk { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+.ph-tabs .bk::before, .ph-tabs .bk::after { content: " "; }
+/* the tab on: in brackets and hot, not inverse, so it reads the same as any word on the glass */
+.ph-tabs .bk.on { color: var(--hot); text-shadow: var(--bloom-hot); }
+.ph-tabs .bk.on::before { content: "["; color: var(--p1); }
+.ph-tabs .bk.on::after { content: "]"; color: var(--p1); }
+.ph-body { height: calc(var(--row) * 8); overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: var(--p1-dim) transparent; }
+.ph-line { white-space: pre-wrap; overflow-wrap: anywhere; }
+.ph-pre { white-space: pre-wrap; }
+.ph-acts { display: flex; flex-wrap: wrap; gap: 0 1ch; margin-top: 4px; }
+.ph-insp { margin-left: 2ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ph-list { height: calc(var(--row) * 10); overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: var(--p1-dim) transparent; }
+.ph-qrow { display: flex; white-space: pre; cursor: pointer; }
+.ph-qrow .ph-qslug { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ph-qrow.rot .ph-qslug { color: var(--p1-mid); text-shadow: var(--bloom-mid); }
+.ph-qrow.inv, .ph-qrow.inv .ph-qslug, .ph-qrow.inv .mid { background: var(--p1); color: var(--glass); text-shadow: none; }
+.ph-qrow .ph-x { padding: 0; }
+.ph-keys { margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ph-deck.folded .ph-tabs, .ph-deck.folded .ph-body, .ph-deck.folded .ph-acts { display: none; }
+.ph-deck.folded .ph-list { height: calc(var(--row) * 4); }
+.ph-fall { margin: 2px 0 0; font: inherit; line-height: 1; color: var(--p1); text-shadow: var(--bloom); white-space: pre; overflow: hidden; letter-spacing: 0; }
+@media (max-width: 900px) {
+  .ph-deck { grid-template-columns: minmax(0, 1fr); }
+  .ph-queue { padding-left: 0; margin-top: var(--row); }
+  .ph-queue::before { display: none; }
+  .ph-body { height: calc(var(--row) * 7); }
+  .ph-list { height: calc(var(--row) * 7); }
+}
+/* the hidden mode's picture (issue #247): the module the studio game projects, scaled up whole on the glass, pixels kept */
+.hide-tower .hide-vis { display: block; width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }

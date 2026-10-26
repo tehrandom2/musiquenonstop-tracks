@@ -399,3 +399,65 @@ body.is-playing .fat #fatPlay::before { inset: 12px; }
   --car-btn: rgb(24 24 38 / .92); --car-btn-ink: var(--text); --car-on-accent: #07070c; --car-face: var(--head); --car-title-face: var(--display); --car-body-face: var(--mono);
 }
 :root[data-view="car"] .car-title { font-weight: 800; letter-spacing: -.02em; }
+
+/* the show (issue #240): the visualizer is the centrepiece. the card no longer carries bars; a band between the header and NOW
+   PLAYING holds the halo (the stage draws it there: the cover ringed by the spectrum, over the floor) with a drawer either side:
+   the story on the left, the setlist on the right. the halo's cell takes no click and holds no text; the drawers are opaque,
+   like every card. the car view keeps its own screen (issue #220). */
+.arena-show { display: grid; grid-template-columns: minmax(250px, 1fr) minmax(300px, 1.3fr) minmax(250px, 1fr); gap: var(--gap);
+  height: clamp(340px, 56vh, 620px); pointer-events: none; }
+.ar-halo { min-height: 0; }
+:root[data-view="car"] .arena-show { display: none; }
+.arena-show:has(+ #transmitter[hidden]) { display: none; } /* a page (the printout, an album) has the screen to itself */
+:root:not([data-view="car"]) #spectrum, :root:not([data-view="car"]) #baseline, :root:not([data-view="car"]) #scope { display: none; }
+.ar-drawer { pointer-events: auto; min-height: 0; display: flex; flex-direction: column; background: #0d0e17; border: 1px solid var(--line-2); border-radius: 22px;
+  box-shadow: 0 0 0 5px rgb(16 16 27 / .78), 0 30px 80px -30px rgb(0 0 0 / .9); padding: calc(var(--row) * .45) 1.4ch; color: var(--text); font-family: var(--head); font-size: var(--fs); overflow: hidden; }
+.ar-head { display: flex; align-items: center; justify-content: space-between; gap: 1ch; flex: 0 0 auto; flex-wrap: wrap; }
+.ar-title { font-family: var(--display); font-weight: 800; font-size: calc(var(--fs) * 1.3); line-height: 1.15; letter-spacing: -.01em; margin-top: calc(var(--row) * .25); overflow-wrap: anywhere; }
+.ar-meta { color: var(--dim); font-family: var(--mono); font-size: var(--fs); margin-top: 2px; }
+.ar-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: calc(var(--row) * .3); flex: 0 0 auto; }
+.ar-btn { font: 600 var(--fs)/1.2 var(--head); color: var(--text); background: rgb(255 255 255 / .06); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.ar-btn:hover, .ar-btn:focus-visible { border-color: var(--accent); color: #fff; outline: none; }
+.ar-btn.ar-hot { background: var(--accent-hot); color: #07070c; border-color: transparent; }
+.ar-btn.on { background: hsl(var(--h) 60% 22%); border-color: var(--accent); color: #fff; }
+.ar-btn.ar-small { padding: 2px 9px; font-weight: 500; }
+.ar-btn.ar-link { background: none; border: 0; padding: 0 .4ch; color: var(--accent); text-decoration: underline; }
+.ar-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-top: calc(var(--row) * .3); flex: 0 0 auto; }
+.ar-tabs .ar-btn { padding: 2px 10px; font-weight: 500; }
+.ar-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; margin-top: calc(var(--row) * .3); padding-right: 4px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+.ar-body p { margin: 0 0 calc(var(--row) * .35); line-height: 1.45; }
+.ar-asked { color: var(--accent); }
+.ar-mono { font-family: var(--mono); }
+.ar-pre { white-space: pre-wrap; }
+.ar-faint, .ar-empty { color: var(--dim); }
+.ar-nums { display: grid; grid-template-columns: auto 1fr; gap: 2px 1.5ch; font-family: var(--mono); }
+.ar-nums .k { color: var(--dim); }
+.ar-sub { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; color: var(--accent); margin: calc(var(--row) * .3) 0 2px; }
+.ar-list { list-style: none; margin: 0; padding: 0; position: relative; }
+.ar-row { display: flex; align-items: center; gap: .8ch; padding: 3px 0; border-bottom: 1px solid rgb(255 255 255 / .05); }
+.ar-row.lifted { opacity: .55; background: rgb(255 255 255 / .04); }
+.ar-row .ar-name { flex: 1 1 auto; min-width: 0; text-align: left; background: none; border: 0; padding: 0; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 4px; }
+.ar-row .ar-name:hover, .ar-row .ar-name:focus-visible { color: var(--accent); }
+.ar-row.now .ar-name { color: var(--accent); font-weight: 700; }
+.ar-grip { cursor: grab; touch-action: none; font-family: var(--mono); color: var(--dim); padding: 0 2px; user-select: none; }
+.ar-thumb { flex: 0 0 26px; height: 26px; border-radius: 5px; background: hsl(var(--h) 50% 20%) center / cover no-repeat; }
+.ar-tag { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: var(--dim); text-transform: uppercase; }
+.ar-tag.hot { color: var(--accent); }
+.ar-tag.label::before { display: none; }
+.ar-sub.label { display: flex; }
+.ar-insert { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent-hot); box-shadow: 0 0 8px var(--accent-hot); pointer-events: none; }
+.ar-filter { width: 100%; box-sizing: border-box; font: var(--fs) var(--mono); color: var(--text); background: #07070c; border: 1px solid var(--line-2); border-radius: 10px; padding: 5px 9px; margin-bottom: 6px; }
+.ar-filter:focus { outline: none; border-color: var(--accent); }
+.ar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+.ar-album { display: flex; flex-direction: column; gap: 4px; padding: 0; background: none; border: 0; border-radius: 10px; text-align: left; }
+.ar-album .ar-cover { display: block; aspect-ratio: 1; border-radius: 10px; background: hsl(var(--h) 50% 20%) center / cover no-repeat; }
+.ar-album .ar-cap { font-size: var(--fs); line-height: 1.2; overflow-wrap: anywhere; }
+.ar-phone-tabs { display: none; }
+@media (max-width: 900px) {
+  .arena-show { grid-template-columns: 1fr; grid-template-rows: clamp(220px, 40vh, 380px) auto auto; height: auto; }
+  .ar-halo { grid-row: 1; }
+  .ar-phone-tabs { display: flex; gap: 8px; justify-content: center; grid-row: 2; pointer-events: auto; }
+  .ar-phone-tabs .ar-btn { min-height: 44px; min-width: 110px; }
+  .ar-drawer { display: none; grid-row: 3; max-height: 62vh; }
+  .arena-show[data-fold="story"] .ar-story, .arena-show[data-fold="setlist"] .ar-setlist { display: flex; }
+}

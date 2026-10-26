@@ -1,80 +1,127 @@
-/* nobody fm, theme "tapedeck": a cassette on a painting desk at night (design 12.0, 12.14). the signature widget is
-   the cassette in the transmitter card: its reels turn while the deck plays, the tape moves from the left hub to the
-   right with the track, the hand-lettered label says what is on. behind the page a canvas of warm bars and one lamp
-   that breathes with the loudness. nothing here changes what the station does; it draws what the station tells it,
-   and nobody who built it can hear. */
+/* nobody fm, theme "tapedeck": a portable cassette player on a workbench in daylight (design 12.0, 12.14, issue #240).
+   the transmitter card is the player: a brushed plate in a graphite body, six chunky piano keys on its top edge (four of
+   them are the station's own fat buttons), a smoked window with the cassette turning inside, a three-drum counter, a door
+   left open on two big D cells, a VU needle, a belt clip on its side. the J-card lies open to its left and is the story of
+   the track; an index card to its right is the running order. nothing here changes what the station does: every key and
+   every line calls the station's own functions, and nobody who built it can hear. */
 window.NOBODY = window.NOBODY || {};
 NOBODY.themes = NOBODY.themes || {};
 NOBODY.themes.tapedeck = (function () {
-  const TH = { name: 'tapedeck', blurb: 'a cassette on a painting desk. one lamp, warm bars, the reels turn.', swatch: ['#1b130e', '#ffb45f', '#e2553b'] };
+  const TH = { name: 'tapedeck', blurb: 'a portable tape player on a bench in daylight. piano keys, a VU needle, two D cells.', swatch: ['#d6d0c2', '#26292d', '#ff5b1a'] };
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
-  let viz = null, cassette = null, jcard = null, towerCassette = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, knob = null, chipWatch = null;
+  let viz = null, cassette = null, jcard = null, towerCassette = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, wheel = null, chipWatch = null;
+  let keys = null, vu = null, counter = null, cells = null, clip = null, story = null, runOrder = null, catGrab = null;
   let uid = 0;
   function el(id) { return ctx.el[id] || document.getElementById(id); }
   function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
   function titleOf(slug) { return String(slug || '').replace(/-/g, ' '); }
+  function h(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function btn(text, cls, fn, title) { const b = h('button', 'bk' + (cls ? ' ' + cls : ''), text); b.type = 'button'; if (title) b.title = title; b.addEventListener('click', function (e) { e.stopPropagation(); fn(e, b); }); return b; }
+  function playingNow() { return document.body.classList.contains('is-playing'); }
 
-  /* ---- strings (12.0): the deck's own eight lines, at the station's times ---- */
+  /* ---- strings (12.0): the player's own eight lines, at the station's times ---- */
   TH.strings = {
     boot: function (n, voices, phone, localOnly, backend) {
       const vtxt = voices === 1 ? '1 with a voice' : voices + ' with a voice';
       const ttxt = n === 1 ? '1 tape' : n + ' tapes';
       if (phone) return [
-        ['NOBODY DECK  mk I', ''], ['heads ....... ', 'cleaned'], ['belt ........ ', 'tight'], ['lamp ........ ', 'on'],
-        ['aerial ...... ', 'found'], ['shelf ....... ', ttxt + ', ' + voices + ' voice'], ['backend ..... ', localOnly ? 'not on the wire' : 'on the wire'], ['audio ....... ', 'waiting for a human', 'amber']
+        ['PORTABLE CASSETTE PLAYER', ''], ['cells ....... ', '2 x D, fresh'], ['heads ....... ', 'cleaned'], ['belt ........ ', 'tight'],
+        ['needle ...... ', 'at rest'], ['rack ........ ', ttxt + ', ' + voices + ' voice'], ['backend ..... ', localOnly ? 'not on the wire' : 'on the wire'], ['audio ....... ', 'waiting for a human', 'amber']
       ];
       return [
-        ['NOBODY DECK  mk I  one lamp on', ''], ['heads .............. ', 'cleaned'], ['belt ............... ', 'tight, no wow, no flutter'],
-        ['lamp ............... ', 'on, warm'], ['aerial ............. ', 'found'],
-        ['shelf .............. tracks/index.json .... ', ttxt + ', ' + vtxt], ['backend ............ ', localOnly ? 'not on the wire (local mode)' : backend],
+        ['PORTABLE CASSETTE PLAYER  stereo, auto stop', ''], ['cells .............. ', '2 x D, 1.5 V, fresh'], ['heads .............. ', 'cleaned'],
+        ['belt ............... ', 'tight, no wow, no flutter'], ['needle ............. ', 'at rest'],
+        ['rack ............... tracks/index.json .... ', ttxt + ', ' + vtxt], ['backend ............ ', localOnly ? 'not on the wire (local mode)' : backend],
         ['audio .............. ', 'waiting for a human', 'amber']
       ];
     },
-    wait: function (phone) { return phone ? '[ tap the deck to go on air ]' : '[ press any key, or tap the deck, to go on air ]'; },
+    wait: function (phone) { return phone ? '[ tap the player to go on air ]' : '[ press any key, or tap the player, to go on air ]'; },
     tagline: 'the transmitter nobody can find.',
-    licence: 'nobody fm. every track generated locally from a text prompt. no samples, no reference audio, no third-party rights claimed. best played off a tape, in a room with one lamp on.',
-    switched: 'theme: tapedeck. one lamp, one cassette. the reels turn.',
-    idle: 'idle. paused for ten minutes. the tape waits in the deck.'
+    licence: 'nobody fm. every track generated locally from a text prompt. no samples, no reference audio, no third-party rights claimed. best played off a tape, clipped to a belt, on a long walk.',
+    switched: 'theme: tapedeck. a tape player on the bench. press play.',
+    idle: 'idle. paused for ten minutes. the tape waits behind the window.'
   };
 
   /* ---- lifecycle ---- */
   TH.init = function (c) {
     ctx = c; V = c.V; A = c.A; glass = c.glass; power = c.power; S = c.S;
     viz = makeViz();
+    loadVis();
     document.body.insertBefore(viz.canvas, document.body.firstChild);
-    // the widget slot (12.0): the cassette, inserted after the first row of the transmitter card
-    cassette = makeCassette();
-    jcard = makeJcard();
-    cassette.host.insertBefore(jcard.svg, cassette.svg);
     const tx = el('transmitter');
+    // the widget slot (12.0): the left column of the player, the window with the cassette, the counter and the battery door
+    cassette = makeCassette();
+    counter = makeCounter();
+    cells = makeCells();
+    const win = h('div', 'td-window'); win.appendChild(cassette.svg);
+    win.appendChild(h('span', 'td-window-glare'));
+    cassette.host.appendChild(win);
+    const under = h('div', 'td-under'); under.appendChild(counter.host); under.appendChild(cells.host);
+    cassette.host.appendChild(under);
     tx.insertBefore(cassette.host, tx.querySelector('.np-row'));
+    vu = makeVu();
+    tx.insertBefore(vu.host, tx.querySelector('.np-row'));
+    keys = makeKeys();
+    tx.appendChild(keys.host);
+    clip = makeClip();
+    tx.appendChild(clip);
     if (c.wantsTower()) cassette.host.hidden = true;
+    // the story (the J-card, opened flat) and the running order (an index card): beside the player, one view (issue #240)
+    story = makeStory();
+    runOrder = makeRunOrder();
+    // after the rack in the markup (MAKE A TRACK stays the card right after the player, 12.0); the CSS puts them beside the player
+    const cat = el('catalogue');
+    cat.parentNode.insertBefore(story.host, cat.nextSibling);
+    cat.parentNode.insertBefore(runOrder.host, story.host.nextSibling);
+    jcard = story.jcard;
+    // a click on a title in the rack opens its story beside the player instead of a page (12.23's one view; the core does it,
+    // the theme only stands in for a station that predates it)
+    if (!ctx.inspect) {
+      catGrab = function (e) {
+        const link = e.target.closest && e.target.closest('.slug-link'); if (!link) return;
+        const row = link.closest('.cat-row'); if (!row || !row.dataset.slug) return;
+        e.stopPropagation(); e.preventDefault();
+        inspect(row.dataset.slug);
+      };
+      el('catRows').addEventListener('click', catGrab, true);
+    }
     el('scope').textContent = '';
     scopeCanvas = document.createElement('canvas'); scopeCanvas.setAttribute('aria-label', 'oscilloscope'); el('scope').appendChild(scopeCanvas);
-    const lab = document.createElement('span'); lab.className = 'dim scope-label'; lab.textContent = 'scope'; el('scope').appendChild(lab);
+    const lab = h('span', 'scope-label label', 'scope'); el('scope').appendChild(lab);
     scopeCtx = scopeCanvas.getContext('2d');
     el('licence').textContent = TH.strings.licence;
     el('progress').innerHTML = '<span class="rail"><i class="fill"></i><b class="head"></b></span><span class="time"></span>';
     el('hdrBar').textContent = ''; el('hdrBar').className = 'hdr-rail'; el('hdrBar').appendChild(document.createElement('i'));
     dialStrip = makeDialStrip(el('dial'));
-    // the chip is the one place the station says whether the deck plays; the reels follow it
+    // the chip is the one place the station says whether the deck plays; the reels, the PLAY key and the needle follow it
     chipWatch = new MutationObserver(syncPlaying);
     chipWatch.observe(el('chip'), { childList: true, characterData: true, subtree: true });
     syncPlaying();
     if (S.current) TH.playing(S.current);
+    renderStory();
+    renderQueue();
     TH.resize();
   };
   TH.dispose = function () {
     if (viz) { viz.stop(); viz.canvas.remove(); viz = null; }
-    if (cassette) { cassette.host.remove(); cassette = null; jcard = null; }
+    if (cassette) { cassette.host.remove(); cassette = null; }
+    if (vu) { vu.host.remove(); vu = null; }
+    if (keys) { keys.dispose(); keys = null; }
+    if (clip) { clip.remove(); clip = null; }
+    if (story) { story.host.remove(); story = null; jcard = null; }
+    if (runOrder) { runOrder.host.remove(); runOrder = null; }
+    if (catGrab) { el('catRows').removeEventListener('click', catGrab, true); catGrab = null; }
+    counter = null; cells = null; inspecting = null; queueData = null;
+    if (vis) { vis.destroy(); vis = null; }
     coverWant = null; coverState = 'none'; tape = null;
     if (towerCassette) { towerCassette.host.remove(); towerCassette = null; }
     if (chipWatch) { chipWatch.disconnect(); chipWatch = null; }
     document.body.classList.remove('is-playing');
+    el('transmitter').classList.remove('td-jolt');
     el('scope').textContent = ''; scopeCanvas = null; scopeCtx = null;
     el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
-    el('dial').textContent = ''; dialStrip = null; knob = null; el('volDeco').textContent = '';
+    el('dial').textContent = ''; dialStrip = null; wheel = null; el('volDeco').textContent = '';
     el('towerStatic').textContent = ''; el('towerStatic').hidden = true;
     glass.classList.remove('closing', 'bloom-on');
   };
@@ -89,12 +136,11 @@ NOBODY.themes.tapedeck = (function () {
     if (dialStrip && S && S.state === 'tuning') dialStrip.set(88.8, false, '');
   };
 
-  /* ---- the switch sound (issue #103): the cassette. the stop key's clunk, a short fast-forward whir climbing as the reels
-     speed up, the play key's click, and a little tape hiss under all of it ---- */
+  /* ---- the switch sound (issue #103): the stop key's clunk, a short fast-forward whir climbing as the reels speed up, the
+     play key's click, and a little tape hiss under all of it ---- */
   TH.transitionSound = function (seconds) {
     return NOBODY.synth.sound(seconds, function (c, out, t0, dur, k) {
       const n = k.noise();
-      // the keys: a low thump falling in pitch for stop, a higher one for play, each with a filtered knock of noise
       const th = k.osc('sine'), tg = c.createGain();
       th.frequency.setValueAtTime(110, t0); th.frequency.exponentialRampToValueAtTime(60, t0 + 0.12); th.frequency.setValueAtTime(140, t0 + 1.0);
       k.env(tg.gain, [[0, 0], [0.025, 0.016], [0.11, 0.002], [0.15, 0], [1.0, 0], [1.015, 0.012], [1.07, 0]]);
@@ -102,7 +148,6 @@ NOBODY.themes.tapedeck = (function () {
       const kl = c.createBiquadFilter(); kl.type = 'bandpass'; kl.frequency.setValueAtTime(700, t0); kl.frequency.setValueAtTime(2500, t0 + 1.0); kl.Q.value = 1.5;
       const kg = c.createGain(); k.env(kg.gain, [[0, 0], [0.02, 0.01], [0.06, 0], [1.0, 0], [1.006, 0.014], [1.025, 0]]);
       n.connect(kl); kl.connect(kg); kg.connect(out);
-      // the whir: the motor's tone climbing as the tape winds, with a flutter, and the tape rushing over the heads
       const wr = k.osc('triangle'); wr.frequency.setValueAtTime(170, t0 + 0.16); wr.frequency.exponentialRampToValueAtTime(560, t0 + 0.9);
       const fl = k.osc('sine'), fg = c.createGain(); fl.frequency.value = 23; fg.gain.value = 12; fl.connect(fg); fg.connect(wr.frequency);
       const wl = c.createBiquadFilter(); wl.type = 'lowpass'; wl.frequency.value = 900;
@@ -112,14 +157,13 @@ NOBODY.themes.tapedeck = (function () {
       rb.frequency.setValueAtTime(1200, t0 + 0.16); rb.frequency.exponentialRampToValueAtTime(3000, t0 + 0.9);
       const rg = c.createGain(); k.env(rg.gain, [[0, 0], [0.16, 0], [0.3, 0.006], [0.8, 0.006], [0.92, 0]]);
       n.connect(rb); rb.connect(rg); rg.connect(out);
-      // the hiss
       const hp = c.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 5000;
       const hg = c.createGain(); k.env(hg.gain, [[0, 0], [0.1, 0.003], [dur, 0.003]]);
       n.connect(hp); hp.connect(hg); hg.connect(out);
     });
   };
 
-  /* ---- transitions (12.0): the lamp comes on for the boot, goes off for a reboot; the cassette lifts while tuning ---- */
+  /* ---- transitions (12.0): the bench light comes on for the boot; the cassette lifts in its window while tuning ---- */
   TH.transition = function (from, to, info) {
     info = info || {};
     if (to === 'boot') {
@@ -130,22 +174,139 @@ NOBODY.themes.tapedeck = (function () {
     if (to === 'off') {
       return new Promise(function (res) { glass.classList.add('closing'); setTimeout(function () { glass.classList.add('off'); glass.classList.remove('closing'); res(); }, 380); });
     }
-    if (to === 'air') { glass.classList.add('bloom-on'); setTimeout(function () { glass.classList.remove('bloom-on'); }, 300); }
-    // dead air: the widget cassette steps aside, the empty one in the tower slot is the picture (one cassette, not two)
-    if (to === 'dead') { if (cassette) { cassette.host.hidden = true; cassette.label('no tape', 'nothing on the shelf', 'SIDE A'); if (jcard) jcard.spine('no tape', ''); showCover(null); } }
+    if (to === 'air') { glass.classList.add('bloom-on'); setTimeout(function () { glass.classList.remove('bloom-on'); }, 300); jolt(); }
+    if (to === 'dead') { if (cassette) { cassette.host.hidden = true; cassette.label('no tape', 'nothing in the rack', 'SIDE A'); showCover(null); } renderStory(); }
     else if (cassette && from === 'dead') cassette.host.hidden = false;
+    if (to === 'tuning') jolt();
     if (to === 'playing' || ((to === 'home' || to === 'page' || to === 'guestbook') && info.slug)) { if (cassette) cassette.host.hidden = false; TH.playing(info.slug || S.current); }
     return Promise.resolve();
   };
+  function settle() { glass.style.transition = 'none'; void glass.offsetWidth; setTimeout(function () { glass.style.transition = ''; }, 50); }
+  // a key going down shakes the whole body a little: the clack, drawn
+  function jolt() {
+    const tx = ctx && el('transmitter'); if (!tx || reduced) return;
+    tx.classList.remove('td-jolt'); void tx.offsetWidth; tx.classList.add('td-jolt');
+  }
 
-  // a compositor fade can freeze when the page is driven by a virtual clock (the harness) and leave the glass half in; once
-  // the fade's time has passed the end state is set by hand, with the transition off for a beat so it applies at once
-  function settle() { glass.style.transition = 'none'; void glass.offsetWidth; /* a style flush, or the two edits collapse into none */ setTimeout(function () { glass.style.transition = ''; }, 50); }
+  /* ---- the keys: six chunky piano keys on the top edge. REW, PLAY, FF and CUE are the station's four fat buttons (their
+     handlers untouched); STOP is the station's `stop`; REC is a key with a red dot that never records ---- */
+  function makeKeys() {
+    const host = h('div', 'td-keys');
+    const rec = h('span', 'td-key td-rec'); rec.setAttribute('aria-hidden', 'true'); rec.title = 'record: this player only plays';
+    rec.appendChild(h('i', 'td-dot'));
+    host.appendChild(rec);
+    const stop = h('button', 'td-key td-stop'); stop.type = 'button'; stop.setAttribute('aria-label', 'stop'); stop.title = 'stop and rewind';
+    stop.addEventListener('click', function () { if (NOBODY.st && NOBODY.st.stop) NOBODY.st.stop(); });
+    host.appendChild(stop);
+    // the headphone jack on the top edge, to the right of the keys, with its cable running off
+    host.appendChild(h('span', 'td-jack'));
+    const down = function (e) { if (e.target.closest && e.target.closest('.td-key, .fat .bk')) jolt(); };
+    const tx = el('transmitter');
+    tx.addEventListener('pointerdown', down);
+    return { host: host, dispose: function () { tx.removeEventListener('pointerdown', down); host.remove(); } };
+  }
+
+  /* ---- the belt clip: a bent strip of plated steel seen from the side, on the player's right edge ---- */
+  function makeClip() {
+    const host = h('div', 'td-clip'); host.setAttribute('aria-hidden', 'true');
+    host.innerHTML = '<svg viewBox="0 0 40 220" aria-hidden="true"><defs><linearGradient id="tdClipG" x1="0" x2="1"><stop offset="0" stop-color="#7b8188"/><stop offset=".35" stop-color="#eef1f3"/><stop offset=".6" stop-color="#a9afb5"/><stop offset="1" stop-color="#5d6268"/></linearGradient></defs>' +
+      '<path d="M8 14 Q8 4 18 4 L24 4 Q32 4 32 14 L32 196 Q32 212 24 214 L20 215" fill="none" stroke="url(#tdClipG)" stroke-width="9" stroke-linecap="round"/>' +
+      '<rect x="0" y="18" width="12" height="40" rx="3" fill="#2b2e32"/><rect x="0" y="23" width="12" height="4" fill="#45494e"/><rect x="0" y="31" width="12" height="4" fill="#45494e"/><rect x="0" y="39" width="12" height="4" fill="#45494e"/><rect x="0" y="47" width="12" height="4" fill="#45494e"/></svg>';
+    return host;
+  }
+
+  /* ---- the VU meter: a cream face, -20 to +3, a red zone, a needle with ballistics and a lamp behind it ---- */
+  function makeVu() {
+    const host = h('div', 'td-vu'); host.setAttribute('aria-hidden', 'true');
+    const W = 300, H = 132, cx = 150, cy = 236, R = 196;
+    const marks = [[-20, '20'], [-10, '10'], [-7, '7'], [-5, '5'], [-3, '3'], [-1, '1'], [0, '0'], [1, '1'], [2, '2'], [3, '3']];
+    const pt = function (a, r) { return [cx + Math.sin(a) * r, cy - Math.cos(a) * r]; };
+    const arc = function (a0, a1, r) { const p0 = pt(a0, r), p1 = pt(a1, r); return 'M' + p0[0].toFixed(1) + ' ' + p0[1].toFixed(1) + ' A' + r + ' ' + r + ' 0 0 1 ' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1); };
+    let s = '<svg viewBox="0 0 ' + W + ' ' + H + '"><defs><radialGradient id="tdVuLamp" cx=".5" cy="1" r="1"><stop offset="0" stop-color="#fff6d8"/><stop offset=".55" stop-color="#f4e5bd"/><stop offset="1" stop-color="#dfca95"/></radialGradient>' +
+      '<clipPath id="tdVuClip"><rect x="7" y="7" width="' + (W - 14) + '" height="' + (H - 14) + '" rx="5"/></clipPath></defs>' +
+      '<rect class="vu-bezel" x="0" y="0" width="' + W + '" height="' + H + '" rx="9"/>' +
+      '<rect class="vu-face" x="7" y="7" width="' + (W - 14) + '" height="' + (H - 14) + '" rx="5" fill="url(#tdVuLamp)"/>' +
+      '<rect class="vu-glow" x="7" y="7" width="' + (W - 14) + '" height="' + (H - 14) + '" rx="5"/>' +
+      '<g clip-path="url(#tdVuClip)">';
+    s += '<path class="vu-arc" d="' + arc(angleOfDb(-20), angleOfDb(0), R - 46) + '"/>';
+    s += '<path class="vu-red" d="' + arc(angleOfDb(0), angleOfDb(3), R - 46) + '"/>';
+    marks.forEach(function (m) {
+      const a = angleOfDb(m[0]), p0 = pt(a, R - 46), p1 = pt(a, R - 37), pl = pt(a, R - 22);
+      s += '<line class="vu-tick' + (m[0] >= 0 ? ' red' : '') + '" x1="' + p0[0].toFixed(1) + '" y1="' + p0[1].toFixed(1) + '" x2="' + p1[0].toFixed(1) + '" y2="' + p1[1].toFixed(1) + '"/>';
+      s += '<text class="vu-num' + (m[0] > 0 ? ' red' : '') + '" x="' + pl[0].toFixed(1) + '" y="' + (pl[1] + 5).toFixed(1) + '" text-anchor="middle">' + m[1] + '</text>';
+    });
+    s += '<text class="vu-word" x="' + cx + '" y="' + (H - 22) + '" text-anchor="middle">VU</text>';
+    s += '<g class="vu-needle"><line x1="' + cx + '" y1="' + cy + '" x2="' + cx + '" y2="' + (cy - R + 14) + '"/></g>';
+    s += '</g><rect class="vu-pivot" x="' + (cx - 40) + '" y="' + (H - 16) + '" width="80" height="16" rx="3"/>';
+    s += '<rect class="vu-glass" x="7" y="7" width="' + (W - 14) + '" height="' + ((H - 14) / 2) + '" rx="5"/></svg>';
+    host.innerHTML = s;
+    const needle = host.querySelector('.vu-needle');
+    needle.style.transformOrigin = cx + 'px ' + cy + 'px';
+    const M = { host: host, pos: -22, vel: 0, deg: angleOfDb(-22) * 180 / Math.PI };
+    M.step = function (db) {
+      // a damped spring: the needle swings past and settles, as a real one does
+      M.vel += (db - M.pos) * 0.16; M.vel *= 0.74; M.pos += M.vel;
+      M.pos = Math.max(-22, Math.min(4.2, M.pos));
+      M.deg = angleOfDb(M.pos) * 180 / Math.PI;
+      needle.style.transform = 'rotate(' + M.deg.toFixed(2) + 'deg)';
+    };
+    needle.style.transform = 'rotate(' + M.deg.toFixed(2) + 'deg)';
+    return M;
+  }
+  // the scale is not linear: -20 sits far left, 0 two thirds of the way, +3 at the right stop
+  const SCALE = [[-22, -0.04], [-20, 0], [-10, 0.24], [-7, 0.36], [-5, 0.46], [-3, 0.57], [-2, 0.63], [-1, 0.69], [0, 0.76], [1, 0.84], [2, 0.92], [3, 1], [4.2, 1.06]];
+  function angleOfDb(db) {
+    let f = SCALE[SCALE.length - 1][1];
+    for (let i = 1; i < SCALE.length; i++) if (db <= SCALE[i][0]) { const a = SCALE[i - 1], b = SCALE[i]; f = a[1] + (b[1] - a[1]) * Math.max(0, (db - a[0]) / (b[0] - a[0])); break; }
+    return (-38 + 76 * f) * Math.PI / 180;
+  }
+
+  /* ---- the counter: three white drums on black, the seconds on the tape ---- */
+  function makeCounter() {
+    const host = h('div', 'td-counter'); host.setAttribute('aria-hidden', 'true');
+    const drums = h('span', 'td-drums');
+    const cols = [];
+    for (let i = 0; i < 3; i++) {
+      const d = h('span', 'td-drum'), col = h('span', 'td-col');
+      for (let k = 0; k <= 9; k++) col.appendChild(h('span', '', String(k)));
+      d.appendChild(col); drums.appendChild(d); cols.push(col);
+    }
+    host.appendChild(drums);
+    host.appendChild(h('span', 'td-legend label', 'COUNTER'));
+    let last = -1;
+    return {
+      host: host, value: 0,
+      set: function (n) {
+        n = Math.max(0, Math.floor(n)) % 1000; if (n === last) return; last = n; this.value = n;
+        const s = String(n).padStart(3, '0');
+        cols.forEach(function (c, i) { c.style.transform = 'translateY(' + (-10 * +s[i]) + '%)'; });
+      }
+    };
+  }
+
+  /* ---- the battery door, left open: two big D cells, plain bands, 1.5V, no maker. their charge runs down slowly over a
+     listening session (a reload puts fresh ones in), shown by four little bars beside the door ---- */
+  function makeCells() {
+    const host = h('div', 'td-cells'); host.setAttribute('aria-hidden', 'true');
+    const cell = function (y) {
+      return '<g transform="translate(14 ' + y + ')"><rect class="cell-body" x="0" y="0" width="150" height="40" rx="7"/>' +
+        '<rect class="cell-band" x="96" y="0" width="54" height="40"/><rect class="cell-shine" x="2" y="5" width="146" height="7" rx="3"/>' +
+        '<rect class="cell-cap" x="150" y="12" width="8" height="16" rx="2"/>' +
+        '<text class="cell-txt" x="12" y="27">1.5V</text><text class="cell-txt big" x="112" y="29">D</text></g>';
+    };
+    host.innerHTML = '<svg viewBox="0 0 186 112"><rect class="cells-well" x="0" y="0" width="186" height="112" rx="8"/>' + cell(10) + cell(62) +
+      '<path class="cells-spring" d="M4 20 l6 4 -6 4 6 4 -6 4 6 4"/><path class="cells-spring" d="M4 72 l6 4 -6 4 6 4 -6 4 6 4"/></svg>' +
+      '<span class="td-battrow"><span class="td-batt"><i></i><i></i><i></i><i></i></span><span class="td-legend label">BATT</span></span>';
+    const bars = host.querySelectorAll('.td-batt i');
+    return {
+      host: host, charge: 1,
+      set: function (f) { this.charge = f; const lit = Math.max(1, Math.ceil(f * 4)); [].forEach.call(bars, function (b, i) { b.classList.toggle('on', i < lit); b.classList.toggle('low', lit === 1); }); }
+    };
+  }
 
   /* ---- the cassette (12.14): an SVG, reels that turn, tape that moves hub to hub, a hand-lettered label ---- */
   function svgEl(name, attrs) { const e = document.createElementNS('http://www.w3.org/2000/svg', name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
-  // the photocopy (issue #88): the cover as if run through an office copier onto card. nearly grey, the contrast pushed, the tones
-  // stepped into a few toner levels, warmed to the card's cream, a grain multiplied over it and a few pale scuffs where it has worn
+  // the photocopy (issue #88): the cover as if run through an office copier onto card
   function copyFilter(id, seed) {
     return '<filter id="' + id + '" x="0" y="0" width="1" height="1" color-interpolation-filters="sRGB">' +
       '<feColorMatrix in="SourceGraphic" type="saturate" values="0.32" result="grey"/>' +
@@ -161,7 +322,7 @@ NOBODY.themes.tapedeck = (function () {
   }
   function makeCassette() {
     const id = 'tape' + (++uid);
-    const host = document.createElement('div'); host.className = 'tx-widget cassette'; host.setAttribute('aria-hidden', 'true');
+    const host = h('div', 'tx-widget cassette'); host.setAttribute('aria-hidden', 'true');
     const svg = svgEl('svg', { viewBox: '0 0 420 270', role: 'img', class: 'tape-svg' });
     svg.innerHTML =
       '<defs><clipPath id="' + id + '-well"><rect x="134" y="198" width="152" height="36" rx="18"/></clipPath>' +
@@ -182,12 +343,10 @@ NOBODY.themes.tapedeck = (function () {
       '<rect class="well" x="132" y="196" width="156" height="40" rx="20"/>' +
       '<g clip-path="url(#' + id + '-well)"><circle class="tape tape-l" cx="164" cy="216" r="34"/><circle class="tape tape-r" cx="256" cy="216" r="16"/></g>' +
       reel(164, 216) + reel(256, 216);
-    host.appendChild(svg);
     const side = svg.querySelector('.side'), title = svg.querySelector('.title'), sub = svg.querySelector('.sub'), tl = svg.querySelector('.tape-l'), tr = svg.querySelector('.tape-r');
+    host.appendChild(svg);
     return {
       host: host, svg: svg, titleText: 'nothing loaded', cover: svg.querySelector('.cover'),
-      // the marker face is wide: one line holds about 15 characters at 24; a longer title takes two lines at 20, broken at the
-      // space nearest the middle, and a line still too wide is drawn narrower, never cut (the polish pass of issue #88)
       label: function (t, s, sd) {
         this.titleText = t;
         title.textContent = '';
@@ -219,35 +378,35 @@ NOBODY.themes.tapedeck = (function () {
       n.setAttribute('textLength', w); n.setAttribute('lengthAdjust', 'spacingAndGlyphs');
     });
   }
+  function reel(cx, cy) {
+    return '<g class="reel"><circle class="hub" cx="' + cx + '" cy="' + cy + '" r="15"/><g class="spoke"><line x1="' + cx + '" y1="' + (cy - 13) + '" x2="' + cx + '" y2="' + (cy + 13) + '"/><line x1="' + (cx - 13) + '" y1="' + cy + '" x2="' + (cx + 13) + '" y2="' + cy + '"/><line x1="' + (cx - 9) + '" y1="' + (cy - 9) + '" x2="' + (cx + 9) + '" y2="' + (cy + 9) + '"/><line x1="' + (cx + 9) + '" y1="' + (cy - 9) + '" x2="' + (cx - 9) + '" y2="' + (cy + 9) + '"/></g><circle class="axle" cx="' + cx + '" cy="' + cy + '" r="4"/></g>';
+  }
 
-  /* ---- the J-card (issue #88): the paper insert of the tape's case, the cover photocopied onto its front panel, the spine under
-     it hand-lettered with what is on the tape. it stands behind the cassette in the widget, slightly turned the other way ---- */
+  /* ---- the J-card (issue #88, opened flat for #240): the cover photocopied onto its front panel, the spine beside it
+     hand-lettered with what is on the tape. it heads the story panel ---- */
   function makeJcard() {
     const id = 'jcard' + (++uid);
-    const svg = svgEl('svg', { viewBox: '0 0 300 352', role: 'img', class: 'jcard' });
+    const svg = svgEl('svg', { viewBox: '0 0 320 140', role: 'img', class: 'jcard' });
+    svg.setAttribute('aria-hidden', 'true');
     svg.innerHTML =
-      '<defs><clipPath id="' + id + '-front"><rect x="14" y="66" width="272" height="272"/></clipPath>' + copyFilter(id + '-copy', 23 + uid) +
-      '<filter id="' + id + '-worn" x="0" y="0" width="1" height="1"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.06" numOctaves="3" seed="' + (5 + uid) + '"/>' +
-      '<feColorMatrix type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.27  0 0 0 0 0.17  0 0 0 2.2 -1.2"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>' +
-      '<rect class="jc-card" x="2" y="2" width="296" height="348" rx="3"/>' +
-      '<text class="jc-spine" x="14" y="36">nothing loaded</text>' +
-      '<text class="jc-side" x="286" y="36" text-anchor="end">A/B</text>' +
-      '<line class="jc-fold" x1="2" y1="56" x2="298" y2="56"/>' +
-      '<g class="jc-paint"><rect class="art" x="14" y="66" width="272" height="272"/><rect class="art-stripe" x="14" y="266" width="272" height="22"/>' +
-      '<rect x="136" y="104" width="32" height="160" fill="#fff" fill-opacity=".28"/><rect x="44" y="172" width="60" height="94" fill="#000" fill-opacity=".25"/>' +
-      '<text class="jc-hand" x="150" y="322" text-anchor="middle">nobody fm</text></g>' +
-      '<image class="cover" x="14" y="66" width="272" height="272" preserveAspectRatio="xMidYMid slice" clip-path="url(#' + id + '-front)" filter="url(#' + id + '-copy)" visibility="hidden"/>' +
-      '<rect class="jc-wear" x="2" y="2" width="296" height="348" rx="3" filter="url(#' + id + '-worn)"/>' +
-      '<path class="jc-ear" d="M298 2 L298 26 L274 2 Z"/>';
-    const spine = svg.querySelector('.jc-spine'), sideT = svg.querySelector('.jc-side');
+      '<defs><clipPath id="' + id + '-front"><rect x="10" y="10" width="120" height="120"/></clipPath>' + copyFilter(id + '-copy', 23 + uid) + '</defs>' +
+      '<rect class="jc-card" x="1" y="1" width="318" height="138" rx="3"/>' +
+      '<g class="jc-paint"><rect class="art" x="10" y="10" width="120" height="120"/><rect class="art-stripe" x="10" y="98" width="120" height="10"/>' +
+      '<rect x="64" y="26" width="14" height="72" fill="#fff" fill-opacity=".28"/><rect x="22" y="60" width="26" height="40" fill="#000" fill-opacity=".25"/></g>' +
+      '<image class="cover" x="10" y="10" width="120" height="120" preserveAspectRatio="xMidYMid slice" clip-path="url(#' + id + '-front)" filter="url(#' + id + '-copy)" visibility="hidden"/>' +
+      '<line class="jc-fold" x1="140" y1="4" x2="140" y2="136"/>' +
+      '<text class="jc-spine" x="152" y="56">nothing loaded</text>' +
+      '<text class="jc-side" x="152" y="88">A/B</text>' +
+      '<text class="jc-small" x="152" y="116"></text>' +
+      '<path class="jc-ear" d="M319 1 L319 21 L299 1 Z"/>';
+    const spine = svg.querySelector('.jc-spine'), sideT = svg.querySelector('.jc-side'), small = svg.querySelector('.jc-small');
     return {
       svg: svg, cover: svg.querySelector('.cover'), spineText: '',
-      spine: function (t, s) { this.spineText = t; spine.textContent = t; sideT.textContent = s || ''; let sw = 0; try { sw = s ? sideT.getComputedTextLength() : 0; } catch (e) {} fitText([spine], 272 - (sw ? sw + 12 : 0)); }
+      spine: function (t, s, sm) { this.spineText = t; spine.textContent = t; sideT.textContent = s || ''; small.textContent = sm || ''; fitText([spine], 158); fitText([small], 158); }
     };
   }
 
-  // the cover (#73's site API, NOBODY.cover): loaded once per address; while it loads, or if it never does, the painted square of
-  // 12.14 stays (the station's placeholder file is the first fallback, this is the second)
+  // the cover (#73's site API, NOBODY.cover): loaded once per address; while it loads, or if it never does, the painted square stays
   const coverCache = {};
   let coverWant = null, coverState = 'none';
   function coverOf(slug) {
@@ -260,19 +419,11 @@ NOBODY.themes.tapedeck = (function () {
     if (!t || typeof NOBODY.albumOf !== 'function') return null;
     try { return NOBODY.albumOf(t) || null; } catch (e) { return null; }
   }
-  function showCover(url) {
-    coverWant = url;
-    const targets = [cassette && cassette.cover, jcard && jcard.cover].filter(Boolean);
-    const apply = function (ok) {
-      if (coverWant !== url) return;
-      coverState = ok ? 'image' : 'painted';
-      targets.forEach(function (im) { if (ok) im.setAttribute('href', url); im.setAttribute('visibility', ok ? 'visible' : 'hidden'); });
-      if (jcard) jcard.svg.classList.toggle('has-cover', !!ok);
-    };
-    if (!url) { apply(false); coverState = 'none'; return; }
+  function loadCover(url, targets, done) {
+    const apply = function (ok) { targets.forEach(function (im) { if (ok) im.setAttribute('href', url); im.setAttribute('visibility', ok ? 'visible' : 'hidden'); }); if (done) done(ok); };
+    if (!url) { apply(false); return; }
     const c = coverCache[url];
     if (c && c.done) { apply(c.ok); return; }
-    coverState = 'loading';
     if (!c) {
       const rec = coverCache[url] = { done: false, ok: false, wait: [] };
       const img = new Image();
@@ -282,13 +433,20 @@ NOBODY.themes.tapedeck = (function () {
     }
     coverCache[url].wait.push(apply);
   }
-  function reel(cx, cy) {
-    return '<g class="reel"><circle class="hub" cx="' + cx + '" cy="' + cy + '" r="15"/><g class="spoke"><line x1="' + cx + '" y1="' + (cy - 13) + '" x2="' + cx + '" y2="' + (cy + 13) + '"/><line x1="' + (cx - 13) + '" y1="' + cy + '" x2="' + (cx + 13) + '" y2="' + cy + '"/><line x1="' + (cx - 9) + '" y1="' + (cy - 9) + '" x2="' + (cx + 9) + '" y2="' + (cy + 9) + '"/><line x1="' + (cx + 9) + '" y1="' + (cy - 9) + '" x2="' + (cx - 9) + '" y2="' + (cy + 9) + '"/></g><circle class="axle" cx="' + cx + '" cy="' + cy + '" r="4"/></g>';
+  // the label in the window follows what plays; the J-card follows the story (what plays, or what is being looked at)
+  function showCover(url) {
+    coverWant = url;
+    if (cassette) loadCover(url, [cassette.cover], null);
+  }
+  let jcardWant = null;
+  function showJcardCover(url) {
+    jcardWant = url;
+    if (!jcard) return;
+    coverState = url ? 'loading' : 'none';
+    loadCover(url, [jcard.cover], function (ok) { if (jcardWant !== url || !jcard) return; coverState = url ? (ok ? 'image' : 'painted') : 'none'; jcard.svg.classList.toggle('has-cover', !!ok); });
   }
   function sideName() { return document.documentElement.dataset.phosphor === 'amber' ? 'SIDE B' : 'SIDE A'; }
-  // a single's label is the track's: the title in the marker face, bpm and key under it, the side and the number above. an album
-  // plays as one tape (issue #88): the label and the spine read the album's title, the first half of its tracks is side A and the
-  // rest side B, the number counts within the side, and the track's own title moves to the small print
+  // an album plays as one tape (issue #88): the first half of its tracks is side A and the rest side B
   let tape = null;
   function tapeOf(slug) {
     const a = albumOf(slug);
@@ -296,7 +454,7 @@ NOBODY.themes.tapedeck = (function () {
     const i = list.indexOf(slug);
     if (!a || i < 0) return null;
     const half = Math.ceil(list.length / 2), b = i >= half;
-    return { album: a.slug, title: a.title || titleOf(a.slug), side: b ? 'B' : 'A', no: b ? i - half + 1 : i + 1, of: b ? list.length - half : half, n: list.length };
+    return { album: a.slug, title: a.title || titleOf(a.slug), side: b ? 'B' : 'A', no: b ? i - half + 1 : i + 1, of: b ? list.length - half : half, n: list.length, index: i + 1 };
   }
   TH.playing = function (slug) {
     if (!cassette || !slug) return;
@@ -307,19 +465,281 @@ NOBODY.themes.tapedeck = (function () {
     if (tape) {
       const no = String(tape.no).padStart(2, '0');
       cassette.label(tape.title, no + '  ' + titleOf(t.title || slug), 'SIDE ' + tape.side + ' - ' + no + ' of ' + String(tape.of).padStart(2, '0'));
-      if (jcard) jcard.spine(tape.title, 'A/B');
     } else {
       const num = S.num && S.num[slug] ? String(S.num[slug]).padStart(2, '0') : '--';
       cassette.label(titleOf(t.title || slug), meta + (t.model ? '  ' + t.model : ''), sideName() + ' - ' + num);
-      if (jcard) jcard.spine(titleOf(t.title || slug), 'single');
     }
     showCover(coverOf(slug));
-    // the label's lines are measured in the marker face; if it was still loading, measure again once it is in
+    if (vis) vis.setTrack(t);
+    // without the core's story hook the theme follows the deck itself: a track that starts playing is no longer "looked at"
+    if (!hasCoreStory() && inspecting === slug) inspecting = null;
+    renderStory();
+    renderQueue();
     if (!fontsFitted && document.fonts && document.fonts.load) { fontsFitted = true; document.fonts.load('24px "Permanent Marker"').then(function () { if (S.current && cassette) TH.playing(S.current); }, function () {}); }
   };
   let fontsFitted = false;
-  TH.catalogue = function () {};
-  TH.scheme = function () { if (S.current) TH.playing(S.current); };
+  TH.catalogue = function () { if (story) { renderQueue(); renderStory(); } };
+  TH.scheme = function () { if (visMod) makeVis(); if (S.current) TH.playing(S.current); };
+
+  /* ---- the story (issue #240): the J-card opened flat beside the player. what plays, unless a title was clicked: then that
+     one, with play now and play next, and the music does not change. the core's NOBODY.story and ctx.inspect drive it when
+     they exist; until then the theme reads the index itself and keeps its own "looking at" ---- */
+  let inspecting = null, storyTab = 'story';
+  function hasCoreStory() { return typeof NOBODY.story === 'function' && !!(ctx && ctx.inspect); }
+  function localStory(slug) {
+    const t = S.bySlug && S.bySlug[slug]; if (!t) return null;
+    const tp = tapeOf(slug);
+    return { slug: slug, title: t.title || titleOf(slug), asked: t.request || t.idea || '', why: t.why || '', prompt: t.prompt || '', lyrics: t.lyrics || null,
+      takes: t.takes || [], rejected: t.rejected || [], numbers: t.numbers || {}, checks: t.checks || {}, lineage: t.lineage || null, licence: t.licence || '',
+      album: tp ? tp.title : null, n: tp ? tp.index : null, of: tp ? tp.n : null,
+      bpm: t.bpm, key: t.key, seed: t.seed, model: t.model, duration: t.duration, project: t.project || '' };
+  }
+  // the core's story, when there is one, wins field by field; the index fills whatever it leaves out
+  function storyOf(slug) {
+    const base = localStory(slug); if (!base) return null;
+    let core = null;
+    if (typeof NOBODY.story === 'function') { try { core = NOBODY.story(slug); } catch (e) { core = null; } }
+    if (core) Object.keys(core).forEach(function (k) { if (core[k] != null && k !== 'takes') base[k] = core[k]; });
+    if (base.album && typeof base.album === 'object') { const a = base.album; base.album = a.title || titleOf(a.slug); base.n = a.n; base.of = a.of; }
+    if (base.lineage && !base.lineage.parent && !base.lineage.changed) base.lineage = null;
+    return base;
+  }
+  // the core's hook: called with the story to show and whether it is a look at another track
+  TH.story = function (info, opts) {
+    const slug = info && info.slug, was = inspecting;
+    inspecting = opts && opts.inspecting ? slug : null;
+    storyOpen = !(opts && opts.open === false);
+    renderStory();
+    renderQueue();
+    // on a phone the story is under the player: a look at another track brings it into view
+    if (inspecting && inspecting !== was && story && V.phone()) story.host.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
+  };
+  let storyOpen = true;
+  function inspect(slug) {
+    if (!slug || !S.bySlug[slug]) return;
+    if (ctx.inspect) ctx.inspect(slug);
+    else { inspecting = slug === S.current ? null : slug; renderStory(); renderQueue(); }
+  }
+  function uninspect() {
+    if (ctx.inspect) ctx.inspect(null);
+    else { inspecting = null; renderStory(); renderQueue(); }
+  }
+  function playNext(slug) {
+    if (ctx.playNext) { ctx.playNext(slug); return; }
+    // the old queue: `queue` puts a track at the head, a second time takes it out. never take it out from here
+    const q = ctx.queueList();
+    if (q[0] !== slug) ctx.queue(slug);
+    else ctx.print('already next: ' + slug, 'mid');
+  }
+  function makeStory() {
+    const host = h('section', 'td-side td-story');
+    host.setAttribute('aria-label', 'the story of the track');
+    const head = h('div', 'td-head');
+    const label = h('span', 'td-label label', 'THE STORY');
+    const back = btn('back to the tape', 'td-back', function () { uninspect(); }, 'show what is playing');
+    head.appendChild(label); head.appendChild(back);
+    host.appendChild(head);
+    const jc = makeJcard();
+    host.appendChild(jc.svg);
+    const title = h('div', 'td-story-title');
+    host.appendChild(title);
+    const facts = h('div', 'td-facts');
+    host.appendChild(facts);
+    const tabs = h('div', 'td-tabs'); tabs.setAttribute('role', 'tablist');
+    host.appendChild(tabs);
+    const body = h('div', 'td-tabbody'); body.setAttribute('role', 'tabpanel');
+    host.appendChild(body);
+    const acts = h('div', 'td-acts');
+    host.appendChild(acts);
+    return { host: host, label: label, back: back, jcard: jc, title: title, facts: facts, tabs: tabs, body: body, acts: acts, slug: null };
+  }
+  function renderStory() {
+    if (!story || !jcard) return;
+    const slug = inspecting || S.current;
+    const s = slug && S.state !== 'dead' ? storyOf(slug) : null;
+    const looking = !!(inspecting && inspecting !== S.current);
+    story.host.classList.toggle('looking', looking);
+    story.host.classList.toggle('folded', !storyOpen && !looking);
+    story.label.textContent = looking ? 'LOOKING AT' : (S.state === 'dead' ? 'NO TAPE' : 'NOW PLAYING');
+    story.back.hidden = !looking;
+    story.title.textContent = ''; story.facts.textContent = ''; story.tabs.textContent = ''; story.body.textContent = ''; story.acts.textContent = '';
+    if (!s) {
+      jcard.spine('no tape', '', ''); showJcardCover(null);
+      story.title.textContent = 'nothing in the deck';
+      story.body.appendChild(h('p', 'td-why', 'put a tape in: press play, or pick one from the rack.'));
+      story.slug = null;
+      return;
+    }
+    if (story.slug !== slug) storyTab = 'story';
+    story.slug = slug;
+    // the J-card: an album's spine reads the album, a single its own title
+    if (s.album) jcard.spine(s.album, 'A/B', String(s.n).padStart(2, '0') + ' of ' + String(s.of).padStart(2, '0'));
+    else jcard.spine(s.title, 'single', (s.bpm ? s.bpm + ' bpm' : '') + (s.key ? '  ' + s.key : ''));
+    showJcardCover(coverOf(slug));
+    story.title.textContent = s.title;
+    const fact = function (k, v) { if (v == null || v === '') return; const f = h('span', 'td-fact'); f.appendChild(h('b', 'label', k)); f.appendChild(document.createTextNode(' ' + v)); story.facts.appendChild(f); };
+    fact('bpm', s.bpm); fact('key', s.key); fact('len', s.duration ? ctx.fmt(s.duration) : null); fact('seed', s.seed); fact('tier', s.model);
+    if (s.album) fact('album', s.album + '  ' + s.n + '/' + s.of);
+    if (s.project) fact('project', s.project);
+    // paper tabs: the story, the prompt, the lyrics (when there are words), the takes, the numbers, the lineage (when it has one)
+    const tabsWanted = [['story', 'STORY'], ['prompt', 'PROMPT']];
+    if (s.lyrics) tabsWanted.push(['lyrics', 'LYRICS']);
+    tabsWanted.push(['takes', 'TAKES'], ['numbers', 'NUMBERS']);
+    if (s.lineage) tabsWanted.push(['lineage', 'LINEAGE']);
+    if (!tabsWanted.some(function (t) { return t[0] === storyTab; })) storyTab = 'story';
+    tabsWanted.forEach(function (t) {
+      const b = h('button', 'td-tab label' + (t[0] === storyTab ? ' on' : ''), t[1]); b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', t[0] === storyTab ? 'true' : 'false');
+      b.addEventListener('click', function (e) { e.stopPropagation(); storyTab = t[0]; renderStory(); });
+      story.tabs.appendChild(b);
+    });
+    const p = function (cls, text) { const e = h('p', cls, text); story.body.appendChild(e); return e; };
+    if (storyTab === 'story') {
+      if (s.asked) { const a = p('td-asked'); a.appendChild(h('b', 'td-k label', 'asked ')); a.appendChild(document.createTextNode(s.asked)); }
+      p('td-why', s.why || '(nobody wrote about this one yet.)');
+    } else if (storyTab === 'prompt') {
+      p('td-prompt', s.prompt || '(no prompt on file.)');
+    } else if (storyTab === 'lyrics') {
+      p('td-lyrics', s.lyrics);
+    } else if (storyTab === 'takes') {
+      p('', 'kept: ' + s.seed + ((s.takes || []).filter(function (x) { return x !== s.seed; }).length ? '   other takes: ' + s.takes.filter(function (x) { return x !== s.seed; }).join('  ') : ''));
+      if (s.rejected && s.rejected.length) {
+        p('td-k label', 'thrown out:');
+        s.rejected.forEach(function (r) { p('td-rej', String(r.seed) + '  ' + (r.reason || '')); });
+      } else p('', 'nothing thrown out.');
+    } else if (storyTab === 'numbers') {
+      const n = s.numbers || {}, c = s.checks || {};
+      const defs = [['tempo', 'tempo_bpm', ' bpm', 'tempo'], ['loudness', 'lufs', ' LUFS', 'loudness'], ['peak', 'peak_dbfs', ' dBFS', 'peak'], ['silence', 'silence_s', ' s', 'silence'],
+        ['brightness', 'brightness_pct', ' %', 'brightness'], ['boominess', 'boominess_pct', ' %', 'boominess'], ['onsets', 'onsets_per_s', '/s', 'onsets'], ['seam', 'seam_db', ' dB', 'seam'], ['words', 'words_pct', ' % read back', 'words']];
+      const tb = h('div', 'td-nums');
+      defs.forEach(function (d) {
+        if (n[d[1]] == null) return;
+        const v = typeof n[d[1]] === 'number' ? Math.round(n[d[1]] * 10) / 10 : n[d[1]];
+        const r = h('div', 'td-num'); r.appendChild(h('span', 'td-k label', d[0])); r.appendChild(h('span', '', v + d[2]));
+        r.appendChild(h('span', c[d[3]] === false ? 'td-bad' : 'td-ok', c[d[3]] === false ? 'over' : c[d[3]] === true ? 'ok' : ''));
+        tb.appendChild(r);
+      });
+      if (!tb.children.length) p('', 'no numbers on file.'); else story.body.appendChild(tb);
+    } else if (storyTab === 'lineage') {
+      const l = s.lineage || {};
+      const a = p('');
+      a.appendChild(h('b', 'td-k label', 'from '));
+      if (l.parent && S.bySlug[l.parent]) a.appendChild(btn(titleOf(l.parent), 'td-link', function () { inspect(l.parent); }, 'look at ' + l.parent));
+      else a.appendChild(document.createTextNode(l.parent || '?'));
+      if (l.seed != null) p('', 'same seed: ' + l.seed);
+      if (l.changed) p('', 'changed: "' + (l.changed.from || '') + '" to "' + (l.changed.to || '') + '"');
+      if (l.request) p('', 'asked: ' + l.request);
+    }
+    // the actions: a looked-at track offers to play; the playing one offers what the old page did
+    if (looking) {
+      story.acts.appendChild(btn('play now', 'td-big', function () { ctx.play(slug); }, 'play ' + slug + ' now'));
+      story.acts.appendChild(btn('play next', '', function () { playNext(slug); renderQueue(); }, 'put ' + slug + ' next'));
+      if (ctx.add) story.acts.appendChild(btn('add to queue', '', function () { ctx.add(slug); }, 'add ' + slug + ' to the end of your side'));
+      story.acts.appendChild(btn('remix', '', function () { ctx.remix(slug); }, 'remix ' + slug));
+    } else {
+      story.acts.appendChild(btn('remix this', 'td-big', function () { ctx.remix(slug); }, 'remix ' + slug));
+      story.acts.appendChild(btn('take it home', '', function (e, b) { if (NOBODY.st && NOBODY.st.take) NOBODY.st.take(slug, b); }, 'the recipe and the files'));
+      story.acts.appendChild(btn('copy seed', '', function () { if (NOBODY.st && NOBODY.st.copySeed) NOBODY.st.copySeed(slug); }));
+      story.acts.appendChild(btn('copy prompt', '', function () { if (NOBODY.st && NOBODY.st.copyPrompt) NOBODY.st.copyPrompt(slug); }));
+    }
+  }
+
+  /* ---- the running order (issue #240): an index card. side A is yours, in your order; side B is the rotation. with the
+     core's queue (S.mine, ctx.move/remove/clear/playNext) lines on side A move up and down, drag, and drop out; until then
+     side B is the station's queue and its `+` puts a line next ---- */
+  let queueData = null;
+  TH.queue = function (list) {
+    if (list && (list.mine || list.rotation)) queueData = { mine: (list.mine || []).slice(), rotation: (list.rotation || []).slice(), current: list.current };
+    else queueData = null;
+    renderQueue();
+  };
+  function queueNow() {
+    if (queueData) return queueData;
+    const mine = ctx.mine ? ctx.mine() : [];
+    const rot = ctx.rotationList ? ctx.rotationList() : (ctx.queueList ? ctx.queueList() : []).filter(function (s) { return mine.indexOf(s) < 0; });
+    return { mine: mine.slice(), rotation: rot.slice(0, 12), current: S.current };
+  }
+  function makeRunOrder() {
+    const host = h('section', 'td-side td-order');
+    host.setAttribute('aria-label', 'the running order');
+    const head = h('div', 'td-head');
+    head.appendChild(h('span', 'td-label label', 'RUNNING ORDER'));
+    const clear = btn('clear yours', 'td-clear', function () { if (ctx.clear) ctx.clear(); }, 'take your picks off; the rotation stays');
+    head.appendChild(clear);
+    host.appendChild(head);
+    const now = h('div', 'td-q-now');
+    host.appendChild(now);
+    const aHead = h('div', 'td-side-head'); aHead.appendChild(h('span', 'td-k label', 'SIDE A')); aHead.appendChild(h('span', '', 'yours'));
+    host.appendChild(aHead);
+    const a = h('ol', 'td-q td-q-mine');
+    host.appendChild(a);
+    const bHead = h('div', 'td-side-head'); bHead.appendChild(h('span', 'td-k label', 'SIDE B')); bHead.appendChild(h('span', '', 'then the rotation'));
+    host.appendChild(bHead);
+    const b = h('ol', 'td-q td-q-rot');
+    host.appendChild(b);
+    return { host: host, clear: clear, now: now, a: a, b: b };
+  }
+  function renderQueue() {
+    if (!runOrder || !ctx || !S.bySlug) return;
+    const q = queueNow();
+    const canMove = !!ctx.move, canDrop = !!ctx.remove;
+    runOrder.clear.hidden = !(ctx.clear && q.mine.length);
+    runOrder.now.textContent = '';
+    if (S.current && S.bySlug[S.current]) {
+      runOrder.now.appendChild(h('span', 'td-k label', playingNow() ? 'ON' : 'IN'));
+      runOrder.now.appendChild(btn(titleOf(S.bySlug[S.current].title || S.current), 'td-link td-q-title', function () { uninspect(); }, 'the story of what plays'));
+    }
+    const line = function (slug, i, mine) {
+      const t = S.bySlug[slug]; if (!t) return null;
+      const li = h('li', 'td-qline' + (slug === inspecting ? ' looked' : ''));
+      li.dataset.slug = slug;
+      li.appendChild(h('span', 'td-qn', String(i + 1).padStart(2, '0')));
+      li.appendChild(btn(titleOf(t.title || slug), 'td-link td-q-title', function () { inspect(slug); }, 'the story of ' + slug));
+      li.appendChild(h('span', 'td-qlen', ctx.fmt(t.duration)));
+      const tools = h('span', 'td-qtools');
+      if (mine) {
+        if (canMove) {
+          const up = btn('↑', 'td-qb', function () { ctx.move(slug, Math.max(0, i - 1)); }, 'move up'); up.disabled = i === 0; tools.appendChild(up);
+          const dn = btn('↓', 'td-qb', function () { ctx.move(slug, i + 1); }, 'move down'); dn.disabled = i === q.mine.length - 1; tools.appendChild(dn);
+        }
+        if (canDrop) tools.appendChild(btn('x', 'td-qb', function () { ctx.remove(slug); }, 'take it off your side'));
+      } else {
+        tools.appendChild(btn('+', 'td-qb', function () { playNext(slug); renderQueue(); }, 'put it next'));
+      }
+      li.appendChild(tools);
+      if (mine && canMove) dragLine(li, slug);
+      return li;
+    };
+    runOrder.a.textContent = ''; runOrder.b.textContent = '';
+    q.mine.forEach(function (s, i) { const l = line(s, i, true); if (l) runOrder.a.appendChild(l); });
+    if (!q.mine.length) runOrder.a.appendChild(h('li', 'td-qempty', ctx.playNext ? 'nothing of yours yet. + on side B, or play next on a story, puts it here.' : 'your picks and the rotation share one list for now. + puts a line next.'));
+    q.rotation.slice(0, 12).forEach(function (s, i) { const l = line(s, i, false); if (l) runOrder.b.appendChild(l); });
+    if (!q.rotation.length) runOrder.b.appendChild(h('li', 'td-qempty', 'the rotation refills itself. nobody stops.'));
+  }
+  // drag a line of side A by its number: the line lifts, a rule shows where it lands, the drop asks the station to move it
+  function dragLine(li, slug) {
+    const grip = li.querySelector('.td-qn');
+    grip.classList.add('grip'); grip.title = 'drag to move';
+    grip.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      const lines = [].slice.call(runOrder.a.querySelectorAll('.td-qline'));
+      const from = lines.indexOf(li);
+      let to = from;
+      li.classList.add('lifted');
+      try { grip.setPointerCapture(e.pointerId); } catch (x) {}
+      const move = function (ev) {
+        to = lines.length - 1;
+        for (let i = 0; i < lines.length; i++) { const r = lines[i].getBoundingClientRect(); if (ev.clientY < r.top + r.height / 2) { to = i; break; } }
+        lines.forEach(function (l, i) { l.classList.toggle('drop-before', i === to && to < from); l.classList.toggle('drop-after', i === to && to > from); });
+      };
+      const up = function () {
+        grip.removeEventListener('pointermove', move); grip.removeEventListener('pointerup', up); grip.removeEventListener('pointercancel', up);
+        li.classList.remove('lifted'); lines.forEach(function (l) { l.classList.remove('drop-before', 'drop-after'); });
+        if (to !== from) ctx.move(slug, to);
+      };
+      grip.addEventListener('pointermove', move); grip.addEventListener('pointerup', up); grip.addEventListener('pointercancel', up);
+    });
+  }
+  TH.nextUp = function () { renderQueue(); };
 
   /* ---- widgets ---- */
   TH.stationName = function (button) { button.textContent = 'NOBODY FM'; };
@@ -335,20 +755,21 @@ NOBODY.themes.tapedeck = (function () {
     if (head) head.style.left = pct.toFixed(2) + '%';
     if (time) time.textContent = phone ? fmt(c) + '/' + fmt(d) : fmt(c) + ' / ' + fmt(d);
     if (cassette) cassette.tape(d ? c / d : 0);
+    if (counter) counter.set(c);
     if (view !== 'home') { const bar = hdrBarEl.querySelector('i'); if (bar) bar.style.width = pct.toFixed(2) + '%'; }
   };
   TH.progressHit = function (progressEl, x) { const rail = progressEl.querySelector('.rail') || progressEl, r = rail.getBoundingClientRect(); return Math.max(0, Math.min(1, (x - r.left) / r.width)); };
-  // the dial is a strip of frequencies under a red needle, the radio side of the deck
+  // the dial: a strip of frequencies under a red needle, the radio side of the player
   function makeDialStrip(host) {
     host.textContent = '';
-    const strip = document.createElement('div'); strip.className = 'dial-strip';
+    const strip = h('div', 'dial-strip');
     let ticks = '', labels = '';
     for (let i = 0; i <= 110; i++) ticks += (i % 5 === 0) ? '|' : '.';
     for (let k = 0; k <= 22; k++) labels += (86 + k).toFixed(1) + ' ';
-    const t = document.createElement('pre'); t.textContent = ticks; strip.appendChild(t);
-    const l = document.createElement('pre'); l.className = 'labels'; l.textContent = labels; strip.appendChild(l);
+    strip.appendChild(h('pre', '', ticks));
+    strip.appendChild(h('pre', 'labels', labels));
     host.appendChild(strip);
-    const read = document.createElement('span'); read.className = 'dial-read'; host.appendChild(read);
+    const read = h('span', 'dial-read'); host.appendChild(read);
     return {
       set: function (f, locked, note) {
         const ch = V.fontPx() * 0.6, w = host.clientWidth || 600;
@@ -359,41 +780,32 @@ NOBODY.themes.tapedeck = (function () {
     };
   }
   TH.dial = function (dialEl, f, locked, note) { if (!dialStrip) dialStrip = makeDialStrip(dialEl); dialStrip.set(f, locked, note); };
-  // the knob of 12.14 stays as decoration beside the shared fader (volume.js, 12.0 controls): ten ticks, a cream pointer
-  // that follows the level; it takes no click, the fader does
-  function makeKnob(host) {
+  // the thumbwheel beside the shared fader (12.0 controls): a ribbed wheel edge whose ribs roll with the level; it takes no click
+  function makeWheel(host) {
     host.textContent = '';
-    const svg = svgEl('svg', { viewBox: '0 0 100 100', 'aria-hidden': 'true' });
-    const ticks = [];
-    for (let i = 0; i < 10; i++) {
-      const a = angleOf(i + 1);
-      const l = svgEl('line', { class: 'knob-tick', x1: 50 + Math.cos(a) * 44, y1: 50 + Math.sin(a) * 44, x2: 50 + Math.cos(a) * 49, y2: 50 + Math.sin(a) * 49 });
-      svg.appendChild(l); ticks.push(l);
-    }
-    svg.appendChild(svgEl('circle', { class: 'knob-body', cx: 50, cy: 50, r: 36 }));
-    const pointer = svgEl('line', { class: 'knob-pointer', x1: 50, y1: 50, x2: 50, y2: 20 });
-    svg.appendChild(pointer);
+    const svg = svgEl('svg', { viewBox: '0 0 26 44', 'aria-hidden': 'true' });
+    svg.innerHTML = '<rect class="wh-slot" x="0" y="0" width="26" height="44" rx="4"/><rect class="wh-body" x="4" y="3" width="18" height="38" rx="7"/><g class="wh-ribs"></g><rect class="wh-shade" x="4" y="3" width="18" height="38" rx="7"/>';
+    const ribs = svg.querySelector('.wh-ribs');
     host.appendChild(svg);
     return {
       set: function (v, muted) {
-        const a = angleOf(v);
-        pointer.setAttribute('x2', (50 + Math.cos(a) * 28).toFixed(1)); pointer.setAttribute('y2', (50 + Math.sin(a) * 28).toFixed(1));
-        ticks.forEach(function (t, i) { t.classList.toggle('lit', i < v); });
+        ribs.textContent = '';
+        const off = (v % 1.5) / 1.5 * 6;
+        for (let y = 3 + off; y < 41; y += 6) ribs.appendChild(svgEl('line', { x1: 5, x2: 21, y1: y.toFixed(1), y2: y.toFixed(1) }));
         host.classList.toggle('muted', !!muted);
       }
     };
   }
-  function angleOf(v) { return Math.PI * 0.75 + v / 10 * Math.PI * 1.5; }
   TH.volume = function (decoEl, v, muted) {
-    if (!knob || !decoEl.querySelector('svg')) knob = makeKnob(decoEl);
-    knob.set(v, muted);
+    if (!wheel || !decoEl.querySelector('svg')) wheel = makeWheel(decoEl);
+    wheel.set(v, muted);
   };
-  // dead air: an empty cassette on the shelf, its reels turning slowly (there is nothing on it)
+  // dead air: an empty cassette behind the window, its reels turning slowly (there is nothing on it)
   TH.towerStart = function (hostEl, staticEl) {
     if (!towerCassette || towerCassette.host.parentNode !== hostEl) {
       towerCassette = makeCassette();
       towerCassette.host.classList.remove('tx-widget');
-      towerCassette.label('no tape', 'nothing on the shelf yet', 'SIDE A');
+      towerCassette.label('no tape', 'nothing in the rack yet', 'SIDE A');
       towerCassette.tape(0);
       hostEl.replaceChildren(towerCassette.host);
     }
@@ -403,11 +815,12 @@ NOBODY.themes.tapedeck = (function () {
   TH.towerStop = function () {};
   TH.towerState = function () { return 'an empty cassette, reels turning slowly'; };
 
-  /* ---- the card's analyser (12.14): warm bars, orange at the foot and lamp at the top, cream peaks; the scope in cream ---- */
-  function colours() { return { orange: token('--orange'), lamp: token('--lamp'), cream: token('--cream'), faint: token('--faint'), lampRgb: token('--lamp-rgb') }; }
-  function roundRect(g, x, y, w, h, r) {
-    r = Math.min(r, w / 2, h / 2);
-    g.beginPath(); g.moveTo(x + r, y); g.lineTo(x + w - r, y); g.quadraticCurveTo(x + w, y, x + w, y + r); g.lineTo(x + w, y + h - r); g.quadraticCurveTo(x + w, y + h, x + w - r, y + h); g.lineTo(x + r, y + h); g.quadraticCurveTo(x, y + h, x, y + h - r); g.lineTo(x, y + r); g.quadraticCurveTo(x, y, x + r, y); g.closePath();
+  /* ---- the level meter (the card's analyser): a ladder of LEDs per band, green, then amber, then red at the top; the scope
+     is a green trace on a black inset ---- */
+  function colours() { return { led: token('--led'), amber: token('--led-amber'), red: token('--led-red'), off: token('--led-off'), trace: token('--trace') }; }
+  function roundRect(g, x, y, w, h2, r) {
+    r = Math.min(r, w / 2, h2 / 2);
+    g.beginPath(); g.moveTo(x + r, y); g.lineTo(x + w - r, y); g.quadraticCurveTo(x + w, y, x + w, y + r); g.lineTo(x + w, y + h2 - r); g.quadraticCurveTo(x + w, y + h2, x + w - r, y + h2); g.lineTo(x + r, y + h2); g.quadraticCurveTo(x, y + h2, x, y + h2 - r); g.lineTo(x, y + r); g.quadraticCurveTo(x, y, x + r, y); g.closePath();
   }
   let gainHold = 1;
   function autoGain(s) {
@@ -420,35 +833,25 @@ NOBODY.themes.tapedeck = (function () {
     if (!A.ctx2d) return;
     const c = colours(), g = A.ctx2d, W = A.W, H = A.H;
     g.clearRect(0, 0, W, H);
-    const phone = V.phone();
-    const cellW = V.fontPx() * 0.6, totalCols = Math.floor(W / cellW);
-    A.totalCols = totalCols;
-    const labelCols = phone ? 10 : 24;
-    const areaCols = Math.max(A.bands, totalCols - 2 - labelCols);
-    const areaW = Math.min(W - 2 * cellW, areaCols * cellW), x0 = 2 * cellW;
-    g.fillStyle = c.faint; g.fillRect(0, 0, 1, H);
+    const pad = 8, x0 = pad, areaW = W - pad * 2;
+    A.totalCols = Math.floor(W / (V.fontPx() * 0.6));
     if (A.mode === 'scope5') { drawScope5(g, c, x0, areaW, H); return; }
-    const per = areaW / A.bands, bw = Math.max(2, per * 0.66);
-    const grad = g.createLinearGradient(0, H, 0, 0); grad.addColorStop(0, c.orange); grad.addColorStop(1, c.lamp);
-    const rows = A.rows, cellH = H / rows;
+    const per = areaW / A.bands, bw = Math.max(2, per * 0.72);
+    const segs = 14, segH = (H - pad * 2) / segs, gap = Math.max(1, segH * 0.24);
     for (let b = 0; b < A.bands; b++) {
       const v = A.vals[b];
-      const cells = Math.min(rows, Math.floor(Math.pow(v, 0.8) * (rows + 0.99)));
-      const hgt = Math.max(0, Math.pow(v, 0.8) * H);
-      if (cells > A.peaks[b]) { A.peaks[b] = cells; A.peakAt[b] = now; }
-      else if (now - A.peakAt[b] > 150 && A.peaks[b] > 0) { A.peaks[b]--; A.peakAt[b] = now; }
+      const lit = Math.min(segs, Math.floor(Math.pow(v, 0.8) * (segs + 0.99)));
+      if (lit > A.peaks[b]) { A.peaks[b] = lit; A.peakAt[b] = now; }
+      else if (now - A.peakAt[b] > 180 && A.peaks[b] > 0) { A.peaks[b]--; A.peakAt[b] = now; }
       const x = x0 + b * per + (per - bw) / 2;
-      g.shadowColor = 'rgb(' + c.lampRgb.replace(/ /g, ',') + ',0.35)'; g.shadowBlur = 6;
-      g.fillStyle = grad;
-      if (hgt > 1) { if (A.flip) roundRect(g, x, 0, bw, hgt, 2); else roundRect(g, x, H - hgt, bw, hgt, 2); g.fill(); }
-      const pk = A.peaks[b];
-      if (pk > cells && pk <= rows) {
-        const y = A.flip ? pk * cellH - 2 : H - pk * cellH;
-        g.shadowBlur = 0; g.fillStyle = c.cream;
-        g.fillRect(x, y, bw, 2);
+      for (let s = 0; s < segs; s++) {
+        const on = s < lit || s === Math.min(segs, A.peaks[b]) - 1;
+        const col = s >= segs - 2 ? c.red : s >= segs - 5 ? c.amber : c.led;
+        const y = A.flip ? pad + s * segH : H - pad - (s + 1) * segH;
+        g.fillStyle = on ? col : c.off;
+        g.fillRect(x, y + gap / 2, bw, segH - gap);
       }
     }
-    g.shadowBlur = 0;
     A.baselineText(A.live);
     scopeLine(c);
   };
@@ -457,79 +860,141 @@ NOBODY.themes.tapedeck = (function () {
     const W = +scopeCanvas.dataset.w || 500, H = +scopeCanvas.dataset.h || 20, n = Math.max(32, Math.floor(W / 3));
     const s = A.samples(n), gn = autoGain(s), g = scopeCtx;
     g.clearRect(0, 0, W, H);
-    g.lineWidth = 1.2; g.strokeStyle = c.cream;
+    g.lineWidth = 1.4; g.strokeStyle = c.trace;
     g.beginPath();
-    for (let i = 0; i < n; i++) { const x = i / (n - 1) * W, y = H / 2 - s[i] * gn * (H / 2 - 1); if (i) g.lineTo(x, y); else g.moveTo(x, y); }
+    for (let i = 0; i < n; i++) { const x = i / (n - 1) * W, y = H / 2 - s[i] * gn * (H / 2 - 2); if (i) g.lineTo(x, y); else g.moveTo(x, y); }
     g.stroke();
   }
   function drawScope5(g, c, x0, areaW, H) {
     const n = Math.max(32, Math.floor(areaW / 2)), s = A.samples(n), gn = autoGain(s);
-    g.lineWidth = 1.5; g.strokeStyle = c.lamp;
+    g.lineWidth = 1.6; g.strokeStyle = c.trace;
     g.beginPath();
-    for (let i = 0; i < n; i++) { const x = x0 + i / (n - 1) * areaW, y = H / 2 - s[i] * gn * (H / 2 - 2); if (i) g.lineTo(x, y); else g.moveTo(x, y); }
+    for (let i = 0; i < n; i++) { const x = x0 + i / (n - 1) * areaW, y = H / 2 - s[i] * gn * (H / 2 - 4); if (i) g.lineTo(x, y); else g.moveTo(x, y); }
     g.stroke();
     A.baselineText(true);
     if (scopeCtx) scopeCtx.clearRect(0, 0, +scopeCanvas.dataset.w || 500, +scopeCanvas.dataset.h || 20);
   }
 
-  /* ---- the picture behind the page (12.14): 48 warm bars along the foot of the desk and the lamp breathing ---- */
+  /* ---- the scene behind the page: the bench light, and the needle's ballistics, every frame. under the hidden mode it is
+     the close-up: the window, the reels turning large, the VU needle and a row of ten level lamps ---- */
+  let listened = 0;
   function makeViz() {
     const canvas = document.createElement('canvas'); canvas.className = 'viz'; canvas.id = 'tapeViz'; canvas.setAttribute('aria-hidden', 'true');
     const g = canvas.getContext('2d');
-    const Z = { canvas: canvas, frames: 0, ms: 0, raf: 0, scale: 1, cost: 0, w: 0, h: 0, running: true, level: 0 };
-    Z.size = function () { const d = Math.min(devicePixelRatio || 1, 1.5) * Z.scale; Z.w = canvas.width = Math.round(innerWidth * d); Z.h = canvas.height = Math.round(innerHeight * d); };
+    const Z = { canvas: canvas, frames: 0, ms: 0, raf: 0, scale: 1, cost: 0, w: 0, h: 0, running: true, level: 0, last: 0, spin: 0 };
+    Z.size = function () { const d = Math.min(devicePixelRatio || 1, 1.5) * Z.scale; Z.w = canvas.width = Math.round(innerWidth * d); Z.h = canvas.height = Math.round(innerHeight * d); if (vis) vis.resize(Z.w, Z.h); };
     function frame(now) {
       if (!Z.running) return;
       Z.raf = requestAnimationFrame(frame);
-      if (document.hidden) return;
-      const t0 = performance.now(), w = Z.w, h = Z.h, rgb = token('--lamp-rgb').replace(/ /g, ',') || '255,180,95', org = token('--orange-rgb').replace(/ /g, ',') || '226,85,59';
-      g.clearRect(0, 0, w, h);
-      const live = S && S.onAir && A && A.v64, N = 48, bw = w / N;
-      let lvl = 0;
-      for (let i = 0; i < N; i++) {
-        let v = 0.04 + 0.03 * Math.sin(now / 900 + i * 0.5);
-        if (live) v = Math.max(v, A.v64[Math.min(63, Math.floor(Math.pow(i / N, 1.4) * 64))]);
-        lvl += v;
-        const bh = v * h * 0.5, x = i * bw;
-        const gr = g.createLinearGradient(0, h, 0, h - bh);
-        gr.addColorStop(0, 'rgba(' + org + ',0)'); gr.addColorStop(1, 'rgba(' + rgb + ',' + (0.12 + v * 0.3).toFixed(3) + ')');
-        g.fillStyle = gr; g.fillRect(x + bw * 0.14, h - bh, bw * 0.72, bh);
+      if (document.hidden) { Z.last = now; return; }
+      const t0 = performance.now(), w = Z.w, hh = Z.h;
+      const dt = Z.last ? Math.min(0.1, (now - Z.last) / 1000) : 0; Z.last = now;
+      const live = !!(S && S.onAir && A && playingNow());
+      const loud = live ? (A.loud || 0) : 0;
+      Z.level += (loud - Z.level) * 0.2;
+      // the needle: the loudness on a dB-like scale; at rest on the left stop when nothing plays
+      if (vu) vu.step(live ? Math.max(-20, Math.min(3, -20 + 23 * Math.pow(Math.min(1, loud / 0.5), 0.7))) : -22);
+      // the cells: four hours of play runs them down to the last bar; a reload puts fresh ones in
+      if (live) listened += dt;
+      if (cells) cells.set(Math.max(0.08, 1 - listened / (4 * 3600)));
+      if (live && !reduced) Z.spin += dt * 2.6;
+      g.clearRect(0, 0, w, hh);
+      if (document.body.classList.contains('ui-hidden')) { if (vis) visFrame(g, w, hh, live, now); else closeUp(g, w, hh, live); }
+      else {
+        // daylight from above: a soft pool that brightens a touch with the loudness
+        const lg = g.createRadialGradient(w * 0.5, -hh * 0.15, 0, w * 0.5, -hh * 0.15, hh * 1.1);
+        lg.addColorStop(0, 'rgba(255,255,250,' + (0.16 + Z.level * 0.2).toFixed(3) + ')'); lg.addColorStop(1, 'rgba(255,255,250,0)');
+        g.fillStyle = lg; g.fillRect(0, 0, w, hh);
       }
-      Z.level += (lvl / N - Z.level) * 0.2;
-      const lg = g.createRadialGradient(w * 0.92, 0, 0, w * 0.92, 0, h * (0.9 + Z.level * 0.9));
-      lg.addColorStop(0, 'rgba(' + rgb + ',' + (0.12 + Z.level * 0.35).toFixed(3) + ')'); lg.addColorStop(1, 'rgba(' + rgb + ',0)');
-      g.fillStyle = lg; g.fillRect(0, 0, w, h);
       Z.frames++;
       const ms = performance.now() - t0; Z.ms += (ms - Z.ms) * 0.1;
-      // lower the resolution on a machine that cannot keep up (the work of a frame, not the gap between frames)
       Z.cost = Z.cost * 0.9 + ms * 0.1;
       if (Z.cost > 6 && Z.scale > 0.4) { Z.scale -= 0.15; Z.size(); Z.cost = 0; }
+    }
+    // the close-up for the hidden mode: drawn here, on the canvas, because the page itself has faded
+    function closeUp(g2, w, hh, live) {
+      const u = Math.min(w / 16, hh / 10);
+      const cx = w / 2, cy = hh * 0.42;
+      g2.fillStyle = '#26292d'; roundRect(g2, cx - 7.6 * u, cy - 3.6 * u, 15.2 * u, 7.4 * u, u * 0.6); g2.fill();
+      const pl = g2.createLinearGradient(0, cy - 3.2 * u, 0, cy + 3.4 * u); pl.addColorStop(0, '#dfe2e4'); pl.addColorStop(1, '#b3b8bd');
+      g2.fillStyle = pl; roundRect(g2, cx - 7.2 * u, cy - 3.2 * u, 14.4 * u, 6.6 * u, u * 0.4); g2.fill();
+      g2.fillStyle = token('--orange') || '#ff5b1a'; g2.fillRect(cx - 7.2 * u, cy + 2.7 * u, 14.4 * u, 0.22 * u);
+      // the window and the two reels, the tape packs following the track
+      g2.fillStyle = '#1a1c1f'; roundRect(g2, cx - 6.8 * u, cy - 2.1 * u, 7.4 * u, 4.4 * u, u * 0.3); g2.fill();
+      const dk = ctx && ctx.deck, f = dk && dk.duration ? Math.max(0, Math.min(1, dk.currentTime / dk.duration)) : 0;
+      [[-4.9, 1 - f], [-1.5, f]].forEach(function (r, ri) {
+        const rx = cx + r[0] * u, ry = cy + 0.1 * u;
+        g2.fillStyle = '#3a2c20'; g2.beginPath(); g2.arc(rx, ry, (0.75 + 0.95 * r[1]) * u, 0, Math.PI * 2); g2.fill();
+        g2.fillStyle = '#f1e8d3'; g2.beginPath(); g2.arc(rx, ry, 0.62 * u, 0, Math.PI * 2); g2.fill();
+        g2.strokeStyle = '#2a2118'; g2.lineWidth = u * 0.12;
+        for (let k = 0; k < 3; k++) { const a = Z.spin * (ri ? 1.2 : 1) + k * Math.PI / 3; g2.beginPath(); g2.moveTo(rx - Math.cos(a) * 0.5 * u, ry - Math.sin(a) * 0.5 * u); g2.lineTo(rx + Math.cos(a) * 0.5 * u, ry + Math.sin(a) * 0.5 * u); g2.stroke(); }
+      });
+      // the meter, the needle where the card's needle is
+      const mx = cx + 1.2 * u, my = cy - 2.1 * u, mw = 5.6 * u, mh = 3.4 * u;
+      g2.fillStyle = '#f3e6c4'; roundRect(g2, mx, my, mw, mh, u * 0.2); g2.fill();
+      const px = mx + mw / 2, py = my + mh * 1.3, R = mh * 1.15;
+      g2.strokeStyle = '#2a2d31'; g2.lineWidth = u * 0.05; g2.beginPath(); g2.arc(px, py, R * 0.8, -Math.PI / 2 + angleOfDb(-20), -Math.PI / 2 + angleOfDb(0)); g2.stroke();
+      g2.strokeStyle = '#d6261c'; g2.lineWidth = u * 0.1; g2.beginPath(); g2.arc(px, py, R * 0.8, -Math.PI / 2 + angleOfDb(0), -Math.PI / 2 + angleOfDb(3)); g2.stroke();
+      const a = (vu ? vu.deg : -44) * Math.PI / 180;
+      g2.save(); g2.beginPath(); g2.rect(mx, my, mw, mh); g2.clip();
+      g2.strokeStyle = '#141517'; g2.lineWidth = u * 0.06; g2.beginPath(); g2.moveTo(px, py); g2.lineTo(px + Math.sin(a) * R, py - Math.cos(a) * R); g2.stroke(); g2.restore();
+      // ten level lamps over the window, from the 64 bands
+      for (let i = 0; i < 10; i++) {
+        let v = 0; if (live && A && A.v64) for (let k = 0; k < 6; k++) v = Math.max(v, A.v64[Math.min(63, i * 6 + k)]);
+        const on = v > 0.12 + i * 0.015;
+        g2.fillStyle = on ? (i > 7 ? '#ff3b2f' : i > 5 ? '#ffb02e' : '#57e36b') : '#4a4e53';
+        g2.beginPath(); g2.arc(cx - 6.4 * u + i * 0.66 * u, cy - 2.7 * u, u * 0.17, 0, Math.PI * 2); g2.fill();
+      }
     }
     Z.stop = function () { Z.running = false; cancelAnimationFrame(Z.raf); window.removeEventListener('resize', Z.size); };
     Z.size();
     window.addEventListener('resize', Z.size);
-    if (!reduced) Z.raf = requestAnimationFrame(frame);
+    Z.raf = requestAnimationFrame(frame);
     return Z;
   }
 
-  /* ---- the artwork for the media session (4.2): the cassette on the desk ---- */
+  /* ---- the visualiser module (issue #247): site/vis/tapedeck.js, the same face the game projects, draws the hidden mode here.
+     a file URL cannot import it; then the canvas's own close-up above stands in ---- */
+  let visMod = null, vis = null, visFreq = null, visTime = null;
+  function loadVis() {
+    if (visMod) { makeVis(); return; }
+    let url = null; try { url = new URL('vis/tapedeck.js', document.baseURI).href; } catch (e) { return; }
+    if (location.protocol === 'file:') return;
+    import(url).then(function (m) { visMod = m; if (viz) makeVis(); }, function () {});
+  }
+  function makeVis() {
+    if (vis) vis.destroy();
+    vis = visMod.create({ background: false, accent: token('--orange') || '#ff5b1a' });
+    if (viz) vis.resize(viz.w, viz.h);
+    if (S && S.current && S.bySlug[S.current]) vis.setTrack(S.bySlug[S.current]);
+  }
+  // the analyser's numbers as the bytes an AnalyserNode would give (the module takes what the game takes)
+  function visFrame(g, w, hh, live, now) {
+    if (!visFreq) { visFreq = new Uint8Array(64); visTime = new Uint8Array(256); }
+    if (live && A && A.v64) {
+      for (let i = 0; i < 64; i++) visFreq[i] = Math.max(0, Math.min(255, Math.round(A.v64[i] * 255)));
+      const sm = A.samples(256);
+      for (let i = 0; i < 256; i++) visTime[i] = Math.max(0, Math.min(255, 128 + Math.round(sm[i] * 127)));
+    } else { visFreq.fill(0); visTime.fill(0); }
+    vis.draw(g, visFreq, visTime, now / 1000);
+  }
+
+  /* ---- the artwork for the media session (4.2): the player face-on ---- */
   TH.artwork = function () {
     try {
       const cv = document.createElement('canvas'); cv.width = 512; cv.height = 512;
       const g = cv.getContext('2d');
-      g.fillStyle = '#120d0a'; g.fillRect(0, 0, 512, 512);
-      const lg = g.createRadialGradient(470, 0, 0, 470, 0, 420); lg.addColorStop(0, 'rgba(255,180,95,.5)'); lg.addColorStop(1, 'rgba(255,180,95,0)');
-      g.fillStyle = lg; g.fillRect(0, 0, 512, 512);
-      g.save(); g.translate(256, 300); g.rotate(-0.04);
-      g.fillStyle = '#2a2119'; roundRect(g, -170, -105, 340, 210, 16); g.fill();
-      g.fillStyle = '#f1e8d3'; roundRect(g, -146, -86, 292, 104, 6); g.fill();
-      g.fillStyle = '#e2553b'; g.fillRect(-140, -80, 90, 90); g.fillStyle = '#dca834'; g.fillRect(-140, -16, 90, 8);
-      g.fillStyle = '#17110c'; g.beginPath(); g.moveTo(-90, 30); g.lineTo(90, 30); g.lineTo(110, 92); g.lineTo(-110, 92); g.closePath(); g.fill();
-      g.fillStyle = '#f1e8d3'; g.beginPath(); g.arc(-46, 58, 16, 0, Math.PI * 2); g.fill(); g.beginPath(); g.arc(46, 58, 16, 0, Math.PI * 2); g.fill();
-      g.fillStyle = '#2a2118'; g.font = '26px "Permanent Marker", cursive'; g.textBaseline = 'top'; g.fillText('nobody fm', -40, -70);
-      g.restore();
-      g.fillStyle = '#f1e8d3'; g.font = '800 54px "Barlow Condensed", sans-serif'; g.textBaseline = 'top'; g.fillText('NOBODY FM', 40, 60);
-      g.fillStyle = '#ffb45f'; g.font = '700 22px "Barlow Condensed", sans-serif'; g.fillText('88.8  THE TRANSMITTER NOBODY CAN FIND', 40, 122);
+      g.fillStyle = '#d6d0c2'; g.fillRect(0, 0, 512, 512);
+      ['#c9cdd1', '#c9cdd1', '#c9cdd1', '#c9cdd1', '#c9cdd1', '#ff5b1a'].forEach(function (c, i) { g.fillStyle = '#17191b'; g.fillRect(64 + i * 66, 96, 58, 40); g.fillStyle = c; g.fillRect(64 + i * 66, 88, 58, 36); });
+      g.fillStyle = '#26292d'; roundRect(g, 40, 120, 432, 300, 28); g.fill();
+      const pl = g.createLinearGradient(0, 140, 0, 400); pl.addColorStop(0, '#e1e4e6'); pl.addColorStop(1, '#b3b8bd');
+      g.fillStyle = pl; roundRect(g, 58, 138, 396, 264, 16); g.fill();
+      g.fillStyle = '#ff5b1a'; g.fillRect(58, 376, 396, 10);
+      g.fillStyle = '#1a1c1f'; roundRect(g, 80, 166, 200, 150, 10); g.fill();
+      g.fillStyle = '#f1e8d3'; g.beginPath(); g.arc(135, 245, 26, 0, Math.PI * 2); g.fill(); g.beginPath(); g.arc(225, 245, 26, 0, Math.PI * 2); g.fill();
+      g.fillStyle = '#f3e6c4'; roundRect(g, 300, 166, 136, 84, 6); g.fill();
+      g.strokeStyle = '#141517'; g.lineWidth = 3; g.beginPath(); g.moveTo(368, 266); g.lineTo(350, 180); g.stroke();
+      g.fillStyle = '#26292d'; g.font = '26px Michroma, sans-serif'; g.textBaseline = 'top'; g.fillText('NOBODY FM', 40, 444);
       return cv.toDataURL('image/png');
     } catch (e) { return null; }
   };
@@ -537,10 +1002,13 @@ NOBODY.themes.tapedeck = (function () {
   /* ---- what a report can read (12.0) ---- */
   TH.widget = function () { return cassette ? { kind: 'cassette', host: cassette.host } : null; };
   TH.state = function () {
-    return { widget: 'cassette', reels: document.body.classList.contains('is-playing') ? 'turning' : 'still', label: cassette ? cassette.titleText : '',
+    return { widget: 'cassette', reels: playingNow() ? 'turning' : 'still', label: cassette ? cassette.titleText : '',
       side: cassette ? cassette.svg.querySelector('.side').textContent : '', sub: cassette ? cassette.svg.querySelector('.sub').textContent : '',
       jcard: jcard ? { spine: jcard.spineText, cover: coverState, href: jcard.cover.getAttribute('href') || null } : null, cover: coverWant, tape: tape,
-      viz: viz ? { running: viz.running, frames: viz.frames, ms: +viz.ms.toFixed(1), scale: viz.scale } : null };
+      needle: vu ? +vu.pos.toFixed(1) : null, counter: counter ? counter.value : null, cells: cells ? +cells.charge.toFixed(3) : null,
+      story: story ? { slug: story.slug, looking: !!(inspecting && inspecting !== S.current), tab: storyTab, core: hasCoreStory() } : null,
+      order: runOrder ? { mine: [].map.call(runOrder.a.querySelectorAll('.td-qline'), function (l) { return l.dataset.slug; }), rotation: [].map.call(runOrder.b.querySelectorAll('.td-qline'), function (l) { return l.dataset.slug; }) } : null,
+      viz: viz ? { running: viz.running, frames: viz.frames, ms: +viz.ms.toFixed(1), scale: viz.scale } : null, vis: vis ? 'module' : (visMod ? 'loaded' : 'canvas') };
   };
   return TH;
 })();

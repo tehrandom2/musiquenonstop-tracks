@@ -24,16 +24,43 @@ behind the page came across, nothing else did. The station's voice, commands and
   into 200 RMS buckets; from a file URL, or until the decode lands, the analyser's loudness is written into
   the bucket under the head as the track plays and the unplayed part is a quiet guess. The four fat buttons
   are shown on every screen as the dock's icon buttons (masks in CSS; the text stays for a reader).
-- **Behind the page.** A 2D canvas: three aurora glows on an eighth-size soft layer, a liquid spectrum along
+- **Behind the page.** (Since issue #240 the show above stands in the middle of it; the floor and the ribbon below are what a page and the car view still get.) A 2D canvas: three aurora glows on an eighth-size soft layer, a liquid spectrum along
   the floor with a faint mirror at the top, an oscilloscope ribbon across the upper third, drifting dust,
   shockwaves and tracers that fire on the kick (onsets from spectral flux in the lowest eight bands against
   a running average). Nothing snaps: every value is eased with a frame-rate-independent rate, and with no
   signal the page runs on a synthetic spectrum the live one crossfades from. A slow machine draws it
   smaller rather than less often.
-- **The card.** Bars in the hue with a hot top and white peaks; a ribbon scope; the dial a strip of
+- **The card.** (Since issue #240 the bars and the scope are hidden; the show is the visualiser.) Bars in the hue with a hot top and white peaks; a ribbon scope; the dial a strip of
   frequencies under a white needle; the volume the shared fader (`volume.js`, design 12.0 controls) drawn as
   the dock's slider: the speaker glyph mutes, the accent fills the rail, a white handle; the
   counter in glowing display digits; dead air is an empty orbit turning in the card.
+
+## The show (issue #240)
+
+The owner loved the look and called the visualisation weak. The visualiser is now the centrepiece, drawn on the stage from the
+analyser's own numbers, and the card carries no bars (`interface()` answers `{ visualizer: false }`, design 12.0).
+
+- **Where.** A band between the header and NOW PLAYING: the halo in the middle, the story drawer on the left, the setlist drawer on
+  the right. With the interface hidden (`` ` ``) the halo, the floor and the rig take the whole window. On a phone the drawers fold to
+  two tabs under the halo.
+- **The halo.** The album's cover turning in a circle, ringed by 144 mirrored bars (72 bands, 40 Hz to 16 kHz, lows at the crown) with
+  white peak dots, the wave drawn as a circle inside the ring, the core lit by the bass, a shockwave on every kick.
+- **The floor.** The last 1.8 s of spectra as 36 ridge lines running at the viewer, the newest glowing at the front, each hiding
+  the ones behind it.
+- **The rig.** Seven lamps on the truss throw beams onto the floor; in a loud part three of them fan lasers that strobe on the kick.
+- **Scenes.** The scrubber's loudness profile says how big the moment is against the track's own quiet and loud: quiet, verse,
+  chorus (the halo throws a second ring). A big rise is a drop, and the stage cuts to white for a moment (not with reduced motion).
+- **The kick** comes from the wave (a low-pass over the frame's samples against its running average), not the smoothed spectrum.
+- **The story** (left): the playing track, or the one you clicked (`inspecting`, `back to what plays`, esc), with play now, play next,
+  + queue, remix, take it home, copy link, and tabs for why, prompt, lyrics, takes, numbers and lineage.
+- **The setlist** (right): queue (NOW, UP NEXT: YOURS with a grip to drag, up and x, THEN THE ROTATION with `auto`, next and +,
+  shuffle, clear mine), catalogue (a filter, every track, click for its story), albums (covers).
+- **The car view** is untouched: there the stage draws the floor and ribbon below, as before.
+- **One engine, two callers (issue #247).** The engine and the drawing of the halo, the floor and the rig are `../../vis/arena-core.js`, a plain
+  script with no DOM that `index.html` loads before this theme (so the page still works from a file URL). The theme feeds it the analyser's
+  bytes, the track's loudness profile as the scene and where to stand. `../../vis/arena.js` is the same core as an ES module for the studio
+  game: `info` (2D, 512 x 288) and `create()` with `draw(ctx, freqBytes, timeBytes, t)`, `setTrack`, `resize`, `destroy`, over the arena's
+  dark stage; all-zero bytes draw a slow idle look.
 
 ## The cover (issue #89)
 
@@ -58,7 +85,7 @@ behind the page came across, nothing else did. The station's voice, commands and
 
 ## Files
 
-`theme.css` (tokens, faces, glass, the icon buttons, the truss), `theme.js` (the scrubber, the profile, the stage,
+`theme.css` (tokens, faces, glass, the icon buttons, the truss), `theme.js` (the scrubber, the profile, the show's place and scene and its drawers, the stage,
 the cover's palette and banner, the truss, the strings). The fonts are in `../../vendor/` with their licences in `../../vendor/LICENSES.md`:
 Unbounded, Space Grotesk and JetBrains Mono, all SIL Open Font License 1.1, from the Google Fonts builds via
 the `@fontsource-variable` 5.2.6 packages.

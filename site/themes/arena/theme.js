@@ -8,11 +8,11 @@
 window.NOBODY = window.NOBODY || {};
 NOBODY.themes = NOBODY.themes || {};
 NOBODY.themes.arena = (function () {
-  const TH = { name: 'arena', blurb: 'a dark stage. one big scrubber, icon buttons, the page re-tints to the track.', swatch: ['#06060b', '#b98cff', '#ffffff'] };
+  const TH = { name: 'arena', blurb: 'a dark stage. the visualiser is the show: a halo round the cover, a floor of the last two seconds, the rig.', swatch: ['#06060b', '#b98cff', '#ffffff'] };
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TAU = Math.PI * 2, BUCKETS = 200;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
-  let stage = null, vignette = null, grain = null, scrub = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, chipWatch = null, orbit = null, truss = null;
+  let showEl = null, stage = null, vignette = null, grain = null, scrub = null, scopeCanvas = null, scopeCtx = null, dialStrip = null, chipWatch = null, orbit = null, truss = null;
   const hues = {}, profiles = {};
   // what the stage hangs and how it is lit (issue #89): the playing track's album, its cover, the palette sampled from it
   const look = { slug: null, album: null, coverUrl: null, kind: null, palette: null, source: 'track', h: 285, h2: 323, img: null, loaded: false, error: null };
@@ -60,6 +60,10 @@ NOBODY.themes.arena = (function () {
     document.body.insertBefore(vignette, document.body.firstChild);
     document.body.insertBefore(stage.cv, document.body.firstChild);
     truss = makeTruss(); document.body.appendChild(truss);
+    // the show's slot (issue #240): an empty, unclickable gap between the header and NOW PLAYING; the stage stands the halo in it
+    showEl = makeShow();
+    el('transmitter').parentNode.insertBefore(showEl, el('transmitter'));
+    drawStory(); drawSetlist();
     // the widget slot (12.0): the scrubber lives in the progress element, which the station hands to progress() anyway
     scrub = makeScrubber(el('progress'));
     el('scope').textContent = '';
@@ -78,7 +82,9 @@ NOBODY.themes.arena = (function () {
   };
   TH.dispose = function () {
     if (stage) { stage.stop(); stage.cv.remove(); stage = null; }
-    [vignette, grain, orbit, truss].forEach(function (n) { if (n) n.remove(); }); vignette = grain = orbit = truss = null;
+    [vignette, grain, orbit, truss, showEl].forEach(function (n) { if (n) n.remove(); }); vignette = grain = orbit = truss = showEl = null;
+    SH.show = SH.showTarget = 0; SH.eng = null;
+    DR.story = DR.setlist = DR.info = null;
     document.body.classList.remove('arena-album');
     look.slug = look.coverUrl = look.img = null;
     if (chipWatch) { chipWatch.disconnect(); chipWatch = null; }
@@ -113,6 +119,7 @@ NOBODY.themes.arena = (function () {
     });
     // the station installs the index's albums before this hook: hang what the playing track's album has
     if (S && S.current) setLook(S.current);
+    drawSetlist();
   };
   function hueOf(slug) { if (amberLocked()) return 36; if (slug && hues[slug] != null) return hues[slug]; return slug ? hashStr(slug) % 360 : 285; }
   // the page's two hues: the cover's dominant and accent when the playing track's album has art that could be read, the
@@ -126,7 +133,7 @@ NOBODY.themes.arena = (function () {
     document.documentElement.style.setProperty('--h2', String(Math.round(h2)));
     if (stage) { stage.targetHue = h; stage.targetHue2 = h2; stage.targetSpread = p ? 0 : 38; }
   }
-  TH.playing = function (slug) { setLook(slug); if (scrub) scrub.draw(); };
+  TH.playing = function (slug) { setLook(slug); if (scrub) scrub.draw(); if (!S.inspect) DR.info = null; drawStory(); drawSetlist(); };
   // the switch sound (issue #103): a low swell into the next track's colour, no hiss. the hue picks the root, one semitone
   // per 30 degrees up from A1; root, fifth and octave glide up a whole tone into it as a lowpass opens over the triangle
   TH.transitionSound = function (seconds, info) {
@@ -144,6 +151,10 @@ NOBODY.themes.arena = (function () {
     });
   };
   TH.scheme = function () { setHue(S.current); };
+  // the show is the visualizer (issue #240): the station's own bars stay off, in the card and over the hidden mode (12.0, #82),
+  // and the arena claims no key and no layout; with the interface hidden the show takes the whole window
+  TH.interface = function () { return { visualizer: false }; };
+  TH.hidden = function (on) { SH.showTarget = on ? 1 : 0; };
 
   /* ---- the cover (issue #89): the album's art hangs behind the stage as a soft banner, the stage takes its palette, the
      truss carries the album's title. a track with no album hangs nothing; an album with no art hangs the core's
@@ -417,7 +428,11 @@ NOBODY.themes.arena = (function () {
     return gainHold;
   }
   TH.frame = function (A_, S_, now) {
-    if (!A.ctx2d) return;
+    // the profile fills in under the head as the track plays (when it was not decoded); the bars near the head swell on the kick
+    if (S.current && ctx.deck && !ctx.deck.paused) recordLive(S.current, ctx.deck.currentTime, ctx.deck.duration, A.loud);
+    if (scrub && stage && stage.kick > 0.4) scrub.draw();
+    // the card's spectrum, baseline and scope are hidden (the show is the visualizer); they are drawn only if a page shows them
+    if (!A.ctx2d || !A.canvas.offsetParent) { A.baselineText(A.live); return; }
     const g = A.ctx2d, W = A.W, H = A.H, hue = stage ? stage.hue : hueOf(S.current);
     g.clearRect(0, 0, W, H);
     const phone = V.phone();
@@ -451,9 +466,6 @@ NOBODY.themes.arena = (function () {
     g.shadowBlur = 0;
     A.baselineText(A.live);
     scopeRibbon(hue);
-    // the profile fills in under the head as the track plays (when it was not decoded)
-    if (S.current && ctx.deck && !ctx.deck.paused) recordLive(S.current, ctx.deck.currentTime, ctx.deck.duration, A.loud);
-    if (scrub && stage && stage.kick > 0.4) scrub.draw(); // the bars near the head swell on the kick; timeupdate redraws the rest
   };
   function scopeRibbon(hue) {
     if (!scopeCtx) return;
@@ -475,6 +487,235 @@ NOBODY.themes.arena = (function () {
     if (scopeCtx) scopeCtx.clearRect(0, 0, +scopeCanvas.dataset.w || 500, +scopeCanvas.dataset.h || 20);
   }
 
+  /* ---- the show (issue #240): the visualiser is the centrepiece. the engine and the drawing (the halo, the floor, the rig) are
+     vis/arena-core.js, shared with the embeddable module for the game (issue #247, vis/arena.js) and loaded before this file. this
+     theme feeds it the analyser's bytes (or the station's guess in ghost mode and while tuning), hands it the track's loudness
+     profile as the scene, and tells it where to stand: the band between the header and NOW PLAYING, or the whole window with the
+     interface hidden. ---- */
+  const SH = { show: 0, showTarget: 0, eng: null };
+  function engine() {
+    if (!SH.eng && window.NOBODY_VIS && NOBODY_VIS.arena) SH.eng = NOBODY_VIS.arena.create({ reducedMotion: reduced, sampleRate: NOBODY.synth && NOBODY.synth.ctx ? NOBODY.synth.ctx.sampleRate : 48000 });
+    return SH.eng;
+  }
+  function showFeed(dt, Z, live) {
+    const E = engine(); if (!E) return;
+    if (NOBODY.synth && NOBODY.synth.ctx) E.setSampleRate(NOBODY.synth.ctx.sampleRate);
+    if (live && A.live && A.freq) E.feed(A.freq, A.time, dt);
+    else if (live) E.feed(null, null, dt, { bands: Z.bars, wave: Z.wave }); // a guess (ghost, tuning): the stage's own bars
+    else E.feed(null, null, dt);
+    if (E.newKick) Z.beat(E.newKick);
+    SH.show += (SH.showTarget - SH.show) * ease(dt, reduced ? 30 : 3);
+  }
+  // scenes by structure: the playing track's loudness profile says how big this moment is against the track's own quiet and
+  // loud (its 20th and 85th percentile buckets). quiet: the halo alone, low. the middle: the floor joins. loud: the rig's beams
+  // fan out, lasers strobe on the kick and the halo doubles. a big rise is a drop: the stage flashes white for a moment. a profile
+  // not decoded yet leaves the engine on loudness against its running average.
+  const scene = { src: 'none', lastB: -1, stats: {}, lastDrop: null };
+  // once per decoded track: the profile smoothed over about a second and a half, its quiet and loud, and the drops (a rise of
+  // half the track's range or more out of the last three seconds' low, at least eight seconds apart)
+  function percentiles(data, dur) {
+    const n = data.length, per = dur / n, win = Math.max(1, Math.round(0.75 / per)), sm = new Float32Array(n);
+    for (let b = 0; b < n; b++) { let t = 0, c = 0; for (let j = Math.max(0, b - win); j <= Math.min(n - 1, b + win); j++) { t += data[j]; c++; } sm[b] = t / c; }
+    const a = Array.prototype.slice.call(sm).sort(function (x, y) { return x - y; }), lo = a[Math.floor(n * 0.2)], hi = a[Math.floor(n * 0.85)];
+    const back = Math.max(2, Math.round(3 / per)), gap = Math.round(8 / per), drops = [];
+    for (let b = back; b < n; b++) {
+      let m = 1; for (let j = b - back; j < b; j++) m = Math.min(m, sm[j]);
+      if (sm[b] - m > Math.max(0.15, (hi - lo) * 0.5) && sm[b] >= hi * 0.9 && (!drops.length || b - drops[drops.length - 1] >= gap)) drops.push(b);
+    }
+    return { sm: sm, lo: lo, hi: hi, drops: drops };
+  }
+  function sceneUpdate(dt, live) {
+    const E = engine(); if (!E) return;
+    const slug = S && S.current, p = slug ? profiles[slug] : null, d = ctx && ctx.deck;
+    if (live && p && p.decoded && d && d.duration) {
+      const st = scene.stats[slug] || (scene.stats[slug] = percentiles(p.data, d.duration));
+      const b = clamp(Math.floor(d.currentTime / d.duration * BUCKETS), 0, BUCKETS - 1);
+      E.scene(clamp((st.sm[b] - st.lo) / Math.max(0.05, st.hi - st.lo), 0, 1), 'profile'); scene.src = 'profile';
+      if (b !== scene.lastB) {
+        if (b === scene.lastB + 1 && st.drops.indexOf(b) >= 0) { E.drop(); scene.lastDrop = +d.currentTime.toFixed(1); }
+        scene.lastB = b;
+      }
+    } else { E.scene(null); scene.src = live ? 'loudness' : 'none'; }
+  }
+
+  /* ---- one view (issue #240, design 12.23): two drawers either side of the halo. the story on the left (the track's page as
+     tabs: why, prompt, lyrics, takes, numbers, lineage; play, next, queue, remix, take it home, copy link), the setlist on the
+     right (now, yours in your order with a grip to drag and x to drop, then the rotation; the catalogue with a filter; the
+     albums as covers). every action is the station's own (ctx), so the log narrates it and the keys and commands do the same.
+     on a phone both fold to a tab under the halo. the drawers are opaque: no word sits on the stage ---- */
+  const DR = { story: null, setlist: null, tab: 'why', listTab: 'queue', filter: '', info: null, opts: { inspecting: false, open: true }, fold: null, drag: null };
+  function mk(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function btn(label, cls, fn, title) { const b = mk('button', 'ar-btn' + (cls ? ' ' + cls : ''), label); b.type = 'button'; if (title) b.title = title; b.addEventListener('click', function (e) { e.stopPropagation(); fn(e, b); }); return b; }
+  function titleOf(slug) { const t = S.bySlug[slug]; return t ? (t.title || slug) : slug; }
+  function makeShow() {
+    const show = mk('div', 'arena-show'); show.id = 'arenaShow'; show.setAttribute('data-theme-el', ''); // a theme's own band (12.23): the harness's order checks step over it
+    DR.story = mk('aside', 'ar-drawer ar-story'); DR.story.setAttribute('aria-label', 'the story of the track'); DR.story.dataset.story = '';
+    const halo = mk('div', 'ar-halo'); halo.setAttribute('aria-hidden', 'true');
+    DR.setlist = mk('aside', 'ar-drawer ar-setlist'); DR.setlist.setAttribute('aria-label', 'setlist: the queue, the catalogue, the albums');
+    // the phone's tabs under the halo: one drawer at a time, both folded at first
+    const tabs = mk('div', 'ar-phone-tabs');
+    ['story', 'setlist'].forEach(function (k) { tabs.appendChild(btn(k, '', function () { DR.fold = DR.fold === k ? null : k; foldSync(); })); });
+    show.appendChild(DR.story); show.appendChild(halo); show.appendChild(DR.setlist); show.appendChild(tabs);
+    foldSync();
+    return show;
+  }
+  function foldSync() {
+    if (!showEl && !DR.story) return;
+    const host = DR.story && DR.story.parentNode; if (!host) return;
+    host.dataset.fold = DR.fold || '';
+    host.querySelectorAll('.ar-phone-tabs .ar-btn').forEach(function (b) { b.classList.toggle('on', b.textContent === DR.fold); b.setAttribute('aria-pressed', b.textContent === DR.fold ? 'true' : 'false'); });
+  }
+  /* the story */
+  TH.story = function (info, opts) {
+    DR.info = info; DR.opts = opts || { inspecting: false, open: true };
+    if (info && DR.opts.inspecting && V.phone()) { DR.fold = 'story'; foldSync(); }
+    drawStory();
+  };
+  const TABS = [['why', 'why'], ['prompt', 'prompt'], ['lyrics', 'lyrics'], ['takes', 'takes'], ['numbers', 'numbers'], ['lineage', 'lineage']];
+  function drawStory() {
+    const d = DR.story; if (!d) return;
+    const info = DR.info || (S.current ? NOBODY.story(S.current) : null);
+    d.textContent = '';
+    const head = mk('div', 'ar-head');
+    head.appendChild(mk('span', 'label', DR.opts.inspecting ? 'INSPECTING' : 'THE STORY'));
+    if (DR.opts.inspecting) head.appendChild(btn('back to what plays', 'ar-small', function () { ctx.inspect(null); }, 'esc'));
+    else if (info) head.appendChild(btn(DR.opts.open === false ? 'open' : 'fold', 'ar-small', function () { NOBODY.st.storyKey(null); }, 'i'));
+    d.appendChild(head);
+    if (!info) { d.appendChild(mk('p', 'ar-empty', 'nothing on air yet. the story of each track shows here.')); return; }
+    d.appendChild(mk('div', 'ar-title', info.title));
+    const meta = [info.album ? info.album.title + ' ' + info.album.n + '/' + info.album.of : null, info.bpm ? info.bpm + ' bpm' : null, info.key || null, info.seed != null ? 'seed ' + info.seed : null].filter(Boolean).join('  ·  ');
+    const m = mk('div', 'ar-meta', meta);
+    if (info.bside) { m.appendChild(document.createTextNode('  ')); m.appendChild(mk('span', 'bside', 'b-side')); }
+    d.appendChild(m);
+    const acts = mk('div', 'ar-actions');
+    if (!info.playing) {
+      acts.appendChild(btn('play now', 'ar-hot', function () { ctx.play(info.slug); }));
+      acts.appendChild(btn('play next', '', function () { ctx.playNext(info.slug); }));
+      acts.appendChild(btn(info.queued ? 'drop' : '+ queue', '', function () { if (info.queued) ctx.remove(info.slug); else ctx.add(info.slug); }));
+    }
+    acts.appendChild(btn('remix', '', function () { ctx.remix(info.slug); }));
+    acts.appendChild(btn('take it home', '', function (e, b) { NOBODY.st.take(info.slug, b); }));
+    acts.appendChild(btn('copy link', '', function () { const u = location.origin + location.pathname + info.permalink; if (navigator.clipboard) navigator.clipboard.writeText(u).then(function () { ctx.print('copied: ' + u); }, function () { ctx.print('here it is: ' + u, 'amber'); }); }));
+    d.appendChild(acts);
+    if (DR.opts.open === false) return;
+    const tabs = mk('div', 'ar-tabs'); tabs.setAttribute('role', 'tablist');
+    const have = TABS.filter(function (t) { return t[0] !== 'lyrics' || info.lyrics; });
+    if (!have.some(function (t) { return t[0] === DR.tab; })) DR.tab = 'why';
+    have.forEach(function (t) { const b = btn(t[1], DR.tab === t[0] ? 'on' : '', function () { DR.tab = t[0]; drawStory(); }); b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', DR.tab === t[0] ? 'true' : 'false'); tabs.appendChild(b); });
+    d.appendChild(tabs);
+    const body = mk('div', 'ar-body'); body.setAttribute('role', 'tabpanel');
+    const P = function (text, cls) { body.appendChild(mk('p', cls || '', text)); };
+    if (DR.tab === 'why') { if (info.asked) P('asked: ' + info.asked, 'ar-asked'); P(info.why || 'no why written for this one.'); }
+    else if (DR.tab === 'prompt') P(info.prompt || 'no prompt kept.', 'ar-mono');
+    else if (DR.tab === 'lyrics') P(info.lyrics, 'ar-mono ar-pre');
+    else if (DR.tab === 'takes') {
+      P('kept: seed ' + info.seed + (info.model ? ', tier ' + info.model : '') + (info.date ? ', ' + info.date : ''));
+      if (info.takes.length) P('other takes: ' + info.takes.join(', '));
+      if (info.rejected.length) info.rejected.forEach(function (r) { P('thrown out: ' + r.seed + ', ' + r.reason, 'ar-mono'); });
+      else P('nothing thrown out.');
+    } else if (DR.tab === 'numbers') {
+      const tb = mk('div', 'ar-nums');
+      Object.keys(info.numbers).forEach(function (k) { const ok = info.checks[k.replace(/_.*$/, '')]; tb.appendChild(mk('span', 'k', k.replace(/_/g, ' '))); tb.appendChild(mk('span', 'v', String(info.numbers[k]) + (ok === false ? '  over' : ''))); });
+      body.appendChild(tb);
+    } else if (DR.tab === 'lineage') {
+      const L = info.lineage;
+      if (L.parent) { const r = mk('p', ''); r.appendChild(document.createTextNode('a remix of ')); r.appendChild(btn(titleOf(L.parent), 'ar-link', function () { ctx.inspect(L.parent); })); body.appendChild(r); }
+      if (L.changed) P('changed: ' + L.changed.from + ' to ' + L.changed.to, 'ar-mono');
+      const kids = L.children.filter(function (c) { return c !== info.slug; });
+      if (kids.length) { const r = mk('p', ''); r.appendChild(document.createTextNode('remixes: ')); kids.forEach(function (c) { r.appendChild(btn(titleOf(c), 'ar-link', function () { ctx.inspect(c); })); }); body.appendChild(r); }
+      if (!L.parent && !kids.length) P('no parent, no remixes yet. same seed, one changed clause: remix this.');
+      P(info.licence, 'ar-faint');
+    }
+    d.appendChild(body);
+  }
+  /* the setlist */
+  TH.queue = function () { drawSetlist(); if (DR.info) { DR.info = NOBODY.story(DR.info.slug); drawStory(); } };
+  function row(slug, kind, i) {
+    const r = mk('li', 'ar-row ' + kind); r.dataset.slug = slug;
+    if (kind === 'mine') { const g = mk('span', 'ar-grip', '::'); g.title = 'drag to move'; g.setAttribute('aria-hidden', 'true'); g.addEventListener('pointerdown', function (e) { dragStart(e, slug, r); }); r.appendChild(g); }
+    const t = S.bySlug[slug], a = t ? ctx.albumOf(t) : null, src = a ? ctx.cover(t, 400) : null;
+    const th = mk('span', 'ar-thumb'); if (src) th.style.backgroundImage = 'url("' + src + '")'; r.appendChild(th);
+    const name = btn(titleOf(slug), 'ar-name', function () { ctx.inspect(slug); }, 'show its story'); r.appendChild(name);
+    if (kind === 'rot') r.appendChild(mk('span', 'ar-tag label', 'auto'));
+    if (kind === 'mine') { if (i > 0) r.appendChild(btn('up', 'ar-small', function () { ctx.move(slug, i - 1); }, 'move up')); r.appendChild(btn('x', 'ar-small ar-x', function () { ctx.remove(slug); }, 'drop ' + slug)); }
+    if (kind === 'rot' || kind === 'cat') { r.appendChild(btn('next', 'ar-small', function () { ctx.playNext(slug); }, 'play next')); r.appendChild(btn('+', 'ar-small', function () { ctx.add(slug); }, 'add to yours')); }
+    if (kind === 'now') r.appendChild(mk('span', 'ar-tag label hot', 'on air'));
+    return r;
+  }
+  function drawSetlist() {
+    const d = DR.setlist; if (!d) return;
+    const keep = d.querySelector('.ar-filter'), hadFocus = keep && document.activeElement === keep;
+    d.textContent = '';
+    const head = mk('div', 'ar-head'); head.appendChild(mk('span', 'label', 'SETLIST'));
+    const tabs = mk('div', 'ar-tabs'); tabs.setAttribute('role', 'tablist');
+    [['queue', 'queue'], ['catalogue', 'catalogue'], ['albums', 'albums']].forEach(function (t) { const b = btn(t[1], DR.listTab === t[0] ? 'on' : '', function () { DR.listTab = t[0]; drawSetlist(); }); b.setAttribute('role', 'tab'); tabs.appendChild(b); });
+    head.appendChild(tabs); d.appendChild(head);
+    const body = mk('div', 'ar-body');
+    if (DR.listTab === 'queue') {
+      const mineL = ctx.mine(), rot = ctx.rotationList().slice(0, 12);
+      if (S.current) { body.appendChild(mk('div', 'ar-sub label', 'NOW')); const ul = mk('ul', 'ar-list'); ul.appendChild(row(S.current, 'now', 0)); body.appendChild(ul); }
+      const sub = mk('div', 'ar-sub label', 'UP NEXT: YOURS'); body.appendChild(sub);
+      const ul = mk('ul', 'ar-list ar-mine');
+      mineL.forEach(function (s, i) { ul.appendChild(row(s, 'mine', i)); });
+      body.appendChild(ul);
+      if (!mineL.length) body.appendChild(mk('p', 'ar-empty', 'nothing of yours yet. + on any track adds it here.'));
+      body.appendChild(mk('div', 'ar-sub label', 'THEN THE ROTATION'));
+      const ur = mk('ul', 'ar-list'); rot.forEach(function (s) { ur.appendChild(row(s, 'rot')); }); body.appendChild(ur);
+      const foot = mk('div', 'ar-actions');
+      foot.appendChild(btn(S.shuffle ? 'shuffle on' : 'shuffle off', '', function () { NOBODY.st.toggleShuffle(); drawSetlist(); }));
+      if (mineL.length) foot.appendChild(btn('clear mine', '', function () { ctx.clear(); }));
+      d.appendChild(body); d.appendChild(foot); return;
+    }
+    if (DR.listTab === 'catalogue') {
+      const f = mk('input', 'ar-filter'); f.type = 'search'; f.placeholder = 'filter the catalogue...'; f.value = DR.filter; f.setAttribute('aria-label', 'filter the catalogue');
+      f.addEventListener('input', function () { DR.filter = f.value; drawSetlist(); });
+      f.addEventListener('keydown', function (e) { e.stopPropagation(); if (e.key === 'Escape') f.blur(); });
+      body.appendChild(f);
+      const words = DR.filter.toLowerCase().split(/\s+/).filter(Boolean), ul = mk('ul', 'ar-list');
+      const list = S.tracks.filter(function (t) { const hay = (t.slug + ' ' + (t.title || '') + ' ' + (t.mood || '') + ' ' + (t.key || '') + ' ' + (t.bpm || '')).toLowerCase(); return words.every(function (w) { return hay.indexOf(w) >= 0; }); });
+      list.slice(0, 80).forEach(function (t) { ul.appendChild(row(t.slug, t.slug === S.current ? 'now' : 'cat')); });
+      body.appendChild(ul);
+      if (list.length > 80) body.appendChild(mk('p', 'ar-empty', list.length - 80 + ' more. narrow the filter.'));
+      if (!list.length) body.appendChild(mk('p', 'ar-empty', 'nothing matches.'));
+      d.appendChild(body);
+      if (hadFocus) { f.focus(); f.setSelectionRange(f.value.length, f.value.length); }
+      return;
+    }
+    const albums = ctx.albums(), grid = mk('div', 'ar-grid');
+    albums.forEach(function (a) {
+      const c = btn('', 'ar-album', function () { ctx.openAlbum(a.slug); }, 'open ' + (a.title || a.slug));
+      const img = mk('span', 'ar-cover'); img.style.backgroundImage = 'url("' + ctx.cover(a, 400) + '")'; c.appendChild(img);
+      c.appendChild(mk('span', 'ar-cap', (a.title || a.slug)));
+      grid.appendChild(c);
+    });
+    body.appendChild(grid);
+    if (!albums.length) body.appendChild(mk('p', 'ar-empty', 'no albums in this catalogue yet.'));
+    d.appendChild(body);
+  }
+  // drag to reorder yours: the row lifts, a line shows where it lands, the drop asks the station to move it
+  function dragStart(e, slug, rowEl) {
+    e.preventDefault();
+    const list = rowEl.parentNode, rows = Array.prototype.slice.call(list.children), line = mk('div', 'ar-insert');
+    rowEl.classList.add('lifted'); list.appendChild(line);
+    DR.drag = { slug: slug, to: rows.indexOf(rowEl) };
+    const place = function (y) {
+      let to = rows.length;
+      for (let i = 0; i < rows.length; i++) { const b = rows[i].getBoundingClientRect(); if (y < b.top + b.height / 2) { to = i; break; } }
+      const ref = rows[Math.min(to, rows.length - 1)].getBoundingClientRect(), top = list.getBoundingClientRect().top;
+      line.style.top = ((to < rows.length ? ref.top : ref.bottom) - top - 1) + 'px';
+      DR.drag.to = to;
+    };
+    place(e.clientY);
+    const move = function (ev) { place(ev.clientY); };
+    const up = function () {
+      window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up);
+      const from = rows.indexOf(rowEl), to = DR.drag.to > from ? DR.drag.to - 1 : DR.drag.to;
+      line.remove(); rowEl.classList.remove('lifted'); DR.drag = null;
+      if (to !== from) ctx.move(slug, to);
+    };
+    window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+  }
+
   /* ---- the stage (12.15): layers back to front, aurora glows on a soft eighth-size canvas, a liquid spectrum along
      the floor and a faint mirror at the top, an oscilloscope ribbon, dust, shockwaves and tracers on the kick.
      nothing snaps: every value is eased with a rate that does not depend on the frame rate ---- */
@@ -484,8 +725,8 @@ NOBODY.themes.arena = (function () {
     const soft = document.createElement('canvas'), sg = soft.getContext('2d'), SOFT = 8;
     const NB = 96, NW = 160;
     const Z = { cv: cv, w: 0, h: 0, dpr: 1, scale: 1, running: true, raf: 0, frames: 0, ms: 0, T: 0, last: 0, mix: 0,
-      bars: new Float32Array(NB), slow: new Float32Array(NB), wave: new Float32Array(NW), prevLow: new Float32Array(8),
-      bass: 0, mid: 0, high: 0, kick: 0, flux: 0, fluxAvg: 0, lastBeat: -10, hue: 285, targetHue: 285, hue2: 323, targetHue2: 323, spread: 38, targetSpread: 38,
+      bars: new Float32Array(NB), slow: new Float32Array(NB), wave: new Float32Array(NW), region: null, halo: null,
+      bass: 0, mid: 0, high: 0, kick: 0, lastBeat: -10, hue: 285, targetHue: 285, hue2: 323, targetHue2: 323, spread: 38, targetSpread: 38,
       tracers: [], sparks: [], shocks: [], dust: [], work: 0, slowN: 0, quickN: 0, times: [],
       banner: null, bannerIn: 0, light: 0, lights: [], gaps: new Float32Array(120), gapI: 0 };
     // the time between frames (the last 120), for the report: what a viewer gets, compositor included, not only the drawing
@@ -519,9 +760,10 @@ NOBODY.themes.arena = (function () {
     Z.beat = function (strength) {
       Z.kick = Math.max(Z.kick, strength); Z.lastBeat = Z.T;
       if (reduced) return;
-      Z.shocks.push({ x: Z.w / 2, y: Z.h * 0.35, r: 40, a: 0.25 + strength * 0.4 });
+      const H = Z.halo;
+      Z.shocks.push(H ? { x: H.cx, y: H.cy, r: H.R + H.len * 0.4, a: 0.3 + strength * 0.45 } : { x: Z.w / 2, y: Z.h * 0.35, r: 40, a: 0.25 + strength * 0.4 });
       const n = strength > 0.75 ? 3 : strength > 0.45 ? 2 : Math.random() < 0.6 ? 1 : 0;
-      for (let i = 0; i < n && Z.tracers.length < 24; i++) spawnTracer(strength);
+      if (!Z.region) for (let i = 0; i < n && Z.tracers.length < 24; i++) spawnTracer(strength);
     };
     function spawnTracer(strength) {
       const side = Math.floor(Math.random() * 4);
@@ -558,14 +800,9 @@ NOBODY.themes.arena = (function () {
       for (let i = 60; i < 90; i++) h += Z.bars[i];
       Z.bass += (b / 10 - Z.bass) * ease(dt, 10); Z.mid += (m / 30 - Z.mid) * ease(dt, 8); Z.high += (h / 30 - Z.high) * ease(dt, 8);
       // onsets from spectral flux in the kick's range against a running average, so a wall of sub bass is not one endless beat
-      if (live && A.live) {
-        let flux = 0;
-        for (let k = 0; k < 8; k++) { const v = A.v64[k], d = v - Z.prevLow[k]; if (d > 0) flux += d; Z.prevLow[k] = v; }
-        flux /= 8;
-        Z.fluxAvg += (flux - Z.fluxAvg) * ease(dt, 1.5);
-        if (flux > Z.fluxAvg * 1.9 + 0.012 && Z.T - Z.lastBeat > 0.2) Z.beat(clamp(0.35 + flux * 7, 0.35, 1));
-      } else if (live && Z.T - Z.lastBeat > 60 / (A.bpm || 72)) { Z.beat(0.4); }
-      else if (!live && Z.T - Z.lastBeat > (60 / 70) * 2) { Z.beat(0.22); }
+      // the kick: the engine's, from the wave (showFeed, next line); a guess pulses at the track's tempo; the idle look breathes in the engine
+      if (live && !A.live && Z.T - Z.lastBeat > 60 / (A.bpm || 72)) { Z.beat(0.4); }
+      sceneUpdate(dt, live); showFeed(dt, Z, live); // before the kick decays and the light is read from it
       Z.kick *= Math.exp(-dt * 5.5);
       Z.hue += hueDist(Z.hue, Z.targetHue) * ease(dt, 1.8);
       Z.hue2 += hueDist(Z.hue2, Z.targetHue2) * ease(dt, 1.8);
@@ -575,6 +812,7 @@ NOBODY.themes.arena = (function () {
       else if (Z.banner) Z.bannerIn = Math.min(1, Z.bannerIn + dt * (reduced ? 4 : 0.8));
       // the light on the banner: the bass holds it up, the kick hits it
       Z.light = clamp(0.25 * Z.bass + 0.85 * Z.kick, 0, 1);
+      
     }
     function step(dt) {
       for (const t of Z.tracers) {
@@ -631,8 +869,9 @@ NOBODY.themes.arena = (function () {
         gr.addColorStop(0, 'hsla(' + kh + ', 95%, 52%, ' + a + ')'); gr.addColorStop(0.55, 'hsla(' + (kh + 20) + ', 95%, 45%, ' + a * 0.35 + ')'); gr.addColorStop(1, 'hsla(' + hue + ', 95%, 40%, 0)');
         sg.fillStyle = gr; sg.fillRect(0, 0, w, h);
       }
-      const amp = h * 0.3;
-      for (const L of LAYERS) {
+      const amp = h * 0.3, R = Z.region;
+      if (!R) Z.halo = null;
+      if (!R) for (const L of LAYERS) {
         const pts = horizonPoints(Z[L[0]], w, h + 2, amp, 1);
         const lh = layerHue(L), gr = g.createLinearGradient(0, h - amp, 0, h); gr.addColorStop(0, 'hsla(' + lh + ', 100%, 60%, 0)'); gr.addColorStop(1, 'hsla(' + lh + ', 100%, 58%, ' + L[2] * dim + ')');
         sg.fillStyle = gr; sg.beginPath(); sg.moveTo(0, h + 2); smoothPath(sg, pts); sg.lineTo(w, h + 2); sg.closePath(); sg.fill();
@@ -646,14 +885,17 @@ NOBODY.themes.arena = (function () {
       g.globalCompositeOperation = 'lighter';
       // the horizon's lines
       g.lineWidth = 1.4;
-      for (const L of LAYERS) { const pts = horizonPoints(Z[L[0]], w, h + 2, amp, 1); g.strokeStyle = 'hsla(' + (layerHue(L) + 15) + ', 100%, 78%, ' + L[2] * 1.4 * dim + ')'; g.beginPath(); g.moveTo(pts[0], pts[1]); smoothPath(g, pts); g.stroke(); }
+      if (R) { drawShow(R, dim); g.globalCompositeOperation = 'lighter'; g.globalAlpha = 1; }
+      else for (const L of LAYERS) { const pts = horizonPoints(Z[L[0]], w, h + 2, amp, 1); g.strokeStyle = 'hsla(' + (layerHue(L) + 15) + ', 100%, 78%, ' + L[2] * 1.4 * dim + ')'; g.beginPath(); g.moveTo(pts[0], pts[1]); smoothPath(g, pts); g.stroke(); }
       // the ribbon across the upper third
+      if (!R) {
       const y0 = h * 0.26, ramp = h * (0.05 + Z.bass * 0.09 + Z.kick * 0.03);
       for (let layer = 2; layer >= 0; layer--) {
         g.beginPath();
         for (let j = 0; j < NW; j++) { const u = j / (NW - 1), win = Math.pow(Math.sin(Math.PI * u), 1.6), v = Z.wave[(j + layer * 7) % NW]; const x = u * w, y = y0 + layer * 4 + v * ramp * win * (1 - layer * 0.18); if (j === 0) g.moveTo(x, y); else g.lineTo(x, y); }
         if (layer === 0) { g.strokeStyle = 'hsla(' + hue + ', 100%, 65%, ' + 0.12 * dim + ')'; g.lineWidth = 7; g.stroke(); }
         g.strokeStyle = 'hsla(' + (hue + layer * 28) + ', 100%, ' + (72 - layer * 6) + '%, ' + (0.55 - layer * 0.15) * dim + ')'; g.lineWidth = 1.5; g.stroke();
+      }
       }
       // dust in four depth bands
       const pulse = 1 + Z.kick * 0.9 + Z.high * 0.8;
@@ -711,6 +953,24 @@ NOBODY.themes.arena = (function () {
       g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
     }
     function trussPx() { return Z.trussH; }
+    // where the show stands (issue #240): the open slot above the card on the home view, the whole window under the truss with
+    // the interface hidden, eased between the two; nothing (the floor and the ribbon of 12.15) on a page and in the car view
+    function region() {
+      if (document.documentElement.dataset.view === 'car') return null;
+      const full = { y: Z.trussH, h: Z.h - Z.trussH };
+      let r = null;
+      const halo = showEl && showEl.querySelector('.ar-halo');
+      if (halo && S && S.view === 'home') { const b = halo.getBoundingClientRect(); if (b.height > 40 && b.bottom > 0 && b.top < Z.h) r = { y: b.top, h: b.height, cx: b.left + b.width / 2, w: b.width }; }
+      const k = SH.show;
+      if (!r) return k > 0.02 ? Object.assign(full, { cx: Z.w / 2, w: Z.w }) : null;
+      return { y: r.y + (full.y - r.y) * k, h: r.h + (full.h - r.h) * k, cx: r.cx + (Z.w / 2 - r.cx) * k, w: r.w + (Z.w - r.w) * k };
+    }
+    // the show itself: the beams from the rig, the halo above the horizon, the floor in front of it
+    function drawShow(R, dim) {
+      const E = engine(); if (!E) return;
+      Z.halo = E.drawShow(g, { w: Z.w, h: Z.h, y: R.y, rh: R.h, cx: R.cx, rw: R.w, top: Z.trussH, show: SH.show, hue: Z.hue, hue2: Z.hue2, dim: dim,
+        cover: look.img && look.loaded ? look.img : null });
+    }
     const POOL = 96, pool = document.createElement('canvas'); pool.width = pool.height = POOL;
     const pg = pool.getContext('2d'), poolMask = pg.createRadialGradient(POOL / 2, POOL / 2, 0, POOL / 2, POOL / 2, POOL / 2);
     poolMask.addColorStop(0, '#000'); poolMask.addColorStop(0.45, 'rgba(0,0,0,.75)'); poolMask.addColorStop(1, 'rgba(0,0,0,0)');
@@ -733,6 +993,7 @@ NOBODY.themes.arena = (function () {
       const t0 = performance.now();
       Z.T += dt;
       analyse(dt); step(dt);
+      Z.region = region();
       draw(S && S.view === 'home' ? 1 : 0.65);
       adapt(performance.now() - t0);
     }
@@ -769,6 +1030,10 @@ NOBODY.themes.arena = (function () {
       // issue #89: where the colour came from, what hangs behind the stage, how hard the lamps hit it, what the truss says
       palette: { source: look.source, h: Math.round(look.h), h2: Math.round(look.h2), sampled: look.palette ? Object.assign({}, look.palette) : null },
       backdrop: { kind: look.kind, url: look.coverUrl, loaded: look.loaded, hung: !!(stage && stage.banner), in: stage ? +stage.bannerIn.toFixed(2) : 0, light: stage ? +stage.light.toFixed(3) : 0, lamps: stage ? stage.lights.map(function (v) { return +v.toFixed(3); }) : [] },
+      // issue #240: the show. where its numbers came from, how loud this moment is in the track, and the halo's place
+      show: Object.assign(SH.eng ? SH.eng.state() : { src: 'none' }, { hidden: +SH.show.toFixed(2), lastDrop: scene.lastDrop,
+        dropsAt: S && S.current && scene.stats[S.current] && ctx.deck.duration ? scene.stats[S.current].drops.map(function (b) { return +(b / BUCKETS * ctx.deck.duration).toFixed(1); }) : [],
+        halo: stage && stage.halo ? { cx: Math.round(stage.halo.cx), cy: Math.round(stage.halo.cy), r: Math.round(stage.halo.R) } : null }),
       truss: truss ? { title: (truss.querySelector('.truss-title') || {}).textContent || '', shown: !truss.querySelector('.truss-title').hidden, h: truss.offsetHeight } : null };
   };
   return TH;

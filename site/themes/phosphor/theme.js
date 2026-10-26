@@ -78,13 +78,17 @@ NOBODY.themes.phosphor = (function () {
     barrel();
     ambient();
     el('licence').textContent = TH.strings.licence;
+    mountDeck();
+    loadVis();
   };
   TH.dispose = function () {
+    unmountDeck();
     timers.forEach(clearInterval); timers = [];
     overlays.forEach(function (o) { o.remove(); }); overlays = [];
     if (defs) { defs.remove(); defs = null; }
     glass.classList.remove('barrel', 'dip', 'opening', 'closing');
     TH.towerStop();
+    visStop();
     if (hideHost) { hideHost.remove(); hideHost = null; }
     if (tower && tower.renderer) { try { tower.renderer.dispose(); } catch (e) {} tower = null; el('tower').textContent = ''; }
     el('towerStatic').textContent = '';
@@ -162,6 +166,8 @@ NOBODY.themes.phosphor = (function () {
 
   /* ---- transitions (12.0): the power line opens and closes the glass; the key blooms it ---- */
   TH.transition = function (from, to, info) {
+    // the deck belongs to the home view: a page (`info`), the guestbook and dead air hide it
+    if (dk.band) dk.band.hidden = to === 'page' || to === 'guestbook' || to === 'dead';
     // the track page is built after this call; the dithered cover goes in once it is there (issue #88)
     if (to === 'page') setTimeout(mountPage, 0);
     if (to === 'playing' && info && info.slug) mountNp(info.slug);
@@ -296,7 +302,44 @@ NOBODY.themes.phosphor = (function () {
   /* ---- hidden mode (12.0, issue #52): the glass keeps its scanlines and rolling bar; nothing else on it moves, so the dead-air tower
      is mounted behind them for as long as the interface is away, and handed back to dead air (if it is on) when it returns ---- */
   let hideHost = null;
+  /* the hidden mode's picture (issue #247): the same module the studio game projects, site/vis/phosphor.js, driven here by the
+     theme's own loop from the analyser's bytes. over http only (a file URL cannot import a module); when it is not there, the tower */
+  const vis = { mod: null, inst: null, canvas: null, raf: 0, frames: 0, freq: null, time: null };
+  function loadVis() {
+    if (vis.mod || ctx.fileMode() || typeof window.fetch !== 'function') return;
+    try { import(new URL('vis/phosphor.js', location.href).href).then(function (m) { vis.mod = m; }, function () {}); } catch (e) {}
+  }
+  function visStart(host) {
+    if (!vis.mod) return false;
+    const c = document.createElement('canvas'); c.className = 'hide-vis'; c.width = vis.mod.info.w; c.height = vis.mod.info.h;
+    host.appendChild(c); vis.canvas = c;
+    vis.inst = vis.mod.create({ sampleRate: (NOBODY.synth && NOBODY.synth.ctx && NOBODY.synth.ctx.sampleRate) || 48000, scheme: document.documentElement.dataset.phosphor === 'amber' ? 'amber' : 'green' });
+    if (ctx.S.current) vis.inst.setTrack(ctx.S.bySlug[ctx.S.current]);
+    const g = c.getContext('2d'), t0 = performance.now();
+    const loop = function () {
+      const an = NOBODY.synth && NOBODY.synth.analyser;
+      if (an) {
+        if (!vis.freq || vis.freq.length !== an.frequencyBinCount) { vis.freq = new Uint8Array(an.frequencyBinCount); vis.time = new Uint8Array(an.fftSize); }
+        an.getByteFrequencyData(vis.freq); an.getByteTimeDomainData(vis.time);
+      } else if (!vis.freq) { vis.freq = new Uint8Array(1024); vis.time = new Uint8Array(2048); }
+      vis.inst.draw(g, vis.freq, vis.time, (performance.now() - t0) / 1000); vis.frames++;
+      vis.raf = requestAnimationFrame(loop);
+    };
+    vis.raf = requestAnimationFrame(loop);
+    return true;
+  }
+  function visStop() {
+    cancelAnimationFrame(vis.raf); vis.raf = 0;
+    if (vis.inst) vis.inst.destroy(); vis.inst = null;
+    if (vis.canvas) vis.canvas.remove(); vis.canvas = null;
+  }
   TH.hidden = function (on) {
+    if (on && vis.mod) {
+      if (!hideHost) { hideHost = document.createElement('div'); hideHost.className = 'tower-wrap hide-tower'; hideHost.setAttribute('aria-hidden', 'true'); glass.insertBefore(hideHost, glass.firstChild); }
+      if (!vis.canvas) visStart(hideHost);
+      return;
+    }
+    if (!on) visStop();
     if (on) {
       if (!hideHost) {
         hideHost = document.createElement('div'); hideHost.className = 'tower-wrap hide-tower'; hideHost.setAttribute('aria-hidden', 'true');
@@ -330,6 +373,7 @@ NOBODY.themes.phosphor = (function () {
   TH.frame = function (A_, S, now) {
     if (!A.ctx2d) return;
     tick(now);
+    fallFrame(now);
     cellSetup();
     const c = colours(), g = A.ctx2d, W = A.W, H = A.rows * A.cell.h;
     // persistence (issue #54): the last frame is not wiped but thinned to 45 %, so a falling bar leaves a two-frame trail on the glass
@@ -720,7 +764,7 @@ NOBODY.themes.phosphor = (function () {
     art.heroSlug = a.slug;
     drawInto(b, url, 'hero');
   };
-  TH.playing = function (slug) { if (slug) mountNp(slug); };
+  TH.playing = function (slug) { if (slug) mountNp(slug); if (slug && vis.inst) vis.inst.setTrack(ctx.S.bySlug[slug]); };
   TH.catalogue = function () { if (ctx && ctx.S.current) mountNp(ctx.S.current); };
   TH.scheme = function () { if (art.np && art.slug) { art.np.url = undefined; mountNp(art.slug); } if (art.page && art.page.host.isConnected) drawInto(art.page, art.page.url, 'page'); if (art.hero && art.hero.host.isConnected) drawInto(art.hero, art.hero.url, 'hero'); };
   let resizeT = 0;
@@ -764,15 +808,172 @@ NOBODY.themes.phosphor = (function () {
     Object.keys(own).forEach(function (k) { if (!NOBODY.term.commands[k]) out[k] = own[k]; });
     return out;
   };
-  TH.help = function () { return [['art', 'the cover, full size, dithered'], ['art <album>', 'that album\'s cover']]; };
+  TH.help = function () { return [['art', 'the cover, full size, dithered'], ['art <album>', 'that album\'s cover'], ['queue pane', 'tab or click in: j k, u d, x, enter'], ['i', 'fold or open the story']]; };
 
   // the widget slot (12.0, issue #28): the dithered cover is the CRT's one widget in the transmitter card (issue #88)
   TH.widget = function () { return art.np ? { kind: 'dither', host: art.np.host } : null; };
   // frames and ms are the station's frame calls while on air (the same read the harness prints for the city), afterglow the blocks watched
   TH.state = function () {
     const blk = function (b) { return b ? { cols: b.cols, rows: b.rows, lit: b.lit, state: b.state || 'loading', url: b.url || null, mounted: b.host.isConnected } : null; };
-    return { widget: art.np ? 'dither' : null, barrel: glass && glass.classList.contains('barrel'), tower: TH.towerState(), frames: clock.frames, ms: +clock.ms.toFixed(1), afterglow: hosts.size,
+    return { deck: dk.band ? { tab: dk.tab, items: dk.items.length, mine: dk.mine, inspecting: !!(dk.flags && dk.flags.inspecting), fall: dk.rows.length } : null, widget: art.np ? 'dither' : null, barrel: glass && glass.classList.contains('barrel'), tower: vis.canvas ? 'vis module: site/vis/phosphor.js, ' + vis.frames + ' frames' : TH.towerState(), frames: clock.frames, ms: +clock.ms.toFixed(1), afterglow: hosts.size,
       art: { np: blk(art.np), page: blk(art.page), pageSlug: art.pageSlug, hero: blk(art.hero), heroSlug: art.heroSlug, printed: art.printed, dither: 'floyd-steinberg, 2 x 4 dots per cell' } };
   };
+
+  /* ---- one view and the queue (issue #240, design 12.23): a band under the transmitter with two panes, the story of the track
+     on air (or the one inspected) in tabs, and the queue as a list box: yours, then the rotation. the keys live in the pane, so
+     the CRT claims none of the station's: tab or click into the queue, then the arrows or j k move, u d reorder, x drops, enter
+     plays, esc leaves. and under the analyser, the waterfall: the spectrum in density glyphs, scrolling up the tube ---- */
+  const TABS = ['why', 'prompt', 'lyrics', 'takes', 'numbers', 'lineage'];
+  const FALL = ' .:-=+*#%@';
+  const dk = { band: null, tab: 'why', info: null, flags: null, cur: 0, items: [], mine: 0, fall: null, rows: [], fallAt: 0 };
+  function node(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function btn(text, fn, cls) { const b = node('button', 'bk' + (cls ? ' ' + cls : ''), text); b.type = 'button'; b.addEventListener('click', function (e) { e.stopPropagation(); fn(); }); return b; }
+  function mountDeck() {
+    const tx = el('transmitter'); if (!tx || dk.band) return;
+    const band = node('section', 'band card ph-deck'); band.id = 'phDeck';
+    band.setAttribute('data-theme-el', 'phosphor');
+    const story = node('div', 'ph-pane ph-story');
+    const sh = node('div', 'row'); sh.appendChild(node('span', 'label', 'STORY')); dk.insp = sh.appendChild(node('span', 'mid ph-insp', ''));
+    story.appendChild(sh);
+    dk.tabs = story.appendChild(node('div', 'ph-tabs'));
+    TABS.forEach(function (t) { const b = btn(t, function () { dk.tab = t; drawStory(); }); b.dataset.tab = t; dk.tabs.appendChild(b); });
+    dk.body = story.appendChild(node('div', 'ph-body'));
+    dk.acts = story.appendChild(node('div', 'ph-acts'));
+    const q = node('div', 'ph-pane ph-queue'); q.tabIndex = 0; q.setAttribute('aria-label', 'the queue. arrows or j k move, u d reorder, x drops, enter plays, esc leaves');
+    const qh = node('div', 'row'); qh.appendChild(node('span', 'label', 'QUEUE')); dk.qn = qh.appendChild(node('span', 'mid', ''));
+    q.appendChild(qh);
+    dk.list = q.appendChild(node('div', 'ph-list'));
+    dk.keys = q.appendChild(node('div', 'ph-keys mid', 'tab here: u d move  x drop  enter play'));
+    q.addEventListener('keydown', queueKey);
+    q.addEventListener('focus', function () { drawQueue(); });
+    q.addEventListener('blur', function () { drawQueue(); });
+    band.appendChild(story); band.appendChild(q);
+    // under MAKE A TRACK, which stays directly under NOW PLAYING (12.0, controls)
+    const mk = el('make') || tx;
+    mk.parentNode.insertBefore(band, mk.nextSibling);
+    dk.band = band; dk.q = q;
+    // the waterfall, under the scope
+    const sc = el('scope');
+    dk.fall = node('pre', 'ph-fall'); dk.fall.setAttribute('aria-hidden', 'true');
+    if (sc && sc.parentNode) sc.parentNode.insertBefore(dk.fall, sc.nextSibling);
+    dk.rows = [];
+    if (ctx.S.current) { const s = ctx.story(ctx.S.current); if (s) TH.story(s, { inspecting: false, open: true }); }
+    TH.queue(Object.assign(ctx.queueList().slice(0, 6), { mine: ctx.mine(), rotation: ctx.rotationList().slice(0, 12), current: ctx.current() }), ctx.current());
+  }
+  function unmountDeck() {
+    if (dk.band) dk.band.remove();
+    if (dk.fall) dk.fall.remove();
+    dk.band = dk.fall = null; dk.info = null; dk.items = []; dk.rows = [];
+  }
+  function fmtLen(d) { d = Math.round(d || 0); return Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0'); }
+  function line(text, cls) { const p = node('div', 'ph-line' + (cls ? ' ' + cls : '')); p.textContent = text; return p; }
+  // the story (12.23): the station hands the data; the CRT types it into the pane
+  TH.story = function (info, flags) {
+    dk.info = info; dk.flags = flags || {};
+    drawStory();
+  };
+  function drawStory() {
+    if (!dk.band || !dk.info) return;
+    const s = dk.info, f = dk.flags || {};
+    dk.band.classList.toggle('folded', f.open === false);
+    dk.insp.textContent = f.inspecting ? 'inspecting: ' + s.slug + '  esc: back to on air' : s.slug + (s.album ? '  ' + s.album.title + ' ' + s.album.n + '/' + s.album.of : '');
+    dk.insp.className = f.inspecting ? 'amber ph-insp' : 'mid ph-insp';
+    if (s.bside) { dk.insp.appendChild(document.createTextNode('  ')); dk.insp.appendChild(node('span', 'bside', 'b-side')); }
+    [].forEach.call(dk.tabs.children, function (b) { b.classList.toggle('on', b.dataset.tab === dk.tab); b.setAttribute('aria-pressed', b.dataset.tab === dk.tab ? 'true' : 'false'); });
+    const b = dk.body; b.textContent = '';
+    if (dk.tab === 'why') {
+      b.appendChild(line('asked: "' + (s.asked || '') + '"', 'mid'));
+      b.appendChild(line([s.date, s.model ? s.model + ' tier' : '', s.bpm ? s.bpm + ' bpm' : '', s.key, fmtLen(s.duration), s.voice ? 'voice' : 'instrumental'].filter(Boolean).join('   '), 'mid'));
+      b.appendChild(line(s.why || '(nobody wrote a why for this one.)'));
+    } else if (dk.tab === 'prompt') {
+      b.appendChild(line('seed ' + (s.seed != null ? s.seed : '-'), 'mid'));
+      b.appendChild(line(s.prompt || '(no prompt recorded)'));
+    } else if (dk.tab === 'lyrics') {
+      b.appendChild(line(s.lyrics || '(instrumental)', s.lyrics ? 'ph-pre' : 'mid'));
+    } else if (dk.tab === 'takes') {
+      if (!s.rejected.length && !s.takes.length) b.appendChild(line('none. first seed, first take.', 'mid'));
+      s.rejected.forEach(function (r) { const p = line('', ''); p.appendChild(node('span', 'struck', String(r.seed))); p.appendChild(node('span', 'mid', '  ' + (r.reason || ''))); b.appendChild(p); });
+      s.takes.forEach(function (t) { b.appendChild(line(t + '  kept as second take', 'mid')); });
+    } else if (dk.tab === 'numbers') {
+      const n = s.numbers || {}, c = s.checks || {};
+      const keys = Object.keys(n);
+      if (!keys.length) b.appendChild(line('no numbers recorded.', 'mid'));
+      keys.forEach(function (k) { const ck = k.replace(/_(bpm|pct|dbfs|s|db|per_s)$/, '').replace(/_per$/, ''); const ok = c[ck] === true ? 'ok' : c[ck] === false ? 'over' : ''; b.appendChild(line(k.replace(/_/g, ' ').padEnd(16) + String(n[k]).padStart(8) + '  ' + ok, c[ck] === false ? 'amber' : '')); });
+    } else if (dk.tab === 'lineage') {
+      const L = s.lineage || {};
+      if (L.parent) b.appendChild(line('from ' + L.parent + (L.changed ? ': "' + L.changed.from + '" -> "' + L.changed.to + '"' : '')));
+      (L.children || []).filter(function (c) { return c !== s.slug; }).forEach(function (c) { b.appendChild(line('+-- ' + c)); });
+      if (!L.parent && !(L.children || []).length) b.appendChild(line('no variations yet. same seed, one changed clause: remix this.', 'mid'));
+      b.appendChild(line('file ' + s.file, 'mid'));
+      b.appendChild(line(s.licence, 'mid'));
+    }
+    const a = dk.acts; a.textContent = '';
+    if (f.inspecting) {
+      a.appendChild(btn('> play', function () { ctx.play(s.slug); }));
+      a.appendChild(btn('play next', function () { ctx.playNext(s.slug); }));
+      a.appendChild(btn('+ queue', function () { ctx.add(s.slug); }));
+    }
+    a.appendChild(btn('remix this', function () { ctx.remix(s.slug); }));
+    a.appendChild(btn('take it home', function () { NOBODY.st.take(s.slug); }));
+    if (f.inspecting) a.appendChild(btn('back to on air', function () { ctx.inspect(null); }, 'dimmed'));
+  }
+  // the queue (12.23): the list carries yours and the rotation; the pane draws them as one list box
+  TH.queue = function (list) {
+    dk.mineList = (list && list.mine) || [];
+    dk.rot = (list && list.rotation) || [];
+    drawQueue();
+  };
+  function drawQueue() {
+    if (!dk.band) return;
+    const S = ctx.S, mine = dk.mineList || [], rot = dk.rot || [], focused = document.activeElement === dk.q;
+    dk.items = mine.concat(rot); dk.mine = mine.length;
+    dk.cur = Math.max(0, Math.min(dk.cur, dk.items.length - 1));
+    dk.qn.textContent = mine.length ? mine.length + ' yours' : 'yours: none';
+    dk.keys.textContent = focused ? 'j k move  u d reorder  x drop  enter play  esc' : 'tab or click here to arrange';
+    const L = dk.list; L.textContent = '';
+    const phone = ctx.phone();
+    if (!mine.length) L.appendChild(line('nothing of yours. q queues the highlighted row.', 'mid'));
+    dk.items.forEach(function (slug, i) {
+      if (i === dk.mine) L.appendChild(line('-- then the rotation --', 'mid'));
+      const t = S.bySlug[slug] || {};
+      const r = node('div', 'ph-qrow' + (i < dk.mine ? '' : ' rot') + (focused && i === dk.cur ? ' inv' : ''));
+      r.dataset.slug = slug;
+      r.appendChild(node('span', 'ph-qn', String(i + 1).padStart(2) + ' '));
+      r.appendChild(node('span', 'ph-qslug', slug));
+      if (!phone) r.appendChild(node('span', 'mid', ' ' + String(t.bpm || '').padStart(3) + ' ' + fmtLen(t.duration).padStart(5) + ' '));
+      r.appendChild(btn('x', function () { ctx.remove(slug); }, 'ph-x'));
+      r.addEventListener('click', function () { dk.cur = i; dk.q.focus(); drawQueue(); });
+      r.addEventListener('dblclick', function () { ctx.play(slug); });
+      L.appendChild(r);
+    });
+  }
+  function queueKey(e) {
+    const k = e.key, slug = dk.items[dk.cur];
+    let done = true;
+    if (k === 'ArrowDown' || k === 'j') dk.cur = Math.min(dk.items.length - 1, dk.cur + 1);
+    else if (k === 'ArrowUp' || k === 'k') dk.cur = Math.max(0, dk.cur - 1);
+    else if (k === 'u' && slug) { const i = Math.max(0, Math.min(dk.cur, dk.mine) - (dk.cur < dk.mine ? 1 : 0)); ctx.move(slug, i); dk.cur = i; }
+    else if (k === 'd' && slug) { const i = dk.cur < dk.mine ? Math.min(dk.mine - 1, dk.cur + 1) : dk.mine; ctx.move(slug, i); dk.cur = i; }
+    else if (k === 'x' && slug) ctx.remove(slug);
+    else if (k === 'Enter' && slug) ctx.play(slug);
+    else if (k === 'Escape') dk.q.blur();
+    else done = false;
+    if (!done) return;
+    e.preventDefault(); e.stopPropagation();
+    drawQueue();
+  }
+  // the waterfall: one row of density glyphs every 90 ms (360 with reduced motion), the newest at the foot
+  function fallFrame(now) {
+    if (!dk.fall || !A || !A.vals) return;
+    if (now - dk.fallAt < (reduced ? 360 : 90)) return;
+    dk.fallAt = now;
+    const phone = V.phone(), cols = phone ? 38 : 96, rows = phone ? 4 : 6, n = A.vals.length;
+    let s = '';
+    for (let i = 0; i < cols; i++) { const v = A.vals[Math.min(n - 1, Math.floor(i / cols * n))] || 0; s += FALL[Math.max(0, Math.min(9, Math.floor(Math.pow(v, 1.8) * 10)))]; }
+    dk.rows.push(s); while (dk.rows.length > rows) dk.rows.shift();
+    while (dk.rows.length < rows) dk.rows.unshift(' '.repeat(cols));
+    dk.fall.textContent = dk.rows.join('\n');
+  }
+
   return TH;
 })();

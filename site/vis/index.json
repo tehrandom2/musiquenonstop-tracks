@@ -1,0 +1,10 @@
+{
+  "about": "each theme's visualiser as an embeddable ES module (issue #247): export const info = {context, w, h}; export function create(opts) -> {draw(ctx, freqBytes, timeBytes, t), setTrack(entry), resize(w, h), destroy()}. the caller owns the loop. MIT.",
+  "themes": [
+    { "id": "phosphor", "title": "phosphor", "module": "phosphor.js" },
+    { "id": "city", "title": "city", "module": "city.js" },
+    { "id": "tapedeck", "title": "tape deck", "module": "tapedeck.js" },
+    { "id": "arena", "title": "arena", "module": "arena.js" },
+    { "id": "campfire", "title": "campfire", "module": "campfire.js" }
+  ]
+}

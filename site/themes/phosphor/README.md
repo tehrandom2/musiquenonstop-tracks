@@ -37,7 +37,24 @@ The default look until the owner flips `defaultTheme` in `../../config.js`.
   bar and the noise; the ASCII tower that mode mounts in `.hide-tower` gets the full bloom.
 - **Dead air.** The ASCII tower: three.js through `AsciiEffect` when the CDN answered, a static drawing
   when it did not.
-- **What the harness reads.** `state()` answers `barrel`, `tower`, `frames` and `ms` (the station's frame
+- **One view and the queue (issue #240, design 12.23).** A band under the transmitter with two panes split by a rail. The left is
+  the STORY of the track on air, or of the one inspected (a click on a row, a `#/track/` link, `i` on a highlighted row): tabs `why
+  prompt lyrics takes numbers lineage`, the page's content typed into a fixed eight-row pane, then `[ remix this ] [ take it home ]`
+  and, while inspecting, `[ > play ] [ play next ] [ + queue ]` and the amber line `inspecting: <slug>  esc: back to on air`. There
+  is no track page under this theme any more. The right is the QUEUE as a list box: yours, then `-- then the rotation --`. The keys
+  live in the pane, so the CRT claims none of the station's: tab or click into it (its label goes inverse), then `j` `k` or the
+  arrows walk an inverse cursor, `u` `d` move the row up and down (a rotation row moved up becomes yours), `x` drops it, `enter`
+  plays it, `esc` leaves; each row has its own `[ x ]` and a double click plays. `i` on the playing track folds the story to a
+  short queue. On a phone the panes stack.
+- **The waterfall.** Under the scope, a spectrogram in density glyphs (` .:-=+*#%@`, the level to the 1.8 power so a loud track
+  is not a wall of `@`), one row every 90 ms (360 with reduced motion), the newest at the foot, six rows on desktop and four on a
+  phone, so the shape of the last half second climbs the tube.
+- **The module (issue #247).** `site/vis/phosphor.js` is the same meter, scope and waterfall as a 512 x 288 picture for the studio
+  game (rectangles, no font, its own 5 x 8 dot letters), with NO CARRIER and a slow sweep when the bytes are all zeros. Over http the
+  hidden mode shows it, scaled up whole on the glass and driven by the theme's own loop from the analyser; from a file URL (no module
+  import there), or until it loads, the hidden mode keeps the ASCII tower. The deck band sits under MAKE A TRACK (which stays directly
+  under NOW PLAYING) and only on the home view.
+- **What the harness reads.** `state()` answers `deck` (the tab, the rows, yours, inspecting, the waterfall's rows), `barrel`, `tower`, `frames` and `ms` (the station's frame
   calls while on air, the same read the city reports) and `afterglow` (blocks watched).
 
 Files: `theme.css`, `theme.js`. Fonts: VT323 and IBM Plex Mono, both SIL Open Font License 1.1, in

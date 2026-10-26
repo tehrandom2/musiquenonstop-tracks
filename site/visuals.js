@@ -124,7 +124,10 @@ NOBODY.vis = (function () {
     const an = NOBODY.synth && NOBODY.synth.analyser;
     if (A.flip && now > A.flipUntil) A.flip = false;
     let live = false;
-    if (an && !A.ghost) {
+    // a graph that went silent is still read: the ghost it caused lifts the moment the signal comes back (issue #241). a ghost for
+    // any other reason (a file URL, no audio graph) never reads it
+    const silent = A.ghost && A.ghostReason === 'silent graph';
+    if (an && (!A.ghost || silent)) {
       if (!A.freq || A.freq.length !== an.frequencyBinCount) { A.freq = new Uint8Array(an.frequencyBinCount); A.time = new Uint8Array(an.fftSize); }
       an.getByteFrequencyData(A.freq);
       an.getByteTimeDomainData(A.time);
@@ -139,8 +142,11 @@ NOBODY.vis = (function () {
         all += m; A.v64[b] = m / 255;
       }
       live = sum > 0;
-      if (!live && deck && !deck.paused && !deck.ended && deck.currentTime > 0.5) A.zeroFrames++; else if (live) A.zeroFrames = 0;
-      if (A.zeroFrames > 30 && !A.tuning) { A.ghost = true; A.ghostReason = 'silent graph'; }
+      // only a deck that has the audio to play counts: a stall or a seek waiting on the network is not a silent graph
+      const fed = deck && !deck.paused && !deck.ended && !deck.seeking && deck.readyState >= 3 && deck.currentTime > 0.5;
+      if (!live && fed) A.zeroFrames++; else if (live) A.zeroFrames = 0;
+      if (live && silent) { A.ghost = false; A.ghostReason = null; }
+      else if (A.zeroFrames > 30 && !A.tuning) { A.ghost = true; A.ghostReason = 'silent graph'; }
       if (A.tuning || live) {
         // while tuning the bars sit near full height, jittering (5.2)
         if (A.tuning) { for (let b = 0; b < A.bands; b++) out[b] = Math.max(out[b], 0.7 + Math.random() * 0.3); for (let b = 0; b < 64; b++) A.v64[b] = Math.max(A.v64[b], 0.5 + Math.random() * 0.5); }

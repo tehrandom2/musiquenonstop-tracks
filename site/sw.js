@@ -6,7 +6,7 @@ const CACHE = 'nobody-shell-1';
 const SHELL = [
   './', 'index.html', 'station.css', 'config.js', 'synth.js', 'visuals.js', 'terminal.js', 'volume.js', 'station.js', 'manifest.webmanifest',
   'themes/phosphor/theme.css', 'themes/phosphor/theme.js', 'themes/city/theme.css', 'themes/city/theme.js',
-  'themes/tapedeck/theme.css', 'themes/tapedeck/theme.js', 'themes/arena/theme.css', 'themes/arena/theme.js',
+  'themes/tapedeck/theme.css', 'themes/tapedeck/theme.js', 'themes/arena/theme.css', 'themes/arena/theme.js', 'vis/arena-core.js',
   'themes/campfire/theme.css', 'themes/campfire/theme.js',
   'vendor/vt323.woff2', 'vendor/jetbrains-mono-variable.woff2', 'vendor/orbitron-variable.woff2', 'vendor/space-grotesk-variable.woff2',
   'vendor/barlow-condensed-700.woff2', 'vendor/barlow-condensed-800.woff2', 'vendor/patrick-hand.woff2', 'vendor/permanent-marker.woff2',

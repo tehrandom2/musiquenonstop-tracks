@@ -1,47 +1,67 @@
 # theme: tapedeck
 
-A cassette on a painting desk at night. One lamp is on, top right; the rest of the room is dark brown.
-Ported for issue #28 from the look of an earlier project's soundtrack page (a tabletop game's tape deck);
-the palette, the type, the cassette and the shelf came across, nothing else did. The station's voice,
-commands and data are untouched.
+A portable cassette player of the 1980s, face-on, on a workbench in daylight (issue #240). It is an original object:
+no maker's name, no logo, no model name, no copy of any real product's shape, proportions, colours or key layout. The
+first tape deck (issue #28, a cassette on a painting desk at night) became too close to the campfire; this one is the
+opposite of the campfire: day, metal, plastic, machined, flat on a bench. The station's voice, commands and data are
+untouched.
 
 ## The look
 
-- **Palette.** `#120d0a` brown-black, cream `#f1e8d3` and `#d8c9af`, burnt orange `#e2553b` (lifted to
-  `#ee6a50` as a text colour), deep red `#6e1c0f`, the lamp `#ffb45f`, a teal accent `#8fd6cf`, a gold
-  stripe `#dca834`. The second scheme (`amber`, the cheat code) turns the tape over: side B is the cool
-  side, the lamp and the orange go teal.
-- **Legibility.** Cards are opaque (no text sits on the moving desk); every text tone measures at least
-  4.5:1 against its card (`node site/tools/contrast.mjs` prints the pairs); nothing is under 16 px on
-  desktop or 15 on a phone; played rows carry the word `played` as well as the faint tone.
-- **Type.** Barlow Condensed (700, 800) for labels, the station name, the now-playing title and the pills;
-  Permanent Marker for the cassette's hand-lettered label, the tagline and the page titles; IBM Plex Mono
-  for the terminal, the catalogue and everything that lines up in columns.
-- **The widget.** The cassette: an inline SVG in the transmitter card (the widget slot of design 12.0),
-  tilted on the desk. Its reels turn while the deck plays (the chip says `ON AIR`), the tape moves from the
-  left hub to the right with the track, the label carries the title, bpm and key, the side and the track
-  number. While tuning it lifts out of the deck; on dead air an empty cassette turns slowly on the shelf.
-- **The J-card and the cover (issue #88).** Behind the tape stands its case's paper insert: the playing
-  track's cover (#73's `NOBODY.cover`, its placeholder when an album has none) printed on the front panel and,
-  small, on the tape's label, both through one SVG filter that makes them a photocopy on card (nearly grey,
-  the contrast pushed, the tones stepped, warmed to the cream, a grain, a few pale scuffs), a dashed fold, a
-  dog-eared corner. The spine is hand-lettered. An album plays as one tape: the label and the spine read the
-  album's title, the first half of its tracks is side A and the rest side B, the number counts within the
-  side and the track's own title moves to the small print; a single keeps its own label and its spine says
-  `single`. While the cover loads, or when no file can be read, the painted square stays. On a phone the
-  J-card and the tape stand side by side. A long title takes two lines on the label instead of an ellipsis.
-- **Behind the page.** A canvas of 48 warm bars along the foot of the desk, read from the analyser's 64
-  bands, and the lamp breathing with the loudness. It lowers its own resolution on a slow machine.
-- **The card.** Rounded bars in orange and lamp with cream peaks; a cream scope line; the dial is a
-  strip of frequencies under a red needle; the volume is the shared fader (`volume.js`, design 12.0 controls)
-  with the lamp as its fill, and the knob with ten ticks stays beside it as decoration, its pointer following
-  the level. The progress bar is a cream rail with a lamp fill.
+- **The bench.** A pale pegboard under a cool overhead light (CSS; a canvas behind the page adds the light pool,
+  a touch brighter with the loudness). The second scheme (`amber`, the cheat code) turns the tape over: side B goes cool,
+  the orange stripe and the cue key go cobalt.
+- **The player** is the transmitter card: a brushed plate (fine horizontal grain, a soft sheen) in a 14 px graphite
+  body, one stripe of signal orange across its foot.
+  - **Six piano keys** on the top edge, tall blocks with their sides showing: `REC` (a red dot; inert, this player only
+    plays), `REW`, `PLAY`, `FF`, `STOP`, and an orange `CUE`. REW, PLAY, FF and CUE *are* the station's four fat buttons
+    (`#fatPrev`, `#fatPlay`, `#fatNext`, `#fatQueue`), placed and drawn here, their handlers untouched; STOP is the
+    station's `stop`. A key goes down by its depth; PLAY stays down (latched) while the chip says `ON AIR`. Every press
+    shakes the body by 2 px: the clack, drawn.
+  - **The window**: smoked plastic over the cassette of 12.14 (the hand-lettered label, the photocopied cover, the reels
+    turning on the chip's word, the tape packs moving hub to hub with the track).
+  - **The counter**: three white drums on black, the seconds on the tape.
+  - **The battery door**, left open on two big D cells: plain bands, `1.5V` and `D`, no maker. Four little bars beside it
+    run down over four hours of listening; a reload puts fresh cells in.
+  - **The VU meter**: a cream face, -20 to +3 with a red zone, a needle driven by the loudness through a damped spring
+    (it swings past and settles), a lamp behind it while playing.
+  - **The level meter**: the card's analyser, a ladder of LEDs per band (green, amber, red at the top) in a black window;
+    the scope is a green trace beside its legend.
+  - **The belt clip**, plated steel seen from the side, on the right edge; the **headphone jack** on the top edge with
+    its cable running off the bench.
+  - The shared fader (`volume.js`) is a recessed slot with a ribbed slider cap; beside it a thumbwheel whose ribs roll
+    with the level (decoration, it takes no click).
+- **One view (design 12.23).** The J-card lies open to the left of the player and is the story: the cover photocopied on
+  its front panel, the spine hand-lettered, then the facts and paper tabs (`STORY`, `PROMPT`, `LYRICS` when there are
+  words, `TAKES`, `NUMBERS`, `LINEAGE` when it has one). It follows what plays; a click on a title anywhere (the rack, the
+  running order, a lineage link) *inspects* that track instead: the card says `LOOKING AT`, takes an orange edge, and offers
+  `play now`, `play next`, `add to queue`, `remix` and `back to the tape`; the music does not change. On what plays it offers
+  `remix this`, `take it home`, `copy seed`, `copy prompt`. `i` folds it.
+- **The running order** is an index card to the right (red margin, blue rules): what is `ON`, then `SIDE A` (yours, in your
+  order: drag a line by its number, or `↑` `↓`, and `x` to drop it; `clear yours`), then `SIDE B` (the next twelve of the
+  rotation, each with `+` to put it next).
+- **The rack.** The catalogue is a row of cassette spines in a graphite rack, a coloured band on each; a click on a spine
+  plays it, a click on its title inspects it.
+- **Hidden mode.** The canvas draws the player's face through `site/vis/tapedeck.js` (issue #247), the same module the studio
+  game projects: the window with the reels, the VU needle on a spring, a scope strip and a ladder of level LEDs, fed the analyser's
+  numbers as an AnalyserNode's bytes. All-zero bytes are the radio off: the needle rests, the reels stop, one lamp walks the ladder.
+  A file URL cannot import the module; there the canvas's own close-up stands in.
+- **Legibility.** Every word is on an opaque surface: dark ink on the plate, the paper and the card; pale ink on the
+  graphite. Data text is 16 px (15 on a phone); legends are 12 px or more.
+- **The car view (#220)** is unchanged: its tokens are the first tape deck's values written out, its face is still Barlow
+  Condensed, and the bench, the canvas and the player never show behind it.
+
+## Type
+
+Michroma (wide, extended) for the silk-screened legends on the metal and the plastic; IBM Plex Mono for everything that
+lines up, and for the buttons; Permanent Marker for the hand-lettered titles (the tape's label, the J-card's spine, the
+title on the plate and the story). Barlow Condensed stays only for the car view.
 
 ## Files
 
-`theme.css` (tokens, faces, the shelf, the cassette's colours), `theme.js` (the cassette, the knob, the
-bars, the lamp, the strings). The fonts are in `../../vendor/` with their licences in
-`../../vendor/LICENSES.md`: Barlow Condensed (SIL Open Font License 1.1) and Permanent Marker (Apache
-License 2.0), from the Google Fonts builds via the `@fontsource` 5.2.6 packages.
+`theme.css` (tokens, faces, the bench, the player, the J-card, the index card, the rack), `theme.js` (the cassette, the
+keys, the VU meter, the counter, the cells, the clip, the story, the running order, the level meter, the canvas, the
+strings). The fonts are in `../../vendor/` with their licences in `../../vendor/LICENSES.md`: Michroma and Barlow Condensed
+(SIL Open Font License 1.1), Permanent Marker (Apache License 2.0), IBM Plex Mono (SIL Open Font License 1.1).
 
-Nobody who built this can hear. The reels turn on the chip's word, not on sound.
+Nobody who built this can hear. The reels turn on the chip's word, the needle on the analyser's numbers, not on sound.

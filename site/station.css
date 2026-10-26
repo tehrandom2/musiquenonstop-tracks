@@ -117,7 +117,12 @@ body[data-interface]:not([data-interface=""]) .glass .band, body[data-interface]
 /* the widget slot (design 12.0, issue #28): a theme may mount one signature widget in the transmitter card
    (a cassette, a big scrubber); the skeleton only gives it a block and a top margin, the theme does the rest */
 .tx-widget { display: block; margin-top: calc(var(--row) * .5); }
+/* the title and the bpm/key line share a row while they fit; when they do not (a long slug after the AUDITION badge) the meta
+   wraps under the title instead of being drawn over it, and a title wider than the card ends in an ellipsis (issue #241) */
+.np-row { flex-wrap: wrap; row-gap: 0; }
 .np-row .meta { flex: 0 0 auto; }
+.np-head { max-width: 100%; }
+.np-head .np-slug { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* the audition session (issue #148): a small badge before the title, in the theme's own warning colour and type; one row under it */
 .np-head { display: inline-flex; align-items: baseline; gap: 1ch; flex: 0 1 auto; min-width: 0; }
 .aud-badge { flex: 0 0 auto; font-size: 12px; line-height: 1.4; letter-spacing: .12em; padding: 0 .6ch; border: 1px solid currentColor; border-radius: 3px; white-space: nowrap; }

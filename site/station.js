@@ -14,11 +14,23 @@
   const BOOT_SKIP = MUTE && qs.get('boot') === 'skip';
   const CFG = Object.assign({ tracksBase: '../tracks/', backend: null, requestLine: null, source: null, defaultTheme: 'phosphor' }, window.NOBODY_CONFIG || {});
   if (qs.get('tracks')) CFG.tracksBase = qs.get('tracks');
+  // the guard (issue #246): a page run from a file, from this machine (localhost, 127.0.0.1, ::1), muted or with any test flag never
+  // talks to a request line that is not on this machine: the configured one is treated as null. only a loopback ?requestApi= below
+  // (the harness's own stub) opens one there. so a run, a preview or a forgotten flag can never post to the live line
+  (function () {
+    const local = location.protocol === 'file:' || /^(127\.0\.0\.1|localhost|\[::1\])$/.test(location.hostname);
+    const testing = ['mute', 'autostart', 'probe', 'reqpoll', 'driveafter'].some(function (k) { return qs.has(k); }) || qs.get('boot') === 'skip';
+    let loop = false;
+    try { loop = !!CFG.requestApi && /^(127\.0\.0\.1|localhost|\[::1\])$/.test(new URL(CFG.requestApi, location.href).hostname); } catch (e) {}
+    if ((local || testing) && CFG.requestApi && !loop) { CFG.requestApi = null; CFG.requestKey = null; CFG.turnstileSiteKey = null; }
+  })();
   // the request line (#26): a ?requestApi=<url>&requestKey=<key> query is honoured for a loopback address only, so a link can
   // never send the configured key somewhere else. the key is a public, pinned, rate-limited requester key (api/README.md).
   (function () {
     const qa = qs.get('requestApi');
     if (!qa) return;
+    // test-only, with ?mute=1: no request line at all, so a harness run never posts to the live one (config.js points at it)
+    if (qa === 'none' && qs.get('mute') === '1') { CFG.requestApi = null; CFG.requestKey = null; CFG.turnstileSiteKey = null; return; }
     try {
       if (/^(127\.0\.0\.1|localhost|\[::1\])$/.test(new URL(qa).hostname)) {
         CFG.requestApi = qa; CFG.requestKey = qs.get('requestKey') || null;
@@ -31,7 +43,7 @@
   const st = NOBODY.st = {};
   // S is the station's state. it is exposed read-only as NOBODY.state for the screenshot and test harness.
   const S = NOBODY.state = {
-    tracks: [], bySlug: {}, num: {}, queue: [], current: null, history: [], played: new Set(), albums: [], albumBySlug: {}, albumOfSlug: {},
+    tracks: [], bySlug: {}, num: {}, queue: [], picks: [], inspect: null, storyOpen: true, current: null, history: [], played: new Set(), albums: [], albumBySlug: {}, albumOfSlug: {},
     state: 'standby', shuffle: false, repeat: false, hl: -1, filter: '', sort: 'newest',
     onAir: false, airSince: 0, visitor: 0, view: 'home', readoutTyper: null, whyTyper: null,
     deadTimer: 0, deadLeft: 60, idleTimer: 0, tuningToken: 0, scopeMode: 'bars', booted: false,
@@ -94,6 +106,13 @@
       // a track's own file, for a theme that previews it through its own element (issue #64: the campfire's scope)
       src: function (slug) { return S.bySlug[slug] ? trackUrl(S.bySlug[slug], 'mp3') : null; }, fileMode: function () { return FILE; },
       tracks: function () { return S.tracks; }, queueList: function () { return S.queue.slice(); }, current: function () { return S.current; },
+      // the queue (issue #240): the listener's picks before the rotation, and the actions that arrange them
+      mine: function () { return mine(); }, rotationList: function () { return S.queue.filter(function (s) { return S.picks.indexOf(s) < 0; }); },
+      move: function (slug, i) { st.queueMove(slug, i); }, remove: function (slug) { st.queueRemove(slug); }, clear: function () { st.queueClear(); },
+      playNext: function (slug) { st.playNext(slug); }, add: function (slug) { st.queueAppend(slug); },
+      // one view (issue #240): a track's story drawn in the home view instead of the page
+      context: function () { return S.context ? Object.assign({}, S.context, { run: S.context.run.slice() }) : null; },
+      inspect: function (slug) { st.inspect(slug); }, inspecting: function () { return S.inspect || null; }, story: function (slug) { return story(slug); },
       filter: function () { return S.filter; }, visible: function () { return (S.visible || []).map(function (b) { return b.dataset.slug; }); },
       hidden: function () { return st.hidden(); }, layout: function () { return S.layout || null; } };
   }
@@ -114,6 +133,7 @@
     th.catalogue(S.tracks);
     if (S.current) th.playing(S.current);
     S.nextUpKey = null; drawNextUp();   // the new theme's nextUp hook hears the current answer (issue #87)
+    S.inspect = null; tellStory();
     drawVol();
     A.resize();
     themeInterface(th);
@@ -124,13 +144,14 @@
   // the station refuses a claim on one of its own keys and says so once. nothing here changes what the station does.
   function themeInterface(th) {
     const iface = th.interface ? th.interface() : null;
-    IFACE.kind = iface ? (iface.kind || 'custom') : null; IFACE.keys = []; IFACE.arrows = false; IFACE.layouts = iface && iface.layouts ? iface.layouts.slice() : [];
+    // a theme may answer { visualizer: false } and nothing else (issue #240, the arena): no station visualizer, no paradigm
+    IFACE.kind = iface && (iface.kind || iface.keys || iface.layouts) ? (iface.kind || 'custom') : null; IFACE.keys = []; IFACE.arrows = false; IFACE.layouts = iface && iface.layouts ? iface.layouts.slice() : [];
     IFACE.viz = !(iface && iface.visualizer === false);
     HELP_HIDE[1] = IFACE.viz ? 'hide the interface (v: bars)' : 'hide the interface';
     hideVizSync();
     document.body.dataset.interface = IFACE.kind || '';
     // a theme without a paradigm may still add commands (issue #88: phosphor's `album` and `art`); it claims no key and no layout
-    if (!iface) { delete document.body.dataset.layout; S.layout = null; if (th.commands) T.extend(S.theme, th.commands()); return; }
+    if (!IFACE.kind) { delete document.body.dataset.layout; S.layout = null; if (th.commands) T.extend(S.theme, th.commands()); return; }
     const refused = [], withArrows = (iface.keys || []).some(function (k) { return /^Arrow/.test(k); });
     (iface.keys || []).forEach(function (k) { if (CLAIMABLE.indexOf(k) >= 0 || (withArrows && MOVEMENT.indexOf(k) >= 0)) IFACE.keys.push(k); else refused.push(k); });
     IFACE.arrows = IFACE.keys.some(function (k) { return /^Arrow/.test(k); });
@@ -162,7 +183,7 @@
     if (i < 0 || i === S.hl) return;
     S.hl = i; highlight();
   }
-  function pageKind() { return S.state === 'dead' ? 'dead' : S.view === 'track' || S.view === 'album' ? 'page' : S.view === 'guestbook' ? 'guestbook' : 'home'; }
+  function pageKind() { return S.state === 'dead' ? 'dead' : S.view === 'track' || S.view === 'album' ? 'page' : S.view === 'guestbook' || S.view === 'missing' ? 'guestbook' : 'home'; }
   document.addEventListener('libs-ready', function () { const th = TH(); if (th && th.libsReady) th.libsReady(); });
 
   /* ---------------- helpers ---------------- */
@@ -258,6 +279,49 @@
     drawAudition();
     if (TH()) TH().catalogue(tracks);
     return tracks.length;
+  }
+  /* the context a link sets (issue #243): the track, then the rest of its album from it (wrapping round), or the rest of its
+     project in the catalogue's order, then the twelve tracks nearest it (tempo, key, mood, project), then the rest of the rotation
+     shuffled. an automatic pick, so every track after the first asks inRotation (issue #111). S.context says what it is */
+  function contextRun(slug) {
+    const t = S.bySlug[slug]; if (!t) return [];
+    const al = S.albumOfSlug[slug];
+    let run = [], kind = 'similar', label = 'tracks like ' + slug;
+    if (al) { const i = al.tracks.indexOf(slug); run = al.tracks.slice(i + 1).concat(al.tracks.slice(0, i)).filter(inRotation); kind = 'album'; label = albumTitle(al) + ', in its order'; }
+    else if (t.project) {
+      const all = chronological().filter(function (s) { return S.bySlug[s].project === t.project && !S.albumOfSlug[s]; }), i = all.indexOf(slug);
+      run = all.slice(i + 1).concat(all.slice(0, i)).filter(inRotation);
+      if (run.length) { kind = 'project'; label = 'project:' + t.project; }
+    }
+    const out = [slug].concat(run);
+    S.context = { kind: kind, slug: slug, album: al ? al.slug : null, project: t.project || null, label: label, run: out.concat(nearest(t, out, 12)) };
+    return S.context.run.slice();
+  }
+  function albumContext(al) {
+    const out = al.tracks.slice();
+    S.context = { kind: 'album', slug: out[0], album: al.slug, project: null, label: albumTitle(al) + ', in its order', run: out.concat(nearest(S.bySlug[out[0]], out, 12)) };
+    return S.context.run.slice();
+  }
+  // the n tracks in rotation nearest t, leaving out those already in the run
+  function nearest(t, skip, n) {
+    if (!t) return [];
+    const words = function (x) { return String(x.mood || '').toLowerCase().split(/[^a-z]+/).filter(function (w) { return w.length > 3; }); };
+    const tw = words(t), mode = function (k) { return /minor/i.test(k || '') ? 'minor' : 'major'; };
+    const dist = function (u) {
+      let d = Math.abs((u.bpm || 0) - (t.bpm || 0)) / 12;
+      if (u.key && t.key) d += u.key === t.key ? 0 : mode(u.key) === mode(t.key) ? 0.6 : 1.2;
+      if (t.project && u.project === t.project) d -= 1.5;
+      if (!!u.voice !== !!t.voice) d += 0.8;
+      d -= 0.5 * words(u).filter(function (w) { return tw.indexOf(w) >= 0; }).length;
+      return d;
+    };
+    return rotation().filter(function (s) { return skip.indexOf(s) < 0; })
+      .map(function (s) { return [s, dist(S.bySlug[s])]; }).sort(function (a, b) { return a[1] - b[1] || (a[0] < b[0] ? -1 : 1); })
+      .slice(0, n).map(function (x) { return x[0]; });
+  }
+  function withContext(run) {
+    T.print('context: ' + S.context.label + ', then tracks like it.', 'mid');
+    return run.concat(shuffleRuns(rotation().filter(function (s) { return run.indexOf(s) < 0; })));
   }
   function chronological() { return S.tracks.slice().reverse().map(function (t) { return t.slug; }); }
   /* B-sides (issue #111): a track the index marks "side": "b" (gen/b-sides.json) stays on the site, and the listener may pick it, queue
@@ -478,21 +542,16 @@
       // from it is the station's, so it skips the B-sides (issue #111)
       const shared = new URLSearchParams(location.search).get('play');
       const open = shared && S.bySlug[shared] ? shared : (CFG.themeStart || {})[S.theme];
-      if (open && S.bySlug[open] && !/^#\/(track|album)\//.test(location.hash)) {
-        const alb = S.albumOfSlug[open];
-        const run = [open].concat(alb ? alb.tracks.slice(alb.tracks.indexOf(open) + 1).concat(alb.tracks.slice(0, alb.tracks.indexOf(open))).filter(inRotation) : []);
-        S.queue = run.concat(S.queue.filter(function (s) { return run.indexOf(s) < 0; }));
-      }
+      // a link sets the context (issue #243): its album in order, or its project, then tracks like it, then the rest shuffled;
+      // never the catalogue by date
+      if (open && S.bySlug[open] && !/^#\/(track|album)\//.test(location.hash)) S.queue = withContext(contextRun(open));
       const m = /^#\/track\/([^/?]+)/.exec(location.hash);
-      if (m && S.bySlug[decodeURIComponent(m[1])]) {
-        const slug = decodeURIComponent(m[1]);
-        S.queue = [slug].concat(S.queue.filter(function (s) { return s !== slug; }));
-      }
-      // an album's link (or playAlbum before the key): the album plays first, in its order (issue #73)
+      if (m && S.bySlug[decodeURIComponent(m[1])]) S.queue = withContext(contextRun(decodeURIComponent(m[1])));
+      // an album's link (or playAlbum before the key): the album plays first, in its order (issue #73), then tracks like it
       const ma = /^#\/album\/([^/?]+)/.exec(location.hash);
       const al = S.albumBySlug[S.pendingAlbum] || (ma && S.albumBySlug[decodeURIComponent(ma[1])]);
       S.pendingAlbum = null;
-      if (al) S.queue = al.tracks.concat(S.queue.filter(function (s) { return al.tracks.indexOf(s) < 0; }));
+      if (al) S.queue = withContext(albumContext(al));
       // `audition` before the key (issue #148): the session opens the station
       const aud = S.audStart ? auditions() : [];
       S.audStart = false;
@@ -703,10 +762,11 @@
     // the queue never runs dry while on air, so next up always has an answer (issue #87)
     if (!S.queue.length) refill();
     minePlayed(t.slug);
+    if (!S.inspect || S.inspect === t.slug) { S.inspect = null; tellStory(); }
     mediaSession(t);
     markRows();
     clearIdle();
-    if (S.pendingPage) { const p = S.pendingPage; S.pendingPage = null; if (p.indexOf('album:') === 0) openAlbum(p.slice(6)); else openTrack(p); }
+    if (S.pendingPage) { const p = S.pendingPage; S.pendingPage = null; if (p === 'missing') route(); else if (p.indexOf('album:') === 0) openAlbum(p.slice(6)); else openTrack(p); }
   }
   // the dial: the theme draws it (text ticks in phosphor, a strip of frequencies in the city)
   function drawDial(f, locked, note) { TH().dial(el.dial, f, !!locked, note || '', content()); }
@@ -1167,7 +1227,17 @@
     const th = TH(); if (th && th.highlight) th.highlight(hlSlug());
   }
   // what the theme is told on every queue change and every find (12.0, issue #53); a theme without the hook is skipped
-  function tellQueue() { const th = TH(); if (th && th.queue) th.queue(S.queue.slice(0, 6), S.current); drawNextUp(); }
+  // the hook keeps its old call, (the next six, the current), and the list carries the whole picture for a theme that wants it
+  // (issue #240): list.mine (the listener's picks, in order), list.rotation (the next twelve after them), list.current
+  function tellQueue() {
+    const th = TH();
+    if (th && th.queue) {
+      const m = mine(), list = S.queue.slice(0, 6);
+      list.mine = m; list.rotation = S.queue.filter(function (s) { return m.indexOf(s) < 0; }).slice(0, 12); list.current = S.current;
+      th.queue(list, S.current);
+    }
+    drawNextUp();
+  }
   function tellFilter() { const th = TH(); if (th && th.filter) th.filter(S.filter, (S.visible || []).map(function (b) { return b.dataset.slug; })); }
   function hlSlug() { return S.hl >= 0 && S.visible[S.hl] ? S.visible[S.hl].dataset.slug : null; }
   function hintButton(key, label, fn) {
@@ -1187,8 +1257,8 @@
   function route() {
     const h = location.hash || '#/';
     let m;
-    if ((m = /^#\/track\/([^/?]+)/.exec(h))) { const slug = decodeURIComponent(m[1]); if (S.bySlug[slug]) { if (S.onAir && S.state !== 'tuning') showTrack(slug); else S.pendingPage = slug; return; } }
-    if ((m = /^#\/album\/([^/?]+)/.exec(h))) { const slug = decodeURIComponent(m[1]); if (S.albumBySlug[slug]) { if (S.onAir && S.state !== 'tuning') showAlbum(slug); else S.pendingPage = 'album:' + slug; return; } }
+    if ((m = /^#\/track\/([^/?]+)/.exec(h))) { const slug = decodeURIComponent(m[1]); if (S.bySlug[slug]) { if (storyTheme() && S.forcePage !== slug) { if (S.view !== 'home') showHome(); if (S.onAir) inspect(slug); else S.pendingPage = slug; return; } if (S.onAir && S.state !== 'tuning') showTrack(slug); else S.pendingPage = slug; return; } return notFound('track', slug); }
+    if ((m = /^#\/album\/([^/?]+)/.exec(h))) { const slug = decodeURIComponent(m[1]); if (S.albumBySlug[slug]) { if (S.onAir && S.state !== 'tuning') showAlbum(slug); else S.pendingPage = 'album:' + slug; return; } return notFound('album', slug); }
     if (/^#\/guestbook/.test(h)) { showGuestbook(); return; }
     showHome();
   }
@@ -1203,18 +1273,40 @@
     });
   }
   window.addEventListener('hashchange', route);
+  // a link to a slug the loaded index does not name (issue #239): most often a track published minutes ago, before the
+  // station's copy of the index has it. a small page says so; the deck is not touched, and the hash stays, so a reload finds it
+  function notFound(kind, slug) {
+    if (!S.onAir || S.state === 'tuning') { S.pendingPage = 'missing'; return; }
+    openPage('missing');
+    const p = el.page, link = '#/' + kind + '/' + slug;
+    const head = div('row'); head.appendChild(span(kind.toUpperCase() + ' NOT FOUND', 'label'));
+    if (!phone()) head.appendChild(span(link, 'mid'));
+    p.appendChild(head);
+    p.appendChild(span(kind + ' not found', 'page-title'));
+    const what = document.createElement('p'); what.textContent = 'nothing in the catalogue is called "' + slug + '".'; p.appendChild(what);
+    const hint = document.createElement('p'); hint.className = 'mid';
+    hint.textContent = (kind === 'album' ? 'an ' : 'a ') + kind + ' published a few minutes ago can take that long to reach the station. reload in a few minutes and this link will find it.';
+    p.appendChild(hint);
+    const buttons = div('buttons primary');
+    buttons.appendChild(button('< back', '', function () { st.home(); }));
+    buttons.appendChild(button('reload', '', function () { location.reload(); }));
+    p.appendChild(buttons);
+    share(null, null, null);
+    document.title = 'nobody fm: ' + kind + ' not found';
+  }
   function showHome() {
     const was = S.view;
+    S.forcePage = null;   // the page `info` asked for under a story theme holds until home (openTrack routes twice)
     S.view = 'home';
     el.page.hidden = true; el.page.textContent = '';
     el.transmitter.hidden = false; el.catalogue.hidden = false; el.make.hidden = false;
     el.headerMain.hidden = false; el.headerPage.hidden = true;
     if (S.whyTyper) { S.whyTyper.cancel(); S.whyTyper = null; }
     share(null, null, null);
-    if (was === 'album') document.title = S.state === 'tuning' ? 'nobody fm: tuning' : S.current ? 'nobody fm: ' + S.current : 'nobody fm';
+    if (was === 'album' || was === 'missing') document.title = S.state === 'tuning' ? 'nobody fm: tuning' : S.current ? 'nobody fm: ' + S.current : 'nobody fm';
     A.resize();
     // home pulls the camera back up (12.5); an album page is a page to the theme (12.0's transitions)
-    if (S.onAir && S.state !== 'dead' && was !== 'home') TH().transition(was === 'track' || was === 'album' ? 'page' : was, 'home', { slug: S.current });
+    if (S.onAir && S.state !== 'dead' && was !== 'home') TH().transition(was === 'track' || was === 'album' ? 'page' : was === 'missing' ? 'guestbook' : was, 'home', { slug: S.current });
   }
   function openPage(kind, album) {
     S.view = kind;
@@ -1227,7 +1319,7 @@
     drawProgress();
     // the camera flies down to the tower for a track page, up and wide for the guestbook (12.5); an album page is a page,
     // and its info names the album (issue #73)
-    if (S.onAir) TH().transition('home', kind === 'guestbook' ? 'guestbook' : 'page', album ? { slug: S.current, album: album } : { slug: S.current });
+    if (S.onAir) TH().transition('home', kind === 'guestbook' || kind === 'missing' ? 'guestbook' : 'page', album ? { slug: S.current, album: album } : { slug: S.current });
   }
   function openTrack(slug) { location.hash = '#/track/' + slug; if (location.hash === '#/track/' + slug) route(); }
   function openAlbum(slug) { location.hash = '#/album/' + slug; if (location.hash === '#/album/' + slug) route(); }
@@ -1519,7 +1611,7 @@
   const HELP_KEYS = [
     ['space', 'play / pause'], ['n  p', 'next / previous track'], ['j  k', 'move the highlight'], ['enter', 'play the highlighted'],
     ['q', 'queue the highlighted'], ['s  r', 'shuffle / repeat one'], ['- =  m', 'volume down / up / mute'], ['0..9', 'seek to 0 % .. 90 %'],
-    ['left right', 'seek 5 s'], ['i', "this track's page"], ['c', 'copy the permalink'], ['/', 'find'], ['g', 'guestbook'], ['esc', 'back to the transmitter']
+    ['left right', 'seek 5 s'], ['i', "this track's story"], ['c', 'copy the permalink'], ['/', 'find'], ['g', 'guestbook'], ['esc', 'back to the transmitter']
   ];
   const HELP_HIDE = ['`', 'hide the interface (v: bars)'];
   HELP_KEYS.push(HELP_HIDE);
@@ -1527,6 +1619,7 @@
   // request first (issue #51): making a track is the first thing the help offers
   const HELP_CMDS = [
     'request <words>   remix [slug] [words]', 'play [slug|#]   pause   stop   next   prev', 'queue [slug]    shuffle   repeat   vol 0..10',
+    'move <slug> <n>   drop <slug>   next <slug>', 'clear queue   inspect [slug]',
     'list [words]    find <words>   info [slug]', 'cat [slug]      tree   seed [slug]   prompt [slug]', 'take [slug]     guestbook   sign   count',
     'uptime   dial <MHz>   amber   green   help', 'clear   reboot   home   theme [name]   big', 'contrast   album [slug]   xfade [s]', 'audition [off]  the undecided, newest first', '', 'a few others. nobody documents everything.'
   ];
@@ -1577,9 +1670,77 @@
   st.queueAdd = function (a) {
     const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
     // the whole catalogue is already in the queue; "queue" means next, a second queue takes it out again
-    if (S.queue[0] === t.slug) { S.queue.shift(); T.print('unqueued: ' + t.slug); }
-    else { S.queue = S.queue.filter(function (s) { return s !== t.slug; }); S.queue.unshift(t.slug); T.print('queued next: ' + t.slug); }
+    if (S.queue[0] === t.slug) { S.queue.shift(); S.picks = S.picks.filter(function (s) { return s !== t.slug; }); T.print('unqueued: ' + t.slug); }
+    else { S.queue = S.queue.filter(function (s) { return s !== t.slug; }); S.queue.unshift(t.slug); pick(t.slug, 0); T.print('queued next: ' + t.slug); }
     markRows();
+  };
+  /* the queue, arranged (issue #240). S.queue stays the one order the deck plays; S.picks names the slugs in it the listener put
+     there, so a theme can draw "yours" apart from the rotation. arranging puts the picks first, in the listener's order */
+  function mine() { S.picks = S.picks.filter(function (s) { return S.queue.indexOf(s) >= 0; }); return S.queue.filter(function (s) { return S.picks.indexOf(s) >= 0; }); }
+  function pick(slug, i) { S.picks = S.picks.filter(function (s) { return s !== slug; }); S.picks.splice(i, 0, slug); }
+  function arrange(m) { S.picks = m.slice(); S.queue = m.concat(S.queue.filter(function (s) { return m.indexOf(s) < 0; })); markRows(); }
+  st.queueMove = function (a, n) {
+    const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
+    if (t.slug === S.current) { T.print(t.slug + ' is on air. it cannot wait in the queue too.', 'mid'); return; }
+    const m = mine().filter(function (s) { return s !== t.slug; });
+    const i = Math.max(0, Math.min(m.length, Math.round(Number(n)) || 0));
+    m.splice(i, 0, t.slug); arrange(m);
+    T.print('queue: ' + t.slug + ' at ' + (i + 1) + ' of ' + m.length + '.');
+  };
+  st.playNext = function (a) { st.queueMove(a, 0); };
+  st.queueAppend = function (a) { const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; } st.queueMove(t.slug, mine().filter(function (s) { return s !== t.slug; }).length); };
+  st.queueRemove = function (a) {
+    const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
+    if (S.queue.indexOf(t.slug) < 0) { T.print(t.slug + ' is not in the queue.', 'mid'); return; }
+    S.queue = S.queue.filter(function (s) { return s !== t.slug; }); S.picks = S.picks.filter(function (s) { return s !== t.slug; });
+    T.print('dropped from the queue: ' + t.slug); markRows();
+  };
+  st.queueClear = function () {
+    const m = mine(); if (!m.length) { T.print('nothing of yours in the queue. the rotation plays on.', 'mid'); return; }
+    S.queue = S.queue.filter(function (s) { return m.indexOf(s) < 0; }); S.picks = [];
+    T.print('cleared ' + m.length + ' of yours from the queue. the rotation plays on.'); markRows();
+  };
+  st.mine = function () { return mine(); };
+  // what the harness reads (issue #240, #243): the order the deck will play, yours, the context a link set
+  st.queueState = function () { return { current: S.current, queue: S.queue.slice(), mine: mine(), inspect: S.inspect || null, context: S.context ? { kind: S.context.kind, slug: S.context.slug, album: S.context.album, label: S.context.label, run: S.context.run.slice() } : null }; };
+  /* one view (issue #240): a theme that answers story(info) draws a track's story in its home view, and a click on a track, `i`
+     or #/track/<slug> inspects it there: the story shows it, the music does not change. S.inspect null means "follow what plays".
+     the car view (issue #220) and a theme without the hook keep the page */
+  function storyTheme() { const th = TH(); return !!(th && th.story) && document.documentElement.dataset.view !== 'car'; }
+  function story(slug) {
+    const t = S.bySlug[slug]; if (!t) return null;
+    const a = albumOf(t), parent = t.lineage && t.lineage.parent && S.bySlug[t.lineage.parent] ? t.lineage.parent : null;
+    return { slug: slug, title: t.title || slug, asked: t.request || t.idea || '', idea: t.idea || '', mood: t.mood || '', why: t.why || '', prompt: t.prompt || '',
+      lyrics: t.lyrics || '', voice: !!t.voice, bpm: t.bpm, key: t.key, duration: t.duration, seed: t.seed, model: t.model, date: t.date, project: t.project || null,
+      takes: (t.takes || []).filter(function (s) { return s !== t.seed; }), rejected: (t.rejected || []).slice(), numbers: t.numbers || {}, checks: t.checks || {},
+      lineage: { parent: parent, changed: t.lineage && t.lineage.changed ? t.lineage.changed : null, children: children(parent || slug).map(function (c) { return c.slug; }) },
+      album: a ? { slug: a.slug, title: a.title, n: (a.tracks || []).indexOf(slug) + 1, of: (a.tracks || []).length } : null,
+      cover: coverUrl(t, 400), bside: isBSide(t), num: S.num[slug], permalink: permalink(slug),
+      file: (t.files && t.files.notes) || slug + '/notes.md',
+      licence: t.licence || 'generated locally from a text prompt, no samples or reference audio, no third-party rights claimed.',
+      playing: slug === S.current, queued: S.queue.indexOf(slug) >= 0, mine: S.picks.indexOf(slug) >= 0 };
+  }
+  NOBODY.story = function (slug) { return story(slug); };
+  function tellStory(extra) {
+    const th = TH(); if (!th || !th.story || !storyTheme()) return;
+    const slug = S.inspect || S.current; if (!slug) return;
+    th.story(story(slug), Object.assign({ inspecting: !!S.inspect, open: S.storyOpen !== false }, extra || {}));
+  }
+  function inspect(slug) {
+    if (!slug || slug === S.current) { S.inspect = null; } else { S.inspect = slug; T.print('inspecting: ' + slug + '. esc: back to what plays.', 'mid'); }
+    S.storyOpen = true; tellStory();
+    if (!S.inspect && /^#\/track\//.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+  }
+  st.inspect = function (a) {
+    if (a == null || a === '') { inspect(null); return; }
+    const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
+    if (!storyTheme()) { openTrack(t.slug); return; }
+    inspect(t.slug);
+  };
+  // `i`: inspect the highlighted row when it is another track, otherwise fold or open the story
+  st.storyKey = function (hl) {
+    if (hl && hl !== S.current && hl !== S.inspect) { inspect(hl); return; }
+    S.storyOpen = S.storyOpen === false; tellStory();
   };
   st.queueList = function () {
     if (!S.queue.length) { T.print('queue empty. it refills itself. nobody stops.', 'mid'); return; }
@@ -1644,7 +1805,8 @@
     T.print('queued next: ' + albumTitle(a) + ', ' + rest.length + (rest.length === 1 ? ' track' : ' tracks') + ' in order.');
     markRows();
   };
-  st.info = function (a) { const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; } openTrack(t.slug); };
+  // `info <slug>` is the whole page, the printout of everything, under every theme (a story theme's i, clicks and links inspect instead)
+  st.info = function (a) { const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; } S.forcePage = storyTheme() ? t.slug : null; openTrack(t.slug); };
   st.cat = function (a, pageEl) {
     const t = findTrack(a); if (!t) { T.error('nobody knows "' + a + '".'); return; }
     if (FILE) { T.print('cat needs the wire. serve over http and try again.', 'amber'); return; }
@@ -2211,10 +2373,10 @@
   };
   st.home = function () { if (location.hash && location.hash !== '#/') location.hash = '#/'; else showHome(); st.help(false); };
   // esc: the overlay, then a page, then the theme's own paradigm (12.0, the interface hooks, issue #53: the city flies back to its orbit)
-  st.escape = function () { if (!el.themes.hidden) { st.themePicker(false); return; } if (!el.help.hidden) { st.help(false); return; } if (S.view !== 'home') { st.home(); return; } if (IFACE.kind && TH() && TH().escape) TH().escape(); };
+  st.escape = function () { if (!el.themes.hidden) { st.themePicker(false); return; } if (!el.help.hidden) { st.help(false); return; } if (S.view !== 'home') { st.home(); return; } if (S.inspect && storyTheme()) { st.inspect(null); return; } if (IFACE.kind && TH() && TH().escape) TH().escape(); };
   st.reboot = function () {
     T.print('power off.', 'mid');
-    deck.pause(); S.onAir = false; S.state = 'standby'; S.current = null; S.played = new Set(); S.history = []; S.queue = [];
+    deck.pause(); S.onAir = false; S.state = 'standby'; S.current = null; S.played = new Set(); S.history = []; S.queue = []; S.picks = []; S.inspect = null;
     if (S.readoutTyper) S.readoutTyper.cancel();
     hideDead(); showHome(); st.help(false);
     T.clear();
@@ -2642,7 +2804,7 @@
       case 'm': st.mute(); break;
       case 'ArrowLeft': seekBy(-5); break;
       case 'ArrowRight': seekBy(5); break;
-      case 'i': openTrack(hlSlug() || S.current); break;
+      case 'i': if (storyTheme()) st.storyKey(hlSlug()); else openTrack(hlSlug() || S.current); break;
       case 'c': if (S.current) copyText(permalink(S.current), permalink(S.current)); break;
       // focus on the next tick so the key that asked for it is never typed into the terminal
       case '/': setTimeout(function () { T.focus('find '); }, 0); break;
@@ -2727,6 +2889,7 @@
     if (S.onAir && S.view === 'home' && !el.spectrum.hidden && TH()) TH().frame(A, S, now);
     if (CAR.on && S.onAir && !CAR.more) carDraw();
     if (A.ghost && !S.ghostNoted && S.onAir && !FILE && SY.ctx) { S.ghostNoted = true; T.print('analyser: no signal in the graph. guessing, and saying so.', 'amber'); }
+    else if (!A.ghost && S.ghostNoted) { S.ghostNoted = false; T.print('analyser: signal back. reading the graph again.', 'mid'); }
   }
   setInterval(function () {
     const up = st.uptimeText();

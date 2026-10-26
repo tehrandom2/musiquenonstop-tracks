@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>nobody fm: visualiser modules</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html, body { margin: 0; background: #000; } canvas { display: block; width: 512px; height: 288px; }</style></head>
+<body><canvas id="c" width="512" height="288"></canvas>
+<script type="module">
+/* the bare page for issue #247: one module from index.json into a bare 512 x 288 canvas, driven at 30 fps by this page as the game
+   would drive it, with made-up bytes (?bytes=fake, a moving spectrum and a sine, not a reading of any sound) or zeros (?bytes=zero).
+   window.VIS says what happened, for the harness. no audio anywhere. */
+const qs = new URLSearchParams(location.search), id = qs.get('theme') || 'phosphor', mode = qs.get('bytes') || 'fake';
+const out = window.VIS = { id, mode, ok: false, frames: 0, error: null, info: null };
+try {
+  const list = await (await fetch('index.json')).json();
+  const ent = list.themes.find((t) => t.id === id);
+  if (!ent) throw new Error('not in index.json');
+  const mod = await import('./' + ent.module);
+  out.info = mod.info;
+  const cv = document.getElementById('c');
+  cv.width = mod.info.w || 512; cv.height = mod.info.h || 288;
+  const ctx = cv.getContext(mod.info.context === 'webgl' ? 'webgl' : '2d');
+  const vis = mod.create({ sampleRate: 48000 });
+  vis.setTrack({ slug: 'brass-band-on-a-rooftop', title: 'brass band on a rooftop', bpm: 118, key: 'E minor' });
+  vis.resize(cv.width, cv.height);
+  const freq = new Uint8Array(1024), time = new Uint8Array(2048), t0 = performance.now();
+  setInterval(() => {
+    const t = (performance.now() - t0) / 1000;
+    if (mode === 'fake') {
+      for (let i = 0; i < freq.length; i++) { const x = i / freq.length; freq[i] = Math.max(0, Math.min(255, 255 * (0.9 * Math.exp(-x * 6) + 0.35 * Math.exp(-Math.pow((x - 0.12 - 0.05 * Math.sin(t * 2)) / 0.05, 2))) * (0.75 + 0.25 * Math.sin(t * 7.8 + i * 0.05)))); }
+      for (let i = 0; i < time.length; i++) time[i] = 128 + Math.round(70 * Math.sin(i / 18 + t * 9) * (0.6 + 0.4 * Math.sin(t * 3)));
+    } else { freq.fill(0); time.fill(0); }
+    vis.draw(ctx, freq, time, t); out.frames++;
+  }, 1000 / 30);
+  out.ok = true;
+} catch (e) { out.error = String(e && e.message || e); }
+</script></body></html>

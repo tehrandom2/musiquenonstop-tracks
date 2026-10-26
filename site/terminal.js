@@ -83,9 +83,13 @@ NOBODY.term = (function () {
   cmds.play = function (a) { return st().cmdPlay(a); };
   cmds.pause = function () { return st().pause(); };
   cmds.stop = function () { return st().stop(); };
-  cmds.next = function () { return st().next(); };
+  cmds.next = function (a) { return a ? st().playNext(a) : st().next(); };
   cmds.prev = function () { return st().prev(); };
   cmds.queue = function (a) { return a ? st().queueAdd(a) : st().queueList(); };
+  // arranging the queue (issue #240): the listener's picks play first, in their order, then the rotation
+  cmds.move = function (a) { const m = /^(\S+)\s+(\d+)$/.exec(String(a || '').trim()); if (!m) { T.error('move <slug> <n>: where in your queue, 1 first.'); return; } return st().queueMove(m[1], +m[2] - 1); };
+  cmds.drop = function (a) { if (!a) { T.error('drop <slug>'); return; } return st().queueRemove(a); };
+  cmds.inspect = function (a) { return st().inspect(a); };
   cmds.shuffle = function () { return st().toggleShuffle(); };
   cmds.repeat = function () { return st().repeatOnce(); };
   cmds.audition = function (a) { return st().audition(a); };
@@ -120,7 +124,7 @@ NOBODY.term = (function () {
   cmds.green = function () { return st().phosphor('green'); };
   cmds.help = function () { return st().help(true); };
   cmds['?'] = cmds.help;
-  cmds.clear = function () { T.clear(); if (T.scrollRestore) { T.scrollRestore(); T.scrollRestore = null; } };
+  cmds.clear = function (a) { if (/^queue$/i.test(String(a || '').trim())) return st().queueClear(); T.clear(); if (T.scrollRestore) { T.scrollRestore(); T.scrollRestore = null; } };
   cmds.cls = cmds.clear;
   cmds.home = function () { return st().home(); };
   cmds.reboot = function () { return st().reboot(); };
