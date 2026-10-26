@@ -11876,6 +11876,106 @@
       "audition": true
     },
     {
+      "slug": "greytide-bathroom-peck-peck",
+      "title": "Peck Peck",
+      "project": "greytide",
+      "idea": "The rubber duck, oldest toy in the bath and the luckiest, floats up and down her stretch of road pecking whatever is nearest, stranded as the water goes and not one bit bothered.",
+      "request": "The rubber duck, oldest toy in the bath and the luckiest, floats up and down her stretch of road pecking whatever is nearest, stranded as the water goes and not one bit bothered.",
+      "mood": "bright, cocky, sunny with a bite",
+      "bpm": 146,
+      "key": "E minor",
+      "seed": 3940300,
+      "model": "fast",
+      "duration": 153.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:02:06-04:00",
+      "voice": true,
+      "prompt": "Surf rock, 146 bpm, E minor. The band: a twangy lead guitar drenched in spring reverb playing a fast picked riff, a rhythm guitar strumming tight, a pounding floor-tom drum beat, a lean, walking bass under the mids, a cheesy organ on the chorus. A bright, cocky female lead with a backing trio singing oohs. Mood: sunny with a bite, a toy with swagger. Arc: the riff alone, the band in at verse one, a full chorus, a breakdown where drums and twang trade bars, the final chorus lifted with the trio. E minor throughout, no harsh highs.",
+      "lyrics": "[Intro: surf guitar riff]\n\n[Verse 1]\nI'm yellow, I'm hollow, I'm lucky as sin\nI squeak when you squeeze, and I bob when I'm in\nthey gave me a road and they gave me a beat\nthe middle of nowhere, the middle of the street\nup to the tap and back down to the chain\npecking whatever comes nearest again\nI've got no teeth and I've got no gun\nI've got a beak and a whole lot of fun\n\n[Pre-Chorus]\nPut me in the middle, let me float\n\n[Chorus]\nUp and down, peck peck\nthe grey keep coming, check check\nup and down, peck peck\na lucky duck's a duck you don't forget\n\n[Verse 2]\nThe water's going, I'm stranded and dry\nI waddle my beat with a wobble and a sigh\nthe steam from the tap made the whole road slick\nthe dudes slide in and I give them a flick\nI was the first toy in this bath, you know\nbefore the whale, before the boat could go\nI've seen a hundred bath times end\nand I never once went down the drain, my friend\n\n[Pre-Chorus]\nPut me in the middle, let me float\n\n[Chorus]\nUp and down, peck peck\nthe grey keep coming, check check\nup and down, peck peck\na lucky duck's a duck you don't forget\n\n[Breakdown: drums and twang trade bars]\nSqueak! (Peck!) Squeak! (Peck!)\n(Ooh) never once went down\n\n[Final Chorus: lifted, backing trio]\nUp and down, peck peck\nthe grey keep coming, check check\nup and down, peck peck\na lucky duck's a duck you don't forget\n\n[Outro: riff alone]\nPeck.",
+      "why": "You asked for \"The rubber duck, oldest toy in the bath and the luckiest, floats up and down her stretch of road pecking whatever is nearest, stranded as the water goes and not one bit bothered.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 146 bpm in E minor, 158 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 146 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3940301 (1.0s of near-silence (limit 0.5) and others). Seed 3940300 is the take, but it did not clear every gate: harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3940301,
+          "reason": "1.0s of near-silence (limit 0.5); harsh: 3.1% above 6 kHz (ceiling 2.5); 21 of 195 heard words are not ours (11 %; limit 10 %, at least 40 heard): rodent taking gone water dude's foot flow pick pick gray pick pick"
+        }
+      ],
+      "takes": [
+        3940300
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.99,
+        "silence_s": 0.35,
+        "brightness_pct": 2.76,
+        "boominess_pct": 5.1,
+        "onsets_per_s": 4.03,
+        "seam_db": -59.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bathroom",
+          "pov:the rubber duck"
+        ],
+        "track_no": 26
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bathroom-peck-peck/greytide-bathroom-peck-peck.mp3",
+        "notes": "greytide-bathroom-peck-peck/notes.md",
+        "recipe": "greytide-bathroom-peck-peck/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "bop",
+          "bad",
+          "then",
+          "flow",
+          "gray",
+          "dark",
+          "kid",
+          "bet",
+          "bet",
+          "bet",
+          "bet",
+          "our",
+          "bet",
+          "thank"
+        ],
+        "stripped": [],
+        "installed_samples": 6755307,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bathroom-peck-peck/greytide-bathroom-peck-peck.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40386,6 +40486,7 @@
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-bathroom-peck-peck",
         "greytide-bed-the-corner-fold",
         "greytide-carseat-two-point-six-seconds",
         "greytide-couch-tape-arrows",
