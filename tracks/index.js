@@ -12446,6 +12446,109 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-the-mouse-in-the-carton",
+      "title": "The Mouse in the Carton",
+      "project": "greytide",
+      "idea": "After wave two the mouse in the carton drags the guide's signposts into its hole one by one, and hints at something painted it has kept in the back",
+      "request": "After wave two the mouse in the carton drags the guide's signposts into its hole one by one, and hints at something painted it has kept in the back",
+      "mood": "sly, playful, secretive",
+      "bpm": 144,
+      "key": "A minor",
+      "seed": 3980200,
+      "model": "fast",
+      "duration": 165.94,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:01:17-04:00",
+      "voice": true,
+      "prompt": "Sly gypsy jazz, 144 bpm, A minor, playful and secretive: a pumping acoustic rhythm guitar on every beat, a nimble lead acoustic guitar answering the vocal with quick runs, a walking upright bass kept tight and lean under the mids, brushed snare, a clarinet weaving a sneaky A minor melody, a light female lead, sly and quick, with a small whispered chorus on the hook, in A minor; intro of rhythm guitar and clarinet, tiptoeing verses, a bouncing chorus, a slow bridge of clarinet and voice, the final chorus lifted and faster in feel, the outro a last clarinet run, no harsh highs",
+      "lyrics": "[Intro: rhythm guitar and clarinet]\n\n[Verse 1]\nA hole in the foot of a carton\nA plank leaning down to the board\nTwo eyes in the dark keep on blinking\nAt every grey dude on the road\nWave two is over, I'm coming\nAnd nobody's minding the signs\n\n[Pre-Chorus]\nTiptoe, tiptoe\nOver the tape, tiptoe\n\n[Chorus]\nOne signpost, two signpost, into the hole\nPaper makes a nest and a nest makes a home\nNobody's pointing where the grey should go\nOne signpost, two signpost, into the hole\n\n[Verse 2]\nThey think I'm a pest in the cartons\nI think I'm the keeper of things\nThe bead off the cord and lost pieces\nThe tape ends and wool ends and strings\nThe bits that you swore you would find\nAre folded up warm in my keep\n\n[Pre-Chorus]\nTiptoe, tiptoe\nOver the tape, tiptoe\n\n[Chorus]\nOne signpost, two signpost, into the hole\nPaper makes a nest and a nest makes a home\nNobody's pointing where the grey should go\nOne signpost, two signpost, into the hole\n\n[Bridge: slow, clarinet and voice]\nWay in the back of the carton\nSomething is painted and small\nI'm keeping it safe for wave nine\nI'm keeping it safe for you all\n\n[Final Chorus: lifted, the whispered chorus doubled]\nOne signpost, two signpost, into the hole\nPaper makes a nest and a nest makes a home\nNobody's pointing where the grey should go\nOne signpost, two signpost, into the hole\n\n[Outro: a last clarinet run]\nInto the hole",
+      "why": "You asked for \"After wave two the mouse in the carton drags the guide's signposts into its hole one by one, and hints at something painted it has kept in the back\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 144 bpm in A minor, 166 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 144 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980201 (0.9s of near-silence (limit 0.5) and others). Seed 3980200 is the take, but it did not clear every gate: 1.5s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3980201,
+          "reason": "0.9s of near-silence (limit 0.5); 20 of 195 heard words are not ours (10 %; limit 10 %, at least 40 heard): cotton pen tip signposts grave signposts beat tip toe tip toe tip"
+        }
+      ],
+      "takes": [
+        3980200
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.67,
+        "silence_s": 1.45,
+        "brightness_pct": 1.42,
+        "boominess_pct": 6.06,
+        "onsets_per_s": 2.92,
+        "seam_db": -47.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:mouse"
+        ],
+        "track_no": 13
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-the-mouse-in-the-carton/greytide-attic-the-mouse-in-the-carton.mp3",
+        "notes": "greytide-attic-the-mouse-in-the-carton/notes.md",
+        "recipe": "greytide-attic-the-mouse-in-the-carton/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "1.5s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "gray",
+          "signposts",
+          "gray",
+          "signposting",
+          "signposting",
+          "beat",
+          "key",
+          "signposts",
+          "gray",
+          "signposts",
+          "pushing",
+          "news",
+          "signposts",
+          "prey",
+          "signposts",
+          "thank",
+          "thank"
+        ],
+        "stripped": [],
+        "installed_samples": 7317830,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-the-mouse-in-the-carton/greytide-attic-the-mouse-in-the-carton.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40946,6 +41049,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-attic-the-mouse-in-the-carton",
         "greytide-couch-down-the-crumb-gap",
         "greytide-desk-eighty-percent-flock",
         "greytide-gamestore-four-tiles-no-map",
