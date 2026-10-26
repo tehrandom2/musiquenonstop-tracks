@@ -11976,6 +11976,110 @@
       "audition": true
     },
     {
+      "slug": "greytide-bathroom-let-it-drain",
+      "title": "Let It Drain",
+      "project": "greytide",
+      "idea": "The last wave: a toy bath on the tub floor holds the boss's life in its water, and every hit drains it; when it is empty the painter's hand lifts the toys onto the rim, and nobody shoves the last grey dude standing by the hole.",
+      "request": "The last wave: a toy bath on the tub floor holds the boss's life in its water, and every hit drains it; when it is empty the painter's hand lifts the toys onto the rim, and nobody shoves the last grey dude standing by the hole.",
+      "mood": "vast, aching, triumphant, kind",
+      "bpm": 136,
+      "key": "F# minor",
+      "seed": 3941000,
+      "model": "fast",
+      "duration": 172.82,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:01:58-04:00",
+      "voice": true,
+      "prompt": "Post-rock anthem with vocals, 136 bpm, F# minor. The band: tremolo-picked guitars in a huge reverb, a second guitar building ringing chords, driving toms and a tight kick, a lean bass under the mids, a glockenspiel melody, and a choir of mixed voices for the last chorus. A male and a female lead singing in unison, splitting into harmony on the hook. Mood: vast, aching, triumphant and kind. Arc: tremolo guitars alone, drums in at verse one, a soaring chorus, a bridge of choir with drums out, the final chorus lifted with full choir, a quiet outro. F# minor throughout, no harsh highs.",
+      "lyrics": "[Intro: tremolo guitars in a huge reverb]\n\n[Verse 1]\nA toy bath stands on the floor of the tub\na bath inside a bath, a little joke\nits water is the life of the last big kit\nand every hit we land, it drops a stroke\nthe thing climbs out in cellophane and pride\nthe kit the painter never dared to start\nwe throw the duck, the plunger and the loofah\nwe throw every brush mark of our heart\n\n[Pre-Chorus]\nDrain, drain, let it drain\n\n[Chorus]\nLet it drain, let it drain\nthe tide goes out, we remain\nlet it drain, let it drain\npainted, chipped and here again\n\n[Verse 2]\nThe shower's come and gone, ten seconds wide\nthe foam lies flat along the near side\na hand comes down and lifts us one by one\nthe duck, the loofah, the plunger, done\nand the last grey dude stands by the hole\nhe's walked it twenty times, he's lost it all\nnobody shoves him, nobody tries\nsomeday a brush, someday a colour, someday\n\n[Pre-Chorus]\nDrain, drain, let it drain\n\n[Chorus]\nLet it drain, let it drain\nthe tide goes out, we remain\nlet it drain, let it drain\npainted, chipped and here again\n\n[Bridge: drums out, choir]\nBath time is over (the water is going)\nthe toys are not (the toys are not)\nbath time is over (the water is going)\nthe toys are not\n\n[Final Chorus: lifted, full choir]\nLet it drain, let it drain\nthe tide goes out, we remain\nlet it drain, let it drain\npainted, chipped and here again\n\n[Outro: tremolo guitars fade]\nHere again.",
+      "why": "You asked for \"The last wave: a toy bath on the tub floor holds the boss's life in its water, and every hit drains it; when it is empty the painter's hand lifts the toys onto the rim, and nobody shoves the last grey dude standing by the hole.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in F# minor, 178 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3941001 (13 of 119 heard words are not ours (11 %; limit 10 %, at least 40 heard): yeah trade trade). Seed 3941000 is the take.",
+      "rejected": [
+        {
+          "seed": 3941001,
+          "reason": "13 of 119 heard words are not ours (11 %; limit 10 %, at least 40 heard): yeah trade trade trade trade coming trade trade ships that train train"
+        }
+      ],
+      "takes": [
+        3941000
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.98,
+        "silence_s": 0.1,
+        "brightness_pct": 2.23,
+        "boominess_pct": 6.99,
+        "onsets_per_s": 2.71,
+        "seam_db": -36.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bathroom",
+          "pov:the bath toys"
+        ],
+        "track_no": 116
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bathroom-let-it-drain/greytide-bathroom-let-it-drain.mp3",
+        "notes": "greytide-bathroom-let-it-drain/notes.md",
+        "recipe": "greytide-bathroom-let-it-drain/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "it's",
+          "kid",
+          "kid",
+          "did",
+          "rain",
+          "ain't",
+          "shipped",
+          "showers",
+          "dunks",
+          "great",
+          "shows",
+          "color",
+          "train",
+          "chip",
+          "i'm",
+          "bedtime",
+          "that",
+          "rain",
+          "rain",
+          "yeah"
+        ],
+        "stripped": [],
+        "installed_samples": 7621414,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bathroom-let-it-drain/greytide-bathroom-let-it-drain.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40569,6 +40673,7 @@
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-bathroom-let-it-drain",
         "greytide-bed-night-night",
         "greytide-carseat-are-we-nearly-there",
         "greytide-couch-alarm-six-thirty",
