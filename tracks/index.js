@@ -4580,6 +4580,111 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-keep-the-flag",
+      "title": "Keep the Flag",
+      "project": "greytide",
+      "idea": "Wave ten: the boss climbs out with the hose, the shade and the new road all still in play; the shelf of painted minis at the gate sings the last stand",
+      "request": "Wave ten: the boss climbs out with the hose, the shade and the new road all still in play; the shelf of painted minis at the gate sings the last stand",
+      "mood": "anthemic, defiant, golden",
+      "bpm": 148,
+      "key": "E minor",
+      "seed": 4051000,
+      "model": "fast",
+      "duration": 174.42,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:12:53-04:00",
+      "voice": true,
+      "prompt": "Anthemic desert surf-punk, 148 bpm, in E minor, the full sandpit band for the last stand: twin twangy surf guitars in harmony on the lead line, a rhythm guitar driving open chords, a tight lean picked bass under the mids, a pounding kit with tom rolls and crashes on every chorus, a horn pair from the ska band joining for the last chorus, a raw male lead and a strong female lead trading lines like the painted minis on the shelf, a huge gang chorus on the hook, E minor stated in the riff; arc: a slow tremolo intro, mid verses, a big chorus, a breakdown to bass and claps where the boss climbs out, a long high final chorus lifted with horns, an outro that rings out on the E, no harsh highs",
+      "lyrics": "[Intro: slow tremolo guitar, then the band]\n\n[Verse 1: male lead]\nWe stand on the shelf at the gate to the flag\nOne of us painted for each life we have\nThe hose is still running, the shade is still long\nThe new road is open, the grey are still strong\n\n[Verse 2: female lead]\nThe bucket is pouring, the spade throws its sand\nThe ants march a line by the castle's command\nThe digger is parked and the cat's gone away\nAnd the kid's on the edge on the last of the day\n\n[Pre-Chorus: both]\nWave ten, wave ten, the box comes wide\nThe biggest grey thing climbs out of the side\n\n[Chorus]\nKeep the flag, keep the flag on the big castle high\nKeep the flag while the sun leaves the sky\nPrimed and washed and dry-brushed with care\nKeep the flag, we were painted for this, we are there\n\n[Verse 3: trading lines]\nIt's slow and it's huge and it's grey to the bone\nIt never got opened, it never got shown\nWe could hate it for coming, we could pity it too\nBut we hold the line anyway, that's what we do\n\n[Chorus]\nKeep the flag, keep the flag on the big castle high\nKeep the flag while the sun leaves the sky\nPrimed and washed and dry-brushed with care\nKeep the flag, we were painted for this, we are there\n\n[Breakdown: bass and claps, the boss crosses the ford]\nThree centimetres tall and a hundred feet proud\nWe are tiny and painted and singing out loud\nThe kid's eyes are on us, the kid holds their breath\nAnd the sand keeps the score of the life and the death\n\n[Final Chorus: lifted, horns and full gang]\nKeep the flag, keep the flag on the big castle high\nKeep the flag while the sun leaves the sky\nPrimed and washed and dry-brushed with care\nKeep the flag, we were painted for this, we are there\n\n[Outro: ring out on E]\nWe are there. We are there.",
+      "why": "You asked for \"Wave ten: the boss climbs out with the hose, the shade and the new road all still in play; the shelf of painted minis at the gate sings the last stand\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 148 bpm in E minor, 178 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 148 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4051001 (harsh: 2.7% above 6 kHz (ceiling 2.5) and others). Seed 4051000 is the take, but it did not clear every gate: harsh: 2.6% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4051001,
+          "reason": "harsh: 2.7% above 6 kHz (ceiling 2.5); 23 of 229 heard words are not ours (10 %; limit 10 %, at least 40 heard): thank you flame white great sight grindin' dried crushed we'll claim low"
+        }
+      ],
+      "takes": [
+        4051000
+      ],
+      "numbers": {
+        "tempo_bpm": 77.2,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.64,
+        "silence_s": 0.15,
+        "brightness_pct": 2.58,
+        "boominess_pct": 5.44,
+        "onsets_per_s": 3.14,
+        "seam_db": -49.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:the-shelf"
+        ],
+        "track_no": 126
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-keep-the-flag/greytide-sandpit-keep-the-flag.mp3",
+        "notes": "greytide-sandpit-keep-the-flag/notes.md",
+        "recipe": "greytide-sandpit-keep-the-flag/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "kids",
+          "waitin'",
+          "waitin'",
+          "gray",
+          "flags",
+          "flags",
+          "up",
+          "flying",
+          "grind",
+          "flight",
+          "fight",
+          "fight",
+          "fight",
+          "centimeters",
+          "kids",
+          "light",
+          "climbed",
+          "caps",
+          "light"
+        ],
+        "stripped": [],
+        "installed_samples": 7691991,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-keep-the-flag/greytide-sandpit-keep-the-flag.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33105,6 +33210,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-sandpit-keep-the-flag",
         "greytide-schooldesk-hold-them-till-the-bell",
         "greytide-sill-petal-by-petal",
         "greytide-treehouse-chalk-tally",
