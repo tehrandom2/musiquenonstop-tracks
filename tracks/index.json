@@ -3461,6 +3461,103 @@
       "audition": true
     },
     {
+      "slug": "greytide-schooldesk-psst-someone-says-well-done",
+      "title": "Psst, Someone Says Well Done",
+      "project": "greytide",
+      "idea": "wave 3: a note folded four times is passed along the row to the tower with the most kills, the compass, who has never been praised before",
+      "request": "wave 3: a note folded four times is passed along the row to the tower with the most kills, the compass, who has never been praised before",
+      "mood": "bouncy, flustered, proud",
+      "bpm": 152,
+      "key": "G minor",
+      "seed": 4010300,
+      "model": "fast",
+      "duration": 162.54,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:14:45-04:00",
+      "voice": true,
+      "prompt": "Two-tone ska, 152 bpm, G minor, a tight seven-piece: choppy offbeat guitar skank, a bouncing organ doubling the skank, a trombone and a tenor sax trading clipped phrases in strict order, a walking tight lean bass, bass well under the mids, a crisp fast drum kit with rimshots, a breathless male lead with a nervous grin in his voice, a gang chorus on the call and response, in G minor, flustered and proud, mid start, a long busy plateau, one dip to bass and voice, the final chorus lifted by the horns, no harsh highs",
+      "lyrics": "[Intro - horns and the skank, a quick drum roll]\n\n[Verse 1]\nI stand on my needle and I turn the lead around\nA circle on the desk lid, every dude who crosses, down\nI never aim, I never hold, I only draw the line\nAnd the grey ones walk into it, every single time\n\n[Pre-Chorus]\nThen a rustle from the next desk, a paper on the slide\nFolded once and folded twice and passed from side to side\n\n[Chorus - call and response]\nPsst! (Someone says well done)\nFolded four times, passed along\nPsst! (Someone says well done)\nMe? The compass? Can't be wrong\n\n[Verse 2]\nThey counted all the pencil ticks I left upon the road\nEvery little cut I made, it's written where they go\nThe ballista had the glory and the cannon had the noise\nBut the note is in my circle, and it's mine, my boys\n\n[Pre-Chorus]\nI'm only school equipment and I came here in a tin\nBut somebody was counting, and they're letting me in\n\n[Chorus - call and response]\nPsst! (Someone says well done)\nFolded four times, passed along\nPsst! (Someone says well done)\nMe? The compass? Can't be wrong\n\n[Breakdown - bass and voice, the horns hold one note]\nOpen it slow, there's a card inside\nPick one, pick one, the needle's got pride\nRound and round, round and round\n\n[Final Chorus - lifted, horns in harmony]\nPsst! (Someone says well done)\nFolded four times, passed along\nPsst! (Someone says well done)\nMe? The compass? Can't be wrong\n\n[Outro - the skank alone, a last horn stab]",
+      "why": "You asked for \"wave 3: a note folded four times is passed along the row to the tower with the most kills, the compass, who has never been praised before\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 152 bpm in G minor, 164 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 152 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4010301 (harsh: 2.8% above 6 kHz (ceiling 2.5) and others). Seed 4010300 is the take, but it did not clear every gate: harsh: 2.9% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4010301,
+          "reason": "harsh: 2.8% above 6 kHz (ceiling 2.5); 36 of 190 heard words are not ours (19 %; limit 10 %, at least 40 heard): i'll let hope i'll gray fold fold pass this this so that"
+        }
+      ],
+      "takes": [
+        4010300
+      ],
+      "numbers": {
+        "tempo_bpm": 75.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.9,
+        "silence_s": 0.3,
+        "brightness_pct": 2.92,
+        "boominess_pct": 5.0,
+        "onsets_per_s": 3.63,
+        "seam_db": -70.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:schooldesk",
+          "pov:compass"
+        ],
+        "track_no": 34
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-schooldesk-psst-someone-says-well-done/greytide-schooldesk-psst-someone-says-well-done.mp3",
+        "notes": "greytide-schooldesk-psst-someone-says-well-done/notes.md",
+        "recipe": "greytide-schooldesk-psst-someone-says-well-done/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 8.28,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "thank",
+          "you",
+          "of",
+          "fold",
+          "fold",
+          "pass",
+          "up",
+          "balista",
+          "burn",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7168034,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-schooldesk-psst-someone-says-well-done/greytide-schooldesk-psst-someone-says-well-done.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -31955,6 +32052,7 @@
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-schooldesk-psst-someone-says-well-done",
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
