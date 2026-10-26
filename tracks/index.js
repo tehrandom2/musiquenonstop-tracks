@@ -10363,6 +10363,104 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-carseat-good-dog-in-the-boot",
+      "title": "Good Dog in the Boot",
+      "project": "greytide",
+      "idea": "wave 5: the dog in the boot wakes, pants over the seat back, licks a grey dude clean off the seat and knocks a tower flat on its second visit",
+      "request": "wave 5: the dog in the boot wakes, pants over the seat back, licks a grey dude clean off the seat and knocks a tower flat on its second visit",
+      "mood": "rowdy, warm, slobbering",
+      "bpm": 152,
+      "key": "E minor",
+      "seed": 4020601,
+      "model": "fast",
+      "duration": 163.19,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:04:19-04:00",
+      "voice": true,
+      "prompt": "Swampy rockabilly, 152 bpm, E minor, a hot trio and a voice: a slapped upright bass in a tight lean line, bass well under the mids, a twangy tremolo guitar on a stomping riff, a brushed snare and kick shuffle, hand claps and a harmonica wailing in the gaps, a big rough-voiced male lead grinning and barking the hook, a gang of backing voices howling the answers, in E minor, rowdy and warm, mid start, a long stomping plateau, a dip to bass and panting breath, a lifted last chorus, warm grit in the mids, no harsh highs",
+      "lyrics": "[Intro - slap bass and a pant, then the guitar riff]\n\n[Verse 1]\nI slept behind the seat for four whole waves\nDreaming about rabbits and the long motorways\nThen I smelt something grey and I lifted my head\nPanting on the back of the seat, the kid said\n\n[Pre-Chorus]\nWatch the shadow, wet and dark\nTwo seconds of a warning, then the bark\n\n[Chorus - gang answers]\nGood dog! (Big dog!)\nHead over the seat\nGood dog! (Big dog!)\nLicked them off their feet\n\n[Verse 2]\nI only reach the far half, that's my side\nOne tongue and a grunt is gone for a ride\nA big one only staggers, I give him a shove\nSecond visit, flat goes a tower, that's love\n\n[Pre-Chorus]\nWhen the car brakes I put my head down low\nBraced in the boot till the red lights go\n\n[Chorus - gang answers]\nGood dog! (Big dog!)\nHead over the seat\nGood dog! (Big dog!)\nLicked them off their feet\n\n[Breakdown - bass and panting, the harmonica whines]\nI don't know about painted, I don't know about grey\nI know it moved and I know I want to play\nWho's a good one, who's a good one\n\n[Final Chorus - lifted, everyone howling]\nGood dog! (Big dog!)\nHead over the seat\nGood dog! (Big dog!)\nLicked them off their feet\n\n[Outro - one bark, the riff ends]",
+      "why": "You asked for \"wave 5: the dog in the boot wakes, pants over the seat back, licks a grey dude clean off the seat and knocks a tower flat on its second visit\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 152 bpm in E minor, 168 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 152 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4020600 (1.0s of near-silence (limit 0.5) and others). Seed 4020601 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4020600,
+          "reason": "1.0s of near-silence (limit 0.5); harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4020601
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.95,
+        "silence_s": 0.55,
+        "brightness_pct": 2.25,
+        "boominess_pct": 7.92,
+        "onsets_per_s": 2.72,
+        "seam_db": -56.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:carseat",
+          "pov:dog"
+        ],
+        "track_no": 66
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-carseat-good-dog-in-the-boot/greytide-carseat-good-dog-in-the-boot.mp3",
+        "notes": "greytide-carseat-good-dog-in-the-boot/notes.md",
+        "recipe": "greytide-carseat-good-dog-in-the-boot/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "oh",
+          "smelled",
+          "great",
+          "kids",
+          "sit",
+          "lick",
+          "breaks",
+          "lick",
+          "you're",
+          "great",
+          "moves",
+          "lick"
+        ],
+        "stripped": [],
+        "installed_samples": 7196670,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-carseat-good-dog-in-the-boot/greytide-carseat-good-dog-in-the-boot.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38901,6 +38999,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-carseat-good-dog-in-the-boot",
         "greytide-desk-every-shadow-turns",
         "greytide-gamestore-staff-pick-honest",
         "greytide-garage-the-roadie",
