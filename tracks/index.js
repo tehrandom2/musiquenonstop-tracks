@@ -3,6 +3,103 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T15:14:41-04:00",
   "tracks": [
     {
+      "slug": "greytide-garage-ping-a-string-goes",
+      "title": "Ping (A String Goes)",
+      "project": "greytide",
+      "idea": "Wave five: the guitar's sixth string snaps and the crash cymbal falls on the lead and buries a road; told by the broken string, who'd rather break than never be played",
+      "request": "Wave five: the guitar's sixth string snaps and the crash cymbal falls on the lead and buries a road; told by the broken string, who'd rather break than never be played",
+      "mood": "aching, heavy, defiant",
+      "bpm": 134,
+      "key": "C sharp minor",
+      "seed": 3990510,
+      "model": "fast",
+      "duration": 172.26,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T15:14:02-04:00",
+      "voice": true,
+      "prompt": "Grunge rock, 134 bpm, C sharp minor: a quiet verse on a clean detuned guitar arpeggio, a heavy fuzzed chorus with two guitars stacked, a tight lean bass, bass under the mids, doubling the riff, a drummer who plays the verses on rims and smashes the chorus on crash and floor tom, a tired male lead who sings the verses low and breaks into a hoarse belt on the hook; warm saturation, no harsh highs; quiet, loud, quiet, loud, a long loud plateau after the bridge, C sharp minor",
+      "lyrics": "[Intro: the clean arpeggio, one high note bending flat]\n\n[Verse 1]\nI'm the sixth string on the sunburst neck\nI've held this note since the summer we met\nWound round the peg like a promise you keep\nThen something gives and I don't make a peep\n\n[Pre-Chorus]\nHum, and then\nHum, and then\n\n[Chorus]\nPing, a string goes\nAnd the crash comes down\nPing, a string goes\nAnd the lead goes underground\n\n[Verse 2]\nThe crash cymbal wobbles on its long thin arm\nThe ballista looks up and it rings the alarm\nIt lands like a moon on the yellow road\nBuries the jack where the grey ones go\n\n[Pre-Chorus]\nHum, and then\nHum, and then\n\n[Chorus]\nPing, a string goes\nAnd the crash comes down\nPing, a string goes\nAnd the lead goes underground\n\n[Bridge: quiet, the arpeggio alone, then building]\nNow I hang in a curl from the nut\nI'm the reason the road got cut\nIf a thing can break it's a thing that played\nI'd rather be snapped than never be made\n\n[Final Chorus: lifted, belted, guitars stacked]\nPing, a string goes\nAnd the crash comes down\nPing, a string goes\nAnd the lead goes underground\n\n[Outro: feedback dying, one muted strum]\nHum, and then",
+      "why": "You asked for \"Wave five: the guitar's sixth string snaps and the crash cymbal falls on the lead and buries a road; told by the broken string, who'd rather break than never be played\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 134 bpm in C sharp minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 134 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3990511 (0.7s of near-silence (limit 0.5) and others). Seed 3990510 is the take, but it did not clear every gate: 0.7s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3990511,
+          "reason": "0.7s of near-silence (limit 0.5); 20 of 97 heard words are not ours (21 %; limit 10 %, at least 40 heard): thank six sudden burst net well around line yeah clash bills crest"
+        }
+      ],
+      "takes": [
+        3990510
+      ],
+      "numbers": {
+        "tempo_bpm": 134.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.69,
+        "silence_s": 0.65,
+        "brightness_pct": 1.68,
+        "boominess_pct": 2.78,
+        "onsets_per_s": 2.33,
+        "seam_db": -35.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:garage",
+          "pov:the broken string"
+        ],
+        "track_no": 140
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-garage-ping-a-string-goes/greytide-garage-ping-a-string-goes.mp3",
+        "notes": "greytide-garage-ping-a-string-goes/notes.md",
+        "recipe": "greytide-garage-ping-a-string-goes/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "0.7s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "beat",
+          "stranger",
+          "strangled",
+          "police",
+          "still",
+          "gray",
+          "pink",
+          "you're",
+          "hanging",
+          "home",
+          "ground"
+        ],
+        "stripped": [],
+        "installed_samples": 7596735,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-garage-ping-a-string-goes/greytide-garage-ping-a-string-goes.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "greytide-garage-encore-in-the-dark",
       "title": "Encore in the Dark",
       "project": "greytide",
@@ -41742,7 +41839,8 @@ window.NOBODY_INDEX = {
         "greytide-couch-the-pot-pays-double",
         "greytide-gamestore-the-fist-at-the-next-table",
         "greytide-garage-encore-in-the-dark",
-        "greytide-attic-opening-now"
+        "greytide-attic-opening-now",
+        "greytide-garage-ping-a-string-goes"
       ],
       "description": "One long night at the painting desk, table by table: songs from the towers, the grey horde, the painter's hand and the tables themselves.",
       "credits": [
