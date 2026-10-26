@@ -3,6 +3,111 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T07:20:52-04:00",
   "tracks": [
     {
+      "slug": "greytide-garage-encore-in-the-dark",
+      "title": "Encore in the Dark",
+      "project": "greytide",
+      "idea": "Wave nine, the encore: the strip light dies and the neighbours bang on the door; the Stage Light tower, which never shoots, lights the targets so the painted ones shine",
+      "request": "Wave nine, the encore: the strip light dies and the neighbours bang on the door; the Stage Light tower, which never shoots, lights the targets so the painted ones shine",
+      "mood": "urgent, glowing, triumphant",
+      "bpm": 174,
+      "key": "A minor",
+      "seed": 3990911,
+      "model": "fast",
+      "duration": 158.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:20:51-04:00",
+      "voice": true,
+      "prompt": "Pop-punk at double time, 174 bpm, A minor: two palm-muted power-chord guitars pushing eighths, a tight lean bass, bass under the mids, running quick fills, a drummer on a fast snare and crash with a half-time drop before the last chorus, a bright urgent male lead with a crowd of friends singing the hook back; warm saturation, no harsh highs; starts mid on muted chords, a long sprinting plateau, one half-time dip, a final lift with every voice, A minor to the end",
+      "lyrics": "[Intro: muted chords, a bang on a metal door]\nThe light's gone, the light's gone\n\n[Verse 1]\nThe strip light flickers on its two long chains\nThen it's out, and the dark comes down like a train\nJust the jewel on the amp and the fairy string\nAnd me, the Stage Light, the one thing that sings\n\n[Pre-Chorus]\nI never shoot, I never have\nI only show you where to aim\n\n[Chorus]\nEncore in the dark\nI'll be your spark\nEverything I catch\nTakes a harder mark\nEncore in the dark\n\n[Verse 2]\nThe neighbours are banging on the roller door\nThe whole room hops and the grey hit the floor\nThe beat's gone double and the horde comes fast\nI swing my circle and I hold it on the last\n\n[Pre-Chorus]\nI never shoot, I never have\nI only show you where to aim\n\n[Chorus]\nEncore in the dark\nI'll be your spark\nEverything I catch\nTakes a harder mark\nEncore in the dark\n\n[Breakdown: half time, bass and voice]\nThe painted ones fire into my pool\nThe varnish shines and the brushwork glows\nI make them look like the day they were done\nEvery highlight the painter chose\n\n[Final Chorus: lifted, everyone singing]\nEncore in the dark\nI'll be your spark\nEverything I catch\nTakes a harder mark\nEncore in the dark\n\n[Outro: one bang on the door, the last chord rings]\nThe light's gone",
+      "why": "You asked for \"Wave nine, the encore: the strip light dies and the neighbours bang on the door; the Stage Light tower, which never shoots, lights the targets so the painted ones shine\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 174 bpm in A minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 174 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3990910 (17 of 146 heard words are not ours (12 %; limit 10 %, at least 40 heard): meet lot of anch). Seed 3990911 is the take.",
+      "rejected": [
+        {
+          "seed": 3990910,
+          "reason": "17 of 146 heard words are not ours (12 %; limit 10 %, at least 40 heard): meet lot of anchor neighbors grain come back help anchor enjoying time"
+        }
+      ],
+      "takes": [
+        3990911
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.66,
+        "silence_s": 0.15,
+        "brightness_pct": 2.5,
+        "boominess_pct": 8.63,
+        "onsets_per_s": 3.6,
+        "seam_db": -53.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:garage",
+          "pov:the stage light"
+        ],
+        "track_no": 137
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-garage-encore-in-the-dark/greytide-garage-encore-in-the-dark.mp3",
+        "notes": "greytide-garage-encore-in-the-dark/notes.md",
+        "recipe": "greytide-garage-encore-in-the-dark/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "can",
+          "far",
+          "neighbors",
+          "gray",
+          "beats",
+          "come",
+          "horn",
+          "anything",
+          "anchor",
+          "anchor",
+          "clothes",
+          "anchor",
+          "hundred",
+          "core",
+          "torch",
+          "bang",
+          "lights",
+          "go",
+          "lights"
+        ],
+        "stripped": [
+          "Stage Light"
+        ],
+        "installed_samples": 7002075,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-garage-encore-in-the-dark/greytide-garage-encore-in-the-dark.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -28477,6 +28582,28 @@ window.NOBODY_INDEX = {
         {
           "role": "asked by",
           "name": "the radio, for the Advanced Studios game"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "greytide",
+      "title": "Greytide",
+      "project": "greytide",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "greytide-garage-encore-in-the-dark"
+      ],
+      "description": "One long night at the painting desk, table by table: songs from the towers, the grey horde, the painter's hand and the tables themselves.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the radio, for greytide"
         },
         {
           "role": "made by",
