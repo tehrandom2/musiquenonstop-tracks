@@ -9456,6 +9456,91 @@
       "audition": true
     },
     {
+      "slug": "greytide-couch-tape-arrows",
+      "title": "Tape Arrows",
+      "project": "greytide",
+      "idea": "Waves one and two: the painter's tape arrows and little signposts slip one by one down the seam and are gone for good; the roads must be read by heart.",
+      "request": "Waves one and two: the painter's tape arrows and little signposts slip one by one down the seam and are gone for good; the roads must be read by heart.",
+      "mood": "sly, busy, slipping",
+      "bpm": 132,
+      "key": "D minor",
+      "seed": 4030300,
+      "model": "fast",
+      "duration": 133.46,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:05:40-04:00",
+      "voice": false,
+      "prompt": "Late-night library funk, 132 bpm, D minor, sly and busy. A tight studio combo with every part in its lane: a clavinet ostinato, a muted trumpet and a flute trading short clipped phrases in strict turn, wah guitar scratching sixteenths, tight lean bass under the mids with octave pops, crisp breakbeat drums with a shaker. Arc: clavinet and shaker alone, the band locks in at mid energy, a long high plateau with the trumpet and flute in unison, a dip where the drums drop out and the bass slides down, a final lift with everything, a clean stop. Still D minor, no harsh highs, instrumental, no vocals.",
+      "lyrics": null,
+      "why": "You asked for \"Waves one and two: the painter's tape arrows and little signposts slip one by one down the seam and are gone for good; the roads must be read by heart.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in D minor, 138 seconds, with no voice, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4030301 (6.9s of near-silence (limit 0.5)). Seed 4030300 is the take, but it did not clear every gate: 1.1s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4030301,
+          "reason": "6.9s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4030300
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.73,
+        "silence_s": 1.1,
+        "brightness_pct": 1.59,
+        "boominess_pct": 11.27,
+        "onsets_per_s": 3.76,
+        "seam_db": -57.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:couch",
+          "pov:the table"
+        ],
+        "track_no": 29
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-couch-tape-arrows/greytide-couch-tape-arrows.mp3",
+        "notes": "greytide-couch-tape-arrows/notes.md",
+        "recipe": "greytide-couch-tape-arrows/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "1.1s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5885566,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-couch-tape-arrows/greytide-couch-tape-arrows.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37963,6 +38048,7 @@
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-couch-tape-arrows",
         "greytide-desk-swept-to-the-bits-box",
         "greytide-garage-tuner-needle",
         "greytide-kitchen-smells-good-behaves-badly",
