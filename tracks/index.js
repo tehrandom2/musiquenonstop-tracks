@@ -2991,6 +2991,106 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sill-needle-says-stormy",
+      "title": "Needle Says Stormy",
+      "project": "greytide",
+      "idea": "The painter's hand at wave seven: the gap slides wider, the gusts get worse, the weather station's needle drops toward stormy, and the hand carries towers through it",
+      "request": "The painter's hand at wave seven: the gap slides wider, the gusts get worse, the weather station's needle drops toward stormy, and the hand carries towers through it",
+      "mood": "urgent, stubborn, big-hearted",
+      "bpm": 144,
+      "key": "A minor",
+      "seed": 3970901,
+      "model": "fast",
+      "duration": 167.46,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:15:31-04:00",
+      "voice": true,
+      "prompt": "Stomping garage rock, 144 bpm, A minor, urgent and big-hearted: a pounding floor tom and snare beat with handclaps on the backbeat, a fuzzed baritone guitar riff in the mids, a tight lean bass doubling it under the mids, a rattling tambourine, a wheezing harmonica answering the vocal like a gust, a raspy male lead singing hard with a gang chorus on the hook, in A minor; intro of drums and stomp with a rattle, verses driving, the chorus a shout-along, a breakdown to stomp and gang chant, the final chorus lifted a notch with the full band, warm grit in the mids, no harsh highs",
+      "lyrics": "[Intro: drums and stomp, a rattle]\n\n[Verse 1]\nThe gap slid open wider with a rattle and a shove\nThe gusts came half as hard again, the wet came from above\nI lift the chime from off its pot and walk it through the air\nIt keeps on ringing as it goes, it doesn't seem to care\n\n[Pre-Chorus]\nThe barometer is falling\nFalling, falling\n\n[Chorus]\nNeedle says stormy, needle says stormy\nA tower in my fingers and the drop below me\nThe concrete's running wet and the grey keep coming on\nNeedle says stormy, we hold till the dawn\n\n[Verse 2]\nMy fingers are as big as weather, everything is small\nI set the flytrap by the groove where the light ones slide and fall\nI painted every one of them, I know them by their flaws\nThe prism's string is knotted and the flytrap's got lopsided jaws\n\n[Pre-Chorus]\nThe barometer is falling\nFalling, falling\n\n[Chorus]\nNeedle says stormy, needle says stormy\nA tower in my fingers and the drop below me\nThe concrete's running wet and the grey keep coming on\nNeedle says stormy, we hold till the dawn\n\n[Breakdown: stomp and gang chant]\nHold it, hold it, twenty floors\nHold it, hold it, nothing more\nWind-up whistle, turn the key\nCall the next one, come to me\n\n[Final Chorus: lifted, the full band]\nNeedle says stormy, needle says stormy\nA tower in my fingers and the drop below me\nThe concrete's running wet and the grey keep coming on\nNeedle says stormy, we hold till the dawn\n\n[Outro: stomp alone]\nHold till the dawn",
+      "why": "You asked for \"The painter's hand at wave seven: the gap slides wider, the gusts get worse, the weather station's needle drops toward stormy, and the hand carries towers through it\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 144 bpm in A minor, 170 seconds, with a voice, in words I wrote myself, under the jungle gates. It has no beat to hold, so 144 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3970900 (0.6s of near-silence (limit 0.5)). Seed 3970901 is the take, but it did not clear every gate: 0.9s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3970900,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3970901
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.7,
+        "silence_s": 0.85,
+        "brightness_pct": 3.12,
+        "boominess_pct": 5.84,
+        "onsets_per_s": 2.57,
+        "seam_db": -54.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sill",
+          "pov:painters-hand"
+        ],
+        "track_no": 114
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sill-needle-says-stormy/greytide-sill-needle-says-stormy.mp3",
+        "notes": "greytide-sill-needle-says-stormy/notes.md",
+        "recipe": "greytide-sill-needle-says-stormy/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "jungle",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "0.9s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "gaps",
+          "lit",
+          "his",
+          "heart",
+          "does",
+          "it's",
+          "hour",
+          "faults",
+          "prism",
+          "trap",
+          "great",
+          "gray",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7384993,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sill-needle-says-stormy/greytide-sill-needle-says-stormy.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -31499,6 +31599,7 @@ window.NOBODY_INDEX = {
         "greytide-workbench-the-sander-comes-on",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
         "greytide-sill-petal-by-petal",
         "greytide-treehouse-chalk-tally",
