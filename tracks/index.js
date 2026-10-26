@@ -5659,6 +5659,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-railway-eastbound-westbound",
+      "title": "Eastbound, Westbound",
+      "project": "greytide",
+      "idea": "Waves four and five: the green goods train with its coal wagon, van and brake van runs tunnel to tunnel, eastbound then westbound",
+      "request": "Waves four and five: the green goods train with its coal wagon, van and brake van runs tunnel to tunnel, eastbound then westbound",
+      "mood": "relentless, hypnotic, proud",
+      "bpm": 138,
+      "key": "E minor",
+      "seed": 4060401,
+      "model": "fast",
+      "duration": 141.3,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:11:16-04:00",
+      "voice": false,
+      "prompt": "Motorik krautrock instrumental, 138 bpm, in E minor, a tight machine quartet as the goods train: a locked motorik kit with a steady eighth-note hat and a snare like rail joints, a tight lean bass under the mids driving repeated eighths on the root, a chugging muted guitar figure with a phaser, a synth lead playing a simple whistle-like melody that answers itself, a low choir pad as the tunnel, the key E minor held by the bass from the first bar; arc: a distant hum building out of the dark, the full groove at mid level, a long high plateau with the lead in harmony, a dip to a filtered pulse inside the far tunnel, a final lift as the train comes back the other way, a fading hum, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Waves four and five: the green goods train with its coal wagon, van and brake van runs tunnel to tunnel, eastbound then westbound\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in E minor, 145 seconds, with no voice, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4060400 (harsh: 2.6% above 6 kHz (ceiling 2.5)). Seed 4060401 is the take.",
+      "rejected": [
+        {
+          "seed": 4060400,
+          "reason": "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4060401
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.89,
+        "silence_s": 0.15,
+        "brightness_pct": 1.84,
+        "boominess_pct": 7.91,
+        "onsets_per_s": 3.6,
+        "seam_db": -63.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:railway",
+          "pov:the-goods-train"
+        ],
+        "track_no": 45
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-railway-eastbound-westbound/greytide-railway-eastbound-westbound.mp3",
+        "notes": "greytide-railway-eastbound-westbound/notes.md",
+        "recipe": "greytide-railway-eastbound-westbound/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.17,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6231399,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-railway-eastbound-westbound/greytide-railway-eastbound-westbound.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -34163,6 +34246,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-railway-eastbound-westbound",
         "greytide-sandpit-the-digger-revs",
         "greytide-schooldesk-look-busy",
         "greytide-sill-in-the-lee",
