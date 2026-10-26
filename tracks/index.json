@@ -1270,6 +1270,108 @@
       "audition": true
     },
     {
+      "slug": "greytide-workbench-station-one-one-way-only",
+      "title": "Station One, One Way Only",
+      "project": "greytide",
+      "idea": "Wave one, a grey dude steps onto the conveyor: one road, rollers every centimetre, three station signs, and the painted towers watching from the toolbox lid",
+      "request": "Wave one, a grey dude steps onto the conveyor: one road, rollers every centimetre, three station signs, and the painted towers watching from the toolbox lid",
+      "mood": "deadpan, hypnotic, driving",
+      "bpm": 138,
+      "key": "A minor",
+      "seed": 3960101,
+      "model": "fast",
+      "duration": 161.57,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:18:09-04:00",
+      "voice": true,
+      "prompt": "Motorik krautrock at 138 bpm in A minor, a factory-floor quartet: a metronomic kick and hat beat that never lets up, a tight lean eighth-note bass, bass under the mids, a chugging muted guitar like rollers turning, a cold sequenced synth line and a warm organ swelling in the chorus; a flat, deadpan male lead with a clipped machine-like backing chorus; starts mid on the beat alone, builds to a long high plateau, a dip to bass and sequence in the bridge, a lifted last chorus, A minor, no harsh highs",
+      "lyrics": "[Intro - the beat alone, then the bass]\nStation one.\n\n[Verse 1]\nOut of the kit box onto black rubber road\nRollers every centimetre, yellow line on either side\nPine planks to the left and a long way down\nNobody asked us, but the belt decides\nA sign stuck up beside the line in capitals\nSTATION ONE, ONE WAY ONLY, so we go\nClamp A swings and stops us in a crowd\nThen lets us all go at once, in a row\n\n[Pre-Chorus]\nRoll on, roll on\n(No forks, no turns)\n\n[Chorus]\nOne way only, one road through\nFront of the bench, then the vice, then the climb\nOne way only, grey and new\nEvery centimetre, right on time\n\n[Verse 2]\nSTATION TWO, THE VICE, in someone's hand\nSTATION THREE, THE CLIMB, up the pegboard wall\nThree hundred and thirty centimetres long\nAnd we were built to walk it all\nThe painted ones are standing on a toolbox lid\nRed and proud and highlighted with care\nThey watch the belt the way you watch the sea\nThey know it's taking us somewhere\n\n[Pre-Chorus]\nRoll on, roll on\n(No forks, no turns)\n\n[Chorus]\nOne way only, one road through\nFront of the bench, then the vice, then the climb\nOne way only, grey and new\nEvery centimetre, right on time\n\n[Bridge - bass and the sequence only]\nA big green button on the left of the bench\nSomebody presses it, the next lot come\nWe are not a story, we are a shift\nWe are not afraid, we are numb\n\n[Final Chorus - lifted, organ in full]\nOne way only, one road through\nFront of the bench, then the vice, then the climb\nOne way only, grey and new\nEvery centimetre, right on time\n\n[Outro - the beat runs on, then cuts]\nStation one. Station one.",
+      "why": "You asked for \"Wave one, a grey dude steps onto the conveyor: one road, rollers every centimetre, three station signs, and the painted towers watching from the toolbox lid\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in A minor, 165 seconds, with a voice, in words I wrote myself, under the jungle gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960100 (0.8s of near-silence (limit 0.5) and others). Seed 3960101 is the take, but it did not clear every gate: 1.0s of near-silence (limit 0.5); boomy: 9.2% below 60 Hz (ceiling 8).",
+      "rejected": [
+        {
+          "seed": 3960100,
+          "reason": "0.8s of near-silence (limit 0.5); boomy: 14.1% below 60 Hz (ceiling 8)"
+        }
+      ],
+      "takes": [
+        3960101
+      ],
+      "numbers": {
+        "tempo_bpm": 134.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.01,
+        "silence_s": 0.95,
+        "brightness_pct": 2.67,
+        "boominess_pct": 9.18,
+        "onsets_per_s": 3.76,
+        "seam_db": -36.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:grey-dude"
+        ],
+        "track_no": 12
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-station-one-one-way-only/greytide-workbench-station-one-one-way-only.mp3",
+        "notes": "greytide-workbench-station-one-one-way-only/notes.md",
+        "recipe": "greytide-workbench-station-one-one-way-only/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "jungle",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.0s of near-silence (limit 0.5)",
+          "boomy: 9.2% below 60 Hz (ceiling 8)"
+        ],
+        "words_not_ours": [
+          "rubble",
+          "centimeter",
+          "clamper",
+          "centimeter",
+          "device",
+          "head",
+          "clemby",
+          "pig",
+          "boat",
+          "centimeters",
+          "band",
+          "fights",
+          "great",
+          "centimeter",
+          "slide"
+        ],
+        "stripped": [],
+        "installed_samples": 7125323,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-station-one-one-way-only/greytide-workbench-station-one-one-way-only.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29759,6 +29861,7 @@
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-workbench-station-one-one-way-only",
         "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-the-hordes-pulse",
