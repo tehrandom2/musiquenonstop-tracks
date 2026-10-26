@@ -3,6 +3,104 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T15:14:41-04:00",
   "tracks": [
     {
+      "slug": "greytide-workbench-you-know-this-now",
+      "title": "You Know This Now",
+      "project": "greytide",
+      "idea": "Wave ten, the boss in the vice on the boss display: the signs have gone, the printer said YOU KNOW THIS NOW, and an unfinished bench holds anyway",
+      "request": "Wave ten, the boss in the vice on the boss display: the signs have gone, the printer said YOU KNOW THIS NOW, and an unfinished bench holds anyway",
+      "mood": "anthemic, urgent, earned",
+      "bpm": 144,
+      "key": "E minor",
+      "seed": 3961011,
+      "model": "fast",
+      "duration": 173.38,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T15:14:40-04:00",
+      "voice": true,
+      "prompt": "Anthemic post-punk revival at 144 bpm in E minor, a big bench band: two jangling overdriven guitars with warm saturation in the mids, one chiming, one chugging, a tight lean melodic bass, bass under the mids, a four-to-the-floor kit with a rattling snare, a ticking typewriter-like percussion as the label printer, a gang chorus of everyone; a hoarse, urgent male lead; mid start, a long high plateau, a bass-and-ticks bridge, a lifted final chorus, E minor, no harsh highs",
+      "lyrics": "[Intro - the printer ticking, then the riff]\nY. O. U. Know this now.\n\n[Verse 1]\nAfter wave two the printer chattered on a curling strip of tape\nYOU KNOW THIS NOW, it told us, and the signs fell out of shape\nSTATION ONE fell over, STATION TWO went with a clack\nSTATION THREE lay down a while and never came back\nNobody's holding our hands now, the arrows shrank to none\nWe learned the belt by heart, and now the last wave's come\n\n[Pre-Chorus]\nTick, tick, tick, tick\n(Print it, print it out)\n\n[Chorus]\nYou know this now, you know this now\nThe vice, the clamp, the climb, and how\nHold the line on the belt somehow\nYou know this now, you know this now\n\n[Verse 2]\nThe boss is on the boss display, a plank inside the vice\nEvery hit we land on it, the jaws close once or twice\nThe iron's hot, the sander's on, the Admiral's on a turn\nThe Level's keeping all of us steady while we learn\nMeasure twice and cut it once, and round it down a bit\nSeventeen of twenty lives and we are holding it\n\n[Pre-Chorus]\nTick, tick, tick, tick\n(Print it, print it out)\n\n[Chorus]\nYou know this now, you know this now\nThe vice, the clamp, the climb, and how\nHold the line on the belt somehow\nYou know this now, you know this now\n\n[Bridge - bass and the printer only, then the band returns]\nIn the vice there's a birdhouse with a wall that isn't there\nA cut list on the bench that says ONE ROOF, WRONG, in a scrawl of care\nNothing on this bench is finished, nothing ever is\nBut it holds, and it holds, and it holds\n\n[Final Chorus - lifted, everyone singing, the printer on every beat]\nYou know this now, you know this now\nThe vice, the clamp, the climb, and how\nHold the line on the belt somehow\nYou know this now, you know this now\n\n[Outro - the tape curls off the end]\nEnd of tape. You know this.",
+      "why": "You asked for \"Wave ten, the boss in the vice on the boss display: the signs have gone, the printer said YOU KNOW THIS NOW, and an unfinished bench holds anyway\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 144 bpm in E minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 144 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3961010 (0.7s of near-silence (limit 0.5) and others). Seed 3961011 is the take, but it did not clear every gate: 0.8s of near-silence (limit 0.5); harsh: 3.2% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3961010,
+          "reason": "0.7s of near-silence (limit 0.5); 24 of 236 heard words are not ours (10 %; limit 10 %, at least 40 heard): well afterwave science arrow's straight waves bosses bus spray sanders clip climbing"
+        }
+      ],
+      "takes": [
+        3961011
+      ],
+      "numbers": {
+        "tempo_bpm": 71.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.96,
+        "silence_s": 0.8,
+        "brightness_pct": 3.19,
+        "boominess_pct": 6.52,
+        "onsets_per_s": 3.93,
+        "seam_db": -51.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:label-printer"
+        ],
+        "track_no": 143
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-you-know-this-now/greytide-workbench-you-know-this-now.mp3",
+        "notes": "greytide-workbench-you-know-this-now/notes.md",
+        "recipe": "greytide-workbench-you-know-this-now/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.09,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.8s of near-silence (limit 0.5)",
+          "harsh: 3.2% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "don't",
+          "chatter",
+          "laid",
+          "arrow",
+          "waves",
+          "bosses",
+          "just",
+          "play",
+          "sanders",
+          "cleanse",
+          "oh"
+        ],
+        "stripped": [],
+        "installed_samples": 7645986,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-you-know-this-now/greytide-workbench-you-know-this-now.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "greytide-treehouse-five-more-minutes",
       "title": "Five More Minutes",
       "project": "greytide",
@@ -42142,7 +42240,8 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-rubbed-out",
         "greytide-garage-ping-a-string-goes",
         "greytide-treehouse-duck",
-        "greytide-treehouse-five-more-minutes"
+        "greytide-treehouse-five-more-minutes",
+        "greytide-workbench-you-know-this-now"
       ],
       "description": "One long night at the painting desk, table by table: songs from the towers, the grey horde, the painter's hand and the tables themselves.",
       "credits": [
