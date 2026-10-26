@@ -11130,6 +11130,100 @@
       "audition": true
     },
     {
+      "slug": "greytide-bed-night-night",
+      "title": "Night Night",
+      "project": "greytide",
+      "idea": "Lights out at wave nine, only the moon and the phone's glow left; the hot water bottle, which never fires, keeps every tower beside it warm and fast while the box nobody opened climbs the last hill and a red wedge on the alarm clock thins.",
+      "request": "Lights out at wave nine, only the moon and the phone's glow left; the hot water bottle, which never fires, keeps every tower beside it warm and fast while the box nobody opened climbs the last hill and a red wedge on the alarm clock thins.",
+      "mood": "warm, huge, defiant, tender",
+      "bpm": 136,
+      "key": "C minor",
+      "seed": 3931001,
+      "model": "fast",
+      "duration": 170.06,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:03:12-04:00",
+      "voice": true,
+      "prompt": "Cinematic anthem, 136 bpm, C minor. The ensemble: a celesta playing a small lullaby figure, driving toms and a tight kick, a lean bass under the mids, string ostinato in eighths, a low brass swell on the chorus, and a choir of low voices. A warm female lead, steady and close, the choir answering. Mood: warm, huge, defiant and tender. Arc: celesta alone, strings and toms in at verse one, a wide chorus, a bridge of voice and choir with drums out, the final chorus lifted with full choir and brass, a celesta outro. C minor throughout, no harsh highs.",
+      "lyrics": "[Intro: celesta alone]\n\n[Verse 1]\nThe light went out on wave nine\nthree, two, one, and then the blue\nthe moon on the hills, the phone's last glow\nand a pile of grey coming through\nI'm the bottle at the back of the line\nnever fired, never will\nbut every tower I sit beside\nfires faster, and it's warm here still\n\n[Pre-Chorus]\nNight night, love you\nsays the screen to someone half awake\n\n[Chorus]\nNight night, hold on\nkeep it warm until the dawn\nnight night, hold on\nevery painted one, hold on\n\n[Verse 2]\nOn the carpet a clock with a red slice\nthe big one's life is in that wedge\nit's the box that was never opened\nclimbing over the last ridge\ncellophane and four hundred pieces\nsixty pages, not one read\nthe scariest thing in the whole wide world\nis the kit beside your bed\n\n[Pre-Chorus]\nNight night, love you\nsays the screen to someone half awake\n\n[Chorus]\nNight night, hold on\nkeep it warm until the dawn\nnight night, hold on\nevery painted one, hold on\n\n[Bridge: drums out, voice and choir]\nGo to bed, properly, love you\n(we will, we will)\nthe wedge goes thin, the wedge goes thin\n(we will, we will)\n\n[Final Chorus: lifted, full choir and brass]\nNight night, hold on\nkeep it warm until the dawn\nnight night, hold on\nevery painted one, hold on\n\n[Outro: celesta alone]\nNight night.",
+      "why": "You asked for \"Lights out at wave nine, only the moon and the phone's glow left; the hot water bottle, which never fires, keeps every tower beside it warm and fast while the box nobody opened climbs the last hill and a red wedge on the alarm clock thins.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in C minor, 176 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3931000 (0.6s of near-silence (limit 0.5)). Seed 3931001 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5); boomy: 12.4% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 3931000,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3931001
+      ],
+      "numbers": {
+        "tempo_bpm": 137.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.89,
+        "silence_s": 0.6,
+        "brightness_pct": 2.42,
+        "boominess_pct": 12.37,
+        "onsets_per_s": 2.1,
+        "seam_db": -23.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bed",
+          "pov:the hot water bottle"
+        ],
+        "track_no": 117
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bed-night-night/greytide-bed-night-night.mp3",
+        "notes": "greytide-bed-night-night/notes.md",
+        "recipe": "greytide-bed-night-night/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)",
+          "boomy: 12.4% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": [
+          "hill",
+          "gray",
+          "fire",
+          "down",
+          "been",
+          "everything",
+          "ledge"
+        ],
+        "stripped": [],
+        "installed_samples": 7499710,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bed-night-night/greytide-bed-night-night.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39715,6 +39809,7 @@
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-bed-night-night",
         "greytide-carseat-are-we-nearly-there",
         "greytide-couch-alarm-six-thirty",
         "greytide-desk-about-to-be-painted",
