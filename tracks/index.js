@@ -191,6 +191,119 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-demo-ends-in-sixty",
+      "title": "Demo Ends in Sixty",
+      "project": "greytide",
+      "idea": "Wave one, the shop is closed and the demo starts: the table's own display (clock, card reader, shelf-talker) calls the night to order",
+      "request": "Wave one, the shop is closed and the demo starts: the table's own display (clock, card reader, shelf-talker) calls the night to order",
+      "mood": "bright, driving, wry",
+      "bpm": 138,
+      "key": "E minor",
+      "seed": 3950110,
+      "model": "fast",
+      "duration": 158.74,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:20:37-04:00",
+      "voice": true,
+      "prompt": "Driving new-wave synth-pop at 138 bpm in E minor, a late-night shop-floor band: a tight lean bass guitar on eighths with the bass well under the mids, a motorik kit with a dry rimshot that clacks like dice on felt, a staccato synth arpeggio as the countdown, a bright counter-bell ping on each chorus downbeat, a warm pad under it; a crisp, wry female lead with a deadpan male shout on the countdown lines; starts mid, a long high plateau, a dip to bass and bell in the bridge, a lifted final chorus, still in E minor, no harsh highs",
+      "lyrics": "[Intro - arpeggio and the counter bell]\nSixty dots around the clock.\nHere we go.\n\n[Verse 1]\nShutter halfway down, the till is counting low\nA flock mat on the navy felt, four tiles in a row\nRuined chapel, crater, hills and a zigzag road\nPainted ones are on their pegs, waiting to be told\nA kit box tipped on its side, the grey come climbing through\nSprue still on their ankles and no idea what to do\nThe shelf-talker clears its throat in hand-drawn capitals\nTonight's demo: hold the line, whatever falls\n\n[Pre-Chorus]\nRing the bell, ring the bell, the counter calls the time\n(Sixty dots around the clock and every one is mine)\n\n[Chorus]\nDemo ends in sixty, hold the board\nEvery dot's a heartbeat on the shop floor\nGrey on the green and the painted on the hill\nDemo ends in sixty, hold it still\n\n[Verse 2]\nThe reader says TOTAL three of twelve, and beeps\nOne gets through, it flashes red, CARD DECLINED, it weeps\nA stamp punched out of the loyalty card by the tray\nTwenty little circles and we gave one away\nThe ballista on the plateau has a bolt for every seam\nThe cannon on the chapel wall is louder than it seems\nAnd somewhere in the shuffle is a road we never knew\nThe board was not this shape last night, and neither were you\n\n[Pre-Chorus]\nRing the bell, ring the bell, the counter calls the time\n(Sixty dots around the clock and every one is mine)\n\n[Chorus]\nDemo ends in sixty, hold the board\nEvery dot's a heartbeat on the shop floor\nGrey on the green and the painted on the hill\nDemo ends in sixty, hold it still\n\n[Bridge - bass and bell only, then the kit builds back]\nNobody's in the shop but the dice and us\nNobody is watching, so it matters most\nThree centimetres tall and the felt goes on for miles\nRing it, ring it, ring it\n\n[Final Chorus - lifted, the whole band and a gang shout]\nDemo ends in sixty, hold the board\nEvery dot's a heartbeat on the shop floor\nGrey on the green and the painted on the hill\nDemo ends in sixty, hold it still\n\n[Outro - the arpeggio slows to the last few dots]\nTen. Nine. Hold it still.",
+      "why": "You asked for \"Wave one, the shop is closed and the demo starts: the table's own display (clock, card reader, shelf-talker) calls the night to order\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in E minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950111 (harsh: 3.9% above 6 kHz (ceiling 2.5) and others). Seed 3950110 is the take, but it did not clear every gate: harsh: 3.1% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3950111,
+          "reason": "harsh: 3.9% above 6 kHz (ceiling 2.5); 30 of 291 heard words are not ours (10 %; limit 10 %, at least 40 heard): dollars or o'clock shut her flop brewing rope heads kickbox great compression"
+        }
+      ],
+      "takes": [
+        3950110
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.07,
+        "silence_s": 0.25,
+        "brightness_pct": 3.08,
+        "boominess_pct": 6.89,
+        "onsets_per_s": 3.98,
+        "seam_db": -60.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:the display"
+        ],
+        "track_no": 130
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-demo-ends-in-sixty/greytide-gamestore-demo-ends-in-sixty.mp3",
+        "notes": "greytide-gamestore-demo-ends-in-sixty/notes.md",
+        "recipe": "greytide-gamestore-demo-ends-in-sixty/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "gods",
+          "should",
+          "her",
+          "backs",
+          "kickbox",
+          "slipped",
+          "great",
+          "spruce",
+          "shell",
+          "top",
+          "who",
+          "his",
+          "everyone",
+          "lying",
+          "hippie",
+          "rain",
+          "chojo",
+          "leaps",
+          "car",
+          "train",
+          "belly",
+          "everyone",
+          "centimeters",
+          "bring",
+          "bring",
+          "bring",
+          "ray"
+        ],
+        "stripped": [],
+        "installed_samples": 7000442,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-demo-ends-in-sixty/greytide-gamestore-demo-ends-in-sixty.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -28680,6 +28793,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-gamestore-demo-ends-in-sixty",
         "greytide-gamestore-the-fist-at-the-next-table",
         "greytide-garage-encore-in-the-dark"
       ],
