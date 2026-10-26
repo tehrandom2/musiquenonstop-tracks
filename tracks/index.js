@@ -1845,6 +1845,106 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-treehouse-up-the-rope-ladder",
+      "title": "Up The Rope Ladder",
+      "project": "greytide",
+      "idea": "The horde climbs out of the kit box and up the rope ladder through the trapdoor into the treehouse at dusk, after the biscuit tin; a grey dude's point of view.",
+      "request": "The horde climbs out of the kit box and up the rope ladder through the trapdoor into the treehouse at dusk, after the biscuit tin; a grey dude's point of view.",
+      "mood": "eager, rough, adventurous",
+      "bpm": 140,
+      "key": "A minor",
+      "seed": 4040101,
+      "model": "fast",
+      "duration": 165.34,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:17:20-04:00",
+      "voice": true,
+      "prompt": "Stomping skiffle folk rock, 140 bpm, A minor, eager and rough-edged. A back-garden band with every part in its lane: a hard-strummed acoustic guitar driving eighths, a mandolin picking the climbing riff, a washboard and stomp-box kick, tight lean upright bass slapping under the mids, a fiddle answering the hook, creaking rope texture in the gaps. A rough, grinning male lead and a gang of voices shouting the hook. Arc: lone mandolin riff, verse at mid energy, a long high chorus plateau, a breakdown to stomps and claps only, a lifted final chorus with the fiddle on top, a stomped ending. A minor, warm grit in the mids, no harsh highs.",
+      "lyrics": "[Intro: mandolin riff alone, a rope creaks]\nHand over hand, lads, hand over hand\n\n[Verse 1]\nDown in the dark of a kit box lid\nTipped on its side where the grey ones hid\nSomebody opened the hatch up high\nApricot light and a slice of sky\nRope for a ladder and knots for a stair\nEvery rung tall as a garden chair\n\n[Pre-Chorus]\nDon't look down, there's nothing to see\nJust the grass and the night and the roots of the tree\n\n[Chorus]\nUp the rope ladder, up through the hatch\nGrey from the box and nothing to catch\nSomewhere a tin with the lid propped wide\nUp the rope ladder, the world's outside\n\n[Verse 2]\nBoards that don't meet and a floor that leans\nChalk on the edges where little feet have been\nTwo roads part at the top of the climb\nOne by the wall and one loose all the time\nPainted ones waiting with conkers and light\nWe came for the biscuits and we'll stay the night\n\n[Pre-Chorus]\nDon't look down, there's nothing to see\nJust the grass and the night and the roots of the tree\n\n[Chorus]\nUp the rope ladder, up through the hatch\nGrey from the box and nothing to catch\nSomewhere a tin with the lid propped wide\nUp the rope ladder, the world's outside\n\n[Breakdown: stomps and claps only]\nHand over hand, lads, hand over hand\nNobody painted us, nobody planned\nHand over hand, lads, rung over rung\nThe night is old and the horde is young\n\n[Final Chorus: lifted, the fiddle soaring, the whole gang]\nUp the rope ladder, up through the hatch\nGrey from the box and nothing to catch\nSomewhere a tin with the lid propped wide\nUp the rope ladder, the world's outside\nUp the rope ladder, the world's outside\n\n[Outro: one big stomp]",
+      "why": "You asked for \"The horde climbs out of the kit box and up the rope ladder through the trapdoor into the treehouse at dusk, after the biscuit tin; a grey dude's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in A minor, 168 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040100 (23 of 225 heard words are not ours (10 %; limit 10 %, at least 40 heard): let's handle it ). Seed 4040101 is the take.",
+      "rejected": [
+        {
+          "seed": 4040100,
+          "reason": "23 of 225 heard words are not ours (10 %; limit 10 %, at least 40 heard): let's handle it kitbox lit stare gray pump orts way lit prop"
+        }
+      ],
+      "takes": [
+        4040101
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.08,
+        "silence_s": 0.25,
+        "brightness_pct": 1.93,
+        "boominess_pct": 5.36,
+        "onsets_per_s": 2.9,
+        "seam_db": -61.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:grey dude"
+        ],
+        "track_no": 11
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-up-the-rope-ladder/greytide-treehouse-up-the-rope-ladder.mp3",
+        "notes": "greytide-treehouse-up-the-rope-ladder/notes.md",
+        "recipe": "greytide-treehouse-up-the-rope-ladder/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "lit",
+          "gray",
+          "open",
+          "goat",
+          "everyone",
+          "turns",
+          "road",
+          "need",
+          "paint",
+          "it",
+          "gray",
+          "popped",
+          "it's",
+          "gray",
+          "said",
+          "bye"
+        ],
+        "stripped": [],
+        "installed_samples": 7291510,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-up-the-rope-ladder/greytide-treehouse-up-the-rope-ladder.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30334,6 +30434,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
         "greytide-workbench-eleven-seconds",
         "greytide-treehouse-you-are-on-your-own",
