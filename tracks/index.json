@@ -6118,6 +6118,110 @@
       "audition": true
     },
     {
+      "slug": "greytide-picnic-hot-sauce-line",
+      "title": "Hot Sauce Line",
+      "project": "greytide",
+      "idea": "Wave eight in the blue light: the Hot Sauce Bottle draws its burning line, the citronella smoke strips shields and the Fly Swatter smacks a patch flat",
+      "request": "Wave eight in the blue light: the Hot Sauce Bottle draws its burning line, the citronella smoke strips shields and the Fly Swatter smacks a patch flat",
+      "mood": "hot, strutting, gleeful",
+      "bpm": 142,
+      "key": "C sharp minor",
+      "seed": 4000800,
+      "model": "fast",
+      "duration": 161.74,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:10:34-04:00",
+      "voice": true,
+      "prompt": "Latin boogaloo and funk, 142 bpm, C sharp minor: a montuno piano riff, a tight lean bass, bass under the mids, playing a syncopated tumbao, timbales and congas driving, a drummer on a tight snare, a brass section of two trumpets and a trombone stabbing in strict order, a hand-clap section, a fiery male lead who struts the verses and a gang shouting the hook; hot and dry, no harsh highs; starts mid on piano and congas, a long hot plateau, a timbale break dip, a final lift with the brass, C sharp minor",
+      "lyrics": "[Intro: the montuno, then the brass]\nSqueeze! Squeeze!\n\n[Verse 1]\nI'm the Hot Sauce Bottle with a cap on my head\nI don't shoot a bolt, I just draw it in red\nA long hot line right across the trail\nYou walk in my line and you carry my tale\n\n[Pre-Chorus]\nIt's on your boots, it's on your base\nYou drag me with you all over the place\n\n[Chorus]\nHot sauce line, don't you cross it\nHot sauce line, you'll be sorry that you lost it\nHot sauce line, burning slow\nEverywhere you walk, there I go\n\n[Verse 2]\nThe citronella's smoking on the corner of the checks\nThe grey are coughing, they've got shields round their necks\nThe smoke takes the shields and the line does the rest\nAnd the Fly Swatter winds for the thing it does best\n\n[Pre-Chorus]\nIt's on your boots, it's on your base\nYou drag me with you all over the place\n\n[Chorus]\nHot sauce line, don't you cross it\nHot sauce line, you'll be sorry that you lost it\nHot sauce line, burning slow\nEverywhere you walk, there I go\n\n[Breakdown: timbales and congas, the gang counting]\nOne, two, three and the swatter comes down\nA whole patch flat with a terrible sound\nSmack! and the grass jumps up off the lawn\nAnd the red line glows till the grey are gone\n\n[Final Chorus: lifted, the brass on top]\nHot sauce line, don't you cross it\nHot sauce line, you'll be sorry that you lost it\nHot sauce line, burning slow\nEverywhere you walk, there I go\n\n[Outro: one brass hit]\nSqueeze!",
+      "why": "You asked for \"Wave eight in the blue light: the Hot Sauce Bottle draws its burning line, the citronella smoke strips shields and the Fly Swatter smacks a patch flat\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 142 bpm in C sharp minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 142 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4000801 (0.6s of near-silence (limit 0.5)). Seed 4000800 is the take, but it did not clear every gate: 0.8s of near-silence (limit 0.5); harsh: 3.1% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4000801,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4000800
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.94,
+        "silence_s": 0.8,
+        "brightness_pct": 3.05,
+        "boominess_pct": 4.54,
+        "onsets_per_s": 3.71,
+        "seam_db": -40.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:picnic",
+          "pov:the hot sauce bottle"
+        ],
+        "track_no": 99
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-picnic-hot-sauce-line/greytide-picnic-hot-sauce-line.mp3",
+        "notes": "greytide-picnic-hot-sauce-line/notes.md",
+        "recipe": "greytide-picnic-hot-sauce-line/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "0.8s of near-silence (limit 0.5)",
+          "harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "boat",
+          "throw",
+          "along",
+          "hotline",
+          "ride",
+          "tail",
+          "citronella",
+          "flyswatter",
+          "wins",
+          "is",
+          "boot",
+          "ooh",
+          "squeez",
+          "squeez"
+        ],
+        "stripped": [
+          "Hot Sauce Bottle",
+          "Fly Swatter"
+        ],
+        "installed_samples": 7132803,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-picnic-hot-sauce-line/greytide-picnic-hot-sauce-line.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -34645,6 +34749,7 @@
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-picnic-hot-sauce-line",
         "greytide-railway-trestle-over-the-gorge",
         "greytide-sandpit-prints-in-the-damp",
         "greytide-schooldesk-she-turns-to-the-board",
