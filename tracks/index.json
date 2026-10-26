@@ -10735,6 +10735,108 @@
       "audition": true
     },
     {
+      "slug": "greytide-bed-still-up",
+      "title": "Still Up?",
+      "project": "greytide",
+      "idea": "The phone propped at the head of the bed is the room's voice: its clock is the wave count, its battery is the lives, and Mum keeps asking if anyone is still up.",
+      "request": "The phone propped at the head of the bed is the room's voice: its clock is the wave count, its battery is the lives, and Mum keeps asking if anyone is still up.",
+      "mood": "wide awake at the wrong hour, wry, tense",
+      "bpm": 138,
+      "key": "A minor",
+      "seed": 3930100,
+      "model": "fast",
+      "duration": 164.57,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:03:46-04:00",
+      "voice": true,
+      "prompt": "Night-drive synth-pop, 138 bpm, A minor. The band: a pulsing eighth-note synth bass, tight and lean, bass well under the mids; a gated drum machine with a crisp snare and a steady closed hat; a bell-toned arpeggio carrying the hook; warm minor pad chords underneath. A breathy, wry female lead sung close, stacked harmony on every chorus. Mood: wide awake at the wrong hour, playful and tense. Arc: starts mid on arpeggio and bass, full drums at the first chorus, a dip to pad and voice in the bridge, the final chorus lifted with a gang harmony. A minor throughout, no harsh highs.",
+      "lyrics": "[Intro: arpeggio and synth bass]\n(Buzz. Buzz.)\n\n[Verse 1]\nI'm propped up at the head of the bed\na lock screen glowing on the hills\nthe clock up top counts down the wave\nthe stack beneath it lists the kills\nninety-one percent and holding\nevery leak, a little less\nthey gave me nothing but a battery\nand a whole night to confess\n\n[Pre-Chorus]\nOne more ping and the grey come down\nthree long passes through the folds\n\n[Chorus]\nStill up? Lights off soon\nevery percent is a dude gone through\nStill up? Lights off soon\nI'm the voice of the room, I'm the voice of the room\n\n[Verse 2]\nMum keeps asking if you're sleeping\nI keep telling her you're fine\nthere's a ballista on the ridge\nand a cannon down the line\nthe sleep app does its sums out loud\nfour hours, give or take\nat five percent I dim my face\nand whisper, stay awake\n\n[Pre-Chorus]\nOne more ping and the grey come down\nthree long passes through the folds\n\n[Chorus]\nStill up? Lights off soon\nevery percent is a dude gone through\nStill up? Lights off soon\nI'm the voice of the room, I'm the voice of the room\n\n[Bridge: drums drop, pad and voice]\nLow power, low power\nthe text gets small, the glow goes thin\nlow power, low power\ndon't you let the last one in\n\n[Final Chorus: lifted, gang harmony]\nStill up? Lights off soon\nevery percent is a dude gone through\nStill up? Lights off soon\nI'm the voice of the room, I'm the voice of the room\n\n[Outro: arpeggio alone]\n(Buzz.) Still up.",
+      "why": "You asked for \"The phone propped at the head of the bed is the room's voice: its clock is the wave count, its battery is the lives, and Mum keeps asking if anyone is still up.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in A minor, 168 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3930101 (1.8s of near-silence (limit 0.5) and others). Seed 3930100 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5); harsh: 2.9% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3930101,
+          "reason": "1.8s of near-silence (limit 0.5); harsh: 3.3% above 6 kHz (ceiling 2.5); 168 of 367 heard words are not ours (46 %; limit 10 %, at least 40 heard): falsch falsch falsch falsch falsch falsch falsch falsch falsch falsch falsch falsch"
+        }
+      ],
+      "takes": [
+        3930100
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.37,
+        "silence_s": 0.55,
+        "brightness_pct": 2.87,
+        "boominess_pct": 11.63,
+        "onsets_per_s": 3.38,
+        "seam_db": -40.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bed",
+          "pov:the phone"
+        ],
+        "track_no": 3
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bed-still-up/greytide-bed-still-up.mp3",
+        "notes": "greytide-bed-still-up/notes.md",
+        "recipe": "greytide-bed-still-up/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)",
+          "harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "lockscreen",
+          "going",
+          "way",
+          "list",
+          "hands",
+          "pain",
+          "grave",
+          "mom",
+          "police",
+          "stop",
+          "rim",
+          "this",
+          "smaller",
+          "cent",
+          "due"
+        ],
+        "stripped": [],
+        "installed_samples": 7257536,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bed-still-up/greytide-bed-still-up.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39224,6 +39326,7 @@
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-bed-still-up",
         "greytide-carseat-up-from-the-footwell",
         "greytide-couch-who-wants-to-be-a-painter",
         "greytide-kitchen-red-and-white-squares",
