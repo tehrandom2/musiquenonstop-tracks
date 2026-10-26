@@ -4018,6 +4018,100 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-two-ways-across",
+      "title": "Two Ways Across",
+      "project": "greytide",
+      "idea": "Wave one: a grey dude climbs out of the kit box at the hose end and reads the two signposts, trench or dunes",
+      "request": "Wave one: a grey dude climbs out of the kit box at the hose end and reads the two signposts, trench or dunes",
+      "mood": "reckless, sun-baked, curious",
+      "bpm": 152,
+      "key": "E minor",
+      "seed": 4050101,
+      "model": "fast",
+      "duration": 162.34,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:13:48-04:00",
+      "voice": true,
+      "prompt": "Desert surf-punk, 152 bpm, in E minor, a four-piece garage band on a hot afternoon: a twangy reverb surf guitar playing the staccato tremolo-picked lead line, a second guitar chugging palm-muted eighths, a tight lean picked bass under the mids walking the root, a driving snare-heavy kit with floor-tom rolls into each chorus, a scrappy male lead with a grin in his voice and a shouted gang chorus answering him, sun-baked, reckless, curious, the key E minor held throughout; arc: guitar-only intro, verses at mid level, a big chorus, a dip to bass and tom for the bridge, final chorus lifted with a key-of-E-minor guitar harmony, tight lean bass, no harsh highs",
+      "lyrics": "[Intro: surf guitar alone, then the band crashes in]\n\n[Verse 1]\nTipped on its side at the end of the hose\nA kit box mouth and out the grey dude goes\nSand to my knees and the sun on my back\nNobody painted me, nobody looked back\n\n[Verse 2]\nTwo little signposts stuck in the dune\nPainted in letters by a kid at noon\nThe trench is low and the trench is fast\nThe dunes are high and they drag you past\n\n[Pre-Chorus]\nLeft foot, right foot, grain by grain\nIt floods, it says, it floods again\n\n[Chorus]\nTwo ways across, two ways across\nLow and fast or high and lost\nThe flag is waving on the big castle\nTwo ways across, and both cost\n\n[Verse 3]\nThe castles stare from three centimetres up\nA ballista leaning on a bucket's cup\nI pick the trench because I'm built to run\nI'm grey all over and I want the sun\n\n[Chorus]\nTwo ways across, two ways across\nLow and fast or high and lost\nThe flag is waving on the big castle\nTwo ways across, and both cost\n\n[Bridge: bass and floor tom only]\nThe sand is warm, the sand is deep\nA footprint big enough to sleep\nSomewhere a giant kneels and grins\nAnd every grain is where it begins\n\n[Final Chorus: lifted, gang vocals doubled]\nTwo ways across, two ways across\nLow and fast or high and lost\nThe flag is waving on the big castle\nTwo ways across, and both cost\n\n[Outro: surf guitar tremolo fades on the root]\nBoth cost. Both cost.",
+      "why": "You asked for \"Wave one: a grey dude climbs out of the kit box at the hose end and reads the two signposts, trench or dunes\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 152 bpm in E minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 152 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050100 (0.6s of near-silence (limit 0.5) and others). Seed 4050101 is the take, but it did not clear every gate: 1.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4050100,
+          "reason": "0.6s of near-silence (limit 0.5); harsh: 2.7% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4050101
+      ],
+      "numbers": {
+        "tempo_bpm": 75.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.65,
+        "silence_s": 1.6,
+        "brightness_pct": 2.03,
+        "boominess_pct": 4.12,
+        "onsets_per_s": 3.19,
+        "seam_db": -48.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:grey-dude"
+        ],
+        "track_no": 9
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-two-ways-across/greytide-sandpit-two-ways-across.mp3",
+        "notes": "greytide-sandpit-two-ways-across/notes.md",
+        "recipe": "greytide-sandpit-two-ways-across/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.25,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "1.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "mouthing",
+          "brain",
+          "brain",
+          "centimeters",
+          "then",
+          "so",
+          "cross",
+          "calls"
+        ],
+        "stripped": [],
+        "installed_samples": 7159246,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-two-ways-across/greytide-sandpit-two-ways-across.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32507,6 +32601,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-sandpit-two-ways-across",
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
