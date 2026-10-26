@@ -10004,6 +10004,105 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-carseat-up-from-the-footwell",
+      "title": "Up From the Footwell",
+      "project": "greytide",
+      "idea": "wave 1: a grey grunt climbs up out of the footwell onto the back seat of a family car on a night drive, heading for the snack bag",
+      "request": "wave 1: a grey grunt climbs up out of the footwell onto the back seat of a family car on a night drive, heading for the snack bag",
+      "mood": "hypnotic, dogged, hungry",
+      "bpm": 138,
+      "key": "A minor",
+      "seed": 4020100,
+      "model": "fast",
+      "duration": 163.98,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:04:52-04:00",
+      "voice": true,
+      "prompt": "Motorik krautrock, 138 bpm, A minor, a road band with fixed jobs: a relentless straight motorik drum beat on kick and closed hats, a tight lean bass repeating one driving eighth-note figure, bass well under the mids, a chorused guitar chiming a two-note drone, an analogue synth lead entering in the chorus, a deadpan male lead half-spoken in the verses and sung in the chorus, a low male backing chant, in A minor, hypnotic and hungry, mid start, a long high cruising plateau, a dip to drums and bass, a lifted last chorus, no harsh highs",
+      "lyrics": "[Intro - drums and bass alone, the road under the wheels]\n\n[Verse 1]\nDown in the footwell, under the seat\nWrappers and a glove and a hum in our feet\nSomebody's sleeping, somebody drives\nGrey on the carpet and we've come alive\n\n[Pre-Chorus]\nUp the side, up the side\nOver the edge and onto the ride\n\n[Chorus - chant under the lead]\nUp from the footwell, out on the seat\nSnack bag at the far end, something sweet\nHold on to the strap when the car goes slow\nUp from the footwell, and on we go\n\n[Verse 2]\nTwo roads up here, the strap and the crack\nOne of them is fast and one gets you back\nA sign says this way in a careful hand\nEveryone's painted except our band\n\n[Pre-Chorus]\nUp the side, up the side\nOver the edge and onto the ride\n\n[Chorus - chant under the lead]\nUp from the footwell, out on the seat\nSnack bag at the far end, something sweet\nHold on to the strap when the car goes slow\nUp from the footwell, and on we go\n\n[Breakdown - drums and bass, a light sweeps over]\nA band of light goes over, slow\nEvery painted gun knows where we are\nThen it's dark again, then it's dark\n\n[Final Chorus - lifted, the synth lead on top]\nUp from the footwell, out on the seat\nSnack bag at the far end, something sweet\nHold on to the strap when the car goes slow\nUp from the footwell, and on we go\n\n[Outro - drums and bass, fading down the road]",
+      "why": "You asked for \"wave 1: a grey grunt climbs up out of the footwell onto the back seat of a family car on a night drive, heading for the snack bag\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in A minor, 166 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4020101 (harsh: 2.9% above 6 kHz (ceiling 2.5)). Seed 4020100 is the take, but it did not clear every gate: harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4020101,
+          "reason": "harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4020100
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.08,
+        "silence_s": 0.45,
+        "brightness_pct": 2.8,
+        "boominess_pct": 5.79,
+        "onsets_per_s": 3.37,
+        "seam_db": -56.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:carseat",
+          "pov:grunt"
+        ],
+        "track_no": 4
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-carseat-up-from-the-footwell/greytide-carseat-up-from-the-footwell.mp3",
+        "notes": "greytide-carseat-up-from-the-footwell/notes.md",
+        "recipe": "greytide-carseat-up-from-the-footwell/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "thank",
+          "right",
+          "beside",
+          "club",
+          "i'm",
+          "humming",
+          "pray",
+          "right",
+          "won't",
+          "get",
+          "right",
+          "lights",
+          "soul"
+        ],
+        "stripped": [],
+        "installed_samples": 7231382,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-carseat-up-from-the-footwell/greytide-carseat-up-from-the-footwell.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38493,6 +38592,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-carseat-up-from-the-footwell",
         "greytide-couch-who-wants-to-be-a-painter",
         "greytide-kitchen-red-and-white-squares",
         "greytide-picnic-from-every-side",
