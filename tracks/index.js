@@ -1945,6 +1945,113 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-treehouse-the-old-tree-is-not-happy",
+      "title": "The Old Tree Is Not Happy",
+      "project": "greytide",
+      "idea": "The gusts lean the whole treehouse like a ship's deck; the old tree itself warns the little painted ones how to ride its breathing; the tree's point of view.",
+      "request": "The gusts lean the whole treehouse like a ship's deck; the old tree itself warns the little painted ones how to ride its breathing; the tree's point of view.",
+      "mood": "stormy, big-hearted, rowdy",
+      "bpm": 144,
+      "key": "G minor",
+      "seed": 4040500,
+      "model": "fast",
+      "duration": 167.5,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:17:11-04:00",
+      "voice": true,
+      "prompt": "Heaving blues-rock sea shanty, 144 bpm, G minor, stormy and big-hearted. A rowdy deck band with every part in its lane: a stomping accordion pumping the chords, a slide guitar moaning between lines with warm grit in the mids, tight lean bass under the mids rolling on the downbeat, a pounding bass drum and tambourine, creaking rope and timber in the gaps. A deep, weathered male lead singing as the tree, a gang chorus heaving the hook. Arc: creak and accordion, verse at mid energy, a long high chorus plateau, a breakdown where the wind holds its breath, a lifted final chorus, a heave and stop. G minor, no harsh highs.",
+      "lyrics": "[Intro: rope and timber creak, the accordion heaves in]\nHold on, little ones\n\n[Verse 1: the tree]\nI've held this house for twenty summers\nBoards nailed in by a seven-year-old\nEvery knot in me remembers\nEvery swing and every hold\nNow there's a war up in my branches\nPainted soldiers, grey parade\nAnd the wind is coming round the garden\nAnd I've never been afraid\n\n[Pre-Chorus]\nLeaves come first, the rope goes high\nThat's my warning, that's my sigh\n\n[Chorus]\nLean to the low side, lean to the low\nThe old tree's not happy and the wind's gonna blow\nConkers are rolling and the floor's on the slide\nLean to the low side and hold on tight\n\n[Verse 2: the tree]\nWhen I lean the grey ones hurry\nDownhill faster, uphill slow\nEvery shove the towers give them\nGoes on further down below\nBottle caps and marbles skating\nWater puddles where it burst\nAnd the loose road in the middle\nAlways feels the leaning worst\n\n[Pre-Chorus]\nLeaves come first, the rope goes high\nThat's my warning, that's my sigh\n\n[Chorus]\nLean to the low side, lean to the low\nThe old tree's not happy and the wind's gonna blow\nConkers are rolling and the floor's on the slide\nLean to the low side and hold on tight\n\n[Breakdown: the wind holds its breath, only the creak and a slow drum]\nFourteen seconds, maybe twenty\nThen I'll lean the other way\nLearn my breathing, little painted ones\nAnd you'll live to see the day\n\n[Final Chorus: lifted, the whole crew heaving]\nLean to the low side, lean to the low\nThe old tree's not happy and the wind's gonna blow\nConkers are rolling and the floor's on the slide\nLean to the low side and hold on tight\nLean to the low side and hold on tight\n\n[Outro: one great heave and a creak]",
+      "why": "You asked for \"The gusts lean the whole treehouse like a ship's deck; the old tree itself warns the little painted ones how to ride its breathing; the tree's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 144 bpm in G minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 144 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040501 (3.8s of near-silence (limit 0.5)). Seed 4040500 is the take, but it did not clear every gate: 1.5s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4040501,
+          "reason": "3.8s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4040500
+      ],
+      "numbers": {
+        "tempo_bpm": 70.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.34,
+        "silence_s": 1.45,
+        "brightness_pct": 2.33,
+        "boominess_pct": 3.62,
+        "onsets_per_s": 2.92,
+        "seam_db": -15.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:the old tree"
+        ],
+        "track_no": 62
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-the-old-tree-is-not-happy/greytide-treehouse-the-old-tree-is-not-happy.mp3",
+        "notes": "greytide-treehouse-the-old-tree-is-not-happy/notes.md",
+        "recipe": "greytide-treehouse-the-old-tree-is-not-happy/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.5s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "at",
+          "night",
+          "but",
+          "hole",
+          "great",
+          "sign",
+          "trees",
+          "conquers",
+          "gray",
+          "bottom",
+          "marble",
+          "bursts",
+          "please",
+          "leave",
+          "you",
+          "alone",
+          "conquers",
+          "son",
+          "out",
+          "wall",
+          "everything"
+        ],
+        "stripped": [],
+        "installed_samples": 7386862,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-the-old-tree-is-not-happy/greytide-treehouse-the-old-tree-is-not-happy.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30440,6 +30547,7 @@ window.NOBODY_INDEX = {
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
         "greytide-workbench-hot-tip",
+        "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
         "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-workbench-the-sander-comes-on",
