@@ -2409,6 +2409,105 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sill-two-leaves",
+      "title": "Two Leaves at the End of the Line",
+      "project": "greytide",
+      "idea": "The seedling in its pot at the exit, the thing the towers defend, droops a little for every dude that gets past and counts the lives down",
+      "request": "The seedling in its pot at the exit, the thing the towers defend, droops a little for every dude that gets past and counts the lives down",
+      "mood": "brave, aching, rising",
+      "bpm": 136,
+      "key": "F# minor",
+      "seed": 3970700,
+      "model": "fast",
+      "duration": 172.3,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:16:28-04:00",
+      "voice": true,
+      "prompt": "Cinematic post-rock, 136 bpm, F# minor, brave and aching: a heartbeat kick and floor toms that grow into a full driving kit, tremolo-picked electric guitars shimmering in F# minor, a tight lean bass climbing under the mids, a glockenspiel picking out a small fragile melody, a string section swelling in the choruses, a clear high female lead, open and unafraid, with a small choir on the hook, in F# minor; intro of tremolo and heartbeat, verses quiet, the chorus breaking open, a bridge stripped to tremolo and voice that counts down and builds, the final chorus at full height with choir and strings, the outro falling back to glockenspiel, no harsh highs",
+      "lyrics": "[Intro: tremolo guitar and a heartbeat kick]\n\n[Verse 1]\nI'm two leaves and a promise in a pot at the end of the road\nEverything they're fighting for is green I haven't grown\nEvery grey that slips past me, I bow a little low\nTwenty lives of standing up, and one by one they go\n\n[Pre-Chorus]\nHold them, hold them\nUp on the clay, hold them\n\n[Chorus]\nTwo leaves at the end of the line\nBowing for every one that gets by\nPainted on the pots, keep my head up high\nTwo leaves at the end of the line\n\n[Verse 2]\nThe watering can is busy with the groove and not with me\nIt soaks the grey and grows them moss and lets the flowers be\nIt hasn't watered anyone, the other plants have said\nBut every dude it slows down is a leaf that keeps its head\n\n[Pre-Chorus]\nHold them, hold them\nUp on the clay, hold them\n\n[Chorus]\nTwo leaves at the end of the line\nBowing for every one that gets by\nPainted on the pots, keep my head up high\nTwo leaves at the end of the line\n\n[Bridge: down to tremolo and voice, then building]\nNineteen, eighteen, I'm still green\nTwelve, eleven, somewhere in between\nSomebody painted the towers so they'd stand\nNobody painted me, I'm why they stand\n\n[Final Chorus: full height, choir and strings]\nTwo leaves at the end of the line\nBowing for every one that gets by\nPainted on the pots, keep my head up high\nTwo leaves at the end of the line\n\n[Outro: glockenspiel alone]\nTwo leaves\nStill green",
+      "why": "You asked for \"The seedling in its pot at the exit, the thing the towers defend, droops a little for every dude that gets past and counts the lives down\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in F# minor, 176 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3970701 (1.0s of near-silence (limit 0.5) and others). Seed 3970700 is the take, but it did not clear every gate: 1.2s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3970701,
+          "reason": "1.0s of near-silence (limit 0.5); 17 of 122 heard words are not ours (14 %; limit 10 %, at least 40 heard): promising apart eyes are holding holding holding grain must fly it's to"
+        }
+      ],
+      "takes": [
+        3970700
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.75,
+        "silence_s": 1.2,
+        "brightness_pct": 2.2,
+        "boominess_pct": 5.46,
+        "onsets_per_s": 2.61,
+        "seam_db": -39.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sill",
+          "pov:seedling"
+        ],
+        "track_no": 87
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sill-two-leaves/greytide-sill-two-leaves.mp3",
+        "notes": "greytide-sill-two-leaves/notes.md",
+        "recipe": "greytide-sill-two-leaves/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.32,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "1.2s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "to",
+          "leave",
+          "send",
+          "about",
+          "old",
+          "lighting",
+          "forth",
+          "gray",
+          "new",
+          "tower",
+          "everyone",
+          "fired",
+          "paint"
+        ],
+        "stripped": [],
+        "installed_samples": 7598362,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sill-two-leaves/greytide-sill-two-leaves.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30909,6 +31008,7 @@ window.NOBODY_INDEX = {
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-the-hordes-pulse",
