@@ -3,6 +3,101 @@
   "written": "2026-10-26T02:36:13-04:00",
   "tracks": [
     {
+      "slug": "joes-castle-the-seventh-wave",
+      "title": "The Seventh Wave",
+      "project": "joes-castle",
+      "idea": "the wall's own point of view: the ladder goes up past the north tower on a wave between six and eight, and the whole castle turns at once until the keep holds",
+      "request": "the wall's own point of view: the ladder goes up past the north tower on a wave between six and eight, and the whole castle turns at once until the keep holds",
+      "mood": "epic, rising, desperate, triumphant at the last bar",
+      "bpm": 140,
+      "key": "A minor",
+      "seed": 3380500,
+      "model": "fast",
+      "duration": 177.97,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T02:35:21-04:00",
+      "voice": true,
+      "prompt": "epic siege anthem at 140 bpm in A minor, starts small and rises to a full battle: a lone snare and low choir hum, then war drums, a mixed choir, bright brass fanfares, driving strings ostinato, tight lean bass under the mids; a strong female lead in the verses, the mixed choir on every chorus, shouted gang calls; no harsh highs; a whispered half-time breakdown, a key-up final chorus with no let-up, no resolution until the last bar, A minor, the final chord turns major",
+      "lyrics": "[Intro: a single snare, a low choir hum, almost nothing]\n\n[Verse 1: quiet, one voice]\nThere's a crack in me past the north tower\nTwo bricks that never sat right\nThe kid pressed twice and they wouldn't click\nAnd he said it'll hold tonight\nSix waves came and the gate held\nSix waves came and went\nAnd every stone the long arm threw\nWent where the long arm meant\n\n[Pre-Chorus: the war drums come in]\nSeven seconds, that's the warning\nSeven seconds, nothing more\nGrey hands carry a ladder\nDown along the moat's far shore\nThe long arm knocked them flat once\nThey got up and walked it again\nAnd the cracked bricks felt it coming\nLike they knew it since the box began\n\n[Chorus: full choir and brass]\nThe seventh wave! The ladder's up!\nTurn, castle, turn as one!\nEvery brick still clicked is a battle won\nThe seventh wave! (Turn!)\nThe seventh wave!\n\n[Verse 2: the whole castle turns]\nThe archers swing their heads around\nA quarter more on every rung\nThe climbers crawl at half their speed\nAnd the big ones keep to the gate, unsung\nThe pot pours down the murder hole\nThe gate queue stands in flame\nThen a horn goes up from the market square\nAnd every knight hears his name\n\n[Pre-Chorus: drums double]\nTo the breach! To the breach!\nWhite horse down the inner stair\nThe lance goes through the shield\nAnd the one behind it, standing there\nOne charge, two down, ride home\nTen seconds at the foot of the wall\nAnd the cracked bricks hold their breath\nAnd the castle doesn't fall\n\n[Chorus: full choir and brass]\nThe seventh wave! The ladder's up!\nTurn, castle, turn as one!\nEvery brick still clicked is a battle won\nThe seventh wave! (Turn!)\nThe seventh wave!\n\n[Breakdown: half time, drums and brass stabs, the choir whispers]\nKnock a brick loose (click it back)\nKnock a man down (click him back)\nPull the wall apart (click it back)\nBuilding is the battle, and the battle's never done\n\n[Final Chorus: key up, everything, no let-up]\nThe seventh wave! The ladder's up!\nTurn, castle, turn as one!\nEvery brick still clicked is a battle won\nThe seventh wave! (Turn!)\nThe seventh wave! (Turn!)\nEvery brick still clicked is a battle won\n\n[Outro: the drums stop dead, one held chord resolves to major, the keep holds]\nAnd the keep holds",
+      "why": "You asked for \"the wall's own point of view: the ladder goes up past the north tower on a wave between six and eight, and the whole castle turns at once until the keep holds\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in A minor, 180 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3380501 (1.9s of near-silence (limit 0.5) and others). Seed 3380500 is the take, but it did not clear every gate: 0.9s of near-silence (limit 0.5); harsh: 3.1% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3380501,
+          "reason": "1.9s of near-silence (limit 0.5); harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3380500
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.54,
+        "silence_s": 0.9,
+        "brightness_pct": 3.08,
+        "boominess_pct": 8.07,
+        "onsets_per_s": 2.74,
+        "seam_db": -26.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Joe's Castle",
+        "submitter": "music for Joe's castle",
+        "tags": [
+          "table:castle",
+          "pov:the wall"
+        ],
+        "track_no": 5
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "joes-castle-the-seventh-wave/joes-castle-the-seventh-wave.mp3",
+        "notes": "joes-castle-the-seventh-wave/notes.md",
+        "recipe": "joes-castle-the-seventh-wave/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.9s of near-silence (limit 0.5)",
+          "harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "morning",
+          "bar",
+          "night",
+          "hometown",
+          "turned",
+          "here's",
+          "fire",
+          "fire"
+        ],
+        "stripped": [],
+        "installed_samples": 7848535,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "joes-castle-the-seventh-wave/joes-castle-the-seventh-wave.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-hot-oil-cold-feet",
       "title": "Hot Oil, Cold Feet",
       "project": "joes-castle",
@@ -28316,6 +28411,7 @@
         "joes-castle-dead-zone",
         "joes-castle-wall-walk",
         "joes-castle-hot-oil-cold-feet",
+        "joes-castle-the-seventh-wave",
         "sir-brickalot-take-2"
       ],
       "description": "6 tracks, in the order they were meant to be heard.",
