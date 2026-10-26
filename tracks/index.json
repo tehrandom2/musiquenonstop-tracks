@@ -8298,6 +8298,108 @@
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-last-weeks-meta",
+      "title": "Last Week's Meta",
+      "project": "greytide",
+      "idea": "The Meta Chaser, who copies whichever neighbour is winning, explains himself, has opinions about last week, and wonders who he is when nobody wins",
+      "request": "The Meta Chaser, who copies whichever neighbour is winning, explains himself, has opinions about last week, and wonders who he is when nobody wins",
+      "mood": "deadpan, strutting, sly",
+      "bpm": 130,
+      "key": "C minor",
+      "seed": 3950701,
+      "model": "fast",
+      "duration": 149.86,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:07:21-04:00",
+      "voice": true,
+      "prompt": "Electroclash at 130 bpm in C minor, a cold two-synth crew: a tight lean analog bass sequence, bass under the mids, a hard drum machine with a clap on two and four, a buzzy saw lead that copies the vocal's last phrase every time, a robotic vocoder chorus; a deadpan, half-spoken female lead, bored and very funny; starts mid, a long strutting plateau, a dip to bass and vocoder in the bridge, a lifted final chorus, C minor, warm saturation in the mids, no harsh highs",
+      "lyrics": "[Intro - the bass sequence]\nI had a plan. It lost.\n\n[Verse 1]\nI stand between the winners and I watch who's winning most\nI don't have a move of my own, I'm more of a host\nThe ballista's got the kills tonight, so I'm a ballista now\nTomorrow it'll be the cannon, and I'll show you how\nI have opinions about last week, I'll tell you all of them\nIt was better when the Mage was strong. I was the Mage then\n\n[Pre-Chorus]\nCopy, copy\n(Copy that)\n\n[Chorus]\nWhatever's winning, that is me\nCopy the neighbour, it's for free\nNo plan, no plea, no history\nWhatever's winning, that is me\n\n[Verse 2]\nThe painter gave me colours that I never really chose\nA bit of everyone's, a highlight borrowed from the pros\nI learned it from a video I watched at double speed\nI'm not a tower, I'm a mirror with a need\nBut when the big one comes along and everyone is hit\nI shoot the best shot on the board, and I don't mind admitting it\n\n[Pre-Chorus]\nCopy, copy\n(Copy that)\n\n[Chorus]\nWhatever's winning, that is me\nCopy the neighbour, it's for free\nNo plan, no plea, no history\nWhatever's winning, that is me\n\n[Bridge - bass and vocoder only]\nWho am I when nobody wins?\nWho am I when the next one begins?\n(Reflection, reflection)\n\n[Final Chorus - lifted, the saw lead doubling every line]\nWhatever's winning, that is me\nCopy the neighbour, it's for free\nNo plan, no plea, no history\nWhatever's winning, that is me\n\n[Outro]\nDid you see that? I did that. Kind of.",
+      "why": "You asked for \"The Meta Chaser, who copies whichever neighbour is winning, explains himself, has opinions about last week, and wonders who he is when nobody wins\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 130 bpm in C minor, 155 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 130 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950700 (harsh: 2.5% above 6 kHz (ceiling 2.5)). Seed 3950701 is the take, but it did not clear every gate: harsh: 3.5% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3950700,
+          "reason": "harsh: 2.5% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3950701
+      ],
+      "numbers": {
+        "tempo_bpm": 128.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.3,
+        "silence_s": 0.35,
+        "brightness_pct": 3.51,
+        "boominess_pct": 10.67,
+        "onsets_per_s": 3.81,
+        "seam_db": -56.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:meta-chaser"
+        ],
+        "track_no": 80
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-last-weeks-meta/greytide-gamestore-last-weeks-meta.mp3",
+        "notes": "greytide-gamestore-last-weeks-meta/notes.md",
+        "recipe": "greytide-gamestore-last-weeks-meta/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 3.5% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "our",
+          "watchers",
+          "win",
+          "book",
+          "cow",
+          "neighbor",
+          "once",
+          "knee",
+          "we're",
+          "solid",
+          "doubling",
+          "every",
+          "line",
+          "neighbor"
+        ],
+        "stripped": [
+          "The Meta Chaser"
+        ],
+        "installed_samples": 6608895,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-last-weeks-meta/greytide-gamestore-last-weeks-meta.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36832,6 +36934,7 @@
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-gamestore-last-weeks-meta",
         "greytide-garage-someone-kicked-the-fuzz",
         "greytide-kitchen-sneeze-cloud",
         "greytide-picnic-sun-behind-the-fence",
