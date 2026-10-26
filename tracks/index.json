@@ -4289,6 +4289,103 @@
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-the-cat-has-seen-them",
+      "title": "The Cat Has Seen Them",
+      "project": "greytide",
+      "idea": "Wave nine: a cat walks along the sandpit frame, eyes the biggest group, swats it off the road, and is shooed off by the kid; the cat tells it",
+      "request": "Wave nine: a cat walks along the sandpit frame, eyes the biggest group, swats it off the road, and is shooed off by the kid; the cat tells it",
+      "mood": "sly, lazy, sudden",
+      "bpm": 132,
+      "key": "D minor",
+      "seed": 4050900,
+      "model": "fast",
+      "duration": 162.22,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:13:21-04:00",
+      "voice": true,
+      "prompt": "Slinky swamp-funk, 132 bpm, in D minor, a sly late-afternoon band: a clavinet and wah guitar locked in a tight sixteenth groove, a tight lean bass under the mids with slides on the turnarounds, a crisp dry kit with ghost notes and a rimshot backbeat, a baritone sax growling short replies, a purring husky female lead singing as the cat, lazy then sudden, with a breathy backing pair on the hook, the key D minor held; arc: tail-swish intro of wah and bass, low prowling verses, a chorus that pounces, a breakdown that holds its breath before one big hit, a lifted final chorus with the sax wailing, then a quick exit, warm saturation, no harsh highs",
+      "lyrics": "[Intro: wah and bass, a tail swish]\n\n[Verse 1]\nI walk the frame on the weathered rail\nPast the hose reel, past the bucket's trail\nI sit on the corner and I fold my paws\nAnd I look at the sand without any cause\n\n[Verse 2]\nSomething is moving, a little grey crowd\nThey march in a line and they're not very loud\nMy head goes lower, my tail goes quick\nEleven of them bunched in a tasty brick\n\n[Pre-Chorus]\nThe sand writes it slowly, it's looking at you\nAnd then it writes faster, the cat has seen you\n\n[Chorus]\nThe cat has seen them, the cat has seen them\nOne big paw and the road is clean then\nNine centimetres and a stagger and a spin\nThe cat has seen them, let the swat begin\n\n[Verse 3]\nI don't take sides, I don't know the score\nI've no paint on me and I need no more\nBut a gathered thing is a thing to touch\nAnd the grey ones gathered a little too much\n\n[Chorus]\nThe cat has seen them, the cat has seen them\nOne big paw and the road is clean then\nNine centimetres and a stagger and a spin\nThe cat has seen them, let the swat begin\n\n[Breakdown: everything holds its breath, then one hit]\nWait. Wait. Wait.\nNow.\n\n[Bridge: a giant voice from the edge]\nA blue sleeve comes and it waves me off\nA shoo and a clap and a kid's soft cough\nI jump from the frame with my dignity whole\nI was never here, I was in control\n\n[Final Chorus: lifted, sax wailing]\nThe cat has seen them, the cat has seen them\nOne big paw and the road is clean then\nNine centimetres and a stagger and a spin\nThe cat has seen them, let the swat begin\n\n[Outro: quick wah exit]\nThe kid has noticed.",
+      "why": "You asked for \"Wave nine: a cat walks along the sandpit frame, eyes the biggest group, swats it off the road, and is shooed off by the kid; the cat tells it\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in D minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050901 (harsh: 2.7% above 6 kHz (ceiling 2.5) and others). Seed 4050900 is the take, but it did not clear every gate: harsh: 3.2% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4050901,
+          "reason": "harsh: 2.7% above 6 kHz (ceiling 2.5); 23 of 229 heard words are not ours (10 %; limit 10 %, at least 40 heard): floor gray cloud light nice delicious snack great had had car centimeters"
+        }
+      ],
+      "takes": [
+        4050900
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.87,
+        "silence_s": 0.3,
+        "brightness_pct": 3.21,
+        "boominess_pct": 6.94,
+        "onsets_per_s": 3.37,
+        "seam_db": -25.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:the-cat"
+        ],
+        "track_no": 112
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-the-cat-has-seen-them/greytide-sandpit-the-cat-has-seen-them.mp3",
+        "notes": "greytide-sandpit-the-cat-has-seen-them/notes.md",
+        "recipe": "greytide-sandpit-the-cat-has-seen-them/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 3.2% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "weather",
+          "street",
+          "buckets",
+          "bit",
+          "man",
+          "centimeters",
+          "swap",
+          "science",
+          "great",
+          "shoe",
+          "swap"
+        ],
+        "stripped": [],
+        "installed_samples": 7154106,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-the-cat-has-seen-them/greytide-sandpit-the-cat-has-seen-them.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32808,6 +32905,7 @@
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-sandpit-the-cat-has-seen-them",
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
