@@ -12736,6 +12736,98 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-nobody-finds-the-dead-bulb",
+      "title": "Nobody Finds the Dead Bulb",
+      "project": "greytide",
+      "idea": "The Christmas box tower's fairy lights hop from grey dude to grey dude; one of them is the kit a child unwrapped under the tree years ago and never built",
+      "request": "The Christmas box tower's fairy lights hop from grey dude to grey dude; one of them is the kit a child unwrapped under the tree years ago and never built",
+      "mood": "wondrous, nostalgic, bittersweet",
+      "bpm": 132,
+      "key": "G minor",
+      "seed": 3980601,
+      "model": "fast",
+      "duration": 166.94,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:00:53-04:00",
+      "voice": true,
+      "prompt": "Glittering synthpop, 132 bpm, G minor, wondrous and nostalgic: a crisp electronic drum kit with a gated snare, a tight lean synth bass pulsing under the mids, twinkling bell arpeggios hopping across the stereo field like lights jumping, soft sleigh-bell shakers in the choruses, warm analog pads in G minor, a clear female lead full of wonder with soft stacked harmonies, in G minor; intro of twinkling arpeggios alone, verses warm and close, the chorus bright and lifted, a bridge that drops to pad and voice, the final chorus with every harmony, the outro back to one twinkle, no harsh highs",
+      "lyrics": "[Intro: twinkling arpeggios alone]\n\n[Verse 1]\nEleven months a tangle in a box beneath the eaves\nOne month on the branches, then the branches take their leave\nNow the grey come up the alleys and I'm plugged into the dark\nI leave the star and light the first and leap from spark to spark\n\n[Pre-Chorus]\nRed, then green, then gold, then blue\n\n[Chorus]\nHop from one to the next one, light them up in a row\nEvery colour a memory of a morning in the snow\nFive little grey ones glowing like a tree they never had\nNobody finds the dead bulb, nobody ever has\n\n[Verse 2]\nSomebody small once sat below me with a box upon their knee\nA model kit with painted art, the first they'd ever see\nThey never built it, it's up here now, it's somewhere in the pile\nAnd now it's coming up the alley, so I light it for a while\n\n[Pre-Chorus]\nRed, then green, then gold, then blue\n\n[Chorus]\nHop from one to the next one, light them up in a row\nEvery colour a memory of a morning in the snow\nFive little grey ones glowing like a tree they never had\nNobody finds the dead bulb, nobody ever has\n\n[Bridge: pad and voice]\nOne bulb in the string is dead, it's always been that way\nEvery year they try them all and give up on the day\nMaybe it's the one that watched them open up that lid\nMaybe it's just resting, after everything it did\n\n[Final Chorus: lifted, every harmony]\nHop from one to the next one, light them up in a row\nEvery colour a memory of a morning in the snow\nFive little grey ones glowing like a tree they never had\nNobody finds the dead bulb, nobody ever has\n\n[Outro: one twinkle]\nNobody ever has",
+      "why": "You asked for \"The Christmas box tower's fairy lights hop from grey dude to grey dude; one of them is the kit a child unwrapped under the tree years ago and never built\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in G minor, 172 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980600 (1.1s of near-silence (limit 0.5) and others). Seed 3980601 is the take.",
+      "rejected": [
+        {
+          "seed": 3980600,
+          "reason": "1.1s of near-silence (limit 0.5); 19 of 157 heard words are not ours (12 %; limit 10 %, at least 40 heard): are tangled these leaves great starlight spar love thank you blown color"
+        }
+      ],
+      "takes": [
+        3980601
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.62,
+        "silence_s": 0.35,
+        "brightness_pct": 1.88,
+        "boominess_pct": 9.66,
+        "onsets_per_s": 2.88,
+        "seam_db": -44.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:tower"
+        ],
+        "track_no": 64
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-nobody-finds-the-dead-bulb/greytide-attic-nobody-finds-the-dead-bulb.mp3",
+        "notes": "greytide-attic-nobody-finds-the-dead-bulb/notes.md",
+        "recipe": "greytide-attic-nobody-finds-the-dead-bulb/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "tangled",
+          "great",
+          "ball",
+          "color",
+          "bone",
+          "no"
+        ],
+        "stripped": [
+          "The Christmas"
+        ],
+        "installed_samples": 7361884,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-nobody-finds-the-dead-bulb/greytide-attic-nobody-finds-the-dead-bulb.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -41286,6 +41378,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-attic-nobody-finds-the-dead-bulb",
         "greytide-bathroom-thwop",
         "greytide-carseat-good-dog-in-the-boot",
         "greytide-desk-every-shadow-turns",
