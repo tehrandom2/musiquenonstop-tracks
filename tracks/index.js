@@ -1676,6 +1676,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-workbench-clamp-a-clamp-b",
+      "title": "Clamp A, Clamp B",
+      "project": "greytide",
+      "idea": "A breather: the two swinging C-clamps on the belt, gate A and gate B, stopping the horde in a bunch and letting it go just as the vice begins to shut",
+      "request": "A breather: the two swinging C-clamps on the belt, gate A and gate B, stopping the horde in a bunch and letting it go just as the vice begins to shut",
+      "mood": "hypnotic, squelching, tense",
+      "bpm": 128,
+      "key": "D minor",
+      "seed": 3960301,
+      "model": "fast",
+      "duration": 127.92,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:17:34-04:00",
+      "voice": false,
+      "prompt": "Instrumental acid techno at 128 bpm in D minor, a two-machine lane: a dry four-on-the-floor kick, a squelching tight lean acid bass line, bass under the mids, a metallic hat pattern, a swinging percussive clank that stops dead and restarts like a clamp gate, a chord stab that gathers and releases; starts mid, the line builds into a long high plateau, a stop-and-bunch breakdown, a lifted final section, D minor, saturation in the mids, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"A breather: the two swinging C-clamps on the belt, gate A and gate B, stopping the horde in a bunch and letting it go just as the vice begins to shut\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in D minor, 135 seconds, with no voice, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960300 (onset rate 5.1/s outside 0.3-4.5). Seed 3960301 is the take.",
+      "rejected": [
+        {
+          "seed": 3960300,
+          "reason": "onset rate 5.1/s outside 0.3-4.5"
+        }
+      ],
+      "takes": [
+        3960301
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.54,
+        "silence_s": 0.25,
+        "brightness_pct": 2.44,
+        "boominess_pct": 10.21,
+        "onsets_per_s": 3.06,
+        "seam_db": -57.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:the-clamps"
+        ],
+        "track_no": 37
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-clamp-a-clamp-b/greytide-workbench-clamp-a-clamp-b.mp3",
+        "notes": "greytide-workbench-clamp-a-clamp-b/notes.md",
+        "recipe": "greytide-workbench-clamp-a-clamp-b/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.43,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5641174,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-clamp-a-clamp-b/greytide-workbench-clamp-a-clamp-b.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30167,6 +30250,7 @@ window.NOBODY_INDEX = {
       "tracks": [
         "greytide-workbench-station-one-one-way-only",
         "greytide-workbench-eleven-seconds",
+        "greytide-workbench-clamp-a-clamp-b",
         "greytide-workbench-hot-tip",
         "greytide-workbench-extremely-unsympathetic",
         "greytide-workbench-the-outline-on-the-pegboard",
