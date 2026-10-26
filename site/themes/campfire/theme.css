@@ -72,6 +72,9 @@ body {
 .camp-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; touch-action: none; }
 .camp-painted { display: none; }
 body.nocamp .camp-canvas { display: none; }
+/* the visualiser module (issue #247) is the live stand-in over http; the painted night stays for a file URL */
+.camp-vis { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; pointer-events: none; }
+body.camp-vis-on .camp-painted { display: none !important; }
 body.nocamp .camp-painted {
   display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:

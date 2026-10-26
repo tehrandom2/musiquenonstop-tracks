@@ -29,6 +29,16 @@ ribbon bookmarks: story, prompt, words, takes, lineage), the right page is the r
 down, cross out, rub out mine; then the rotation in faint pencil). The fire joins the sky as the visualizer: taller flames on the
 low end, sparks on the kick, the light on the trees with the loudness. Design 12.18 has the details.
 
+## The visualiser module (issue #247)
+
+`site/vis/campfire.js` is the camp as a flat 2D painting for the studio game's building (`info = {context: '2d', w: 512, h: 288}`;
+`create(opts)` gives `draw(ctx, freqBytes, timeBytes, t)`, `setTrack`, `resize`, `destroy`; the caller owns the loop). It is the
+same camp as the 3D scene: a deep blue sky over the curve of a small planet, the low sun's glow, pines, and a fire in the middle.
+The low end warms the dust band and stands the flames taller, the middle lifts the curtains of light, the highs ripple them and
+quicken the stars, a kick throws sparks and makes the playing signal breathe, the light on the trees swells with the loudness.
+All-zero bytes are the radio off: the fire burns low on its own. Options: `caption: false` (no title in the corner),
+`reduced: true`. The theme draws its no-WebGL stand-in with it (over http; a file URL keeps the painted night), never in the car view.
+
 ## The worlds
 
 Each was designed from a one-line concept, in our own shapes and palette (warm firelight against a deep blue night), on its

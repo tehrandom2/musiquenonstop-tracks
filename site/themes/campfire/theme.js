@@ -2033,12 +2033,12 @@ NOBODY.themes = NOBODY.themes || {};
       UI.helpWatch = new MutationObserver(function () { syncAway(); helpSoundCtl(); }); UI.helpWatch.observe(el('help'), { attributes: true, attributeFilter: ['hidden'] });
       syncAway();
       sceneUp();
-      nocampTimer = setTimeout(function () { if (!scene) document.body.classList.add('nocamp'); }, 2000);
-      if (window.NOBODY_NOCDN) document.body.classList.add('nocamp');
+      nocampTimer = setTimeout(function () { if (!scene) noCamp(); }, 2000);
+      if (window.NOBODY_NOCDN) noCamp();
       TH.resize();
     };
     TH.dispose = function () {
-      clearTimeout(nocampTimer);
+      clearTimeout(nocampTimer); visDown();
       audioStop();
       if (scene) { scene.dispose(); scene = null; }
       [canvas, painted, UI.scopeEl, UI.legend, UI.bar, UI.hint, UI.credit, UI.journal, UI.deckWrap, UI.sndRow, RX.el].forEach(function (n) { if (n) n.remove(); });
@@ -2053,7 +2053,7 @@ NOBODY.themes = NOBODY.themes || {};
       el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
       el('dial').textContent = '';
       const words = el('makeWords'); if (words && UI.placeholder) words.setAttribute('placeholder', UI.placeholder);
-      document.body.classList.remove('nocamp', 'camp-scrolled', 'camp-scoped', 'camp-journal-open', 'camp-toasting', 'camp-away', 'camp-page');
+      document.body.classList.remove('nocamp', 'camp-vis-on', 'camp-scrolled', 'camp-scoped', 'camp-journal-open', 'camp-toasting', 'camp-away', 'camp-page');
       delete document.documentElement.dataset.campframe;
       if (UI.helpWatch) { UI.helpWatch.disconnect(); UI.helpWatch = null; }
       glass.classList.remove('closing', 'bloom-on');
@@ -2066,8 +2066,8 @@ NOBODY.themes = NOBODY.themes || {};
       if (scene || !L || !L.THREE) return;
       try {
         scene = makeCampScene(L.THREE);
-        if (!scene.start(canvas, { phone: phone() })) { scene = null; document.body.classList.add('nocamp'); return; }
-        document.body.classList.remove('nocamp');
+        if (!scene.start(canvas, { phone: phone() })) { scene = null; noCamp(); return; }
+        document.body.classList.remove('nocamp'); visDown();
         scene.hooks.onFrame = uiFrame;
         scene.hooks.onPop = function (s) { crackle(0.5 + s * 0.6); };
         scene.hooks.onCrackle = function (s) { crackle(s); };
@@ -2081,9 +2081,49 @@ NOBODY.themes = NOBODY.themes || {};
         scene.drawTally(UI.golden);
         drawLegend();
         if (pendingView) { const p = pendingView; pendingView = null; if (p.playing) scene.setPlaying(p.playing); if (p.hidden) scene.hidden(true); }
-      } catch (e) { scene = null; document.body.classList.add('nocamp'); if (window.console) console.warn('campfire: no scene', e); }
+      } catch (e) { scene = null; noCamp(); if (window.console) console.warn('campfire: no scene', e); }
     }
     TH.libsReady = function () { sceneUp(); };
+
+    /* ---- the visualiser module (issue #247): site/vis/campfire.js, the same painted camp the studio game projects, is the live
+       stand-in when there is no 3D scene (no WebGL, no CDN). not on a file URL (a module will not load there: the painted night
+       stays) and never in the car view, which draws exactly what it drew before ---- */
+    const VZ = { vis: null, cv: null, g: null, raf: 0, at: 0, f: null, tm: null, slug: null };
+    function noCamp() { document.body.classList.add('nocamp'); visUp(); }
+    function visUp() {
+      if (VZ.cv || location.protocol === 'file:' || document.documentElement.dataset.view === 'car') return;
+      let url = null; try { url = new URL('vis/campfire.js', document.baseURI).href; } catch (e) { return; }
+      import(url).then(function (m) {
+        if (VZ.cv || scene || !ctx || !document.body.classList.contains('nocamp')) return;
+        VZ.vis = m.create({ caption: false, reduced: !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) });
+        VZ.cv = document.createElement('canvas'); VZ.cv.className = 'camp-vis'; VZ.cv.setAttribute('aria-hidden', 'true');
+        document.body.insertBefore(VZ.cv, document.body.firstChild); VZ.g = VZ.cv.getContext('2d');
+        document.body.classList.add('camp-vis-on');
+        visSize(); window.addEventListener('resize', visSize);
+        VZ.f = new Uint8Array(64); VZ.tm = new Uint8Array(256);
+        VZ.raf = requestAnimationFrame(visLoop);
+      }, function () {});
+    }
+    function visSize() { if (!VZ.cv) return; const dpr = Math.min(2, window.devicePixelRatio || 1); VZ.cv.width = Math.round(innerWidth * dpr); VZ.cv.height = Math.round(innerHeight * dpr); VZ.vis.resize(VZ.cv.width, VZ.cv.height); }
+    // the analyser's numbers as the bytes an AnalyserNode gives (the module takes what the game takes), at about 30 frames a second
+    function visLoop(now) {
+      if (!VZ.cv) return;
+      VZ.raf = requestAnimationFrame(visLoop);
+      if (now - VZ.at < 32) return; VZ.at = now;
+      const cur = ctx.current(); if (cur !== VZ.slug) { VZ.slug = cur; const t = cur ? trackOf(cur) : null; VZ.vis.setTrack(t ? { slug: t.slug, title: t.title, bpm: t.bpm, key: t.key } : null); }
+      const live = document.body.classList.contains('is-playing') && A && A.v64;
+      if (live) {
+        for (let i = 0; i < 64; i++) VZ.f[i] = clamp(Math.round(A.v64[i] * 255), 0, 255);
+        const sm = A.samples(256); for (let i = 0; i < 256; i++) VZ.tm[i] = clamp(128 + Math.round(sm[i] * 127), 0, 255);
+      } else { VZ.f.fill(0); VZ.tm.fill(0); }
+      VZ.vis.draw(VZ.g, VZ.f, VZ.tm, now / 1000);
+    }
+    function visDown() {
+      if (VZ.raf) cancelAnimationFrame(VZ.raf); VZ.raf = 0;
+      if (VZ.vis) VZ.vis.destroy(); if (VZ.cv) VZ.cv.remove();
+      VZ.vis = VZ.cv = VZ.g = null; VZ.slug = null; window.removeEventListener('resize', visSize);
+      document.body.classList.remove('camp-vis-on');
+    }
     TH.resize = function () {
       if (scene) scene.resize();
       drawRoute(); fitTab();
@@ -2584,6 +2624,9 @@ NOBODY.themes = NOBODY.themes || {};
     }
     function placeBar() {
       if (!UI.bar || !ctx) return;
+      // the car view (issue #220) draws exactly what it drew before issue #240: the sky centred on the screen, nothing placed round
+      // a journal it does not show
+      if (document.documentElement.dataset.view === 'car') { if (scene && skyList()) scene.setCentre(0); return; }
       const ph = phone();
       if (ph) {
         // the phone's column scrolls: once the sky is scrolled away, its selector and zoom (fixed at the top) step aside with it
