@@ -9359,6 +9359,103 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-couch-when-the-weight-shifts",
+      "title": "When The Weight Shifts",
+      "project": "greytide",
+      "idea": "Wave three: the unseen sitter shifts and a build pad rises under the ballista; at 3 cm it is an earthquake, and the ballista holds; its point of view.",
+      "request": "Wave three: the unseen sitter shifts and a build pad rises under the ballista; at 3 cm it is an earthquake, and the ballista holds; its point of view.",
+      "mood": "tense, defiant, steady",
+      "bpm": 140,
+      "key": "G minor",
+      "seed": 4030401,
+      "model": "fast",
+      "duration": 162.19,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:05:49-04:00",
+      "voice": true,
+      "prompt": "Dark driving synth rock, 140 bpm, G minor, tense then defiant. A four-piece: a pulsing analogue synth bass arpeggio, tight lean bass guitar doubling it well under the mids, a chorus-laden electric guitar ringing open chords, a polysynth pad swelling at the pre-chorus, punchy live drums with gated toms. A gravelly, steady male lead, a low male choir doubling the hook. Arc: synth pulse alone, a held mid-energy verse, a long high chorus, a breakdown where everything stops for one beat like the ground lurching, then a lifted final chorus and a ringing outro. G minor, warm grit in the mids, no harsh highs.",
+      "lyrics": "[Intro: synth bass pulse alone, a long creak in the low end]\n\n[Verse 1]\nI was set down on a pad\nWith a welted cliff in front\nTwo waves held and the bolts were good\nAnd the grey ones came in bunches\nThen the whole far end went low\nAnd the near end gave a groan\nSomething huge we never see\nShifted, and it moved my home\n\n[Pre-Chorus]\nHold the string, hold the stock\nHold the line when the ground won't stop\n\n[Chorus]\nThe weight shifts at the end of the world\nAnd the ground comes up to meet me\nA centimetre is a mountain\nAnd the ballista doesn't move\n\n[Verse 2]\nNow my pad is higher up\nI can see the low road clear\nEvery road just runs one way\nDown and down and never here\nGrey ones knocked off of the edge\nFall a level, that is forward\nEvery shove I give them saves them time\nSo I aim a little further\n\n[Pre-Chorus]\nHold the string, hold the stock\nHold the line when the ground won't stop\n\n[Chorus]\nThe weight shifts at the end of the world\nAnd the ground comes up to meet me\nA centimetre is a mountain\nAnd the ballista doesn't move\n\n[Breakdown: everything stops for one beat, then bass and toms]\nSomebody painted me steady\nSomebody gave me a stand\nWhatever sits at the end of the world\nIt doesn't know where I am\n\n[Final Chorus: lifted, the low choir doubling]\nThe weight shifts at the end of the world\nAnd the ground comes up to meet me\nA centimetre is a mountain\nAnd the ballista doesn't move\nA centimetre is a mountain\nAnd the ballista doesn't move\n\n[Outro: ringing guitar, the synth pulse fades]",
+      "why": "You asked for \"Wave three: the unseen sitter shifts and a build pad rises under the ballista; at 3 cm it is an earthquake, and the ballista holds; its point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in G minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4030400 (1.0s of near-silence (limit 0.5) and others). Seed 4030401 is the take, but it did not clear every gate: harsh: 3.0% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4030400,
+          "reason": "1.0s of near-silence (limit 0.5); harsh: 2.6% above 6 kHz (ceiling 2.5); 17 of 160 heard words are not ours (11 %; limit 10 %, at least 40 heard): would sit floor well tid gray body still bed hear once for"
+        }
+      ],
+      "takes": [
+        4030401
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.07,
+        "silence_s": 0.1,
+        "brightness_pct": 3.04,
+        "boominess_pct": 11.08,
+        "onsets_per_s": 3.11,
+        "seam_db": -32.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:couch",
+          "pov:ballista"
+        ],
+        "track_no": 42
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-couch-when-the-weight-shifts/greytide-couch-when-the-weight-shifts.mp3",
+        "notes": "greytide-couch-when-the-weight-shifts/notes.md",
+        "recipe": "greytide-couch-when-the-weight-shifts/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.26,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 3.0% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "boats",
+          "hole",
+          "hear",
+          "great",
+          "for",
+          "wait",
+          "centimetro",
+          "police",
+          "die",
+          "centimeter",
+          "balista"
+        ],
+        "stripped": [],
+        "installed_samples": 7152370,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-couch-when-the-weight-shifts/greytide-couch-when-the-weight-shifts.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37874,6 +37971,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-couch-when-the-weight-shifts",
         "greytide-gamestore-page-forty-two",
         "greytide-picnic-cannot-be-broken",
         "greytide-railway-eastbound-westbound",
