@@ -8694,6 +8694,106 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-desk-one-thick-coat",
+      "title": "One Thick Coat",
+      "project": "greytide",
+      "idea": "The burst caster tower on the cork, who never did highlights: one thick coat, one shot from a thousand yards, then a long wait, while the old varnish argues about sheen.",
+      "request": "The burst caster tower on the cork, who never did highlights: one thick coat, one shot from a thousand yards, then a long wait, while the old varnish argues about sheen.",
+      "mood": "cool, patient, menacing",
+      "bpm": 136,
+      "key": "A minor",
+      "seed": 3910501,
+      "model": "fast",
+      "duration": 160.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:06:47-04:00",
+      "voice": true,
+      "prompt": "Desert western rock, 136 bpm, A minor. A four-piece and a whistle: a twangy baritone guitar with tremolo playing the hook, a nylon guitar strumming fast minor triplets, a tight lean bass on root-fifth well under the mids, a galloping kit with a dry snare, a lonely whistle between verses. A cool, low female alto lead, half-spoken verses, full chorus, a low male choir. Patient and menacing. Starts mid, a long chorus plateau, one dip to guitar and stomp, a lifted final chorus. A minor, no harsh highs.",
+      "lyrics": "[Intro: the whistle over the gallop]\n\n[Verse 1]\nThey told me thin your paints, they told me two thin coats\nI put on one, and I put it on thick\nI don't do edges and I don't do highlights\nI take one shot and I make it stick\n\n[Pre-Chorus]\nOld varnish up on the cork talking sheen\nGloss or matte or satin, he can't decide\n\n[Chorus]\nOne thick coat, one long wait\nOne clean shot from a thousand yards\nOne thick coat, one long wait\nNever needed the highlights\n\n[Verse 2]\nA grunt on the switchback, a shield bearer behind\nWith a shield from a kit that he's never met\nI count to forty while the cooldown crawls\nThen I'm the loudest thing he'll never forget\n\n[Pre-Chorus]\nOld varnish up on the cork talking sheen\nI just talk once, and then I let it ride\n\n[Chorus]\nOne thick coat, one long wait\nOne clean shot from a thousand yards\nOne thick coat, one long wait\nNever needed the highlights\n\n[Breakdown: guitar and stomp only]\nPatience is a colour too\nDarker than the rest\nI wear it to the shoulder\nI wear it on my chest\n\n[Final Chorus: lifted, the choir doubles]\nOne thick coat, one long wait\nOne clean shot from a thousand yards\nOne thick coat, one long wait\nNever needed the highlights\n\n[Outro: the whistle alone]\nOne long wait",
+      "why": "You asked for \"The burst caster tower on the cork, who never did highlights: one thick coat, one shot from a thousand yards, then a long wait, while the old varnish argues about sheen.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in A minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3910500 (0.7s of near-silence (limit 0.5)). Seed 3910501 is the take.",
+      "rejected": [
+        {
+          "seed": 3910500,
+          "reason": "0.7s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3910501
+      ],
+      "numbers": {
+        "tempo_bpm": 137.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.39,
+        "silence_s": 0.1,
+        "brightness_pct": 1.61,
+        "boominess_pct": 8.22,
+        "onsets_per_s": 3.49,
+        "seam_db": -34.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:desk",
+          "pov:the burst caster tower"
+        ],
+        "track_no": 55
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-desk-one-thick-coat/greytide-desk-one-thick-coat.mp3",
+        "notes": "greytide-desk-one-thick-coat/notes.md",
+        "recipe": "greytide-desk-one-thick-coat/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "way",
+          "way",
+          "gun",
+          "buried",
+          "has",
+          "talked",
+          "rise",
+          "big",
+          "color",
+          "how",
+          "airy",
+          "shore",
+          "weight",
+          "go",
+          "way",
+          "way"
+        ],
+        "stripped": [],
+        "installed_samples": 7090536,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-desk-one-thick-coat/greytide-desk-one-thick-coat.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37215,6 +37315,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
+        "greytide-desk-one-thick-coat",
         "greytide-gamestore-six-bursts",
         "greytide-kitchen-stretch-and-snap",
         "greytide-picnic-behind-the-ants",
