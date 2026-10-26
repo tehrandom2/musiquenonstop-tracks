@@ -2241,6 +2241,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-treehouse-chalk-tally",
+      "title": "Chalk Tally",
+      "project": "greytide",
+      "idea": "The night is over: the chalk tally on the leaning board counts what lives are left, the biscuit tin still shut, the tree asleep; the table at rest.",
+      "request": "The night is over: the chalk tally on the leaning board counts what lives are left, the biscuit tin still shut, the tree asleep; the table at rest.",
+      "mood": "tired, proud, glowing",
+      "bpm": 120,
+      "key": "E minor",
+      "seed": 4041001,
+      "model": "fast",
+      "duration": 138.5,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:16:44-04:00",
+      "voice": false,
+      "prompt": "Glowing chamber folk finale, 120 bpm, E minor, tired and proud. A small ensemble with every part in its lane: a fingerpicked acoustic guitar ostinato, a string quartet carrying the theme of the night, a soft clarinet taking the melody in the middle, tight lean upright bass under the mids, a tin-can tap and soft kick for the pulse, a wound alarm-bell tick in the gaps. Arc: guitar and a quiet tick alone, strings enter at mid energy, a long high plateau with the clarinet singing, a dip to guitar and cello, a final lift with everything, a slow fade to one plucked note. E minor, no harsh highs, instrumental, no vocals.",
+      "lyrics": null,
+      "why": "You asked for \"The night is over: the chalk tally on the leaning board counts what lives are left, the biscuit tin still shut, the tree asleep; the table at rest.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 120 bpm in E minor, 145 seconds, with no voice, under the mellow gates. It has no beat to hold, so 120 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4041000 (0.8s of near-silence (limit 0.5)). Seed 4041001 is the take.",
+      "rejected": [
+        {
+          "seed": 4041000,
+          "reason": "0.8s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4041001
+      ],
+      "numbers": {
+        "tempo_bpm": 120.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -4.03,
+        "silence_s": 0.35,
+        "brightness_pct": 0.19,
+        "boominess_pct": 4.44,
+        "onsets_per_s": 2.25,
+        "seam_db": -68.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:the table"
+        ],
+        "track_no": 129
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-chalk-tally/greytide-treehouse-chalk-tally.mp3",
+        "notes": "greytide-treehouse-chalk-tally/notes.md",
+        "recipe": "greytide-treehouse-chalk-tally/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 8.06,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6107919,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-chalk-tally/greytide-treehouse-chalk-tally.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30744,6 +30827,7 @@ window.NOBODY_INDEX = {
         "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-the-hordes-pulse",
         "greytide-workbench-under-the-lens",
+        "greytide-treehouse-chalk-tally",
         "greytide-gamestore-demo-ends-in-sixty",
         "greytide-desk-a-drop-of-blue",
         "greytide-couch-stay-tuned",
