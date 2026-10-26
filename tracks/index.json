@@ -8115,6 +8115,91 @@
       "audition": true
     },
     {
+      "slug": "greytide-gamestore-six-bursts",
+      "title": "Six Bursts",
+      "project": "greytide",
+      "idea": "A breather: the Dice Tower at work, every throw a roll for damage, a six that bursts, nobody asking about the ones",
+      "request": "A breather: the Dice Tower at work, every throw a roll for damage, a six that bursts, nobody asking about the ones",
+      "mood": "bright, tumbling, intricate",
+      "bpm": 144,
+      "key": "B minor",
+      "seed": 3950500,
+      "model": "fast",
+      "duration": 133.62,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:07:36-04:00",
+      "voice": false,
+      "prompt": "Instrumental math-rock at 144 bpm in B minor, a trio with clear lanes: two clean tapped guitars in interlocking odd-grouped patterns like dice tumbling, a tight lean picked bass locking the downbeats, bass under the mids, a crisp kit with stop-start fills and a crash burst on every sixth bar; starts mid with one guitar, the second joins for a long bright plateau, a dip to a single guitar and bass, then a lifted full-band finale, B minor, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"A breather: the Dice Tower at work, every throw a roll for damage, a six that bursts, nobody asking about the ones\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 144 bpm in B minor, 135 seconds, with no voice, under the mellow gates. It has no beat to hold, so 144 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3950501 (harsh: 2.6% above 6 kHz (ceiling 2.5)). Seed 3950500 is the take.",
+      "rejected": [
+        {
+          "seed": 3950501,
+          "reason": "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3950500
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.1,
+        "silence_s": 0.25,
+        "brightness_pct": 2.2,
+        "boominess_pct": 9.94,
+        "onsets_per_s": 3.8,
+        "seam_db": -66.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:gamestore",
+          "pov:dice-tower"
+        ],
+        "track_no": 56
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-gamestore-six-bursts/greytide-gamestore-six-bursts.mp3",
+        "notes": "greytide-gamestore-six-bursts/notes.md",
+        "recipe": "greytide-gamestore-six-bursts/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [
+          "Dice Tower"
+        ],
+        "installed_samples": 5892711,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-gamestore-six-bursts/greytide-gamestore-six-bursts.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36633,6 +36718,7 @@
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
+        "greytide-gamestore-six-bursts",
         "greytide-kitchen-stretch-and-snap",
         "greytide-picnic-behind-the-ants",
         "greytide-railway-no-ticket",
