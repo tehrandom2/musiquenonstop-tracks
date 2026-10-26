@@ -10461,6 +10461,98 @@
       "audition": true
     },
     {
+      "slug": "greytide-carseat-down-in-the-crumb-gap",
+      "title": "Down in the Crumb Gap",
+      "project": "greytide",
+      "idea": "a grey wobbler takes the slow road down the crack between the seats, gets swallowed by a crumb drift and spat out further along",
+      "request": "a grey wobbler takes the slow road down the crack between the seats, gets swallowed by a crumb drift and spat out further along",
+      "mood": "woozy, funny, unbothered",
+      "bpm": 140,
+      "key": "D minor",
+      "seed": 4020400,
+      "model": "fast",
+      "duration": 164.14,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:04:11-04:00",
+      "voice": true,
+      "prompt": "Heavy roots dub, 140 bpm felt in half time, D minor, a dub band with jobs: a one-drop drum kit with rimshots, a round tight lean bass carrying the riddim, bass well under the mids, an offbeat organ skank, a melodica playing the hook, spring-reverb echo throws on the snare, a relaxed warm male lead singing easy and amused, a low harmony on the hook, in D minor, woozy and funny, mid start, a long rolling plateau, a dub dip to bass and echoes, a lifted last chorus, no harsh highs",
+      "lyrics": "[Intro - melodica and the one drop, echoes]\n\n[Verse 1]\nThe strap road's quick but the brakes come hard\nSo I took the crack in the seat, the long way, the yard\nSlow down here, everyone walks like me\nSheltered from the sliding, crumbs up to my knee\n\n[Pre-Chorus]\nAnd there's a drift ahead, a soft one, deep\nSome of us go under, some of us keep\n\n[Chorus - harmony on the hook]\nDown in the crumb gap, gone for a second\nUp further along like nothing happened\nDown in the crumb gap, swallowed and spat\nFurther along, now how about that\n\n[Verse 2]\nI've got a small base, everyone has said\nTall thin legs and a wobble in my head\nBut the crumbs don't care if you stand up straight\nThey take one in three and they spit you out late\n\n[Pre-Chorus]\nWhat falls in comes out further on\nSame rule for a wrapper as a grey someone\n\n[Chorus - harmony on the hook]\nDown in the crumb gap, gone for a second\nUp further along like nothing happened\nDown in the crumb gap, swallowed and spat\nFurther along, now how about that\n\n[Breakdown - dub, bass and echoes only]\nSink, sink, a second and a third\nDark in the biscuit, not a word\nUp again, up again, look at me now\n\n[Final Chorus - lifted, the organ and melodica together]\nDown in the crumb gap, gone for a second\nUp further along like nothing happened\nDown in the crumb gap, swallowed and spat\nFurther along, now how about that\n\n[Outro - the echoes trail off]",
+      "why": "You asked for \"a grey wobbler takes the slow road down the crack between the seats, gets swallowed by a crumb drift and spat out further along\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in D minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4020401 (harsh: 3.1% above 6 kHz (ceiling 2.5)). Seed 4020400 is the take.",
+      "rejected": [
+        {
+          "seed": 4020401,
+          "reason": "harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4020400
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.22,
+        "silence_s": 0.1,
+        "brightness_pct": 2.19,
+        "boominess_pct": 6.18,
+        "onsets_per_s": 3.16,
+        "seam_db": -60.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:carseat",
+          "pov:wobbler"
+        ],
+        "track_no": 41
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-carseat-down-in-the-crumb-gap/greytide-carseat-down-in-the-crumb-gap.mp3",
+        "notes": "greytide-carseat-down-in-the-crumb-gap/notes.md",
+        "recipe": "greytide-carseat-down-in-the-crumb-gap/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "every",
+          "then",
+          "rap",
+          "resurrected",
+          "sing",
+          "sing",
+          "dock",
+          "inside"
+        ],
+        "stripped": [],
+        "installed_samples": 7238643,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-carseat-down-in-the-crumb-gap/greytide-carseat-down-in-the-crumb-gap.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38980,6 +39072,7 @@
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-carseat-down-in-the-crumb-gap",
         "greytide-couch-when-the-weight-shifts",
         "greytide-gamestore-page-forty-two",
         "greytide-picnic-cannot-be-broken",
