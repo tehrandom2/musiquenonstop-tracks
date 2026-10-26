@@ -1,0 +1,87 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": true,
+  "slug": "advanced-studios-theme-c",
+  "title": "Advanced Studios Theme (C)",
+  "date": "2026-10-26",
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": "acestep-5Hz-lm-1.7B",
+    "offload_to_cpu": true,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "playful modern clockwork groove, a busy workshop of tiny machines all doing their jobs at once, interlocking ostinatos on marimba, pizzicato strings, muted plucked synths and a light glockenspiel, a bouncy upright bass walking under a soft electronic beat, short warm brass swells on the bar changes, a hummable lead melody that keeps climbing a little each phrase, a sense of steady progress and quiet satisfaction, busy but relaxed, never frantic, never tense, bright and friendly, instrumental, F major, 116 bpm",
+  "lyrics": "[Intro: a single marimba ostinato starts the machine, a second part joins]\n[Instrumental]\n[Theme: the lead melody climbs over the interlocking parts, bass and soft beat enter]\n[Instrumental]\n[Build: more little machines join one by one, each a new tiny pattern, nothing gets louder than warm]\n[Instrumental]\n[Theme reprise: everything locks together, brass swells, a satisfied resolution]\n[Instrumental]\n[Outro: the parts drop out one by one until the first marimba ostinato is left, a clean loop point]",
+  "instrumental": true,
+  "bpm": 116,
+  "keyscale": "F major",
+  "timesignature": "4",
+  "duration": 100.0,
+  "seed": 3350102,
+  "dit_caption": "playful modern clockwork groove, a busy workshop of tiny machines all doing their jobs at once, interlocking ostinatos on marimba, pizzicato strings, muted plucked synths and a light glockenspiel, a bouncy upright bass walking under a soft electronic beat, short warm brass swells on the bar changes, a hummable lead melody that keeps climbing a little each phrase, a sense of steady progress and quiet satisfaction, busy but relaxed, never frantic, never tense, bright and friendly, instrumental, F major, 116 bpm",
+  "vocal_language": "unknown",
+  "audio_codes": "<|audio_code_5557|><|audio_code_36843|><|audio_code_9157|><|audio_code_14323|><|audio_code_35855|><|audio_code_62342|><|audio_code_50132|><|audio_code_1477|><|audio_code_33295|><|audio_code_35847|><|audio_code_35847|><|audio_code_63429|><|audio_code_13251|><|audio_code_35863|><|audio_code_35855|><|audio_code_11718|><|audio_code_63427|><|audio_code_20318|><|audio_code_35847|><|audio_code_35855|><|audio_code_37829|><|audio_code_50673|><|audio_code_38111|><|audio_code_35847|><|audio_code_35855|><|audio_code_25028|><|audio_code_36930|><|audio_code_49282|><|audio_code_58340|><|audio_code_23034|><|audio_code_24001|><|audio_code_40116|><|audio_code_3558|><|audio_code_12724|><|audio_code_762|><|audio_code_24056|><|audio_code_29813|><|audio_code_18372|><|audio_code_10692|><|audio_code_33474|><|audio_code_37304|><|audio_code_54038|><|audio_code_63940|><|audio_code_44017|><|audio_code_51898|><|audio_code_2527|><|audio_code_57827|><|audio_code_1985|><|audio_code_3186|><|audio_code_2434|><|audio_code_14562|><|audio_code_54714|><|audio_code_14242|><|audio_code_48650|><|audio_code_9106|><|audio_code_17795|><|audio_code_60609|><|audio_code_15353|><|audio_code_6203|><|audio_code_52138|><|audio_code_58753|><|audio_code_35985|><|audio_code_56256|><|audio_code_37594|><|audio_code_47548|><|audio_code_24041|><|audio_code_58962|><|audio_code_8658|><|audio_code_17859|><|audio_code_36994|><|audio_code_30649|><|audio_code_6707|><|audio_code_39403|><|audio_code_30593|><|audio_code_35986|><|audio_code_38393|><|audio_code_27290|><|audio_code_21436|><|audio_code_10697|><|audio_code_51818|><|audio_code_30658|><|audio_code_27427|><|audio_code_35195|><|audio_code_24458|><|audio_code_6203|><|audio_code_1923|><|audio_code_28155|><|audio_code_46850|><|audio_code_30656|><|audio_code_27372|><|audio_code_40442|><|audio_code_21931|><|audio_code_51370|><|audio_code_49096|><|audio_code_25371|><|audio_code_9596|><|audio_code_23937|><|audio_code_54450|><|audio_code_458|><|audio_code_50658|><|audio_code_21762|><|audio_code_23522|><|audio_code_6842|><|audio_code_1451|><|audio_code_1915|><|audio_code_51369|><|audio_code_2368|><|audio_code_38170|><|audio_code_10171|><|audio_code_11168|><|audio_code_59057|><|audio_code_52209|><|audio_code_61715|><|audio_code_48970|><|audio_code_25563|><|audio_code_37498|><|audio_code_4082|><|audio_code_58810|><|audio_code_61714|><|audio_code_12208|><|audio_code_30482|><|audio_code_8643|><|audio_code_39875|><|audio_code_3186|><|audio_code_52170|><|audio_code_48987|><|audio_code_8067|><|audio_code_24017|><|audio_code_17082|><|audio_code_51650|><|audio_code_43467|><|audio_code_354|><|audio_code_5060|><|audio_code_38290|><|audio_code_56796|><|audio_code_14266|><|audio_code_39730|><|audio_code_40705|><|audio_code_38169|><|audio_code_11259|><|audio_code_25536|><|audio_code_52018|><|audio_code_15315|><|audio_code_51651|><|audio_code_20881|><|audio_code_12587|><|audio_code_37505|><|audio_code_28116|><|audio_code_63937|><|audio_code_51546|><|audio_code_24513|><|audio_code_27793|><|audio_code_21498|><|audio_code_21771|><|audio_code_4274|><|audio_code_56075|><|audio_code_63778|><|audio_code_20946|><|audio_code_24290|><|audio_code_32506|><|audio_code_27586|><|audio_code_12772|><|audio_code_36170|><|audio_code_63954|><|audio_code_24849|><|audio_code_22524|><|audio_code_258|><|audio_code_54521|><|audio_code_38210|><|audio_code_38234|><|audio_code_35274|><|audio_code_49592|><|audio_code_12721|><|audio_code_54217|><|audio_code_63992|><|audio_code_433|><|audio_code_57320|><|audio_code_32506|><|audio_code_2972|><|audio_code_17792|><|audio_code_51561|><|audio_code_872|><|audio_code_27482|><|audio_code_9210|><|audio_code_14280|><|audio_code_55672|><|audio_code_2475|><|audio_code_10594|><|audio_code_23506|><|audio_code_11617|><|audio_code_32570|><|audio_code_57329|><|audio_code_53738|><|audio_code_43856|><|audio_code_59362|><|audio_code_23314|><|audio_code_48588|><|audio_code_16274|><|audio_code_58105|><|audio_code_40713|><|audio_code_24347|><|audio_code_8067|><|audio_code_2042|><|audio_code_15217|><|audio_code_14802|><|audio_code_53633|><|audio_code_890|><|audio_code_15227|><|audio_code_35537|><|audio_code_11227|><|audio_code_2425|><|audio_code_52082|><|audio_code_14841|><|audio_code_59226|><|audio_code_22979|><|audio_code_30145|><|audio_code_17265|><|audio_code_27564|><|audio_code_61865|><|audio_code_13259|><|audio_code_11154|><|audio_code_14642|><|audio_code_45026|><|audio_code_10194|><|audio_code_51634|><|audio_code_36307|><|audio_code_26018|><|audio_code_10123|><|audio_code_10050|><|audio_code_55609|><|audio_code_43394|><|audio_code_10587|><|audio_code_25554|><|audio_code_41416|><|audio_code_21817|><|audio_code_53186|><|audio_code_891|><|audio_code_26618|><|audio_code_25466|><|audio_code_23249|><|audio_code_10187|><|audio_code_5498|><|audio_code_52018|><|audio_code_3025|><|audio_code_26531|><|audio_code_20426|><|audio_code_24033|><|audio_code_24953|><|audio_code_43475|><|audio_code_63914|><|audio_code_13194|><|audio_code_23970|><|audio_code_19714|><|audio_code_46042|><|audio_code_22008|><|audio_code_5114|><|audio_code_12778|><|audio_code_18320|><|audio_code_12748|><|audio_code_23977|><|audio_code_17273|><|audio_code_14667|><|audio_code_10578|><|audio_code_36298|><|audio_code_24544|><|audio_code_17282|><|audio_code_50162|><|audio_code_53674|><|audio_code_52145|><|audio_code_24482|><|audio_code_28369|><|audio_code_20948|><|audio_code_17850|><|audio_code_27002|><|audio_code_993|><|audio_code_51538|><|audio_code_10634|><|audio_code_33225|><|audio_code_35720|><|audio_code_7059|><|audio_code_56186|><|audio_code_52210|><|audio_code_23427|><|audio_code_17673|><|audio_code_6098|><|audio_code_56258|><|audio_code_24562|><|audio_code_1522|><|audio_code_10529|><|audio_code_23491|><|audio_code_48578|><|audio_code_22393|><|audio_code_43467|><|audio_code_11169|><|audio_code_15754|><|audio_code_56256|><|audio_code_11233|><|audio_code_58817|><|audio_code_24536|><|audio_code_43512|><|audio_code_59881|><|audio_code_28097|><|audio_code_10713|><|audio_code_15354|><|audio_code_59857|><|audio_code_17402|><|audio_code_62417|><|audio_code_15345|><|audio_code_44498|><|audio_code_14321|><|audio_code_46545|><|audio_code_14313|><|audio_code_41417|><|audio_code_11753|><|audio_code_46016|><|audio_code_12251|><|audio_code_28608|><|audio_code_11234|><|audio_code_28098|><|audio_code_11234|><|audio_code_28106|><|audio_code_11234|><|audio_code_15354|><|audio_code_62426|><|audio_code_14842|><|audio_code_46546|><|audio_code_14314|><|audio_code_43458|><|audio_code_11746|><|audio_code_40897|><|audio_code_11234|><|audio_code_30657|><|audio_code_11234|><|audio_code_15298|><|audio_code_61905|><|audio_code_14835|><|audio_code_26953|><|audio_code_14739|><|audio_code_24434|><|audio_code_26018|><|audio_code_12088|><|audio_code_38820|><|audio_code_63859|><|audio_code_25986|><|audio_code_38035|><|audio_code_29698|><|audio_code_46034|><|audio_code_24555|><|audio_code_2354|><|audio_code_14834|><|audio_code_257|><|audio_code_11202|><|audio_code_25355|><|audio_code_32441|><|audio_code_212|><|audio_code_63883|><|audio_code_13097|><|audio_code_53568|><|audio_code_20160|><|audio_code_22977|><|audio_code_6849|><|audio_code_41713|><|audio_code_48395|><|audio_code_26265|><|audio_code_10116|><|audio_code_29434|><|audio_code_55418|><|audio_code_27074|><|audio_code_410|><|audio_code_49474|><|audio_code_43474|><|audio_code_35088|><|audio_code_21924|><|audio_code_4868|><|audio_code_38713|><|audio_code_38130|><|audio_code_29770|><|audio_code_25595|><|audio_code_61889|><|audio_code_11697|><|audio_code_20418|><|audio_code_59370|><|audio_code_22987|><|audio_code_48449|><|audio_code_19770|><|audio_code_53707|><|audio_code_63972|><|audio_code_23442|><|audio_code_61377|><|audio_code_14666|><|audio_code_63427|><|audio_code_24554|><|audio_code_53233|><|audio_code_40834|><|audio_code_23898|><|audio_code_20427|><|audio_code_24506|><|audio_code_55675|><|audio_code_40896|><|audio_code_61922|><|audio_code_458|><|audio_code_49115|><|audio_code_17728|><|audio_code_33261|><|audio_code_11130|><|audio_code_52210|><|audio_code_11170|><|audio_code_30610|><|audio_code_48579|><|audio_code_24554|><|audio_code_2433|><|audio_code_1010|><|audio_code_56192|><|audio_code_20937|><|audio_code_24483|><|audio_code_22394|><|audio_code_2987|><|audio_code_2435|><|audio_code_49122|><|audio_code_11233|><|audio_code_28489|><|audio_code_11219|><|audio_code_14834|><|audio_code_55802|><|audio_code_13731|><|audio_code_27970|><|audio_code_10691|><|audio_code_35770|><|audio_code_14194|><|audio_code_979|><|audio_code_28098|><|audio_code_10730|><|audio_code_15299|><|audio_code_23441|><|audio_code_9164|><|audio_code_56194|><|audio_code_39858|><|audio_code_38282|><|audio_code_23898|><|audio_code_6603|><|audio_code_28097|><|audio_code_24498|><|audio_code_2507|><|audio_code_51641|><|audio_code_10699|><|audio_code_30594|><|audio_code_23816|><|audio_code_43484|><|audio_code_62443|><|audio_code_26034|><|audio_code_28097|><|audio_code_23386|><|audio_code_20986|><|audio_code_6986|><|audio_code_14714|><|audio_code_17795|><|audio_code_61858|><|audio_code_22994|><|audio_code_21386|><|audio_code_29498|><|audio_code_40883|><|audio_code_11106|><|audio_code_40896|><|audio_code_23960|><|audio_code_43512|><|audio_code_11161|><|audio_code_15304|><|audio_code_20945|><|audio_code_14842|><|audio_code_59346|><|audio_code_14322|><|audio_code_41409|><|audio_code_11753|><|audio_code_20326|><|audio_code_35855|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|><|audio_code_35847|>",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": 0.45,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 94.77,
+    "peak_dbfs_pre_encode": -3.14,
+    "lufs": -16.01
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 94.772,
+      "lufs": -16.446,
+      "peak": -1.547,
+      "bpm": 114.0,
+      "key": "F major",
+      "margin": 0.199,
+      "hi": 1.017,
+      "lo": 4.278,
+      "onsets": 3.461,
+      "jump": 0.431,
+      "tail_head": -68.636,
+      "voice": 0.409,
+      "silence": 0.15,
+      "seed": 3350102,
+      "lo_raw": 13.907
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": []
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}

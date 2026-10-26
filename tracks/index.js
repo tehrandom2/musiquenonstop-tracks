@@ -3,6 +3,88 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T01:01:36-04:00",
   "tracks": [
     {
+      "slug": "advanced-studios-theme-c",
+      "title": "Advanced Studios Theme (C)",
+      "project": "bench",
+      "idea": "a busy workshop of tiny machines, each doing its job, a melody that keeps climbing: the feeling of progress",
+      "request": "the owner's theme for the Advanced Studios game, round 3: the feeling of progress",
+      "mood": "busy but relaxed, bright and friendly",
+      "bpm": 116,
+      "key": "F major",
+      "seed": 3350102,
+      "model": "fast",
+      "duration": 94.77,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T01:01:18-04:00",
+      "voice": false,
+      "prompt": "playful modern clockwork groove, a busy workshop of tiny machines all doing their jobs at once, interlocking ostinatos on marimba, pizzicato strings, muted plucked synths and a light glockenspiel, a bouncy upright bass walking under a soft electronic beat, short warm brass swells on the bar changes, a hummable lead melody that keeps climbing a little each phrase, a sense of steady progress and quiet satisfaction, busy but relaxed, never frantic, never tense, bright and friendly, instrumental, F major, 116 bpm",
+      "lyrics": null,
+      "why": "You asked for \"the owner's theme for the Advanced Studios game, round 3: the feeling of progress\". The style and structure come from the front desk's round 3 brief: the feeling of steady progress, evoked in our own words only, no reference named. So I wrote it at 116 bpm in F major, 100 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 1 seed and kept it. Seed 3350102 is the take.",
+      "rejected": [],
+      "takes": [
+        3350102
+      ],
+      "numbers": {
+        "tempo_bpm": 114.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.54,
+        "silence_s": 0.15,
+        "brightness_pct": 1.02,
+        "boominess_pct": 4.28,
+        "onsets_per_s": 3.46,
+        "seam_db": -68.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "advanced-studios-theme-c/advanced-studios-theme-c.mp3",
+        "notes": "advanced-studios-theme-c/notes.md",
+        "recipe": "advanced-studios-theme-c/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-0.6B)",
+        "profile": "mellow",
+        "seam_step_x": 0.43,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4179424,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "advanced-studios-theme-c/advanced-studios-theme-c.mp3"
+        ],
+        "ears": null
+      },
+      "loop": {
+        "loop_start": 25.355,
+        "loop_end": 83.286,
+        "bars": 28,
+        "bpm": 116,
+        "how": "beat-aligned at 116 bpm by measurement (onset grid and the closest spectral match at the seam); nobody has heard it"
+      },
+      "audition": true
+    },
+    {
       "slug": "advanced-studios-theme-b",
       "title": "Advanced Studios Theme (B)",
       "project": "bench",
