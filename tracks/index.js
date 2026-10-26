@@ -12549,6 +12549,108 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-some-assembly-required",
+      "title": "Some Assembly Required",
+      "project": "greytide",
+      "idea": "The pile of unbuilt kits under the rafters wakes and pours down the kit-box mountains; the horde's own anthem of everything bought and never built",
+      "request": "The pile of unbuilt kits under the rafters wakes and pours down the kit-box mountains; the horde's own anthem of everything bought and never built",
+      "mood": "epic, weary, heartsore",
+      "bpm": 136,
+      "key": "D minor",
+      "seed": 3980100,
+      "model": "fast",
+      "duration": 167.46,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:01:09-04:00",
+      "voice": true,
+      "prompt": "Dusty epic stoner rock, 136 bpm, D minor, huge and heartsore: big roomy drums with a heavy snare, two fuzzed down-tuned guitars stacking a slow-burning D minor riff in the mids, a solid but lean bass locked to the kick, bass under the mids, a dusty drawbar organ holding long chords, a low male choir on the hook, a gravelly male lead singing wide and weary, in D minor; intro of organ and a long creak before the riff lands, verses heavy and patient, the chorus opening wide, a half-time bridge of organ and choir, the final chorus lifted with the choir doubled, the riff fading on a creak, warm grit in the mids, no harsh highs",
+      "lyrics": "[Intro: dusty organ and a long creak, then the riff lands]\n\n[Verse 1]\nUp beneath the rafters where the cartons climb so high\nWe are stacked in mountains and the mountains never lie\nPieces: one-oh-eight. Age: fourteen and above\nBought in every sale, and every one of them was love\n\n[Pre-Chorus]\nFaded price stickers, sixty pages each\nDust on every lid, and the bulb just out of reach\n\n[Chorus]\nSome assembly required\nSome of us have waited all our lives\nOut of the lids and down the mountainside\nSome assembly required\n\n[Verse 2]\nEvery one a birthday or a bargain or a whim\nEvery one a winter that was going to begin\nNow we spill out down the alleys where the swinging shadows fall\nSprue still on our ankles, we were never built at all\n\n[Pre-Chorus]\nFaded price stickers, sixty pages each\nDust on every lid, and the bulb just out of reach\n\n[Chorus]\nSome assembly required\nSome of us have waited all our lives\nOut of the lids and down the mountainside\nSome assembly required\n\n[Bridge: half-time, organ and choir]\nYou meant to, you meant to\nEvery box a you-meant-to\nUnder the bulb and under the beam\nFour hundred pieces of a dream\n\n[Final Chorus: lifted, the choir doubled]\nSome assembly required\nSome of us have waited all our lives\nOut of the lids and down the mountainside\nSome assembly required\n\n[Outro: the riff fades on a creak]\nSome assembly required",
+      "why": "You asked for \"The pile of unbuilt kits under the rafters wakes and pours down the kit-box mountains; the horde's own anthem of everything bought and never built\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in D minor, 174 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980101 (harsh: 2.9% above 6 kHz (ceiling 2.5)). Seed 3980100 is the take, but it did not clear every gate: harsh: 2.6% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3980101,
+          "reason": "harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3980100
+      ],
+      "numbers": {
+        "tempo_bpm": 134.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -4.06,
+        "silence_s": 0.15,
+        "brightness_pct": 2.6,
+        "boominess_pct": 5.28,
+        "onsets_per_s": 2.64,
+        "seam_db": -29.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:the horde"
+        ],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-some-assembly-required/greytide-attic-some-assembly-required.mp3",
+        "notes": "greytide-attic-some-assembly-required/notes.md",
+        "recipe": "greytide-attic-some-assembly-required/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "black",
+          "fleeted",
+          "boat",
+          "myself",
+          "quote",
+          "everyone",
+          "everyone",
+          "alley",
+          "we'll",
+          "be",
+          "right",
+          "back",
+          "boxer",
+          "pole",
+          "simply",
+          "leads"
+        ],
+        "stripped": [],
+        "installed_samples": 7385055,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-some-assembly-required/greytide-attic-some-assembly-required.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -41038,6 +41140,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-attic-some-assembly-required",
         "greytide-bathroom-bath-time-is-over",
         "greytide-bed-still-up",
         "greytide-carseat-up-from-the-footwell",
