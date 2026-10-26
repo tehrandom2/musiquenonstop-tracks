@@ -1185,6 +1185,91 @@
       "audition": true
     },
     {
+      "slug": "greytide-workbench-the-hordes-pulse",
+      "title": "The Horde's Pulse",
+      "project": "greytide",
+      "idea": "A breather: the oscilloscope behind the board draws the horde's heartbeat, faster and taller the more of them are alive, a dip for every one that falls",
+      "request": "A breather: the oscilloscope behind the board draws the horde's heartbeat, faster and taller the more of them are alive, a dip for every one that falls",
+      "mood": "cold, pulsing, eerie",
+      "bpm": 126,
+      "key": "C minor",
+      "seed": 3960801,
+      "model": "fast",
+      "duration": 136.5,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:18:17-04:00",
+      "voice": false,
+      "prompt": "Instrumental darkwave synth at 126 bpm in C minor, a cold electronic lab: a heartbeat kick pattern that quickens and thickens, a tight lean arpeggiated bass, bass under the mids, a thin oscilloscope-like sine lead tracing the melody, a soft dropout on each phrase end like a beat skipped, a warm pad rising; starts mid with the heartbeat, a long climbing plateau, a dip to a single slowed pulse, a lifted final section, C minor, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"A breather: the oscilloscope behind the board draws the horde's heartbeat, faster and taller the more of them are alive, a dip for every one that falls\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 126 bpm in C minor, 140 seconds, with no voice, under the mellow gates. It has no beat to hold, so 126 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960800 (harsh: 4.9% above 6 kHz (ceiling 2.5) and others). Seed 3960801 is the take, but it did not clear every gate: harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3960800,
+          "reason": "harsh: 4.9% above 6 kHz (ceiling 2.5); boomy: 13.7% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        3960801
+      ],
+      "numbers": {
+        "tempo_bpm": 83.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.44,
+        "silence_s": 0.15,
+        "brightness_pct": 2.82,
+        "boominess_pct": 8.26,
+        "onsets_per_s": 4.43,
+        "seam_db": -64.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:the-oscilloscope"
+        ],
+        "track_no": 104
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-the-hordes-pulse/greytide-workbench-the-hordes-pulse.mp3",
+        "notes": "greytide-workbench-the-hordes-pulse/notes.md",
+        "recipe": "greytide-workbench-the-hordes-pulse/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.99,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6019829,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-the-hordes-pulse/greytide-workbench-the-hordes-pulse.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29676,6 +29761,7 @@
       "tracks": [
         "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-workbench-the-hordes-pulse",
         "greytide-workbench-under-the-lens",
         "greytide-gamestore-demo-ends-in-sixty",
         "greytide-desk-a-drop-of-blue",
