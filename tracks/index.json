@@ -6312,6 +6312,107 @@
       "audition": true
     },
     {
+      "slug": "greytide-picnic-cannot-be-broken",
+      "title": "Cannot Be Broken",
+      "project": "greytide",
+      "idea": "Wave four into five: the Garden Gnome tower, unbreakable, grins while the grey stop to punch him and the other towers hit them harder",
+      "request": "Wave four into five: the Garden Gnome tower, unbreakable, grins while the grey stop to punch him and the other towers hit them harder",
+      "mood": "deadpan, dusty, stubborn",
+      "bpm": 140,
+      "key": "B minor",
+      "seed": 4000401,
+      "model": "fast",
+      "duration": 161.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:10:16-04:00",
+      "voice": true,
+      "prompt": "Outlaw country with a train beat, 140 bpm, B minor: a boom-chicka snare and brushed drums driving hard, a tight lean bass, bass under the mids, walking the root and fifth, a twangy telecaster playing chicken-picked fills, a pedal steel crying in the gaps, a deep deadpan baritone male lead and a backing trio on the hook; dry and dusty, no harsh highs; starts mid on the train beat, a long rolling plateau, one dip to bass and steel, a final lift with the trio, B minor",
+      "lyrics": "[Intro: the train beat and a pedal steel slide]\nGo on and swing\n\n[Verse 1]\nI'm the gnome by the edge in a red pointy hat\nMy beard was a gift and my smile is a fact\nI stand in the grass like I've stood forty years\nI've weathered the frost and a few garden shears\n\n[Pre-Chorus]\nHere comes a grunt with his fists balled tight\nHere comes another, ready to fight\n\n[Chorus]\nGo on and swing, I cannot be broken\nGo on and swing, I'm just a smile and a token\nWhile you're hitting me, they're hitting you\nGo on and swing, I cannot be broken\n\n[Verse 2]\nThe Fly Swatter winds up behind my back\nThe Hot Sauce Bottle has drawn its red track\nThe grey stop to have a go at my nose\nAnd that's the last swing that anybody throws\n\n[Pre-Chorus]\nHere comes a grunt with his fists balled tight\nHere comes another, ready to fight\n\n[Chorus]\nGo on and swing, I cannot be broken\nGo on and swing, I'm just a smile and a token\nWhile you're hitting me, they're hitting you\nGo on and swing, I cannot be broken\n\n[Bridge: bass and pedal steel, spoken low]\nI'm not brave, I'm made of stone\nI can't feel a thing, I just hold my own\nBut I know how it looks to the painted crew\nThe old fella grinning while they come through\n\n[Final Chorus: lifted, the trio on top]\nGo on and swing, I cannot be broken\nGo on and swing, I'm just a smile and a token\nWhile you're hitting me, they're hitting you\nGo on and swing, I cannot be broken\n\n[Outro: one steel slide]\nGo on and swing",
+      "why": "You asked for \"Wave four into five: the Garden Gnome tower, unbreakable, grins while the grey stop to punch him and the other towers hit them harder\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in B minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4000400 (0.6s of near-silence (limit 0.5) and others). Seed 4000401 is the take, but it did not clear every gate: 1.4s of near-silence (limit 0.5); harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4000400,
+          "reason": "0.6s of near-silence (limit 0.5); 11 of 104 heard words are not ours (11 %; limit 10 %, at least 40 heard): nobody plane yeah grease stopped hell hidden human told people can"
+        }
+      ],
+      "takes": [
+        4000401
+      ],
+      "numbers": {
+        "tempo_bpm": 70.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.81,
+        "silence_s": 1.35,
+        "brightness_pct": 2.85,
+        "boominess_pct": 7.44,
+        "onsets_per_s": 2.71,
+        "seam_db": -31.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:picnic",
+          "pov:the garden gnome"
+        ],
+        "track_no": 44
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-picnic-cannot-be-broken/greytide-picnic-cannot-be-broken.mp3",
+        "notes": "greytide-picnic-cannot-be-broken/notes.md",
+        "recipe": "greytide-picnic-cannot-be-broken/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.4s of near-silence (limit 0.5)",
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "fist",
+          "ball",
+          "flush",
+          "water",
+          "gray",
+          "stopped",
+          "fist",
+          "ball",
+          "swim",
+          "smiling",
+          "tobian",
+          "there"
+        ],
+        "stripped": [
+          "Garden Gnome"
+        ],
+        "installed_samples": 7107872,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-picnic-cannot-be-broken/greytide-picnic-cannot-be-broken.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -34818,6 +34919,7 @@
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-picnic-cannot-be-broken",
         "greytide-railway-eastbound-westbound",
         "greytide-sandpit-the-digger-revs",
         "greytide-schooldesk-look-busy",
