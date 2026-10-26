@@ -11412,6 +11412,96 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-bathroom-you-know-the-way",
+      "title": "You Know the Way",
+      "project": "greytide",
+      "idea": "The first time the hot tap runs, its wash lifts the little signposts that taught the road and floats them all down to the plug hole; they sing as they go, like every guide that has to leave once the learning is done.",
+      "request": "The first time the hot tap runs, its wash lifts the little signposts that taught the road and floats them all down to the plug hole; they sing as they go, like every guide that has to leave once the learning is done.",
+      "mood": "tender, bittersweet, floating",
+      "bpm": 126,
+      "key": "C# minor",
+      "seed": 3940501,
+      "model": "fast",
+      "duration": 157.22,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:02:46-04:00",
+      "voice": true,
+      "prompt": "Indie folk, 126 bpm, C# minor. The band: a fingerpicked acoustic guitar carrying a rolling figure, a soft brushed kit with a steady kick, a lean upright bass under the mids, a small string quartet rising on the chorus, a glockenspiel answering the hook. A soft, close male lead with a gentle female harmony on the chorus. Mood: tender and bittersweet, floating away. Arc: guitar alone, the band in at verse one, the chorus lifting with strings, a quiet bridge, the final chorus lifted with full strings and both voices. C# minor throughout, no harsh highs.",
+      "lyrics": "[Intro: fingerpicked guitar]\n\n[Verse 1]\nWe were the arrows on the road\nthe little flags that said this way\nwe pointed where the grey would walk\nso you could learn it on the first day\nthen the red handle turned a quarter round\nthe pipe knocked twice, the steam came through\nand the water lifted every one of us\nand carried us away from you\n\n[Pre-Chorus]\nDon't look for us, don't look back\n\n[Chorus]\nYou know the way now\nwe float on, we float on\nyou know the way now\nthe arrows fade, the road goes on\n\n[Verse 2]\nI bumped the whale, I passed the boat\nstill wound up, going nowhere fast\nI saw the towers turn to watch us go\nthe ones we taught are the ones who'll last\nand every guide and every hand\nsooner or later goes downstream\nyou learn the road by walking it\nwe were the start, and not the dream\n\n[Pre-Chorus]\nDon't look for us, don't look back\n\n[Chorus]\nYou know the way now\nwe float on, we float on\nyou know the way now\nthe arrows fade, the road goes on\n\n[Bridge: quiet, guitar and voice]\nPlink, and we're gone\n(you know the way)\nplink, and we're gone\n(you know the way)\n\n[Final Chorus: lifted, full strings, both voices]\nYou know the way now\nwe float on, we float on\nyou know the way now\nthe arrows fade, the road goes on\n\n[Outro: guitar alone]\nThe road goes on.",
+      "why": "You asked for \"The first time the hot tap runs, its wash lifts the little signposts that taught the road and floats them all down to the plug hole; they sing as they go, like every guide that has to leave once the learning is done.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 126 bpm in C# minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 126 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3940500 (0.7s of near-silence (limit 0.5)). Seed 3940501 is the take.",
+      "rejected": [
+        {
+          "seed": 3940500,
+          "reason": "0.7s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3940501
+      ],
+      "numbers": {
+        "tempo_bpm": 125.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.44,
+        "silence_s": 0.45,
+        "brightness_pct": 0.81,
+        "boominess_pct": 1.79,
+        "onsets_per_s": 2.96,
+        "seam_db": -49.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bathroom",
+          "pov:the signposts"
+        ],
+        "track_no": 52
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bathroom-you-know-the-way/greytide-bathroom-you-know-the-way.mp3",
+        "notes": "greytide-bathroom-you-know-the-way/notes.md",
+        "recipe": "greytide-bathroom-you-know-the-way/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": [
+          "set",
+          "gray",
+          "star",
+          "slowed",
+          "slowed",
+          "thank"
+        ],
+        "stripped": [],
+        "installed_samples": 6933454,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bathroom-you-know-the-way/greytide-bathroom-you-know-the-way.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39944,6 +40034,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
+        "greytide-bathroom-you-know-the-way",
         "greytide-bed-short-fall",
         "greytide-carseat-new-car-smell",
         "greytide-desk-one-thick-coat",
