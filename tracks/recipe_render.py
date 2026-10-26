@@ -60,6 +60,7 @@ def init_handlers(ace_dir: Path, model: dict, need_lm: bool = True):
     status, ok = dit.initialize_service(project_root=str(ace_dir), config_path=model["dit_config"], device="cuda", **kw)
     if not ok:
         raise RuntimeError(f"DiT init failed: {status}")
+    tune(dit, model)
     if not need_lm:   # the recipe carries the planner's audio codes: the music model runs alone
         return dit, None
     llm = LLMHandler()
@@ -68,6 +69,39 @@ def init_handlers(ace_dir: Path, model: dict, need_lm: bool = True):
     if not ok:
         raise RuntimeError(f"LM init failed: {status}")
     return dit, llm
+
+
+def tune(dit, model: dict):
+    """The music model as the take's box ran it, from the `model` block's optional keys (absent: as ACE-Step loads it):
+    `model_dtype` casts the DiT, its text encoder and its silence latent and sets the handler's dtype so its offload moves keep
+    it; `attention` ("sdpa" or "eager") replaces the attention ACE picked for the card; `quantization` applies ACE's own torchao
+    weight quantization to the decoder after the cast. The VAE and the planner LM keep their own. Each one changes the bytes."""
+    name = model.get("model_dtype")
+    if name:
+        import torch
+        dtype = getattr(torch, name)
+        for attr in ("model", "text_encoder"):
+            part = getattr(dit, attr, None)
+            if part is not None:
+                setattr(dit, attr, part.to(dtype=dtype))
+        if getattr(dit, "silence_latent", None) is not None:
+            dit.silence_latent = dit.silence_latent.to(dtype=dtype)
+        dit.dtype = dtype
+        print(f"  music model cast to {name}", flush=True)
+    attn = model.get("attention")
+    if attn:
+        # every layer reads its config's _attn_implementation at each forward; the text encoder is another model and keeps its own
+        for part in dit.model.modules():
+            cfg = getattr(part, "config", None)
+            if cfg is not None and hasattr(cfg, "_attn_implementation"):
+                cfg._attn_implementation = attn
+        print(f"  music model attention: {attn}", flush=True)
+    q = model.get("quantization")
+    if q:
+        dit._apply_dit_quantization(q)
+        dit.quantization = q
+        print(f"  music model quantized: {q}", flush=True)
+    return dit
 
 
 def render_raw(dit, llm, r: dict, save_dir: Path) -> Path:
