@@ -2145,6 +2145,102 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-treehouse-find-the-torch",
+      "title": "Find The Torch",
+      "project": "greytide",
+      "idea": "Wave three: the sun goes down and the torch lying on its side comes on; it does no harm, it only lights the grey ones so every tower hits harder; the torch's point of view.",
+      "request": "Wave three: the sun goes down and the torch lying on its side comes on; it does no harm, it only lights the grey ones so every tower hits harder; the torch's point of view.",
+      "mood": "nocturnal, brave, wondering",
+      "bpm": 132,
+      "key": "F minor",
+      "seed": 4040401,
+      "model": "fast",
+      "duration": 161.54,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:16:53-04:00",
+      "voice": true,
+      "prompt": "Shimmering new wave, 132 bpm, F minor, nocturnal and brave. A tight band with every part in its lane: a chiming chorused guitar arpeggio, a warm analogue synth pad opening like a beam, tight lean picked bass under the mids driving eighths, a bright synth lead answering the hook, crisp drum machine and live snare. A clear, earnest male tenor lead, airy female harmonies on the chorus. Arc: pad swelling from dark, verse at mid energy, a long high chorus plateau, a breakdown to pad and voice, a lifted final chorus with the harmonies, a beam-like fade. F minor, no harsh highs.",
+      "lyrics": "[Intro: a pad swells out of the dark]\nThe sun is going down\n\n[Verse 1]\nLying on my side on the boards\nPropped up on a pencil end\nApricot went out of the sky\nAnd the dusk came round the bend\nSomeone pinned a note on the plank\nFind the torch, it said\nSo I opened up my single eye\nAnd laid a road ahead\n\n[Pre-Chorus]\nI don't hit, I don't bite\nI just hold them in the light\n\n[Chorus]\nFind the torch when the sun goes down\nI won't hurt a single one\nFind the torch when the sun goes down\nI just show you where they run\n\n[Verse 2]\nEvery grey one in my beam\nStands out sharp and plain\nThe cannon finds them easier\nThe ballista takes its aim\nMoths come dancing round their heads\nLike they're famous for a while\nWhen the floor leans I roll with it\nAnd the beam swings down the aisle\n\n[Pre-Chorus]\nI don't hit, I don't bite\nI just hold them in the light\n\n[Chorus]\nFind the torch when the sun goes down\nI won't hurt a single one\nFind the torch when the sun goes down\nI just show you where they run\n\n[Breakdown: pad and voice alone]\nEverybody's braver in the light\nEven the ones in grey\nI wonder if they like it\nBeing seen for once, this way\n\n[Final Chorus: lifted, harmonies wide]\nFind the torch when the sun goes down\nI won't hurt a single one\nFind the torch when the sun goes down\nI just show you where they run\nFind the torch when the sun goes down\nI just show you where they run\n\n[Outro: the beam fades out slowly]",
+      "why": "You asked for \"Wave three: the sun goes down and the torch lying on its side comes on; it does no harm, it only lights the grey ones so every tower hits harder; the torch's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in F minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040400 (harsh: 3.5% above 6 kHz (ceiling 2.5)). Seed 4040401 is the take, but it did not clear every gate: harsh: 2.9% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4040400,
+          "reason": "harsh: 3.5% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4040401
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.5,
+        "silence_s": 0.1,
+        "brightness_pct": 2.86,
+        "boominess_pct": 7.11,
+        "onsets_per_s": 3.14,
+        "seam_db": -31.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:torch tower"
+        ],
+        "track_no": 49
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-find-the-torch/greytide-treehouse-find-the-torch.mp3",
+        "notes": "greytide-treehouse-find-the-torch/notes.md",
+        "recipe": "greytide-treehouse-find-the-torch/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "son",
+          "growing",
+          "board",
+          "dust",
+          "bed",
+          "plane",
+          "hear",
+          "gray",
+          "camera's",
+          "thank"
+        ],
+        "stripped": [],
+        "installed_samples": 7123931,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-find-the-torch/greytide-treehouse-find-the-torch.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30640,6 +30736,7 @@ window.NOBODY_INDEX = {
         "greytide-workbench-eleven-seconds",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
