@@ -12828,6 +12828,103 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-first-one-painted",
+      "title": "First One Painted",
+      "project": "greytide",
+      "idea": "Wave nine: the mouse pushes a forgotten painted mini out of its hole to guard the exit; it is the first mini the painter ever painted, as a child",
+      "request": "Wave nine: the mouse pushes a forgotten painted mini out of its hole to guard the exit; it is the first mini the painter ever painted, as a child",
+      "mood": "aching, heroic, tender",
+      "bpm": 140,
+      "key": "B minor",
+      "seed": 3980900,
+      "model": "fast",
+      "duration": 175.02,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:00:44-04:00",
+      "voice": true,
+      "prompt": "Heartland rock ballad that builds, 140 bpm with a half-time feel in the verses, B minor, aching and heroic: a warm piano leading alone at first, a tight lean bass under the mids, chiming clean electric guitars, a swelling organ, big open drums arriving in the second chorus, a small choir on the final chorus, a warm male tenor lead, plain and true, rising to full voice, in B minor; intro of piano alone, verses tender, choruses rising, a bridge of piano and voice that builds back with the band, the final chorus at full height with choir, the outro back to piano, no harsh highs",
+      "lyrics": "[Intro: piano alone]\n\n[Verse 1]\nI was the first one ever, painted at the age of nine\nToo much red upon the cloak and the gold outside the line\nThick as jam the colour went, they held me up to see\nThen the years went on without me and the cartons covered me\n\n[Pre-Chorus]\nBehind the boxes in the dark\nA mouse made me a home out of the signs\n\n[Chorus]\nOut of the hole and down to the exit\nThick old paint and a crooked shield\nThey forgot me, I never forgot them\nFirst one painted, last one in the field\n\n[Verse 2]\nWave nine, the carton scratches and the mouse begins to push\nOut across the dusty board through the bulb-swung hush\nI stand where nothing else would stand, the last one at the end\nThe paint is old, the hand is grown, but I remember, friend\n\n[Pre-Chorus]\nBehind the boxes in the dark\nA mouse made me a home out of the signs\n\n[Chorus]\nOut of the hole and down to the exit\nThick old paint and a crooked shield\nThey forgot me, I never forgot them\nFirst one painted, last one in the field\n\n[Bridge: piano and voice, then the band builds back]\nThat steady hand that paints them now\nIt practised once on me\nEvery careful line it draws\nStarted crooked, started free\n\n[Final Chorus: full height, choir]\nOut of the hole and down to the exit\nThick old paint and a crooked shield\nThey forgot me, I never forgot them\nFirst one painted, last one in the field\n\n[Outro: piano alone]\nFirst one painted\nLast one in the field",
+      "why": "You asked for \"Wave nine: the mouse pushes a forgotten painted mini out of its hole to guard the exit; it is the first mini the painter ever painted, as a child\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in B minor, 178 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980901 (passed, but outranked by the kept takes). Seed 3980900 is the take.",
+      "rejected": [
+        {
+          "seed": 3980901,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3980900
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.54,
+        "silence_s": 0.15,
+        "brightness_pct": 2.28,
+        "boominess_pct": 5.26,
+        "onsets_per_s": 2.41,
+        "seam_db": -53.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:forgotten-mini"
+        ],
+        "track_no": 105
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-first-one-painted/greytide-attic-first-one-painted.mp3",
+        "notes": "greytide-attic-first-one-painted/notes.md",
+        "recipe": "greytide-attic-first-one-painted/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "color",
+          "when",
+          "sea",
+          "side",
+          "fickle",
+          "planes",
+          "page",
+          "gone",
+          "i'm",
+          "heat",
+          "practiced",
+          "veins",
+          "undead"
+        ],
+        "stripped": [],
+        "installed_samples": 7718367,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-first-one-painted/greytide-attic-first-one-painted.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -41419,6 +41516,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-attic-first-one-painted",
         "greytide-bathroom-ten-seconds-of-shower",
         "greytide-bed-six-forty-five",
         "greytide-desk-hold-still",
