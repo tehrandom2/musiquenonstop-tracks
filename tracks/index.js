@@ -12651,6 +12651,91 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-since-ninety-eight",
+      "title": "Since Ninety-Eight",
+      "project": "greytide",
+      "idea": "A breather while the dust settles on the kit-box labels; nobody has dusted up here for decades and the god-hand wipes the scoreboard clean",
+      "request": "A breather while the dust settles on the kit-box labels; nobody has dusted up here for decades and the god-hand wipes the scoreboard clean",
+      "mood": "dusty, hypnotic, wide",
+      "bpm": 128,
+      "key": "A minor",
+      "seed": 3980400,
+      "model": "fast",
+      "duration": 131.5,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:00:59-04:00",
+      "voice": false,
+      "prompt": "Hypnotic desert blues, 128 bpm, A minor, dusty and wide: two interlocking electric guitars trading a looping A minor riff and bright answering lines in the mids, a tight lean bass walking under the mids, hand drums and a dry kick, handclaps on the offbeat, a low drone like dust settling, a calloused rolling groove that never hurries, in A minor; intro of one guitar alone, the band joins part by part, a long high groove, a dip to hand drums and drone, a final lift with both guitars soaring, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"A breather while the dust settles on the kit-box labels; nobody has dusted up here for decades and the god-hand wipes the scoreboard clean\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in A minor, 134 seconds, with no voice, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980401 (2.1s of near-silence (limit 0.5)). Seed 3980400 is the take, but it did not clear every gate: 0.8s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3980401,
+          "reason": "2.1s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3980400
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.61,
+        "silence_s": 0.8,
+        "brightness_pct": 0.51,
+        "boominess_pct": 11.7,
+        "onsets_per_s": 2.43,
+        "seam_db": -73.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:the-loft"
+        ],
+        "track_no": 38
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-since-ninety-eight/greytide-attic-since-ninety-eight.mp3",
+        "notes": "greytide-attic-since-ninety-eight/notes.md",
+        "recipe": "greytide-attic-since-ninety-eight/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 2.0,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "0.8s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5799112,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-since-ninety-eight/greytide-attic-since-ninety-eight.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -41176,6 +41261,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-attic-since-ninety-eight",
         "greytide-bathroom-hot-tap",
         "greytide-bed-low-setting",
         "greytide-carseat-down-in-the-crumb-gap",
