@@ -403,6 +403,104 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-couch-the-pot-pays-double",
+      "title": "The Pot Pays Double",
+      "project": "greytide",
+      "idea": "Wave nine: the room dims to the screen, every bounty pays double and a boss in shrink-wrap walks on with a tube of crisps for a health bar; the horde's own chant.",
+      "request": "Wave nine: the room dims to the screen, every bounty pays double and a boss in shrink-wrap walks on with a tube of crisps for a health bar; the horde's own chant.",
+      "mood": "urgent, bittersweet, defiant",
+      "bpm": 172,
+      "key": "F minor",
+      "seed": 4030910,
+      "model": "fast",
+      "duration": 168.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:20:21-04:00",
+      "voice": true,
+      "prompt": "Dark rolling drum and bass, 172 bpm, F minor, urgent and bittersweet. A tight crew: chopped breakbeats rolling with ghost snares, a reese bass with grit in the mids kept lean under the mids, a sustained string section carrying the minor theme, a stabbed brass hit at each phrase end like a quiz-show sting, a rising pad. A raw, chanting female lead and a gang chorus of grey dudes on the hook. Arc: strings and a ticking hat, a riser into the drop at mid-high energy, a long high plateau, a breakdown where the beat cuts to strings and voice, a final drop lifted with the gang, a hard stop. F minor, no harsh highs.",
+      "lyrics": "[Intro: strings and a ticking hi-hat, the room goes dark to the screen]\nFinal round\n\n[Verse 1]\nRoom goes dark to the screen now\nOnly the glow of the gap\nTen rounds deep in a long night\nAnd nobody's sending us back\nBounty doubled on every head\nBless us, we're a prize at last\nNever worth a thing in the box\nWorth a fortune falling fast\n\n[Pre-Chorus]\nDown the high road, down the low\nEvery road just one way, go\n\n[Chorus]\nFinal round, the pot pays double\nNever worth this much before\nFinal round, the pot pays double\nEvery one of us is worth more\n\n[Verse 2]\nSomething big at the back seam\nShrink-wrap still on its skin\nA tube of crisps stands up for it\nTwenty high and thinning\nEvery hit takes one from the top\nCrumbs spill out on the pad\nWe march behind it, grey and proud\nIt's the only boss we've had\n\n[Pre-Chorus]\nDown the high road, down the low\nEvery road just one way, go\n\n[Chorus]\nFinal round, the pot pays double\nNever worth this much before\nFinal round, the pot pays double\nEvery one of us is worth more\n\n[Breakdown: the beat cuts out, strings and voice]\nIf I fall, I fall forward\nIf I fall, I fall in gold\nTell the shelf we nearly made it\nTell the box we weren't cold\n\n[Final Chorus: the drop returns lifted, the whole grey gang]\nFinal round, the pot pays double\nNever worth this much before\nFinal round, the pot pays double\nEvery one of us is worth more\nFinal round, the pot pays double\nEvery one of us is worth more\n\n[Outro: one brass sting, a hard stop]",
+      "why": "You asked for \"Wave nine: the room dims to the screen, every bounty pays double and a boss in shrink-wrap walks on with a tube of crisps for a health bar; the horde's own chant.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 172 bpm in F minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 172 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4030911 (harsh: 3.6% above 6 kHz (ceiling 2.5) and others). Seed 4030910 is the take, but it did not clear every gate: harsh: 3.0% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4030911,
+          "reason": "harsh: 3.6% above 6 kHz (ceiling 2.5); 25 of 222 heard words are not ours (11 %; limit 10 %, at least 40 heard): oh nobody sent jumbled where through pop days heard pop days his"
+        }
+      ],
+      "takes": [
+        4030910
+      ],
+      "numbers": {
+        "tempo_bpm": 84.8,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.4,
+        "silence_s": 0.1,
+        "brightness_pct": 2.96,
+        "boominess_pct": 6.96,
+        "onsets_per_s": 2.97,
+        "seam_db": -72.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:couch",
+          "pov:the horde"
+        ],
+        "track_no": 135
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-couch-the-pot-pays-double/greytide-couch-the-pot-pays-double.mp3",
+        "notes": "greytide-couch-the-pot-pays-double/notes.md",
+        "recipe": "greytide-couch-the-pot-pays-double/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.36,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 3.0% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "crisp",
+          "fill",
+          "loss",
+          "bye",
+          "need",
+          "till",
+          "closed",
+          "thank",
+          "you",
+          "take",
+          "taste",
+          "us's"
+        ],
+        "stripped": [],
+        "installed_samples": 7416823,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-couch-the-pot-pays-double/greytide-couch-the-pot-pays-double.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -28894,6 +28992,7 @@ window.NOBODY_INDEX = {
       "tracks": [
         "greytide-gamestore-demo-ends-in-sixty",
         "greytide-desk-a-drop-of-blue",
+        "greytide-couch-the-pot-pays-double",
         "greytide-gamestore-the-fist-at-the-next-table",
         "greytide-garage-encore-in-the-dark"
       ],
