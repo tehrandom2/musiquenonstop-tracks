@@ -4880,6 +4880,98 @@
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-every-fourth-one",
+      "title": "Every Fourth One",
+      "project": "greytide",
+      "idea": "Wave five: the digger has cut a shortcut and every fourth grey dude is sent down it, alone and fast",
+      "request": "Wave five: the digger has cut a shortcut and every fourth grey dude is sent down it, alone and fast",
+      "mood": "nervous, comic, plucky",
+      "bpm": 168,
+      "key": "B minor",
+      "seed": 4050501,
+      "model": "fast",
+      "duration": 156.74,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:12:25-04:00",
+      "voice": true,
+      "prompt": "Psychobilly rockabilly, 168 bpm, in B minor, a trio on a hot sand stage: a slapped upright bass clicking a tight lean doubled walk, bass kept under the mids, a hollow-body guitar with a twangy reverb lead and quick chord stabs, a snare-and-kick train beat with brush fills, a nervous comic male lead with hiccups and yelps, a doo-wop backing trio answering him, the key B minor held; arc: count-in and bass slap intro, fast verses, a chorus that counts out loud, a stop-time bridge, a lifted last chorus with the backing trio in full harmony, no harsh highs",
+      "lyrics": "[Intro: bass slap, count-in]\nOne, two, three, me\n\n[Verse 1]\nThe digger came grinding down two pale ruts\nA damp new road with a lip on its cuts\nThe trench goes the long way round by the shore\nThe new road's quicker, but it's not for all\n\n[Verse 2]\nOne goes the trench and two goes the trench\nThree takes the dunes where the sand is dense\nFour gets a tap on his little grey head\nYou take the shortcut, the shortcut, he said\n\n[Pre-Chorus]\nWhy is it me, why is it me\nI'm only the fourth of a family\n\n[Chorus]\nEvery fourth one, every fourth one\nDown the new road in the afternoon sun\nFaster than the others but I'm on my own\nEvery fourth one, every fourth one\n\n[Verse 3]\nI skip the loop where the ants make a line\nI skip the spade with its catapult spine\nI'm quick as a rumour, I'm first to the cross\nAnd the castle's still up there, waiting to toss\n\n[Chorus]\nEvery fourth one, every fourth one\nDown the new road in the afternoon sun\nFaster than the others but I'm on my own\nEvery fourth one, every fourth one\n\n[Bridge: stop-time, voice and slap bass]\nNobody asked me, nobody planned\nI'm a number they gave me in the sand\nBut a shortcut's a shortcut, a road is a road\nAnd I'm carrying the hope of the whole grey load\n\n[Final Chorus: lifted, full backing harmony]\nEvery fourth one, every fourth one\nDown the new road in the afternoon sun\nFaster than the others but I'm on my own\nEvery fourth one, every fourth one\n\n[Outro: yelp and one last slap]\nFive, six, seven, oh no, eight.",
+      "why": "You asked for \"Wave five: the digger has cut a shortcut and every fourth grey dude is sent down it, alone and fast\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 168 bpm in B minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 168 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050500 (1.6s of near-silence (limit 0.5)). Seed 4050501 is the take, but it did not clear every gate: 2.0s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4050500,
+          "reason": "1.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4050501
+      ],
+      "numbers": {
+        "tempo_bpm": 84.5,
+        "lufs": -17.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.06,
+        "silence_s": 1.95,
+        "brightness_pct": 2.02,
+        "boominess_pct": 7.01,
+        "onsets_per_s": 2.94,
+        "seam_db": -56.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": false,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:fourth-grey-dude"
+        ],
+        "track_no": 60
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-every-fourth-one/greytide-sandpit-every-fourth-one.mp3",
+        "notes": "greytide-sandpit-every-fourth-one/notes.md",
+        "recipe": "greytide-sandpit-every-fourth-one/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.12,
+        "decoded_lufs": -17.42,
+        "failed": [
+          "2.0s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "son",
+          "great",
+          "lord",
+          "there'll",
+          "be",
+          "amen"
+        ],
+        "stripped": [],
+        "installed_samples": 6912311,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-every-fourth-one/greytide-sandpit-every-fourth-one.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33387,6 +33479,7 @@
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
+        "greytide-sandpit-every-fourth-one",
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
