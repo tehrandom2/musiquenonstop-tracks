@@ -11688,6 +11688,91 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-bathroom-ten-seconds-of-shower",
+      "title": "Ten Seconds of Shower",
+      "project": "greytide",
+      "idea": "Wave nine: the shower rose rattles and comes on over the tap end for ten seconds, flattening the foam wall and making the first third of the road a slide; a short hard burst before the end.",
+      "request": "Wave nine: the shower rose rattles and comes on over the tap end for ten seconds, flattening the foam wall and making the first third of the road a slide; a short hard burst before the end.",
+      "mood": "urgent, drenching, exhilarating",
+      "bpm": 172,
+      "key": "G minor",
+      "seed": 3940900,
+      "model": "fast",
+      "duration": 124.7,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:02:21-04:00",
+      "voice": false,
+      "prompt": "Liquid drum and bass, 172 bpm, G minor. The ensemble: fast chopped breakbeats with crisp ghost snares, a tight, lean rolling bass under the mids, a rattling metal percussion fill as the shower's warning, a soft hissing wash of falling water at the drop kept gentle, bright minor piano chords and a wide string pad. Mood: urgent, drenching, exhilarating. Arc: pad and a rattle, a build of breaks, the full drop, a breakdown to piano and the hiss, the final drop lifted with doubled breaks, a short outro. G minor, no harsh highs, instrumental, no vocals.",
+      "lyrics": null,
+      "why": "You asked for \"Wave nine: the shower rose rattles and comes on over the tap end for ten seconds, flattening the foam wall and making the first third of the road a slide; a short hard burst before the end.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 172 bpm in G minor, 130 seconds, with no voice, under the mellow gates. It has no beat to hold, so 172 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3940901 (1.0s of near-silence (limit 0.5) and others). Seed 3940900 is the take, but it did not clear every gate: boomy: 12.3% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 3940901,
+          "reason": "1.0s of near-silence (limit 0.5); onset rate 4.9/s outside 0.3-4.5"
+        }
+      ],
+      "takes": [
+        3940900
+      ],
+      "numbers": {
+        "tempo_bpm": 85.5,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.65,
+        "silence_s": 0.4,
+        "brightness_pct": 2.48,
+        "boominess_pct": 12.34,
+        "onsets_per_s": 4.31,
+        "seam_db": -71.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bathroom",
+          "pov:the shower"
+        ],
+        "track_no": 106
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bathroom-ten-seconds-of-shower/greytide-bathroom-ten-seconds-of-shower.mp3",
+        "notes": "greytide-bathroom-ten-seconds-of-shower/notes.md",
+        "recipe": "greytide-bathroom-ten-seconds-of-shower/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.76,
+        "decoded_lufs": -16.38,
+        "failed": [
+          "boomy: 12.3% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5499146,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bathroom-ten-seconds-of-shower/greytide-bathroom-ten-seconds-of-shower.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40269,6 +40354,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-bathroom-ten-seconds-of-shower",
         "greytide-bed-six-forty-five",
         "greytide-desk-hold-still",
         "greytide-kitchen-open-the-oven-door",
