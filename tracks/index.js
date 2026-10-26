@@ -3,6 +3,88 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T00:41:19-04:00",
   "tracks": [
     {
+      "slug": "advanced-studios-theme-a",
+      "title": "Advanced Studios Theme (A)",
+      "project": "bench",
+      "idea": "a golden-age studio fanfare that has been through the future: orchestra, harp and celesta over a soft electronic pulse",
+      "request": "the owner's theme for the Advanced Studios game (round two)",
+      "mood": "warm and confident",
+      "bpm": 104,
+      "key": "D major",
+      "seed": 3340103,
+      "model": "fast",
+      "duration": 96.42,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T00:37:35-04:00",
+      "voice": false,
+      "prompt": "cinematic golden-age Hollywood orchestral theme reimagined with warm modern electronics, triumphant brass fanfare opening, lush sweeping strings, harp glissandi, celesta and glockenspiel sparkle, timpani swells, under it a soft analog synth pulse and gentle side-chained electronic beat, tasteful glitch accents: tape stutters, short bit-crushed echoes and vinyl crackle on phrase endings only, bright, optimistic, memorable hummable melody, polished and approachable, not abrasive, instrumental, D major, 104 bpm",
+      "lyrics": null,
+      "why": "You asked for \"the owner's theme for the Advanced Studios game (round two)\". The style and structure come from the front desk's brief for the game's theme: instrumental, about 100 s, a loop body marked for the game. So I wrote it at 104 bpm in D major, 100 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 1 seed and kept it. Seed 3340103 is the take.",
+      "rejected": [],
+      "takes": [
+        3340103
+      ],
+      "numbers": {
+        "tempo_bpm": 102.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.29,
+        "silence_s": 0.45,
+        "brightness_pct": 0.73,
+        "boominess_pct": 8.31,
+        "onsets_per_s": 1.98,
+        "seam_db": -42.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "advanced-studios-theme-a/advanced-studios-theme-a.mp3",
+        "notes": "advanced-studios-theme-a/notes.md",
+        "recipe": "advanced-studios-theme-a/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-0.6B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 4252130,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "advanced-studios-theme-a/advanced-studios-theme-a.mp3"
+        ],
+        "ears": null
+      },
+      "loop": {
+        "loop_start": 31.204,
+        "loop_end": 84.281,
+        "bars": 23,
+        "bpm": 104,
+        "how": "beat-aligned at 104 bpm by measurement (onset grid and the closest spectral match at the seam); nobody has heard it"
+      },
+      "audition": true
+    },
+    {
       "slug": "counting-moons-take-2",
       "title": "Counting Moons (take 2)",
       "project": "motifs",
