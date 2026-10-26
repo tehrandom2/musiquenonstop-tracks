@@ -2786,6 +2786,110 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sill-petal-by-petal",
+      "title": "Petal by Petal",
+      "project": "greytide",
+      "idea": "The last wave: the big one squeezes in, a pot daisy loses a petal for every tenth of it, first light wakes the prism, and the ledge holds",
+      "request": "The last wave: the big one squeezes in, a pot daisy loses a petal for every tenth of it, first light wakes the prism, and the ledge holds",
+      "mood": "triumphant, bittersweet, lifted",
+      "bpm": 138,
+      "key": "E minor",
+      "seed": 3971001,
+      "model": "fast",
+      "duration": 173.3,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:15:51-04:00",
+      "voice": true,
+      "prompt": "Anthemic synth rock, 138 bpm, E minor, triumphant and bittersweet: a driving live drum kit with a four-on-the-floor kick in the choruses, a bright arpeggiated synth running sixteenths in E minor, a tight lean bass pumping eighths under the mids, a wide overdriven guitar for the chorus chords, a warm string pad, a female lead and a male lead trading verses and meeting in harmony, a gang chorus on the hook, in E minor; intro of arpeggio and wind, verses building, a pre-chorus that climbs, the chorus at full height, a bridge that drops to arpeggio and voice, the final chorus lifted with every voice, the outro to the arpeggio alone, no harsh highs",
+      "lyrics": "[Intro: arpeggiated synth and wind]\n\n[Verse 1: female lead]\nThe big one's at the gap and it doesn't fit, it comes in anyway\nA daisy by the edge begins to count it down the old way\nOne petal for each tenth of it, they drift out on the air\nOver the lip and twenty floors, and nobody down there\n\n[Verse 2: male lead]\nThe flytrap looked it up and down and closed its mouth again\nIt swallows small ones whole, but this is ten of them\nThe chime has heard it all before, it doesn't ring at all\nSo it's the cannon and the ballista and the wind against the wall\n\n[Pre-Chorus]\nOne more, one more\nHold the concrete, one more\n\n[Chorus: gang chorus]\nPetal by petal, the big one goes\nLoves us, loves us not, and nobody knows\nPetal by petal, hold the ledge\nPetal by petal, back from the edge\n\n[Verse 3: both leads]\nFirst grey light comes up behind the block that lost its glow\nThe prism on its string wakes up and makes one beam a row\nOne beam becomes three beams and the three go through the seams\nThe big one sheds a petal for each one of our old dreams\n\n[Pre-Chorus]\nOne more, one more\nHold the concrete, one more\n\n[Chorus: gang chorus]\nPetal by petal, the big one goes\nLoves us, loves us not, and nobody knows\nPetal by petal, hold the ledge\nPetal by petal, back from the edge\n\n[Bridge: arpeggio and voice]\nThe bird comes down to the road and looks it in the eye\nThinks about it, no notes, and flies on by\nThe seedling at the end is drooping, but it's green\nThat's the whole of what we're for, and all we've ever been\n\n[Final Chorus: lifted, every voice]\nPetal by petal, the big one goes\nLoves us, loves us not, and nobody knows\nPetal by petal, hold the ledge\nPetal by petal, back from the edge\n\n[Outro: arpeggio alone]\nBack from the edge\nStill green",
+      "why": "You asked for \"The last wave: the big one squeezes in, a pot daisy loses a petal for every tenth of it, first light wakes the prism, and the ledge holds\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in E minor, 178 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3971000 (0.9s of near-silence (limit 0.5) and others). Seed 3971001 is the take, but it did not clear every gate: harsh: 3.3% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3971000,
+          "reason": "0.9s of near-silence (limit 0.5); harsh: 3.4% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3971001
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.4,
+        "silence_s": 0.45,
+        "brightness_pct": 3.29,
+        "boominess_pct": 10.39,
+        "onsets_per_s": 3.19,
+        "seam_db": -29.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sill",
+          "pov:the-ledge"
+        ],
+        "track_no": 128
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sill-petal-by-petal/greytide-sill-petal-by-petal.mp3",
+        "notes": "greytide-sill-petal-by-petal/notes.md",
+        "recipe": "greytide-sill-petal-by-petal/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.14,
+        "decoded_lufs": -16.38,
+        "failed": [
+          "harsh: 3.3% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "i",
+          "forget",
+          "then",
+          "balista",
+          "pedal",
+          "pedal",
+          "love",
+          "just",
+          "love",
+          "pain",
+          "hope",
+          "hettle",
+          "pedal",
+          "h",
+          "we",
+          "need",
+          "pedal",
+          "pedal"
+        ],
+        "stripped": [],
+        "installed_samples": 7642633,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sill-petal-by-petal/greytide-sill-petal-by-petal.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -31294,6 +31398,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
         "greytide-workbench-under-the-lens",
+        "greytide-sill-petal-by-petal",
         "greytide-treehouse-chalk-tally",
         "greytide-gamestore-demo-ends-in-sixty",
         "greytide-desk-a-drop-of-blue",
