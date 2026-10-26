@@ -57,10 +57,16 @@ function makeCityScene(THREE, P) {
 
   /* ---- the block shader (12.3): translucent body, bright edges, instanced, rising and pulsing; aLit is a find (12.0, #53) ---- */
   // the hovered tower (issue #63) lifts by uLift and burns brighter: the pointer is on it
+  // issue #240, the meter: the playing tower is the analyser. aFloor is a block's height in its tower (0 at the foot, 1 at the crown);
+  // each floor reads the band at its height from uBands (lows at the foot, highs at the crown), the crown flares on the kick (uKick),
+  // and the towers round the playing one shimmer their windows with the highs (uHigh). uViz 0 is the city as it was (the car view, the
+  // switch-off): the playing tower pulses on the loudness alone
+  const BANDS = 16;
   const BLOCK_VERT = [
-    'attribute float aRise; attribute float aTower; attribute float aTop; attribute float aLit;',
-    'uniform float uRise, uTime, uFog, uPlaying, uPulse, uFilter, uHover, uLift;',
-    'varying vec2 vUv; varying vec3 vCol; varying float vFade; varying float vLit;',
+    'attribute float aRise; attribute float aTower; attribute float aTop; attribute float aLit; attribute float aFloor;',
+    'uniform float uRise, uTime, uFog, uPlaying, uPulse, uFilter, uHover, uLift, uViz, uKick, uHigh;',
+    'uniform float uBands[' + BANDS + ']; uniform vec3 uPlayPos;',
+    'varying vec2 vUv; varying vec3 vCol; varying float vFade; varying float vLit; varying float vWin; varying float vSeed;',
     'void main(){',
     '  vUv = uv;',
     '  vec4 wp = modelMatrix * instanceMatrix * vec4(position, 1.0);',
@@ -69,32 +75,48 @@ function makeCityScene(THREE, P) {
     '  wp.y *= s;',
     '  float hov = step(abs(aTower - uHover), 0.5) * uLift;',
     '  wp.y += hov * 0.7;',
+    '  float playing = step(abs(aTower - uPlaying), 0.5);',
+    '  float top = step(0.5, aTop) * step(aTop, 1.5);',
+    '  float crown = top + step(1.5, aTop);',
+    '  wp.y += playing * crown * uKick * uViz * 0.22;',
     '  vec4 mv = viewMatrix * wp;',
     '  float d = length(mv.xyz);',
     '  float fog = exp(-pow(d * uFog, 2.0)) * smoothstep(1.2, 4.5, d);',
-    '  float playing = step(abs(aTower - uPlaying), 0.5);',
-    '  float top = step(0.5, aTop) * step(aTop, 1.5);',
     // a tower close to the camera fades its glow so the hover, a fly-in and the zoom never stack it to white (issue #66, the glare)
     '  float near = mix(0.55, 1.0, smoothstep(2.5, 9.0, d));',
-    '  float gain = (1.0 + playing * uPulse * 0.7 * (1.0 + top)) * (1.0 + hov * 0.45) * near;',
+    '  int bi = int(clamp(aFloor * float(' + (BANDS - 1) + ') + 0.5, 0.0, float(' + (BANDS - 1) + ')));',
+    '  float lvl = 0.0;',
+    '  for (int i = 0; i < ' + BANDS + '; i++) { if (i == bi) lvl = uBands[i]; }',
+    '  float meter = mix(1.0 + uPulse * 0.7 * (1.0 + top), 0.22 + 2.3 * lvl * lvl + crown * uKick * 2.2, uViz);',
+    '  float gain = mix(1.0, meter, playing) * (1.0 + hov * 0.45) * near;',
     '  float blink = mix(1.0, 0.5 + 0.5 * sin(uTime * 3.14159), step(1.5, aTop));',
-    '  vCol = instanceColor * gain * blink;',
+    '  vec3 hot = mix(instanceColor, vec3(1.0, 0.92, 1.0), playing * uViz * smoothstep(0.5, 1.0, lvl) * 0.55);',
+    '  vCol = hot * gain * blink;',
     '  vLit = mix(1.0, aLit, uFilter);',
     '  vFade = fog * s;',
+    '  float dist = length(wp.xz - uPlayPos.xz);',
+    '  vWin = (1.0 - playing) * smoothstep(16.0, 4.0, dist) * uHigh * uViz;',
+    '  vSeed = aTower * 7.13 + aFloor * 31.7 + wp.x * 0.37 + wp.z * 0.91;',
     '  gl_Position = projectionMatrix * mv;',
     '}'
   ].join('\n');
   const BLOCK_FRAG = [
-    'varying vec2 vUv; varying vec3 vCol; varying float vFade; varying float vLit; uniform float uGain;',
+    'varying vec2 vUv; varying vec3 vCol; varying float vFade; varying float vLit; varying float vWin; varying float vSeed; uniform float uGain, uTime;',
     'void main(){',
     '  vec2 e = min(vUv, 1.0 - vUv);',
     '  float edge = 1.0 - smoothstep(0.0, 0.05, min(e.x, e.y));',
     '  vec3 c = vCol * (0.07 + 1.3 * edge * vLit) * vFade * uGain * vLit;',
+    // the windows: a 3 by 2 grid on each face, a few of them lit at a time, the pattern changing eight times a second with the highs
+    '  vec2 cell = floor(vUv * vec2(3.0, 2.0)), g = fract(vUv * vec2(3.0, 2.0));',
+    '  float pane = step(0.28, g.x) * step(g.x, 0.72) * step(0.25, g.y) * step(g.y, 0.75);',
+    '  float r = fract(sin(dot(cell + vec2(vSeed, floor(uTime * 8.0)), vec2(12.9898, 78.233))) * 43758.5453);',
+    '  c += vCol * pane * step(0.62, r) * vWin * vFade * vLit * 1.1;',
     // the emissive ceiling: no block fragment adds more than this, however many blocks overlap a near view
     '  gl_FragColor = vec4(min(c, vec3(1.25)), 1.0);',
     '}'
   ].join('\n');
-  const blockUniforms = { uRise: { value: 0 }, uTime: { value: 0 }, uFog: { value: settings.fog }, uPlaying: { value: -99 }, uPulse: { value: 0 }, uGain: { value: 1 }, uFilter: { value: 0 }, uHover: { value: -99 }, uLift: { value: 0 } };
+  const blockUniforms = { uRise: { value: 0 }, uTime: { value: 0 }, uFog: { value: settings.fog }, uPlaying: { value: -99 }, uPulse: { value: 0 }, uGain: { value: 1 }, uFilter: { value: 0 }, uHover: { value: -99 }, uLift: { value: 0 },
+    uViz: { value: 0 }, uKick: { value: 0 }, uHigh: { value: 0 }, uBands: { value: new Array(BANDS).fill(0) }, uPlayPos: { value: new THREE.Vector3(0, 0, 0) } };
   function blockMaterial() {
     return new THREE.ShaderMaterial({ uniforms: blockUniforms, vertexShader: BLOCK_VERT, fragmentShader: BLOCK_FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
   }
@@ -150,9 +172,19 @@ function makeCityScene(THREE, P) {
   const beamUniforms = { uColor: { value: tok.magenta }, uPulse: { value: 0 } };
   const BEAM_VERT = 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }';
   const BEAM_FRAG = 'uniform vec3 uColor; uniform float uPulse; varying vec2 vUv; void main(){ float a = pow(1.0 - vUv.y, 2.2) * (0.35 + 0.25 * uPulse); gl_FragColor = vec4(uColor * a, 1.0); }';
+  /* ---- the searchlights (issue #240): three cones from the playing tower's crown that sweep the sky and flare on an onset ---- */
+  const LIGHT_VERT = 'varying vec2 vUv; varying float vD; void main(){ vUv = uv; vec4 mv = modelViewMatrix * vec4(position, 1.0); vD = length(mv.xyz); gl_Position = projectionMatrix * mv; }';
+  const LIGHT_FRAG = 'uniform vec3 uColor; uniform float uAmp; varying vec2 vUv; varying float vD; void main(){ float along = pow(1.0 - vUv.y, 1.6); float rim = 0.55 + 0.45 * pow(abs(sin(vUv.x * 3.14159)), 6.0); float nearFade = smoothstep(1.5, 6.0, vD); gl_FragColor = vec4(uColor * along * rim * uAmp * nearFade, 1.0); }';
+  /* ---- the waypoints (issue #240, the flight plan): a light pillar on every queued tower, the listener's own bright, the rotation's dim ---- */
+  const WAY_VERT = 'varying vec2 vUv; varying vec3 vC; void main(){ vUv = uv; vC = instanceColor; gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0); }';
+  const WAY_FRAG = 'uniform float uTime; varying vec2 vUv; varying vec3 vC; void main(){ float a = pow(1.0 - vUv.y, 1.8); float run = 0.75 + 0.25 * sin(vUv.y * 24.0 - uTime * 3.0); gl_FragColor = vec4(vC * a * run, 1.0); }';
 
   /* ---- state ---- */
-  let grid, sky, filler, cat, dead, bars, barsMirror, ribbon, tunnel, horizon, route, beam, bridges;
+  let grid, sky, filler, cat, dead, bars, barsMirror, ribbon, tunnel, horizon, route, beam, bridges, waypoints;
+  const lights = []; // the searchlights: { mesh, phase, tilt }
+  const wayUniforms = { uTime: { value: 0 } };
+  // the meter's own numbers (issue #240): the band levels it shows, the kick and the onset envelopes, a spectral flux with its running mean
+  const MV = { bands: new Float32Array(BANDS), prev: new Float32Array(64), flux: 0, fluxMean: 0.02, bassMean: 0, kick: 0, onset: 0, sweep: 0, sweepV: 0.25, lastOnset: 0, lastKick: 0, high: 0, onsets: 0, kicks: 0 };
   const towers = []; // {id, slug, x, z, blocks, kind, voice, foot, gain, crown, base, age, fails, cx, cz, district, day, street}
   const city = { cells: {}, walk: {}, signs: [], districts: [], days: [], bounds: { cx0: 0, cx1: 0, cz0: 0, cz1: 0 }, newest: 0 };
   let barCount = 64, barColors = [];
@@ -359,7 +391,7 @@ function makeCityScene(THREE, P) {
   function buildBlocks(list, camXZ) {
     let n = 0; list.forEach(function (t) { n += t.blocks + (t.voice ? 1 : 0); });
     const mesh = new THREE.InstancedMesh(blockGeo, blockMaterial(), Math.max(1, n));
-    const rise = new Float32Array(Math.max(1, n)), tid = new Float32Array(Math.max(1, n)), top = new Float32Array(Math.max(1, n)), lit = new Float32Array(Math.max(1, n)).fill(1);
+    const rise = new Float32Array(Math.max(1, n)), tid = new Float32Array(Math.max(1, n)), top = new Float32Array(Math.max(1, n)), lit = new Float32Array(Math.max(1, n)).fill(1), floor = new Float32Array(Math.max(1, n));
     const m = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), s = new THREE.Vector3();
     let i = 0, maxD = 1;
     list.forEach(function (t) { maxD = Math.max(maxD, Math.hypot(t.x - camXZ.x, t.z - camXZ.y)); });
@@ -369,9 +401,9 @@ function makeCityScene(THREE, P) {
       for (let k = 0; k < t.blocks; k++) {
         p.set(t.x, 0.25 + k * 0.5, t.z); s.set(f, 1, f); m.compose(p, q, s);
         mesh.setMatrixAt(i, m); mesh.setColorAt(i, t.id >= 0 ? blockColour(t, k) : kindColour(t.kind));
-        rise[i] = d; tid[i] = t.id; top[i] = k === t.blocks - 1 ? 1 : 0; i++;
+        rise[i] = d; tid[i] = t.id; top[i] = k === t.blocks - 1 ? 1 : 0; floor[i] = t.blocks > 1 ? k / (t.blocks - 1) : 0; i++;
       }
-      if (t.voice) { p.set(t.x, 0.25 + t.blocks * 0.5, t.z); s.set(f, 1, f); m.compose(p, q, s); mesh.setMatrixAt(i, m); mesh.setColorAt(i, kindColour('beacon')); rise[i] = d; tid[i] = t.id; top[i] = 2; i++; }
+      if (t.voice) { p.set(t.x, 0.25 + t.blocks * 0.5, t.z); s.set(f, 1, f); m.compose(p, q, s); mesh.setMatrixAt(i, m); mesh.setColorAt(i, kindColour('beacon')); rise[i] = d; tid[i] = t.id; top[i] = 2; floor[i] = 1; i++; }
     });
     mesh.count = n;
     if (!mesh.instanceColor) mesh.setColorAt(0, new THREE.Color(0, 0, 0)); // an empty catalogue still needs the colour attribute the shader reads
@@ -380,6 +412,7 @@ function makeCityScene(THREE, P) {
     mesh.geometry.setAttribute('aTower', new THREE.InstancedBufferAttribute(tid, 1));
     mesh.geometry.setAttribute('aTop', new THREE.InstancedBufferAttribute(top, 1));
     mesh.geometry.setAttribute('aLit', new THREE.InstancedBufferAttribute(lit, 1));
+    mesh.geometry.setAttribute('aFloor', new THREE.InstancedBufferAttribute(floor, 1));
     mesh.instanceMatrix.needsUpdate = true; if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
     mesh.frustumCulled = false;
     mesh.userData.list = list;
@@ -459,6 +492,18 @@ function makeCityScene(THREE, P) {
     beam = new THREE.Mesh(bg, new THREE.ShaderMaterial({ uniforms: beamUniforms, vertexShader: BEAM_VERT, fragmentShader: BEAM_FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, fog: false }));
     beam.frustumCulled = false; beam.visible = false;
     scene.add(beam);
+    // the searchlights: a cone 40 long, narrow at the crown and wide in the sky
+    const lg = new THREE.CylinderGeometry(2.6, 0.06, 40, 12, 1, true); lg.translate(0, 20, 0);
+    [0, 2.094, 4.189].forEach(function (ph, i) {
+      const m = new THREE.Mesh(lg, new THREE.ShaderMaterial({ uniforms: { uColor: { value: (i === 1 ? tok.magenta : tok.cyan).clone() }, uAmp: { value: 0 } }, vertexShader: LIGHT_VERT, fragmentShader: LIGHT_FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, fog: false }));
+      m.frustumCulled = false; m.visible = false; scene.add(m);
+      lights.push({ mesh: m, phase: ph, tilt: 0.42 + i * 0.12 });
+    });
+    // the waypoints: twelve pillars, placed by the route
+    const wg = new THREE.CylinderGeometry(0.09, 0.09, 9, 8, 1, true); wg.translate(0, 4.5, 0);
+    waypoints = new THREE.InstancedMesh(wg, new THREE.ShaderMaterial({ uniforms: wayUniforms, vertexShader: WAY_VERT, fragmentShader: WAY_FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, fog: false }), 12);
+    for (let i = 0; i < 12; i++) waypoints.setColorAt(i, tok.green);
+    waypoints.count = 0; waypoints.frustumCulled = false; scene.add(waypoints);
     // the tunnel (12.5), parented to the camera along its forward axis
     const tg = new THREE.WireframeGeometry(new THREE.CylinderGeometry(3, 3, 60, 24, 20, true));
     const tc = new Float32Array(tg.attributes.position.count * 3);
@@ -485,10 +530,10 @@ function makeCityScene(THREE, P) {
   function buildBars() {
     if (bars) { scene.remove(bars); scene.remove(barsMirror); }
     barCount = settings.bars;
-    const g = new THREE.BoxGeometry(0.12, 1, 0.12); g.translate(0, 0.5, 0);
+    const g = new THREE.BoxGeometry(0.06, 1, 0.06); g.translate(0, 0.5, 0);
     const mat = new THREE.MeshBasicMaterial({ transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
     bars = new THREE.InstancedMesh(g, mat, barCount);
-    barsMirror = new THREE.InstancedMesh(g, new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false }), barCount);
+    barsMirror = new THREE.InstancedMesh(g, new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.2, blending: THREE.AdditiveBlending, depthWrite: false }), barCount);
     barColors = [];
     for (let i = 0; i < barCount; i++) {
       const k = i / (barCount - 1);
@@ -500,10 +545,10 @@ function makeCityScene(THREE, P) {
     scene.add(bars); scene.add(barsMirror);
   }
   // the route ribbon from the queue (city-flythrough 6)
-  function buildRoute(list, current) {
-    routeState.list = list.slice(); routeState.stops = []; routeState.points = []; routeState.len = 0;
+  function buildRoute(list, current, mineN) {
+    routeState.list = list.slice(); routeState.stops = []; routeState.points = []; routeState.len = 0; routeState.mine = mineN || 0;
     const from = towerOf(current);
-    if (!from || !list.length) { route.visible = false; return; }
+    if (!from || !list.length) { route.visible = false; placeWaypoints(); return; }
     let at = from.street;
     const pts = [new THREE.Vector3(wx(at.cx), 0, wz(at.cz))], colsAt = [0];
     list.forEach(function (slug, i) {
@@ -511,7 +556,7 @@ function makeCityScene(THREE, P) {
       const cells = routeCells(at, t.street);
       const seg = corners(cells);
       for (let k = 1; k < seg.length; k++) { pts.push(seg[k]); colsAt.push(i + 1); }
-      routeState.stops.push({ slug: slug, n: i + 1, x: wx(t.street.cx), z: wz(t.street.cz), tower: t, blocks: blocksBetween(at, t.street), words: legWords(at, t.street) });
+      routeState.stops.push({ slug: slug, n: i + 1, mine: i < (mineN || 0), x: wx(t.street.cx), z: wz(t.street.cz), tower: t, blocks: blocksBetween(at, t.street), words: legWords(at, t.street) });
       at = t.street;
     });
     routeState.points = pts; routeState.len = polyLen(pts);
@@ -524,8 +569,9 @@ function makeCityScene(THREE, P) {
       const base = pos.length / 3;
       [a.clone().add(n), a.clone().sub(n), b.clone().add(n), b.clone().sub(n)].forEach(function (p, j) {
         pos.push(p.x, 0.03, p.z);
-        const k = Math.min(1, (colsAt[j < 2 ? i - 1 : i]) / Math.max(1, list.length));
-        const c = tok.magenta.clone().lerp(tok.violet, k).multiplyScalar(1.3);
+        const leg = colsAt[j < 2 ? i - 1 : i], k = Math.min(1, leg / Math.max(1, list.length));
+        // the listener's legs run magenta to violet; once the plan hands over to the rotation the ribbon goes the dim ink
+        const c = mineN && leg > mineN ? tok['ink-dim'].clone().multiplyScalar(0.55) : tok.magenta.clone().lerp(tok.violet, k).multiplyScalar(1.3);
         col.push(c.r, c.g, c.b); aT.push(acc + (j < 2 ? 0 : d));
       });
       idx.push(base, base + 1, base + 2, base + 1, base + 3, base + 2);
@@ -537,6 +583,17 @@ function makeCityScene(THREE, P) {
     g.setAttribute('aT', new THREE.BufferAttribute(new Float32Array(aT), 1));
     g.setIndex(idx);
     route.geometry.dispose(); route.geometry = g; route.visible = pts.length > 1;
+    placeWaypoints();
+  }
+  // a pillar on each stop's tower: the listener's green, the rotation's dim; the playing tower has the beam
+  function placeWaypoints() {
+    if (!waypoints) return;
+    const m = new THREE.Matrix4(); let n = 0;
+    routeState.stops.slice(0, 12).forEach(function (s) {
+      const t = s.tower; m.makeTranslation(t.x, t.blocks * 0.5, t.z);
+      waypoints.setMatrixAt(n, m); waypoints.setColorAt(n, s.mine ? tok.green.clone().multiplyScalar(1.2) : tok['ink-dim'].clone().multiplyScalar(0.5)); n++;
+    });
+    waypoints.count = n; waypoints.instanceMatrix.needsUpdate = true; if (waypoints.instanceColor) waypoints.instanceColor.needsUpdate = true;
   }
 
   /* ---- the camera (12.3, 12.5, city-flythrough 4 and 21) ---- */
@@ -893,13 +950,13 @@ function makeCityScene(THREE, P) {
     buildBridges();
     if (C.playing) { const t = towerOf(C.playing); blockUniforms.uPlaying.value = t ? t.id : -99; cam.target.copy(targetFor(C.playing)); placeBeam(); }
     if (cursor) cursor = towerOf(cursor.slug);
-    if (routeState.list.length) buildRoute(routeState.list, C.playing);
+    if (routeState.list.length) buildRoute(routeState.list, C.playing, routeState.mine);
     if (C.filterSlugs) C.setFilter(C.filterWords, C.filterSlugs);
   };
   function placeBeam() {
     const t = towerOf(C.playing);
     beam.visible = !!t && C.view !== 'standby' && C.view !== 'dead';
-    if (t) beam.position.set(t.x, t.blocks * 0.5, t.z);
+    if (t) { beam.position.set(t.x, t.blocks * 0.5, t.z); blockUniforms.uPlayPos.value.set(t.x, 0, t.z); }
   }
   // the playing tower: the camera orbits it; ms > 0 flies there: along the streets when the tower is near, through the tunnel beyond 60
   // units. follow false moves the beam and leaves the camera where the listener put it (issue #63: the station's own rotation never
@@ -945,7 +1002,8 @@ function makeCityScene(THREE, P) {
     horizon.material.color = tok.magenta; beamUniforms.uColor.value = tok.magenta;
     if (bridges) bridges.material.color = tok.violet;
     buildBars();
-    if (routeState.list.length) buildRoute(routeState.list, C.playing);
+    lights.forEach(function (l, i) { l.mesh.material.uniforms.uColor.value = (i === 1 ? tok.magenta : tok.cyan).clone(); });
+    if (routeState.list.length) buildRoute(routeState.list, C.playing, routeState.mine);
   };
   C.deadBuild = function (n) { deadBlocks = n; };
   C.postOff = function () {
@@ -953,7 +1011,8 @@ function makeCityScene(THREE, P) {
     if (bloom) bloom.enabled = false; if (chroma) chroma.enabled = false;
   };
   // the queue as a route (city-flythrough 6)
-  C.setQueue = function (list, current) { if (!scene) { routeState.list = list.slice(); return; } buildRoute(list, current || C.playing); };
+  // mineN (issue #240): how many of the stops at the head are the listener's own; the rest is the rotation, drawn dim
+  C.setQueue = function (list, current, mineN) { if (!scene) { routeState.list = list.slice(); routeState.mine = mineN || 0; return; } buildRoute(list, current || C.playing, mineN); };
   C.route = function () { return routeState; };
   // a find lights the matching towers and dims the rest (city-flythrough 7)
   C.setFilter = function (words, slugs) {
@@ -1119,7 +1178,7 @@ function makeCityScene(THREE, P) {
     horizon.material.opacity = 0.02 + 0.08 * bass;
     filterK += (filterOn - filterK) * Math.min(1, dt / 0.3);
     blockUniforms.uFilter.value = filterK;
-    routeUniforms.uTime.value = clock.t;
+    routeUniforms.uTime.value = clock.t; wayUniforms.uTime.value = clock.t;
     beamUniforms.uPulse.value = reduced ? 0 : pulse;
     beam.scale.set(1 + 0.5 * pulse, 1, 1 + 0.5 * pulse);
 
@@ -1165,12 +1224,15 @@ function makeCityScene(THREE, P) {
 
     // the ring of bars and the ribbon around the playing tower (12.4); hidden in standby and dead air, and when the hidden interface says no visualiser
     const onAir = C.view !== 'standby' && C.view !== 'dead' && C.playing && !(C.noViz && C.noViz());
+    // the meter (issue #240): off in the car view, which keeps the city it had (#220), and off without a playing tower
+    const meterOn = !!onAir && !C.carView();
+    meter(lv, dt, now, meterOn);
     bars.visible = barsMirror.visible = ribbon.visible = !!onAir;
     if (onAir) {
       const tg = targetFor(C.playing), base = 0;
       for (let i = 0; i < barCount; i++) {
         const li = lv ? lv[Math.floor(i / barCount * lv.length)] : 0;
-        const h = 0.1 + 3.2 * Math.pow(li, 1.2), a = i / barCount * Math.PI * 2 + clock.t * 0.05;
+        const h = 0.06 + (meterOn ? 1.8 : 3.2) * Math.pow(li, 1.2), a = i / barCount * Math.PI * 2 + clock.t * 0.05;
         tmpP.set(tg.x + Math.cos(a) * 2.4, base, tg.z + Math.sin(a) * 2.4);
         tmpS.set(1, h, 1); tmpM.compose(tmpP, tmpQ, tmpS); bars.setMatrixAt(i, tmpM);
         tmpS.set(1, -h * 0.8, 1); tmpM.compose(tmpP, tmpQ, tmpS); barsMirror.setMatrixAt(i, tmpM);
@@ -1213,6 +1275,43 @@ function makeCityScene(THREE, P) {
       }
     }
   }
+  // the meter's numbers from the analyser's 64 bands: 16 floor levels (smoothed up fast, down slower), the highs, a kick from the bass
+  // rising over its own running mean, an onset from the spectral flux over its mean. nothing here hears: it reads the numbers
+  C.carView = function () { return document.documentElement.dataset.view === 'car'; };
+  function meter(lv, dt, now, on) {
+    blockUniforms.uViz.value = on ? 1 : 0;
+    lights.forEach(function (l) { l.mesh.visible = false; });
+    if (!on || !lv) { MV.kick = 0; MV.onset = 0; blockUniforms.uKick.value = 0; blockUniforms.uHigh.value = 0; return; }
+    const B = blockUniforms.uBands.value, n = lv.length, per = n / BANDS;
+    for (let b = 0; b < BANDS; b++) {
+      let m = 0; for (let i = Math.floor(b * per); i < Math.floor((b + 1) * per); i++) m = Math.max(m, lv[i] || 0);
+      const k = m > MV.bands[b] ? Math.min(1, dt / 0.04) : Math.min(1, dt / 0.22);
+      MV.bands[b] += (m - MV.bands[b]) * k; B[b] = MV.bands[b];
+    }
+    let flux = 0, hi = 0;
+    for (let i = 0; i < n; i++) { const d = (lv[i] || 0) - MV.prev[i]; if (d > 0) flux += d; MV.prev[i] = lv[i] || 0; if (i >= n * 0.6) hi += lv[i] || 0; }
+    hi /= Math.max(1, n * 0.4);
+    MV.high += (hi - MV.high) * Math.min(1, dt / 0.08);
+    MV.fluxMean += (flux - MV.fluxMean) * Math.min(1, dt / 0.6);
+    MV.bassMean += (bass - MV.bassMean) * Math.min(1, dt / 0.5);
+    if (bass - MV.bassMean > 0.07 && bass > 0.25 && now - MV.lastKick > 180) { MV.kick = 1; MV.lastKick = now; MV.kicks++; }
+    if (flux > MV.fluxMean * 1.7 + 0.15 && now - MV.lastOnset > 220) { MV.onset = 1; MV.lastOnset = now; MV.onsets++; MV.sweepV = reduced ? 0 : 0.25 + 1.2 * Math.min(1, flux / 4); }
+    MV.kick *= Math.exp(-dt / 0.16); MV.onset *= Math.exp(-dt / 0.4);
+    MV.sweepV += (0.25 - MV.sweepV) * Math.min(1, dt / 1.2);
+    if (!reduced) MV.sweep += MV.sweepV * dt;
+    blockUniforms.uKick.value = reduced ? 0 : MV.kick;
+    blockUniforms.uHigh.value = reduced ? 0 : Math.min(1, MV.high * 2.2);
+    // the searchlights stand on the crown and lean out as they turn; brighter with the loudness, flaring on an onset
+    const t = towerOf(C.playing); if (!t) return;
+    lights.forEach(function (l) {
+      l.mesh.visible = true;
+      l.mesh.position.set(t.x, t.blocks * 0.5 + 0.3, t.z);
+      l.mesh.rotation.set(0, 0, 0);
+      l.mesh.rotateY(MV.sweep + l.phase); l.mesh.rotateX(l.tilt + 0.08 * Math.sin(MV.sweep * 0.7 + l.phase));
+      l.mesh.material.uniforms.uAmp.value = 0.05 + 0.12 * pulse + 0.35 * MV.onset;
+    });
+  }
+  C.meter = function () { return { on: blockUniforms.uViz.value === 1, bands: Array.from(MV.bands, function (v) { return +v.toFixed(3); }), kick: +MV.kick.toFixed(3), onset: +MV.onset.toFixed(3), high: +MV.high.toFixed(3), kicks: MV.kicks, onsets: MV.onsets, lights: lights.filter(function (l) { return l.mesh.visible; }).length, waypoints: waypoints ? waypoints.count : 0 }; };
   // the ladder: 1 pixel ratio x .75, 2 the bloom at a quarter, 3 the bloom and the fringing off (printed once), 4 the filler halved and the chevrons still
   function ladderStep(dir) {
     const next = clamp(C.ladder + dir, 0, 4);
@@ -1236,6 +1335,7 @@ function makeCityScene(THREE, P) {
 
 NOBODY.themes.city = (function () {
   const TH = { name: 'city', blurb: 'a city of data at night. neon, glass, bloom. fly it.' };
+  const STILL = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
   let scene = null, canvas = null, cssgrid = null, horizon = null, scanrect = null, odoRing = null, nocityTimer = 0;
   let scopeCanvas = null, scopeCtx = null, dialStrip = null, pendingView = null;
@@ -1272,12 +1372,13 @@ NOBODY.themes.city = (function () {
 
   /* ---- the interface paradigm (12.0, the hooks; city-flythrough 14) ---- */
   // the movement keys (issue #63): the arrows and w a s d together; while the city holds s, shift+s is the shuffle
-  TH.interface = function () { return { kind: 'flythrough', keys: ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', 'e', 'f', 'h', 'z', 'x'], layouts: V && V.phone() ? ['deck', 'air'] : ['air', 'deck'] }; };
+  TH.interface = function () { return { kind: 'flythrough', keys: ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', 'e', 'f', 'h', 'z', 'x', 'u'], layouts: V && V.phone() ? ['deck', 'air'] : ['air', 'deck'] }; };
   // TH.swatch: the picker's little square (station 12.0, the theme picker): the ground and two lights
   TH.swatch = ['#020309', '#19F0FF', '#FF2BD6'];
   TH.help = function () {
     return [['drag', 'aim the view'], ['wheel', 'along the view'], ['w s  up down', 'fly forward, back (hold)'], ['a d  left right', 'slide sideways'], ['e  shift', 'rise, sink'], ['z x', 'turn left, right'],
-      ['click a tower', 'fly there and play it'], ['j k', 'glide to the next tower'], ['f  esc', 'the list view (the deck)'], ['h', 'the hint bar']];
+      ['click a tower', 'read its dossier; click it again to play'], ['j k', 'glide to the next tower'], ['f  esc', 'the list view (the deck)'], ['h', 'the hint bar'],
+      ['u d x', 'flight plan: move the highlighted waypoint up, down, drop it (in the air: u)'], ['drag a waypoint', 'reorder the plan']];
   };
   TH.commands = function () {
     return {
@@ -1326,6 +1427,8 @@ NOBODY.themes.city = (function () {
   TH.keys = function (e) {
     const k = e.key;
     // f works with or without the scene: without it the air says so and f is the way to the list (issue #63)
+    // the flight plan (issue #240): u, d and x move the highlighted waypoint up, down, out; in the air d and x fly, so there u alone
+    if ((k === 'u' || ((k === 'd' || k === 'x') && UI.layout !== 'air')) && arrangeKey(k)) return true;
     if (UI.layout !== 'air') { if (k === 'f' || k === 'F') { ctx.setLayout('air'); return true; } return false; }
     if (k === 'f' || k === 'F') { ctx.setLayout('deck'); return true; }
     if (k === 'h' || k === 'H') { setHints(!UI.hintsOpen, true); return true; }
@@ -1342,11 +1445,17 @@ NOBODY.themes.city = (function () {
   TH.layout = function (name) {
     UI.layout = name;
     if (UI.flyBtn) { UI.flyBtn.textContent = name === 'air' ? 'list view  F' : 'fly the city  F'; UI.flyBtn.title = name === 'air' ? 'F: the list view, the cards back in their column' : 'F: fly the city; click a tower to play it'; }
-    syncHints(); watchdog();
+    syncHints(); watchdog(); placeInspect(); drawDocked();
     if (!scene) return;
     scene.setLayout(name, V.phone() ? 500 : 700);
     if (name !== 'air') { hideReadout(); releaseKeys(); }
   };
+  function arrangeKey(k) {
+    const hl = S.hl, m = ctx.mine ? ctx.mine() : [], i = m.indexOf(hl);
+    if (i < 0) return false;
+    if (k === 'u') { if (i > 0) ctx.move(hl, i - 1); } else if (k === 'd') { if (i < m.length - 1) ctx.move(hl, i + 1); } else ctx.remove(hl);
+    return true;
+  }
   TH.highlight = function (slug) { if (!scene) return; if (slug !== UI.cursorSlug) { UI.cursorSlug = slug; scene.setCursor(slug); if (UI.hover && UI.hover.slug !== slug) UI.hover = null; } };
   // j / k in the air (12.0, the step hook; issue #63): the next tower in the city's own order (by street, south to north, west to
   // east), among the lit ones when a find is on; the camera glides to it and circles it, the rail's row follows. elsewhere, the list
@@ -1371,7 +1480,9 @@ NOBODY.themes.city = (function () {
     used('step');
     return true;
   };
-  TH.queue = function (list, current) { if (scene) scene.setQueue(list, current); };
+  // the queue (issue #240): the route over the first six, its head the listener's own; the flight plan card draws the whole of yours
+  function mineCount(list) { const m = list && list.mine ? list.mine : (ctx.mine ? ctx.mine() : []); let n = 0; while (n < list.length && m.indexOf(list[n]) >= 0) n++; return n; }
+  TH.queue = function (list, current) { if (scene) scene.setQueue(list, current, mineCount(list)); drawPlan(); };
   TH.filter = function (words, slugs) {
     if (!scene) return;
     scene.setFilter(words, slugs);
@@ -1405,6 +1516,7 @@ NOBODY.themes.city = (function () {
     dialStrip = makeDialStrip(el('dial'));
     UI.layout = V.phone() ? 'deck' : 'air';
     buildUi();
+    buildDossier(); buildPlan(); drawPlan();
     sceneUp();
     // without the CDN there is no scene within two seconds; the body says so and the CSS gradient carries the page (12.11)
     nocityTimer = setTimeout(function () { if (!scene) document.body.classList.add('nocity'); watchdog(); }, 2000);
@@ -1417,7 +1529,9 @@ NOBODY.themes.city = (function () {
   TH.dispose = function () {
     clearTimeout(nocityTimer); clearInterval(UI.watch);
     if (scene) { scene.dispose(); scene = null; }
-    [canvas, cssgrid, horizon, scanrect, odoRing, UI.readout, UI.bracket, UI.marker, UI.hud, UI.flyWrap, UI.hints, UI.fallback].forEach(function (n) { if (n) n.remove(); });
+    [canvas, cssgrid, horizon, scanrect, odoRing, UI.readout, UI.bracket, UI.marker, UI.hud, UI.flyWrap, UI.hints, UI.fallback, DS.docked && DS.docked.root, DS.card && DS.card.root, DS.leader, DS.plan].forEach(function (n) { if (n) n.remove(); });
+    DS.docked = DS.card = DS.leader = DS.line = DS.dot = DS.plan = DS.planList = DS.planSum = DS.planClear = null; DS.inspect = null; DS.info = null;
+    document.body.classList.remove('city-inspecting');
     canvas = cssgrid = horizon = scanrect = odoRing = null; UI.readout = UI.bracket = UI.marker = UI.hud = UI.flyBtn = UI.flyWrap = UI.hints = UI.fallback = null; UI.chips = []; UI.pins = [];
     window.removeEventListener('keyup', onKeyUp); window.removeEventListener('keydown', onShiftDown); window.removeEventListener('blur', releaseKeys); document.removeEventListener('visibilitychange', onVisibility);
     document.body.classList.remove('city-hints-open', 'city-hints-shut', 'city-down');
@@ -1443,7 +1557,7 @@ NOBODY.themes.city = (function () {
       scene.noViz = function () { return document.body.classList.contains('ui-hidden') && document.body.classList.contains('no-hideviz'); };
       scene.setCatalogue(S.tracks);
       scene.setLayout(UI.layout, 0);
-      scene.setQueue(ctx.queueList().slice(0, 6), ctx.current());
+      const q6 = ctx.queueList().slice(0, 6); scene.setQueue(q6, ctx.current(), mineCount(q6));
       if (ctx.filter()) scene.setFilter(ctx.filter(), ctx.visible());
       if (pendingView) { applyPending(); }
     } catch (e) { scene = null; document.body.classList.add('nocity'); }
@@ -1545,7 +1659,9 @@ NOBODY.themes.city = (function () {
   TH.widget = function () { return null; };
   TH.state = function () {
     const ui = { hints: UI.hints ? (UI.hints.hidden ? 'none' : UI.hintsOpen ? 'open' : 'shut') : 'none', fallback: UI.fallback && !UI.fallback.hidden ? UI.fallback.querySelector('.fb-line').textContent : null, hoverCursor: canvas ? canvas.style.cursor || '' : '' };
+    ui.dossier = dsState();
     if (!scene) return Object.assign({ widget: null, running: false, nocity: document.body.classList.contains('nocity'), layout: UI.layout }, ui);
+    ui.meter = scene.meter();
     const nav = scene.nav(), w = scene.where(), r = scene.route();
     return Object.assign({ widget: null, running: scene.running, frames: scene.frames, ms: +scene.ms.toFixed(1), bloom: scene.bloomOn, chroma: scene.chromaOn, view: scene.view, playing: scene.playing, flying: scene.flying, tunnel: scene.tunnelOn, phone: scene.phone, nocity: false,
       layout: UI.layout, camera: { mode: nav.mode, street: w.text, along: w.off, heading: w.heading, speed: +scene.speed().toFixed(2), cell: w.cell, focus: scene.focus(), pose: scene.cameraPose() },
@@ -1615,7 +1731,7 @@ NOBODY.themes.city = (function () {
     document.addEventListener('visibilitychange', onVisibility);
   }
   /* ---- the hint bar (issue #63): pinned at the bottom of the air, the controls a first-time player needs, each lighting up when used ---- */
-  const HINTS_DESK = [['look', 'drag', 'look'], ['move', 'WASD', 'fly'], ['rise', 'E shift', 'up down'], ['play', 'click a tower', 'to play'], ['list', 'F', 'list view', 'list'], ['themes', 'T', 'themes', 'themes'], ['help', '?', 'help', 'help']];
+  const HINTS_DESK = [['look', 'drag', 'look'], ['move', 'WASD', 'fly'], ['rise', 'E shift', 'up down'], ['play', 'click a tower', 'read it, again to play'], ['list', 'F', 'list view', 'list'], ['themes', 'T', 'themes', 'themes'], ['help', '?', 'help', 'help']];
   const HINTS_PHONE = [['look', 'drag', 'to look'], ['move', 'two fingers', 'to fly'], ['tap', 'tap', 'a tower'], ['play', 'two taps', 'to play'], ['list', 'list', '', 'list']];
   function hintsKey() { try { return localStorage.getItem('nobody.cityhints'); } catch (e) { return null; } }
   function hintsSave(v) { try { localStorage.setItem('nobody.cityhints', v); } catch (e) {} }
@@ -1739,9 +1855,12 @@ NOBODY.themes.city = (function () {
     if (!t) { if (tap.touch) hideReadout(); return; }
     // a click on a tower flies there and plays it; on a phone the first tap is the hover, the second flies
     if (tap.touch && UI.readoutSlug !== t.slug) { ctx.setHighlight(t.slug); UI.cursorSlug = t.slug; scene.setCursor(t.slug); scene.setHover(t.slug); UI.hover = t; showReadout(t); used('look'); return; }
+    // the tower that is already playing is not started again: the camera goes back to circling it, the dossier to what plays
+    if (t.slug === ctx.current() && ctx.S.state === 'playing') { if (DS.inspect) ctx.inspect(null); scene.back(); return; }
+    // one view (issue #240): a click reads the tower (its dossier opens beside it, the music carries on); the same tower again plays it.
+    // a phone's first tap was the readout already (it has the verbs), so its second tap plays as before
+    if (!tap.touch && ctx.inspect && DS.docked && DS.inspect !== t.slug) { used('look'); ctx.inspect(t.slug); return; }
     used('play');
-    // the tower that is already playing is not started again: the camera goes back to circling it
-    if (t.slug === ctx.current() && ctx.S.state === 'playing') { scene.back(); return; }
     ctx.play(t.slug);
   }
   function trackOf(slug) { return ctx.tracks().find(function (x) { return x.slug === slug; }) || null; }
@@ -1779,6 +1898,7 @@ NOBODY.themes.city = (function () {
     UI.frames = (UI.frames || 0) + 1; UI.lastNow = now; UI.frameAt = performance.now();
     if (UI.fallback && !UI.fallback.hidden) watchdog();
     const air = UI.layout === 'air', hidden = document.body.classList.contains('ui-hidden');
+    placeInspect(now);
     if (!air && !hidden) { if (!UI.readout.hidden) hideReadout(); UI.marker.hidden = true; UI.pins.forEach(function (p) { p.hidden = true; }); UI.chips.forEach(function (p) { p.hidden = true; }); if (canvas.style.cursor) canvas.style.cursor = ''; scene.setHover(null); return; }
     const nav = scene.nav();
     // the cursor follows the pointer when the pointer moves (the keys move it through highlight); not while a drag swings the camera
@@ -1801,7 +1921,7 @@ NOBODY.themes.city = (function () {
     // the readout anchored to the cursor tower, 120 ms after it settles; the hint variant fades on its own
     if (UI.readout.classList.contains('hint')) {
       if (now > UI.hint) hideReadout();
-    } else if (cur && !hidden && (UI.hover === cur || UI.cursorSlug === cur.slug)) {
+    } else if (cur && !hidden && cur.slug !== DS.inspect && (UI.hover === cur || UI.cursorSlug === cur.slug)) {
       const top = scene.project(cur.x, cur.blocks * 0.5, cur.z);
       if (top.behind || top.d > 120) { if (!UI.readout.hidden) hideReadout(); }
       else if (UI.readoutSlug !== cur.slug) {
@@ -1866,6 +1986,319 @@ NOBODY.themes.city = (function () {
       if (!sh) { c.hidden = true; return; }
       c.textContent = sh.s.text; c.className = 'city-sign ' + sh.s.kind; c.hidden = false; place(c, sh.q.x - 40, sh.q.y - 10);
     });
+  }
+
+  /* ---- one view (issue #240, design 12.23): the dossier. the playing track's story folds into the NOW PLAYING card as tabs, so
+     what plays and what it is are one card; a tower (or a row) being inspected gets a floating dossier of its own, anchored beside its
+     tower in the air with a leader line, docked under NOW PLAYING in the deck. the words are the core's (NOBODY.story); the drawing is
+     the city's: HUD tabs, the numbers as gauges named for the part of the tower they built ---- */
+  const DS = { tab: 'story', itab: 'story', info: null, open: true, airBody: false, inspect: null, docked: null, card: null, leader: null, line: null, dot: null, plan: null, planList: null, planSum: null, planClear: null, drag: null };
+  const TABS = [['story', 'STORY'], ['lyrics', 'LYRICS'], ['numbers', 'NUMBERS'], ['takes', 'TAKES'], ['lineage', 'LINEAGE'], ['file', 'FILE']];
+  // each measured number, its range for the gauge, and the part of the tower it built (city-flythrough 2)
+  const GAUGES = [
+    ['tempo', 'tempo_bpm', 60, 180, function (v) { return Math.round(v) + ' bpm'; }, 'tempo', 'height'],
+    ['loudness', 'lufs', -26, -8, function (v) { return (+v).toFixed(1) + ' LUFS'; }, 'loudness', 'glow'],
+    ['peak', 'peak_dbfs', -12, 0, function (v) { return (+v).toFixed(1) + ' dBFS'; }, 'peak', ''],
+    ['brightness', 'brightness_pct', 0, 40, function (v) { return (+v).toFixed(1) + ' %'; }, 'brightness', 'crown'],
+    ['boominess', 'boominess_pct', 0, 70, function (v) { return (+v).toFixed(1) + ' %'; }, 'boominess', 'base'],
+    ['onsets', 'onsets_per_s', 0, 8, function (v) { return (+v).toFixed(2) + '/s'; }, 'onsets', ''],
+    ['seam', 'seam_db', 0, 6, function (v) { return (+v).toFixed(1) + ' dB'; }, 'seam', ''],
+    ['words', 'words_pct', 0, 100, function (v) { return Math.round(v) + ' % read back'; }, 'words', '']
+  ];
+  function h(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function hbtn(label, cls, fn, title) {
+    const b = h('button', cls || 'bk', label); b.type = 'button'; if (title) b.title = title;
+    b.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); fn(e, b); });
+    return b;
+  }
+  function st() { return NOBODY.st || {}; }
+  function storyOf(slug) { return slug && ctx && ctx.story ? ctx.story(slug) : null; }
+  // the tab row and the body: the same drawing for the docked and the floating dossier
+  function dsTabs(host, which) {
+    const row = h('div', 'ds-tabs'); row.setAttribute('role', 'tablist');
+    TABS.forEach(function (t) {
+      const b = hbtn(t[1], 'bare ds-tab label', function () {
+        if (which !== 'docked') { DS.itab = t[0]; drawInspect(); return; }
+        // in the air the body opens on a tab (the scene keeps its room until it is asked for); a second click on the tab folds it
+        if (UI.layout === 'air' && DS.airBody && DS.open && DS.tab === t[0]) { DS.airBody = false; drawDocked(); return; }
+        DS.tab = t[0]; DS.airBody = true;
+        if (!DS.open && NOBODY.st && NOBODY.st.storyKey) NOBODY.st.storyKey(null); else drawDocked();
+      });
+      b.dataset.tab = t[0]; b.setAttribute('role', 'tab'); row.appendChild(b);
+    });
+    host.appendChild(row); return row;
+  }
+  function markTabs(row, tab) { Array.prototype.forEach.call(row.children, function (b) { const on = b.dataset.tab === tab; b.classList.toggle('on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); }); }
+  function dsBody(body, s, tab) {
+    body.textContent = '';
+    if (!s) return;
+    if (tab === 'story') {
+      const asked = h('p', 'ds-asked'); asked.appendChild(h('span', 'label', 'ASKED ')); asked.appendChild(h('span', '', '"' + (s.asked || s.idea || '') + '"')); body.appendChild(asked);
+      const where = [s.album ? s.album.title + ' ' + s.album.n + '/' + s.album.of : null, s.date, s.model ? s.model + ' tier' : null, s.project ? 'project:' + s.project : null, s.bside ? 'b-side' : null].filter(Boolean).join('  ·  ');
+      if (where) body.appendChild(h('p', 'ds-where mid', where));
+      const why = h('p', 'ds-why'); why.appendChild(h('span', 'label', 'WHY ')); why.appendChild(h('span', '', s.why || '(nobody wrote a why for this one.)')); body.appendChild(why);
+    } else if (tab === 'lyrics') {
+      body.appendChild(h('p', 'ds-lyrics' + (s.lyrics ? '' : ' mid'), s.lyrics || '(instrumental)'));
+    } else if (tab === 'numbers') {
+      const g = h('div', 'ds-gauges'), n = s.numbers || {}, c = s.checks || {};
+      GAUGES.forEach(function (d) {
+        const v = n[d[1]]; if (v == null) return;
+        const k = Math.max(0, Math.min(1, (v - d[2]) / (d[3] - d[2])));
+        const row = h('div', 'ds-gauge' + (c[d[5]] === false ? ' fail' : ''));
+        row.appendChild(h('span', 'gl', d[0]));
+        const bar = h('span', 'gb'); const fill = h('i'); fill.style.width = Math.round(k * 100) + '%'; bar.appendChild(fill); row.appendChild(bar);
+        row.appendChild(h('span', 'gv', d[4](v)));
+        row.appendChild(h('span', 'gc ' + (c[d[5]] === false ? 'fail' : 'ok'), c[d[5]] === false ? 'FAIL' : c[d[5]] === true ? 'ok' : '-'));
+        row.appendChild(h('span', 'gt mid', d[6]));
+        g.appendChild(row);
+      });
+      if (!g.children.length) g.appendChild(h('p', 'mid', 'no numbers measured for this one.'));
+      body.appendChild(g);
+    } else if (tab === 'takes') {
+      const seedRow = h('p', 'ds-seed'); seedRow.appendChild(h('span', 'label', 'SEED ')); seedRow.appendChild(h('span', '', String(s.seed != null ? s.seed : '-') + '   '));
+      seedRow.appendChild(hbtn('copy seed', 'bk', function () { if (st().copySeed) st().copySeed(s.slug); })); seedRow.appendChild(document.createTextNode(' '));
+      seedRow.appendChild(hbtn('copy prompt', 'bk', function () { if (st().copyPrompt) st().copyPrompt(s.slug); }));
+      body.appendChild(seedRow);
+      const list = h('div', 'ds-takes');
+      (s.takes || []).forEach(function (seed) { const r = h('div', 'ds-take'); r.appendChild(h('span', 'mid', String(seed))); r.appendChild(h('span', 'mid', '  kept as a second take')); list.appendChild(r); });
+      (s.rejected || []).forEach(function (r0) { const r = h('div', 'ds-take'); r.appendChild(h('span', 'struck', String(r0.seed))); r.appendChild(h('span', 'mid', '  ' + (r0.reason || ''))); list.appendChild(r); });
+      if (!list.children.length) list.appendChild(h('p', 'mid', 'none. first seed, first take.'));
+      body.appendChild(list);
+    } else if (tab === 'lineage') {
+      const L = s.lineage || {}, tree = h('div', 'ds-lineage');
+      const root = L.parent || s.slug;
+      tree.appendChild(h('div', root === s.slug ? '' : 'mid', root));
+      (L.children || []).forEach(function (c) { tree.appendChild(h('div', c === s.slug ? '' : 'mid', '+-- ' + c)); });
+      if (L.changed) tree.appendChild(h('div', 'mid', 'changed: "' + L.changed.from + '" -> "' + L.changed.to + '"'));
+      if (!L.parent && !(L.children || []).length) tree.appendChild(h('div', 'mid', 'no variations yet. the seed is on the page; take it.'));
+      const nudge = h('div', 'mid', 'same seed, one changed clause: '); nudge.appendChild(hbtn('remix this', 'bk', function () { ctx.remix(s.slug); })); tree.appendChild(nudge);
+      body.appendChild(tree);
+    } else if (tab === 'file') {
+      const f = h('p', 'ds-file'); f.appendChild(h('span', 'label', 'FILE ')); f.appendChild(h('span', '', 'tracks/' + s.file + '  '));
+      const out = h('div', 'ds-cat');
+      f.appendChild(hbtn('cat', ctx.fileMode && ctx.fileMode() ? 'bk dimmed' : 'bk', function () { if (st().cat) st().cat(s.slug, out); }));
+      body.appendChild(f);
+      body.appendChild(h('p', 'mid', s.licence || ''));
+      const tk = h('p', ''); tk.appendChild(hbtn('take it home', 'bk', function (e, b) { if (st().take) st().take(s.slug, b); })); tk.appendChild(h('span', 'mid', '  the whole recipe: the words, the seed, the settings.')); body.appendChild(tk);
+      body.appendChild(h('div', 'take-links'));
+      body.appendChild(out);
+    }
+  }
+  // the docked part, at the foot of the NOW PLAYING card: the playing track's tabs, open or folded (`i`)
+  function buildDossier() {
+    const d = h('div', 'city-ds'); d.id = 'cityDs';
+    const tabs = dsTabs(d, 'docked');
+    const fold = hbtn('i', 'bare ds-fold', function () {
+      if (UI.layout === 'air' && DS.open) { DS.airBody = !DS.airBody; drawDocked(); return; }
+      DS.airBody = true; if (st().storyKey) st().storyKey(null);
+    }, 'i: fold or open the story');
+    tabs.appendChild(fold);
+    const body = h('div', 'ds-body'); body.setAttribute('role', 'tabpanel'); d.appendChild(body);
+    el('transmitter').appendChild(d);
+    DS.docked = { root: d, tabs: tabs, body: body, fold: fold };
+    // the floating dossier for an inspected tower: inside #main, so the car view's own rules hide it with the rest (#220)
+    const c = h('section', 'band card city-inspect'); c.id = 'cityInspect'; c.hidden = true; c.setAttribute('aria-label', 'inspecting a track');
+    const head = h('div', 'row ci-head'); head.appendChild(h('span', 'label', 'INSPECTING')); const close = hbtn('esc  back to on air', 'bare ci-close', function () { ctx.inspect(null); }); head.appendChild(close); c.appendChild(head);
+    const title = h('div', 'ci-title'); c.appendChild(title);
+    const meta = h('div', 'ci-meta mid'); c.appendChild(meta);
+    const acts = h('div', 'ci-acts');
+    acts.appendChild(hbtn('> play', 'bk', function () { if (DS.inspect) ctx.play(DS.inspect); }, 'play it now')); acts.appendChild(document.createTextNode(' '));
+    acts.appendChild(hbtn('next', 'bk', function () { if (DS.inspect) ctx.playNext(DS.inspect); }, 'play it next: the head of your flight plan')); acts.appendChild(document.createTextNode(' '));
+    acts.appendChild(hbtn('+ plan', 'bk ci-add', function () { if (DS.inspect) { if (ctx.mine().indexOf(DS.inspect) >= 0) ctx.remove(DS.inspect); else ctx.add(DS.inspect); } })); acts.appendChild(document.createTextNode(' '));
+    acts.appendChild(hbtn('remix', 'bk', function () { if (DS.inspect) ctx.remix(DS.inspect); }));
+    c.appendChild(acts);
+    const itabs = dsTabs(c, 'inspect');
+    const ibody = h('div', 'ds-body'); c.appendChild(ibody);
+    // appended, never between the station's own cards (12.0: the markup's order is the station's); the CSS places it by order
+    el('main').appendChild(c);
+    DS.card = { root: c, title: title, meta: meta, tabs: itabs, body: ibody, add: acts.querySelector('.ci-add') };
+    // the leader line from the floating dossier to its tower: an svg over the scene, under the cards
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg'); svg.setAttribute('class', 'city-leader'); svg.setAttribute('aria-hidden', 'true');
+    const line = document.createElementNS(ns, 'polyline'); const dot = document.createElementNS(ns, 'circle'); dot.setAttribute('r', '4');
+    svg.appendChild(line); svg.appendChild(dot); el('main').appendChild(svg);
+    DS.leader = svg; DS.line = line; DS.dot = dot;
+  }
+  function drawDocked() {
+    const D = DS.docked; if (!D) return;
+    const s = DS.info && !DS.inspect ? DS.info : storyOf(ctx.current());
+    const open = DS.open && (UI.layout !== 'air' || DS.airBody);
+    markTabs(D.tabs, DS.tab);
+    D.root.classList.toggle('folded', !open);
+    D.root.hidden = !s;
+    D.fold.textContent = open ? 'i  fold' : 'i  open';
+    D.fold.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) dsBody(D.body, s, DS.tab); else D.body.textContent = '';
+  }
+  function drawInspect() {
+    const C0 = DS.card; if (!C0) return;
+    const s = DS.inspect ? storyOf(DS.inspect) : null;
+    C0.root.hidden = !s;
+    document.body.classList.toggle('city-inspecting', !!s);
+    if (!s) { DS.leader.classList.remove('on'); return; }
+    C0.title.textContent = s.title || s.slug;
+    C0.meta.textContent = [s.bpm != null ? s.bpm + ' bpm' : null, s.key, ctx.fmt(s.duration), s.seed != null ? 'seed ' + s.seed : null, s.mine ? 'in your plan' : null].filter(Boolean).join('   ');
+    C0.add.textContent = s.mine ? '- plan' : '+ plan'; C0.add.title = s.mine ? 'take it out of your flight plan' : 'add it to the end of your flight plan';
+    markTabs(C0.tabs, DS.itab);
+    dsBody(C0.body, s, DS.itab);
+  }
+  function inSight(slug) {
+    const t = scene.towers().find(function (x) { return x.slug === slug; }); if (!t) return false;
+    const sa = sceneArea(), p = scene.project(t.x, t.blocks * 0.5, t.z), q = scene.project(t.x, 0, t.z);
+    return !p.behind && !q.behind && p.d < 60 && p.x > sa.left && p.x < sa.right && Math.max(p.y, sa.top) < Math.min(q.y, sa.bottom);
+  }
+  // the core's hook: the story to show changed (a new track, an inspect, esc, `i`)
+  TH.story = function (info, opts) {
+    opts = opts || {};
+    // `i` (the core's open flag) in the air opens or folds the body as a tab click does
+    if ((opts.open !== false) !== DS.open) DS.airBody = opts.open !== false;
+    DS.open = opts.open !== false;
+    const was = DS.inspect;
+    DS.inspect = opts.inspecting && info ? info.slug : null;
+    DS.info = DS.inspect ? null : info;
+    if (DS.inspect && DS.inspect !== was) {
+      DS.itab = 'story';
+      // in the air the camera turns to the tower being read, so the dossier can point at it; in the deck the card scrolls into view
+      // a tower clicked in view stays where the listener aimed at it; one out of sight (a row, a link) is flown to
+      if (scene && UI.layout === 'air' && scene.view === 'air') { UI.cursorSlug = DS.inspect; scene.setCursor(DS.inspect); if (!inSight(DS.inspect)) scene.visit(DS.inspect); }
+      else if (DS.card && UI.layout !== 'air') setTimeout(function () { if (DS.card.root && !DS.card.root.hidden) DS.card.root.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }, 30);
+    }
+    drawDocked(); drawInspect();
+  };
+
+  /* ---- the flight plan (issue #240): the queue drawn as the route's waypoints. yours first, numbered as the pins over the towers
+     are, dragged to reorder, x to drop; then the rotation, dim, after THEN AUTO. every change goes through the core's actions ---- */
+  function buildPlan() {
+    const c = h('section', 'band card city-plan'); c.id = 'cityPlan'; c.setAttribute('aria-label', 'flight plan: the queue');
+    const head = h('div', 'row pl-head');
+    head.appendChild(h('span', 'label', 'FLIGHT PLAN'));
+    const sum = h('span', 'pl-sum mid'); head.appendChild(sum);
+    const clr = hbtn('clear', 'bk pl-clear', function () { ctx.clear(); }, 'clear queue: yours only, the rotation plays on'); head.appendChild(clr);
+    c.appendChild(head);
+    const ol = h('ol', 'pl-list'); c.appendChild(ol);
+    el('main').appendChild(c);
+    DS.plan = c; DS.planList = ol; DS.planSum = sum; DS.planClear = clr;
+    ol.addEventListener('pointerdown', onPlanDown);
+  }
+  function fmtLen(slug) { const t = trackOf(slug); return t ? ctx.fmt(t.duration) : ''; }
+  function titleOf(slug) { const t = trackOf(slug); return t ? (t.title || slug) : slug; }
+  function drawPlan() {
+    const ol = DS.planList; if (!ol) return;
+    // a waypoint in the hand keeps its list until it is dropped; the drop draws it again
+    if (DS.drag && DS.drag.on) { DS.drag.stale = true; return; }
+    const mine = ctx.mine ? ctx.mine() : [], rot = ctx.rotationList ? ctx.rotationList().slice(0, 6) : ctx.queueList().slice(0, 6);
+    const focus = document.activeElement && document.activeElement.closest && document.activeElement.closest('.wp') ? document.activeElement.closest('.wp').dataset.slug : null;
+    ol.textContent = '';
+    let secs = 0;
+    mine.forEach(function (slug, i) {
+      const t = trackOf(slug); secs += t && t.duration ? t.duration : 0;
+      const li = h('li', 'wp mine'); li.dataset.slug = slug; li.tabIndex = 0; li.setAttribute('aria-label', 'waypoint ' + (i + 1) + ': ' + titleOf(slug) + '. arrows move it, x drops it, enter reads it');
+      li.appendChild(h('span', 'wp-n label', String(i + 1).padStart(2, '0')));
+      li.appendChild(hbtn(titleOf(slug), 'bare wp-name', function () { ctx.inspect(slug); }, 'read its dossier'));
+      li.appendChild(h('span', 'wp-len mid', fmtLen(slug)));
+      li.appendChild(hbtn('x', 'bare wp-x', function () { ctx.remove(slug); }, 'drop it from the plan'));
+      li.addEventListener('keydown', function (e) { planKey(e, slug); });
+      ol.appendChild(li);
+    });
+    if (!mine.length) ol.appendChild(h('li', 'pl-empty mid', V.phone() ? 'no waypoints. + on a row adds one.' : 'no waypoints yet. + on a tower or a row, or q, adds one.'));
+    const ctxt = ctx.context ? ctx.context() : null;
+    const auto = h('li', 'pl-auto'); auto.appendChild(h('span', 'label', 'THEN AUTO')); if (ctxt && ctxt.label) auto.appendChild(h('span', 'mid', '  ' + ctxt.label));
+    ol.appendChild(auto);
+    rot.forEach(function (slug) {
+      const li = h('li', 'wp auto'); li.dataset.slug = slug;
+      li.appendChild(h('span', 'wp-n label', '··'));
+      li.appendChild(hbtn(titleOf(slug), 'bare wp-name', function () { ctx.inspect(slug); }, 'read its dossier'));
+      li.appendChild(h('span', 'wp-len mid', fmtLen(slug)));
+      li.appendChild(hbtn('+', 'bare wp-x', function () { ctx.add(slug); }, 'add it to your plan'));
+      ol.appendChild(li);
+    });
+    DS.planSum.textContent = mine.length ? mine.length + (mine.length === 1 ? ' waypoint  ' : ' waypoints  ') + ctx.fmt(secs) : 'auto pilot';
+    DS.planClear.hidden = !mine.length;
+    if (focus) { const f = ol.querySelector('.wp[data-slug="' + CSS.escape(focus) + '"]'); if (f) f.focus(); }
+  }
+  // a focused waypoint: the arrows move it, x, delete or backspace drop it, enter reads it; nothing else reaches the station from here
+  function planKey(e, slug) {
+    const m = ctx.mine(), i = m.indexOf(slug); if (i < 0) return;
+    const k = e.key;
+    if (k === 'ArrowUp' || k === 'ArrowLeft' || k === 'u') { e.preventDefault(); e.stopPropagation(); if (i > 0) ctx.move(slug, i - 1); }
+    else if (k === 'ArrowDown' || k === 'ArrowRight' || k === 'd') { e.preventDefault(); e.stopPropagation(); if (i < m.length - 1) ctx.move(slug, i + 1); }
+    else if (k === 'x' || k === 'Delete' || k === 'Backspace') { e.preventDefault(); e.stopPropagation(); const next = m[i + 1] || m[i - 1]; ctx.remove(slug); if (next) { const f = DS.planList.querySelector('.wp[data-slug="' + CSS.escape(next) + '"]'); if (f) f.focus(); } }
+    else if (k === 'Enter') { e.preventDefault(); e.stopPropagation(); ctx.inspect(slug); }
+  }
+  // drag to reorder: a lifted waypoint and an insertion line between the others; dropped, the core moves it
+  function onPlanDown(e) {
+    const li = e.target.closest('.wp.mine'); if (!li || e.button !== 0 || e.target.closest('.wp-x')) return;
+    DS.drag = { slug: li.dataset.slug, li: li, x: e.clientX, y: e.clientY, on: false, to: -1, id: e.pointerId };
+    window.addEventListener('pointermove', onPlanMove); window.addEventListener('pointerup', onPlanUp); window.addEventListener('pointercancel', onPlanUp);
+  }
+  function onPlanMove(e) {
+    const d = DS.drag; if (!d) return;
+    if (!d.on) { if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) < 6) return; d.on = true; d.li.classList.add('lifted'); DS.plan.classList.add('dragging'); }
+    e.preventDefault();
+    const items = Array.prototype.slice.call(DS.planList.querySelectorAll('.wp.mine')).filter(function (x) { return x !== d.li; });
+    // the slot: every waypoint whose middle is above the pointer, or level with it and to its left, comes before it (a column in the
+    // air, columns in the deck)
+    let to = 0;
+    const oneCol = items.every(function (x) { return Math.abs(x.getBoundingClientRect().left - d.li.getBoundingClientRect().left + (e.clientX - d.x)) < 4; });
+    items.forEach(function (x) { const r = x.getBoundingClientRect(), cy = r.top + r.height / 2; if (oneCol ? cy < e.clientY : cy < e.clientY - r.height / 2 || (Math.abs(cy - e.clientY) <= r.height / 2 && r.left + r.width / 2 < e.clientX)) to++; });
+    d.to = to;
+    DS.planList.querySelectorAll('.wp.mine').forEach(function (x) { x.classList.remove('ins-before', 'ins-after'); });
+    if (items[to]) items[to].classList.add('ins-before'); else if (items.length) items[items.length - 1].classList.add('ins-after');
+    d.li.style.transform = 'translate(' + Math.round(e.clientX - d.x) + 'px,' + Math.round(e.clientY - d.y) + 'px)';
+  }
+  function onPlanUp() {
+    const d = DS.drag; DS.drag = null;
+    window.removeEventListener('pointermove', onPlanMove); window.removeEventListener('pointerup', onPlanUp); window.removeEventListener('pointercancel', onPlanUp);
+    if (!d) return;
+    DS.lastDrop = { slug: d.slug, on: d.on, to: d.to };
+    d.li.classList.remove('lifted'); d.li.style.transform = ''; DS.plan.classList.remove('dragging');
+    DS.planList.querySelectorAll('.wp.mine').forEach(function (x) { x.classList.remove('ins-before', 'ins-after'); });
+    if (d.on && d.to >= 0 && ctx.mine().indexOf(d.slug) !== d.to) ctx.move(d.slug, d.to);
+    else if (d.stale) drawPlan();
+  }
+  // the floating dossier and its leader line, every frame in the air: beside the tower, on the side away from the card column
+  function placeInspect(now) {
+    const c = DS.card; if (!c || c.root.hidden) { if (DS.leader) DS.leader.classList.remove('on'); return; }
+    const air = UI.layout === 'air' && !V.phone() && !document.body.classList.contains('ui-hidden');
+    c.root.classList.toggle('floating', air);
+    if (!air || !scene) { DS.leader.classList.remove('on'); c.root.style.transform = ''; c.root.style.maxHeight = ''; return; }
+    const t = scene.towers().find(function (x) { return x.slug === DS.inspect; });
+    const sa = sceneArea(), w = c.root.offsetWidth || 420;
+    // the card stands in the open city and may reach down over NOW PLAYING while it is open (esc gives it back), never over MAKE A
+    // TRACK or the terminal; its body scrolls inside
+    const txr = el('transmitter').getBoundingClientRect();
+    const maxH = Math.max(160, Math.max(sa.bottom, txr.bottom) - sa.top);
+    if (c.root.style.maxHeight !== maxH + 'px') c.root.style.maxHeight = maxH + 'px';
+    const hh = Math.min(c.root.offsetHeight || 300, maxH);
+    let x = sa.left + 8, y = sa.top, tx = null, ty = null;
+    if (t) {
+      const top = scene.project(t.x, t.blocks * 0.5, t.z), foot = scene.project(t.x, 0, t.z);
+      // a crown above the open city (under the header, a near tower) anchors lower down its axis, where the tower is in sight
+      let ax = top.x, ay = top.y;
+      if (!top.behind && !foot.behind && ay < sa.top + 12 && foot.y > sa.top + 12) { const k = (sa.top + 12 - top.y) / Math.max(1, foot.y - top.y); ax = top.x + (foot.x - top.x) * k; ay = sa.top + 12; }
+      if (!top.behind && ax > sa.left && ax < sa.right && ay >= sa.top && ay < sa.bottom) {
+        tx = ax; ty = ay;
+        // clear of the tower's own width on screen (a near tower is wide), so the tower stays in sight and a second click reaches it
+        const f = (t.foot || 1) * 0.6, px1 = scene.project(t.x + f, t.blocks * 0.25, t.z), px2 = scene.project(t.x, t.blocks * 0.25, t.z + f), mid = scene.project(t.x, t.blocks * 0.25, t.z);
+        const half = Math.max(12, Math.abs(px1.x - mid.x), Math.abs(px2.x - mid.x)) + 24;
+        const cx = mid.behind ? tx : mid.x;
+        x = cx + half + w < sa.right ? cx + half : cx - half - w;
+        y = ty - 30;
+      }
+    }
+    x = clamp(x, sa.left, Math.max(sa.left, sa.right - w)); y = clamp(y, sa.top, Math.max(sa.top, sa.top + maxH - hh));
+    place(c.root, x, y);
+    if (tx == null) { DS.leader.classList.remove('on'); return; }
+    // the line leaves the card's near edge at the title, bends once, and ends on a dot at the crown
+    const ex = tx > x + w / 2 ? x + w : x, ey = y + 34, bx = ex + (tx > ex ? 18 : -18);
+    DS.line.setAttribute('points', ex + ',' + ey + ' ' + bx + ',' + ey + ' ' + tx + ',' + ty);
+    DS.dot.setAttribute('cx', tx); DS.dot.setAttribute('cy', ty);
+    DS.leader.classList.add('on');
+  }
+  function dsState() {
+    return { inspect: DS.inspect, open: DS.open, tab: DS.tab, docked: DS.docked && !DS.docked.root.hidden ? (DS.docked.root.classList.contains('folded') ? 'folded' : 'open') : 'none',
+      drop: DS.lastDrop || null, card: DS.card && !DS.card.root.hidden ? (DS.card.root.classList.contains('floating') ? 'floating' : 'docked') : 'none', leader: !!(DS.leader && DS.leader.classList.contains('on')),
+      plan: DS.planList ? { mine: Array.prototype.map.call(DS.planList.querySelectorAll('.wp.mine'), function (x) { return x.dataset.slug; }), auto: Array.prototype.map.call(DS.planList.querySelectorAll('.wp.auto'), function (x) { return x.dataset.slug; }) } : null };
   }
 
   /* ---- widgets ---- */
@@ -1996,9 +2429,14 @@ NOBODY.themes.city = (function () {
     const areaW = areaCols * cellW, x0 = 2 * cellW;
     g.fillStyle = c.dim; g.fillRect(0, 0, 1, H);
     if (A.mode === 'scope5') { drawScope5(g, c, x0, areaW, H); return; }
-    const per = areaW / A.bands, bw = Math.max(2, per * 0.62);
+    // the skyline (issue #240): each band a building, its windows lit up to the level, a beacon on the roof at the held peak; the
+    // lit windows change a little four times a second, as a city's do. dance (A.flip) hangs the skyline from the top
+    const per = areaW / A.bands, bw = Math.max(3, per * 0.72);
     const grad = g.createLinearGradient(0, H, 0, 0); grad.addColorStop(0, c.cyan); grad.addColorStop(0.55, c.violet); grad.addColorStop(1, c.magenta);
-    const rows = A.rows, cellH = H / rows;
+    const rows = A.rows, cellH = H / rows, tick = STILL && STILL.matches ? 0 : Math.floor(now / 250);
+    const cols = bw >= 12 ? 3 : bw >= 7 ? 2 : 1, ww = Math.max(1.5, bw / (cols * 2 + 1)), wh = Math.max(2, Math.min(4, cellH * 0.3)), step = wh * 2;
+    g.save();
+    if (A.flip) { g.translate(0, H); g.scale(1, -1); }
     for (let b = 0; b < A.bands; b++) {
       const v = A.vals[b];
       const cells = Math.min(rows, Math.floor(Math.pow(v, 0.8) * (rows + 0.99)));
@@ -2006,16 +2444,31 @@ NOBODY.themes.city = (function () {
       if (cells > A.peaks[b]) { A.peaks[b] = cells; A.peakAt[b] = now; }
       else if (now - A.peakAt[b] > 150 && A.peaks[b] > 0) { A.peaks[b]--; A.peakAt[b] = now; }
       const x = x0 + b * per + (per - bw) / 2;
-      g.shadowColor = 'rgb(' + c.cyanRgb.replace(/ /g, ',') + ',0.7)'; g.shadowBlur = 10;
-      g.fillStyle = grad;
-      if (hgt > 1) { if (A.flip) roundRect(g, x, 0, bw, hgt, 2); else roundRect(g, x, H - hgt, bw, hgt, 2); g.fill(); }
+      // the shell: a dark body with a lit outline, so the windows read against it
+      if (hgt > 2) {
+        g.fillStyle = 'rgba(8,11,26,0.92)'; g.fillRect(x, H - hgt, bw, hgt);
+        g.shadowColor = 'rgb(' + c.cyanRgb.replace(/ /g, ',') + ',0.6)'; g.shadowBlur = 8;
+        g.strokeStyle = grad; g.lineWidth = 1; g.strokeRect(x + 0.5, H - hgt + 0.5, bw - 1, hgt - 1);
+        g.shadowBlur = 0;
+        g.fillStyle = grad;
+        let row = 0;
+        for (let y = H - step; y > H - hgt + 2; y -= step, row++) {
+          for (let k = 0; k < cols; k++) {
+            const r = Math.sin((b * 31 + row * 7 + k * 13 + tick * 3) * 12.9898) * 43758.5453;
+            if (r - Math.floor(r) < 0.28) continue;
+            g.fillRect(x + ww * (1 + k * 2), y, ww, wh);
+          }
+        }
+      }
       const pk = A.peaks[b];
       if (pk > cells && pk <= rows) {
-        const y = A.flip ? pk * cellH - 2 : H - pk * cellH;
+        const y = H - pk * cellH;
         g.shadowColor = 'rgb(' + c.magRgb.replace(/ /g, ',') + ',0.9)'; g.shadowBlur = 8; g.fillStyle = c.magenta;
-        g.fillRect(x, y, bw, 2);
+        g.fillRect(x + bw / 2 - 1.5, y - 3, 3, 3); g.fillRect(x + bw / 2 - 0.5, y, 1, Math.max(0, H - hgt - y));
+        g.shadowBlur = 0;
       }
     }
+    g.restore();
     g.shadowBlur = 0;
     A.baselineText(A.live);
     scopeRibbon(c);

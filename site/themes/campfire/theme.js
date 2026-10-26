@@ -1315,8 +1315,14 @@ NOBODY.themes = NOBODY.themes || {};
       const n1 = vnoise(t * 3.1, 0.5, 0.2), n2 = vnoise(t * 9.7, 2.1, 0.7), n3s = vnoise(t * 21.0, 4.3, 1.1);
       fire.flick = 0.78 + 0.18 * n1 + 0.12 * n2 + 0.06 * n3s;
       fire.pop = Math.max(0, fire.pop - dt * 3.2);
-      fire.heat = clamp(0.55 + fire.loud * 0.9 + fire.beat * 0.25, 0.4, 1.3);
-      const glow = fire.flick * (0.85 + 0.35 * fire.loud + 0.25 * fire.beat) + fire.pop * 0.6;
+      // the fire joins the sky as the visualizer (issue #240): the flames stand taller on the low end, a kick throws a burst of sparks,
+      // and the light on the trees swells with the track's loudness. paused, music.* settle to nothing and it is the fire again
+      const ml = music.low * music.amt, kick = music.pulse * music.amt;
+      fire.heat = clamp(0.55 + fire.loud * 0.9 + fire.beat * 0.25 + 0.3 * ml, 0.4, 1.4);
+      const glow = fire.flick * (0.85 + 0.35 * fire.loud + 0.25 * fire.beat + 0.4 * ml) + fire.pop * 0.6;
+      fire.kickWait = Math.max(0, (fire.kickWait || 0) - dt);
+      if (kick > 0.55 && !fire.kickHi && fire.kickWait <= 0 && !reduced) { fire.kickHi = true; fire.kickWait = 0.22; const nk = Math.round(5 + kick * 9); for (let i = 0; i < nk; i++) spawnEmber(true); fire.pop = Math.max(fire.pop, 0.35 * kick); }
+      else if (kick < 0.3) fire.kickHi = false;
       fireLight.intensity = 9.5 * glow; fireLight2.intensity = 3.5 * glow * (0.8 + 0.4 * n2);
       fireLight.position.set(FIRE.x + (n1 - 0.5) * 0.14, FIRE.y + 0.55 + (n2 - 0.5) * 0.1, FIRE.z + (n3s - 0.5) * 0.12);
       groundGlow.material.opacity = clamp(0.7 + 0.35 * (glow - 1), 0.4, 1.1);
@@ -1327,7 +1333,7 @@ NOBODY.themes = NOBODY.themes || {};
         m.uTime.value = t; m.uHeat.value = fire.heat;
         const sway = Math.sin(t * (0.9 + i * 0.13) + i) * 0.03;
         f.position.set(FIRE.x + Math.cos(u.a + t * 0.21) * u.r + sway, FIRE.y + 0.05, FIRE.z + Math.sin(u.a + t * 0.21) * u.r);
-        const hgt = u.base * (0.82 + 0.28 * fire.flick + 0.22 * fire.loud + 0.18 * fire.beat * (i > 3 ? 1 : 0.4) + fire.pop * 0.3);
+        const hgt = u.base * (0.82 + 0.28 * fire.flick + 0.22 * fire.loud + 0.18 * fire.beat * (i > 3 ? 1 : 0.4) + fire.pop * 0.3 + 0.5 * ml);
         f.scale.set(u.w * (0.9 + 0.12 * fire.flick), hgt, 1);
         f.rotation.set(0, Math.atan2(camera.position.x - f.position.x, camera.position.z - f.position.z), 0);
       });
@@ -1797,7 +1803,7 @@ NOBODY.themes = NOBODY.themes || {};
     const TH = { name: 'campfire', blurb: 'a fire on a small planet, a sky full of signals, a scope, marshmallows.', swatch: ['#0b1430', '#ff9a45', '#9fd3ff'] };
     let ctx = null, V = null, A = null, glass = null, power = null, S = null;
     let scene = null, canvas = null, painted = null, nocampTimer = 0, pendingView = null;
-    const UI = { scopeEl: null, legend: null, bar: null, hint: null, credit: null, journal: null, meterBars: [], lockRing: null, freqBtn: null, targetEl: null, strengthEl: null, mallowBtn: null, mallowChip: null, scopeBtn: null, layout: 'camp', journalSlug: null, journalAt: 0, journalHover: false, lockSlug: null, lockAt: 0, ptr: null, pinch: null, rightScope: false, zDown: 0, hDown: 0, hToast: 0, hKey: false, jkAt: 0, selfHL: false, placeholder: null, hintAt: 0, freqAt: 0, frames: 0, golden: 0, goldenVisit: 0 };
+    const UI = { scopeEl: null, legend: null, bar: null, hint: null, credit: null, journal: null, meterBars: [], lockRing: null, freqBtn: null, targetEl: null, strengthEl: null, mallowBtn: null, mallowChip: null, scopeBtn: null, layout: 'camp', lockSlug: null, lockAt: 0, ptr: null, pinch: null, rightScope: false, zDown: 0, hDown: 0, hToast: 0, hKey: false, jkAt: 0, selfHL: false, placeholder: null, hintAt: 0, freqAt: 0, frames: 0, golden: 0, goldenVisit: 0 };
     const AU = { on: false };
     // the camp's own sounds (the fire, the wind, the scope's static, the chime, the ident, the bite) on one bus, with a switch and
     // a level remembered in this browser (issue #82); the station's volume is never touched. the sky's music: on unless v said no
@@ -1907,7 +1913,7 @@ NOBODY.themes = NOBODY.themes || {};
       if (away === UI.away) return;
       UI.away = away;
       document.body.classList.toggle('camp-away', away);
-      if (away) { closeJournal(); if (scene && scene.C.scoped) setScope(false); if (UI.hDown) mallowUp(); document.body.classList.remove('camp-toasting'); }
+      if (away) { if (scene && scene.C.scoped) setScope(false); if (UI.hDown) mallowUp(); document.body.classList.remove('camp-toasting'); }
       else placeBar();
     }
     TH.keys = function (e) {
@@ -1965,7 +1971,7 @@ NOBODY.themes = NOBODY.themes || {};
     }
     function onKeyCapture(e) { if ((e.key === 'j' || e.key === 'k') && !e.ctrlKey && !e.metaKey) UI.jkAt = performance.now(); }
     TH.layout = function (name) {
-      UI.layout = name;
+      UI.layout = name; setTimeout(fitTab, 0);
       if (UI.deckBtn) UI.deckBtn.textContent = name === 'camp' ? 'deck' : 'camp';
       if (name !== 'camp' && scene && scene.C.scoped) setScope(false);
       placeBar();
@@ -1983,7 +1989,6 @@ NOBODY.themes = NOBODY.themes || {};
         scene.aimAt(slug, 0, false);
       }
     };
-    TH.queue = function (list, current) { if (scene) scene.setQueue(list, current); };
     TH.filter = function (words, slugs) {
       if (!scene) return;
       scene.setFilter(words, slugs);
@@ -1994,10 +1999,9 @@ NOBODY.themes = NOBODY.themes || {};
       if (!scene) return;
       if (on && scene.C.scoped) setScope(false);
       scene.hidden(on);
-      closeJournal();
     };
     TH.escape = function () {
-      if (UI.journalSlug) { closeJournal(); return true; }
+      if (uninspect()) return true;
       if (scene && scene.C.scoped) { setScope(false); return true; }
       return false;
     };
@@ -2037,7 +2041,9 @@ NOBODY.themes = NOBODY.themes || {};
       clearTimeout(nocampTimer);
       audioStop();
       if (scene) { scene.dispose(); scene = null; }
-      [canvas, painted, UI.scopeEl, UI.legend, UI.bar, UI.hint, UI.credit, UI.journal, UI.deckWrap, UI.sndRow].forEach(function (n) { if (n) n.remove(); });
+      [canvas, painted, UI.scopeEl, UI.legend, UI.bar, UI.hint, UI.credit, UI.journal, UI.deckWrap, UI.sndRow, RX.el].forEach(function (n) { if (n) n.remove(); });
+      if (RX.chipObs) RX.chipObs.disconnect(); RX.el = RX.cv = RX.g = RX.chipObs = null; RX.word = ''; JR.inspect = null; JR.core = null; JR.q = null; JR.shown = null;
+      document.body.classList.remove('is-playing');
       const hs = document.querySelector('.camp-snd-help'); if (hs) hs.remove();
       [UI.starLabel, UI.homeLabel, RL.el].concat(Object.keys(MAPUI.el).filter(function (k) { return ['sight', 'zoom', 'labels', 'arms', 'select'].indexOf(k) >= 0; }).map(function (k) { return MAPUI.el[k]; })).forEach(function (n) { if (n) n.remove(); });
       MAPUI.el = {}; MAPUI.pool = []; MAPUI.arms = []; MAPUI.armKey = ''; MAPUI.sel = null;
@@ -2047,7 +2053,7 @@ NOBODY.themes = NOBODY.themes || {};
       el('progress').textContent = ''; el('hdrBar').className = 'dim'; el('hdrBar').textContent = '............';
       el('dial').textContent = '';
       const words = el('makeWords'); if (words && UI.placeholder) words.setAttribute('placeholder', UI.placeholder);
-      document.body.classList.remove('nocamp', 'camp-scoped', 'camp-journal-open', 'camp-toasting', 'camp-away', 'camp-page');
+      document.body.classList.remove('nocamp', 'camp-scrolled', 'camp-scoped', 'camp-journal-open', 'camp-toasting', 'camp-away', 'camp-page');
       delete document.documentElement.dataset.campframe;
       if (UI.helpWatch) { UI.helpWatch.disconnect(); UI.helpWatch = null; }
       glass.classList.remove('closing', 'bloom-on');
@@ -2080,6 +2086,7 @@ NOBODY.themes = NOBODY.themes || {};
     TH.libsReady = function () { sceneUp(); };
     TH.resize = function () {
       if (scene) scene.resize();
+      drawRoute(); fitTab();
       reelPlace();
       placeBar();
     };
@@ -2110,10 +2117,14 @@ NOBODY.themes = NOBODY.themes || {};
           if (scene.C.scoped && scene.sig.target === info.slug && UI.lockSlug !== info.slug) lockEffects(info.slug);
           scene.setPlaying(info.slug);
         } else pendingView = { playing: info.slug };
+        // the journal turns to the incoming signal as the tuning starts
+        drawStory(true);
         return Promise.resolve();
       }
       if (to === 'playing') {
         if (scene) scene.setPlaying(info.slug); else pendingView = { playing: info.slug };
+        // the journal turns to the new signal; a play or a skip ends any looking (the core does the same through story())
+        JR.tunedAt = hhmm(new Date()); if (!coreQ().inspect) JR.inspect = null; drawStory(true); drawRoute();
         follow(info.slug);
         if (UI.lockSlug && UI.lockSlug !== info.slug) UI.lockSlug = null;
         duckFor();
@@ -2156,10 +2167,10 @@ NOBODY.themes = NOBODY.themes || {};
     TH.catalogue = function (tracks) { if (scene) { scene.setCatalogue(tracks); drawLegend(); } };
     TH.playing = function (slug) { if (scene) scene.setPlaying(slug); };
     TH.scheme = function () { if (scene) scene.scheme(document.documentElement.dataset.phosphor === 'amber'); };
-    TH.widget = function () { return null; };
+    TH.widget = function () { return RX.el ? { kind: 'receiver', host: RX.el } : null; };
     TH.state = function () {
       const sy = SY();
-      const base = { widget: null, layout: UI.layout, nocamp: document.body.classList.contains('nocamp'), golden: UI.golden, goldenVisit: UI.goldenVisit, journal: UI.journalSlug,
+      const base = { widget: RX.el ? 'receiver' : null, layout: UI.layout, nocamp: document.body.classList.contains('nocamp'), golden: UI.golden, goldenVisit: UI.goldenVisit, journal: JR.shown, inspecting: JR.inspect, journalRoute: UI.journal ? { mine: [].map.call(JR.mine.querySelectorAll('.cj-mrow'), function (r) { return r.dataset.slug; }), rotation: [].map.call(JR.rot.querySelectorAll('.cj-rrow'), function (r) { return r.dataset.slug; }) } : null,
         sounds: { on: SND.on, level: SND.level, amb: SND.amb, ambGain: AU.amb ? +AU.amb.gain.value.toFixed(3) : null, gain: AU.on && AU.bus ? +AU.bus.gain.value.toFixed(3) : null, want: +campGain().toFixed(3), station: sy && sy.gain ? +sy.gain.gain.value.toFixed(3) : null, volume: sy ? sy.volume : null,
           route: 'fire, wind, static, chime, ident, bite -> the camp bus (this gain) -> the station gain (the mute) -> speakers' },
         sky: scene ? scene.musicState() : { on: SKYP.on },
@@ -2189,7 +2200,7 @@ NOBODY.themes = NOBODY.themes || {};
       if (!scene) return;
       on = !!on && inCamp();
       if (on === scene.C.scoped) return;
-      if (on) { scene.freezeGaze(); scene.aimBack(); scene.lift(16); closeJournal(); hintSeen(); }
+      if (on) { scene.freezeGaze(); scene.aimBack(); scene.lift(16); hintSeen(); }
       scene.scope(on);
       document.body.classList.toggle('camp-scoped', on);
       if (UI.scopeBtn) { UI.scopeBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); UI.scopeBtn.textContent = on ? 'lower the scope' : 'scope'; }
@@ -2230,7 +2241,7 @@ NOBODY.themes = NOBODY.themes || {};
       UI.selfHL = true; ctx.setHighlight(slug); UI.selfHL = false;
       const t = ctx.tracks().find(function (x) { return x.slug === slug; });
       say((auto ? 'held steady. ' : '') + 'locked on: ' + (t ? (t.title || slug) : slug) + '. it comes in clear.', 'mid');
-      setTimeout(function () { if (UI.scopeEl) UI.scopeEl.classList.remove('locked'); if (scene && scene.C.scoped) setScope(false); if (CAMPLIST === 'sky') ctx.open(slug); else openJournal(slug); }, 1300);
+      setTimeout(function () { if (UI.scopeEl) UI.scopeEl.classList.remove('locked'); if (scene && scene.C.scoped) setScope(false); openJournal(slug); }, 1300);
     }
     function duckFor() { const sy = SY(); if (sy && sy.duck && sy.ctx) sy.duck(scene && scene.C.scoped ? 0.2 : 1, scene && scene.C.scoped ? 0.5 : 0.9); }
 
@@ -2519,20 +2530,11 @@ NOBODY.themes = NOBODY.themes || {};
       wrap.appendChild(document.createTextNode('   '));
       const controls = document.querySelector('#catalogue .cat-controls'); if (controls) controls.insertBefore(wrap, controls.firstChild);
       UI.deckBtn = db; UI.deckWrap = wrap;
-      // the hint, the first time; the credit under the camp
+      // the hint, the first time; the credit under the camp (issue #240: written at the foot of the journal's left page)
       UI.hint = mk('div', 'camp-hint', document.body, ''); UI.hint.hidden = true;
-      UI.credit = mk('p', 'camp-credit', document.body, CREDIT);
-      // the camp journal
-      const j = mk('section', 'card camp-journal', document.body); j.id = 'campJournal'; j.hidden = true; j.setAttribute('aria-label', 'camp journal');
-      j.innerHTML = '<div class="row"><span class="label">CAMP JOURNAL</span><button class="bare cj-close" type="button" aria-label="close the journal">close</button></div>' +
-        '<div class="cj-when"></div><h3 class="cj-title"></h3><div class="cj-freq"></div><p class="cj-prompt"></p><p class="cj-why"></p><dl class="cj-nums"></dl><div class="cj-buttons"></div>';
-      j.querySelector('.cj-close').addEventListener('click', closeJournal);
-      const jb = j.querySelector('.cj-buttons');
-      [['+ route', function (s) { ctx.queue(s); }], ['remix', function (s) { ctx.remix(s); closeJournal(); }], ['the page', function (s) { ctx.open(s); }]].forEach(function (b) {
-        const btn = mk('button', 'bk', jb, b[0]); btn.type = 'button'; btn.addEventListener('click', function (e) { e.stopPropagation(); if (UI.journalSlug) b[1](UI.journalSlug); }); jb.appendChild(document.createTextNode(' '));
-      });
-      j.addEventListener('pointerenter', function () { UI.journalHover = true; }); j.addEventListener('pointerleave', function () { UI.journalHover = false; });
-      UI.journal = j;
+      // the camp journal (issue #240): the one view, open at the lower left; the credit is written at its foot
+      buildJournal();
+      buildReceiver();
       // the pointer on the sky
       canvas.addEventListener('pointerdown', onDown);
       canvas.addEventListener('pointermove', onMove);
@@ -2584,21 +2586,26 @@ NOBODY.themes = NOBODY.themes || {};
       if (!UI.bar || !ctx) return;
       const ph = phone();
       if (ph) {
+        // the phone's column scrolls: once the sky is scrolled away, its selector and zoom (fixed at the top) step aside with it
+        const scr = document.getElementById('screen'); document.body.classList.toggle('camp-scrolled', !!scr && scr.scrollTop > 160);
         const tx = el('transmitter').getBoundingClientRect();
         const top = inCamp() ? tx.top : innerHeight;
         UI.bar.style.maxWidth = ''; UI.bar.style.left = '50%'; UI.bar.style.top = Math.round(top - (UI.bar.offsetHeight || 44) - 10) + 'px'; UI.bar.style.bottom = 'auto';
         // the map's middle: halfway down the sky you can see, between the header (and the selector) and the bar, a little high for the card
         if (scene && skyList()) { const hb = el('header').getBoundingClientRect().bottom + 50, bt = top - (UI.bar.offsetHeight || 44) - 10; scene.setCentre(Math.round(hb + (bt - hb) * 0.42)); }
       } else {
-        const tx = el('transmitter').getBoundingClientRect(), cat = el('catalogue').getBoundingClientRect();
-        const left = tx.right > 0 ? tx.right : 0, right = cat.left > left ? cat.left : innerWidth;
-        UI.credit.style.left = Math.round((left + right) / 2) + 'px'; UI.credit.style.maxWidth = Math.max(240, Math.round(right - left - 24)) + 'px';
-        // the bar stays inside the gap between the boards; what does not fit wraps onto a second row above it (issue #82)
-        UI.bar.style.maxWidth = Math.max(240, Math.round(right - left - 24)) + 'px';
-        UI.bar.style.left = Math.round((left + right) / 2) + 'px'; UI.bar.style.top = 'auto'; UI.bar.style.bottom = Math.round((UI.credit.offsetHeight || 40) + 24) + 'px';
-        if (scene && skyList()) scene.setCentre(0);
-        // the sky's selector ends above the board under it, and scrolls
-        if (UI.legend && CAMPLIST === 'sky') { const lt = UI.legend.getBoundingClientRect().top; if (tx.top > lt) UI.legend.style.maxHeight = Math.max(150, Math.round(tx.top - lt - 12)) + 'px'; }
+        // the desktop (issue #240): the journal holds the lower left, the receiver and its slips the right; the bar by the fire sits
+        // on the journal's top edge, the zoom beside its right edge, and the reticle in the middle of the sky above the journal
+        const jr = UI.journal ? UI.journal.getBoundingClientRect() : { top: innerHeight, left: 0, right: 0, width: 480 };
+        // the bar may run on past the journal's edge to the receiver's column, so it stays one row and clear of the star's slip
+        const txl = el('transmitter').getBoundingClientRect().left, bw = Math.max(240, Math.round((txl > jr.right ? txl - 16 : jr.right) - jr.left));
+        UI.bar.style.maxWidth = bw + 'px';
+        UI.bar.style.left = Math.round(jr.left + Math.min(bw, UI.bar.scrollWidth || bw) / 2) + 'px'; UI.bar.style.top = 'auto'; UI.bar.style.bottom = Math.round(innerHeight - jr.top + 26) + 'px';
+        if (MAPUI.el.zoom) { MAPUI.el.zoom.style.left = Math.round(jr.right + 14) + 'px'; MAPUI.el.zoom.style.right = 'auto'; MAPUI.el.zoom.style.top = 'auto'; MAPUI.el.zoom.style.bottom = Math.round(innerHeight - jr.bottom) + 'px'; MAPUI.el.zoom.style.transform = 'none'; }
+        const hb = el('header').getBoundingClientRect().bottom, barTop = innerHeight - parseFloat(UI.bar.style.bottom) - (UI.bar.offsetHeight || 44);
+        if (scene && skyList()) scene.setCentre(Math.round(hb + (barTop - hb) * 0.36));
+        // the sky's selector ends above the bar, and scrolls
+        if (UI.legend && CAMPLIST === 'sky') { const lt = UI.legend.getBoundingClientRect().top; UI.legend.style.maxHeight = Math.max(150, Math.round(barTop - lt - 12)) + 'px'; }
       }
     }
     function showHint() {
@@ -2610,24 +2617,274 @@ NOBODY.themes = NOBODY.themes || {};
     }
     function hintSeen() { if (UI.hint && !UI.hint.hidden && performance.now() - UI.hintAt > 1500) { UI.hint.hidden = true; try { localStorage.setItem('nobody.campfire.hint', '1'); } catch (e) {} } }
 
-    function openJournal(slug) {
-      const t = ctx.tracks().find(function (x) { return x.slug === slug; }); if (!t || !UI.journal) return;
-      const j = UI.journal, d = new Date();
-      j.querySelector('.cj-when').textContent = 'locked on at ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + (t.date ? ', made ' + t.date : '');
-      j.querySelector('.cj-title').textContent = t.title || t.slug;
-      const s = scene && scene.sig.bySlug[slug], f = s ? scene.sig.freqs[s.freq] : null;
-      const fe = j.querySelector('.cj-freq'); fe.textContent = f ? 'frequency: ' + f.name : ''; fe.style.setProperty('--fc', f ? f.colour : 'transparent');
-      j.querySelector('.cj-prompt').textContent = t.prompt || t.idea || '';
-      j.querySelector('.cj-why').textContent = t.why || '';
-      const n = t.numbers || {}, dl = j.querySelector('.cj-nums'); dl.textContent = '';
-      [['seed', t.seed], ['bpm', t.bpm], ['key', t.key], ['length', t.duration ? ctx.fmt(t.duration) : null], ['tier', t.model], ['loudness', n.lufs != null ? n.lufs + ' LUFS' : null]].forEach(function (r) {
-        if (r[1] == null || r[1] === '') return; mk('dt', '', dl, r[0]); mk('dd', '', dl, String(r[1]));
-      });
-      j.hidden = false; j.classList.remove('in'); void j.offsetWidth; j.classList.add('in');
-      document.body.classList.add('camp-journal-open');
-      UI.journalSlug = slug; UI.journalAt = performance.now();
+    /* ---- the camp journal (issue #240): the one view. a notebook open at the lower left: the left page is the signal (the one
+       playing, or the one you are looking at), the right page is the route (your picks in your order, then the rotation in faint
+       pencil). it reads the core's story and queue (NOBODY.story, S.inspect, ctx.move/remove/clear/playNext/inspect/mine) when
+       they are there, and draws the same thing from the index and the station's queue when they are not ---- */
+    const JR = { inspect: null, tab: 'story', core: null, q: null, tunedAt: null, drag: null, shown: null, crossing: {} };
+    const TABS = [['story', 'story'], ['prompt', 'prompt'], ['lyrics', 'words'], ['takes', 'takes'], ['lineage', 'lineage']];
+    function coreQ() {
+      const st = NOBODY.st || {};
+      return { move: ctx.move || st.queueMove || null, remove: ctx.remove || st.queueRemove || null, clear: ctx.clear || st.queueClear || null,
+        playNext: ctx.playNext || st.playNext || null, add: ctx.add || st.queueAppend || null, inspect: ctx.inspect || null, mine: ctx.mine || null };
     }
-    function closeJournal() { if (!UI.journal || UI.journal.hidden) { UI.journalSlug = null; return; } UI.journal.hidden = true; UI.journalSlug = null; document.body.classList.remove('camp-journal-open'); }
+    function hhmm(d) { return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+    function titleOf(slug) { const t = trackOf(slug); return t ? t.title || slug : slug; }
+    // the story of a track: the core's when it has one, filled out from the index where the core leaves a field empty
+    function storyOf(slug) {
+      const t = trackOf(slug); if (!t) return null;
+      const a = NOBODY.albumOf ? NOBODY.albumOf(slug) : null, seg = t.segments || {};
+      const local = { slug: slug, title: t.title || slug, asked: t.request || t.idea || '', by: seg.submitter || '', why: t.why || '', prompt: t.prompt || '', lyrics: t.lyrics || null,
+        takes: t.takes || [], rejected: t.rejected || [], numbers: t.numbers || {}, lineage: t.lineage || null, licence: t.licence || '',
+        album: a ? a.title || a.slug : '', n: seg.track_no || (a && a.tracks ? a.tracks.indexOf(slug) + 1 : null) || null, of: a && a.tracks ? a.tracks.length : null,
+        bpm: t.bpm, key: t.key, duration: t.duration, seed: t.seed, model: t.model, voice: !!t.voice, date: t.date, side: t.side || null };
+      const c = JR.core && JR.core.slug === slug ? JR.core : NOBODY.story ? NOBODY.story(slug) : null;
+      // the core's story (12.23): its album is { slug, title, n, of }, its lineage { parent, changed, children }, its takes the other seeds
+      if (c) Object.keys(c).forEach(function (k) {
+        const v = c[k]; if (v == null || v === '') return;
+        if (k === 'album') { if (typeof v === 'object') { local.album = v.title || v.slug || local.album; if (v.n) local.n = v.n; if (v.of) local.of = v.of; } else local.album = v; }
+        else if (k === 'bside') { if (v) local.side = 'b'; }
+        else local[k] = v;
+      });
+      return local;
+    }
+    function shownSlug() { return JR.inspect || ctx.current() || null; }
+    function inspect(slug) {
+      const q = coreQ();
+      if (slug === ctx.current()) slug = null;
+      if (q.inspect) { q.inspect(slug); return; }   // the core answers with story(), which draws
+      JR.inspect = slug && trackOf(slug) ? slug : null; drawStory(true);
+    }
+    function uninspect() { if (!JR.inspect) return false; inspect(null); return true; }
+    // the core's hook (issue #240): the story to show changed
+    TH.story = function (info, o) { JR.core = info || null; JR.inspect = o && o.inspecting && info ? info.slug : null; JR.open = !o || o.open !== false; drawStory(true); };
+    // the station's queue hook: the core's shape { mine, rotation, current }, or today's one list
+    TH.queue = function (arg, current) {
+      // the core's list carries .mine, .rotation and .current (12.23); a bare list is the old station's whole queue
+      JR.q = arg && arg.mine ? { mine: arg.mine.slice(), rotation: (arg.rotation || []).slice(), current: arg.current !== undefined ? arg.current : current } : { mine: null, rotation: (arg || []).slice(), current: current };
+      if (scene) scene.setQueue((JR.q.mine || []).concat(JR.q.rotation).slice(0, 6), JR.q.current);
+      drawRoute();
+    };
+    function queueNow() {
+      if (JR.q) return JR.q;
+      const q = coreQ(), list = ctx.queueList();
+      return q.mine ? { mine: q.mine(), rotation: ctx.rotationList ? ctx.rotationList() : list.filter(function (s) { return q.mine().indexOf(s) < 0; }), current: ctx.current() } : { mine: null, rotation: list, current: ctx.current() };
+    }
+
+    function jbtn(parent, cls, text, aria, fn) {
+      const b = mk('button', 'cj-btn ' + (cls || ''), parent, text); b.type = 'button'; if (aria) b.setAttribute('aria-label', aria);
+      b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); fn(b); });
+      return b;
+    }
+    function buildJournal() {
+      const j = mk('section', 'camp-journal', null); j.id = 'campJournal'; j.setAttribute('data-theme-el', ''); j.setAttribute('aria-label', 'camp journal: the signal and the route');
+      const rib = mk('div', 'cj-ribbons', j); rib.setAttribute('role', 'tablist'); rib.setAttribute('aria-label', 'what the left page shows');
+      JR.ribbons = {};
+      TABS.forEach(function (tb, i) {
+        const b = mk('button', 'cj-ribbon r' + i, rib, tb[1]); b.type = 'button'; b.setAttribute('role', 'tab'); b.dataset.tab = tb[0];
+        b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); JR.tab = tb[0]; drawStory(false); });
+        JR.ribbons[tb[0]] = b;
+      });
+      const spread = mk('div', 'cj-spread', j);
+      const L = mk('article', 'cj-page cj-left', spread); L.setAttribute('aria-live', 'polite');
+      const kick = mk('div', 'cj-kicker', L); JR.who = mk('span', 'cj-who', kick, "tonight's signal"); JR.when = mk('span', 'cj-when', kick, '');
+      JR.title = mk('h3', 'cj-title', L, '');
+      JR.album = mk('div', 'cj-album', L, '');
+      JR.asked = mk('div', 'cj-asked', L, '');
+      JR.body = mk('div', 'cj-tab', L, ''); JR.body.setAttribute('role', 'tabpanel'); JR.body.tabIndex = 0;
+      JR.nums = mk('div', 'cj-nums', L, '');
+      JR.acts = mk('div', 'cj-acts', L);
+      const R = mk('article', 'cj-page cj-right', spread);
+      const rh = mk('div', 'cj-rhead', R); mk('span', 'cj-h', rh, 'the route');
+      JR.clearBtn = jbtn(rh, 'cj-clear', 'rub out mine', 'clear the tracks you added', function () { const q = coreQ(); if (q.clear) q.clear(); });
+      JR.mine = mk('ol', 'cj-mine', R); JR.mine.setAttribute('aria-label', 'your picks, in the order they play');
+      JR.then = mk('div', 'cj-then', R, 'then wherever the sky goes');
+      JR.rot = mk('ol', 'cj-rot', R); JR.rot.setAttribute('aria-label', 'then the rotation');
+      UI.credit = mk('p', 'camp-credit', R, CREDIT);
+      j.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+      // in the document flow after the catalogue (the station's own order stays: NOW PLAYING, MAKE A TRACK, the catalogue): on a phone it
+      // is a card in the column; on a desktop it is fixed at the lower left
+      const cat = el('catalogue'); if (cat && cat.parentNode) cat.parentNode.insertBefore(j, cat.nextSibling); else document.body.appendChild(j);
+      UI.journal = j;
+      drawStory(false); drawRoute();
+    }
+    function drawStory(fresh) {
+      if (!UI.journal) return;
+      const slug = shownSlug(), s = slug ? storyOf(slug) : null, insp = !!JR.inspect;
+      UI.journal.classList.toggle('inspecting', insp);
+      UI.journal.classList.toggle('folded', JR.open === false);
+      if (fresh && JR.shown !== slug && UI.journal.animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) UI.journal.querySelector('.cj-left').animate([{ opacity: 0.35, transform: 'translateY(4px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
+      JR.shown = slug;
+      Object.keys(JR.ribbons).forEach(function (k) { const on = k === JR.tab; JR.ribbons[k].classList.toggle('on', on); JR.ribbons[k].setAttribute('aria-selected', on ? 'true' : 'false'); });
+      if (!s) { JR.who.textContent = "tonight's signal"; JR.when.textContent = ''; JR.title.textContent = 'nothing yet'; JR.album.textContent = ''; JR.asked.textContent = ''; JR.body.textContent = 'sit a while. the sky is still coming in.'; JR.nums.textContent = ''; JR.acts.textContent = ''; return; }
+      JR.who.textContent = insp ? 'a signal you are looking at' : "tonight's signal";
+      JR.when.textContent = insp ? (ctx.current() ? 'still playing: ' + titleOf(ctx.current()) : '') : JR.tunedAt ? 'tuned in at ' + JR.tunedAt : '';
+      JR.title.textContent = s.title;
+      JR.album.textContent = [s.album ? (s.n && s.of ? s.album + ', ' + s.n + ' of ' + s.of : s.album) : '', s.side === 'b' ? 'b-side' : ''].filter(Boolean).join('  ·  ');
+      JR.asked.textContent = s.asked ? 'asked: "' + s.asked + '"' + (s.by ? ' by ' + s.by : '') : '';
+      JR.body.textContent = '';
+      const T_ = JR.tab;
+      if (T_ === 'story') mk('p', 'cj-why', JR.body, s.why || 'no note was kept for this one.');
+      else if (T_ === 'prompt') mk('p', 'cj-prompt', JR.body, s.prompt || 'no prompt kept.');
+      else if (T_ === 'lyrics') { if (s.lyrics) String(s.lyrics).split(/\n/).forEach(function (l) { mk('div', 'cj-line', JR.body, l || ' '); }); else mk('p', 'cj-why', JR.body, s.voice ? 'the words were not kept.' : 'no words: it plays on its own.'); }
+      else if (T_ === 'takes') {
+        const others = (s.takes || []).filter(function (x) { return x !== s.seed; });
+        mk('div', 'cj-line', JR.body, 'kept: seed ' + (s.seed != null ? s.seed : '?') + (others.length ? '; the other takes: ' + others.join(', ') : ''));
+        (s.rejected || []).forEach(function (r) { const w = typeof r === 'object' ? (r.seed != null ? 'seed ' + r.seed : '') + (r.why || r.reason ? ': ' + (r.why || r.reason) : '') : 'seed ' + r; mk('div', 'cj-line cj-struck', JR.body, w); });
+        if (!(s.rejected || []).length) mk('div', 'cj-line', JR.body, 'nothing thrown back.');
+      } else if (T_ === 'lineage') {
+        const lin = s.lineage && (s.lineage.parent || s.lineage.changed || (s.lineage.children || []).length) ? s.lineage : null;
+        if (!lin) mk('p', 'cj-why', JR.body, 'the first of its line. remix it and it will have a child.');
+        else {
+          if (lin.parent) mk('div', 'cj-line', JR.body, 'from: ' + titleOf(lin.parent) + (lin.seed != null ? ', seed ' + lin.seed : ''));
+          if (lin.changed) mk('div', 'cj-line', JR.body, 'changed: "' + (lin.changed.from || '') + '" to "' + (lin.changed.to || '') + '"');
+          const kids = (lin.children || []).filter(function (c) { return c !== s.slug; });
+          if (kids.length) mk('div', 'cj-line', JR.body, (lin.parent ? 'its line: ' : 'its children: ') + kids.map(titleOf).join(', '));
+          if (!lin.parent && !lin.changed && !kids.length) mk('p', 'cj-why', JR.body, 'the first of its line. remix it and it will have a child.');
+        }
+      }
+      JR.nums.textContent = [s.bpm ? s.bpm + ' bpm' : '', s.key || '', s.duration ? ctx.fmt(s.duration) : '', s.seed != null ? 'seed ' + s.seed : '', s.model || ''].filter(Boolean).join('  ·  ');
+      JR.acts.textContent = '';
+      const q = coreQ();
+      if (insp) {
+        jbtn(JR.acts, 'cj-main', 'play now', 'play ' + s.title + ' now', function () { ctx.play(s.slug); });
+        if (q.playNext) jbtn(JR.acts, '', 'play next', 'play ' + s.title + ' next', function () { q.playNext(s.slug); });
+        if (!s.mine) jbtn(JR.acts, '', 'add to route', 'add ' + s.title + ' to the end of your route', function () { if (q.add) q.add(s.slug); else ctx.queue(s.slug); });
+        jbtn(JR.acts, 'cj-back', 'back', 'back to the track that is playing', function () { uninspect(); });
+      } else {
+        jbtn(JR.acts, 'cj-main', 'remix this', 'remix ' + s.title, function () { ctx.remix(s.slug); });
+        jbtn(JR.acts, '', 'take it home', 'take ' + s.title + ' home: the file and its recipe', function (b) { if (NOBODY.st && NOBODY.st.take) NOBODY.st.take(s.slug, b); });
+      }
+      fitTab();
+    }
+    // the tab's page ends on a ruled line: its height is a whole number of lines, so no line is shown cut in half above the numbers
+    // (the rest scrolls). on a phone the page grows with its text instead
+    function fitTab() {
+      const b = JR.body; if (!b || !b.isConnected) return;
+      b.style.flex = ''; b.style.height = '';
+      if (phone() || !document.body.matches('[data-layout="camp"]')) return;
+      const n = Math.max(2, Math.floor(b.clientHeight / 26));
+      b.style.flex = '0 0 auto'; b.style.height = (n * 26) + 'px';
+    }
+    function drawRoute() {
+      if (!UI.journal) return;
+      const Q = queueNow(), q = coreQ(), mine = Q.mine, cur = Q.current;
+      JR.mine.textContent = ''; JR.rot.textContent = '';
+      UI.journal.classList.toggle('no-mine-api', !mine);
+      JR.clearBtn.hidden = !(mine && mine.length && q.clear);
+      if (mine) {
+        if (!mine.length) mk('li', 'cj-empty', JR.mine, 'nothing of yours yet. q on a star, or "add to the route".');
+        mine.forEach(function (slug, i) {
+          const li = mk('li', 'cj-mrow', JR.mine); li.dataset.slug = slug;
+          const notch = mk('span', 'cj-notch', li); notch.setAttribute('aria-hidden', 'true'); notch.title = 'drag to move';
+          mk('span', 'cj-box', li).setAttribute('aria-hidden', 'true');
+          mk('span', 'cj-n', li, String(i + 1));
+          jbtn(li, 'cj-t', titleOf(slug), 'look at ' + titleOf(slug), function () { inspect(slug); });
+          if (q.move) {
+            const up = jbtn(li, 'cj-mv', '↑', 'move ' + titleOf(slug) + ' up', function () { if (i > 0) q.move(slug, i - 1); }); up.disabled = i === 0;
+            const dn = jbtn(li, 'cj-mv', '↓', 'move ' + titleOf(slug) + ' down', function () { if (i < mine.length - 1) q.move(slug, i + 1); }); dn.disabled = i === mine.length - 1;
+          }
+          if (q.remove) jbtn(li, 'cj-x', '✕', 'cross out ' + titleOf(slug), function () {
+            if (JR.crossing[slug]) return; JR.crossing[slug] = true; li.classList.add('crossing');
+            setTimeout(function () { delete JR.crossing[slug]; q.remove(slug); }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 340);
+          });
+          if (q.move) notch.addEventListener('pointerdown', function (e) { dragStart(e, li, slug, i); });
+        });
+      }
+      // the rotation: faint pencil under the line; without the core's two lists it is simply what plays next
+      JR.then.textContent = mine ? 'then wherever the sky goes' : 'up next, as the sky turns';
+      (Q.rotation || []).filter(function (s) { return s !== cur && (!mine || mine.indexOf(s) < 0); }).slice(0, 12).forEach(function (slug) {
+        const li = mk('li', 'cj-rrow', JR.rot); li.dataset.slug = slug;
+        jbtn(li, 'cj-t', titleOf(slug), 'look at ' + titleOf(slug), function () { inspect(slug); });
+        jbtn(li, 'cj-add', '+', 'add ' + titleOf(slug) + ' to the end of your route', function () { if (q.add) q.add(slug); else ctx.queue(slug); });
+      });
+      fitRot();
+    }
+    // the rotation is pencilled only as far down as the page goes: a row that would be cut by the credit is left off
+    function fitRot() {
+      if (!JR.rot || !JR.rot.isConnected) return;
+      const rows = JR.rot.children; let n = 0;
+      while (rows.length > 1 && JR.rot.scrollHeight > JR.rot.clientHeight + 1 && n++ < 20) JR.rot.removeChild(rows[rows.length - 1]);
+    }
+    // drag by the notch: the row lifts, a pencil line shows where it lands, a drop moves it (ctx.move)
+    function dragStart(e, li, slug, from) {
+      e.preventDefault(); e.stopPropagation();
+      const rows = [].slice.call(JR.mine.querySelectorAll('.cj-mrow'));
+      const line = mk('div', 'cj-insert', JR.mine); line.setAttribute('aria-hidden', 'true');
+      const top0 = JR.mine.getBoundingClientRect().top;
+      JR.drag = { slug: slug, from: from, to: from, y0: e.clientY, li: li, rows: rows, line: line };
+      li.classList.add('lifted');
+      try { li.setPointerCapture(e.pointerId); } catch (err) {}
+      function at(y) {
+        let to = rows.length - 1;
+        for (let i = 0; i < rows.length; i++) { const r = rows[i].getBoundingClientRect(); if (y < r.top + r.height / 2) { to = i; break; } }
+        return to;
+      }
+      function mv(ev) {
+        const d = JR.drag; if (!d) return;
+        li.style.transform = 'translateY(' + Math.round(ev.clientY - d.y0) + 'px) rotate(-1deg)';
+        d.to = at(ev.clientY);
+        const r = rows[d.to].getBoundingClientRect(), below = d.to > d.from;
+        line.style.top = Math.round((below ? r.bottom : r.top) - top0 - 1) + 'px';
+      }
+      function up() {
+        const d = JR.drag; JR.drag = null;
+        li.removeEventListener('pointermove', mv); li.removeEventListener('pointerup', up); li.removeEventListener('pointercancel', up);
+        li.classList.remove('lifted'); li.style.transform = ''; line.remove();
+        const q = coreQ(); if (d && d.to !== d.from && q.move) q.move(d.slug, d.to);
+      }
+      li.addEventListener('pointermove', mv); li.addEventListener('pointerup', up); li.addEventListener('pointercancel', up);
+    }
+    // the lock (the list's scope) writes the signal in: the journal already follows what plays, so this only marks the time
+    function openJournal(slug) { JR.tunedAt = hhmm(new Date()); if (JR.inspect && JR.inspect !== slug) JR.inspect = null; drawStory(true); }
+    function closeJournal() { return uninspect(); }
+
+    /* ---- the receiver (issue #240): now playing is a small round handheld set in the top right, a green trace in a brass rim,
+       the frequency and the lock under it; the transport and the progress hang on its strap. its face is the one widget ---- */
+    const RX = { el: null, cv: null, g: null, lock: null, freq: null, chipObs: null, word: '', drawnAt: 0 };
+    function buildReceiver() {
+      const tx = el('transmitter'); if (!tx) return;
+      const f = mk('div', 'camp-rx tx-widget', null); f.setAttribute('aria-hidden', 'true');
+      const face = mk('div', 'rx-face', f);
+      RX.cv = mk('canvas', 'rx-trace', face); RX.cv.width = 240; RX.cv.height = 240; RX.g = RX.cv.getContext('2d');
+      RX.freq = mk('span', 'rx-freq', f, '88.8'); RX.lock = mk('span', 'rx-lock', f, 'standby');
+      tx.insertBefore(f, tx.firstChild);
+      RX.el = f;
+      const chip = el('chip');
+      const sync = function () {
+        const w = (chip.textContent || '').replace(/[\[\]]/g, '').trim().toLowerCase();
+        const word = w === 'on air' ? 'locked' : w === 'tuning' ? 'tuning' : w || 'standby';
+        document.body.classList.toggle('is-playing', w === 'on air');
+        if (word !== RX.word) { RX.word = word; RX.lock.textContent = word; RX.lock.className = 'rx-lock ' + (word === 'locked' ? 'ok' : word === 'tuning' ? 'amber' : 'mid'); }
+        const fq = el('hdrFreq'); if (fq) RX.freq.textContent = fq.textContent.replace(/\s*MHz/i, '');
+      };
+      RX.chipObs = new MutationObserver(sync); RX.chipObs.observe(chip, { childList: true, characterData: true, subtree: true });
+      sync();
+    }
+    function drawReceiver(now) {
+      // nothing to draw where nobody sees it: the hidden interface, the car view, a page, the receiver folded away
+      if (!RX.g || document.body.classList.contains('ui-hidden') || document.documentElement.dataset.view === 'car' || !RX.el.offsetParent || now - RX.drawnAt < 30) return;
+      RX.drawnAt = now;
+      const g = RX.g, W = RX.cv.width, H = RX.cv.height, cx = W / 2, cy = H / 2, playing = document.body.classList.contains('is-playing');
+      g.clearRect(0, 0, W, H);
+      const bg = g.createRadialGradient(cx, cy * 0.9, 10, cx, cy, W / 2); bg.addColorStop(0, '#0d2a22'); bg.addColorStop(1, '#030b09'); g.fillStyle = bg; g.fillRect(0, 0, W, H);
+      g.strokeStyle = 'rgba(125,255,176,.12)'; g.lineWidth = 1;
+      for (let r = 30; r < W / 2; r += 30) { g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.stroke(); }
+      g.beginPath(); g.moveTo(0, cy); g.lineTo(W, cy); g.moveTo(cx, 0); g.lineTo(cx, H); g.stroke();
+      const n = 96, w = A && A.samples ? A.samples(n) : null, amp = playing ? 70 : 6;
+      g.strokeStyle = '#7dffb0'; g.lineWidth = 3; g.shadowColor = 'rgba(125,255,176,.8)'; g.shadowBlur = 10;
+      g.beginPath();
+      for (let i = 0; i < n; i++) {
+        const x = 18 + (W - 36) * i / (n - 1), edge = Math.sin(Math.PI * i / (n - 1));
+        const v = w && playing ? w[i] : Math.sin(now / 700 + i / 9) * 0.3;
+        const y = cy + v * amp * edge;
+        if (i) g.lineTo(x, y); else g.moveTo(x, y);
+      }
+      g.stroke(); g.shadowBlur = 0;
+      // the bass glows the glass a little, like the fire on the trees
+      const b = playing && A ? clamp(A.bass || 0, 0, 1) : 0;
+      if (b > 0.05) { g.fillStyle = 'rgba(125,255,176,' + (0.08 * b).toFixed(3) + ')'; g.beginPath(); g.arc(cx, cy, W / 2, 0, Math.PI * 2); g.fill(); }
+    }
 
     /* ---- the pointer: move to look, drag to turn, the right button raises the scope, a click locks or picks, the wheel tunes ---- */
     const DEGR = Math.PI / 180;
@@ -2746,7 +3003,6 @@ NOBODY.themes = NOBODY.themes || {};
         UI.mallowBtn.textContent = M.on ? (M.eating >= 0 ? 'mm' : 'eat') : 'marshmallow';
       }
       // the journal closes itself after a while unless you are reading it
-      if (UI.journalSlug && !UI.journalHover && now - UI.journalAt > 22000) closeJournal();
       if (UI.hint && !UI.hint.hidden && now - UI.hintAt > 16000) hintSeen();
       if (UI.frames % 30 === 1) placeBar();
       if (CAMPLIST === 'sky') { mapFrame(now); clLabel(); if (UI.frames % 15 === 0) reelRun(); }
@@ -2814,6 +3070,8 @@ NOBODY.themes = NOBODY.themes || {};
       plus: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>',
       minus: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/></svg>',
       home: '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.2"/><circle cx="8" cy="8" r="6" stroke-dasharray="2 2.2"/></svg>',
+      next: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3.5v9l6-4.5zM11.5 3.5v9"/></svg>',
+      story: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.5c2-.8 3.8-.6 5.5.6v9c-1.7-1.2-3.5-1.4-5.5-.6zM13.5 3.5c-2-.8-3.8-.6-5.5.6v9c1.7-1.2 3.5-1.4 5.5-.6z"/></svg>',
       close: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>'
     };
     function iconBtn(parent, cls, icon, label, aria, fn) {
@@ -2829,8 +3087,9 @@ NOBODY.themes = NOBODY.themes || {};
       mk('div', 'label cg-kicker', card, ''); mk('div', 'cg-title', card, ''); mk('div', 'cg-meta', card, '');
       const acts = mk('div', 'cg-acts', card);
       iconBtn(acts, 'cg-btn cg-play', 'play', 'play', 'play the star under the reticle', function () { if (MAPUI.sel) ctx.play(MAPUI.sel); });
-      iconBtn(acts, 'cg-btn', 'queue', 'queue', 'queue the star under the reticle', function () { if (MAPUI.sel) ctx.queue(MAPUI.sel); });
-      iconBtn(acts, 'cg-btn', 'reel', 'reel', 'open its reel: the track, frame by frame', function () { if (MAPUI.sel) ctx.open(MAPUI.sel); });
+      MAPUI.el.next = iconBtn(acts, 'cg-btn cg-next', 'next', 'next', 'play the star under the reticle next', function () { const q = coreQ(); if (MAPUI.sel && q.playNext) q.playNext(MAPUI.sel); });
+      iconBtn(acts, 'cg-btn', 'queue', 'queue', 'add the star under the reticle to your route', function () { if (MAPUI.sel) ctx.queue(MAPUI.sel); });
+      iconBtn(acts, 'cg-btn', 'story', 'story', 'its story, in the journal', function () { if (MAPUI.sel) inspect(MAPUI.sel); });
       MAPUI.el.sight = sg; MAPUI.el.card = card;
       const z = mk('div', 'camp-zoom', document.body); z.setAttribute('role', 'group'); z.setAttribute('aria-label', 'zoom the sky');
       iconBtn(z, 'cz-btn', 'plus', '', 'zoom in', function () { zoomStep(1.6); });
@@ -2876,7 +3135,7 @@ NOBODY.themes = NOBODY.themes || {};
     function boardRects(now) {
       if (MAPUI.rects && now - MAPUI.rectsAt < 500) return MAPUI.rects;
       MAPUI.rectsAt = now; MAPUI.rects = [];
-      ['header', 'transmitter', 'make', 'terminal'].map(el).concat([UI.legend, UI.bar, UI.credit, UI.hint, MAPUI.el.zoom, MAPUI.el.card, MAPUI.el.select]).forEach(function (n) {
+      ['header', 'transmitter', 'make', 'terminal'].map(el).concat([UI.legend, UI.bar, UI.journal, UI.hint, MAPUI.el.zoom, MAPUI.el.card, MAPUI.el.select]).forEach(function (n) {
         if (!n || n.hidden || n.offsetParent === null && getComputedStyle(n).position !== 'fixed') return;
         const r = n.getBoundingClientRect(); if (r.width && r.height && r.bottom > 0 && r.top < innerHeight) MAPUI.rects.push({ x: r.left - 4, y: r.top - 4, w: r.width + 8, h: r.height + 8 });
       });
@@ -3257,7 +3516,7 @@ NOBODY.themes = NOBODY.themes || {};
 
     /* ---- no station visualizer under the camp (issue #82): the sky is the visualizer. the card's spectrum, baseline and scope
        are hidden by the theme's CSS in every layout; frame() only keeps the baseline's words current, as 12.0 asks ---- */
-    TH.frame = function () { A.baselineText(A.live); };
+    TH.frame = function (A_, S_, now) { A.baselineText(A.live); drawReceiver(now || performance.now()); };
     TH.artwork = function () {
       try {
         const cv = document.createElement('canvas'); cv.width = 512; cv.height = 512; const g = cv.getContext('2d');

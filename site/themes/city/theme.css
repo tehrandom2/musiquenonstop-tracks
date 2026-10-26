@@ -543,6 +543,110 @@ body.ui-hidden .city-readout:not(.hint) { display: none; }
   @keyframes roHintStill { 0% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
 }
 
+/* ---- one view and the flight plan (issue #240, design 12.23) ---- */
+/* the dossier docked in NOW PLAYING: HUD tabs in the display face, the body on the card's own opaque panel */
+.city-ds { margin-top: 8px; padding-top: 6px; border-top: 1px solid rgb(var(--violet-rgb) / .35); white-space: normal; }
+.ds-tabs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 1.8ch; }
+.ds-tab.label, .wp .wp-n.label { background: none; padding-bottom: 0; }
+.ds-tab { font-family: var(--display); font-size: var(--label-fs); font-weight: 600; letter-spacing: .14em; color: var(--ink-mid); padding: 3px 0 2px; border-bottom: 2px solid transparent; line-height: 1.2; }
+.ds-tab:hover, .ds-tab:focus-visible { color: var(--ink); }
+.ds-tab.on { color: var(--cyan); border-bottom-color: var(--cyan); text-shadow: 0 0 8px rgb(var(--cyan-rgb) / .45); }
+.ds-fold { margin-left: auto; color: var(--ink-mid); white-space: pre; }
+.ds-fold:hover, .ds-fold:focus-visible { color: var(--ink); }
+.city-ds.folded .ds-tab.on { color: var(--ink-mid); border-bottom-color: transparent; text-shadow: none; }
+.ds-body { margin-top: 6px; overflow-wrap: anywhere; }
+.ds-body:empty { display: none; }
+.ds-body p { margin: 0 0 4px; }
+.ds-body .label { margin-right: .6ch; }
+.ds-lyrics { white-space: pre-wrap; }
+.ds-lineage > div { white-space: pre-wrap; }
+.ds-take { white-space: pre; }
+.ds-cat:empty { display: none; }
+.ds-cat { white-space: pre-wrap; margin-top: 4px; }
+/* the numbers as gauges, each named for the part of its tower it built */
+.ds-gauges { display: grid; gap: 3px; }
+.ds-gauge { display: grid; grid-template-columns: 11ch minmax(48px, 1fr) 15ch 4ch 7ch; gap: 1ch; align-items: center; }
+.ds-gauge .gb { height: 8px; border-radius: 2px; background: rgb(var(--violet-rgb) / .2); position: relative; overflow: hidden; }
+.ds-gauge .gb i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--grad-deep); box-shadow: 0 0 8px rgb(var(--cyan-rgb) / .5); }
+.ds-gauge.fail .gb i { background: var(--amber); box-shadow: 0 0 8px rgb(var(--amber-rgb) / .5); }
+.ds-gauge .gv { text-align: right; white-space: pre; }
+.ds-gauge .gc.ok { color: var(--green); }
+.ds-gauge .gc.fail { color: var(--amber); }
+/* the floating dossier: an inspected track. in the deck it is a card under NOW PLAYING; in the air it stands beside its tower */
+.city-inspect { white-space: normal; border-radius: var(--radius); }
+.city-inspect::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: 0 0 0 1px rgb(var(--cyan-rgb) / .55), 0 0 24px rgb(var(--cyan-rgb) / .22); }
+.ci-head { display: flex; justify-content: space-between; align-items: baseline; }
+.ci-head .label { color: var(--cyan); }
+.ci-close { color: var(--ink-mid); white-space: pre; }
+.ci-close:hover, .ci-close:focus-visible { color: var(--ink); }
+.ci-title { font-family: var(--display); font-weight: 700; font-size: calc(var(--fs) + 4px); letter-spacing: .04em; background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 8px rgb(var(--magenta-rgb) / .35)); overflow-wrap: anywhere; }
+.ci-meta { margin-bottom: 4px; }
+.ci-acts { margin-bottom: 6px; }
+.ci-acts .bk { white-space: pre; color: var(--ink); }
+.city-inspect .ds-tabs { border-top: 1px solid rgb(var(--violet-rgb) / .35); padding-top: 4px; column-gap: 1.3ch; }
+.city-inspect .ds-tab { letter-spacing: .1em; }
+body[data-layout="air"] .city-inspect { grid-area: scene; align-self: start; justify-self: start; width: min(440px, 100%); max-height: 100%; overflow: auto; z-index: 3; }
+.city-inspect.floating { position: fixed; left: 0; top: 0; width: min(440px, 38vw); overflow: auto; margin: 0; z-index: 3; animation: roIn 160ms cubic-bezier(.2, .9, .3, 1) both; }
+.city-inspect .ds-body { max-height: calc(var(--row) * 9); overflow: auto; }
+/* the leader line: from the card's edge to a dot on the tower's crown */
+.city-leader { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 2; display: none; overflow: visible; }
+.city-leader.on { display: block; }
+.city-leader polyline { fill: none; stroke: var(--cyan); stroke-width: 1.5; filter: drop-shadow(0 0 4px rgb(var(--cyan-rgb) / .8)); }
+.city-leader circle { fill: var(--magenta); filter: drop-shadow(0 0 6px rgb(var(--magenta-rgb) / .9)); }
+/* the flight plan: yours numbered and green like the pillars over their towers, then THEN AUTO and the rotation in the dim ink */
+.city-plan { white-space: normal; }
+.pl-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 2ch; white-space: normal; }
+.pl-head > * { white-space: pre; }
+.pl-clear { margin-left: auto; color: var(--ink); }
+.pl-list { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 3px; }
+.wp { display: grid; grid-template-columns: 3ch minmax(0, 1fr) auto 2ch; gap: 1ch; align-items: baseline; padding: 1px 6px; border-radius: 4px; border: 1px solid transparent; }
+.wp .wp-n { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: .08em; }
+.wp .wp-name { text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.wp .wp-len { white-space: pre; }
+.wp .wp-x { color: var(--ink-mid); text-align: center; }
+.wp .wp-x:hover, .wp .wp-x:focus-visible { color: var(--magenta); }
+.wp.mine { border-color: rgb(var(--green-rgb) / .35); background: rgb(var(--green-rgb) / .06); cursor: grab; touch-action: none; }
+.wp.mine .wp-n { color: var(--green); text-shadow: var(--glow-green); }
+.wp.mine .wp-name { color: var(--ink); }
+.wp.auto .wp-n { color: var(--ink-dim); }
+.wp.auto .wp-name { color: var(--ink-mid); }
+.wp:focus-visible { outline: 2px solid var(--cyan); outline-offset: 1px; }
+.wp.lifted { position: relative; z-index: 5; background: var(--panel); border-color: var(--cyan); box-shadow: 0 8px 24px rgb(0 0 0 / .6), 0 0 14px rgb(var(--cyan-rgb) / .45); cursor: grabbing; }
+.wp.ins-before { box-shadow: 0 -3px 0 -1px var(--magenta), 0 -3px 10px -2px rgb(var(--magenta-rgb) / .7); }
+.wp.ins-after { box-shadow: 0 3px 0 -1px var(--magenta), 0 3px 10px -2px rgb(var(--magenta-rgb) / .7); }
+.city-plan.dragging { user-select: none; }
+.pl-empty { padding: 1px 6px; }
+.pl-auto { padding: 3px 6px 1px; margin-top: 2px; border-top: 1px dashed rgb(var(--violet-rgb) / .55); grid-column: 1 / -1; }
+/* the city's cards are appended to #main; in the deck (a flex column) order places them: an inspected track under NOW PLAYING, the
+   plan above the catalogue. the station's own cards keep their markup order */
+body:not([data-layout="air"]) #header { order: 1; }
+body:not([data-layout="air"]) #transmitter { order: 2; }
+body:not([data-layout="air"]) #cityInspect { order: 3; }
+body:not([data-layout="air"]) #make { order: 4; }
+body:not([data-layout="air"]) #cityPlan { order: 5; }
+body:not([data-layout="air"]) #catalogue, body:not([data-layout="air"]) #page { order: 6; }
+body:not([data-layout="air"]) #terminal { order: 7; }
+body:not([data-layout="air"]) #footer { order: 8; }
+/* in the deck the plan is a card above the catalogue, its waypoints in columns */
+body:not([data-layout="air"]) .pl-list { grid-template-columns: repeat(auto-fill, minmax(34ch, 1fr)); column-gap: 1.5ch; }
+/* in the air the plan stands beside NOW PLAYING (what plays, then what comes), the catalogue rail above it; the dossier's body keeps
+   the scene open until it is asked for */
+body[data-layout="air"] #main { grid-template-areas: "header header" "scene rail" "tx plan" "make plan" "term plan"; }
+body[data-layout="air"] #catalogue > .row, body[data-layout="air"] #catalogue .cat-head { flex: none; }
+body[data-layout="air"] #cityPlan { grid-area: plan; display: flex; flex-direction: column; min-height: 0; }
+body[data-layout="air"] #cityPlan .pl-list { overflow-y: auto; overflow-x: hidden; min-height: 0; }
+body[data-layout="air"] .city-ds .ds-body { max-height: calc(var(--row) * 4); overflow: auto; }
+@media (max-width: 900px) {
+  body[data-layout="air"] #main { grid-template-rows: auto minmax(0, 1fr) auto; grid-template-areas: "header" "scene" "tx"; }
+  body[data-layout="air"] #cityPlan { display: none; }
+  .ds-gauge { grid-template-columns: 10ch minmax(40px, 1fr) 13ch 4ch; }
+  .ds-gauge .gt { display: none; }
+  .ds-tabs { column-gap: 1.2ch; }
+  body:not([data-layout="air"]) .pl-list { grid-template-columns: minmax(0, 1fr); }
+}
+body.ui-hidden .city-leader { display: none; }
+@media (prefers-reduced-motion: reduce) { .city-inspect.floating { animation: none; } }
+
 /* the car view (issue #220): the city's glass, the cyan and the magenta, white ink */
 :root {
   --car-bg: rgb(4 6 18 / .84); --car-ink: var(--ink); --car-mid: #B9C8E8; --car-accent: var(--cyan); --car-accent2: var(--magenta); --car-line: rgb(var(--cyan-rgb) / .35);

@@ -17,6 +17,18 @@ ident in our own phrase). No art, models, textures, screenshots, music, sounds, 
 else's work are used, traced or referenced as images. No game, studio or character is named anywhere in the theme; the
 credit line above is shown in the theme's footer and under the camp (issue #116).
 
+## The interface (issue #240)
+
+Not boards: three materials of the camp's own. Night glass (deep indigo, a starlit edge, a small constellation in the corner, the
+hand for labels) for what the station says; paper in pencil for what you keep (the journal, the MAKE A TRACK slip, the torn slip
+by the reticle); and the receiver for what plays: a round handheld set in a brass rim at the top right, a green trace on its face,
+the frequency and `locked` under it, the transport as brass knobs and the time on a stitched strap.
+
+The camp journal at the lower left is the one view: the left page is the signal (what plays, or what you are looking at, with five
+ribbon bookmarks: story, prompt, words, takes, lineage), the right page is the route (yours, in your order: drag by the notch, up,
+down, cross out, rub out mine; then the rotation in faint pencil). The fire joins the sky as the visualizer: taller flames on the
+low end, sparks on the kick, the light on the trees with the loudness. Design 12.18 has the details.
+
 ## The worlds
 
 Each was designed from a one-line concept, in our own shapes and palette (warm firelight against a deep blue night), on its
@@ -37,8 +49,8 @@ own orbit round a big low sun, lit by it, with its own period and spin. None has
 The tracks are the sky's stars, on spiral arms that run out from one bright centre called home: an album is an arm, in its
 own order; each frequency's tracks on no album make one more. It is a map: zoom from the whole sky round home down to one
 arm, where the stars stand apart with their titles. A reticle stays in the middle and the sky moves under it; the star in it
-is the one you have. A track's page is a reel: a projector on a stump throws it, frame by frame, onto a sheet between two
-trees. `?camplist=list` gives the camp the right-hand column instead, and then a frequency lives round a world: its signals
+is the one you have. A track's story opens in the camp journal (issue #240); its full page, reached by `info <slug>`, is still a reel thrown by a
+projector on a stump onto a sheet between two trees. `?camplist=list` gives the camp the right-hand column instead, and then a frequency lives round a world: its signals
 sit in a loose spiral round it and travel the orbit with it.
 
 ## Using it
@@ -47,7 +59,7 @@ sit in a loose spiral round it and travel the orbit with it.
 |---|---|---|
 | move the sky | drag, or walk an arm with the arrows (left and right along it, up and down to the next) | drag |
 | zoom | the wheel, `+` `-`, or the buttons on the right; `Home` (or `home`) flies back to the whole sky | pinch, or the buttons |
-| the star in the reticle | `enter` plays it, `q` queues it; its card has play, queue and its reel; a click on a star brings it in | tap a star, then the card |
+| the star in the reticle | `enter` plays it, `q` queues it; its slip has play, next, queue and its story (in the journal); a click on a star brings it in | tap a star, then the slip |
 | what the sky shows | `w` `e`, `freq <name>`, `freq all`, or a row of the board: the whole sky, an album, a feel | the list under the header |
 | the scope | `z` (tap to toggle, hold to peek), the right button held, or `[ scope ]`; it zooms too | `[ scope ]`, pinch to zoom it |
 | lock on | hold steady, `l`, `enter`, or a click in the scope | hold steady or tap |

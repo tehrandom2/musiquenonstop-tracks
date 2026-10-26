@@ -718,3 +718,276 @@ body.camp-scoped .camp-zoom { z-index: 3; }
   --car-btn: rgb(23 17 12 / .92); --car-btn-ink: var(--ink); --car-on-accent: #17110c; --car-face: var(--display); --car-body-face: var(--mono);
 }
 :root[data-view="car"] .car-title { font-weight: 700; color: var(--gold); }
+
+/* ==== issue #240: the camp's own interface language. not boards: night glass with a starlit edge for what the station says, paper
+   in a hand for what you keep (the journal, the slips), a brass-rimmed receiver for what is playing. every rule here sits under
+   :root:not([data-view="car"]), so the car view (issue #220) draws exactly what it drew before ==== */
+:root:not([data-view="car"]) {
+  --panel: #0b1230;      --panel-rgb: 11 18 48;
+  --glass-line: rgb(159 211 255 / .32);
+  --glass-hot: rgb(159 211 255 / .75);
+  --paper: #f1e6cc;      --paper-2: #e6d7b4;
+  --pencil: #2f2620;     --pencil-mid: #5e4f40;   --pencil-faint: #6a5a4a;
+  --rule: rgb(60 85 140 / .16);
+  --brass: #c49a52;      --brass-dk: #6e5024;
+  --scope-green: #7dffb0;
+  --label-fs: 19px;
+  --hide-face: var(--hand);
+  --rcol: calc(var(--fs) * 26.4);
+  --jw: clamp(540px, calc(100vw - var(--rcol) - 3 * var(--gutter) - 112px), 780px);
+  --jh: clamp(320px, 46vh, 390px);
+  --stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='18'%3E%3Cpath d='M3 13 15 5 26 10 41 3' fill='none' stroke='%239fd3ff' stroke-opacity='.45' stroke-width='.8'/%3E%3Ccircle cx='3' cy='13' r='1.3' fill='%23dfe9ff'/%3E%3Ccircle cx='15' cy='5' r='1.7' fill='%23ffffff'/%3E%3Ccircle cx='26' cy='10' r='1.2' fill='%23dfe9ff'/%3E%3Ccircle cx='41' cy='3' r='1.5' fill='%23ffe9c2'/%3E%3C/svg%3E");
+
+  /* the station's words: hand-lettered labels, night glass behind them, no brackets */
+  & .label, & .page h2 > span:first-child { font-family: var(--hand); font-weight: 400; font-size: var(--label-fs); letter-spacing: .02em; text-transform: lowercase; color: var(--gold); }
+  & .chip { font-family: var(--hand); font-weight: 400; font-size: 19px; letter-spacing: .04em; }
+  & .bk::before, & .bk::after { content: none; }
+  & .bk { padding: 0 .9ch; border: 1.5px solid rgb(var(--sky-rgb) / .45); border-radius: 999px 940px 999px 960px; font-family: var(--hand); font-size: 19px; color: var(--ink); }
+  & .bk:hover, & .bk:focus-visible { border-color: var(--glass-hot); background: rgb(var(--sky-rgb) / .12); }
+  & .page .buttons.primary .bk { font-size: calc(var(--fs) * 1.2 + 4px); }
+  /* a page rises a little less than the gap under it, so it never crosses the terminal on its way in */
+  & .page:not([hidden]) { animation-name: pageIn; }
+  & .bk.dimmed { color: var(--ink-mid); border-color: rgb(var(--sky-rgb) / .25); }
+  & .theme-btn { border-radius: 999px; padding: 0 1ch; border-color: var(--glass-line); color: var(--gold); }
+  & .camp-name { font-family: var(--hand); font-weight: 400; font-size: 27px; letter-spacing: .05em; color: var(--gold); text-shadow: 0 0 12px rgb(var(--ember-rgb) / .45); }
+  & .camp-name::before { content: "\2726 "; color: #dfe9ff; font-size: .7em; vertical-align: .15em; text-shadow: 0 0 8px #9fd3ff; }
+  & .np-slug { font-family: var(--hand); font-weight: 400; font-size: 27px; letter-spacing: .01em; color: var(--gold); }
+  & .header #hdrFreq { font-family: var(--hand); font-weight: 400; font-size: 22px; }
+  & .vol .vol-word, & .vol .vol-read { font-family: var(--hand); font-weight: 400; font-size: 19px; letter-spacing: .04em; text-transform: lowercase; }
+
+  /* the glass: opaque night behind the words, a thin starlit edge, a small constellation in the corner where the nails were */
+  & .card, &[data-campframe="card"] .card, &[data-campframe="canvas"] .card {
+    background: var(--panel); border: 1px solid var(--glass-line); border-radius: 16px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / .35), 0 12px 30px rgb(0 0 0 / .5), inset 0 1px 0 rgb(223 233 255 / .06);
+  }
+  & .card::before, &[data-campframe="card"] .card::before, &[data-campframe="card"] :is(#transmitter, #make, #terminal, .camp-legend).card::before { content: none; }
+  & .card::after, &[data-campframe="card"] .card::after, &[data-campframe="canvas"] .card::after { inset: 5px 10px auto auto; width: 44px; height: 18px; border: 0; border-radius: 0; background: var(--stars) no-repeat; opacity: .9; }
+  & .card:focus-within { box-shadow: 0 0 0 1px var(--glass-hot), 0 12px 30px rgb(0 0 0 / .5); }
+  & body[data-layout="camp"] #header.card { border-radius: 999px; padding: 4px 22px; }
+  & body[data-layout="camp"] #header.card::after, & #terminal.card::after, & #catalogue.card::after, & #page.card::after { display: none; }
+
+  /* the desktop camp: the header across, the receiver and the slips on the right, the journal at the lower left (fixed), the sky */
+  & body[data-layout="camp"] #main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, var(--rcol));
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "header header" ". tx" ". make" ". rail" ". term";
+  }
+  & body[data-layout="camp"] #page { grid-column: 1 / -1; grid-row: 2 / 5; }
+  & body.camp-page[data-layout="camp"] #terminal { grid-column: 1 / -1; }
+
+  /* the receiver: a small round handheld set, enamel and a brass rim; its face is the trace; the transport and the time on its strap */
+  & body[data-layout="camp"] #transmitter.card {
+    display: grid; grid-template-columns: 124px minmax(0, 1fr); column-gap: 14px; align-content: start;
+    padding: 14px 18px 12px; border: 2px solid var(--brass); border-radius: 34px 34px 22px 22px;
+    background: radial-gradient(120% 90% at 20% 0%, #23332d, #121c19 55%, #0b1210);
+    box-shadow: inset 0 0 0 3px #0a0f0d, inset 0 0 0 4px rgb(var(--gold-rgb) / .22), 0 14px 32px rgb(0 0 0 / .55), 0 0 46px -12px rgb(var(--ember-rgb) / .4);
+  }
+  & body[data-layout="camp"] #transmitter.card::after { display: none; }
+  & body[data-layout="camp"] #transmitter > * { grid-column: 2; min-width: 0; }
+  /* the fader's 44 px hit area reaches past its row (12.0, controls): the row must not clip it */
+  & body[data-layout="camp"] #transmitter > .row:has(#vol) { overflow: visible; flex-wrap: wrap; row-gap: 2px; }
+  & body[data-layout="camp"] #transmitter > .row:has(#vol) .vol { flex: 1 1 100%; }
+  & body[data-layout="camp"] #transmitter > .camp-rx { grid-column: 1; grid-row: 1 / span 3; align-self: start; }
+  & body[data-layout="camp"] #transmitter > :is(#progress, #fat, #nextUp, #failRow, #dial, #mineLine, #deadair) { grid-column: 1 / -1; }
+  & body[data-layout="camp"] #transmitter .readout { max-height: calc(var(--row) * 2); color: var(--ink-mid); }
+  /* playing, the prompt is in the journal; the receiver's readout speaks only for tuning, a failed load and dead air */
+  & body.is-playing[data-layout="camp"] #transmitter .readout { display: none; }
+  & body[data-layout="camp"] #transmitter .np-row { flex-direction: column; align-items: flex-start; gap: 0; margin-top: 2px; }
+  & body[data-layout="camp"] #transmitter .np-row .np-head { max-width: 100%; }
+  & body[data-layout="camp"] #transmitter .np-row .np-slug { overflow-wrap: anywhere; text-align: left; }
+  & body[data-layout="camp"] #transmitter .np-row .meta { white-space: normal; }
+  & body[data-layout="camp"] #transmitter .label { color: var(--scope-green); }
+  & body[data-layout="camp"] #transmitter .next-up { margin-top: 4px; }
+  & body[data-layout="camp"] #transmitter .next-up .label { color: var(--gold); }
+  & body[data-layout="camp"] #transmitter .fat { display: flex; justify-content: center; gap: 14px; padding: 6px 0 0; margin: 0; }
+  & #transmitter .fat .bk { width: 44px; height: 44px; min-width: 0; padding: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-weight: 700; font-size: 16px; color: #1d1405; border: 1px solid #3b2a10;
+    background: radial-gradient(circle at 35% 30%, #fff1c4, var(--brass) 45%, var(--brass-dk)); box-shadow: inset 0 -2px 0 rgb(0 0 0 / .35), 0 3px 8px rgb(0 0 0 / .5); }
+  & #transmitter .fat .bk:hover, & #transmitter .fat .bk:focus-visible { background: radial-gradient(circle at 35% 30%, #fffbe6, #e0b768 45%, #8a6630); outline: 2px solid var(--scope-green); outline-offset: 2px; }
+  & #transmitter .fat #fatPlay { width: 52px; height: 52px; }
+  & .camp-rx { position: relative; width: 124px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  & .camp-rx .rx-face { width: 116px; height: 116px; border-radius: 50%; overflow: hidden; border: 4px solid var(--brass);
+    box-shadow: 0 0 0 2px #2b1f0d, inset 0 0 14px #000, 0 0 18px rgb(125 255 176 / .22); background: #030b09; }
+  & .camp-rx .rx-trace { display: block; width: 100%; height: 100%; }
+  & .camp-rx .rx-freq, & .camp-rx .rx-lock { font-family: var(--mono); font-size: 14px; line-height: 1.2; letter-spacing: .12em; text-transform: uppercase; background: #050a08; padding: 1px 8px; border-radius: 4px; }
+  & .camp-rx .rx-freq { color: var(--gold); }
+  & .camp-rx .rx-lock.ok { color: var(--scope-green); }
+  & .camp-rx .rx-lock.amber { color: var(--amber); }
+  & .camp-rx .rx-lock.mid { color: var(--ink-mid); }
+  /* the strap: a stitched leather band; the head is a brass rivet */
+  & #transmitter .progress .rail { height: 10px; border-radius: 5px;
+    background: linear-gradient(90deg, rgb(255 236 200 / .28) 50%, transparent 50%) center / 9px 1px repeat-x, linear-gradient(#6b4527, #462b17); box-shadow: inset 0 1px 0 rgb(255 220 170 / .18), inset 0 -1px 0 rgb(0 0 0 / .4); }
+  & #transmitter .progress .fill { border-radius: 5px; background: linear-gradient(90deg, rgb(125 255 176 / .25), rgb(125 255 176 / .55)); }
+  & #transmitter .progress .head { width: 16px; height: 16px; margin: -8px 0 0 -8px; background: radial-gradient(circle at 35% 30%, #fff3cc, var(--brass) 50%, var(--brass-dk)); box-shadow: 0 0 0 1px #2b1f0d, 0 0 calc(4px + 10px * var(--beat)) rgb(125 255 176 / .7); }
+  & #transmitter .progress .time { font-family: var(--mono); color: var(--ink); }
+
+  /* MAKE A TRACK: a slip of paper tucked under the receiver, written on in pencil */
+  & #make.card { background: var(--paper) linear-gradient(var(--rule), var(--rule)) 0 calc(100% - 12px) / 100% 1px no-repeat; color: var(--pencil); border: 0; border-radius: 3px 6px 4px 5px;
+    transform: rotate(-.5deg); box-shadow: 0 1px 0 rgb(0 0 0 / .2), 0 10px 22px rgb(0 0 0 / .5); }
+  & #make.card::after { display: none; }
+  & #make .label { color: #9a2f22; }
+  & #make .mid, & #make .mid *, & #make .make-line, & #make .make-state { color: var(--pencil-mid); }
+  /* the card's states in pencil colours: amber is the red pencil, ok the green, on the paper */
+  & #make :is(.make-line, .make-state):is(.amber, .fail, .err), & #make :is(.make-line, .make-state):is(.amber, .fail, .err) *, & #make .make-line .amber { color: #9a2f22; }
+  & #make .make-line.dim, & #make .make-line .dim { color: var(--pencil-mid); }
+  & #make :is(.make-line, .make-state).ok, & #make :is(.make-line, .make-state).ok *, & #make .make-line .ok { color: #2f6b45; }
+  & #make .make-line .bk { color: var(--pencil); }
+  & #make .make-form .make-mark { color: #9a2f22; }
+  & #make .make-form #makeWords { font-family: var(--hand); font-size: 20px; color: var(--pencil); caret-color: var(--pencil); border-bottom: 1.5px solid rgb(47 38 32 / .45); background: transparent; }
+  & #make .make-form #makeWords::placeholder { color: var(--pencil-mid); }
+  & #make .bk { color: var(--pencil); border-color: rgb(47 38 32 / .55); }
+  & #make .bk:hover, & #make .bk:focus-visible { background: rgb(154 47 34 / .1); border-color: #9a2f22; }
+
+  /* the terminal: night glass, the station's own voice */
+  & #terminal.card .prompt-row .ps1 { color: var(--sky); }
+  & #terminal.card .hint-row .hints button { color: var(--gold); }
+
+  /* the sky's selector: night glass, a hand title */
+  & .camp-legend .label { margin-left: .6ch; }
+  & .camp-legend .cl-row.on { background: rgb(var(--sky-rgb) / .12); }
+  & .camp-legend .cl-group { font-family: var(--hand); text-transform: lowercase; font-size: 17px; }
+
+  /* the bar by the fire, the zoom, the hint: night glass in the hand */
+  & .camp-bar .camp-btn, & .camp-snd .camp-btn { font-family: var(--hand); font-weight: 400; font-size: 20px; letter-spacing: .03em; border-color: var(--glass-line); background: var(--panel); }
+  & .camp-bar .camp-btn:hover, & .camp-bar .camp-btn:focus-visible, & .camp-snd .camp-btn:hover, & .camp-snd .camp-btn:focus-visible { background: #16204a; border-color: var(--glass-hot); }
+  & .camp-bar .camp-btn[aria-pressed="true"], & .camp-snd .camp-btn[aria-pressed="true"] { border-color: var(--ember); color: var(--gold); }
+  & .camp-mallow { font-family: var(--hand); font-weight: 400; font-size: 19px; border-color: var(--glass-line); }
+  & .camp-hint { font-family: var(--hand); font-weight: 400; font-size: 19px; letter-spacing: .01em; border-color: var(--glass-line); border-radius: 14px;
+    left: calc(var(--gutter) + 290px); right: calc(var(--rcol) + 2 * var(--gutter) + 16px); transform: none; max-width: none; animation-name: hintIn2; }
+  & .cz-btn { background: #121b42; border-color: var(--glass-line); border-radius: 50%; min-width: 42px; min-height: 42px; padding: 0; justify-content: center; }
+  & .cz-btn.cz-home { border-radius: 999px; padding: 0 10px; font-family: var(--hand); font-weight: 400; font-size: 17px; }
+  & .camp-zoom { background: rgb(var(--panel-rgb) / .9); border-color: var(--glass-line); border-radius: 999px; padding: 8px 6px; }
+  & .camp-zoom .cz-read { font-family: var(--hand); font-size: 15px; }
+  & .camp-star-label { border-radius: 0 12px 12px 0; }
+  & .camp-star-label .csl-title { font-family: var(--hand); font-weight: 400; font-size: 22px; }
+  & .camp-scope .cs-freq, & .camp-scope .cs-strength, & .camp-scope .cs-target { font-family: var(--hand); font-weight: 400; font-size: 20px; }
+
+  /* the star in the reticle: a slip torn from the journal, under the reticle; play, next, queue, its story */
+  & .camp-sight .cg-card { left: 0; top: 48px; transform: translateX(-50%) rotate(-1deg); max-width: min(340px, 40vw); padding: 14px 16px 12px; color: var(--pencil);
+    background: var(--paper); border: 0; border-radius: 0 0 3px 4px; box-shadow: 0 10px 24px rgb(0 0 0 / .55);
+    clip-path: polygon(0 7px, 5% 2px, 11% 6px, 17% 1px, 24% 5px, 31% 0, 38% 6px, 45% 2px, 52% 7px, 59% 1px, 66% 5px, 73% 0, 80% 6px, 87% 2px, 93% 6px, 100% 1px, 100% 100%, 0 100%); }
+  & .camp-sight .cg-card::before { content: ""; position: absolute; left: 0; top: 10px; bottom: 0; width: 4px; background: var(--fc, var(--gold)); }
+  & .camp-sight .cg-kicker { font-family: var(--hand); font-size: 16px; letter-spacing: .02em; text-transform: lowercase; color: var(--pencil-mid); }
+  & .camp-sight .cg-title { font-family: var(--hand); font-weight: 400; font-size: 26px; color: var(--pencil); }
+  & .camp-sight .cg-meta { color: var(--pencil-mid); }
+  & .camp-sight .cg-btn { font-family: var(--hand); font-weight: 400; font-size: 18px; color: var(--pencil); background: transparent; border: 1.5px solid rgb(47 38 32 / .5); border-radius: 999px 900px 999px 950px; box-shadow: none; }
+  & .camp-sight .cg-btn:hover { border-color: var(--pencil); background: rgb(47 38 32 / .06); }
+  & .camp-sight .cg-btn.cg-play { color: var(--paper); background: #9a2f22; border-color: #9a2f22; }
+  & .cg-btn:focus-visible, & .cj-btn:focus-visible, & .cj-ribbon:focus-visible { outline: 2px solid #2d4f8a; outline-offset: 2px; }
+}
+@keyframes pageIn { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes hintIn2 { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* ---- the camp journal (issue #240): a notebook in a navy cloth cover, two ruled pages, ribbon bookmarks on its top edge ---- */
+:root:not([data-view="car"]) {
+  & .camp-journal { position: relative; display: block; margin-top: 18px; padding: 7px; border-radius: 10px; color: var(--pencil); pointer-events: auto;
+    background: linear-gradient(90deg, rgb(0 0 0 / .2), transparent 6% 94%, rgb(0 0 0 / .2)), repeating-linear-gradient(45deg, #1c2650 0 2px, #18224a 2px 4px);
+    box-shadow: 0 16px 36px rgb(0 0 0 / .6), 0 0 0 1px rgb(0 0 0 / .5); font-family: var(--hand); font-size: 19px; line-height: 26px; white-space: normal; }
+  & .camp-journal { top: auto; right: auto; width: auto; max-height: none; overflow: visible; }
+  & .camp-journal.in { animation: none; }
+  & body[data-layout="camp"] .camp-journal { position: fixed; left: var(--gutter); bottom: var(--gutter); z-index: 2; width: var(--jw); height: var(--jh); margin: 0; box-sizing: border-box; }
+  & body.camp-away .camp-journal, & body.ui-hidden .camp-journal { visibility: hidden; opacity: 0; pointer-events: none; }
+  /* help, a page or the guestbook send the camp's boards away at once, not over a fade: an overlay is a switch */
+  & body.camp-away :is(.camp-legend, .camp-bar, .camp-credit, .camp-hint, .camp-scope, .camp-journal) { transition: none; visibility: hidden; opacity: 0; }
+  & .camp-journal .cj-spread { position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); height: 100%; min-height: 0; border-radius: 4px; overflow: hidden;
+    background: var(--paper); box-shadow: inset 0 0 0 1px rgb(90 63 36 / .25); }
+  /* the gutter between the pages, the shadow of the spine */
+  & .camp-journal .cj-spread::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(51.9% - 22px); width: 44px; pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgb(60 40 20 / .12) 40%, rgb(60 40 20 / .3) 50%, rgb(60 40 20 / .12) 60%, transparent); }
+  & .camp-journal .cj-page { position: relative; display: flex; flex-direction: column; min-height: 0; padding: 30px 20px 10px 26px;
+    background: repeating-linear-gradient(transparent 0 25px, var(--rule) 25px 26px) 0 8px; }
+  & .camp-journal .cj-left { border-right: 0; background-image: linear-gradient(90deg, transparent 15px, rgb(190 60 50 / .35) 15px 16px, transparent 16px), repeating-linear-gradient(transparent 0 25px, var(--rule) 25px 26px); }
+  & .camp-journal .cj-right { padding-left: 26px; }
+  & .camp-journal .cj-kicker { display: flex; justify-content: space-between; gap: 1ch; font-size: 17px; color: var(--pencil-mid); white-space: nowrap; }
+  & .camp-journal .cj-kicker .cj-when { overflow: hidden; text-overflow: ellipsis; }
+  & .camp-journal.inspecting .cj-who { color: #2d4f8a; }
+  & .camp-journal .cj-title { margin: 0; font-family: var(--hand); font-weight: 400; font-size: 31px; line-height: 34px; color: var(--pencil); overflow-wrap: anywhere; }
+  & .camp-journal .cj-album, & .camp-journal .cj-asked { font-size: 18px; color: var(--pencil-mid); }
+  & .camp-journal.folded .cj-tab, & .camp-journal.folded .cj-asked { display: none; }
+  & .camp-journal .cj-album:empty, & .camp-journal .cj-asked:empty { display: none; }
+  & .camp-journal .cj-tab { flex: 1 1 auto; min-height: 52px; overflow-y: auto; margin: 4px 0 6px; color: var(--pencil); scrollbar-width: thin; line-height: 26px; }
+  & .camp-journal .cj-tab p { margin: 0; }
+  & .camp-journal .cj-tab:focus-visible { outline: 1px dashed var(--pencil-mid); }
+  & .camp-journal .cj-struck { text-decoration: line-through; text-decoration-thickness: 1.5px; color: var(--pencil-mid); }
+  & .camp-journal .cj-nums { display: block; font-family: var(--mono); font-size: 16px; line-height: 24px; color: var(--pencil-mid); }
+  & .camp-journal .cj-acts { display: flex; flex-wrap: wrap; gap: 6px 8px; padding-top: 6px; }
+  & .camp-journal .cj-btn { font-family: var(--hand); font-size: 18px; line-height: 1.3; padding: 2px 12px; color: var(--pencil); background: transparent;
+    border: 1.5px solid rgb(47 38 32 / .5); border-radius: 999px 900px 999px 950px; cursor: pointer; }
+  & .camp-journal .cj-btn:hover { border-color: var(--pencil); background: rgb(47 38 32 / .06); }
+  & .camp-journal .cj-btn.cj-main { color: var(--paper); background: #9a2f22; border-color: #9a2f22; }
+  & .camp-journal .cj-btn.cj-back { color: #2d4f8a; border-color: rgb(45 79 138 / .6); }
+  & .camp-journal .cj-btn:disabled { opacity: .35; cursor: default; }
+  /* the ribbons: bookmarks hanging over the top edge, the one that is open hangs lowest */
+  & .camp-journal .cj-ribbons { position: absolute; top: -13px; left: 34px; z-index: 1; display: flex; gap: 5px; }
+  & .camp-journal .cj-ribbon { font-family: var(--hand); font-size: 17px; line-height: 1; padding: 4px 9px 11px; color: #fff8ea; border: 0; cursor: pointer;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 6px), 0 100%); box-shadow: inset 0 2px 0 rgb(255 255 255 / .15); transition: padding 160ms ease-out; }
+  & .camp-journal .cj-ribbon.r0 { background: #9a2f22; } & .camp-journal .cj-ribbon.r1 { background: #2d4f8a; } & .camp-journal .cj-ribbon.r2 { background: #2f6b45; }
+  & .camp-journal .cj-ribbon.r3 { background: #6b3a7a; } & .camp-journal .cj-ribbon.r4 { background: #80520f; }
+  & .camp-journal .cj-ribbon.on { padding-bottom: 19px; }
+  & .camp-journal .cj-ribbon:not(.on):hover { padding-bottom: 14px; }
+  /* the route */
+  & .camp-journal .cj-rhead { display: flex; justify-content: space-between; align-items: baseline; }
+  & .camp-journal .cj-h { font-size: 27px; line-height: 34px; color: var(--pencil); }
+  & .camp-journal .cj-clear { font-size: 16px; padding: 0 10px; }
+  & .camp-journal ol { list-style: none; margin: 0; padding: 0; }
+  & .camp-journal .cj-mine { position: relative; flex: 0 0 auto; max-height: 55%; overflow-y: auto; }
+  & .camp-journal .cj-mrow, & .camp-journal .cj-rrow { position: relative; display: flex; align-items: center; gap: 6px; min-height: 26px; border-radius: 3px; }
+  & .camp-journal .cj-notch { flex: 0 0 auto; width: 12px; height: 18px; cursor: grab; touch-action: none;
+    background: radial-gradient(circle, var(--pencil-mid) 1.2px, transparent 1.6px) 0 0 / 6px 6px; }
+  & .camp-journal .cj-box { flex: 0 0 auto; width: 13px; height: 13px; border: 1.5px solid var(--pencil-mid); border-radius: 2px 3px 2px 4px; transform: rotate(-3deg); }
+  & .camp-journal .cj-n { flex: 0 0 auto; min-width: 1.2em; color: var(--pencil-mid); font-size: 17px; }
+  & .camp-journal .cj-t { flex: 1 1 auto; min-width: 0; text-align: left; padding: 0 2px; font-family: var(--hand); font-size: 19px; color: var(--pencil); background: none; border: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer;
+    background-image: linear-gradient(var(--pencil), var(--pencil)); background-repeat: no-repeat; background-position: 0 58%; background-size: 0% 2px; transition: background-size 320ms ease-in; }
+  & .camp-journal .cj-t:hover { text-decoration: underline; text-decoration-color: rgb(47 38 32 / .4); }
+  & .camp-journal .crossing .cj-t { background-size: 100% 2px; color: var(--pencil-mid); }
+  & .camp-journal .cj-mv, & .camp-journal .cj-x, & .camp-journal .cj-add { flex: 0 0 auto; width: 28px; height: 26px; padding: 0; font-family: var(--mono); font-size: 16px; color: var(--pencil-mid);
+    background: none; border: 0; border-radius: 50%; cursor: pointer; opacity: 0; }
+  & .camp-journal :is(.cj-mrow, .cj-rrow):is(:hover, :focus-within) :is(.cj-mv, .cj-x, .cj-add) { opacity: 1; }
+  & .camp-journal :is(.cj-mv, .cj-x, .cj-add):hover { color: var(--pencil); background: rgb(47 38 32 / .08); }
+  & .camp-journal .cj-mv:disabled { visibility: hidden; }
+  & .camp-journal .cj-mrow.lifted { z-index: 2; background: var(--paper-2); box-shadow: 0 6px 14px rgb(0 0 0 / .25); }
+  & .camp-journal .cj-mrow.lifted .cj-notch { cursor: grabbing; }
+  & .camp-journal .cj-insert { position: absolute; left: 0; right: 0; height: 0; border-top: 2px dashed #9a2f22; pointer-events: none; }
+  & .camp-journal .cj-empty { color: var(--pencil-mid); font-size: 18px; }
+  & .camp-journal .cj-then { margin: 6px 0 0; padding-top: 2px; border-top: 1.5px dashed rgb(94 79 64 / .5); font-size: 17px; color: var(--pencil-mid); }
+  & .camp-journal .cj-rot { flex: 1 1 0; min-height: 26px; overflow: hidden; }
+  & .camp-journal .cj-rrow .cj-t { color: var(--pencil-faint); }
+  & .camp-journal .camp-credit { position: static; transform: none; margin: auto 0 0; padding: 4px 0 0; max-width: none; font-family: var(--hand); font-weight: 400; font-size: 16px; line-height: 20px;
+    letter-spacing: 0; text-align: left; color: var(--pencil-mid); background: none; border-radius: 0; }
+  @media (prefers-reduced-motion: reduce) { & .camp-journal .cj-t, & .camp-journal .cj-ribbon { transition: none; } }
+}
+
+/* ---- the phone (issue #240): the receiver smaller, the journal a card in the column under the slip, its pages one over the other ---- */
+@media (max-width: 900px) {
+  :root:not([data-view="car"]) {
+    --label-fs: 18px;
+    & body[data-layout="camp"] #main { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(52vh, 1fr) auto auto auto auto auto; grid-template-areas: "header" "." "tx" "make" "jr" "rail" "term"; }
+    & body[data-layout="camp"] #page { grid-column: 1; grid-row: 2 / 4; }
+    & body[data-layout="camp"] #header.card { border-radius: 18px; padding: 4px 12px; }
+    & body[data-layout="camp"] #transmitter > .camp-snd-row { grid-column: 1 / -1; order: 5; margin-top: 8px; flex-wrap: wrap; white-space: normal; }
+    & body[data-layout="camp"] #transmitter > .camp-snd-row .camp-snd { flex-wrap: wrap; }
+    /* the phone: the label and the fader across the top of the set (the fader takes the card's width), the face under them */
+    & body[data-layout="camp"] #transmitter > .row:has(#vol) { grid-column: 1 / -1; grid-row: 1; flex-wrap: wrap; }
+    & body[data-layout="camp"] #transmitter > .camp-rx { grid-row: 2 / span 3; }
+    & .camp-zoom .cz-btn { min-width: 36px; min-height: 36px; }
+    & body[data-layout="camp"] #transmitter.card { grid-template-columns: 96px minmax(0, 1fr); column-gap: 10px; padding: 12px 12px 10px; border-radius: 26px 26px 18px 18px; }
+    & .camp-rx { width: 96px; }
+    & .camp-rx .rx-face { width: 90px; height: 90px; border-width: 3px; }
+    & .camp-rx .rx-freq, & .camp-rx .rx-lock { font-size: 13px; padding: 1px 5px; }
+    & .camp-name { font-size: 21px; }
+    & .np-slug { font-size: 23px; }
+    & body[data-layout="camp"] .camp-journal { position: relative; left: auto; bottom: auto; width: auto; height: auto; grid-area: jr; margin-top: 16px; }
+    & .camp-journal .cj-spread { grid-template-columns: minmax(0, 1fr); height: auto; }
+    & .camp-journal .cj-spread::before { display: none; }
+    & .camp-journal .cj-left { border-bottom: 1.5px dashed rgb(94 79 64 / .45); }
+    & .camp-journal .cj-tab { max-height: 9em; }
+    & .camp-journal .cj-mine, & .camp-journal .cj-rot { max-height: none; flex: 0 0 auto; overflow: visible; }
+    & .camp-journal :is(.cj-mv, .cj-x, .cj-add) { opacity: 1; }
+    & .camp-hint { left: var(--gutter); right: var(--gutter); }
+    & body.camp-scrolled :is(.camp-band-select, .camp-zoom, .camp-hint) { visibility: hidden; }
+    & .camp-sight .cg-card { max-width: calc(100vw - 32px); }
+    & body.camplist-sky[data-layout="camp"] .camp-band-select { font-family: var(--hand); font-weight: 400; font-size: 18px; border-color: var(--glass-line); border-radius: 999px; }
+  }
+}
+@media (hover: none) { :root:not([data-view="car"]) .camp-journal :is(.cj-mv, .cj-x, .cj-add) { opacity: 1; } }
