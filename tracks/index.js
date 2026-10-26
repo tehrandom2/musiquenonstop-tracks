@@ -11596,6 +11596,98 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-bathroom-thwop",
+      "title": "Thwop",
+      "project": "greytide",
+      "idea": "Wave five: someone pulls the chain, the plug flies out and a whirl drags everything loose toward the hole; the plunger picks one grey dude, sticks to him and tugs for three seconds through the spin.",
+      "request": "Wave five: someone pulls the chain, the plug flies out and a whirl drags everything loose toward the hole; the plunger picks one grey dude, sticks to him and tugs for three seconds through the spin.",
+      "mood": "gritty, funky, stubborn",
+      "bpm": 140,
+      "key": "A minor",
+      "seed": 3940601,
+      "model": "fast",
+      "duration": 161.98,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:02:29-04:00",
+      "voice": true,
+      "prompt": "Funk rock, 140 bpm, A minor. The band: a slapped electric bass riff kept tight and lean, bass under the mids; a wah rhythm guitar chopping sixteenths; a crunchy lead guitar with warm saturation in the mids; a tight, hard-hitting drum kit; a clavinet doubling the riff. A gritty, swaggering male lead with a gang chorus shouting the hook. Mood: gritty, funky, stubborn. Arc: slap riff and a rattling chain, the band in at verse one, a hard chorus, a breakdown of bass and claps, the final chorus lifted with the gang. A minor throughout, no harsh highs.",
+      "lyrics": "[Intro: slap bass riff and a rattling chain]\n\n[Verse 1]\nSomebody pulled the chain, we heard it rattle first\nthe plug flew out and the whole bath burst\ninto a spin, into a pull, a whirl around the hole\neverything loose went sliding in, the bath had lost control\nI'm the plunger, red cup, wooden spine\nmade for holding on, and holding on is mine\nI pick one dude and I stick him tight\nand tug for three whole seconds with all my might\n\n[Pre-Chorus]\nHold on, hold on\n\n[Chorus]\nThwop, thwop, thwop\nI've got you, I won't stop\nthwop, thwop, thwop\nthree seconds, then you drop\n\n[Verse 2]\nNine seconds of the whirl, the puddles shrinking back\nnew ground at every edge, the painted on the attack\nthey built on what was water, towers where the waves had been\nand I held on through the spin with the strongest grip you've seen\nthe grey are sliding past me, going round and going down\nI keep my one, I keep him close, the toughest cup in town\n\n[Pre-Chorus]\nHold on, hold on\n\n[Chorus]\nThwop, thwop, thwop\nI've got you, I won't stop\nthwop, thwop, thwop\nthree seconds, then you drop\n\n[Breakdown: bass and claps]\nSuction! (Hold!) Suction! (Hold!)\none more tug and the whirl's gone cold\n\n[Final Chorus: lifted, gang shouting]\nThwop, thwop, thwop\nI've got you, I won't stop\nthwop, thwop, thwop\nthree seconds, then you drop\n\n[Outro: slap riff]\nThwop.",
+      "why": "You asked for \"Wave five: someone pulls the chain, the plug flies out and a whirl drags everything loose toward the hole; the plunger picks one grey dude, sticks to him and tugs for three seconds through the spin.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in A minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3940600 (harsh: 3.4% above 6 kHz (ceiling 2.5) and others). Seed 3940601 is the take.",
+      "rejected": [
+        {
+          "seed": 3940600,
+          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5); 19 of 176 heard words are not ours (11 %; limit 10 %, at least 40 heard): thank blow tuck wah wah world puddle's gray eye them to wop"
+        }
+      ],
+      "takes": [
+        3940601
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.17,
+        "silence_s": 0.3,
+        "brightness_pct": 2.26,
+        "boominess_pct": 4.99,
+        "onsets_per_s": 3.33,
+        "seam_db": -48.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bathroom",
+          "pov:the plunger"
+        ],
+        "track_no": 65
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bathroom-thwop/greytide-bathroom-thwop.mp3",
+        "notes": "greytide-bathroom-thwop/notes.md",
+        "recipe": "greytide-bathroom-thwop/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "thank",
+          "oh",
+          "okay",
+          "jump",
+          "such",
+          "oh",
+          "such",
+          "world's"
+        ],
+        "stripped": [],
+        "installed_samples": 7143182,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bathroom-thwop/greytide-bathroom-thwop.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40140,6 +40232,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-bathroom-thwop",
         "greytide-carseat-good-dog-in-the-boot",
         "greytide-desk-every-shadow-turns",
         "greytide-gamestore-staff-pick-honest",
