@@ -4112,6 +4112,98 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-the-lounger-shadow",
+      "title": "The Lounger's Shadow",
+      "project": "greytide",
+      "idea": "Wave seven: the sun drops low and red, the sun lounger's long shadow crosses half the board and slows everyone in it; the lounger's shadow sings",
+      "request": "Wave seven: the sun drops low and red, the sun lounger's long shadow crosses half the board and slows everyone in it; the lounger's shadow sings",
+      "mood": "spellbound, dusky, ominous",
+      "bpm": 126,
+      "key": "C minor",
+      "seed": 4050700,
+      "model": "fast",
+      "duration": 171.06,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:13:39-04:00",
+      "voice": true,
+      "prompt": "Cinematic desert-western noir, 126 bpm, in C minor, a dusk ensemble: a baritone twang guitar with long tremolo chords, a tight lean upright bass under the mids playing a slow walking pulse, brushed snare and a low tom heartbeat, a lone muted trumpet answering each vocal line, a whistled countermelody, a smoky low female lead, slow and spellbound, with a wordless choir under the chorus, the key C minor stated in the frame and held; arc: tremolo intro like the sun going down, quiet verses, a widening chorus, a bridge where everything drops to bass and voice, a final chorus lifted with the choir and trumpet together, no harsh highs",
+      "lyrics": "[Intro: tremolo guitar, the sun goes down]\n\n[Verse 1]\nThe sun slides down to the end of the lawn\nThe orange gets older, the noon is gone\nThe fence goes amber, the hedge goes red\nAnd the striped lounger lays its long shadow ahead\n\n[Verse 2]\nIt crawls on the sand like a slow grey tide\nIt covers the trench and the dune's warm side\nAnd every small soldier who walks in the shade\nGoes heavy and dreamy and half afraid\n\n[Pre-Chorus]\nSeventy-two in a hundred, the pace of the dark\nThe cold comes early to the back of the park\n\n[Chorus]\nThe lounger's shadow, the lounger's shadow\nHalf of the sandpit gone violet and slow\nYou walk in the dusk and the dusk walks you\nThe lounger's shadow is coming through\n\n[Verse 3]\nA mage on the keep feels the warmth leave the stone\nA spade in the hollow is suddenly alone\nBut the grey in the shadow can't hurry the night\nAnd the towers keep firing at the last of the light\n\n[Chorus]\nThe lounger's shadow, the lounger's shadow\nHalf of the sandpit gone violet and slow\nYou walk in the dusk and the dusk walks you\nThe lounger's shadow is coming through\n\n[Bridge: bass and voice only]\nI was a giant's chair all afternoon\nNow I'm a country the size of the moon\nNobody sits here, nobody sees\nThe shade of a lounger can bring armies to their knees\n\n[Final Chorus: lifted, choir and trumpet]\nThe lounger's shadow, the lounger's shadow\nHalf of the sandpit gone violet and slow\nYou walk in the dusk and the dusk walks you\nThe lounger's shadow is coming through\n\n[Outro: whistle and tremolo fade]\nComing through.",
+      "why": "You asked for \"Wave seven: the sun drops low and red, the sun lounger's long shadow crosses half the board and slows everyone in it; the lounger's shadow sings\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 126 bpm in C minor, 175 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 126 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050701 (2.6s of near-silence (limit 0.5)). Seed 4050700 is the take.",
+      "rejected": [
+        {
+          "seed": 4050701,
+          "reason": "2.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4050700
+      ],
+      "numbers": {
+        "tempo_bpm": 125.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.93,
+        "silence_s": 0.45,
+        "brightness_pct": 1.73,
+        "boominess_pct": 4.23,
+        "onsets_per_s": 2.84,
+        "seam_db": -58.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:the-shadow"
+        ],
+        "track_no": 85
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-the-lounger-shadow/greytide-sandpit-the-lounger-shadow.mp3",
+        "notes": "greytide-sandpit-the-lounger-shadow/notes.md",
+        "recipe": "greytide-sandpit-the-lounger-shadow/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "dunes",
+          "frame",
+          "pod",
+          "lounge",
+          "sky",
+          "pick",
+          "dust",
+          "loungeer's"
+        ],
+        "stripped": [],
+        "installed_samples": 7543735,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-the-lounger-shadow/greytide-sandpit-the-lounger-shadow.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32622,6 +32714,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-sandpit-the-lounger-shadow",
         "greytide-schooldesk-show-your-working",
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
