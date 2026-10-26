@@ -7635,6 +7635,89 @@
       "audition": true
     },
     {
+      "slug": "greytide-garage-someone-kicked-the-fuzz",
+      "title": "Someone Kicked the Fuzz On",
+      "project": "greytide",
+      "idea": "Wave seven: a boot kicks the fuzz pedal on and the rail by the pedalboard shakes; walkers buzz sideways and their shields rattle off",
+      "request": "Wave seven: a boot kicks the fuzz pedal on and the rail by the pedalboard shakes; walkers buzz sideways and their shields rattle off",
+      "mood": "heavy, rattling, gleeful",
+      "bpm": 140,
+      "key": "E minor",
+      "seed": 3990701,
+      "model": "fast",
+      "duration": 137.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:08:18-04:00",
+      "voice": false,
+      "prompt": "Stoner fuzz rock instrumental, 140 bpm, E minor: a huge fuzzed baritone guitar riff in the mids, a second guitar with a wah answering it, a tight lean bass, bass under the mids, locked to the riff, a drummer driving on a ride cymbal and a heavy snare, a buzzing organ in the gaps; warm thick saturation in the mids, no harsh highs; starts mid on the riff, a long churning plateau, a dip where only bass and drums shake, then a final lift with both guitars and the organ, E minor, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Wave seven: a boot kicks the fuzz pedal on and the rail by the pedalboard shakes; walkers buzz sideways and their shields rattle off\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in E minor, 140 seconds, with no voice, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3990700 (0.8s of near-silence (limit 0.5)). Seed 3990701 is the take.",
+      "rejected": [
+        {
+          "seed": 3990700,
+          "reason": "0.8s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3990701
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.65,
+        "silence_s": 0.1,
+        "brightness_pct": 1.12,
+        "boominess_pct": 4.94,
+        "onsets_per_s": 2.5,
+        "seam_db": -64.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:garage",
+          "pov:the fuzz pedal"
+        ],
+        "track_no": 81
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-garage-someone-kicked-the-fuzz/greytide-garage-someone-kicked-the-fuzz.mp3",
+        "notes": "greytide-garage-someone-kicked-the-fuzz/notes.md",
+        "recipe": "greytide-garage-someone-kicked-the-fuzz/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6076150,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-garage-someone-kicked-the-fuzz/greytide-garage-someone-kicked-the-fuzz.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36165,6 +36248,7 @@
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-garage-someone-kicked-the-fuzz",
         "greytide-kitchen-sneeze-cloud",
         "greytide-picnic-sun-behind-the-fence",
         "greytide-railway-the-sign-did-say",
