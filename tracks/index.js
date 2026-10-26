@@ -4495,6 +4495,91 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sandpit-prints-in-the-damp",
+      "title": "Prints in the Damp",
+      "project": "greytide",
+      "idea": "Between waves seven and eight: the drained trench stays damp and holds footprints, and every dude who steps in another's prints slows",
+      "request": "Between waves seven and eight: the drained trench stays damp and holds footprints, and every dude who steps in another's prints slows",
+      "mood": "hypnotic, dusky, sly",
+      "bpm": 142,
+      "key": "F minor",
+      "seed": 4050801,
+      "model": "fast",
+      "duration": 130.86,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:13:01-04:00",
+      "voice": false,
+      "prompt": "Dub-western breakbeat, 142 bpm, in F minor, a lean studio band: a chopped breakbeat with ghost snares, a tight lean bass under the mids on a rolling dub line, a twang guitar playing a sparse melody with long echoes, a melodica answering it, a marimba ostinato like footsteps that each fill a little later than the last, the key F minor held by the bass; arc: footsteps marimba intro, the break enters at mid level, a high plateau with guitar and melodica trading, a dip where the drums fall away and only echoing footsteps are left, a final lift with every part back, a short echoing tail, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Between waves seven and eight: the drained trench stays damp and holds footprints, and every dude who steps in another's prints slows\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 142 bpm in F minor, 135 seconds, with no voice, under the mellow gates. It has no beat to hold, so 142 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4050800 (6.2s of near-silence (limit 0.5)). Seed 4050801 is the take, but it did not clear every gate: harsh: 2.9% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4050800,
+          "reason": "6.2s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4050801
+      ],
+      "numbers": {
+        "tempo_bpm": 71.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.27,
+        "silence_s": 0.15,
+        "brightness_pct": 2.87,
+        "boominess_pct": 11.91,
+        "onsets_per_s": 4.18,
+        "seam_db": -60.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sandpit",
+          "pov:the-damp-sand"
+        ],
+        "track_no": 101
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sandpit-prints-in-the-damp/greytide-sandpit-prints-in-the-damp.mp3",
+        "notes": "greytide-sandpit-prints-in-the-damp/notes.md",
+        "recipe": "greytide-sandpit-prints-in-the-damp/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.9% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5770815,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sandpit-prints-in-the-damp/greytide-sandpit-prints-in-the-damp.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33012,6 +33097,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-sandpit-prints-in-the-damp",
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
