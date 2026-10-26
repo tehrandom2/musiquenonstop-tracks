@@ -2324,6 +2324,91 @@
       "audition": true
     },
     {
+      "slug": "greytide-treehouse-a-branch-cracked-outside",
+      "title": "A Branch Cracked Outside",
+      "project": "greytide",
+      "idea": "Wave five: a branch cracks outside, leaves blow in and the plank nailed over a seam drops away, opening a new gap on the wall road; the table's point of view.",
+      "request": "Wave five: a branch cracks outside, leaves blow in and the plank nailed over a seam drops away, opening a new gap on the wall road; the table's point of view.",
+      "mood": "alarmed, nimble, breakneck",
+      "bpm": 150,
+      "key": "B minor",
+      "seed": 4040701,
+      "model": "fast",
+      "duration": 122.98,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:16:35-04:00",
+      "voice": false,
+      "prompt": "Breakneck minor bluegrass, 150 bpm, B minor, alarmed and nimble. A string band with every part in its lane: a banjo rolling fast picking patterns, a fiddle sawing the urgent tune, a flatpicked acoustic guitar on the chop, a mandolin chopping the offbeat, tight lean upright bass under the mids. Arc: one sharp crack then banjo alone, the band joins at mid energy, a long high plateau of fiddle and banjo trading, a dip where it all stops for a falling plank and the bass walks down, a lifted final run, a stop. B minor, no harsh highs, instrumental, no vocals.",
+      "lyrics": null,
+      "why": "You asked for \"Wave five: a branch cracks outside, leaves blow in and the plank nailed over a seam drops away, opening a new gap on the wall road; the table's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 150 bpm in B minor, 128 seconds, with no voice, under the mellow gates. It has no beat to hold, so 150 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040700 (2.1s of near-silence (limit 0.5)). Seed 4040701 is the take, but it did not clear every gate: 1.0s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4040700,
+          "reason": "2.1s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4040701
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.65,
+        "silence_s": 1.0,
+        "brightness_pct": 1.46,
+        "boominess_pct": 11.55,
+        "onsets_per_s": 3.3,
+        "seam_db": -6.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:the table"
+        ],
+        "track_no": 88
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-a-branch-cracked-outside/greytide-treehouse-a-branch-cracked-outside.mp3",
+        "notes": "greytide-treehouse-a-branch-cracked-outside/notes.md",
+        "recipe": "greytide-treehouse-a-branch-cracked-outside/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "1.0s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5423487,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-a-branch-cracked-outside/greytide-treehouse-a-branch-cracked-outside.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30824,6 +30909,7 @@
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-the-hordes-pulse",
         "greytide-workbench-under-the-lens",
