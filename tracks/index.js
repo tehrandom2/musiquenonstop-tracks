@@ -7536,6 +7536,105 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-garage-sulk-for-two",
+      "title": "Sulk for Two",
+      "project": "greytide",
+      "idea": "Wave eight: the big amp tells it: stand a tower in its cone and it howls, stunning the grey for a second while the tower sulks for two",
+      "request": "Wave eight: the big amp tells it: stand a tower in its cone and it howls, stunning the grey for a second while the tower sulks for two",
+      "mood": "dreamy, dry, mischievous",
+      "bpm": 136,
+      "key": "F sharp minor",
+      "seed": 3990801,
+      "model": "fast",
+      "duration": 166.89,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:08:27-04:00",
+      "voice": true,
+      "prompt": "Shoegaze noise-pop, 136 bpm, F sharp minor: walls of warm chorused guitar in the mids, a tight lean bass, bass under the mids, carrying a simple bright melody, a driving drummer on toms and a steady snare, a swelling feedback drone that rises before each chorus, a breathy female lead with a dry wit, doubled an octave up in the hooks; warm, no harsh highs; starts mid on the drone and bass, a long dreamy loud plateau, one dip to bass and voice, a final lift where the feedback peaks and cuts, F sharp minor",
+      "lyrics": "[Intro: a feedback drone swelling]\nStand in front of me. Go on.\n\n[Verse 1]\nI'm the big valve amp with the jewel on my face\nThe dust on my cones is a quiet disgrace\nPut a tower in front where my speakers can see\nAnd count to a few, and then listen to me\n\n[Pre-Chorus]\nThe valves are glowing\nThe dust is jumping\nThe cones are shaking\nHere it comes\n\n[Chorus]\nFeedback, feedback\nEverybody stunned for one\nFeedback, feedback\nAnd the tower sulks for two\n\n[Verse 2]\nThe Mage stood still with its staff in the air\nToo proud to move, so I gave it a scare\nThe grey in my cone all froze where they stood\nThe Mage wouldn't fire, it went off in a mood\n\n[Pre-Chorus]\nThe valves are glowing\nThe dust is jumping\nThe cones are shaking\nHere it comes\n\n[Chorus]\nFeedback, feedback\nEverybody stunned for one\nFeedback, feedback\nAnd the tower sulks for two\n\n[Bridge: bass and voice only]\nI'm not cruel, I'm just loud\nI can't tell a hero from a crowd\nMove it a step and I'll let it be\nNobody stands too close to me\n\n[Final Chorus: lifted, feedback peaking]\nFeedback, feedback\nEverybody stunned for one\nFeedback, feedback\nAnd the tower sulks for two\n\n[Outro: the drone cuts to silence]\nStand in front of me. Go on.",
+      "why": "You asked for \"Wave eight: the big amp tells it: stand a tower in its cone and it howls, stunning the grey for a second while the tower sulks for two\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in F sharp minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3990800 (0.8s of near-silence (limit 0.5) and others). Seed 3990801 is the take.",
+      "rejected": [
+        {
+          "seed": 3990800,
+          "reason": "0.8s of near-silence (limit 0.5); 15 of 145 heard words are not ours (10 %; limit 10 %, at least 40 heard): bell bell chew everybody's done soaks back gray everybody's done soaks soaks"
+        }
+      ],
+      "takes": [
+        3990801
+      ],
+      "numbers": {
+        "tempo_bpm": 137.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.62,
+        "silence_s": 0.5,
+        "brightness_pct": 2.34,
+        "boominess_pct": 5.45,
+        "onsets_per_s": 3.27,
+        "seam_db": -25.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:garage",
+          "pov:the big amp"
+        ],
+        "track_no": 97
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-garage-sulk-for-two/greytide-garage-sulk-for-two.mp3",
+        "notes": "greytide-garage-sulk-for-two/notes.md",
+        "recipe": "greytide-garage-sulk-for-two/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "friendly",
+          "vowels",
+          "everybody's",
+          "done",
+          "stops",
+          "gray",
+          "but",
+          "fall",
+          "clouds",
+          "combs",
+          "town",
+          "we",
+          "smoke",
+          "everybody's",
+          "time"
+        ],
+        "stripped": [],
+        "installed_samples": 7359974,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-garage-sulk-for-two/greytide-garage-sulk-for-two.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36074,6 +36173,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-garage-sulk-for-two",
         "greytide-kitchen-the-other-way",
         "greytide-picnic-hot-sauce-line",
         "greytide-railway-trestle-over-the-gorge",
