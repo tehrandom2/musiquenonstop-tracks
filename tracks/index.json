@@ -10652,6 +10652,89 @@
       "audition": true
     },
     {
+      "slug": "greytide-bed-the-corner-fold",
+      "title": "The Corner Fold",
+      "project": "greytide",
+      "idea": "Between waves the god-hand lifts the corner of the bed's cover and folds it back, and a 45 cm shortcut opens through the valley: a breather that is also a decision.",
+      "request": "Between waves the god-hand lifts the corner of the bed's cover and folds it back, and a 45 cm shortcut opens through the valley: a breather that is also a decision.",
+      "mood": "sweeping, deliberate, a held breath",
+      "bpm": 140,
+      "key": "D minor",
+      "seed": 3930300,
+      "model": "fast",
+      "duration": 124.26,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:03:53-04:00",
+      "voice": false,
+      "prompt": "Outrun synthwave, 140 bpm, D minor. The ensemble: a tight, lean arpeggiated synth bass on sixteenths, bass under the mids; a punchy gated drum machine; a soaring saw lead carrying the theme; a slow brass-like synth answering it in long notes; a warm pad holding the minor chords. Mood: sweeping and deliberate, a held breath before a decision. Arc: pad and arpeggio, the drums build in, the theme at full height, a breakdown to pad and a single lead line, the final theme lifted a step with both leads together, a short outro. D minor, no harsh highs, instrumental, no vocals.",
+      "lyrics": null,
+      "why": "You asked for \"Between waves the god-hand lifts the corner of the bed's cover and folds it back, and a 45 cm shortcut opens through the valley: a breather that is also a decision.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in D minor, 135 seconds, with no voice, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3930301 (passed, but outranked by the kept takes). Seed 3930300 is the take.",
+      "rejected": [
+        {
+          "seed": 3930301,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3930300
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.87,
+        "silence_s": 0.2,
+        "brightness_pct": 1.92,
+        "boominess_pct": 10.44,
+        "onsets_per_s": 3.86,
+        "seam_db": -62.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bed",
+          "pov:the god-hand"
+        ],
+        "track_no": 27
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bed-the-corner-fold/greytide-bed-the-corner-fold.mp3",
+        "notes": "greytide-bed-the-corner-fold/notes.md",
+        "recipe": "greytide-bed-the-corner-fold/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5479759,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bed-the-corner-fold/greytide-bed-the-corner-fold.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39161,6 +39244,7 @@
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-bed-the-corner-fold",
         "greytide-carseat-two-point-six-seconds",
         "greytide-couch-tape-arrows",
         "greytide-desk-swept-to-the-bits-box",
