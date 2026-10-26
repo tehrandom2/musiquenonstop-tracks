@@ -11502,6 +11502,100 @@
       "audition": true
     },
     {
+      "slug": "greytide-bathroom-twenty-percent-more",
+      "title": "Twenty Percent More",
+      "project": "greytide",
+      "idea": "Wave seven: the bubble bath bottle tips and glugs and a wall of foam heaps up across the last stretch of road for two waves, hiding the grey from the towers and the towers from the grey; the bottle is very proud of its label.",
+      "request": "Wave seven: the bubble bath bottle tips and glugs and a wall of foam heaps up across the last stretch of road for two waves, hiding the grey from the towers and the towers from the grey; the bottle is very proud of its label.",
+      "mood": "glamorous, giddy, a diva's moment",
+      "bpm": 128,
+      "key": "D minor",
+      "seed": 3940700,
+      "model": "fast",
+      "duration": 156.61,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:02:37-04:00",
+      "voice": true,
+      "prompt": "Nu-disco, 128 bpm, D minor. The band: a four-on-the-floor kick with open hats on the offbeat, an octave-jumping bass, tight and lean, under the mids; a funky rhythm guitar; lush string stabs and swells; a sparkling electric piano. A glamorous female diva lead with a backing trio echoing the hook. Mood: giddy and glamorous, a diva's moment. Arc: kick, bass and strings, the full band at verse one, a big chorus, a bridge with drums out to strings and voice, the final chorus lifted with the trio and strings soaring. D minor throughout, no harsh highs.",
+      "lyrics": "[Intro: kick, octave bass and string stabs]\n\n[Verse 1]\nI tip, I glug, I let it go\na pink cascade, a rising snow\nthe label promised, now it's due\ntwenty percent more bubbles for you\na wall goes up across the road\nthe last long stretch, a frothing load\nthey can't see through, they can't see past\nthe grey slow down, the foam holds fast\n\n[Pre-Chorus]\nRead the label, darling, read it twice\n\n[Chorus]\nNow with twenty percent more\nmore than you were ready for\nnow with twenty percent more\nbubbles, bubbles, that's what I'm for\n\n[Verse 2]\nThe shower's coming, wave nine\nit'll flatten all my lovely line\nbut for two waves I'm the queen of the tub\na towering froth that the grey can't scrub\nthe loofah tries, the duck gets lost\nI don't count, darling, I don't count the cost\neven the towers can't see past my crest\nso I hold them slow and I let them guess\n\n[Pre-Chorus]\nRead the label, darling, read it twice\n\n[Chorus]\nNow with twenty percent more\nmore than you were ready for\nnow with twenty percent more\nbubbles, bubbles, that's what I'm for\n\n[Bridge: drums out, strings and voice]\nPop, pop, pop\nevery bubble's a little stop\npop, pop, pop\nand I never, never stop\n\n[Final Chorus: lifted, trio and soaring strings]\nNow with twenty percent more\nmore than you were ready for\nnow with twenty percent more\nbubbles, bubbles, that's what I'm for\n\n[Outro: strings and kick]\nTwenty percent more.",
+      "why": "You asked for \"Wave seven: the bubble bath bottle tips and glugs and a wall of foam heaps up across the last stretch of road for two waves, hiding the grey from the towers and the towers from the grey; the bottle is very proud of its label.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in D minor, 162 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3940701 (15 of 89 heard words are not ours (17 %; limit 10 %, at least 40 heard): clock grace fall ). Seed 3940700 is the take.",
+      "rejected": [
+        {
+          "seed": 3940701,
+          "reason": "15 of 89 heard words are not ours (17 %; limit 10 %, at least 40 heard): clock grace fall are worried wait at night light tongue tell i'll"
+        }
+      ],
+      "takes": [
+        3940700
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.46,
+        "silence_s": 0.4,
+        "brightness_pct": 2.14,
+        "boominess_pct": 7.11,
+        "onsets_per_s": 3.04,
+        "seam_db": -62.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bathroom",
+          "pov:the bubble bath bottle"
+        ],
+        "track_no": 76
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bathroom-twenty-percent-more/greytide-bathroom-twenty-percent-more.mp3",
+        "notes": "greytide-bathroom-twenty-percent-more/notes.md",
+        "recipe": "greytide-bathroom-twenty-percent-more/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "took",
+          "gluck",
+          "promise",
+          "grave",
+          "slowed",
+          "wait",
+          "night",
+          "run",
+          "tunnel",
+          "we're"
+        ],
+        "stripped": [],
+        "installed_samples": 6906559,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bathroom-twenty-percent-more/greytide-bathroom-twenty-percent-more.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40055,6 +40149,7 @@
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-bathroom-twenty-percent-more",
         "greytide-bed-no-sense-of-occasion",
         "greytide-carseat-you-are-here",
         "greytide-couch-popcorn-over-the-board",
