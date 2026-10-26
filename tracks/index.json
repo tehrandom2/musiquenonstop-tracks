@@ -9727,6 +9727,106 @@
       "audition": true
     },
     {
+      "slug": "greytide-couch-down-the-crumb-gap",
+      "title": "Down The Crumb Gap",
+      "project": "greytide",
+      "idea": "A primed-only grey dude drops into the crumb gap again and again, gambling on the coloured threads; his point of view.",
+      "request": "A primed-only grey dude drops into the crumb gap again and again, gambling on the coloured threads; his point of view.",
+      "mood": "reckless, funny, gambling",
+      "bpm": 152,
+      "key": "A minor",
+      "seed": 4030200,
+      "model": "fast",
+      "duration": 160.82,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:05:17-04:00",
+      "voice": true,
+      "prompt": "Snotty garage punk, 152 bpm, A minor, reckless and funny. A three-piece with a mate: a fuzzy rhythm guitar chugging eighths with warm saturation in the mids, a second guitar playing a two-note surf hook, tight lean bass well under the mids walking with the kick, fast tight drums with a floor-tom gallop. A nasal, grinning young male lead and a shouted gang chorus on the hook. Arc: count-in and riff, verse at mid push, a long loud chorus plateau, a half-time breakdown where the band falls away to bass and a creaking hi-hat, then a lifted final chorus and a sudden stop. A minor throughout, gritty, no harsh highs.",
+      "lyrics": "[Intro: count-in, the riff twice]\nOne, two, here comes the lid\n\n[Verse 1]\nI've been primed since a sale in the spring\nGrey to the knees and I don't own a thing\nThe seam goes creak and the flap goes shiver\nWarm gold light like the mouth of a river\nCoins in the throat and a glint on the rim\nCrumbs going down, so I follow them in\n\n[Pre-Chorus]\nBlue thread, red thread, nobody said\nWhich way it spits you out\n\n[Chorus]\nDown the crumb gap, down we go\nRed thread, green thread, who can know\nFurther on or further back\nTwelve seconds and the lid comes back\n\n[Verse 2]\nCame out the far side, three ledges on\nSkipped past the cannon, the cannon was gone\nNext time round I came out at the start\nWalking the stretch with a crumb in my heart\nThe painted ones read where the coloured crumbs land\nAnd wait with a bolt and a brush in the hand\n\n[Pre-Chorus]\nBlue thread, red thread, nobody said\nWhich way it spits you out\n\n[Chorus]\nDown the crumb gap, down we go\nRed thread, green thread, who can know\nFurther on or further back\nTwelve seconds and the lid comes back\n\n[Breakdown: half-time, bass and a creaking hi-hat]\nIt's dark down here and it smells of crisps\nA raisin, a sequin, a year of wishes\nI'm not lost, I'm just in between\nThe grey I am and the gold I've seen\n\n[Final Chorus: lifted, the whole gang shouting]\nDown the crumb gap, down we go\nRed thread, green thread, who can know\nFurther on or further back\nTwelve seconds and the lid comes back\nFurther on or further back\nTwelve seconds and the lid comes back\n\n[Outro]\nLid's up. See you on the other side.",
+      "why": "You asked for \"A primed-only grey dude drops into the crumb gap again and again, gambling on the coloured threads; his point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 152 bpm in A minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 152 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4030201 (harsh: 2.6% above 6 kHz (ceiling 2.5)). Seed 4030200 is the take.",
+      "rejected": [
+        {
+          "seed": 4030201,
+          "reason": "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4030200
+      ],
+      "numbers": {
+        "tempo_bpm": 77.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.92,
+        "silence_s": 0.2,
+        "brightness_pct": 1.95,
+        "boominess_pct": 5.71,
+        "onsets_per_s": 3.47,
+        "seam_db": -59.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:couch",
+          "pov:grey dude"
+        ],
+        "track_no": 14
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-couch-down-the-crumb-gap/greytide-couch-down-the-crumb-gap.mp3",
+        "notes": "greytide-couch-down-the-crumb-gap/notes.md",
+        "recipe": "greytide-couch-down-the-crumb-gap/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "lead",
+          "new",
+          "no",
+          "lead",
+          "skip",
+          "around",
+          "one's",
+          "colored",
+          "weight",
+          "road",
+          "lead",
+          "cribs",
+          "race",
+          "gray",
+          "can't",
+          "lids"
+        ],
+        "stripped": [],
+        "installed_samples": 7092240,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-couch-down-the-crumb-gap/greytide-couch-down-the-crumb-gap.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38224,6 +38324,7 @@
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-couch-down-the-crumb-gap",
         "greytide-desk-eighty-percent-flock",
         "greytide-gamestore-four-tiles-no-map",
         "greytide-garage-four-clicks-in",
