@@ -3,6 +3,85 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T01:49:02-04:00",
   "tracks": [
     {
+      "slug": "advanced-studios-theme-r5-5",
+      "title": "Advanced Studios Theme R5.5: Rush, overdriven",
+      "project": "bench",
+      "idea": "a theme for the Advanced Studios game built from measured traits only (tempo, mode, bass weight, density, development, arc): Rush, overdriven",
+      "request": "the owner's theme for the Advanced Studios game, round 5: measured traits of his Suno themes, no audio reference",
+      "mood": "busy but ordered",
+      "bpm": 144,
+      "key": "G minor",
+      "seed": 3370501,
+      "model": "fast",
+      "duration": 178.02,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T01:48:46-04:00",
+      "voice": false,
+      "prompt": "driving gritty electro-swing and fidget house, 144 bpm, G minor, full energy within the first bars, overdriven synth stabs and saturated chopped horn samples locked to a relentless lean synth-bass ostinato, punchy distorted drum machine, sidechain pump, glitchy stutter edits at phrase ends, energetic and controlled, never chaotic, no wobble bass, no drop, instrumental",
+      "lyrics": null,
+      "why": "You asked for \"the owner's theme for the Advanced Studios game, round 5: measured traits of his Suno themes, no audio reference\". The style line and structure come from the front desk's round 5 brief, word for word; built from measured traits only, never his melodies or audio. So I wrote it at 144 bpm in G minor, 180 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 1 seed and kept it. Seed 3370501 is the take, but it did not clear every gate: tempo 138 vs asked 144; 0.9s of near-silence (limit 0.5); harsh: 5.4% above 6 kHz (ceiling 2.5).",
+      "rejected": [],
+      "takes": [
+        3370501
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.26,
+        "silence_s": 0.85,
+        "brightness_pct": 5.37,
+        "boominess_pct": 9.41,
+        "onsets_per_s": 4.03,
+        "seam_db": -68.8
+      },
+      "checks": {
+        "tempo": false,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "advanced-studios-theme-r5-5/advanced-studios-theme-r5-5.mp3",
+        "notes": "advanced-studios-theme-r5-5/notes.md",
+        "recipe": "advanced-studios-theme-r5-5/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-0.6B)",
+        "profile": "mellow",
+        "seam_step_x": 0.56,
+        "decoded_lufs": -16.33,
+        "failed": [
+          "tempo 138 vs asked 144",
+          "0.9s of near-silence (limit 0.5)",
+          "harsh: 5.4% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7850557,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "advanced-studios-theme-r5-5/advanced-studios-theme-r5-5.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "advanced-studios-theme-r5-4",
       "title": "Advanced Studios Theme R5.4: Clockwork, wired",
       "project": "bench",
