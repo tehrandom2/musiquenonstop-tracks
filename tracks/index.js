@@ -3,6 +3,102 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T02:36:13-04:00",
   "tracks": [
     {
+      "slug": "joes-castle-dead-zone",
+      "title": "Dead Zone",
+      "project": "joes-castle",
+      "idea": "the trebuchet's song: it sees the whole road but can't hit what's at the door, so it lobs at bosses and the farthest dude and trusts the wall",
+      "request": "the trebuchet's song: it sees the whole road but can't hit what's at the door, so it lobs at bosses and the farthest dude and trusts the wall",
+      "mood": "brooding, patient, humble, proud",
+      "bpm": 90,
+      "key": "C minor",
+      "seed": 3380201,
+      "model": "fast",
+      "duration": 164.46,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T02:34:56-04:00",
+      "voice": true,
+      "prompt": "brooding cinematic orchestral piece at 90 bpm in C minor, a patient slow march: low strings carry a heavy ostinato, big taiko drums on the long counts, a low brass swell under every chorus, a creaking wooden percussion knock on the offbeat, a deep warm baritone narrator, calm and certain, a wordless low choir in the last chorus; tight lean bass, bass under the mids, no harsh highs; starts sparse, builds to a wide final chorus, ends on one low drum, C minor",
+      "lyrics": "[Intro: low strings, one taiko, the long arm creaks back]\n\n[Verse 1]\nLong beams from the bottom of the tub\nA pin, a sling, a hinge\nA box of loose bricks for a heart\nThat drops when the arm swings\nI can see the camp, the broken cart\nThe grey flag on its pole\nBut the ground in front of my own two feet\nIs ground I can't control\n\n[Pre-Chorus]\nOne, the arm comes down\nTwo, the weight goes low\nThree, the stone is in the sky\nFour and a half, and throw\n\n[Chorus]\nDead zone, dead zone\nToo close for me to throw\nI send the fire to the far ones\nAnd I trust the ones below\nDead zone, dead zone\nEvery stone goes long\nI can reach the edge of the baseplate\nBut the door is not my song\n\n[Verse 2]\nThe big ones first, that's the order\nA boss in reach is mine\nThen the farthest one still walking\nAt the back end of the line\nWalls don't hide you, roofs don't hide you\nI throw it high and steep\nUp at sixty, over the stone\nAnd down where the grey ones creep\n\n[Chorus]\nDead zone, dead zone\nToo close for me to throw\nI send the fire to the far ones\nAnd I trust the ones below\nDead zone, dead zone\nEvery stone goes long\nI can reach the edge of the baseplate\nBut the door is not my song\n\n[Bridge: half time, the strings fall away, taiko alone]\nYou build a thing that sees for miles\nAnd it's blind at its own front step\nSo the kid built a wall, then a knight, then a pot\nClick by click, a castle of help\nWhen the ladder crew comes down the bank\nI drop one where their boots will be\nAnd the whole wall shouts \"siege broken\"\nAnd for once, they're shouting for me\n\n[Final Chorus: full strings, the choir hums under]\nDead zone, dead zone\nToo close for me to throw\nI send the fire to the far ones\nAnd I trust the ones below\nDead zone, dead zone\nEvery stone goes long\nI can reach the edge of the baseplate\nBut the door is not my song\n\n[Outro: the arm creaks back, one last low drum]\nFour and a half\nAnd throw",
+      "why": "You asked for \"the trebuchet's song: it sees the whole road but can't hit what's at the door, so it lobs at bosses and the farthest dude and trusts the wall\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 90 bpm in C minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 90 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3380200 (0.9s of near-silence (limit 0.5) and others). Seed 3380201 is the take, but it did not clear every gate: harsh: 2.7% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3380200,
+          "reason": "0.9s of near-silence (limit 0.5); harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3380201
+      ],
+      "numbers": {
+        "tempo_bpm": 120.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.37,
+        "silence_s": 0.1,
+        "brightness_pct": 2.75,
+        "boominess_pct": 8.1,
+        "onsets_per_s": 3.19,
+        "seam_db": -61.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Joe's Castle",
+        "submitter": "music for Joe's castle",
+        "tags": [
+          "table:castle",
+          "pov:the trebuchet"
+        ],
+        "track_no": 2
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "joes-castle-dead-zone/joes-castle-dead-zone.mp3",
+        "notes": "joes-castle-dead-zone/notes.md",
+        "recipe": "joes-castle-dead-zone/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.7% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "farm",
+          "one's",
+          "gray",
+          "beneath",
+          "bass",
+          "plate",
+          "he",
+          "hell",
+          "bass",
+          "plate"
+        ],
+        "stripped": [],
+        "installed_samples": 7252755,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "joes-castle-dead-zone/joes-castle-dead-zone.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "sir-brickalot-take-2",
       "title": "Sir Brickalot (take 2)",
       "project": "joes-castle",
@@ -27999,6 +28095,7 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "sir-brickalot",
+        "joes-castle-dead-zone",
         "sir-brickalot-take-2"
       ],
       "description": "6 tracks, in the order they were meant to be heard.",
