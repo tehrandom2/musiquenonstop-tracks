@@ -6874,6 +6874,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-smells-good-behaves-badly",
+      "title": "Smells Good, Behaves Badly",
+      "project": "greytide",
+      "idea": "Instrumental breather: someone is cooking, the pan on the hob boils over every wave and the steam streams across the table onto a jam patch.",
+      "request": "Instrumental breather: someone is cooking, the pan on the hob boils over every wave and the steam streams across the table onto a jam patch.",
+      "mood": "hot, simmering, building",
+      "bpm": 128,
+      "key": "E minor",
+      "seed": 3920301,
+      "model": "fast",
+      "duration": 135.14,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:09:25-04:00",
+      "voice": false,
+      "prompt": "Hot afrobeat groove, 128 bpm, E minor. A ten-piece: two guitars in tight interlocking single-note patterns, a tight lean bass on a repeating riff well under the mids, a busy kit with a shaker and congas, a baritone sax, tenor sax and trumpet on a punchy unison riff, an organ comping in short stabs. Simmering to a boil. Starts mid on guitars and drums, horns build to a long hot plateau, one dip to bass and percussion, a lifted final horn section. E minor, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Instrumental breather: someone is cooking, the pan on the hob boils over every wave and the steam streams across the table onto a jam patch.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in E minor, 140 seconds, with no voice, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3920300 (harsh: 2.6% above 6 kHz (ceiling 2.5) and others). Seed 3920301 is the take.",
+      "rejected": [
+        {
+          "seed": 3920300,
+          "reason": "harsh: 2.6% above 6 kHz (ceiling 2.5); onset rate 4.5/s outside 0.3-4.5"
+        }
+      ],
+      "takes": [
+        3920301
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.92,
+        "silence_s": 0.15,
+        "brightness_pct": 0.9,
+        "boominess_pct": 7.54,
+        "onsets_per_s": 3.77,
+        "seam_db": -59.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:the frying pan"
+        ],
+        "track_no": 32
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-smells-good-behaves-badly/greytide-kitchen-smells-good-behaves-badly.mp3",
+        "notes": "greytide-kitchen-smells-good-behaves-badly/notes.md",
+        "recipe": "greytide-kitchen-smells-good-behaves-badly/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5959743,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-smells-good-behaves-badly/greytide-kitchen-smells-good-behaves-badly.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35375,6 +35458,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
+        "greytide-kitchen-smells-good-behaves-badly",
         "greytide-sandpit-someone-turned-the-hose-on",
         "greytide-schooldesk-psst-someone-says-well-done",
         "greytide-sill-rings-free",
