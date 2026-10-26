@@ -1,6 +1,6 @@
 {
   "station": "nobody fm",
-  "written": "2026-10-26T01:49:02-04:00",
+  "written": "2026-10-26T02:36:13-04:00",
   "tracks": [
     {
       "slug": "advanced-studios-theme-r5-6",
@@ -47,10 +47,10 @@
         "words": null
       },
       "segments": {
-        "album": null,
-        "submitter": null,
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
         "tags": [],
-        "track_no": null
+        "track_no": 8
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -76,8 +76,7 @@
           "advanced-studios-theme-r5-6/advanced-studios-theme-r5-6.mp3"
         ],
         "ears": null
-      },
-      "audition": true
+      }
     },
     {
       "slug": "advanced-studios-theme-r5-5",
@@ -124,10 +123,10 @@
         "words": null
       },
       "segments": {
-        "album": null,
-        "submitter": null,
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
         "tags": [],
-        "track_no": null
+        "track_no": 7
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -155,8 +154,7 @@
           "advanced-studios-theme-r5-5/advanced-studios-theme-r5-5.mp3"
         ],
         "ears": null
-      },
-      "audition": true
+      }
     },
     {
       "slug": "advanced-studios-theme-r5-4",
@@ -203,10 +201,10 @@
         "words": null
       },
       "segments": {
-        "album": null,
-        "submitter": null,
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
         "tags": [],
-        "track_no": null
+        "track_no": 6
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -232,8 +230,7 @@
           "advanced-studios-theme-r5-4/advanced-studios-theme-r5-4.mp3"
         ],
         "ears": null
-      },
-      "audition": true
+      }
     },
     {
       "slug": "advanced-studios-theme-r5-3",
@@ -280,10 +277,10 @@
         "words": null
       },
       "segments": {
-        "album": null,
-        "submitter": null,
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
         "tags": [],
-        "track_no": null
+        "track_no": 5
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -309,8 +306,7 @@
           "advanced-studios-theme-r5-3/advanced-studios-theme-r5-3.mp3"
         ],
         "ears": null
-      },
-      "audition": true
+      }
     },
     {
       "slug": "advanced-studios-theme-r5-2",
@@ -357,10 +353,10 @@
         "words": null
       },
       "segments": {
-        "album": null,
-        "submitter": null,
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
         "tags": [],
-        "track_no": null
+        "track_no": 4
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -386,8 +382,7 @@
           "advanced-studios-theme-r5-2/advanced-studios-theme-r5-2.mp3"
         ],
         "ears": null
-      },
-      "audition": true
+      }
     },
     {
       "slug": "advanced-studios-theme-r5-1",
@@ -434,10 +429,10 @@
         "words": null
       },
       "segments": {
-        "album": null,
-        "submitter": null,
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
         "tags": [],
-        "track_no": null
+        "track_no": 3
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -461,8 +456,7 @@
           "advanced-studios-theme-r5-1/advanced-studios-theme-r5-1.mp3"
         ],
         "ears": null
-      },
-      "audition": true
+      }
     },
     {
       "slug": "assembly-line-2",
@@ -519,6 +513,12 @@
         "bars": 40,
         "bpm": 140,
         "how": "beat-aligned at 140 bpm (measured) by measurement: onset grid and the closest spectral match at the seam; 40 bars; nobody here has heard it"
+      },
+      "segments": {
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
+        "tags": [],
+        "track_no": 1
       },
       "audition": true
     },
@@ -577,6 +577,12 @@
         "bars": 40,
         "bpm": 134,
         "how": "beat-aligned at 134 bpm (measured) by measurement: onset grid and the closest spectral match at the seam; 40 bars, from the main theme to just before the build; nobody here has heard it"
+      },
+      "segments": {
+        "album": "Advanced Studios",
+        "submitter": "the radio, for the Advanced Studios game",
+        "tags": [],
+        "track_no": 2
       },
       "audition": true
     },
@@ -27751,6 +27757,35 @@
         {
           "role": "asked by",
           "name": "the machine"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "advanced-studios",
+      "title": "Advanced Studios",
+      "project": "advanced-studios-game",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "assembly-line-2",
+        "assembly-line",
+        "advanced-studios-theme-r5-1",
+        "advanced-studios-theme-r5-2",
+        "advanced-studios-theme-r5-3",
+        "advanced-studios-theme-r5-4",
+        "advanced-studios-theme-r5-5",
+        "advanced-studios-theme-r5-6"
+      ],
+      "description": "8 tracks, in the order they were meant to be heard.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the radio, for the Advanced Studios game"
         },
         {
           "role": "made by",

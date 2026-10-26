@@ -1,0 +1,28 @@
+{
+  "slug": "advanced-studios",
+  "title": "Advanced Studios",
+  "project": "advanced-studios-game",
+  "description": "8 tracks, in the order they were meant to be heard.",
+  "tracks": [
+    "assembly-line-2",
+    "assembly-line",
+    "advanced-studios-theme-r5-1",
+    "advanced-studios-theme-r5-2",
+    "advanced-studios-theme-r5-3",
+    "advanced-studios-theme-r5-4",
+    "advanced-studios-theme-r5-5",
+    "advanced-studios-theme-r5-6"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the radio, for the Advanced Studios game"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

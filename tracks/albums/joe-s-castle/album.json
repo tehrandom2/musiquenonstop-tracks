@@ -1,0 +1,27 @@
+{
+  "slug": "joe-s-castle",
+  "title": "Joe's Castle",
+  "project": "joes-castle",
+  "description": "6 tracks, in the order they were meant to be heard.",
+  "tracks": [
+    "sir-brickalot",
+    "joes-castle-dead-zone",
+    "joes-castle-wall-walk",
+    "joes-castle-hot-oil-cold-feet",
+    "joes-castle-the-seventh-wave",
+    "joes-castle-market-square-sunday",
+    "sir-brickalot-take-2"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "music for Joe's castle"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}
