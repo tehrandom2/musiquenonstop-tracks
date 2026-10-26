@@ -4972,6 +4972,91 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-railway-trestle-over-the-gorge",
+      "title": "Trestle Over the Gorge",
+      "project": "greytide",
+      "idea": "Wave eight: a breather high on the timber trestle over the river gorge and the footbridge beside it, where grey dudes cross the drop",
+      "request": "Wave eight: a breather high on the timber trestle over the river gorge and the footbridge beside it, where grey dudes cross the drop",
+      "mood": "tender, wide, still",
+      "bpm": 124,
+      "key": "B minor",
+      "seed": 4060801,
+      "model": "fast",
+      "duration": 130.38,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:12:15-04:00",
+      "voice": false,
+      "prompt": "Cinematic folk-western instrumental, 124 bpm, in B minor, a small string-band breather: a fingerpicked acoustic guitar ostinato, a cello carrying the long melody, a tight lean upright bass under the mids on a steady two-beat like wheels on timber, brushed snare clicking a train rhythm, a lap steel answering the cello with slow slides, a soft wordless hum of the river as a pad, the key B minor held; arc: a lone guitar intro, the band joins at mid level, a high plateau with cello and lap steel in harmony, a dip to guitar and river hum on the trestle, a final lift as the train crosses, a quiet tail, tender and wide, no harsh highs, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Wave eight: a breather high on the timber trestle over the river gorge and the footbridge beside it, where grey dudes cross the drop\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 124 bpm in B minor, 135 seconds, with no voice, under the mellow gates. It has no beat to hold, so 124 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4060800 (boomy: 22.9% below 60 Hz (ceiling 12)). Seed 4060801 is the take, but it did not clear every gate: 1.2s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4060800,
+          "reason": "boomy: 22.9% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4060801
+      ],
+      "numbers": {
+        "tempo_bpm": 124.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.61,
+        "silence_s": 1.2,
+        "brightness_pct": 0.21,
+        "boominess_pct": 5.89,
+        "onsets_per_s": 1.67,
+        "seam_db": -36.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:railway",
+          "pov:the-trestle"
+        ],
+        "track_no": 100
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-railway-trestle-over-the-gorge/greytide-railway-trestle-over-the-gorge.mp3",
+        "notes": "greytide-railway-trestle-over-the-gorge/notes.md",
+        "recipe": "greytide-railway-trestle-over-the-gorge/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "1.2s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5749766,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-railway-trestle-over-the-gorge/greytide-railway-trestle-over-the-gorge.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33492,6 +33577,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-railway-trestle-over-the-gorge",
         "greytide-sandpit-prints-in-the-damp",
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
