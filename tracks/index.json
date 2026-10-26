@@ -8794,6 +8794,100 @@
       "audition": true
     },
     {
+      "slug": "greytide-desk-never-cleaned-the-nozzle",
+      "title": "Never Cleaned the Nozzle",
+      "project": "greytide",
+      "idea": "The airbrush kid, a desk tower, shreds the crowds that come too close in a fine mist; the nozzle clogs, spits and clears, and the kid is still undefeated.",
+      "request": "The airbrush kid, a desk tower, shreds the crowds that come too close in a fine mist; the nozzle clogs, spits and clears, and the kid is still undefeated.",
+      "mood": "cocky, fast, gleeful",
+      "bpm": 168,
+      "key": "D minor",
+      "seed": 3910801,
+      "model": "fast",
+      "duration": 154.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:06:39-04:00",
+      "voice": true,
+      "prompt": "Surf-punk, 168 bpm, D minor. A four-piece: a reverb-soaked lead guitar picking fast tremolo runs, a crunchy rhythm guitar, a tight lean bass in driving eighths well under the mids, a pounding kit on floor toms and a crashing ride. An excitable young male lead, half-shouted, with a bratty gang chorus. Cocky and gleeful. Starts mid, a long fast chorus plateau, one breakdown to toms and voice, a lifted final chorus. D minor, grit in the mids, no harsh highs.",
+      "lyrics": "[Intro: tremolo guitar run over toms]\n\n[Verse 1]\nHiss in the hose and a tank on my back\nA needle so fine it could stitch up a crack\nI never cleaned the nozzle and I never will\nStill undefeated, still\n\n[Pre-Chorus]\nLet the long guns talk about range all night\nI want them close enough to read their seams\n\n[Chorus]\nSpit, spray, short range\nPaint them in a fine mist, paint them strange\nSpit, spray, short range\nNever cleaned the nozzle, never gonna change\n\n[Verse 2]\nA two-kit combo stumbles into the haze\nLegs from one order and a torso from a phase\nI give him a gradient, red into blue\nHe splits into halves and I spray the halves too\n\n[Pre-Chorus]\nLet the long guns talk about range all night\nI want them close enough to read their seams\n\n[Chorus]\nSpit, spray, short range\nPaint them in a fine mist, paint them strange\nSpit, spray, short range\nNever cleaned the nozzle, never gonna change\n\n[Breakdown: toms and voice only]\nClogged and spat, cleared it with a pin\nTip dry, tip dry, push the paint back in\nClogged and spat, cleared it with a pin\nEvery time it chokes I come back again\n\n[Final Chorus: lifted, the gang on every line]\nSpit, spray, short range\nPaint them in a fine mist, paint them strange\nSpit, spray, short range\nNever cleaned the nozzle, never gonna change\n\n[Outro]\nStill undefeated",
+      "why": "You asked for \"The airbrush kid, a desk tower, shreds the crowds that come too close in a fine mist; the nozzle clogs, spits and clears, and the kid is still undefeated.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 168 bpm in D minor, 155 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 168 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3910800 (25 of 159 heard words are not ours (16 %; limit 10 %, at least 40 heard): you fuzz i'm wal). Seed 3910801 is the take.",
+      "rejected": [
+        {
+          "seed": 3910800,
+          "reason": "25 of 159 heard words are not ours (16 %; limit 10 %, at least 40 heard): you fuzz i'm walking kid face finest closed captioning by kris brandhagen"
+        }
+      ],
+      "takes": [
+        3910801
+      ],
+      "numbers": {
+        "tempo_bpm": 82.2,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.71,
+        "silence_s": 0.15,
+        "brightness_pct": 2.39,
+        "boominess_pct": 6.39,
+        "onsets_per_s": 3.61,
+        "seam_db": -42.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:desk",
+          "pov:the airbrush kid"
+        ],
+        "track_no": 95
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-desk-never-cleaned-the-nozzle/greytide-desk-never-cleaned-the-nozzle.mp3",
+        "notes": "greytide-desk-never-cleaned-the-nozzle/notes.md",
+        "recipe": "greytide-desk-never-cleaned-the-nozzle/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.39,
+        "failed": [],
+        "words_not_ours": [
+          "thank",
+          "you",
+          "p***",
+          "yeah",
+          "pen",
+          "pen",
+          "thank",
+          "you",
+          "clean",
+          "put"
+        ],
+        "stripped": [],
+        "installed_samples": 6799302,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-desk-never-cleaned-the-nozzle/greytide-desk-never-cleaned-the-nozzle.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37341,6 +37435,7 @@
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-desk-never-cleaned-the-nozzle",
         "greytide-gamestore-closing-time-in-the-case",
         "greytide-garage-sulk-for-two",
         "greytide-kitchen-the-other-way",
