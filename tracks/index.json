@@ -3926,6 +3926,98 @@
       "audition": true
     },
     {
+      "slug": "greytide-schooldesk-everybody-takes-the-long-road",
+      "title": "Everybody Takes the Long Road",
+      "project": "greytide",
+      "idea": "wave 5: the lesson changes, a hand drags the open textbook across the pencil groove; the groove itself sings as the whole horde turns for the long road under the ruler",
+      "request": "wave 5: the lesson changes, a hand drags the open textbook across the pencil groove; the groove itself sings as the whole horde turns for the long road under the ruler",
+      "mood": "dusty, weary, knowing",
+      "bpm": 138,
+      "key": "C minor",
+      "seed": 4010600,
+      "model": "fast",
+      "duration": 166.94,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:13:58-04:00",
+      "voice": true,
+      "prompt": "Dark desert blues rock, 138 bpm, C minor, a lean three-piece and a voice: a twangy baritone guitar on a hypnotic one-chord riff, a slide guitar crying in the gaps, a tight lean bass locked to the kick, bass well under the mids, a driving tom-heavy shuffle, hand claps on the backbeat in the chorus, a weathered low male lead, a dry female harmony on the hook, in C minor, dusty and knowing, mid start, a long high plateau, a dip to riff and voice, a lifted last chorus, warm grit in the mids, no harsh highs",
+      "lyrics": "[Intro - the baritone riff alone, the slide answers]\n\n[Verse 1]\nI'm the groove along the back edge of the lid\nEverything I carry rolls, whatever it did\nMarble every wave, it showed them how to run\nHalf again as fast in me, and then they're done\n\n[Pre-Chorus]\nThen the page turns over, lesson number five\nA textbook dragged across me like a lid on a hive\n\n[Chorus - harmony on the hook]\nTurn the page and shut the groove\nEverybody takes the long road\nUnder the ruler, round the sharpener\nEverybody takes the long road\n\n[Verse 2]\nNow they're trudging on the lid where the old rubber sits\nThe ruler laid across it like a bridge to the pits\nThe compass gets its circle, the glue gets its line\nSlow grey feet and every tower taking its time\n\n[Pre-Chorus]\nI lie in the dark under fractions and a map\nListening to all of them walk the long way back\n\n[Chorus - harmony on the hook]\nTurn the page and shut the groove\nEverybody takes the long road\nUnder the ruler, round the sharpener\nEverybody takes the long road\n\n[Breakdown - riff and voice, claps drop out]\nTwo waves of quiet in a channel made of pine\nSomething always opens, something always shuts\nGive it a lesson, the textbook moves on\n\n[Final Chorus - lifted, full band, the slide on top]\nTurn the page and shut the groove\nEverybody takes the long road\nUnder the ruler, round the sharpener\nEverybody takes the long road\n\n[Outro - the riff slows into one ringing chord]",
+      "why": "You asked for \"wave 5: the lesson changes, a hand drags the open textbook across the pencil groove; the groove itself sings as the whole horde turns for the long road under the ruler\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in C minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4010601 (19 of 143 heard words are not ours (13 %; limit 10 %, at least 40 heard): so is show liste). Seed 4010600 is the take.",
+      "rejected": [
+        {
+          "seed": 4010601,
+          "reason": "19 of 143 heard words are not ours (13 %; limit 10 %, at least 40 heard): so is show listen house that trojan blue it's it's so great"
+        }
+      ],
+      "takes": [
+        4010600
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.03,
+        "silence_s": 0.5,
+        "brightness_pct": 2.17,
+        "boominess_pct": 3.18,
+        "onsets_per_s": 2.76,
+        "seam_db": -64.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:schooldesk",
+          "pov:pencil-groove"
+        ],
+        "track_no": 72
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-schooldesk-everybody-takes-the-long-road/greytide-schooldesk-everybody-takes-the-long-road.mp3",
+        "notes": "greytide-schooldesk-everybody-takes-the-long-road/notes.md",
+        "recipe": "greytide-schooldesk-everybody-takes-the-long-road/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "grooved",
+          "guinness",
+          "hide",
+          "moon",
+          "show",
+          "shelf",
+          "open",
+          "is"
+        ],
+        "stripped": [],
+        "installed_samples": 7362123,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-schooldesk-everybody-takes-the-long-road/greytide-schooldesk-everybody-takes-the-long-road.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32432,6 +32524,7 @@
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-schooldesk-show-your-working",
