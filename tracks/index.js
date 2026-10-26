@@ -3,6 +3,100 @@ window.NOBODY_INDEX = {
   "written": "2026-10-26T02:36:13-04:00",
   "tracks": [
     {
+      "slug": "sir-brickalot-take-2",
+      "title": "Sir Brickalot (take 2)",
+      "project": "joes-castle",
+      "idea": "the anthem of the brick knight on the white horse who defends Joe's castle: building is the battle",
+      "request": "the anthem of the brick knight on the white horse who defends Joe's castle: building is the battle",
+      "mood": "epic and funny at once",
+      "bpm": 132,
+      "key": "D minor",
+      "seed": 3380101,
+      "model": "fast",
+      "duration": 165.26,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T02:34:47-04:00",
+      "voice": true,
+      "prompt": "triumphant medieval power-folk anthem, galloping 6/8 drive at 132 bpm, D minor lifting to D major in the chorus, a big gang-vocal chorus, a heroic male lead, pipes-style synth lead, war drums, galloping bass, bright brass fanfares, a crowd that sings along, epic and funny at once, instrumental break with a fanfare duel, tight lean bass under the mids, no harsh highs, D minor verses, no wobble bass",
+      "lyrics": "[Intro: fanfare, hooves on the baseplate]\n\n[Verse 1]\nWhite horse, twelve studs high, he don't hurry, he don't flinch\nRed plume on a silver lid, a lance that's built an inch\nThe grey come up the drawbridge like they own the market square\nBut nobody owns the market square when Brickalot is there\n\n[Verse 2]\nHe was step forty-seven in a booklet by the bed\nA kid pressed every piece in place and here is what it said:\n\"Hold the gate, hold the keep, hold the line that holds the town\"\nAnd a knight who's been clicked together does not come apart that easily\n\n[Pre-Chorus]\nHe's slow, yeah, he's slow, he's a horse made of bricks\nBut the gap between his charges is the time it takes to fix\n\n[Chorus]\nSir Brickalot! Level the lance and ride!\nSir Brickalot! One hit, one grey, one side!\nSnap, click, the kingdom stands\nBuilt by small and stubborn hands\nSir Brickalot! The castle's on your side\n\n[Verse 3]\nThey brought a ladder up the north wall on the seventh wave\nThe archers turned to plastic and the trebuchet was brave\nBut the stone falls long and the stone falls far and the close ones slip on through\nSo who's gonna meet them at the keep? I think you know who\n\n[Bridge: half time, the gang hums]\nEvery brick they knock off, he can click back on\nEvery night they take the wall, by breakfast it's rebuilt and gone\nYou can melt a little soldier, you can scatter him like grain\nBut you can't unbuild a story once a kid has built it plain\n\n[Final Chorus: key up, everyone]\nSir Brickalot! Level the lance and ride!\nSir Brickalot! One hit, one grey, one side!\nSnap, click, the kingdom stands\nBuilt by small and stubborn hands\nSir Brickalot! The castle's on your side\n\n[Outro: one last fanfare]\n[a single brick clicks into place]",
+      "why": "You asked for \"the anthem of the brick knight on the white horse who defends Joe's castle: building is the battle\". The anthem for Joe's castle: the front desk wrote the words from the game's own details (the knight, the drawbridge, the market square, the seventh-wave ladder), and the style line is used word for word. So I wrote it at 132 bpm in D minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 1 seed and kept it. Seed 3380101 is the take, but it did not clear every gate: 0.9s of near-silence (limit 0.5); harsh: 2.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [],
+      "takes": [
+        3380101
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.62,
+        "silence_s": 0.85,
+        "brightness_pct": 2.78,
+        "boominess_pct": 3.66,
+        "onsets_per_s": 2.64,
+        "seam_db": -4.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Joe's Castle",
+        "submitter": "music for Joe's castle",
+        "tags": [],
+        "track_no": 7
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "sir-brickalot-take-2/sir-brickalot-take-2.mp3",
+        "notes": "sir-brickalot-take-2/notes.md",
+        "recipe": "sir-brickalot-take-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.9s of near-silence (limit 0.5)",
+          "harsh: 2.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "play",
+          "locked",
+          "where",
+          "tone",
+          "prick",
+          "lot",
+          "prick",
+          "lot",
+          "low",
+          "my",
+          "gets",
+          "great",
+          "sirf",
+          "cricalot",
+          "thank"
+        ],
+        "stripped": [],
+        "installed_samples": 7287814,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "sir-brickalot-take-2/sir-brickalot-take-2.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "sir-brickalot",
       "title": "Sir Brickalot",
       "project": "joes-castle",
@@ -27904,7 +27998,8 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
-        "sir-brickalot"
+        "sir-brickalot",
+        "sir-brickalot-take-2"
       ],
       "description": "6 tracks, in the order they were meant to be heard.",
       "credits": [
