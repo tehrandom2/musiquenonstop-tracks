@@ -884,6 +884,107 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-workbench-under-the-lens",
+      "title": "Under the Lens",
+      "project": "greytide",
+      "idea": "Wave nine, the magnifier swings over the middle of the bench: everything under its ring light takes more, and painted and grey look the same up close",
+      "request": "Wave nine, the magnifier swings over the middle of the bench: everything under its ring light takes more, and painted and grey look the same up close",
+      "mood": "intense, widescreen, revealing",
+      "bpm": 140,
+      "key": "C minor",
+      "seed": 3960900,
+      "model": "fast",
+      "duration": 160.06,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:18:42-04:00",
+      "voice": true,
+      "prompt": "Dark cinematic rock at 140 bpm in C minor, a big widescreen band: a driving palm-muted guitar with warm saturation in the mids, a tight lean pick bass, bass under the mids, pounding tom-led drums, a slow-building string ostinato, a creaking metallic percussion before each chorus like an arm swinging; an intense, soaring female lead with a low male voice doubling the hook; starts mid, a long rising plateau, a quiet held bridge, a lifted final chorus, C minor, no harsh highs",
+      "lyrics": "[Intro - strings, a long creak]\nSwing it over.\n\n[Verse 1]\nWave nine, the magnifier arm begins to creak\nTwo bones and a spring and a ring of light that seems to speak\nIt swings out over the sander and the middle of the board\nAnd everything beneath it is a story, magnified, adored\nEvery seam on every grey dude, every mould line, every flaw\nSeven centimetres wide, a circle of the law\n\n[Pre-Chorus]\nHold them there, hold them there\n(Where the light is everywhere)\n\n[Chorus]\nUnder the lens, you can't hide\nEvery hit lands twice the size\nUnder the lens, I see you true\nGrey as the morning, coming through\n\n[Verse 2]\nThe painted ones look up and see themselves in giant scale\nEvery wobble of the brush, every highlight, every tale\nThe Spirit Level steadies everyone who stands beside\nThe rotary tool throws a disc that cuts and comes back with the tide\nAnd down the line the multimeter's needle swings to red\nThe leader's nearly at the end and nobody's ahead\n\n[Pre-Chorus]\nHold them there, hold them there\n(Where the light is everywhere)\n\n[Chorus]\nUnder the lens, you can't hide\nEvery hit lands twice the size\nUnder the lens, I see you true\nGrey as the morning, coming through\n\n[Bridge - quiet, strings held]\nThe owner used to look at us like this\nClose enough to see the little things he'd missed\nNow the light's on all of us, the painted and the plain\nUnder the lens we look the same\n\n[Final Chorus - lifted, the whole band and the low voice]\nUnder the lens, you can't hide\nEvery hit lands twice the size\nUnder the lens, I see you true\nGrey as the morning, coming through\n\n[Outro - one last creak]\nSwing it back.",
+      "why": "You asked for \"Wave nine, the magnifier swings over the middle of the bench: everything under its ring light takes more, and painted and grey look the same up close\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in C minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960901 (22 of 183 heard words are not ours (12 %; limit 10 %, at least 40 heard): singer life grad). Seed 3960900 is the take, but it did not clear every gate: harsh: 3.2% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3960901,
+          "reason": "22 of 183 heard words are not ours (12 %; limit 10 %, at least 40 heard): singer life grade mold far centimeters can headland too great commences tail"
+        }
+      ],
+      "takes": [
+        3960900
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.58,
+        "silence_s": 0.25,
+        "brightness_pct": 3.18,
+        "boominess_pct": 7.84,
+        "onsets_per_s": 3.0,
+        "seam_db": -13.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:the-magnifier"
+        ],
+        "track_no": 115
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-under-the-lens/greytide-workbench-under-the-lens.mp3",
+        "notes": "greytide-workbench-under-the-lens/notes.md",
+        "recipe": "greytide-workbench-under-the-lens/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.39,
+        "failed": [
+          "harsh: 3.2% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "grade",
+          "mole",
+          "centimeters",
+          "oh",
+          "pull",
+          "pull",
+          "that's",
+          "scales",
+          "tail",
+          "set",
+          "hitman",
+          "there's",
+          "that's",
+          "too",
+          "there's"
+        ],
+        "stripped": [],
+        "installed_samples": 7058784,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-under-the-lens/greytide-workbench-under-the-lens.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29373,6 +29474,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-workbench-under-the-lens",
         "greytide-gamestore-demo-ends-in-sixty",
         "greytide-desk-a-drop-of-blue",
         "greytide-couch-stay-tuned",
