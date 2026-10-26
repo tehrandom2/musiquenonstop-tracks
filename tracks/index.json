@@ -7440,6 +7440,102 @@
       "audition": true
     },
     {
+      "slug": "greytide-garage-the-roadie",
+      "title": "The Roadie Plugs It Back In",
+      "project": "greytide",
+      "idea": "Wave six: the painter's hand plays roadie, re-plugs the buried lead into a fresh jack and carries a tower that keeps firing in its grip",
+      "request": "Wave six: the painter's hand plays roadie, re-plugs the buried lead into a fresh jack and carries a tower that keeps firing in its grip",
+      "mood": "swaggering, warm, grateful",
+      "bpm": 152,
+      "key": "B minor",
+      "seed": 3990600,
+      "model": "fast",
+      "duration": 161.02,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:08:36-04:00",
+      "voice": true,
+      "prompt": "Rockabilly with a punk kick, 152 bpm, B minor: a slapped upright bass, tight and lean, bass under the mids, clicking on the backbeat, a twangy hollow-body guitar playing quick double-stop licks, a drummer on a brushed snare that switches to sticks at the chorus, a hand-clap section, a swaggering male lead with a slapback echo and a girl-group trio answering him; no harsh highs; starts mid on the slap, a long swinging plateau, one dip to bass and claps, a final lift with the trio on top, B minor",
+      "lyrics": "[Intro: slap bass and claps]\nHand comes down, hand comes down\n\n[Verse 1]\nThe cymbal fell and the lead is buried\nThe grey are stuck and the towers are worried\nThen out of the dark like a crane on a rope\nComes a giant hand with a fistful of hope\n\n[Pre-Chorus]\nPinch the plug, give it a twist\nThe kind of work you'd never miss\n\n[Chorus]\nThe roadie plugs it back in\n(Back in, back in)\nThe roadie plugs it back in\nAnd the road begins again\n\n[Verse 2]\nIt lifts the Practice Amp with the wave still on\nThe amp keeps firing while it's carried along\nPut it down by the jack where the rail runs east\nTwo inches over, now it's facing the beast\n\n[Pre-Chorus]\nPinch the plug, give it a twist\nThe kind of work you'd never miss\n\n[Chorus]\nThe roadie plugs it back in\n(Back in, back in)\nThe roadie plugs it back in\nAnd the road begins again\n\n[Breakdown: bass and claps, the trio humming]\nNobody claps for the one in black\nWho coils the cable and carries it back\nEvery little hero, three centimetres tall\nStands on a road that the roadie laid for them all\n\n[Final Chorus: lifted, the trio on top]\nThe roadie plugs it back in\n(Back in, back in)\nThe roadie plugs it back in\nAnd the road begins again\n\n[Outro: slap bass alone]\nHand comes down",
+      "why": "You asked for \"Wave six: the painter's hand plays roadie, re-plugs the buried lead into a fresh jack and carries a tower that keeps firing in its grip\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 152 bpm in B minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 152 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3990601 (15 of 141 heard words are not ours (11 %; limit 10 %, at least 40 heard): symbol gray fist). Seed 3990600 is the take, but it did not clear every gate: boomy: 12.2% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 3990601,
+          "reason": "15 of 141 heard words are not ours (11 %; limit 10 %, at least 40 heard): symbol gray fist fist pugs sit waves flying he he centimeters lady"
+        }
+      ],
+      "takes": [
+        3990600
+      ],
+      "numbers": {
+        "tempo_bpm": 75.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.66,
+        "silence_s": 0.15,
+        "brightness_pct": 2.41,
+        "boominess_pct": 12.23,
+        "onsets_per_s": 3.78,
+        "seam_db": -38.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:garage",
+          "pov:the painter's hand"
+        ],
+        "track_no": 69
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-garage-the-roadie/greytide-garage-the-roadie.mp3",
+        "notes": "greytide-garage-the-roadie/notes.md",
+        "recipe": "greytide-garage-the-roadie/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "boomy: 12.2% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": [
+          "symbol",
+          "gray",
+          "fist",
+          "full",
+          "his",
+          "face",
+          "pitch",
+          "he",
+          "he",
+          "centimeters"
+        ],
+        "stripped": [],
+        "installed_samples": 7101049,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-garage-the-roadie/greytide-garage-the-roadie.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35964,6 +36060,7 @@
         "greytide-schooldesk-twelve-times-twelve",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-garage-the-roadie",
         "greytide-kitchen-knife-in-the-jam",
         "greytide-sandpit-five-limp-three-proud",
         "greytide-schooldesk-everybody-takes-the-long-road",
