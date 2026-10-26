@@ -1578,6 +1578,104 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-workbench-eleven-seconds",
+      "title": "Eleven Seconds",
+      "project": "greytide",
+      "idea": "The vice, the bench's own character, counts its eleven-second cycle with no malice at all, then gets ratcheted tighter by a falling spanner at wave three",
+      "request": "The vice, the bench's own character, counts its eleven-second cycle with no malice at all, then gets ratcheted tighter by a falling spanner at wave three",
+      "mood": "menacing, dry, mechanical",
+      "bpm": 132,
+      "key": "E minor",
+      "seed": 3960201,
+      "model": "fast",
+      "duration": 158.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:17:43-04:00",
+      "voice": true,
+      "prompt": "Dark industrial EBM at 132 bpm in E minor, a heavy machine crew: a pounding kick with a clanking metal snare, a tight lean sequenced bass, bass under the mids, a creaking filtered noise that rises before each chorus like a vice winding in, a slammed sample hit on the chorus downbeat, a cold synth stab; a low, commanding male lead counting with menace and dry wit, a shouted crew answer; starts mid, two big slams, a held-shut bridge, a lifted final chorus in E minor, warm grit in the mids, no harsh highs",
+      "lyrics": "[Intro - a creak, then the beat]\nFive open. Two to warn.\n\n[Verse 1]\nI'm the vice on the front of the bench, I'm blue and I'm old\nTwo jaws with rubber faces and a handle you can hold\nI hold a birdhouse for the owner, one wall's not there yet\nI'm patient and I'm honest, and I'm easy to forget\nBut every wave the belt runs right into my mouth\nAnd I count the way a tide counts, in and out\n\n[Pre-Chorus]\nCreak, creak, the handle spins\n(Red pad blinking, here it begins)\n\n[Chorus]\nEleven seconds, that's my song\nFive to open, two to warn\nThen I close, then I close\nEleven seconds, and it's gone\n\n[Verse 2]\nI don't hate the grey, I don't hate anything at all\nI'm a tool that does one thing and the one thing is a wall\nIf you're clever you will glue them where my jaws come in\nSlow them on the slot and let the count begin\nAnd never build a tower in the gap, I'm telling you\nI'll tip it on its side and it'll sit the whole wave through\n\n[Pre-Chorus]\nCreak, creak, the handle spins\n(Red pad blinking, here it begins)\n\n[Chorus]\nEleven seconds, that's my song\nFive to open, two to warn\nThen I close, then I close\nEleven seconds, and it's gone\n\n[Bridge - held shut, a low drone and the kick]\nA ring spanner fell on my handle at wave three\nRatcheted me tighter, one, two, three\nNow I count to nine and a little bit\nAnd nobody asked me if I'm fit\n\n[Final Chorus - lifted, a harder slam on every line]\nEleven seconds, that's my song\nFive to open, two to warn\nThen I close, then I close\nEleven seconds, and it's gone\n\n[Outro - the jaws open]\nOpen. Again.",
+      "why": "You asked for \"The vice, the bench's own character, counts its eleven-second cycle with no malice at all, then gets ratcheted tighter by a falling spanner at wave three\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in E minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960200 (0.7s of near-silence (limit 0.5) and others). Seed 3960201 is the take, but it did not clear every gate: 1.2s of near-silence (limit 0.5); harsh: 3.4% above 6 kHz (ceiling 2.5); boomy: 12.6% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 3960200,
+          "reason": "0.7s of near-silence (limit 0.5); harsh: 4.0% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3960201
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.3,
+        "silence_s": 1.2,
+        "brightness_pct": 3.42,
+        "boominess_pct": 12.65,
+        "onsets_per_s": 3.31,
+        "seam_db": -75.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:the-vice"
+        ],
+        "track_no": 24
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-eleven-seconds/greytide-workbench-eleven-seconds.mp3",
+        "notes": "greytide-workbench-eleven-seconds/notes.md",
+        "recipe": "greytide-workbench-eleven-seconds/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 1.34,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "1.2s of near-silence (limit 0.5)",
+          "harsh: 3.4% above 6 kHz (ceiling 2.5)",
+          "boomy: 12.6% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": [
+          "vaisal",
+          "charles",
+          "was",
+          "bells",
+          "gray",
+          "hop",
+          "ward",
+          "else",
+          "far",
+          "too"
+        ],
+        "stripped": [],
+        "installed_samples": 6975614,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-eleven-seconds/greytide-workbench-eleven-seconds.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30068,6 +30166,7 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "greytide-workbench-station-one-one-way-only",
+        "greytide-workbench-eleven-seconds",
         "greytide-workbench-hot-tip",
         "greytide-workbench-extremely-unsympathetic",
         "greytide-workbench-the-outline-on-the-pegboard",
