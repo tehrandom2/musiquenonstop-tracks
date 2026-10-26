@@ -9065,6 +9065,91 @@
       "audition": true
     },
     {
+      "slug": "greytide-desk-eighty-percent-flock",
+      "title": "Eighty Percent Flock",
+      "project": "greytide",
+      "idea": "Instrumental breather: the basing gnome on the cork lobs clumps of flock over the first waves, a cheap little mortar, eighty percent flock.",
+      "request": "Instrumental breather: the basing gnome on the cork lobs clumps of flock over the first waves, a cheap little mortar, eighty percent flock.",
+      "mood": "playful, dusty, bouncing",
+      "bpm": 132,
+      "key": "A minor",
+      "seed": 3910201,
+      "model": "fast",
+      "duration": 130.74,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:06:14-04:00",
+      "voice": false,
+      "prompt": "Rubbery minor-key funk, 132 bpm, A minor. A five-piece: clavinet stabs on the offbeat, a wah rhythm guitar, a tight lean bass in short syncopated figures well under the mids, a dry breakbeat kit with ghost notes, a baritone sax and a muted trumpet throwing two-note phrases that arc and answer each other like lobbed shells. Playful and dusty. Starts mid on clav and drums, a long horn plateau, one dip to bass and drums, a lifted final horn section. A minor, instrumental, no vocals",
+      "lyrics": null,
+      "why": "You asked for \"Instrumental breather: the basing gnome on the cork lobs clumps of flock over the first waves, a cheap little mortar, eighty percent flock.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in A minor, 135 seconds, with no voice, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3910200 (3.2s of near-silence (limit 0.5)). Seed 3910201 is the take, but it did not clear every gate: harsh: 2.5% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3910200,
+          "reason": "3.2s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3910201
+      ],
+      "numbers": {
+        "tempo_bpm": 132.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.74,
+        "silence_s": 0.2,
+        "brightness_pct": 2.53,
+        "boominess_pct": 5.19,
+        "onsets_per_s": 3.81,
+        "seam_db": -63.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:desk",
+          "pov:the basing gnome"
+        ],
+        "track_no": 15
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-desk-eighty-percent-flock/greytide-desk-eighty-percent-flock.mp3",
+        "notes": "greytide-desk-eighty-percent-flock/notes.md",
+        "recipe": "greytide-desk-eighty-percent-flock/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.1,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 2.5% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5765598,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-desk-eighty-percent-flock/greytide-desk-eighty-percent-flock.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -37561,6 +37646,7 @@
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-desk-eighty-percent-flock",
         "greytide-gamestore-four-tiles-no-map",
         "greytide-garage-four-clicks-in",
         "greytide-kitchen-round-till-your-door-comes",
