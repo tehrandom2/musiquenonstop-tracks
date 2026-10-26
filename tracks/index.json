@@ -2508,6 +2508,103 @@
       "audition": true
     },
     {
+      "slug": "greytide-sill-the-guide-blew-away",
+      "title": "The Guide Blew Away",
+      "project": "greytide",
+      "idea": "After wave two a gust blows every signpost and tape arrow off the ledge; a primed-only grey dude finds he has to choose his own road",
+      "request": "After wave two a gust blows every signpost and tape arrow off the ledge; a primed-only grey dude finds he has to choose his own road",
+      "mood": "nervy, wry, liberated",
+      "bpm": 138,
+      "key": "A minor",
+      "seed": 3970200,
+      "model": "fast",
+      "duration": 163.7,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:16:17-04:00",
+      "voice": true,
+      "prompt": "Wiry post-punk, 138 bpm, A minor, nervy and funny: a tight motorik drum kit with a dry snare, a melodic picked bass that leads the song, tight lean bass under the mids, a chorused clean guitar playing jagged A minor arpeggios, a second guitar scratching on the offbeat, a thin organ drone for wind, a deadpan male baritone lead with a female backing voice shouting the answers, in A minor; intro of bass and drums with a gust swelling, verses clipped and dry, the chorus wide and singalong, a half-time bridge on bass alone before the band slams back, the final chorus lifted, no harsh highs",
+      "lyrics": "[Intro: bass and drums, a gust swells]\n\n[Verse 1]\nWave two was over and the signs stood in a row\nLittle paper arrows telling grey where grey should go\nThen the pinwheel spun up like it knew a thing or two\nAnd the gust came through the gap and took the arrows too\n\n[Pre-Chorus]\nSignposts tumbling end on end\nOver the lip and round the bend\n\n[Chorus]\nThe guide blew away, the guide blew away\nNobody tells us where to go today\nGroove on the left or the pots on the right\nThe guide blew away, we're on our own tonight\n\n[Verse 2]\nI've been about to be painted since the box was in the sale\nPrimer on my shoulders and a promise going stale\nNow there's no one at the corners, no one pointing at the drop\nJust a wet groove running fast and a ledge that doesn't stop\n\n[Pre-Chorus]\nSignposts tumbling end on end\nOver the lip and round the bend\n\n[Chorus]\nThe guide blew away, the guide blew away\nNobody tells us where to go today\nGroove on the left or the pots on the right\nThe guide blew away, we're on our own tonight\n\n[Bridge: half-time, bass alone, then the band slams back]\nA gust can't tell a grey from grey\nIt shoves the light ones all one way\nInto the groove where the water runs\nFaster, faster, the lightest ones\nNobody points, so nobody's wrong\nChoose your road and choose your song\n\n[Final Chorus: lifted, the backing voice doubling]\nThe guide blew away, the guide blew away\nNobody tells us where to go today\nGroove on the left or the pots on the right\nThe guide blew away, we're on our own tonight\n\n[Outro: bass and the gust]\nOn our own tonight\nOn our own",
+      "why": "You asked for \"After wave two a gust blows every signpost and tape arrow off the ledge; a primed-only grey dude finds he has to choose his own road\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 138 bpm in A minor, 168 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 138 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3970201 (22 of 204 heard words are not ours (11 %; limit 10 %, at least 40 heard): live sign pinwhe). Seed 3970200 is the take.",
+      "rejected": [
+        {
+          "seed": 3970201,
+          "reason": "22 of 204 heard words are not ours (11 %; limit 10 %, at least 40 heard): live sign pinwheels you gush side posts guy guy crew pot's guy"
+        }
+      ],
+      "takes": [
+        3970200
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.16,
+        "silence_s": 0.3,
+        "brightness_pct": 1.98,
+        "boominess_pct": 5.09,
+        "onsets_per_s": 2.97,
+        "seam_db": -57.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sill",
+          "pov:grey-dude"
+        ],
+        "track_no": 22
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sill-the-guide-blew-away/greytide-sill-the-guide-blew-away.mp3",
+        "notes": "greytide-sill-the-guide-blew-away/notes.md",
+        "recipe": "greytide-sill-the-guide-blew-away/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "signed",
+          "for",
+          "guy",
+          "guy",
+          "seal",
+          "guy",
+          "guy",
+          "parts",
+          "guy",
+          "but",
+          "dust",
+          "gray",
+          "gray"
+        ],
+        "stripped": [],
+        "installed_samples": 7219159,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sill-the-guide-blew-away/greytide-sill-the-guide-blew-away.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -30999,6 +31096,7 @@
       "tracks": [
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
         "greytide-workbench-eleven-seconds",
         "greytide-treehouse-you-are-on-your-own",
