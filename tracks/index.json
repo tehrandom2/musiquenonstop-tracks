@@ -5158,6 +5158,107 @@
       "audition": true
     },
     {
+      "slug": "greytide-railway-the-road-forks",
+      "title": "The Road Forks",
+      "project": "greytide",
+      "idea": "Wave two: two grey dudes from the same box are split at the fork, one to the level crossing, one down the track bed with no warning; a duet",
+      "request": "Wave two: two grey dudes from the same box are split at the fork, one to the level crossing, one down the track bed with no warning; a duet",
+      "mood": "rough, tender, fatalistic",
+      "bpm": 144,
+      "key": "E minor",
+      "seed": 4060201,
+      "model": "fast",
+      "duration": 157.98,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:12:00-04:00",
+      "voice": true,
+      "prompt": "Freight-train country shuffle, 144 bpm, in E minor, a five-piece honky outfit: a boom-chicka brushed snare train beat, a tight lean upright bass under the mids slapping the root and fifth, a baritone guitar with a twangy low lead, a harmonica wailing like a whistle between lines, a fiddle sawing the chorus, a male and a female lead singing a duet as two grey dudes split at the fork, rough and tender, the key E minor said again by the baritone; arc: harmonica whistle intro, verses that trade, a chorus sung together, a breakdown to bass and brushes, a final chorus lifted with fiddle harmony, no harsh highs",
+      "lyrics": "[Intro: harmonica whistle, the train beat starts]\n\n[Verse 1: male]\nWe climbed out the box with the same grey face\nThe same stick bones and the same base\nBut they number us off at the signpost's word\nOdd to the gates and even to the third\n\n[Verse 2: female]\nYou get the crossing with the red and white\nThe booms come down and they hold you tight\nI get the track bed, the sleepers and stones\nNo warning for me but the board's cold tones\n\n[Pre-Chorus: together]\nThe road forks, the road forks\nOne of us waits and one of us walks\n\n[Chorus: together]\nYou take the gates and I take the bed\nYou get a warning, I get the dread\nMeet me where the roads join up again\nIf the train don't find us in between\n\n[Verse 3: trading lines]\nI hear the rails start humming at my feet\nI hear the bell where the barriers meet\nI'm running the ballast, I'm counting the ties\nI'm grey all over but I've got good eyes\n\n[Chorus: together]\nYou take the gates and I take the bed\nYou get a warning, I get the dread\nMeet me where the roads join up again\nIf the train don't find us in between\n\n[Breakdown: bass and brushes]\nIf I don't make it, tell the box\nI walked the line like the painted clocks\nNo, tell them nothing, they never ask\nThe grey just go, and that's the task\n\n[Final Chorus: lifted, fiddle harmony]\nYou take the gates and I take the bed\nYou get a warning, I get the dread\nMeet me where the roads join up again\nIf the train don't find us in between\n\n[Outro: harmonica fades down the line]\nRoads join. Roads join.",
+      "why": "You asked for \"Wave two: two grey dudes from the same box are split at the fork, one to the level crossing, one down the track bed with no warning; a duet\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 144 bpm in E minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 144 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4060200 (0.6s of near-silence (limit 0.5)). Seed 4060201 is the take.",
+      "rejected": [
+        {
+          "seed": 4060200,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4060201
+      ],
+      "numbers": {
+        "tempo_bpm": 70.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.47,
+        "silence_s": 0.45,
+        "brightness_pct": 1.72,
+        "boominess_pct": 6.53,
+        "onsets_per_s": 2.77,
+        "seam_db": -54.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:railway",
+          "pov:two-grey-dudes"
+        ],
+        "track_no": 20
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-railway-the-road-forks/greytide-railway-the-road-forks.mp3",
+        "notes": "greytide-railway-the-road-forks/notes.md",
+        "recipe": "greytide-railway-the-road-forks/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "gray",
+          "crossin'",
+          "bread",
+          "boards",
+          "tone",
+          "boat",
+          "morning",
+          "lead",
+          "gray",
+          "truth",
+          "walk",
+          "grade",
+          "i'd",
+          "trip",
+          "roles",
+          "roles",
+          "thank"
+        ],
+        "stripped": [],
+        "installed_samples": 6966752,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-railway-the-road-forks/greytide-railway-the-road-forks.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33651,6 +33752,7 @@
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-railway-the-road-forks",
         "greytide-sandpit-find-your-own-way",
         "greytide-sill-the-guide-blew-away",
         "greytide-treehouse-keep-out",
