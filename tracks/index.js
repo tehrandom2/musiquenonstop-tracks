@@ -7151,6 +7151,108 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-open-the-oven-door",
+      "title": "Open the Oven Door",
+      "project": "greytide",
+      "idea": "Wave 9: the cooker tells it; the oven timer rings, the door drops open, gold light floods across the cloth and one hot gust shoves every grey dude back a few centimetres.",
+      "request": "Wave 9: the cooker tells it; the oven timer rings, the door drops open, gold light floods across the cloth and one hot gust shoves every grey dude back a few centimetres.",
+      "mood": "brassy, proud, hot",
+      "bpm": 128,
+      "key": "G minor",
+      "seed": 3920900,
+      "model": "fast",
+      "duration": 165.14,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:09:01-04:00",
+      "voice": true,
+      "prompt": "Heavy funk soul, 128 bpm, G minor. A nine-piece: a tight lean bass on a syncopated riff well under the mids, a tight kit with a fat snare, a choppy rhythm guitar, an organ swelling under every chorus, a four-horn section of two trumpets, tenor sax and trombone punching the hook, a bell hit on each downbeat of the pre-chorus. A powerful female soul lead with gospel backing singers. Proud and hot. Starts mid, a long horn plateau, one dip to bass and voices, a lifted final chorus. G minor, no harsh highs.",
+      "lyrics": "[Intro: horns and a ringing bell]\n\n[Verse 1]\nI stand by the table with a timer on my front\nFour rings on top going redder with each loss\nTwo sausages spitting in a pan on the left\nSmells good, behaves badly, that's the cost\n\n[Pre-Chorus]\nDing, ding, ding, wave nine on the dial\nStand back, little ones, give me a while\n\n[Chorus]\nOpen the door and the light comes through\nGold on the gingham, a hot wind too\nSmells good, behaves badly\nSmells good, behaves badly\n\n[Verse 2]\nThe gust goes over and the grey ones skid\nA couple of centimetres back where they came\nThe painted ones squint in a light they don't know\nLike the sun came up and called them by name\n\n[Pre-Chorus]\nDing, ding, ding, wave nine on the dial\nStand back, little ones, give me a while\n\n[Chorus]\nOpen the door and the light comes through\nGold on the gingham, a hot wind too\nSmells good, behaves badly\nSmells good, behaves badly\n\n[Bridge: bass and voices only]\nSomeone is cooking, someone is cooking\nNobody's eaten since the painting began\nSomeone is cooking for the whole of the warband\nBread and a promise and a sausage in a pan\n\n[Final Chorus: lifted, every horn in]\nOpen the door and the light comes through\nGold on the gingham, a hot wind too\nSmells good, behaves badly\nSmells good, behaves badly\n\n[Outro: horns, then the bell once]\nSmells good",
+      "why": "You asked for \"Wave 9: the cooker tells it; the oven timer rings, the door drops open, gold light floods across the cloth and one hot gust shoves every grey dude back a few centimetres.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in G minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3920901 (0.9s of near-silence (limit 0.5)). Seed 3920900 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3920901,
+          "reason": "0.9s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3920900
+      ],
+      "numbers": {
+        "tempo_bpm": 125.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.07,
+        "silence_s": 0.6,
+        "brightness_pct": 1.95,
+        "boominess_pct": 4.01,
+        "onsets_per_s": 2.6,
+        "seam_db": -66.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:the cooker"
+        ],
+        "track_no": 109
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-open-the-oven-door/greytide-kitchen-open-the-oven-door.mp3",
+        "notes": "greytide-kitchen-open-the-oven-door/notes.md",
+        "recipe": "greytide-kitchen-open-the-oven-door/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "bitten",
+          "cause",
+          "blind",
+          "hold",
+          "wing",
+          "dust",
+          "gray",
+          "get",
+          "centimeters",
+          "ging",
+          "begun",
+          "war",
+          "band",
+          "sign",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7282663,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-open-the-oven-door/greytide-kitchen-open-the-oven-door.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35693,6 +35795,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-kitchen-open-the-oven-door",
         "greytide-picnic-somebody-kicks-the-ball",
         "greytide-railway-painted-passengers",
         "greytide-sandpit-the-cat-has-seen-them",
