@@ -11224,6 +11224,104 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-bed-low-setting",
+      "title": "Low Setting",
+      "project": "greytide",
+      "idea": "Wave three: the big light flickers and settles on its low setting, the shadows run long, and the night light, a tower that never fires a shot, makes every grey dude in its glow easier to hit.",
+      "request": "Wave three: the big light flickers and settles on its low setting, the shadows run long, and the night light, a tower that never fires a shot, makes every grey dude in its glow easier to hit.",
+      "mood": "tender, glowing, quietly fierce",
+      "bpm": 132,
+      "key": "F# minor",
+      "seed": 3930400,
+      "model": "fast",
+      "duration": 155.06,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:03:02-04:00",
+      "voice": true,
+      "prompt": "Dream-pop with drive, 132 bpm, F# minor. The band: a shimmering chorused guitar playing a ringing figure, a second guitar in soft swells, a steady motorik drum groove with brushed snare, a round, lean bass walking under the mids, a high synth pad like a glow. An airy, tender female lead, double-tracked on the chorus. Mood: tender, glowing, quietly fierce. Arc: the shimmer alone, the groove in by verse one, the chorus opening wide, a half-time bridge of voice and pad, the final chorus lifted and fuller. F# minor throughout, no harsh highs.",
+      "lyrics": "[Intro: shimmering guitar and pad]\n\n[Verse 1]\nThe big light flickered twice and settled low\nthe shadows ran out long across the folds\nthey made me for a hallway in the night\nto keep the dark from being what it was\nI've never fired a single shot\nI don't own a bolt or blade\nI only stand and softly glow\nso every shot finds where it's aimed\n\n[Pre-Chorus]\nLow setting, warmer, darker\ncome a little closer, grey\n\n[Chorus]\nWalk into my glow\nwhere the dark can't hide you\nwalk into my glow\nI don't strike, I just find you\n\n[Verse 2]\nI was the thing a small kid needed once\na moon you plugged into the wall\nnow I'm painted, chipped along one shoulder\nproud of every brush mark, flaws and all\nthe cannon thanks me with its noise\nthe ballista doesn't say a thing\nbut every bolt that lands tonight\nlands a little brighter in my ring\n\n[Pre-Chorus]\nLow setting, warmer, darker\ncome a little closer, grey\n\n[Chorus]\nWalk into my glow\nwhere the dark can't hide you\nwalk into my glow\nI don't strike, I just find you\n\n[Bridge: half-time, voice and pad]\nEverything is easier to love when it's lit\neverything is easier to stop\nI'm not the hero, I'm the reason they can see\nI'm the reason they can see\n\n[Final Chorus: lifted, fuller]\nWalk into my glow\nwhere the dark can't hide you\nwalk into my glow\nI don't strike, I just find you\n\n[Outro: shimmer alone]\nI just find you.",
+      "why": "You asked for \"Wave three: the big light flickers and settles on its low setting, the shadows run long, and the night light, a tower that never fires a shot, makes every grey dude in its glow easier to hit.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in F# minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3930401 (0.7s of near-silence (limit 0.5) and others). Seed 3930400 is the take.",
+      "rejected": [
+        {
+          "seed": 3930401,
+          "reason": "0.7s of near-silence (limit 0.5); 21 of 208 heard words are not ours (10 %; limit 10 %, at least 40 heard): lights thicker settle falling i'd day grave strive smoke vangs booster boat"
+        }
+      ],
+      "takes": [
+        3930400
+      ],
+      "numbers": {
+        "tempo_bpm": 131.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.25,
+        "silence_s": 0.1,
+        "brightness_pct": 1.92,
+        "boominess_pct": 4.1,
+        "onsets_per_s": 2.84,
+        "seam_db": -56.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bed",
+          "pov:the night light"
+        ],
+        "track_no": 40
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bed-low-setting/greytide-bed-low-setting.mp3",
+        "notes": "greytide-bed-low-setting/notes.md",
+        "recipe": "greytide-bed-low-setting/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "life",
+          "thicker",
+          "feel",
+          "welcome",
+          "moving",
+          "belliest",
+          "plants",
+          "wings",
+          "oh",
+          "sit",
+          "warm",
+          "circle",
+          "globe",
+          "walking"
+        ],
+        "stripped": [],
+        "installed_samples": 6838249,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bed-low-setting/greytide-bed-low-setting.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39745,6 +39843,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-rings-free",
         "greytide-treehouse-you-are-on-your-own",
         "greytide-workbench-clamp-a-clamp-b",
+        "greytide-bed-low-setting",
         "greytide-carseat-down-in-the-crumb-gap",
         "greytide-couch-when-the-weight-shifts",
         "greytide-gamestore-page-forty-two",
