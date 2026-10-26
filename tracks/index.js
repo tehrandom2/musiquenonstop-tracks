@@ -2890,6 +2890,107 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-sill-one-boot-painted",
+      "title": "One Boot Painted",
+      "project": "greytide",
+      "idea": "The half-painted mini left to dry at the edge of the ledge, one boot painted and one still grey, belongs to neither side of the fight",
+      "request": "The half-painted mini left to dry at the edge of the ledge, one boot painted and one still grey, belongs to neither side of the fight",
+      "mood": "tender, lonely, wry",
+      "bpm": 88,
+      "key": "B minor",
+      "seed": 3970600,
+      "model": "fast",
+      "duration": 168.82,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:15:41-04:00",
+      "voice": true,
+      "prompt": "Intimate indie folk, 88 bpm, B minor, tender and lonely: a fingerpicked steel-string acoustic guitar carries a B minor pattern, a warm upright bass kept lean and under the mids, soft brushed snare, a cello taking the counter-melody in the choruses, a high airy harmonium drone like wind at height, a warm female alto lead, close and unhurried, with a second voice joining in harmony on the last chorus, in B minor; intro of guitar alone, verses close, the chorus opens up with cello, a bridge of cello and voice, the final chorus lifted with harmonies and the full band, the outro back to guitar, no harsh highs",
+      "lyrics": "[Intro: fingerpicked guitar alone]\n\n[Verse 1]\nThey set me down to dry beside the little pot of paint\nOne boot is oxblood, glossy, and the other's grey and faint\nThe hand went off to answer something buzzing in the room\nAnd left me at the edge of it, half finished, half in bloom\n\n[Pre-Chorus]\nThe grey ones walk right past me and they nod\nThe painted on the pots can't tell what I am\n\n[Chorus]\nOne boot painted, one boot grey\nI can't march with them and I can't walk away\nHalf of me was cared for, half of me's the tide\nOne boot painted, and I'm on both sides\n\n[Verse 2]\nA grey one stopped beside me with a seam across his face\nHe looked down at the oxblood like it was a holy place\nHe asked me does it feel different, and I couldn't find the words\nI said it feels like someone noticed, that is all it's worth\n\n[Pre-Chorus]\nThe grey ones walk right past me and they nod\nThe painted on the pots can't tell what I am\n\n[Chorus]\nOne boot painted, one boot grey\nI can't march with them and I can't walk away\nHalf of me was cared for, half of me's the tide\nOne boot painted, and I'm on both sides\n\n[Bridge: cello and voice]\nIf the brush comes back I'll be whole by the dawn\nIf the brush forgets, I'm a grey one with one shoe on\nEither way I'm standing where the concrete meets the drop\nEither way I'll tell them both that wanting doesn't stop\n\n[Final Chorus: lifted, harmonies and the full band]\nOne boot painted, one boot grey\nI can't march with them and I can't walk away\nHalf of me was cared for, half of me's the tide\nOne boot painted, and I'm on both sides\n\n[Outro: guitar alone]\nOne boot painted\nAnd I'm on both sides",
+      "why": "You asked for \"The half-painted mini left to dry at the edge of the ledge, one boot painted and one still grey, belongs to neither side of the fight\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 88 bpm in B minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 88 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3970601 (0.8s of near-silence (limit 0.5)). Seed 3970600 is the take.",
+      "rejected": [
+        {
+          "seed": 3970601,
+          "reason": "0.8s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3970600
+      ],
+      "numbers": {
+        "tempo_bpm": 87.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.85,
+        "silence_s": 0.1,
+        "brightness_pct": 0.92,
+        "boominess_pct": 4.53,
+        "onsets_per_s": 3.5,
+        "seam_db": -47.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:sill",
+          "pov:half-painted-mini"
+        ],
+        "track_no": 73
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-sill-one-boot-painted/greytide-sill-one-boot-painted.mp3",
+        "notes": "greytide-sill-one-boot-painted/notes.md",
+        "recipe": "greytide-sill-one-boot-painted/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.1,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": [
+          "part",
+          "pain",
+          "up",
+          "split",
+          "others",
+          "gray",
+          "great",
+          "know",
+          "played",
+          "look",
+          "gray",
+          "they're",
+          "ever",
+          "gray",
+          "dark",
+          "great",
+          "fade"
+        ],
+        "stripped": [],
+        "installed_samples": 7445106,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-sill-one-boot-painted/greytide-sill-one-boot-painted.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -31391,6 +31492,7 @@ window.NOBODY_INDEX = {
         "greytide-workbench-hot-tip",
         "greytide-treehouse-the-old-tree-is-not-happy",
         "greytide-workbench-extremely-unsympathetic",
+        "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
