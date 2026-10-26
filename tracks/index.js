@@ -10837,6 +10837,102 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-bed-six-forty-five",
+      "title": "Six Forty-Five",
+      "project": "greytide",
+      "idea": "Wave seven: the phone alarm goes off by mistake, six forty-five, wake up for work, and the painter in the bed, a grown-up who once lay still to catch their soldiers moving, plays one more wave anyway.",
+      "request": "Wave seven: the phone alarm goes off by mistake, six forty-five, wake up for work, and the painter in the bed, a grown-up who once lay still to catch their soldiers moving, plays one more wave anyway.",
+      "mood": "tired, driving, bittersweet",
+      "bpm": 140,
+      "key": "A minor",
+      "seed": 3930901,
+      "model": "fast",
+      "duration": 165.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:03:37-04:00",
+      "voice": true,
+      "prompt": "Driving indie rock, 140 bpm, A minor. The band: two interlocking electric guitars, one chiming, one chugging; a busy, tight drum kit with a four-on-the-floor kick in the chorus; a lean, melodic bass under the mids; a simple organ pad on the choruses. A tired, warm male lead, rough at the edges, harmonies on the hook. Mood: tired, driving, bittersweet. Arc: guitars and hats, the band in at verse one, a big chorus, a half-time bridge, the final chorus lifted with doubled harmonies. A minor throughout, no harsh highs.",
+      "lyrics": "[Intro: chiming guitar and hats]\n\n[Verse 1]\nI said one wave, and then I said two\nthe board across my knees is still wet blue\nthe phone just shivered, lit up and crawled\nsix forty-five, wake up for work, it called\nthe far corner shook, the towers froze\na second and a half where nothing goes\n\n[Pre-Chorus]\nI've got a job in the morning\nI've got a grey wave coming tonight\n\n[Chorus]\nSix forty-five, I know, I know\none more wave and then I go\nsix forty-five, it's not real yet\nthe cannon's loaded and the paint's still wet\n\n[Verse 2]\nWhen I was small my soldiers came alive\nthe second that the light went out\nI'd lie as still as I could lie\nto catch them at it, no doubt\nthey never moved while I was looking\nnow I paint them and I look away\nand something on the covers whispers\nhold the line until the day\n\n[Pre-Chorus]\nI've got a job in the morning\nI've got a grey wave coming tonight\n\n[Chorus]\nSix forty-five, I know, I know\none more wave and then I go\nsix forty-five, it's not real yet\nthe cannon's loaded and the paint's still wet\n\n[Bridge: half-time]\nThe grey pile texts me, one more kit\nonly fourteen centimetres tall\nI know, I know, I know\nI'll buy it, and I won't paint it at all\n\n[Final Chorus: lifted, doubled harmonies]\nSix forty-five, I know, I know\none more wave and then I go\nsix forty-five, it's not real yet\nthe cannon's loaded and the paint's still wet\n\n[Outro: chiming guitar alone]\nSix forty-five.",
+      "why": "You asked for \"Wave seven: the phone alarm goes off by mistake, six forty-five, wake up for work, and the painter in the bed, a grown-up who once lay still to catch their soldiers moving, plays one more wave anyway.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in A minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3930900 (1.4s of near-silence (limit 0.5)). Seed 3930901 is the take.",
+      "rejected": [
+        {
+          "seed": 3930900,
+          "reason": "1.4s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        3930901
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.38,
+        "silence_s": 0.3,
+        "brightness_pct": 2.48,
+        "boominess_pct": 4.12,
+        "onsets_per_s": 3.03,
+        "seam_db": -35.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:bed",
+          "pov:the painter"
+        ],
+        "track_no": 107
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-bed-six-forty-five/greytide-bed-six-forty-five.mp3",
+        "notes": "greytide-bed-six-forty-five/notes.md",
+        "recipe": "greytide-bed-six-forty-five/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "way",
+          "great",
+          "cannons",
+          "soul",
+          "there's",
+          "great",
+          "so",
+          "great",
+          "pal",
+          "kid",
+          "centimeters",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7284465,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-bed-six-forty-five/greytide-bed-six-forty-five.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -39411,6 +39507,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-she-turns-to-the-board",
         "greytide-sill-searchlight",
         "greytide-workbench-the-hordes-pulse",
+        "greytide-bed-six-forty-five",
         "greytide-desk-hold-still",
         "greytide-kitchen-open-the-oven-door",
         "greytide-picnic-somebody-kicks-the-ball",
