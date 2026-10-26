@@ -7816,6 +7816,100 @@
       "audition": true
     },
     {
+      "slug": "greytide-garage-four-clicks-in",
+      "title": "Four Clicks In",
+      "project": "greytide",
+      "idea": "Wave three: the hi-hat, the call-the-wave object, counts the band in and the first song begins; it keeps time for painted and grey alike",
+      "request": "Wave three: the hi-hat, the call-the-wave object, counts the band in and the first song begins; it keeps time for painted and grey alike",
+      "mood": "taut, deadpan, proud",
+      "bpm": 142,
+      "key": "A minor",
+      "seed": 3990201,
+      "model": "fast",
+      "duration": 154.94,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:08:02-04:00",
+      "voice": true,
+      "prompt": "Wiry post-punk, 142 bpm, A minor: a chorused lead guitar playing a cold four-note figure, a tight lean bass, bass under the mids, carrying the melody high on the neck, a drummer locked to a dry hi-hat ostinato and a crisp snare, a deadpan baritone male lead who speaks the verses and sings the hook, a second voice counting in the background; dry room, no harsh highs; starts on hi-hat alone, builds bar by bar into a long driving plateau, a dip to bass and hats, a final lift, A minor throughout",
+      "lyrics": "[Intro: hi-hat alone, four taps, then the bass]\nOne. Two. Three. Four.\n\n[Verse 1]\nI am the hi-hat on the low short stand\nThe drummer sits on a crate in this band\nTwo sticks crossed on my top like a sign\nNobody calls the next wave but the time\n\n[Pre-Chorus]\nTap me once and the horde will start\nTap me four and you've got a song\n\n[Chorus]\nFour clicks in, and the lights pulse red\nFour clicks in, and the kick goes ahead\nFour clicks in, there's no turning round\nOne, two, three, four, and the grey come down\n\n[Verse 2]\nThe set list's taped to the side of the amp\nSong three is crossed off in a biro stamp\nThe needle on the tuner settles in\nThat's the countdown, that's where we begin\n\n[Pre-Chorus]\nTap me once and the horde will start\nTap me four and you've got a song\n\n[Chorus]\nFour clicks in, and the lights pulse red\nFour clicks in, and the kick goes ahead\nFour clicks in, there's no turning round\nOne, two, three, four, and the grey come down\n\n[Bridge: bass and hats only, spoken]\nI keep the time for the painted ones\nThey were brushed by a careful hand\nI keep the time for the grey ones too\nThey just want to join the band\n\n[Final Chorus: lifted, guitar doubled]\nFour clicks in, and the lights pulse red\nFour clicks in, and the kick goes ahead\nFour clicks in, there's no turning round\nOne, two, three, four, and the grey come down\n\n[Outro: hi-hat alone]\nOne. Two. Three. Four.",
+      "why": "You asked for \"Wave three: the hi-hat, the call-the-wave object, counts the band in and the first song begins; it keeps time for painted and grey alike\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 142 bpm in A minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 142 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3990200 (harsh: 2.6% above 6 kHz (ceiling 2.5)). Seed 3990201 is the take.",
+      "rejected": [
+        {
+          "seed": 3990200,
+          "reason": "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3990201
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.23,
+        "silence_s": 0.4,
+        "brightness_pct": 2.23,
+        "boominess_pct": 10.42,
+        "onsets_per_s": 3.29,
+        "seam_db": -62.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:garage",
+          "pov:the hi-hat"
+        ],
+        "track_no": 17
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-garage-four-clicks-in/greytide-garage-four-clicks-in.mp3",
+        "notes": "greytide-garage-four-clicks-in/notes.md",
+        "recipe": "greytide-garage-four-clicks-in/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": [
+          "high",
+          "bam",
+          "great",
+          "setlist",
+          "thank",
+          "you",
+          "gray",
+          "now",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 6832862,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-garage-four-clicks-in/greytide-garage-four-clicks-in.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -36312,6 +36406,7 @@
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-garage-four-clicks-in",
         "greytide-kitchen-round-till-your-door-comes",
         "greytide-picnic-tick-tick-tick",
         "greytide-railway-the-road-forks",
