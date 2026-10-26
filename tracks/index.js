@@ -9644,6 +9644,89 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-couch-popcorn-over-the-board",
+      "title": "Popcorn Over The Board",
+      "project": "greytide",
+      "idea": "Wave seven: a handful of popcorn rains over the board, soft boulders the grey ones kick and stumble on, some rolling off the edge; the table's point of view.",
+      "request": "Wave seven: a handful of popcorn rains over the board, soft boulders the grey ones kick and stumble on, some rolling off the edge; the table's point of view.",
+      "mood": "playful, frantic, bouncing",
+      "bpm": 146,
+      "key": "F sharp minor",
+      "seed": 4030700,
+      "model": "fast",
+      "duration": 128.82,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:05:24-04:00",
+      "voice": false,
+      "prompt": "Bouncing surf rock with marimba, 146 bpm, F sharp minor, playful and frantic. A tight quartet with every part in its lane: a twangy reverb lead guitar playing the tune, a marimba popping short kernels of notes on the offbeat, a rhythm guitar chopping, tight lean bass under the mids, quick tom-heavy drums. Arc: drums alone then a scatter of marimba like kernels landing, the band at mid energy, a long high plateau with lead and marimba in unison, a dip where kernels roll off one by one on lone marimba notes, a lifted final run, a stop. F sharp minor, no harsh highs, instrumental, no vocals.",
+      "lyrics": null,
+      "why": "You asked for \"Wave seven: a handful of popcorn rains over the board, soft boulders the grey ones kick and stumble on, some rolling off the edge; the table's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 146 bpm in F sharp minor, 132 seconds, with no voice, under the mellow gates. It has no beat to hold, so 146 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4030701 (0.7s of near-silence (limit 0.5)). Seed 4030700 is the take.",
+      "rejected": [
+        {
+          "seed": 4030701,
+          "reason": "0.7s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4030700
+      ],
+      "numbers": {
+        "tempo_bpm": 97.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.15,
+        "silence_s": 0.3,
+        "brightness_pct": 1.54,
+        "boominess_pct": 5.53,
+        "onsets_per_s": 3.53,
+        "seam_db": -42.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:couch",
+          "pov:the table"
+        ],
+        "track_no": 79
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-couch-popcorn-over-the-board/greytide-couch-popcorn-over-the-board.mp3",
+        "notes": "greytide-couch-popcorn-over-the-board/notes.md",
+        "recipe": "greytide-couch-popcorn-over-the-board/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5680979,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-couch-popcorn-over-the-board/greytide-couch-popcorn-over-the-board.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38186,6 +38269,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-couch-popcorn-over-the-board",
         "greytide-gamestore-last-weeks-meta",
         "greytide-garage-someone-kicked-the-fuzz",
         "greytide-kitchen-sneeze-cloud",
