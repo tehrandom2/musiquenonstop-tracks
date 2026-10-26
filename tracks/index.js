@@ -3,6 +3,90 @@ window.NOBODY_INDEX = {
   "written": "2026-10-25T20:07:53-04:00",
   "tracks": [
     {
+      "slug": "counting-moons-take-2",
+      "title": "Counting Moons (take 2)",
+      "project": "motifs",
+      "idea": "a song about a singer who keeps returning to the same images: moons, the sea, cold, falling, dreams",
+      "request": "a song for the owner's page on one songwriter's recurring images",
+      "mood": "bittersweet and swooning",
+      "bpm": 118,
+      "key": "E minor",
+      "seed": 1181101,
+      "model": "fast",
+      "duration": 148.1,
+      "date": "2026-10-25",
+      "rendered_at": "2026-10-25T20:07:44-04:00",
+      "voice": true,
+      "prompt": "late-1980s gothic post-punk into dream pop, 118 bpm, in E minor, a yearning high male vocal drenched in plate reverb, sung and swooning, a melodic six-string bass carrying the hook up high used as an instrument, chorused and flanged clean guitars ringing in fifths, wide synth-string pads, steady floor-tom-heavy drums with a gated snare, glockenspiel sparkle on the last chorus, a seaside promenade at night under a cold moon, bittersweet and swooning, tender, never gloomy for its own sake, a bass-alone intro, then the guitars swell in, verses, a big chorus, a whispered bridge, a final chorus, the bass fades out alone, no rap, no spoken verses, no EDM drop, no wobble bass, no build-ups",
+      "lyrics": "[Intro - the six-string bass melody alone, then the chorused guitars swell in, instrumental]\n\n[Verse - the high male vocal, yearning, over steady floor toms]\nSomebody counted every moon he ever sang\nSomebody counted every time the sea came in\nEvery night is cold and every kiss is late\nEvery dream he has is falling, falling in\n\n[Pre-Chorus - the pads open up]\nHe keeps the same old sky\nLike a coat he can't take off\n\n[Chorus - big and swooning, the bass carries the hook]\nCounting moons, counting moons\nAll the oceans in his head\nSame dark, same cold, same lovely dread\nCounting moons, counting moons\nForty years of falling slow\nHe only ever sings the things he knows\n\n[Verse - the high male vocal, closer]\nPale hands reaching through a black velvet sleep\nA face in the water that he swears he used to keep\nSpiders on the ceiling and a cat that won't come home\nEvery star is crying and he's never quite alone\n\n[Bridge - whispered, close, the drums drop to floor toms]\nNight. Never. Always. Dark.\nDream. Drown. Cold. Heart.\n\n[Final Chorus - glockenspiel enters, everything wide]\nCounting moons, counting moons\nAll the oceans in his head\nSame dark, same cold, same lovely dread\nCounting moons, counting moons\nForty years of falling slow\nHe only ever sings the things he knows\n\n[Outro - the bass melody fades out alone, instrumental]",
+      "why": "You asked for \"a song for the owner's page on one songwriter's recurring images\". The words and the style come from the front desk, for the owner's page; no names, no quoted lines, no banned images. So I wrote it at 118 bpm in E minor, 150 seconds, with a voice, in words I wrote myself, under the jungle gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 1 seed and kept it. Seed 1181101 is the take.",
+      "rejected": [],
+      "takes": [
+        1181101
+      ],
+      "numbers": {
+        "tempo_bpm": 116.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.92,
+        "silence_s": 0.1,
+        "brightness_pct": 2.3,
+        "boominess_pct": 6.97,
+        "onsets_per_s": 3.18,
+        "seam_db": -71.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": null,
+        "submitter": null,
+        "tags": [],
+        "track_no": null
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "counting-moons-take-2/counting-moons-take-2.mp3",
+        "notes": "counting-moons-take-2/notes.md",
+        "recipe": "counting-moons-take-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-0.6B)",
+        "profile": "jungle",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.39,
+        "failed": [],
+        "words_not_ours": [
+          "coal",
+          "light",
+          "song",
+          "what",
+          "seems",
+          "its",
+          "thing",
+          "since"
+        ],
+        "stripped": [],
+        "installed_samples": 6531176,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "counting-moons-take-2/counting-moons-take-2.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "counting-moons",
       "title": "Counting Moons",
       "project": "motifs",
