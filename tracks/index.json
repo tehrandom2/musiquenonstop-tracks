@@ -6957,6 +6957,101 @@
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-round-till-your-door-comes",
+      "title": "Round Till Your Door Comes",
+      "project": "greytide",
+      "idea": "The lazy Susan at the crossroads of the cloth tells how both roads run to her and she carries every walker round, letting each off when her door faces its corner: never random, never rushed.",
+      "request": "The lazy Susan at the crossroads of the cloth tells how both roads run to her and she carries every walker round, letting each off when her door faces its corner: never random, never rushed.",
+      "mood": "smooth, knowing, groovy",
+      "bpm": 124,
+      "key": "B minor",
+      "seed": 3920200,
+      "model": "fast",
+      "duration": 165.78,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:09:18-04:00",
+      "voice": true,
+      "prompt": "Minor-key disco funk, 124 bpm, B minor. A seven-piece: four-on-the-floor kick with open hats, a tight lean octave bass well under the mids, a scratchy rhythm guitar, a Rhodes on stabbed chords, a string section sweeping round in rising runs, a short brass hit on each turn. A smooth, knowing female lead with warm male backing vocals in call and response. Groovy and unhurried. Starts mid, a long chorus plateau, one dip to bass and claps, a lifted final chorus with strings. B minor, no harsh highs.",
+      "lyrics": "[Intro: strings sweep round over the groove]\n\n[Verse 1]\nBoth of the roads come running to the middle\nThat's where I turn, and that's where I wait\nStep on my platter, stand still and hold on\nI'll let you off when I'm facing your gate\n\n[Pre-Chorus]\nNever random, never rushed\nI'm the slowest dance on the cloth\n\n[Chorus]\nRound and round till your door comes\nRound and round till your door comes\nEverybody gets off where they're meant to\nRound and round till your door comes\n\n[Verse 2]\nA grunt and a wobbler riding side by side\nWatching the cereal mountains go by\nThe towers on the ridge wait for the door\nEvery turn is a lesson in time\n\n[Pre-Chorus]\nNever random, never rushed\nI'm the slowest dance on the cloth\n\n[Chorus]\nRound and round till your door comes\nRound and round till your door comes\nEverybody gets off where they're meant to\nRound and round till your door comes\n\n[Bridge: bass and hand claps only]\nI don't take sides, I take turns\nI don't take sides, I take turns\nThe painted and the grey ride the same\nI don't take sides, I take turns\n\n[Final Chorus: lifted, strings and brass]\nRound and round till your door comes\nRound and round till your door comes\nEverybody gets off where they're meant to\nRound and round till your door comes\n\n[Outro: the groove slows to a stop]\nTill your door comes",
+      "why": "You asked for \"The lazy Susan at the crossroads of the cloth tells how both roads run to her and she carries every walker round, letting each off when her door faces its corner: never random, never rushed.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 124 bpm in B minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 124 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3920201 (harsh: 2.5% above 6 kHz (ceiling 2.5)). Seed 3920200 is the take, but it did not clear every gate: 1.2s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3920201,
+          "reason": "harsh: 2.5% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        3920200
+      ],
+      "numbers": {
+        "tempo_bpm": 121.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.34,
+        "silence_s": 1.15,
+        "brightness_pct": 2.18,
+        "boominess_pct": 8.88,
+        "onsets_per_s": 3.72,
+        "seam_db": -69.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:the lazy Susan"
+        ],
+        "track_no": 18
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-round-till-your-door-comes/greytide-kitchen-round-till-your-door-comes.mp3",
+        "notes": "greytide-kitchen-round-till-your-door-comes/notes.md",
+        "recipe": "greytide-kitchen-round-till-your-door-comes/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.2s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "be",
+          "ladder",
+          "fine",
+          "clock",
+          "dates",
+          "clock",
+          "thank",
+          "but",
+          "thanks"
+        ],
+        "stripped": [],
+        "installed_samples": 7310875,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-round-till-your-door-comes/greytide-kitchen-round-till-your-door-comes.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35452,6 +35547,7 @@
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
         "greytide-workbench-station-one-one-way-only",
+        "greytide-kitchen-round-till-your-door-comes",
         "greytide-picnic-tick-tick-tick",
         "greytide-railway-the-road-forks",
         "greytide-sandpit-find-your-own-way",
