@@ -1471,6 +1471,113 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-workbench-extremely-unsympathetic",
+      "title": "Extremely Unsympathetic",
+      "project": "greytide",
+      "idea": "The Vice Admiral, a pompous clamp of a tower, leads his crew in a work song about gripping one grey dude and cranking all the way to the crush",
+      "request": "The Vice Admiral, a pompous clamp of a tower, leads his crew in a work song about gripping one grey dude and cranking all the way to the crush",
+      "mood": "pompous, stomping, funny",
+      "bpm": 128,
+      "key": "D minor",
+      "seed": 3960500,
+      "model": "fast",
+      "duration": 152.54,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:17:52-04:00",
+      "voice": true,
+      "prompt": "Stomping industrial sea-shanty at 128 bpm in D minor, a dockyard crew band: a heavy floor-tom stomp and handclaps, a tight lean bowed-and-plucked bass, bass under the mids, a squeezebox drone, a ratcheting metal percussion on the off-beats like a clamp cranking, a fiddle line between the verses; a booming, pompous male lead and a full roaring crew chorus; starts mid, a long rolling plateau, a slow cranked bridge, a lifted final chorus, D minor, no harsh highs",
+      "lyrics": "[Intro - stomp and squeezebox]\nAll hands. One enemy.\n\n[Verse 1]\nI'm the Vice Admiral and I command a single fight\nI pick one grey and grip him and I crank him through the night\nHe walks along the belt, I walk along with him\nI tighten every footstep and the outlook's growing grim\nI do not care for armour and I do not care for tears\nI've been clamping things on workbenches for years\n\n[Pre-Chorus]\nCrank it, crank it\n(Turn, turn, turn)\n\n[Chorus]\nExtremely unsympathetic\nHeave and crank and squeeze\nExtremely unsympathetic\nOne more turn, if you please\n\n[Verse 2]\nThe big vice on the bench, he's my old commanding officer\nHe takes a crowd, I take a single soul, a little softer\nNo, that's a lie, I'm not, there's nothing soft in me\nI hold him till the end and then I crush him, one, two, three\nThe painter gave me gold on every button of my coat\nI've never had a ship, but I've a very steady throat\n\n[Pre-Chorus]\nCrank it, crank it\n(Turn, turn, turn)\n\n[Chorus]\nExtremely unsympathetic\nHeave and crank and squeeze\nExtremely unsympathetic\nOne more turn, if you please\n\n[Bridge - slow, every word a turn of the screw]\nOne turn for the shield he brought\nOne turn for the sprue\nOne turn for the road he walked\nAnd one turn just for you\n\n[Final Chorus - lifted, the whole crew roaring]\nExtremely unsympathetic\nHeave and crank and squeeze\nExtremely unsympathetic\nOne more turn, if you please\n\n[Outro]\nDismissed.",
+      "why": "You asked for \"The Vice Admiral, a pompous clamp of a tower, leads his crew in a work song about gripping one grey dude and cranking all the way to the crush\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in D minor, 155 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960501 (18 of 159 heard words are not ours (11 %; limit 10 %, at least 40 heard): paul has gray un). Seed 3960500 is the take, but it did not clear every gate: 0.7s of near-silence (limit 0.5); harsh: 3.1% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3960501,
+          "reason": "18 of 159 heard words are not ours (11 %; limit 10 %, at least 40 heard): paul has gray unfair even i'll until cry time screw unseen even"
+        }
+      ],
+      "takes": [
+        3960500
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.81,
+        "silence_s": 0.7,
+        "brightness_pct": 3.13,
+        "boominess_pct": 8.67,
+        "onsets_per_s": 2.65,
+        "seam_db": -67.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:vice-admiral"
+        ],
+        "track_no": 63
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-extremely-unsympathetic/greytide-workbench-extremely-unsympathetic.mp3",
+        "notes": "greytide-workbench-extremely-unsympathetic/notes.md",
+        "recipe": "greytide-workbench-extremely-unsympathetic/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.7s of near-silence (limit 0.5)",
+          "harsh: 3.1% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "oh",
+          "hence",
+          "at",
+          "ah",
+          "okay",
+          "armor",
+          "work",
+          "benches",
+          "high",
+          "until",
+          "cricket",
+          "kit",
+          "un",
+          "y",
+          "even",
+          "sympathetic",
+          "is",
+          "miss"
+        ],
+        "stripped": [
+          "The Vice Admiral"
+        ],
+        "installed_samples": 6727099,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-extremely-unsympathetic/greytide-workbench-extremely-unsympathetic.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29962,6 +30069,7 @@ window.NOBODY_INDEX = {
       "tracks": [
         "greytide-workbench-station-one-one-way-only",
         "greytide-workbench-hot-tip",
+        "greytide-workbench-extremely-unsympathetic",
         "greytide-workbench-the-outline-on-the-pegboard",
         "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-the-hordes-pulse",
