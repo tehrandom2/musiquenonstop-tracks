@@ -6413,6 +6413,107 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-picnic-behind-the-ants",
+      "title": "Behind the Ants",
+      "project": "greytide",
+      "idea": "Wave five: the ants find the sandwich and carry crumbs across one trail; a grey dude is stuck queueing behind them and envies their purpose",
+      "request": "Wave five: the ants find the sandwich and carry crumbs across one trail; a grey dude is stuck queueing behind them and envies their purpose",
+      "mood": "swinging, comic, a little wistful",
+      "bpm": 160,
+      "key": "G minor",
+      "seed": 4000500,
+      "model": "fast",
+      "duration": 162.79,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:10:08-04:00",
+      "voice": true,
+      "prompt": "Jump blues and swing, 160 bpm, G minor: a boogie-woogie piano left hand rolling, a tight lean upright bass, bass under the mids, walking fast, a drummer on a swung ride and a snappy snare, a honking tenor sax and a muted trumpet trading short phrases in strict order, a hand-clap section, a hoarse, funny male lead shouting the hook and a band answering; warm, no harsh highs; starts mid on the piano boogie, a long swinging plateau, one stop-time dip, a final lift with the horns, G minor",
+      "lyrics": "[Intro: the piano boogie alone]\nWait your turn, wait your turn\n\n[Verse 1]\nThe scout came first, one ant on the plate\nHe looked at the crust and he didn't wait\nThen a line came out like a dotted thread\nEvery single one with a crumb of bread\n\n[Pre-Chorus]\nAnd here I am with my sprue on my shin\nStuck in a queue that I can't get in\n\n[Chorus]\nBehind the ants, behind the ants\nI'm a grey dude stuck behind the ants\nThey've got a job and I've got a chance\nBut I'm stuck behind the ants\n\n[Verse 2]\nThey cross the trail like they own the place\nNot one of them looking me in the face\nThey carried the signposts off at wave two\nAnd now they're carrying lunch, what can I do\n\n[Pre-Chorus]\nAnd here I am with my sprue on my shin\nStuck in a queue that I can't get in\n\n[Chorus]\nBehind the ants, behind the ants\nI'm a grey dude stuck behind the ants\nThey've got a job and I've got a chance\nBut I'm stuck behind the ants\n\n[Breakdown: stop-time, claps and voice]\nThey know what they're for, and I wish I did\nNobody painted them, nobody hid\nThey're brown as the dirt and they don't mind at all\nMaybe that's colour, if you're that small\n\n[Final Chorus: lifted, horns and band shouting]\nBehind the ants, behind the ants\nI'm a grey dude stuck behind the ants\nThey've got a job and I've got a chance\nBut I'm stuck behind the ants\n\n[Outro: one piano run]\nWait your turn",
+      "why": "You asked for \"Wave five: the ants find the sandwich and carry crumbs across one trail; a grey dude is stuck queueing behind them and envies their purpose\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 160 bpm in G minor, 170 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 160 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4000501 (2.9s of near-silence (limit 0.5) and others). Seed 4000500 is the take, but it did not clear every gate: 2.0s of near-silence (limit 0.5); harsh: 2.6% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4000501,
+          "reason": "2.9s of near-silence (limit 0.5); 20 of 159 heard words are not ours (13 %; limit 10 %, at least 40 heard): dance strength highly carry signpost great hit color edge edge great edge"
+        }
+      ],
+      "takes": [
+        4000500
+      ],
+      "numbers": {
+        "tempo_bpm": 79.8,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.03,
+        "silence_s": 1.95,
+        "brightness_pct": 2.57,
+        "boominess_pct": 4.18,
+        "onsets_per_s": 3.38,
+        "seam_db": -33.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:picnic",
+          "pov:grey dude"
+        ],
+        "track_no": 58
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-picnic-behind-the-ants/greytide-picnic-behind-the-ants.mp3",
+        "notes": "greytide-picnic-behind-the-ants/notes.md",
+        "recipe": "greytide-picnic-behind-the-ants/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "2.0s of near-silence (limit 0.5)",
+          "harsh: 2.6% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "play",
+          "it",
+          "weigh",
+          "screw",
+          "great",
+          "side",
+          "posts",
+          "great",
+          "their",
+          "is",
+          "color",
+          "great",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7178893,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-picnic-behind-the-ants/greytide-picnic-behind-the-ants.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -34926,6 +35027,7 @@ window.NOBODY_INDEX = {
         "greytide-sill-in-the-lee",
         "greytide-treehouse-find-the-torch",
         "greytide-workbench-hot-tip",
+        "greytide-picnic-behind-the-ants",
         "greytide-railway-no-ticket",
         "greytide-sandpit-every-fourth-one",
         "greytide-schooldesk-twelve-times-twelve",
