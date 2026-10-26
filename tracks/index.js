@@ -3831,6 +3831,101 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-schooldesk-hold-them-till-the-bell",
+      "title": "Hold Them Till the Bell",
+      "project": "greytide",
+      "idea": "wave 10: the lunchbox, the thing they all wanted, sings to the painted towers holding the lid as the bell is about to ring",
+      "request": "wave 10: the lunchbox, the thing they all wanted, sings to the painted towers holding the lid as the bell is about to ring",
+      "mood": "anthemic, tender, defiant",
+      "bpm": 140,
+      "key": "E minor",
+      "seed": 4011001,
+      "model": "fast",
+      "duration": 173.0,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:14:08-04:00",
+      "voice": true,
+      "prompt": "Anthemic indie punk, 140 bpm, E minor, a big five-piece: two driving guitars, one on power chords and one on a ringing melodic lead, a tight lean bass pushing eighths, bass well under the mids, a pounding drum kit with floor toms in the verses, a glockenspiel doubling the hook, a warm raw male lead, a full gang chorus on every hook, in E minor, tender and defiant, mid start, a long high plateau, a dip to glockenspiel and voice, a huge lifted final chorus, warm saturation, no harsh highs",
+      "lyrics": "[Intro - glockenspiel plays the hook, then the band]\n\n[Verse 1]\nI'm a lunchbox, a sandwich and an apple and a note\nSomething someone packed for you, a sum and a joke\nAll night the grey ones wanted me, I don't know why\nMaybe what they wanted was the hand that packed it right\n\n[Pre-Chorus]\nAnd the towers on the lid, with their careful coats of paint\nStood between me and the pencil case, and never once complained\n\n[Chorus - gang chorus]\nHold them till the bell (hold them)\nHold them till the bell\nTen waves of nobody watching\nHold them till the bell\n\n[Verse 2]\nThe margin's full of ticks and a red cross or two\nSee me, it says, and I see you\nThe compass and the glue stick and the band upon its pin\nA calculator rolling sevens, letting nobody in\n\n[Pre-Chorus]\nAnd the grey ones at my corner, they are only what they are\nPlastic that never had its turn, and they've come so far\n\n[Chorus - gang chorus]\nHold them till the bell (hold them)\nHold them till the bell\nTen waves of nobody watching\nHold them till the bell\n\n[Bridge - glockenspiel and voice, then the drums build]\nAnd when it rings, the kid will lift me up and never know\nThat a war was fought down here, three centimetres tall\nThat the smallest things were brave all afternoon\nRing, bell, ring, and make it soon\n\n[Final Chorus - lifted, the whole band and every voice]\nHold them till the bell (hold them)\nHold them till the bell\nTen waves of nobody watching\nHold them till the bell\n\n[Outro - the bell, then the glockenspiel alone]\nRing.",
+      "why": "You asked for \"wave 10: the lunchbox, the thing they all wanted, sings to the painted towers holding the lid as the bell is about to ring\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in E minor, 178 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4011000 (0.9s of near-silence (limit 0.5) and others). Seed 4011001 is the take, but it did not clear every gate: 0.8s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4011000,
+          "reason": "0.9s of near-silence (limit 0.5); 233 of 372 heard words are not ours (63 %; limit 10 %, at least 40 heard): coos eyes oh margins oh d*** ways love watch shame centimeters oh"
+        }
+      ],
+      "takes": [
+        4011001
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -4.13,
+        "silence_s": 0.8,
+        "brightness_pct": 2.15,
+        "boominess_pct": 3.59,
+        "onsets_per_s": 2.9,
+        "seam_db": 6.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:schooldesk",
+          "pov:lunchbox"
+        ],
+        "track_no": 127
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-schooldesk-hold-them-till-the-bell/greytide-schooldesk-hold-them-till-the-bell.mp3",
+        "notes": "greytide-schooldesk-hold-them-till-the-bell/notes.md",
+        "recipe": "greytide-schooldesk-hold-them-till-the-bell/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.8s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "is",
+          "won't",
+          "be",
+          "margins",
+          "sells",
+          "oh",
+          "baby",
+          "centimeters",
+          "to"
+        ],
+        "stripped": [],
+        "installed_samples": 7629128,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-schooldesk-hold-them-till-the-bell/greytide-schooldesk-hold-them-till-the-bell.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -32349,6 +32444,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-pack-away",
         "greytide-sill-needle-says-stormy",
         "greytide-workbench-under-the-lens",
+        "greytide-schooldesk-hold-them-till-the-bell",
         "greytide-sill-petal-by-petal",
         "greytide-treehouse-chalk-tally",
         "greytide-gamestore-demo-ends-in-sixty",
