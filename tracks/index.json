@@ -9541,6 +9541,109 @@
       "audition": true
     },
     {
+      "slug": "greytide-couch-still-wet-under-the-lid",
+      "title": "Still Wet Under The Lid",
+      "project": "greytide",
+      "idea": "After a wave the seam gives up a long-lost paint pot, still wet under its lid; the colour the whole horde wants, picked up for Points instead; its point of view.",
+      "request": "After a wave the seam gives up a long-lost paint pot, still wet under its lid; the colour the whole horde wants, picked up for Points instead; its point of view.",
+      "mood": "tender, aching, wondering",
+      "bpm": 96,
+      "key": "C minor",
+      "seed": 4030800,
+      "model": "fast",
+      "duration": 167.38,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:05:32-04:00",
+      "voice": true,
+      "prompt": "Tender folk soul, 96 bpm, C minor, warm and aching. A small late-night band: fingerpicked nylon guitar, a soft felt piano answering each line, a cello holding long notes, tight lean upright bass well under the mids, brushed drums entering at the first chorus. A low, warm female alto lead, close soft harmonies on the hook. Arc: guitar alone, a hushed verse, a chorus that opens with brushes and cello, a fuller second verse, a bridge where it drops to piano and voice, a lifted final chorus with the harmonies wide, a quiet outro. C minor, gentle, no harsh highs.",
+      "lyrics": "[Intro: fingerpicked guitar alone]\n\n[Verse 1]\nI rolled off a desk in the summer\nLid tight and a drip down the side\nDown past the seam and the piping\nInto the dark where the lost things hide\nThere's a button, a hair grip, a sweet\nAnd a coin that keeps telling the time\nAnd every night the floor above me\nShakes with the grey ones in line\n\n[Chorus]\nI've been down here since the summer\nStill wet under the lid\nTwenty points if the hand comes looking\nFor the colour that I hid\n\n[Verse 2]\nThe grey ones walk right over\nNever knowing what's below\nEvery one of them wants painting\nEvery one of them is slow\nAnd I could be their morning\nI could be a coat of red\nBut the painter's hand is reaching\nAnd it wants a tower instead\n\n[Chorus]\nI've been down here since the summer\nStill wet under the lid\nTwenty points if the hand comes looking\nFor the colour that I hid\n\n[Bridge: piano and voice alone]\nWho gets the colour, who stays grey\nWho decides what a pot is for\nI was mixed for a cloak on a captain\nI'd have given it to anyone poor\n\n[Final Chorus: lifted, harmonies wide, cello swelling]\nI've been down here since the summer\nStill wet under the lid\nTwenty points if the hand comes looking\nFor the colour that I hid\nTwenty points if the hand comes looking\nFor the colour that I hid\n\n[Outro: guitar and cello fading]\nStill wet. Still here.",
+      "why": "You asked for \"After a wave the seam gives up a long-lost paint pot, still wet under its lid; the colour the whole horde wants, picked up for Points instead; its point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 96 bpm in C minor, 168 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 96 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4030801 (passed, but outranked by the kept takes). Seed 4030800 is the take.",
+      "rejected": [
+        {
+          "seed": 4030801,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        4030800
+      ],
+      "numbers": {
+        "tempo_bpm": 95.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.16,
+        "silence_s": 0.1,
+        "brightness_pct": 1.13,
+        "boominess_pct": 4.54,
+        "onsets_per_s": 3.03,
+        "seam_db": -29.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:couch",
+          "pov:lost paint pot"
+        ],
+        "track_no": 94
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-couch-still-wet-under-the-lid/greytide-couch-still-wet-under-the-lid.mp3",
+        "notes": "greytide-couch-still-wet-under-the-lid/notes.md",
+        "recipe": "greytide-couch-still-wet-under-the-lid/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": [
+          "lit",
+          "dripped",
+          "sweep",
+          "color",
+          "hear",
+          "gray",
+          "paint",
+          "there",
+          "mourning",
+          "colors",
+          "hit",
+          "color",
+          "gray",
+          "color",
+          "hit",
+          "color",
+          "hit",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7381474,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-couch-still-wet-under-the-lid/greytide-couch-still-wet-under-the-lid.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -38093,6 +38196,7 @@
         "greytide-sill-two-leaves",
         "greytide-treehouse-a-branch-cracked-outside",
         "greytide-workbench-the-sander-comes-on",
+        "greytide-couch-still-wet-under-the-lid",
         "greytide-desk-never-cleaned-the-nozzle",
         "greytide-gamestore-closing-time-in-the-case",
         "greytide-garage-sulk-for-two",
