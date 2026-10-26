@@ -7052,6 +7052,105 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-kitchen-red-and-white-squares",
+      "title": "Red and White Squares",
+      "project": "greytide",
+      "idea": "The night moves on: the board is carried from the desk and set down on the gingham cloth, which tells it; after wave 2 a dish cloth wipes the signposts away with the crumbs.",
+      "request": "The night moves on: the board is carried from the desk and set down on the gingham cloth, which tells it; after wave 2 a dish cloth wipes the signposts away with the crumbs.",
+      "mood": "scrappy, warm, defiant",
+      "bpm": 152,
+      "key": "A minor",
+      "seed": 3920101,
+      "model": "fast",
+      "duration": 162.34,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:09:09-04:00",
+      "voice": true,
+      "prompt": "Scrappy folk-punk, 152 bpm, A minor. A kitchen-party five-piece: a thrashed acoustic guitar driving the eighths, an accordion playing the hook, a fiddle answering it, a tight lean upright bass well under the mids, a stomp-and-snare kit with a tambourine. A hoarse, warm female lead with a rowdy gang chorus. Defiant and warm. Starts mid, a long high chorus plateau, one breakdown to stomp and voices, a lifted final chorus. A minor, no harsh highs.",
+      "lyrics": "[Intro: accordion and stomp]\n\n[Verse 1]\nI've had breakfast spilled on me all my life\nCrusts and crumbs and the morning paper's ink\nTonight they carry a war in from the desk\nAnd set it down on me before I can think\n\n[Pre-Chorus]\nFolds for hills and a jam jar for a peak\nA knife stood up in it like a flag on the top\n\n[Chorus]\nRed and white squares, red and white squares\nMarch on me, fight on me, nobody cares\nRed and white squares, red and white squares\nI'll be in the wash by the morning, but tonight I'm still here\n\n[Verse 2]\nTwo waves in, a hand comes down with a dish cloth\nWipes the signposts off along with the crumbs\nNow the roads have no names on my squares\nAnd the grey ones walk the way the folding runs\n\n[Pre-Chorus]\nFolds for hills and a jam jar for a peak\nA knife stood up in it like a flag on the top\n\n[Chorus]\nRed and white squares, red and white squares\nMarch on me, fight on me, nobody cares\nRed and white squares, red and white squares\nI'll be in the wash by the morning, but tonight I'm still here\n\n[Breakdown: stomp and gang voices only]\nSprue-berry jam, no seeds, no sprue\nDon't eat the primer, the yellow note said\nPart of this balanced hobby, the cereal swore\nSprue-berry jam, and the grey ones ahead\n\n[Final Chorus: lifted, fiddle and accordion together]\nRed and white squares, red and white squares\nMarch on me, fight on me, nobody cares\nRed and white squares, red and white squares\nI'll be in the wash by the morning, but tonight I'm still here\n\n[Outro: accordion alone]\nRed and white squares",
+      "why": "You asked for \"The night moves on: the board is carried from the desk and set down on the gingham cloth, which tells it; after wave 2 a dish cloth wipes the signposts away with the crumbs.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 152 bpm in A minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 152 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3920100 (passed, but outranked by the kept takes). Seed 3920101 is the take.",
+      "rejected": [
+        {
+          "seed": 3920100,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        3920101
+      ],
+      "numbers": {
+        "tempo_bpm": 75.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.91,
+        "silence_s": 0.25,
+        "brightness_pct": 2.21,
+        "boominess_pct": 3.96,
+        "onsets_per_s": 3.09,
+        "seam_db": -48.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:kitchen",
+          "pov:the gingham cloth"
+        ],
+        "track_no": 6
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-kitchen-red-and-white-squares/greytide-kitchen-red-and-white-squares.mp3",
+        "notes": "greytide-kitchen-red-and-white-squares/notes.md",
+        "recipe": "greytide-kitchen-red-and-white-squares/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "papers",
+          "you",
+          "are",
+          "volts",
+          "piece",
+          "am",
+          "dishcloth",
+          "cross",
+          "peek",
+          "am",
+          "spruhberry",
+          "balance",
+          "partial",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 7159070,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-kitchen-red-and-white-squares/greytide-kitchen-red-and-white-squares.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -35541,6 +35640,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-kitchen-red-and-white-squares",
         "greytide-picnic-from-every-side",
         "greytide-railway-next-train",
         "greytide-sandpit-two-ways-across",
