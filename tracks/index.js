@@ -12250,6 +12250,119 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-attic-wool-is-wool",
+      "title": "Wool Is Wool",
+      "project": "greytide",
+      "idea": "The moth squadron chews one grey dude then the next, and when the bare bulb tower flashes they turn their backs on the light to keep working",
+      "request": "The moth squadron chews one grey dude then the next, and when the bare bulb tower flashes they turn their backs on the light to keep working",
+      "mood": "mischievous, hungry, loyal",
+      "bpm": 128,
+      "key": "F minor",
+      "seed": 3980700,
+      "model": "fast",
+      "duration": 160.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:01:33-04:00",
+      "voice": true,
+      "prompt": "Slinky funk, 128 bpm, F minor, mischievous and tight: a dry funk drum kit with ghost notes on the snare, a tight lean slap bass under the mids, a choppy clavinet and a wah guitar trading in strict order, a fluttering flute line like wings, short brass stabs on the hook, a whispered female trio as the moths singing in tight unison, playful and hungry, in F minor; intro of flute flutter and clavinet, verses tight and whispered, the chorus punchy with brass, a bridge that drops to bass and voice, the final chorus lifted with the brass doubled, the outro a last flutter, no harsh highs",
+      "lyrics": "[Intro: flute flutter and clavinet]\n\n[Verse 1]\nThey let us out in threes when the grey came round the bend\nWe chew the first one down and then we chew his friend\nThe bare bulb's over there and it's calling us by name\nBut we have work to do and the work is all the same\n\n[Pre-Chorus]\nFlutter, flutter, follow, follow\n\n[Chorus]\nWool is wool and grey is grey\nChew the one in front, then the next one in the way\nWe never miss, we follow where they go\nWool is wool, and nobody's told us no\n\n[Verse 2]\nThe ghost said boo, the alley ran, they all came back so soft\nA quarter more from every bite, we love it in the loft\nThe bulb went flash and every one stood staring at the light\nWe nearly went to look ourselves, but chewed with all our might\n\n[Pre-Chorus]\nFlutter, flutter, follow, follow\n\n[Chorus]\nWool is wool and grey is grey\nChew the one in front, then the next one in the way\nWe never miss, we follow where they go\nWool is wool, and nobody's told us no\n\n[Bridge: bass and voice]\nEvery moth has heard the song a bulb sings in the dark\nEvery moth has felt the pull towards the hottest spark\nBut somebody must hold the road while everyone's amazed\nSo we turn our backs upon the light and chew on through the haze\n\n[Final Chorus: lifted, the brass doubled]\nWool is wool and grey is grey\nChew the one in front, then the next one in the way\nWe never miss, we follow where they go\nWool is wool, and nobody's told us no\n\n[Outro: a last flutter]\nWool is wool",
+      "why": "You asked for \"The moth squadron chews one grey dude then the next, and when the bare bulb tower flashes they turn their backs on the light to keep working\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 128 bpm in F minor, 164 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 128 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3980701 (20 of 154 heard words are not ours (13 %; limit 10 %, at least 40 heard): crazy fall you n). Seed 3980700 is the take, but it did not clear every gate: 1.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 3980701,
+          "reason": "20 of 154 heard words are not ours (13 %; limit 10 %, at least 40 heard): crazy fall you nobody everybody's left what war you rule won month"
+        }
+      ],
+      "takes": [
+        3980700
+      ],
+      "numbers": {
+        "tempo_bpm": 127.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.29,
+        "silence_s": 1.55,
+        "brightness_pct": 1.76,
+        "boominess_pct": 9.56,
+        "onsets_per_s": 2.88,
+        "seam_db": -48.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:attic",
+          "pov:moths"
+        ],
+        "track_no": 75
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-attic-wool-is-wool/greytide-attic-wool-is-wool.mp3",
+        "notes": "greytide-attic-wool-is-wool/notes.md",
+        "recipe": "greytide-attic-wool-is-wool/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "1.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "gray",
+          "you",
+          "bear",
+          "blows",
+          "worked",
+          "for",
+          "really",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month",
+          "month"
+        ],
+        "stripped": [],
+        "installed_samples": 7064018,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-attic-wool-is-wool/greytide-attic-wool-is-wool.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -40807,6 +40920,7 @@ window.NOBODY_INDEX = {
         "greytide-schooldesk-everybody-takes-the-long-road",
         "greytide-sill-one-boot-painted",
         "greytide-workbench-the-outline-on-the-pegboard",
+        "greytide-attic-wool-is-wool",
         "greytide-bathroom-twenty-percent-more",
         "greytide-bed-no-sense-of-occasion",
         "greytide-carseat-you-are-here",
