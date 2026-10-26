@@ -5457,6 +5457,100 @@
       "audition": true
     },
     {
+      "slug": "greytide-railway-next-train",
+      "title": "Next Train",
+      "project": "greytide",
+      "idea": "Wave one: the departure board counts down to the first train, twelve seconds in and every twenty-eight after; the board sings its timetable",
+      "request": "Wave one: the departure board counts down to the first train, twelve seconds in and every twenty-eight after; the board sings its timetable",
+      "mood": "mechanical, cool, inevitable",
+      "bpm": 140,
+      "key": "A minor",
+      "seed": 4060101,
+      "model": "fast",
+      "duration": 158.06,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:11:33-04:00",
+      "voice": true,
+      "prompt": "Motorik electro-krautrock, 140 bpm, in A minor, a four-piece machine band on a model railway: a relentless motorik kick and snare pattern with closed hats on every eighth, a tight lean sequenced bass under the mids pulsing on the root, a ringing clean guitar arpeggio like rails humming, analogue synth pads swelling on the chorus, a flat deadpan male lead singing as the station departure board, with a cool female voice answering him on the hook, the key A minor held throughout; arc: a ticking intro of hats and a counting voice, steady verses at mid level, a chorus that widens, a bridge stripped to bass and ticks, a lifted final chorus with every synth in, no harsh highs",
+      "lyrics": "[Intro: hats tick, a voice counts]\nTwelve. Eleven. Ten.\n\n[Verse 1]\nTwo posts high at the back of the board\nYellow letters and a quiet chord\nDepartures, I say, in a gold that glows\nI count the trains and the grey ones go\n\n[Verse 2]\nNext wave this, and next train that\nLives in a column, the score is flat\nTwelve seconds first, then every twenty-eight\nOne line of track and it's never late\n\n[Pre-Chorus]\nThe engine waits in the dark of the hill\nThe numbers fall and the hex is still\n\n[Chorus]\nNext train, next train, the board says so\nOut of the tunnel and in we go\nCount it down from the dark to the day\nNext train, next train, get out of the way\n\n[Verse 3]\nI flash my letters when the line is live\nTrain on the line, and the gates arrive\nI cannot shout and I cannot run\nI only say what is coming, son\n\n[Chorus]\nNext train, next train, the board says so\nOut of the tunnel and in we go\nCount it down from the dark to the day\nNext train, next train, get out of the way\n\n[Bridge: bass and ticks only]\nEvery minute is a promise kept\nEvery second is a step they stepped\nThe grey ones read me but they never learn\nA timetable doesn't wait its turn\n\n[Final Chorus: lifted, all synths in]\nNext train, next train, the board says so\nOut of the tunnel and in we go\nCount it down from the dark to the day\nNext train, next train, get out of the way\n\n[Outro: the count again, to zero]\nThree. Two. One. Train on the line.",
+      "why": "You asked for \"Wave one: the departure board counts down to the first train, twelve seconds in and every twenty-eight after; the board sings its timetable\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 140 bpm in A minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 140 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4060100 (0.6s of near-silence (limit 0.5) and others). Seed 4060101 is the take, but it did not clear every gate: 1.0s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4060100,
+          "reason": "0.6s of near-silence (limit 0.5); 235 of 361 heard words are not ours (65 %; limit 10 %, at least 40 heard): close court cold clothes trainer who color yeah lit oh oh oh"
+        }
+      ],
+      "takes": [
+        4060101
+      ],
+      "numbers": {
+        "tempo_bpm": 138.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.33,
+        "silence_s": 0.95,
+        "brightness_pct": 2.24,
+        "boominess_pct": 7.25,
+        "onsets_per_s": 3.14,
+        "seam_db": -58.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:railway",
+          "pov:departure-board"
+        ],
+        "track_no": 8
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-railway-next-train/greytide-railway-next-train.mp3",
+        "notes": "greytide-railway-next-train/notes.md",
+        "recipe": "greytide-railway-next-train/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.0s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "post",
+          "lettuce",
+          "glow",
+          "boy",
+          "lit",
+          "time",
+          "take",
+          "port"
+        ],
+        "stripped": [],
+        "installed_samples": 6970495,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-railway-next-train/greytide-railway-next-train.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -33946,6 +34040,7 @@
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-railway-next-train",
         "greytide-sandpit-two-ways-across",
         "greytide-schooldesk-out-of-the-pencil-case",
         "greytide-treehouse-up-the-rope-ladder",
