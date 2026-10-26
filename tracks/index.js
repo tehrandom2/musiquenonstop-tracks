@@ -985,6 +985,115 @@ window.NOBODY_INDEX = {
       "audition": true
     },
     {
+      "slug": "greytide-workbench-the-sander-comes-on",
+      "title": "The Sander Comes On",
+      "project": "greytide",
+      "idea": "Waves five to seven, a grey dude shoved off the belt toward the newly switched-on sanding drum is saved by the thump of a hand putting tea down on the board",
+      "request": "Waves five to seven, a grey dude shoved off the belt toward the newly switched-on sanding drum is saved by the thump of a hand putting tea down on the board",
+      "mood": "frantic, comic, breathless",
+      "bpm": 174,
+      "key": "F minor",
+      "seed": 3960701,
+      "model": "fast",
+      "duration": 156.58,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T07:18:34-04:00",
+      "voice": true,
+      "prompt": "Frantic jump-up drum and bass at 174 bpm in F minor, a high-energy crew: fast choppy breakbeats, a tight lean wobbling bass with warm saturation in the mids, bass under the mids, a motor-hum riser that winds up before each drop, a grinding filtered noise texture as the sanding drum, a bright stab hook; a breathless, quick-tongued male MC half-rapping and a shouted crowd hook; starts mid with a riser, two big drops, a half-time bridge, a lifted final drop in F minor, no harsh highs",
+      "lyrics": "[Intro - the motor hum winding up]\nAmber light. Here it comes.\n\n[Verse 1]\nWave five and the birdhouse blinks amber, then it hums\nSomebody's half-finished project, and the motor comes\nA sanding drum is spinning on the middle of the bench\nTwo centimetres wide and a horrible stench\nStay on the belt, stay on the belt, you'll be fine\nBut the cannon's got a temper and it shoves you off the line\n\n[Pre-Chorus]\nDon't get shoved, don't get shoved\n(Dust, dust, dust)\n\n[Chorus]\nThe sander comes on, the sander comes on\nOff the road and you're sawdust, gone\nKeep to the rubber, keep to the line\nThe sander comes on, every time\n\n[Verse 2]\nI'm a grey with a backpack full of spares that never fit\nI got knocked off by a cannon ball and I'm near it, this is it\nThe sawdust round me scatters like a flock of startled birds\nThe swarf is jumping too, and I'm running out of words\nThen a hand comes down with tea and puts it on the board\nThump, and every grey one hops, and I land back on the board\n\n[Pre-Chorus]\nDon't get shoved, don't get shoved\n(Dust, dust, dust)\n\n[Chorus]\nThe sander comes on, the sander comes on\nOff the road and you're sawdust, gone\nKeep to the rubber, keep to the line\nThe sander comes on, every time\n\n[Bridge - half time, the hum only]\nHop, and I'm back\nHop, and I'm back on the track\nNobody saw it, nobody cares\nBut I'm still grey, I'm still here\n\n[Final Drop - lifted, the crowd on every line]\nThe sander comes on, the sander comes on\nOff the road and you're sawdust, gone\nKeep to the rubber, keep to the line\nThe sander comes on, every time\n\n[Outro - the motor winds down]\nStill here.",
+      "why": "You asked for \"Waves five to seven, a grey dude shoved off the belt toward the newly switched-on sanding drum is saved by the thump of a hand putting tea down on the board\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 174 bpm in F minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 174 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 3960700 (harsh: 2.9% above 6 kHz (ceiling 2.5) and others). Seed 3960701 is the take, but it did not clear every gate: harsh: 3.3% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 3960700,
+          "reason": "harsh: 2.9% above 6 kHz (ceiling 2.5); onset rate 4.5/s outside 0.3-4.5; 27 of 178 heard words are not ours (15 %; limit 10 %, at least 40 heard): we pop bird all yeah kellan's send cray cannonball salt that's from"
+        }
+      ],
+      "takes": [
+        3960701
+      ],
+      "numbers": {
+        "tempo_bpm": 85.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.53,
+        "silence_s": 0.1,
+        "brightness_pct": 3.29,
+        "boominess_pct": 10.09,
+        "onsets_per_s": 3.98,
+        "seam_db": -73.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:workbench",
+          "pov:grey-dude"
+        ],
+        "track_no": 89
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-workbench-the-sander-comes-on/greytide-workbench-the-sander-comes-on.mp3",
+        "notes": "greytide-workbench-the-sander-comes-on/notes.md",
+        "recipe": "greytide-workbench-the-sander-comes-on/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.16,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "harsh: 3.3% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": [
+          "in",
+          "centimeters",
+          "doss",
+          "doss",
+          "doss",
+          "sender",
+          "sender",
+          "your",
+          "sardust",
+          "sender",
+          "grave",
+          "cannonball",
+          "grade",
+          "sender",
+          "sender",
+          "your",
+          "sardust",
+          "sender",
+          "great",
+          "sender",
+          "sender",
+          "gun",
+          "sender"
+        ],
+        "stripped": [],
+        "installed_samples": 6905247,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-workbench-the-sander-comes-on/greytide-workbench-the-sander-comes-on.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "joes-castle-market-square-sunday",
       "title": "Market Square, Sunday",
       "project": "joes-castle",
@@ -29474,6 +29583,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "greytide-workbench-the-sander-comes-on",
         "greytide-workbench-under-the-lens",
         "greytide-gamestore-demo-ends-in-sixty",
         "greytide-desk-a-drop-of-blue",
