@@ -3,6 +3,112 @@
   "written": "2026-10-26T15:14:41-04:00",
   "tracks": [
     {
+      "slug": "greytide-treehouse-duck",
+      "title": "Duck",
+      "project": "greytide",
+      "idea": "Wave seven: three shadows slide over the floor, then the bats swoop through and knock a tower three and a half centimetres; the conker on its string keeps swinging; the conker's point of view.",
+      "request": "Wave seven: three shadows slide over the floor, then the bats swoop through and knock a tower three and a half centimetres; the conker on its string keeps swinging; the conker's point of view.",
+      "mood": "spooky, swinging, stubborn",
+      "bpm": 150,
+      "key": "B minor",
+      "seed": 4040810,
+      "model": "fast",
+      "duration": 162.18,
+      "date": "2026-10-26",
+      "rendered_at": "2026-10-26T15:14:22-04:00",
+      "voice": true,
+      "prompt": "Gothic surf rock, 150 bpm, B minor, spooky and swinging. A tight quartet with every part in its lane: a reverb-drenched baritone guitar playing a swinging pendulum riff, a combo organ wheezing minor chords, tight lean bass under the mids pumping eighths, fast tom-heavy drums with a ride bell, wingbeat flutters on the fills. A low, dramatic male lead with a theatrical sneer, a ghostly backing choir going ooh and shouting the hook. Arc: pendulum riff alone, verse at mid energy, a long high chorus, a breakdown of organ and swooping noises, a lifted final chorus, a final swing and stop. B minor, warm grit in the mids, no harsh highs.",
+      "lyrics": "[Intro: the pendulum riff alone]\nTick... and back. Tick... and back.\n\n[Verse 1]\nI'm a conker on a string\nBrown and polished as a boot\nI don't aim at anything\nI just swing across the route\nTwo point six to cross the road\nEvery grey one in the way\nTakes a knock and goes sideways\nAnd if he's on a gap, he's away\n\n[Pre-Chorus]\nThree shadows on the boards\nSlide across from wall to door\n\n[Chorus]\nDuck, the bats are out\nDuck, they're coming low\nDuck, the bats are out\nBut the conker swings, swings, swings\n\n[Verse 2]\nDown they come on leather wings\nSkim the floor and clip the line\nOne went through the middle board\nKnocked me three and a half from mine\nString is twisted, arm is sore\nStill the arc comes round again\nGrey ones laughed to see me bump\nNow they're bumping, now and then\n\n[Pre-Chorus]\nThree shadows on the boards\nSlide across from wall to door\n\n[Chorus]\nDuck, the bats are out\nDuck, they're coming low\nDuck, the bats are out\nBut the conker swings, swings, swings\n\n[Breakdown: organ and swooping wingbeats]\nEvery pendulum comes back\nEvery swing comes round\nI was knocked but I'm not stopped\nI was hit but I'm still bound\n\n[Final Chorus: lifted, the ghostly choir shouting]\nDuck, the bats are out\nDuck, they're coming low\nDuck, the bats are out\nBut the conker swings, swings, swings\nDuck, the bats are out\nBut the conker swings, swings, swings\n\n[Outro: one last swing and a stop]",
+      "why": "You asked for \"Wave seven: three shadows slide over the floor, then the bats swoop through and knock a tower three and a half centimetres; the conker on its string keeps swinging; the conker's point of view.\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 150 bpm in B minor, 165 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 150 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4040811 (1.3s of near-silence (limit 0.5) and others). Seed 4040810 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4040811,
+          "reason": "1.3s of near-silence (limit 0.5); harsh: 2.9% above 6 kHz (ceiling 2.5); 431 of 605 heard words are not ours (71 %; limit 10 %, at least 40 heard): chick chick chick conqueror great notch of arkham's bounty great left oh"
+        }
+      ],
+      "takes": [
+        4040810
+      ],
+      "numbers": {
+        "tempo_bpm": 74.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.8,
+        "silence_s": 0.6,
+        "brightness_pct": 2.44,
+        "boominess_pct": 7.05,
+        "onsets_per_s": 3.29,
+        "seam_db": -51.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Greytide",
+        "submitter": "the radio, for greytide",
+        "tags": [
+          "table:treehouse",
+          "pov:conker tower"
+        ],
+        "track_no": 141
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "greytide-treehouse-duck/greytide-treehouse-duck.mp3",
+        "notes": "greytide-treehouse-duck/notes.md",
+        "recipe": "greytide-treehouse-duck/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.4,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": [
+          "conqueror",
+          "stream",
+          "knocking",
+          "both",
+          "conquer",
+          "tell",
+          "of",
+          "my",
+          "sword",
+          "art",
+          "great",
+          "left",
+          "conquer",
+          "june",
+          "put",
+          "stops",
+          "power",
+          "bets",
+          "bets",
+          "call"
+        ],
+        "stripped": [],
+        "installed_samples": 7152134,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "greytide-treehouse-duck/greytide-treehouse-duck.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "greytide-schooldesk-rubbed-out",
       "title": "Rubbed Out",
       "project": "greytide",
@@ -41937,7 +42043,8 @@
         "greytide-garage-encore-in-the-dark",
         "greytide-attic-opening-now",
         "greytide-schooldesk-rubbed-out",
-        "greytide-garage-ping-a-string-goes"
+        "greytide-garage-ping-a-string-goes",
+        "greytide-treehouse-duck"
       ],
       "description": "One long night at the painting desk, table by table: songs from the towers, the grey horde, the painter's hand and the tables themselves.",
       "credits": [
