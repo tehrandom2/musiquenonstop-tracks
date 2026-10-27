@@ -3,6 +3,90 @@ window.NOBODY_INDEX = {
   "written": "2026-10-27T01:08:31-04:00",
   "tracks": [
     {
+      "slug": "assembly-thin-wire-motif",
+      "title": "Thin Wire Motif",
+      "project": "assembly-sessions",
+      "idea": "a single plucked phrase passed through a machine, looping like a thought you keep returning to",
+      "request": "a single plucked phrase passed through a machine, looping like a thought you keep returning to",
+      "mood": "meditative, steady",
+      "bpm": 118,
+      "key": "G major",
+      "seed": 5100804,
+      "model": "fast",
+      "duration": 236.21,
+      "date": "2026-10-27",
+      "rendered_at": "2026-10-27T01:08:30-04:00",
+      "voice": false,
+      "prompt": "instrumental meditative folk electronica for focus, no vocals, one short plucked banjo phrase looped and processed with delay as a background texture, never a lead, never a hoedown, soft brushed drum machine pulse and light hand drums, airy reed organ drone in the mid range, bright synth pads, glitchy clicks, chiming guitar harmonics, light bass, no sub bass, steady hypnotic energy built in layers, mixolydian colour",
+      "lyrics": null,
+      "why": "You asked for \"a single plucked phrase passed through a machine, looping like a thought you keep returning to\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 118 bpm in G major, 240 seconds, with no voice, under the mellow gates. It has no beat to hold, so 118 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 5100806 (passed, but outranked by the kept takes); 5100805 (boomy: 12.9% below 60 Hz (ceiling 12)). Seed 5100804 is the take.",
+      "rejected": [
+        {
+          "seed": 5100806,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 5100805,
+          "reason": "boomy: 12.9% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        5100804
+      ],
+      "numbers": {
+        "tempo_bpm": 116.5,
+        "lufs": -16.49,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.58,
+        "silence_s": 0.15,
+        "brightness_pct": 2.14,
+        "boominess_pct": 8.91,
+        "onsets_per_s": 2.98,
+        "seam_db": -65.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Transmissions on a Ghostline",
+        "submitter": "the owner's ask",
+        "tags": [],
+        "track_no": 6
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "assembly-thin-wire-motif/assembly-thin-wire-motif.mp3",
+        "notes": "assembly-thin-wire-motif/notes.md",
+        "recipe": "assembly-thin-wire-motif/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.07,
+        "decoded_lufs": -16.9,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 10417034,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "assembly-thin-wire-motif/assembly-thin-wire-motif.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "assembly-signal-and-tambourine",
       "title": "Signal and Tambourine",
       "project": "assembly-sessions",
@@ -42723,7 +42807,8 @@ window.NOBODY_INDEX = {
         "assembly-bedroom-orchestra",
         "assembly-the-hall-fills-slowly",
         "assembly-thousand-layers",
-        "assembly-signal-and-tambourine"
+        "assembly-signal-and-tambourine",
+        "assembly-thin-wire-motif"
       ],
       "description": "Ten tracks for the owner, in the sound of a 2007 bedroom-orchestra folk record he loves: stacked hand drums and floor toms, organ drones, chiming guitars and glitchy blips. Six instrumental focus jams first; four songs about real and simulated life join later.",
       "credits": [
