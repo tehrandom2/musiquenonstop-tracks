@@ -3,6 +3,90 @@ window.NOBODY_INDEX = {
   "written": "2026-10-27T00:42:40-04:00",
   "tracks": [
     {
+      "slug": "assembly-thousand-layers",
+      "title": "Thousand Layers",
+      "project": "assembly-sessions",
+      "idea": "everything at once, ordered: every part has its own job and the stack never collapses",
+      "request": "everything at once, ordered: every part has its own job and the stack never collapses",
+      "mood": "busy but ordered, euphoric",
+      "bpm": 130,
+      "key": "E minor",
+      "seed": 5101001,
+      "model": "fast",
+      "duration": 234.98,
+      "date": "2026-10-27",
+      "rendered_at": "2026-10-27T00:42:38-04:00",
+      "voice": false,
+      "prompt": "instrumental euphoric indie folk electronica for focus, no vocals, a thousand-layered sound with every part in its own lane, booming floor toms and stacked hand percussion, handclaps, droning organ, chiming guitars, violin ostinato, small brass swells, bit-crushed synth blips and arpeggios, lo-fi basement warmth, busy but ordered, steady energy with a long high plateau, one dip and a final lift, lean bass, natural minor",
+      "lyrics": null,
+      "why": "You asked for \"everything at once, ordered: every part has its own job and the stack never collapses\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 130 bpm in E minor, 240 seconds, with no voice, under the mellow gates. It has no beat to hold, so 130 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 5101003 (passed, but outranked by the kept takes); 5101002 (boomy: 21.8% below 60 Hz (ceiling 12)). Seed 5101001 is the take.",
+      "rejected": [
+        {
+          "seed": 5101003,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 5101002,
+          "reason": "boomy: 21.8% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        5101001
+      ],
+      "numbers": {
+        "tempo_bpm": 128.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.75,
+        "silence_s": 0.15,
+        "brightness_pct": 0.49,
+        "boominess_pct": 6.77,
+        "onsets_per_s": 2.4,
+        "seam_db": -37.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+        "submitter": "the owner's ask",
+        "tags": [],
+        "track_no": 4
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "assembly-thousand-layers/assembly-thousand-layers.mp3",
+        "notes": "assembly-thousand-layers/notes.md",
+        "recipe": "assembly-thousand-layers/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.09,
+        "decoded_lufs": -16.43,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 10362494,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "assembly-thousand-layers/assembly-thousand-layers.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "assembly-the-hall-fills-slowly",
       "title": "The Hall Fills Slowly",
       "project": "assembly-sessions",
@@ -42551,7 +42635,8 @@ window.NOBODY_INDEX = {
       "tracks": [
         "assembly-floor-tom-assembly",
         "assembly-bedroom-orchestra",
-        "assembly-the-hall-fills-slowly"
+        "assembly-the-hall-fills-slowly",
+        "assembly-thousand-layers"
       ],
       "description": "Ten tracks for the owner, in the sound of a 2007 bedroom-orchestra folk record he loves: stacked hand drums and floor toms, organ drones, chiming guitars and glitchy blips. Six instrumental focus jams first; four songs about real and simulated life join later.",
       "credits": [
