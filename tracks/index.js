@@ -3,6 +3,90 @@ window.NOBODY_INDEX = {
   "written": "2026-10-27T00:42:40-04:00",
   "tracks": [
     {
+      "slug": "assembly-floor-tom-assembly",
+      "title": "Floor Tom Assembly",
+      "project": "assembly-sessions",
+      "idea": "one floor-tom pattern, joined part by part until the whole room is playing it",
+      "request": "one floor-tom pattern, joined part by part until the whole room is playing it",
+      "mood": "steady, hypnotic, for deep work",
+      "bpm": 126,
+      "key": "F# minor",
+      "seed": 5100501,
+      "model": "fast",
+      "duration": 231.74,
+      "date": "2026-10-27",
+      "rendered_at": "2026-10-27T00:42:08-04:00",
+      "voice": false,
+      "prompt": "instrumental hypnotic indie folk electronica for focus, no vocals, one steady floor tom pattern that never stops, stacked hand percussion and shakers joining in layers, droning pump organ, a chiming clean guitar ostinato, soft glitchy synth blips, lo-fi basement recording warmth, steady energy that slowly thickens, a long high plateau, one short dip and a final lift, lean bass, dorian minor",
+      "lyrics": null,
+      "why": "You asked for \"one floor-tom pattern, joined part by part until the whole room is playing it\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 126 bpm in F# minor, 240 seconds, with no voice, under the mellow gates. It has no beat to hold, so 126 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 5100503 (0.9s of near-silence (limit 0.5)); 5100502 (0.8s of near-silence (limit 0.5) and others). Seed 5100501 is the take.",
+      "rejected": [
+        {
+          "seed": 5100503,
+          "reason": "0.9s of near-silence (limit 0.5)"
+        },
+        {
+          "seed": 5100502,
+          "reason": "0.8s of near-silence (limit 0.5); boomy: 15.7% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        5100501
+      ],
+      "numbers": {
+        "tempo_bpm": 122.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.44,
+        "silence_s": 0.2,
+        "brightness_pct": 0.49,
+        "boominess_pct": 8.05,
+        "onsets_per_s": 3.2,
+        "seam_db": -27.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+        "submitter": "the owner's ask",
+        "tags": [],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "assembly-floor-tom-assembly/assembly-floor-tom-assembly.mp3",
+        "notes": "assembly-floor-tom-assembly/notes.md",
+        "recipe": "assembly-floor-tom-assembly/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.25,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 10219700,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "assembly-floor-tom-assembly/assembly-floor-tom-assembly.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "assembly-bedroom-orchestra",
       "title": "Bedroom Orchestra",
       "project": "assembly-sessions",
@@ -42379,6 +42463,7 @@ window.NOBODY_INDEX = {
       "cover_400": "albums/the-throne-of-the-third-heaven-of-the-nations-millennium-gen/cover-400.webp",
       "cover_1400": "albums/the-throne-of-the-third-heaven-of-the-nations-millennium-gen/cover-1400.webp",
       "tracks": [
+        "assembly-floor-tom-assembly",
         "assembly-bedroom-orchestra"
       ],
       "description": "Ten tracks for the owner, in the sound of a 2007 bedroom-orchestra folk record he loves: stacked hand drums and floor toms, organ drones, chiming guitars and glitchy blips. Six instrumental focus jams first; four songs about real and simulated life join later.",
