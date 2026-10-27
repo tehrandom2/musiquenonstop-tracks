@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-27T00:49:58-04:00",
+  "written": "2026-10-27T00:57:35-04:00",
   "tracks": [
     {
       "slug": "assembly-thousand-layers",
@@ -42630,8 +42630,8 @@ window.NOBODY_INDEX = {
       "slug": "transmissions-on-a-ghostline",
       "title": "Transmissions on a Ghostline",
       "project": "assembly-sessions",
-      "cover_400": null,
-      "cover_1400": null,
+      "cover_400": "albums/transmissions-on-a-ghostline/cover-400.webp",
+      "cover_1400": "albums/transmissions-on-a-ghostline/cover-1400.webp",
       "tracks": [
         "assembly-floor-tom-assembly",
         "assembly-bedroom-orchestra",
@@ -42647,6 +42647,10 @@ window.NOBODY_INDEX = {
         {
           "role": "made by",
           "name": "nobody fm: one machine rendering locally"
+        },
+        {
+          "role": "cover",
+          "name": "Kiki"
         }
       ],
       "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"

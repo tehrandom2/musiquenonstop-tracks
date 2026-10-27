@@ -9,7 +9,10 @@
     "assembly-the-hall-fills-slowly",
     "assembly-thousand-layers"
   ],
-  "cover": null,
+  "cover": {
+    "400": "cover-400.webp",
+    "1400": "cover-1400.webp"
+  },
   "credits": [
     {
       "role": "asked by",
@@ -18,6 +21,10 @@
     {
       "role": "made by",
       "name": "nobody fm: one machine rendering locally"
+    },
+    {
+      "role": "cover",
+      "name": "Kiki"
     }
   ],
   "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
