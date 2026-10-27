@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-27T01:14:10-04:00",
+  "written": "2026-10-27T01:53:08-04:00",
   "tracks": [
     {
       "slug": "assembly-thin-wire-motif",
@@ -59,7 +59,7 @@ window.NOBODY_INDEX = {
         "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
-        "track_no": 4
+        "track_no": 7
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -143,7 +143,7 @@ window.NOBODY_INDEX = {
         "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
-        "track_no": 3
+        "track_no": 6
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -229,7 +229,7 @@ window.NOBODY_INDEX = {
         "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
-        "track_no": 6
+        "track_no": 9
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -313,7 +313,7 @@ window.NOBODY_INDEX = {
         "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
-        "track_no": 5
+        "track_no": 8
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -399,7 +399,7 @@ window.NOBODY_INDEX = {
         "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
-        "track_no": 1
+        "track_no": 4
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -483,7 +483,7 @@ window.NOBODY_INDEX = {
         "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
-        "track_no": 2
+        "track_no": 5
       },
       "lineage": null,
       "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
@@ -42810,7 +42810,7 @@ window.NOBODY_INDEX = {
         "assembly-the-hall-fills-slowly",
         "assembly-thousand-layers"
       ],
-      "description": "Ten tracks for the owner, in the sound of a 2007 bedroom-orchestra folk record he loves: stacked hand drums and floor toms, organ drones, chiming guitars and glitchy blips. Six instrumental focus jams first; four songs about real and simulated life join later.",
+      "description": "Ten tracks for the owner, in the sound of a 2007 bedroom-orchestra folk record he loves: stacked hand drums and floor toms, organ drones, chiming guitars and glitchy blips. Four songs about real and simulated life, then six instrumental focus jams.",
       "credits": [
         {
           "role": "asked by",
