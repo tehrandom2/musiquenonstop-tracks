@@ -3,6 +3,104 @@ window.NOBODY_INDEX = {
   "written": "2026-10-27T01:53:08-04:00",
   "tracks": [
     {
+      "slug": "assembly-was-it-rendered",
+      "title": "Was It Rendered",
+      "project": "assembly-sessions",
+      "idea": "a vivid memory of a ferry crossing that might have been rendered; the details repeat too perfectly, and it is loved anyway",
+      "request": "a vivid memory of a ferry crossing that might have been rendered; the details repeat too perfectly, and it is loved anyway",
+      "mood": "dreamy, then swelling",
+      "bpm": 124,
+      "key": "A minor",
+      "seed": 5100203,
+      "model": "fast",
+      "duration": 204.46,
+      "date": "2026-10-27",
+      "rendered_at": "2026-10-27T01:53:08-04:00",
+      "voice": true,
+      "prompt": "dreamy downbeat indie folk electronica, swirling echoed vocals multitracked into a hazy choir, drum machine pulse under live tambourine and shaker, organ drone, music box glockenspiel loop, chiming guitar arpeggios, warm analog synth pad, field-recording texture of wind, slow swell into a big layered crescendo with gang harmonies, lean bass, aeolian minor",
+      "lyrics": "[Verse 1]\nI remember the river louder than the band,\nfloor toms on the ferry deck, your coat in my hand,\nbut the river had no current and the ferry had no name,\nand every time I go back there the gulls are just the same.\n\n[Chorus]\nWas it rendered, was it real?\nDoes it matter how it's built\nif I still feel the cold off the water\nand the deck tilt?\n\n[Verse 2]\nThe same three gulls, the same white wake, the same unfinished sky,\na corner of the picture where the colours ran out dry,\nI walked right to the edge of it and pressed against the seam,\nand it gave a little, like a drumskin, like a dream.\n\n[Chorus]\nWas it rendered, was it real?\nDoes it matter how it's built\nif I still feel the cold off the water\nand the deck tilt?\n\n[Bridge]\nKeep it anyway, keep it anyway,\nevery copy of the crossing,\nkeep it anyway.\n\n[Final Chorus]\nWas it rendered, was it real?\nI still feel the cold off the water,\nI still feel the deck tilt!",
+      "why": "You asked for \"a vivid memory of a ferry crossing that might have been rendered; the details repeat too perfectly, and it is loved anyway\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 124 bpm in A minor, 210 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 124 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 5100201 (2.1s of near-silence (limit 0.5)); 5100202 (1.2s of near-silence (limit 0.5)). Seed 5100203 is the take.",
+      "rejected": [
+        {
+          "seed": 5100201,
+          "reason": "2.1s of near-silence (limit 0.5)"
+        },
+        {
+          "seed": 5100202,
+          "reason": "1.2s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        5100203
+      ],
+      "numbers": {
+        "tempo_bpm": 124.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.95,
+        "silence_s": 0.1,
+        "brightness_pct": 1.25,
+        "boominess_pct": 10.47,
+        "onsets_per_s": 2.6,
+        "seam_db": -39.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Transmissions on a Ghostline",
+        "submitter": "the owner's ask",
+        "tags": [],
+        "track_no": 2
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "assembly-was-it-rendered/assembly-was-it-rendered.mp3",
+        "notes": "assembly-was-it-rendered/notes.md",
+        "recipe": "assembly-was-it-rendered/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.0,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": [
+          "four",
+          "you're",
+          "galls",
+          "depth",
+          "goals",
+          "weight",
+          "colors",
+          "drum",
+          "skin",
+          "hold",
+          "death",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 9016738,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "assembly-was-it-rendered/assembly-was-it-rendered.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "assembly-second-print",
       "title": "Second Print",
       "project": "assembly-sessions",
@@ -42894,6 +42992,7 @@ window.NOBODY_INDEX = {
       "cover_1400": "albums/transmissions-on-a-ghostline/cover-1400.webp",
       "tracks": [
         "assembly-second-print",
+        "assembly-was-it-rendered",
         "assembly-floor-tom-assembly",
         "assembly-bedroom-orchestra",
         "assembly-signal-and-tambourine",
