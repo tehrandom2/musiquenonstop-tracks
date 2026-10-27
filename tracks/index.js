@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-10-27T01:08:31-04:00",
   "tracks": [
     {
+      "slug": "assembly-signal-and-tambourine",
+      "title": "Signal and Tambourine",
+      "project": "assembly-sessions",
+      "idea": "a looping radio-signal arpeggio and a tambourine that keeps perfect time beside it",
+      "request": "a looping radio-signal arpeggio and a tambourine that keeps perfect time beside it",
+      "mood": "bright, driving, steady",
+      "bpm": 132,
+      "key": "A minor",
+      "seed": 5100704,
+      "model": "fast",
+      "duration": 235.34,
+      "date": "2026-10-27",
+      "rendered_at": "2026-10-27T01:08:12-04:00",
+      "voice": false,
+      "prompt": "instrumental glitch folk electronica for focus, no vocals, a looping blip-synth arpeggio like a distant signal, tambourine and shaker in steady sixteenths, tight dry drum machine with a small kick, chiming twelve-string guitar, warm organ pad in the mid range, light bass, no sub bass, steady driving energy built in layers, a long high plateau, one dip and a final lift, aeolian minor",
+      "lyrics": null,
+      "why": "You asked for \"a looping radio-signal arpeggio and a tambourine that keeps perfect time beside it\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 132 bpm in A minor, 240 seconds, with no voice, under the jungle gates. It has no beat to hold, so 132 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 5100705 (boomy: 10.8% below 60 Hz (ceiling 8)); 5100706 (boomy: 15.2% below 60 Hz (ceiling 8)). Seed 5100704 is the take, but it did not clear every gate: 0.9s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 5100705,
+          "reason": "boomy: 10.8% below 60 Hz (ceiling 8)"
+        },
+        {
+          "seed": 5100706,
+          "reason": "boomy: 15.2% below 60 Hz (ceiling 8)"
+        }
+      ],
+      "takes": [
+        5100704
+      ],
+      "numbers": {
+        "tempo_bpm": 132.0,
+        "lufs": -16.53,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.52,
+        "silence_s": 0.85,
+        "brightness_pct": 3.04,
+        "boominess_pct": 5.55,
+        "onsets_per_s": 4.42,
+        "seam_db": -71.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Transmissions on a Ghostline",
+        "submitter": "the owner's ask",
+        "tags": [],
+        "track_no": 5
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "assembly-signal-and-tambourine/assembly-signal-and-tambourine.mp3",
+        "notes": "assembly-signal-and-tambourine/notes.md",
+        "recipe": "assembly-signal-and-tambourine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "jungle",
+        "seam_step_x": 0.12,
+        "decoded_lufs": -16.94,
+        "failed": [
+          "0.9s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 10378323,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "assembly-signal-and-tambourine/assembly-signal-and-tambourine.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "assembly-thousand-layers",
       "title": "Thousand Layers",
       "project": "assembly-sessions",
@@ -42636,7 +42722,8 @@ window.NOBODY_INDEX = {
         "assembly-floor-tom-assembly",
         "assembly-bedroom-orchestra",
         "assembly-the-hall-fills-slowly",
-        "assembly-thousand-layers"
+        "assembly-thousand-layers",
+        "assembly-signal-and-tambourine"
       ],
       "description": "Ten tracks for the owner, in the sound of a 2007 bedroom-orchestra folk record he loves: stacked hand drums and floor toms, organ drones, chiming guitars and glitchy blips. Six instrumental focus jams first; four songs about real and simulated life join later.",
       "credits": [
