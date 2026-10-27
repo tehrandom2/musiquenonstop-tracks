@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-10-27T00:42:40-04:00",
+  "written": "2026-10-27T00:49:58-04:00",
   "tracks": [
     {
       "slug": "assembly-thousand-layers",
@@ -56,7 +56,7 @@ window.NOBODY_INDEX = {
         "words": null
       },
       "segments": {
-        "album": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+        "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
         "track_no": 4
@@ -140,7 +140,7 @@ window.NOBODY_INDEX = {
         "words": null
       },
       "segments": {
-        "album": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+        "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
         "track_no": 3
@@ -226,7 +226,7 @@ window.NOBODY_INDEX = {
         "words": null
       },
       "segments": {
-        "album": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+        "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
         "track_no": 1
@@ -310,7 +310,7 @@ window.NOBODY_INDEX = {
         "words": null
       },
       "segments": {
-        "album": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+        "album": "Transmissions on a Ghostline",
         "submitter": "the owner's ask",
         "tags": [],
         "track_no": 2
@@ -42627,11 +42627,11 @@ window.NOBODY_INDEX = {
       "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
     },
     {
-      "slug": "the-throne-of-the-third-heaven-of-the-nations-millennium-gen",
-      "title": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+      "slug": "transmissions-on-a-ghostline",
+      "title": "Transmissions on a Ghostline",
       "project": "assembly-sessions",
-      "cover_400": "albums/the-throne-of-the-third-heaven-of-the-nations-millennium-gen/cover-400.webp",
-      "cover_1400": "albums/the-throne-of-the-third-heaven-of-the-nations-millennium-gen/cover-1400.webp",
+      "cover_400": null,
+      "cover_1400": null,
       "tracks": [
         "assembly-floor-tom-assembly",
         "assembly-bedroom-orchestra",
@@ -42647,10 +42647,6 @@ window.NOBODY_INDEX = {
         {
           "role": "made by",
           "name": "nobody fm: one machine rendering locally"
-        },
-        {
-          "role": "cover",
-          "name": "Kiki"
         }
       ],
       "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
