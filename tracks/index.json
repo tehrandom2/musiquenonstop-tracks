@@ -3,6 +3,92 @@
   "written": "2026-10-27T00:42:40-04:00",
   "tracks": [
     {
+      "slug": "assembly-the-hall-fills-slowly",
+      "title": "The Hall Fills Slowly",
+      "project": "assembly-sessions",
+      "idea": "an empty hall filling up one player at a time until a communal climax with no voices",
+      "request": "an empty hall filling up one player at a time until a communal climax with no voices",
+      "mood": "building, communal, wordless",
+      "bpm": 124,
+      "key": "C minor",
+      "seed": 5100901,
+      "model": "fast",
+      "duration": 234.1,
+      "date": "2026-10-27",
+      "rendered_at": "2026-10-27T00:42:23-04:00",
+      "voice": false,
+      "prompt": "instrumental communal crescendo for focus, no vocals and no chant, a lone organ drone, then handclaps, then hand percussion and floor toms, then chiming guitars, bells and glockenspiel, then swelling brass and string pads, glitchy synth sparkles on top, one idea growing in layers to a big communal climax, steady pulse throughout, lean bass, minor",
+      "lyrics": null,
+      "why": "You asked for \"an empty hall filling up one player at a time until a communal climax with no voices\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 124 bpm in C minor, 240 seconds, with no voice, under the mellow gates. It has no beat to hold, so 124 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 5100902 (harsh: 3.4% above 6 kHz (ceiling 2.5)); 5100903 (harsh: 3.1% above 6 kHz (ceiling 2.5) and others). Seed 5100901 is the take, but it did not clear every gate: boomy: 13.6% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 5100902,
+          "reason": "harsh: 3.4% above 6 kHz (ceiling 2.5)"
+        },
+        {
+          "seed": 5100903,
+          "reason": "harsh: 3.1% above 6 kHz (ceiling 2.5); boomy: 17.0% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        5100901
+      ],
+      "numbers": {
+        "tempo_bpm": 120.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.19,
+        "silence_s": 0.4,
+        "brightness_pct": 2.04,
+        "boominess_pct": 13.61,
+        "onsets_per_s": 3.65,
+        "seam_db": -26.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "The Throne of the Third Heaven of the Nations' Millennium General Assembly",
+        "submitter": "the owner's ask",
+        "tags": [],
+        "track_no": 3
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "assembly-the-hall-fills-slowly/assembly-the-hall-fills-slowly.mp3",
+        "notes": "assembly-the-hall-fills-slowly/notes.md",
+        "recipe": "assembly-the-hall-fills-slowly/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -16.38,
+        "failed": [
+          "boomy: 13.6% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 10323795,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "assembly-the-hall-fills-slowly/assembly-the-hall-fills-slowly.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "assembly-floor-tom-assembly",
       "title": "Floor Tom Assembly",
       "project": "assembly-sessions",
@@ -42464,7 +42550,8 @@
       "cover_1400": "albums/the-throne-of-the-third-heaven-of-the-nations-millennium-gen/cover-1400.webp",
       "tracks": [
         "assembly-floor-tom-assembly",
-        "assembly-bedroom-orchestra"
+        "assembly-bedroom-orchestra",
+        "assembly-the-hall-fills-slowly"
       ],
       "description": "Ten tracks for the owner, in the sound of a 2007 bedroom-orchestra folk record he loves: stacked hand drums and floor toms, organ drones, chiming guitars and glitchy blips. Six instrumental focus jams first; four songs about real and simulated life join later.",
       "credits": [
