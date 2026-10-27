@@ -12,7 +12,7 @@
 - **render time:** 33.7 s per seed, model load 41.1 s
 - **licence:** generated locally from a text prompt, no samples or reference audio, no third-party rights claimed
 - project: assembly-sessions
-- **album:** The Throne of the Third Heaven of the Nations' Millennium General Assembly, track 5
+- **album:** Transmissions on a Ghostline, track 5
 - **submitter:** the owner's ask
 - **loop:** no, a one-shot
 - **length:** 10219700 samples at 44.1 kHz (231.74 s), about 121.7 bars of 4/4 at 126 bpm (the MP3 adds encoder padding; the length is of the PCM)
