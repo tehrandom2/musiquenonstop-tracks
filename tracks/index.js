@@ -3,6 +3,101 @@ window.NOBODY_INDEX = {
   "written": "2026-10-27T02:01:12-04:00",
   "tracks": [
     {
+      "slug": "assembly-who-is-singing",
+      "title": "Who Is Singing",
+      "project": "assembly-sessions",
+      "idea": "a choir where half the voices are recordings and nobody will say which; they sing anyway",
+      "request": "a choir where half the voices are recordings and nobody will say which; they sing anyway",
+      "mood": "ecstatic, communal, a final lift",
+      "bpm": 136,
+      "key": "B minor",
+      "seed": 5100404,
+      "model": "fast",
+      "duration": 215.34,
+      "date": "2026-10-27",
+      "rendered_at": "2026-10-27T02:01:11-04:00",
+      "voice": true,
+      "prompt": "ecstatic choral indie folk with electronics, a small choir of friends singing the written words clearly in unison and simple harmony, no ad-libs, no gospel, no preaching, a few vocoder voices blended in, marching floor toms and hand percussion, handclaps and tambourine, a reedy pump organ drone, chiming guitars, glitchy synth arpeggio, lo-fi bedroom-orchestra strings, starts mid and keeps lifting to a final communal shout of the chorus, lean bass, minor",
+      "lyrics": "[Verse 1]\nForty of us on the risers, shoulder pressed to shoulder,\nhalf of us are recordings and the hall is getting colder,\nnobody will tell us which, the leader shakes his head,\nhe says the note is all that matters, sing the note instead.\n\n[Chorus]\nSing it, sing it!\nIf your breath is borrowed,\nsing it, sing it!\nThe note doesn't know!\n\n[Verse 2]\nThe tenor on my left is warm, I swear I feel him breathe,\nthe alto on my right has never once been seen to leave,\nI put my hand out in the dark to find out if I'm there,\nand someone takes it, someone takes it, and I don't care.\n\n[Chorus]\nSing it, sing it!\nIf your breath is borrowed,\nsing it, sing it!\nThe note doesn't know!\n\n[Bridge]\nOne voice, forty voices,\nnone of us can tell,\none voice, forty voices,\nring it like a bell!\n\n[Final Chorus]\nSing it, sing it!\nIf your breath is borrowed,\nsing it, sing it!\nThe note doesn't know!\nThe note doesn't know!",
+      "why": "You asked for \"a choir where half the voices are recordings and nobody will say which; they sing anyway\". The words and the style were written for this song by the station's writers and reviewed by the conductor. So I wrote it at 136 bpm in B minor, 220 seconds, with a voice, in words I wrote myself, under the mellow gates. It has no beat to hold, so 136 bpm is only the grid I gave the model and the tempo gate is not applied. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 5100406 (boomy: 15.4% below 60 Hz (ceiling 12)); 5100405 (boomy: 12.4% below 60 Hz (ceiling 12) and others). Seed 5100404 is the take.",
+      "rejected": [
+        {
+          "seed": 5100406,
+          "reason": "boomy: 15.4% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 5100405,
+          "reason": "boomy: 12.4% below 60 Hz (ceiling 12); 232 of 368 heard words are not ours (63 %; limit 10 %, at least 40 heard): oh blue see see no bear hollow no no oh oh oh"
+        }
+      ],
+      "takes": [
+        5100404
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.98,
+        "silence_s": 0.2,
+        "brightness_pct": 1.76,
+        "boominess_pct": 10.82,
+        "onsets_per_s": 2.5,
+        "seam_db": -44.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": true
+      },
+      "segments": {
+        "album": "Transmissions on a Ghostline",
+        "submitter": "the owner's ask",
+        "tags": [],
+        "track_no": 4
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "assembly-who-is-singing/assembly-who-is-singing.mp3",
+        "notes": "assembly-who-is-singing/notes.md",
+        "recipe": "assembly-who-is-singing/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM acestep-5Hz-lm-1.7B)",
+        "profile": "mellow",
+        "seam_step_x": 0.49,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": [
+          "song",
+          "leap",
+          "speak",
+          "four",
+          "say",
+          "say",
+          "say",
+          "say",
+          "thank",
+          "you"
+        ],
+        "stripped": [],
+        "installed_samples": 9496490,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "assembly-who-is-singing/assembly-who-is-singing.mp3"
+        ],
+        "ears": null
+      },
+      "audition": true
+    },
+    {
       "slug": "assembly-was-it-rendered",
       "title": "Was It Rendered",
       "project": "assembly-sessions",
@@ -43088,6 +43183,7 @@ window.NOBODY_INDEX = {
         "assembly-second-print",
         "assembly-was-it-rendered",
         "assembly-the-echo-keeps-the-hill",
+        "assembly-who-is-singing",
         "assembly-floor-tom-assembly",
         "assembly-bedroom-orchestra",
         "assembly-signal-and-tambourine",
