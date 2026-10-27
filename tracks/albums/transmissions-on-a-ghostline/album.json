@@ -6,10 +6,10 @@
   "tracks": [
     "assembly-floor-tom-assembly",
     "assembly-bedroom-orchestra",
-    "assembly-the-hall-fills-slowly",
-    "assembly-thousand-layers",
     "assembly-signal-and-tambourine",
-    "assembly-thin-wire-motif"
+    "assembly-thin-wire-motif",
+    "assembly-the-hall-fills-slowly",
+    "assembly-thousand-layers"
   ],
   "cover": {
     "400": "cover-400.webp",
