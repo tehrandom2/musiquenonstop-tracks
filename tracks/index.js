@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-fourth-floor-walkup",
+      "title": "Fourth Floor Walkup",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 70,
+      "key": "B minor",
+      "seed": 4410071,
+      "model": "fast",
+      "duration": 144.18,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:46:11-04:00",
+      "voice": false,
+      "prompt": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a chopped electric piano loop, a low clarinet phrase, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 70 bpm in B minor, 145 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410072 (boomy: 13.7% below 60 Hz (ceiling 12)). Seed 4410071 is the take.",
+      "rejected": [
+        {
+          "seed": 4410072,
+          "reason": "boomy: 13.7% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410071
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.84,
+        "silence_s": 0.35,
+        "brightness_pct": 0.32,
+        "boominess_pct": 5.49,
+        "onsets_per_s": 3.7,
+        "seam_db": -54.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: A, Dusty Keys",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt A"
+        ],
+        "track_no": 7
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-fourth-floor-walkup/head-nod-fourth-floor-walkup.mp3",
+        "notes": "head-nod-fourth-floor-walkup/notes.md",
+        "recipe": "head-nod-fourth-floor-walkup/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.87,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6358280,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-fourth-floor-walkup/head-nod-fourth-floor-walkup.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-dream-static",
       "title": "Dream Static",
       "project": "head-nod-preview",
@@ -43654,7 +43740,8 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "head-nod-back-booth",
-        "head-nod-copper-hum"
+        "head-nod-copper-hum",
+        "head-nod-fourth-floor-walkup"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
