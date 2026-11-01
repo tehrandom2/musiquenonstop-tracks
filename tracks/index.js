@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-smoke-ring-theory",
+      "title": "Smoke Ring Theory",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 69,
+      "key": "F minor",
+      "seed": 4410251,
+      "model": "fast",
+      "duration": 136.19,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:47:20-04:00",
+      "voice": false,
+      "prompt": "Dusty jazz-sample boom bap, chopped soul-jazz organ phrases, a muted trumpet answer, upright-style round bass, lazy swung drums with a big reverb tail on the snare, crackly old-record texture, a breakdown without drums near the end, warm, dark and nostalgic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 69 bpm in F minor, 140 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410252 (3.3s of near-silence (limit 0.5)). Seed 4410251 is the take.",
+      "rejected": [
+        {
+          "seed": 4410252,
+          "reason": "3.3s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4410251
+      ],
+      "numbers": {
+        "tempo_bpm": 137.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.4,
+        "silence_s": 0.5,
+        "brightness_pct": 0.62,
+        "boominess_pct": 7.12,
+        "onsets_per_s": 2.25,
+        "seam_db": -54.1
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: C, Jazz Crate",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt C"
+        ],
+        "track_no": 5
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-smoke-ring-theory/head-nod-smoke-ring-theory.mp3",
+        "notes": "head-nod-smoke-ring-theory/notes.md",
+        "recipe": "head-nod-smoke-ring-theory/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.54,
+        "decoded_lufs": -16.41,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6006009,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-smoke-ring-theory/head-nod-smoke-ring-theory.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-slow-orbit",
       "title": "Slow Orbit",
       "project": "head-nod-preview",
@@ -44399,7 +44485,8 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "head-nod-last-set",
-        "head-nod-blue-hour-crate"
+        "head-nod-blue-hour-crate",
+        "head-nod-smoke-ring-theory"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
