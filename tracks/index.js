@@ -3,6 +3,97 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:55:08-05:00",
   "tracks": [
     {
+      "slug": "closer-glass-clicks",
+      "title": "Glass Clicks",
+      "project": "closer-preview",
+      "idea": "hazy late-night downtempo, closer to the sound he likes",
+      "request": "the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend",
+      "mood": "hazy, dreamy and dark",
+      "bpm": 70,
+      "key": "F# minor",
+      "seed": 4420033,
+      "model": "best",
+      "duration": 153.26,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:53:51-05:00",
+      "voice": false,
+      "prompt": "Hazy late-night downtempo instrumental, slow dreamy half-time groove, soft distant dusty drums tucked far behind the music, a deep warm sub bass felt more than heard, a fragile glassy synth melody over washed-out pads, delicate glitchy clicks, one hypnotic two-chord vamp that barely changes, heavily muffled and low-passed as if heard through a wall, warm tape haze, steady and immersive, a long slow fade at the end, no vocals, no singing, no speech, no drops, no trap hi-hats, no bright cymbals",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 70 bpm in F# minor, 155 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4420031 (3.2s of near-silence (limit 0.5) and others); 4420032 (1.2s of near-silence (limit 0.5) and others). Seed 4420033 is the take, but it did not clear every gate: 2.2s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4420031,
+          "reason": "3.2s of near-silence (limit 0.5); boomy: 19.0% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 4420032,
+          "reason": "1.2s of near-silence (limit 0.5); boomy: 13.1% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4420033
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.13,
+        "silence_s": 2.2,
+        "brightness_pct": 1.01,
+        "boominess_pct": 5.12,
+        "onsets_per_s": 2.18,
+        "seam_db": -23.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Closer",
+        "submitter": "the owner",
+        "tags": [
+          "downtempo",
+          "instrumental",
+          "preview"
+        ],
+        "track_no": 3
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "closer-glass-clicks/closer-glass-clicks.mp3",
+        "notes": "closer-glass-clicks/notes.md",
+        "recipe": "closer-glass-clicks/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.11,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "2.2s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6758694,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "closer-glass-clicks/closer-glass-clicks.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-dusty-sleeve",
       "title": "Dusty Sleeve",
       "project": "head-nod-preview",
@@ -46720,6 +46811,28 @@ window.NOBODY_INDEX = {
         {
           "role": "cover",
           "name": "Kiki"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "closer",
+      "title": "Closer",
+      "project": "closer-preview",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "closer-glass-clicks"
+      ],
+      "description": "5 tracks, in the order they were meant to be heard.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the owner"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
         }
       ],
       "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
