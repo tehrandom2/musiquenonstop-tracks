@@ -1,0 +1,87 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "head-nod-grain-of-salt",
+  "title": "Grain Of Salt",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a crunchy electric piano loop, a short muted guitar lick, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "lyrics": "[Instrumental]",
+  "instrumental": true,
+  "bpm": 73,
+  "keyscale": "E minor",
+  "timesignature": "4",
+  "duration": 120.0,
+  "seed": 4410062,
+  "dit_caption": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a crunchy electric piano loop, a short muted guitar lick, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": 1.94,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 115.98,
+    "peak_dbfs_pre_encode": -3.02,
+    "lufs": -16.03
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 115.976,
+      "lufs": -17.945,
+      "peak": -1.239,
+      "bpm": 72.5,
+      "key": "C major",
+      "margin": 0.121,
+      "hi": 0.392,
+      "lo": 6.841,
+      "onsets": 2.268,
+      "jump": 1.404,
+      "tail_head": -62.789,
+      "voice": 0.174,
+      "silence": 0.3,
+      "seed": 4410062,
+      "lo_raw": 16.958
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": []
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
