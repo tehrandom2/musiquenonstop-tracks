@@ -1,0 +1,30 @@
+{
+  "slug": "head-nod-after-dark-a-dusty-keys",
+  "title": "Head Nod After Dark: A, Dusty Keys",
+  "project": "head-nod-preview",
+  "description": "10 tracks, in the order they were meant to be heard.",
+  "tracks": [
+    "head-nod-velvet-dust",
+    "head-nod-back-booth",
+    "head-nod-slow-bloom",
+    "head-nod-sidewalk-hours",
+    "head-nod-copper-hum",
+    "head-nod-grain-of-salt",
+    "head-nod-fourth-floor-walkup",
+    "head-nod-night-shift-nod",
+    "head-nod-paper-crowns",
+    "head-nod-slow-rewind"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the owner"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "head-nod-after-dark-b-woozy-haze",
+  "title": "Head Nod After Dark: B, Woozy Haze",
+  "project": "head-nod-preview",
+  "description": "10 tracks, in the order they were meant to be heard.",
+  "tracks": [
+    "head-nod-haze-engine",
+    "head-nod-melted-signal",
+    "head-nod-slow-orbit",
+    "head-nod-soft-static",
+    "head-nod-bubblegum-fog",
+    "head-nod-lava-lens",
+    "head-nod-half-asleep",
+    "head-nod-neon-moss",
+    "head-nod-dream-static",
+    "head-nod-warped-postcard"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the owner"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "head-nod-after-dark-c-jazz-crate",
+  "title": "Head Nod After Dark: C, Jazz Crate",
+  "project": "head-nod-preview",
+  "description": "10 tracks, in the order they were meant to be heard.",
+  "tracks": [
+    "head-nod-brushwork",
+    "head-nod-low-brass-memory",
+    "head-nod-last-set",
+    "head-nod-blue-hour-crate",
+    "head-nod-smoke-ring-theory",
+    "head-nod-dusty-sleeve",
+    "head-nod-late-train-home",
+    "head-nod-velour",
+    "head-nod-cratedigger",
+    "head-nod-closing-time-keys"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the owner"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}
