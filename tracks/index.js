@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-late-train-home",
+      "title": "Late Train Home",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 67,
+      "key": "C minor",
+      "seed": 4410272,
+      "model": "fast",
+      "duration": 147.57,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:48:37-04:00",
+      "voice": false,
+      "prompt": "Dusty jazz-sample boom bap, chopped soul-jazz electric piano phrases, soft brushed cymbals, a mellow vibraphone line, upright-style round bass, lazy swung drums with a big reverb tail on the snare, crackly old-record texture, a breakdown without drums near the end, warm, dark and nostalgic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 67 bpm in C minor, 150 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410271 (0.6s of near-silence (limit 0.5)). Seed 4410272 is the take.",
+      "rejected": [
+        {
+          "seed": 4410271,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4410272
+      ],
+      "numbers": {
+        "tempo_bpm": 132.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.67,
+        "silence_s": 0.5,
+        "brightness_pct": 0.54,
+        "boominess_pct": 2.73,
+        "onsets_per_s": 2.17,
+        "seam_db": -72.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: C, Jazz Crate",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt C"
+        ],
+        "track_no": 7
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-late-train-home/head-nod-late-train-home.mp3",
+        "notes": "head-nod-late-train-home/notes.md",
+        "recipe": "head-nod-late-train-home/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.92,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6507896,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-late-train-home/head-nod-late-train-home.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-haze-engine",
       "title": "Haze Engine",
       "project": "head-nod-preview",
@@ -45097,6 +45183,7 @@ window.NOBODY_INDEX = {
         "head-nod-last-set",
         "head-nod-blue-hour-crate",
         "head-nod-smoke-ring-theory",
+        "head-nod-late-train-home",
         "head-nod-velour",
         "head-nod-cratedigger",
         "head-nod-closing-time-keys"
