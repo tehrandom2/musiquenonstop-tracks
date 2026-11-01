@@ -3,6 +3,98 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-iron-hymn",
+      "title": "Iron Hymn",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "D minor",
+      "seed": 4410311,
+      "model": "best",
+      "duration": 138.14,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:08:14-04:00",
+      "voice": false,
+      "prompt": "Slow heavy industrial boom bap instrumental, head-nod groove, crushed distorted swung drums with a pounding mechanical kick and a cracking metallic snare, an overdriven chopped electric piano loop, warbly detuned analog synths drifting out of tune, gritty distorted guitar riff stabs, saturated fuzz bass, clanging machine percussion, bitcrushed noise textures, dark muffled top end, distorted grit in the mids, menacing, hypnotic and dusty, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in D minor, 140 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4410312 (4.7s of near-silence (limit 0.5)); 4410313 (2.3s of near-silence (limit 0.5) and others). Seed 4410311 is the take, but it did not clear every gate: 1.4s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4410312,
+          "reason": "4.7s of near-silence (limit 0.5)"
+        },
+        {
+          "seed": 4410313,
+          "reason": "2.3s of near-silence (limit 0.5); harsh: 5.6% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4410311
+      ],
+      "numbers": {
+        "tempo_bpm": 71.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.77,
+        "silence_s": 1.35,
+        "brightness_pct": 0.97,
+        "boominess_pct": 4.38,
+        "onsets_per_s": 2.45,
+        "seam_db": -9.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Last Rites",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt D"
+        ],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-iron-hymn/head-nod-iron-hymn.mp3",
+        "notes": "head-nod-iron-hymn/notes.md",
+        "recipe": "head-nod-iron-hymn/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.04,
+        "decoded_lufs": -16.35,
+        "failed": [
+          "1.4s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6091886,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-iron-hymn/head-nod-iron-hymn.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-grinder-lullaby",
       "title": "Grinder Lullaby",
       "project": "head-nod-preview",
@@ -46187,6 +46279,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "head-nod-iron-hymn",
         "head-nod-furnace-prayer",
         "head-nod-black-steam",
         "head-nod-chain-gospel",

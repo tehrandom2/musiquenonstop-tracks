@@ -1,0 +1,89 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "head-nod-iron-hymn",
+  "title": "Iron Hymn",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Slow heavy industrial boom bap instrumental, head-nod groove, crushed distorted swung drums with a pounding mechanical kick and a cracking metallic snare, an overdriven chopped electric piano loop, warbly detuned analog synths drifting out of tune, gritty distorted guitar riff stabs, saturated fuzz bass, clanging machine percussion, bitcrushed noise textures, dark muffled top end, distorted grit in the mids, menacing, hypnotic and dusty, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "lyrics": "[Instrumental]",
+  "instrumental": true,
+  "bpm": 72,
+  "keyscale": "D minor",
+  "timesignature": "4",
+  "duration": 140.0,
+  "seed": 4410311,
+  "dit_caption": "Slow heavy industrial boom bap instrumental, head-nod groove, crushed distorted swung drums with a pounding mechanical kick and a cracking metallic snare, an overdriven chopped electric piano loop, warbly detuned analog synths drifting out of tune, gritty distorted guitar riff stabs, saturated fuzz bass, clanging machine percussion, bitcrushed noise textures, dark muffled top end, distorted grit in the mids, menacing, hypnotic and dusty, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": -1.74,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 138.14,
+    "peak_dbfs_pre_encode": -3.68,
+    "lufs": -16.0
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 138.138,
+      "lufs": -14.261,
+      "peak": -1.329,
+      "bpm": 71.0,
+      "key": "D major",
+      "margin": 0.055,
+      "hi": 0.971,
+      "lo": 4.383,
+      "onsets": 2.447,
+      "jump": 0.038,
+      "tail_head": -9.672,
+      "voice": 0.369,
+      "silence": 1.35,
+      "seed": 4410311,
+      "lo_raw": 16.132
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": [
+      "1.4s of near-silence (limit 0.5)"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
