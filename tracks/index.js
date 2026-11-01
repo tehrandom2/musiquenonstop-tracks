@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-haze-engine",
+      "title": "Haze Engine",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "E minor",
+      "seed": 4410112,
+      "model": "fast",
+      "duration": 131.74,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:48:29-04:00",
+      "voice": false,
+      "prompt": "Woozy psychedelic hip hop instrumental, slow swung boom bap drums with a roomy snare, warbly detuned analog synth chords drifting out of tune, fuzzy saturated bass, wobbly tape wow and flutter, dark low-passed haze, soft vinyl crackle, dreamy and a little strange, laid back, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in E minor, 135 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410111 (passed, but outranked by the kept takes). Seed 4410112 is the take.",
+      "rejected": [
+        {
+          "seed": 4410111,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        4410112
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.08,
+        "silence_s": 0.1,
+        "brightness_pct": 0.86,
+        "boominess_pct": 5.94,
+        "onsets_per_s": 2.24,
+        "seam_db": -53.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: B, Woozy Haze",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt B"
+        ],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-haze-engine/head-nod-haze-engine.mp3",
+        "notes": "head-nod-haze-engine/notes.md",
+        "recipe": "head-nod-haze-engine/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.15,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5809742,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-haze-engine/head-nod-haze-engine.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-grain-of-salt",
       "title": "Grain Of Salt",
       "project": "head-nod-preview",
@@ -44978,6 +45064,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "head-nod-haze-engine",
         "head-nod-melted-signal",
         "head-nod-slow-orbit",
         "head-nod-bubblegum-fog",
