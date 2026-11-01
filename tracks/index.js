@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-lava-lens",
+      "title": "Lava Lens",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 68,
+      "key": "C minor",
+      "seed": 4410161,
+      "model": "fast",
+      "duration": 142.51,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:46:40-04:00",
+      "voice": false,
+      "prompt": "Woozy psychedelic hip hop instrumental, slow swung boom bap drums with a roomy snare, thick detuned analog brass synth chords, a squelchy synth bass riff, fuzzy saturated bass, wobbly tape wow and flutter, dark low-passed haze, soft vinyl crackle, dreamy and a little strange, laid back, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 68 bpm in C minor, 145 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410162 (passed, but outranked by the kept takes). Seed 4410161 is the take.",
+      "rejected": [
+        {
+          "seed": 4410162,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        4410161
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.42,
+        "silence_s": 0.5,
+        "brightness_pct": 1.33,
+        "boominess_pct": 6.06,
+        "onsets_per_s": 2.13,
+        "seam_db": -55.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: B, Woozy Haze",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt B"
+        ],
+        "track_no": 6
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-lava-lens/head-nod-lava-lens.mp3",
+        "notes": "head-nod-lava-lens/notes.md",
+        "recipe": "head-nod-lava-lens/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 20.21,
+        "decoded_lufs": -16.4,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6284701,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-lava-lens/head-nod-lava-lens.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-last-set",
       "title": "Last Set",
       "project": "head-nod-preview",
@@ -43940,6 +44026,7 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "head-nod-bubblegum-fog",
+        "head-nod-lava-lens",
         "head-nod-half-asleep",
         "head-nod-dream-static"
       ],

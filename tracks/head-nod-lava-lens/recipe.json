@@ -1,0 +1,87 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "head-nod-lava-lens",
+  "title": "Lava Lens",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Woozy psychedelic hip hop instrumental, slow swung boom bap drums with a roomy snare, thick detuned analog brass synth chords, a squelchy synth bass riff, fuzzy saturated bass, wobbly tape wow and flutter, dark low-passed haze, soft vinyl crackle, dreamy and a little strange, laid back, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "lyrics": "[Instrumental]",
+  "instrumental": true,
+  "bpm": 68,
+  "keyscale": "C minor",
+  "timesignature": "4",
+  "duration": 145.0,
+  "seed": 4410161,
+  "dit_caption": "Woozy psychedelic hip hop instrumental, slow swung boom bap drums with a roomy snare, thick detuned analog brass synth chords, a squelchy synth bass riff, fuzzy saturated bass, wobbly tape wow and flutter, dark low-passed haze, soft vinyl crackle, dreamy and a little strange, laid back, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": -1.23,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 142.51,
+    "peak_dbfs_pre_encode": -3.26,
+    "lufs": -16.0
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 142.51,
+      "lufs": -14.772,
+      "peak": -0.6,
+      "bpm": 136.0,
+      "key": "C major",
+      "margin": 0.1,
+      "hi": 1.335,
+      "lo": 6.058,
+      "onsets": 2.133,
+      "jump": 20.208,
+      "tail_head": -55.449,
+      "voice": 0.159,
+      "silence": 0.5,
+      "seed": 4410161,
+      "lo_raw": 19.356
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": []
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
