@@ -3,6 +3,94 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-bubblegum-fog",
+      "title": "Bubblegum Fog",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 73,
+      "key": "A minor",
+      "seed": 4410152,
+      "model": "fast",
+      "duration": 120.73,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:45:43-04:00",
+      "voice": false,
+      "prompt": "Woozy psychedelic hip hop instrumental, slow swung boom bap drums with a roomy snare, a sweet wobbly synth melody over warbly chords, fuzzy saturated bass, wobbly tape wow and flutter, dark low-passed haze, soft vinyl crackle, dreamy and a little strange, laid back, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 73 bpm in A minor, 125 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410151 (1.4s of near-silence (limit 0.5)). Seed 4410152 is the take, but it did not clear every gate: 0.7s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4410151,
+          "reason": "1.4s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4410152
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.48,
+        "silence_s": 0.65,
+        "brightness_pct": 1.09,
+        "boominess_pct": 2.01,
+        "onsets_per_s": 1.87,
+        "seam_db": -69.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: B, Woozy Haze",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt B"
+        ],
+        "track_no": 5
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-bubblegum-fog/head-nod-bubblegum-fog.mp3",
+        "notes": "head-nod-bubblegum-fog/notes.md",
+        "recipe": "head-nod-bubblegum-fog/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.51,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "0.7s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5324120,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-bubblegum-fog/head-nod-bubblegum-fog.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-blue-hour-crate",
       "title": "Blue Hour Crate",
       "project": "head-nod-preview",
@@ -43392,6 +43480,28 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "head-nod-back-booth"
+      ],
+      "description": "10 tracks, in the order they were meant to be heard.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the owner"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "head-nod-after-dark-b-woozy-haze",
+      "title": "Head Nod After Dark: B, Woozy Haze",
+      "project": "head-nod-preview",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "head-nod-bubblegum-fog"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
