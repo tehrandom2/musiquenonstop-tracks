@@ -3,6 +3,98 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:55:08-05:00",
   "tracks": [
     {
+      "slug": "closer-low-hum-drift",
+      "title": "Low Hum Drift",
+      "project": "closer-preview",
+      "idea": "hazy late-night downtempo, closer to the sound he likes",
+      "request": "the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend",
+      "mood": "hazy, dreamy and dark",
+      "bpm": 66,
+      "key": "F minor",
+      "seed": 4420043,
+      "model": "best",
+      "duration": 163.09,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:54:08-05:00",
+      "voice": false,
+      "prompt": "Hazy late-night downtempo instrumental, slow dreamy half-time groove, soft distant dusty drums tucked far behind the music, a deep warm sub bass felt more than heard, a slow hazy vocoder-like synth hum used as an instrument over blurred chords, one hypnotic two-chord vamp that barely changes, heavily muffled and low-passed as if heard through a wall, warm tape haze, steady and immersive, a long slow fade at the end, no vocals, no singing, no speech, no drops, no trap hi-hats, no bright cymbals",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 66 bpm in F minor, 165 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4420041 (passed, but outranked by the kept takes); 4420042 (4.1s of near-silence (limit 0.5) and others). Seed 4420043 is the take, but it did not clear every gate: 1.2s of near-silence (limit 0.5); boomy: 19.6% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 4420041,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 4420042,
+          "reason": "4.1s of near-silence (limit 0.5); boomy: 13.3% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4420043
+      ],
+      "numbers": {
+        "tempo_bpm": 132.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.48,
+        "silence_s": 1.25,
+        "brightness_pct": 0.23,
+        "boominess_pct": 19.62,
+        "onsets_per_s": 1.61,
+        "seam_db": -54.0
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Closer",
+        "submitter": "the owner",
+        "tags": [
+          "downtempo",
+          "instrumental",
+          "preview"
+        ],
+        "track_no": 4
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "closer-low-hum-drift/closer-low-hum-drift.mp3",
+        "notes": "closer-low-hum-drift/notes.md",
+        "recipe": "closer-low-hum-drift/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.12,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "1.2s of near-silence (limit 0.5)",
+          "boomy: 19.6% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 7192056,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "closer-low-hum-drift/closer-low-hum-drift.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "closer-glass-clicks",
       "title": "Glass Clicks",
       "project": "closer-preview",
@@ -46822,7 +46914,8 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
-        "closer-glass-clicks"
+        "closer-glass-clicks",
+        "closer-low-hum-drift"
       ],
       "description": "5 tracks, in the order they were meant to be heard.",
       "credits": [

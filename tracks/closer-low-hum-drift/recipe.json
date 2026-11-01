@@ -1,0 +1,90 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "closer-low-hum-drift",
+  "title": "Low Hum Drift",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Hazy late-night downtempo instrumental, slow dreamy half-time groove, soft distant dusty drums tucked far behind the music, a deep warm sub bass felt more than heard, a slow hazy vocoder-like synth hum used as an instrument over blurred chords, one hypnotic two-chord vamp that barely changes, heavily muffled and low-passed as if heard through a wall, warm tape haze, steady and immersive, a long slow fade at the end, no vocals, no singing, no speech, no drops, no trap hi-hats, no bright cymbals",
+  "lyrics": "[Instrumental]",
+  "instrumental": true,
+  "bpm": 66,
+  "keyscale": "F minor",
+  "timesignature": "4",
+  "duration": 165.0,
+  "seed": 4420043,
+  "dit_caption": "Hazy late-night downtempo instrumental, slow dreamy half-time groove, soft distant dusty drums tucked far behind the music, a deep warm sub bass felt more than heard, a slow hazy vocoder-like synth hum used as an instrument over blurred chords, one hypnotic two-chord vamp that barely changes, heavily muffled and low-passed as if heard through a wall, warm tape haze, steady and immersive, a long slow fade at the end, no vocals, no singing, no speech, no drops, no trap hi-hats, no bright cymbals",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": -0.45,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 163.09,
+    "peak_dbfs_pre_encode": -3.34,
+    "lufs": -16.0
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 163.085,
+      "lufs": -15.553,
+      "peak": -1.722,
+      "bpm": 132.0,
+      "key": "F major",
+      "margin": 0.186,
+      "hi": 0.226,
+      "lo": 19.616,
+      "onsets": 1.613,
+      "jump": 0.119,
+      "tail_head": -53.99,
+      "voice": 0.203,
+      "silence": 1.25,
+      "seed": 4420043,
+      "lo_raw": 56.213
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": false,
+      "brightness": true,
+      "boominess": false,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": [
+      "1.2s of near-silence (limit 0.5)",
+      "boomy: 19.6% below 60 Hz (ceiling 12)"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
