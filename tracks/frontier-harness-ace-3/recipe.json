@@ -1,0 +1,90 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "frontier-harness-ace-3",
+  "title": "Frontier Harness 3: Raw Saw",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Swung glitch-hop electro, head-nod half-time groove, shuffled sixteenth hi-hats with heavy swing, punchy dry kick and snare, a raw buzzing sawtooth bass, unfiltered and overdriven, staccato overdriven saw stabs, heavy sidechain pumping, arpeggiated square-wave runs, a chopped vocal used as an instrument, single syllables stuttered, pitched and retriggered in the swing, neon arcade energy, wide, bright and punchy, no trap hi-hats, no EDM drop, no four-on-the-floor, no rap verses, no autotune",
+  "lyrics": "[Intro: saw arps and swung drums]\n[Vocal Chops]\nf-f-fron, fron-tier, f-f-frontier\nmo-mo-mo, del, m-m-model\nh-h-har, har-ness, h-h-harness\n[Beat]\n[Vocal Chops]\nsub-sub-sub, a-gent, s-s-subagent\nt-t-tool, tool-call, c-c-call\ncon-con-tex, t-t-text, com-pact\ncom-com-pac, tion, compaction\n[Beat]\n[Vocal Chops]\ne-e-e-val, e-vals, v-v-vals\nsys-sys-tem, p-p-prompt\nrea-rea-son, reason-ing, t-t-traces\nlong-long, ho-ri, h-h-horizon\n[Breakdown: drums out, saw pad swells, reversed chops]\n...fron ...har ...sub ...mm\n[Bridge: half-whispered over the arps]\nw-w-w-weights, w-w-weights\nd-d-dis-till, q-q-quant, quantize\nsand-sand, box, s-s-sandbox\n[Drop back in: full saws]\na-a-a-gen, a-gen-tic, a-a-agentic\n[Outro: filter closes on the saws]\nf-f-fron, fron-tier, harness\nfrontier harness",
+  "instrumental": false,
+  "bpm": 92,
+  "keyscale": "G minor",
+  "timesignature": "4",
+  "duration": 160.0,
+  "seed": 4430032,
+  "dit_caption": "Swung glitch-hop electro, head-nod half-time groove, shuffled sixteenth hi-hats with heavy swing, punchy dry kick and snare, a raw buzzing sawtooth bass, unfiltered and overdriven, staccato overdriven saw stabs, heavy sidechain pumping, arpeggiated square-wave runs, a chopped vocal used as an instrument, single syllables stuttered, pitched and retriggered in the swing, neon arcade energy, wide, bright and punchy, no trap hi-hats, no EDM drop, no four-on-the-floor, no rap verses, no autotune",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": 0.53,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 158.66,
+    "peak_dbfs_pre_encode": -3.12,
+    "lufs": -16.0
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 158.658,
+      "lufs": -16.529,
+      "peak": -1.534,
+      "bpm": 124.0,
+      "key": "D major",
+      "margin": 0.027,
+      "hi": 2.822,
+      "lo": 2.61,
+      "onsets": 3.46,
+      "jump": 0.733,
+      "tail_head": -46.794,
+      "voice": 0.235,
+      "silence": 0.4,
+      "seed": 4430032,
+      "lo_raw": 16.822
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": true,
+      "brightness": false,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": [
+      "harsh: 2.8% above 6 kHz (ceiling 2.5)",
+      "352 of 489 heard words are not ours (72 %; limit 10 %, at least 40 heard): agent agent agent agent agent agent agent agent agent agent agent agent"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
