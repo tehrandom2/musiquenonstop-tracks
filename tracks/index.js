@@ -1,6 +1,6 @@
 window.NOBODY_INDEX = {
   "station": "nobody fm",
-  "written": "2026-11-01T01:55:08-05:00",
+  "written": "2026-11-01T03:31:48-05:00",
   "tracks": [
     {
       "slug": "closer-two-chord-halo",
