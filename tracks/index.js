@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-paper-crowns",
+      "title": "Paper Crowns",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "C minor",
+      "seed": 4410092,
+      "model": "fast",
+      "duration": 128.38,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:48:58-04:00",
+      "voice": false,
+      "prompt": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a crunchy electric piano loop, a bright glockenspiel answer, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in C minor, 130 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410091 (1.2s of near-silence (limit 0.5) and others). Seed 4410092 is the take.",
+      "rejected": [
+        {
+          "seed": 4410091,
+          "reason": "1.2s of near-silence (limit 0.5); boomy: 16.0% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410092
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.19,
+        "silence_s": 0.35,
+        "brightness_pct": 0.42,
+        "boominess_pct": 2.9,
+        "onsets_per_s": 1.94,
+        "seam_db": -71.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: A, Dusty Keys",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt A"
+        ],
+        "track_no": 9
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-paper-crowns/head-nod-paper-crowns.mp3",
+        "notes": "head-nod-paper-crowns/notes.md",
+        "recipe": "head-nod-paper-crowns/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 3.98,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5661576,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-paper-crowns/head-nod-paper-crowns.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-neon-moss",
       "title": "Neon Moss",
       "project": "head-nod-preview",
@@ -45300,7 +45386,8 @@ window.NOBODY_INDEX = {
         "head-nod-copper-hum",
         "head-nod-grain-of-salt",
         "head-nod-fourth-floor-walkup",
-        "head-nod-night-shift-nod"
+        "head-nod-night-shift-nod",
+        "head-nod-paper-crowns"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
