@@ -3,6 +3,131 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T03:31:48-05:00",
   "tracks": [
     {
+      "slug": "frontier-harness-ace-2",
+      "title": "Frontier Harness 2: Heavier Swing",
+      "project": "frontier-harness-ace",
+      "idea": "swung sawtooth glitch-hop with the words chopped into syllables",
+      "request": "the owner's Frontier Harness, rebuilt on ACE-Step from his own style box and lyrics",
+      "mood": "neon, swung and punchy",
+      "bpm": 92,
+      "key": "G minor",
+      "seed": 4430022,
+      "model": "best",
+      "duration": 158.22,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T03:31:08-05:00",
+      "voice": true,
+      "prompt": "Swung glitch-hop electro, head-nod half-time groove, drunk off-grid drums, heavy shuffled sixteenths behind the beat, a lazy kick, dusty snare, gritty detuned sawtooth lead, fat analog saw stabs, buzzing saw bass with heavy sidechain pumping, arpeggiated square-wave runs, a chopped vocal used as an instrument, single syllables stuttered, pitched and retriggered in the swing, neon arcade energy, wide, bright and punchy, no trap hi-hats, no EDM drop, no four-on-the-floor, no rap verses, no autotune",
+      "lyrics": "[Intro: saw arps and swung drums]\n[Vocal Chops]\nf-f-fron, fron-tier, f-f-frontier\nmo-mo-mo, del, m-m-model\nh-h-har, har-ness, h-h-harness\n[Beat]\n[Vocal Chops]\nsub-sub-sub, a-gent, s-s-subagent\nt-t-tool, tool-call, c-c-call\ncon-con-tex, t-t-text, com-pact\ncom-com-pac, tion, compaction\n[Beat]\n[Vocal Chops]\ne-e-e-val, e-vals, v-v-vals\nsys-sys-tem, p-p-prompt\nrea-rea-son, reason-ing, t-t-traces\nlong-long, ho-ri, h-h-horizon\n[Breakdown: drums out, saw pad swells, reversed chops]\n...fron ...har ...sub ...mm\n[Bridge: half-whispered over the arps]\nw-w-w-weights, w-w-weights\nd-d-dis-till, q-q-quant, quantize\nsand-sand, box, s-s-sandbox\n[Drop back in: full saws]\na-a-a-gen, a-gen-tic, a-a-agentic\n[Outro: filter closes on the saws]\nf-f-fron, fron-tier, harness\nfrontier harness",
+      "why": "You asked for \"the owner's Frontier Harness, rebuilt on ACE-Step from his own style box and lyrics\". The owner's words and style, translated for ACE-Step by the station's writers; one change per take: the drums: drunk, off-grid and behind the beat. So I wrote it at 92 bpm in G minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4430021 (0.6s of near-silence (limit 0.5) and others). Seed 4430022 is the take, but it did not clear every gate: 0.7s of near-silence (limit 0.5); harsh: 9.4% above 6 kHz (ceiling 2.5); 34 of 271 heard words are not ours (13 %; limit 10 %, at least 40 heard): agent agent compact re re re re reasoning hurry oh oh my.",
+      "rejected": [
+        {
+          "seed": 4430021,
+          "reason": "0.6s of near-silence (limit 0.5); harsh: 10.0% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4430022
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.04,
+        "silence_s": 0.7,
+        "brightness_pct": 9.39,
+        "boominess_pct": 2.94,
+        "onsets_per_s": 4.25,
+        "seam_db": -41.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": false
+      },
+      "segments": {
+        "album": "Frontier Harness: ACE Takes",
+        "submitter": "the owner",
+        "tags": [
+          "glitch hop",
+          "electro",
+          "chopped vocals",
+          "change: the drums: drunk, off-grid and behind the beat"
+        ],
+        "track_no": 2
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "frontier-harness-ace-2/frontier-harness-ace-2.mp3",
+        "notes": "frontier-harness-ace-2/notes.md",
+        "recipe": "frontier-harness-ace-2/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -16.36,
+        "failed": [
+          "0.7s of near-silence (limit 0.5)",
+          "harsh: 9.4% above 6 kHz (ceiling 2.5)",
+          "34 of 271 heard words are not ours (13 %; limit 10 %, at least 40 heard): agent agent compact re re re re reasoning hurry oh oh my"
+        ],
+        "words_not_ours": [
+          "agent",
+          "agent",
+          "compact",
+          "re",
+          "re",
+          "re",
+          "re",
+          "reasoning",
+          "hurry",
+          "oh",
+          "oh",
+          "my",
+          "god",
+          "oh",
+          "my",
+          "god",
+          "thanks",
+          "ah",
+          "ah",
+          "ah",
+          "ah",
+          "ah",
+          "tick",
+          "ah",
+          "ah",
+          "ah",
+          "tick",
+          "ah",
+          "ah",
+          "ah",
+          "tick",
+          "oh",
+          "my",
+          "god"
+        ],
+        "stripped": [],
+        "installed_samples": 6977430,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "frontier-harness-ace-2/frontier-harness-ace-2.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "frontier-harness-ace-1",
       "title": "Frontier Harness 1: Baseline",
       "project": "frontier-harness-ace",
@@ -47329,7 +47454,8 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
-        "frontier-harness-ace-1"
+        "frontier-harness-ace-1",
+        "frontier-harness-ace-2"
       ],
       "description": "5 tracks, in the order they were meant to be heard.",
       "credits": [
