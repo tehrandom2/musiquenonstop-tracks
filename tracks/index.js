@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-slow-rewind",
+      "title": "Slow Rewind",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 69,
+      "key": "Ab minor",
+      "seed": 4410101,
+      "model": "fast",
+      "duration": 147.89,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:49:13-04:00",
+      "voice": false,
+      "prompt": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a chopped electric piano loop played slightly behind the beat, a soft harp pluck, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 69 bpm in Ab minor, 150 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410102 (2.6s of near-silence (limit 0.5)). Seed 4410101 is the take.",
+      "rejected": [
+        {
+          "seed": 4410102,
+          "reason": "2.6s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4410101
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.04,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.83,
+        "silence_s": 0.3,
+        "brightness_pct": 0.43,
+        "boominess_pct": 8.4,
+        "onsets_per_s": 1.92,
+        "seam_db": -69.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: A, Dusty Keys",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt A"
+        ],
+        "track_no": 10
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-slow-rewind/head-nod-slow-rewind.mp3",
+        "notes": "head-nod-slow-rewind/notes.md",
+        "recipe": "head-nod-slow-rewind/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.12,
+        "decoded_lufs": -16.46,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6522014,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-slow-rewind/head-nod-slow-rewind.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-slow-bloom",
       "title": "Slow Bloom",
       "project": "head-nod-preview",
@@ -45476,7 +45562,8 @@ window.NOBODY_INDEX = {
         "head-nod-grain-of-salt",
         "head-nod-fourth-floor-walkup",
         "head-nod-night-shift-nod",
-        "head-nod-paper-crowns"
+        "head-nod-paper-crowns",
+        "head-nod-slow-rewind"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
