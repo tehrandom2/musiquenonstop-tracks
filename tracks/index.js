@@ -3,6 +3,94 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-slow-bloom",
+      "title": "Slow Bloom",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 68,
+      "key": "A minor",
+      "seed": 4410032,
+      "model": "fast",
+      "duration": 149.82,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:49:05-04:00",
+      "voice": false,
+      "prompt": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a crunchy chopped electric piano loop, a soft flute phrase drifting over it, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 68 bpm in A minor, 150 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410031 (0.8s of near-silence (limit 0.5) and others). Seed 4410032 is the take, but it did not clear every gate: boomy: 15.1% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 4410031,
+          "reason": "0.8s of near-silence (limit 0.5); boomy: 12.2% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410032
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.67,
+        "silence_s": 0.45,
+        "brightness_pct": 0.83,
+        "boominess_pct": 15.07,
+        "onsets_per_s": 3.32,
+        "seam_db": -8.7
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: A, Dusty Keys",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt A"
+        ],
+        "track_no": 3
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-slow-bloom/head-nod-slow-bloom.mp3",
+        "notes": "head-nod-slow-bloom/notes.md",
+        "recipe": "head-nod-slow-bloom/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.43,
+        "failed": [
+          "boomy: 15.1% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6606938,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-slow-bloom/head-nod-slow-bloom.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-paper-crowns",
       "title": "Paper Crowns",
       "project": "head-nod-preview",
@@ -45382,6 +45470,7 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "head-nod-back-booth",
+        "head-nod-slow-bloom",
         "head-nod-sidewalk-hours",
         "head-nod-copper-hum",
         "head-nod-grain-of-salt",
