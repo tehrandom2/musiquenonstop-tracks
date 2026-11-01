@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-sidewalk-hours",
+      "title": "Sidewalk Hours",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 71,
+      "key": "D minor",
+      "seed": 4410041,
+      "model": "fast",
+      "duration": 123.48,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:47:04-04:00",
+      "voice": false,
+      "prompt": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a bitcrushed electric piano loop, a short plucked upright bass riff answering it, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 71 bpm in D minor, 125 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410042 (1.0s of near-silence (limit 0.5) and others). Seed 4410041 is the take.",
+      "rejected": [
+        {
+          "seed": 4410042,
+          "reason": "1.0s of near-silence (limit 0.5); boomy: 12.2% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410041
+      ],
+      "numbers": {
+        "tempo_bpm": 70.5,
+        "lufs": -16.03,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.45,
+        "silence_s": 0.15,
+        "brightness_pct": 0.36,
+        "boominess_pct": 7.66,
+        "onsets_per_s": 2.14,
+        "seam_db": -46.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: A, Dusty Keys",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt A"
+        ],
+        "track_no": 4
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-sidewalk-hours/head-nod-sidewalk-hours.mp3",
+        "notes": "head-nod-sidewalk-hours/notes.md",
+        "recipe": "head-nod-sidewalk-hours/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.61,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5445414,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-sidewalk-hours/head-nod-sidewalk-hours.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-night-shift-nod",
       "title": "Night Shift Nod",
       "project": "head-nod-preview",
@@ -44174,6 +44260,7 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "head-nod-back-booth",
+        "head-nod-sidewalk-hours",
         "head-nod-copper-hum",
         "head-nod-fourth-floor-walkup",
         "head-nod-night-shift-nod"

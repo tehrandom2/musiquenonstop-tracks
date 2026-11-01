@@ -1,0 +1,87 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "head-nod-sidewalk-hours",
+  "title": "Sidewalk Hours",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a bitcrushed electric piano loop, a short plucked upright bass riff answering it, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "lyrics": "[Instrumental]",
+  "instrumental": true,
+  "bpm": 71,
+  "keyscale": "D minor",
+  "timesignature": "4",
+  "duration": 125.0,
+  "seed": 4410041,
+  "dit_caption": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a bitcrushed electric piano loop, a short plucked upright bass riff answering it, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": 1.76,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 123.48,
+    "peak_dbfs_pre_encode": -3.03,
+    "lufs": -16.03
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 123.479,
+      "lufs": -17.763,
+      "peak": -1.327,
+      "bpm": 70.5,
+      "key": "F major",
+      "margin": 0.041,
+      "hi": 0.361,
+      "lo": 7.662,
+      "onsets": 2.138,
+      "jump": 0.608,
+      "tail_head": -46.592,
+      "voice": 0.203,
+      "silence": 0.15,
+      "seed": 4410041,
+      "lo_raw": 18.267
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": []
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
