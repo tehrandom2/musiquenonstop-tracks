@@ -3,6 +3,96 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-furnace-prayer",
+      "title": "Furnace Prayer",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "D minor",
+      "seed": 4410323,
+      "model": "best",
+      "duration": 133.07,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:07:48-04:00",
+      "voice": false,
+      "prompt": "Slow heavy industrial boom bap instrumental, head-nod groove, crushed distorted swung drums with a pounding mechanical kick and a cracking metallic snare, a distorted chopped organ loop, gritty distorted guitar riff stabs, saturated fuzz bass, clanging machine percussion, bitcrushed noise textures, dark muffled top end, distorted grit in the mids, menacing, hypnotic and dusty, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in D minor, 135 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4410321 (0.6s of near-silence (limit 0.5)); 4410322 (2.4s of near-silence (limit 0.5) and others). Seed 4410323 is the take.",
+      "rejected": [
+        {
+          "seed": 4410321,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        },
+        {
+          "seed": 4410322,
+          "reason": "2.4s of near-silence (limit 0.5); harsh: 4.1% above 6 kHz (ceiling 2.5)"
+        }
+      ],
+      "takes": [
+        4410323
+      ],
+      "numbers": {
+        "tempo_bpm": 71.5,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.11,
+        "silence_s": 0.35,
+        "brightness_pct": 0.4,
+        "boominess_pct": 9.01,
+        "onsets_per_s": 1.41,
+        "seam_db": -50.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Last Rites",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt D"
+        ],
+        "track_no": 2
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-furnace-prayer/head-nod-furnace-prayer.mp3",
+        "notes": "head-nod-furnace-prayer/notes.md",
+        "recipe": "head-nod-furnace-prayer/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 4.02,
+        "decoded_lufs": -16.42,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5868427,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-furnace-prayer/head-nod-furnace-prayer.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-chain-gospel",
       "title": "Chain Gospel",
       "project": "head-nod-preview",
@@ -46005,6 +46095,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "head-nod-furnace-prayer",
         "head-nod-black-steam",
         "head-nod-chain-gospel"
       ],
