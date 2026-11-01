@@ -3,6 +3,97 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:55:08-05:00",
   "tracks": [
     {
+      "slug": "closer-rubber-moon",
+      "title": "Rubber Moon",
+      "project": "closer-preview",
+      "idea": "hazy late-night downtempo, closer to the sound he likes",
+      "request": "the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend",
+      "mood": "hazy, dreamy and dark",
+      "bpm": 68,
+      "key": "Eb minor",
+      "seed": 4420051,
+      "model": "best",
+      "duration": 158.23,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:54:21-05:00",
+      "voice": false,
+      "prompt": "Hazy late-night downtempo instrumental, slow dreamy half-time groove, soft distant dusty drums tucked far behind the music, a deep warm sub bass felt more than heard, warm analog synth chords, a lazy rubbery bass line, a faint drifting synth lead, one hypnotic two-chord vamp that barely changes, heavily muffled and low-passed as if heard through a wall, warm tape haze, steady and immersive, a long slow fade at the end, no vocals, no singing, no speech, no drops, no trap hi-hats, no bright cymbals",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 68 bpm in Eb minor, 160 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4420053 (0.8s of near-silence (limit 0.5)); 4420052 (1.2s of near-silence (limit 0.5) and others). Seed 4420051 is the take, but it did not clear every gate: 1.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4420053,
+          "reason": "0.8s of near-silence (limit 0.5)"
+        },
+        {
+          "seed": 4420052,
+          "reason": "1.2s of near-silence (limit 0.5); boomy: 19.7% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4420051
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.65,
+        "silence_s": 1.55,
+        "brightness_pct": 1.16,
+        "boominess_pct": 4.57,
+        "onsets_per_s": 3.24,
+        "seam_db": -58.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Closer",
+        "submitter": "the owner",
+        "tags": [
+          "downtempo",
+          "instrumental",
+          "preview"
+        ],
+        "track_no": 5
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "closer-rubber-moon/closer-rubber-moon.mp3",
+        "notes": "closer-rubber-moon/notes.md",
+        "recipe": "closer-rubber-moon/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.6,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "1.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6978111,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "closer-rubber-moon/closer-rubber-moon.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "closer-low-hum-drift",
       "title": "Low Hum Drift",
       "project": "closer-preview",
@@ -46915,7 +47006,8 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "closer-glass-clicks",
-        "closer-low-hum-drift"
+        "closer-low-hum-drift",
+        "closer-rubber-moon"
       ],
       "description": "5 tracks, in the order they were meant to be heard.",
       "credits": [
