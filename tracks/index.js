@@ -3,6 +3,122 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T03:31:48-05:00",
   "tracks": [
     {
+      "slug": "frontier-harness-ace-1",
+      "title": "Frontier Harness 1: Baseline",
+      "project": "frontier-harness-ace",
+      "idea": "swung sawtooth glitch-hop with the words chopped into syllables",
+      "request": "the owner's Frontier Harness, rebuilt on ACE-Step from his own style box and lyrics",
+      "mood": "neon, swung and punchy",
+      "bpm": 92,
+      "key": "G minor",
+      "seed": 4430011,
+      "model": "best",
+      "duration": 158.7,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T03:30:59-05:00",
+      "voice": true,
+      "prompt": "Swung glitch-hop electro, head-nod half-time groove, shuffled sixteenth hi-hats with heavy swing, punchy dry kick and snare, gritty detuned sawtooth lead, fat analog saw stabs, buzzing saw bass with heavy sidechain pumping, arpeggiated square-wave runs, a chopped vocal used as an instrument, single syllables stuttered, pitched and retriggered in the swing, neon arcade energy, wide, bright and punchy, no trap hi-hats, no EDM drop, no four-on-the-floor, no rap verses, no autotune",
+      "lyrics": "[Intro: saw arps and swung drums]\n[Vocal Chops]\nf-f-fron, fron-tier, f-f-frontier\nmo-mo-mo, del, m-m-model\nh-h-har, har-ness, h-h-harness\n[Beat]\n[Vocal Chops]\nsub-sub-sub, a-gent, s-s-subagent\nt-t-tool, tool-call, c-c-call\ncon-con-tex, t-t-text, com-pact\ncom-com-pac, tion, compaction\n[Beat]\n[Vocal Chops]\ne-e-e-val, e-vals, v-v-vals\nsys-sys-tem, p-p-prompt\nrea-rea-son, reason-ing, t-t-traces\nlong-long, ho-ri, h-h-horizon\n[Breakdown: drums out, saw pad swells, reversed chops]\n...fron ...har ...sub ...mm\n[Bridge: half-whispered over the arps]\nw-w-w-weights, w-w-weights\nd-d-dis-till, q-q-quant, quantize\nsand-sand, box, s-s-sandbox\n[Drop back in: full saws]\na-a-a-gen, a-gen-tic, a-a-agentic\n[Outro: filter closes on the saws]\nf-f-fron, fron-tier, harness\nfrontier harness",
+      "why": "You asked for \"the owner's Frontier Harness, rebuilt on ACE-Step from his own style box and lyrics\". The owner's words and style, translated for ACE-Step by the station's writers; one change per take: his style box translated into ACE's words. So I wrote it at 92 bpm in G minor, 160 seconds, with a voice, in words I wrote myself, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4430012 (0.9s of near-silence (limit 0.5) and others). Seed 4430011 is the take, but it did not clear every gate: harsh: 3.3% above 6 kHz (ceiling 2.5); 26 of 54 heard words are not ours (48 %; limit 10 %, at least 40 heard): oh friends of the factor oh evil evals be evals is tempered.",
+      "rejected": [
+        {
+          "seed": 4430012,
+          "reason": "0.9s of near-silence (limit 0.5); harsh: 3.4% above 6 kHz (ceiling 2.5); 460 of 618 heard words are not ours (74 %; limit 10 %, at least 40 heard): vulse vivi vulse this is this is this is this is this"
+        }
+      ],
+      "takes": [
+        4430011
+      ],
+      "numbers": {
+        "tempo_bpm": 91.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.32,
+        "silence_s": 0.4,
+        "brightness_pct": 3.32,
+        "boominess_pct": 10.46,
+        "onsets_per_s": 3.12,
+        "seam_db": -28.9
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": false
+      },
+      "segments": {
+        "album": "Frontier Harness: ACE Takes",
+        "submitter": "the owner",
+        "tags": [
+          "glitch hop",
+          "electro",
+          "chopped vocals",
+          "change: his style box translated into ACE's words"
+        ],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "frontier-harness-ace-1/frontier-harness-ace-1.mp3",
+        "notes": "frontier-harness-ace-1/notes.md",
+        "recipe": "frontier-harness-ace-1/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.1,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "harsh: 3.3% above 6 kHz (ceiling 2.5)",
+          "26 of 54 heard words are not ours (48 %; limit 10 %, at least 40 heard): oh friends of the factor oh evil evals be evals is tempered"
+        ],
+        "words_not_ours": [
+          "oh",
+          "friends",
+          "of",
+          "the",
+          "factor",
+          "oh",
+          "evil",
+          "evals",
+          "be",
+          "evals",
+          "is",
+          "tempered",
+          "run",
+          "hurry",
+          "thank",
+          "you",
+          "wait",
+          "wait",
+          "waits",
+          "tilt",
+          "kill",
+          "quanties",
+          "sans",
+          "an",
+          "front",
+          "front"
+        ],
+        "stripped": [],
+        "installed_samples": 6998659,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "frontier-harness-ace-1/frontier-harness-ace-1.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "closer-two-chord-halo",
       "title": "Two Chord Halo",
       "project": "closer-preview",
@@ -47192,6 +47308,28 @@ window.NOBODY_INDEX = {
         "closer-glass-clicks",
         "closer-low-hum-drift",
         "closer-rubber-moon"
+      ],
+      "description": "5 tracks, in the order they were meant to be heard.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the owner"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "frontier-harness-ace-takes",
+      "title": "Frontier Harness: ACE Takes",
+      "project": "frontier-harness-ace",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "frontier-harness-ace-1"
       ],
       "description": "5 tracks, in the order they were meant to be heard.",
       "credits": [
