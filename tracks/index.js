@@ -3,6 +3,96 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-smokestack-sermon",
+      "title": "Smokestack Sermon",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "D minor",
+      "seed": 4410372,
+      "model": "best",
+      "duration": 148.34,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:08:55-04:00",
+      "voice": false,
+      "prompt": "Slow heavy industrial boom bap instrumental, head-nod groove, crushed distorted swung drums with a pounding mechanical kick and a cracking metallic snare, an overdriven chopped electric piano loop, a distorted horn stab, saturated fuzz bass, clanging machine percussion, bitcrushed noise textures, dark muffled top end, distorted grit in the mids, menacing, hypnotic and dusty, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in D minor, 150 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4410373 (0.6s of near-silence (limit 0.5)); 4410371 (boomy: 23.2% below 60 Hz (ceiling 12)). Seed 4410372 is the take.",
+      "rejected": [
+        {
+          "seed": 4410373,
+          "reason": "0.6s of near-silence (limit 0.5)"
+        },
+        {
+          "seed": 4410371,
+          "reason": "boomy: 23.2% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410372
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.76,
+        "silence_s": 0.25,
+        "brightness_pct": 2.2,
+        "boominess_pct": 10.43,
+        "onsets_per_s": 2.84,
+        "seam_db": -53.2
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Last Rites",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt D"
+        ],
+        "track_no": 7
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-smokestack-sermon/head-nod-smokestack-sermon.mp3",
+        "notes": "head-nod-smokestack-sermon/notes.md",
+        "recipe": "head-nod-smokestack-sermon/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.07,
+        "decoded_lufs": -16.34,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6541758,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-smokestack-sermon/head-nod-smokestack-sermon.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-scrap-metal-waltz",
       "title": "Scrap Metal Waltz",
       "project": "head-nod-preview",
@@ -46469,6 +46559,7 @@ window.NOBODY_INDEX = {
         "head-nod-black-steam",
         "head-nod-chain-gospel",
         "head-nod-grinder-lullaby",
+        "head-nod-smokestack-sermon",
         "head-nod-scrap-metal-waltz",
         "head-nod-last-shift-out"
       ],
