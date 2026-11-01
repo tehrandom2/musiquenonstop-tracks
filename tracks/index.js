@@ -3,6 +3,94 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-back-booth",
+      "title": "Back Booth",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "F minor",
+      "seed": 4410022,
+      "model": "fast",
+      "duration": 128.26,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:45:22-04:00",
+      "voice": false,
+      "prompt": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a chopped electric piano loop with a slow wobble, a mellow muted trumpet line, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in F minor, 130 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410021 (0.7s of near-silence (limit 0.5) and others). Seed 4410022 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4410021,
+          "reason": "0.7s of near-silence (limit 0.5); boomy: 19.4% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410022
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.03,
+        "silence_s": 0.6,
+        "brightness_pct": 0.2,
+        "boominess_pct": 7.56,
+        "onsets_per_s": 1.76,
+        "seam_db": -50.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: A, Dusty Keys",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt A"
+        ],
+        "track_no": 2
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-back-booth/head-nod-back-booth.mp3",
+        "notes": "head-nod-back-booth/notes.md",
+        "recipe": "head-nod-back-booth/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.01,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5656252,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-back-booth/head-nod-back-booth.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "assembly-who-is-singing",
       "title": "Who Is Singing",
       "project": "assembly-sessions",
@@ -43204,6 +43292,28 @@ window.NOBODY_INDEX = {
         {
           "role": "cover",
           "name": "Kiki"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "head-nod-after-dark-a-dusty-keys",
+      "title": "Head Nod After Dark: A, Dusty Keys",
+      "project": "head-nod-preview",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "head-nod-back-booth"
+      ],
+      "description": "10 tracks, in the order they were meant to be heard.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the owner"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
         }
       ],
       "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
