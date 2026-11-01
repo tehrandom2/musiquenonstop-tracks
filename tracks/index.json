@@ -3,6 +3,92 @@
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-cratedigger",
+      "title": "Cratedigger",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 73,
+      "key": "D minor",
+      "seed": 4410292,
+      "model": "fast",
+      "duration": 116.54,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:48:09-04:00",
+      "voice": false,
+      "prompt": "Dusty jazz-sample boom bap, chopped soul-jazz strings and piano, a short horn stab, upright-style round bass, lazy swung drums with a big reverb tail on the snare, crackly old-record texture, a breakdown without drums near the end, warm, dark and nostalgic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 73 bpm in D minor, 120 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410291 (passed, but outranked by the kept takes). Seed 4410292 is the take.",
+      "rejected": [
+        {
+          "seed": 4410291,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        4410292
+      ],
+      "numbers": {
+        "tempo_bpm": 73.5,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.65,
+        "silence_s": 0.2,
+        "brightness_pct": 0.24,
+        "boominess_pct": 4.91,
+        "onsets_per_s": 1.78,
+        "seam_db": -41.6
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: C, Jazz Crate",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt C"
+        ],
+        "track_no": 9
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-cratedigger/head-nod-cratedigger.mp3",
+        "notes": "head-nod-cratedigger/notes.md",
+        "recipe": "head-nod-cratedigger/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.03,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5139244,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-cratedigger/head-nod-cratedigger.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-closing-time-keys",
       "title": "Closing Time Keys",
       "project": "head-nod-preview",
@@ -44838,6 +44924,7 @@
         "head-nod-blue-hour-crate",
         "head-nod-smoke-ring-theory",
         "head-nod-velour",
+        "head-nod-cratedigger",
         "head-nod-closing-time-keys"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
