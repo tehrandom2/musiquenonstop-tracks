@@ -3,6 +3,98 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-last-shift-out",
+      "title": "Last Shift Out",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "D minor",
+      "seed": 4410401,
+      "model": "best",
+      "duration": 146.18,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:08:28-04:00",
+      "voice": false,
+      "prompt": "Slow heavy industrial boom bap instrumental, head-nod groove, crushed distorted swung drums with a pounding mechanical kick and a cracking metallic snare, warbly detuned analog synths drifting out of tune, a slow distorted guitar riff, an overdriven piano loop, saturated fuzz bass, clanging machine percussion, bitcrushed noise textures, dark muffled top end, distorted grit in the mids, menacing, hypnotic and dusty, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in D minor, 150 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4410403 (1.2s of near-silence (limit 0.5) and others); 4410402 (1.0s of near-silence (limit 0.5) and others). Seed 4410401 is the take, but it did not clear every gate: 1.1s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4410403,
+          "reason": "1.2s of near-silence (limit 0.5); boomy: 14.5% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 4410402,
+          "reason": "1.0s of near-silence (limit 0.5); boomy: 12.7% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410401
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.02,
+        "lufs_target": -16.0,
+        "peak_dbfs": -1.92,
+        "silence_s": 1.05,
+        "brightness_pct": 1.51,
+        "boominess_pct": 4.58,
+        "onsets_per_s": 2.69,
+        "seam_db": 7.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Last Rites",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt D"
+        ],
+        "track_no": 10
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-last-shift-out/head-nod-last-shift-out.mp3",
+        "notes": "head-nod-last-shift-out/notes.md",
+        "recipe": "head-nod-last-shift-out/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.08,
+        "decoded_lufs": -16.42,
+        "failed": [
+          "1.1s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6446695,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-last-shift-out/head-nod-last-shift-out.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-iron-hymn",
       "title": "Iron Hymn",
       "project": "head-nod-preview",
@@ -46283,7 +46375,8 @@ window.NOBODY_INDEX = {
         "head-nod-furnace-prayer",
         "head-nod-black-steam",
         "head-nod-chain-gospel",
-        "head-nod-grinder-lullaby"
+        "head-nod-grinder-lullaby",
+        "head-nod-last-shift-out"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
