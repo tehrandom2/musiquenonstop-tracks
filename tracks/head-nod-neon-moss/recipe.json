@@ -1,0 +1,87 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "head-nod-neon-moss",
+  "title": "Neon Moss",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-turbo",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 8,
+  "guidance_scale": 7.0,
+  "shift": 3.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Woozy psychedelic hip hop instrumental, slow swung boom bap drums with a roomy snare, a fuzzy detuned synth organ, a bending synth lead, fuzzy saturated bass, wobbly tape wow and flutter, dark low-passed haze, soft vinyl crackle, dreamy and a little strange, laid back, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "lyrics": "[Instrumental]",
+  "instrumental": true,
+  "bpm": 70,
+  "keyscale": "C# minor",
+  "timesignature": "4",
+  "duration": 130.0,
+  "seed": 4410181,
+  "dit_caption": "Woozy psychedelic hip hop instrumental, slow swung boom bap drums with a roomy snare, a fuzzy detuned synth organ, a bending synth lead, fuzzy saturated bass, wobbly tape wow and flutter, dark low-passed haze, soft vinyl crackle, dreamy and a little strange, laid back, no vocals, no singing, no speech, no drops, no trap hi-hats",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": -1.23,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 123.72,
+    "peak_dbfs_pre_encode": -3.41,
+    "lufs": -16.0
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 123.716,
+      "lufs": -14.77,
+      "peak": -1.154,
+      "bpm": 139.0,
+      "key": "C# minor",
+      "margin": 0.039,
+      "hi": 1.653,
+      "lo": 6.854,
+      "onsets": 2.401,
+      "jump": 0.008,
+      "tail_head": -45.435,
+      "voice": 0.248,
+      "silence": 0.1,
+      "seed": 4410181,
+      "lo_raw": 25.064
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": true,
+      "brightness": true,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": []
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
