@@ -3,6 +3,92 @@
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-velour",
+      "title": "Velour",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 70,
+      "key": "E minor",
+      "seed": 4410281,
+      "model": "fast",
+      "duration": 127.19,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:47:28-04:00",
+      "voice": false,
+      "prompt": "Dusty jazz-sample boom bap, chopped jazz harp glissandos, a warm alto saxophone phrase used as an instrument, upright-style round bass, lazy swung drums with a big reverb tail on the snare, crackly old-record texture, a breakdown without drums near the end, warm, dark and nostalgic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 70 bpm in E minor, 130 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410282 (passed, but outranked by the kept takes). Seed 4410281 is the take.",
+      "rejected": [
+        {
+          "seed": 4410282,
+          "reason": "passed, but outranked by the kept takes"
+        }
+      ],
+      "takes": [
+        4410281
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.7,
+        "silence_s": 0.2,
+        "brightness_pct": 0.29,
+        "boominess_pct": 5.93,
+        "onsets_per_s": 2.33,
+        "seam_db": -43.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: C, Jazz Crate",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt C"
+        ],
+        "track_no": 8
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-velour/head-nod-velour.mp3",
+        "notes": "head-nod-velour/notes.md",
+        "recipe": "head-nod-velour/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.06,
+        "decoded_lufs": -16.44,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5608986,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-velour/head-nod-velour.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-smoke-ring-theory",
       "title": "Smoke Ring Theory",
       "project": "head-nod-preview",
@@ -44486,7 +44572,8 @@
       "tracks": [
         "head-nod-last-set",
         "head-nod-blue-hour-crate",
-        "head-nod-smoke-ring-theory"
+        "head-nod-smoke-ring-theory",
+        "head-nod-velour"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
