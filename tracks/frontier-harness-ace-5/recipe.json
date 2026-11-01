@@ -1,0 +1,91 @@
+{
+  "format": "musiquenonstop-recipe/1",
+  "reproducible": false,
+  "slug": "frontier-harness-ace-5",
+  "title": "Frontier Harness 5: Slower In G",
+  "date": "2026-11-01",
+  "model": {
+    "dit_config": "acestep-v15-xl-sft",
+    "lm": null,
+    "offload_to_cpu": false,
+    "llm_backend": "pt",
+    "ace_step": "1.5"
+  },
+  "inference_steps": 50,
+  "guidance_scale": 7.0,
+  "shift": 1.0,
+  "enable_normalization": true,
+  "normalization_db": -1.0,
+  "caption": "Swung glitch-hop electro, head-nod half-time groove, shuffled sixteenth hi-hats with heavy swing, punchy dry kick and snare, gritty detuned sawtooth lead, fat analog saw stabs, buzzing saw bass with heavy sidechain pumping, arpeggiated square-wave runs, a chopped vocal used as an instrument, single syllables stuttered, pitched and retriggered in the swing, neon arcade energy, wide, bright and punchy, no trap hi-hats, no EDM drop, no four-on-the-floor, no rap verses, no autotune",
+  "lyrics": "[Intro: saw arps and swung drums]\n[Vocal Chops]\nf-f-fron, fron-tier, f-f-frontier\nmo-mo-mo, del, m-m-model\nh-h-har, har-ness, h-h-harness\n[Beat]\n[Vocal Chops]\nsub-sub-sub, a-gent, s-s-subagent\nt-t-tool, tool-call, c-c-call\ncon-con-tex, t-t-text, com-pact\ncom-com-pac, tion, compaction\n[Beat]\n[Vocal Chops]\ne-e-e-val, e-vals, v-v-vals\nsys-sys-tem, p-p-prompt\nrea-rea-son, reason-ing, t-t-traces\nlong-long, ho-ri, h-h-horizon\n[Breakdown: drums out, saw pad swells, reversed chops]\n...fron ...har ...sub ...mm\n[Bridge: half-whispered over the arps]\nw-w-w-weights, w-w-weights\nd-d-dis-till, q-q-quant, quantize\nsand-sand, box, s-s-sandbox\n[Drop back in: full saws]\na-a-a-gen, a-gen-tic, a-a-agentic\n[Outro: filter closes on the saws]\nf-f-fron, fron-tier, harness\nfrontier harness",
+  "instrumental": false,
+  "bpm": 87,
+  "keyscale": "G major",
+  "timesignature": "4",
+  "duration": 160.0,
+  "seed": 4430052,
+  "dit_caption": "Swung glitch-hop electro, head-nod half-time groove, shuffled sixteenth hi-hats with heavy swing, punchy dry kick and snare, gritty detuned sawtooth lead, fat analog saw stabs, buzzing saw bass with heavy sidechain pumping, arpeggiated square-wave runs, a chopped vocal used as an instrument, single syllables stuttered, pitched and retriggered in the swing, neon arcade energy, wide, bright and punchy, no trap hi-hats, no EDM drop, no four-on-the-floor, no rap verses, no autotune",
+  "vocal_language": "unknown",
+  "audio_codes": "",
+  "post": {
+    "resample_hz": 44100,
+    "trim_silence_dbfs": -50.0,
+    "trim_tail_pad_s": 0.15,
+    "loop_crossfade_s": 3.0,
+    "highpass_hz": 60,
+    "highpass_order": 4,
+    "master_soft_knee": 0.5,
+    "lufs_target": -16.0,
+    "gain_db": 1.34,
+    "limiter_ceiling_dbfs": -3.0,
+    "limiter_knee_frac": 0.7,
+    "mp3": {
+      "codec": "libmp3lame",
+      "bitrate": "128k",
+      "mode": "cbr",
+      "channels": 2,
+      "sample_rate": 44100
+    }
+  },
+  "expected": {
+    "duration_s": 158.1,
+    "peak_dbfs_pre_encode": -3.09,
+    "lufs": -16.0
+  },
+  "gates": {
+    "profile": "mellow",
+    "measured": {
+      "secs": 158.103,
+      "lufs": -17.342,
+      "peak": -2.045,
+      "bpm": 85.5,
+      "key": "G major",
+      "margin": 0.044,
+      "hi": 3.73,
+      "lo": 10.454,
+      "onsets": 2.783,
+      "jump": 0.888,
+      "tail_head": -63.085,
+      "voice": 0.292,
+      "silence": 1.05,
+      "seed": 4430052,
+      "lo_raw": 33.236
+    },
+    "checks": {
+      "tempo": true,
+      "loudness": true,
+      "peak_after_encode": true,
+      "silence": false,
+      "brightness": false,
+      "boominess": true,
+      "onset_rate": true,
+      "seam": true
+    },
+    "failed": [
+      "1.1s of near-silence (limit 0.5)",
+      "harsh: 3.7% above 6 kHz (ceiling 2.5)",
+      "20 of 59 heard words are not ours (34 %; limit 10 %, at least 40 heard): front agent context eval eval eval eval eval sistem eval reasoning into"
+    ]
+  },
+  "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed"
+}
