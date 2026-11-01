@@ -3,6 +3,99 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-static-cathedral",
+      "title": "Static Cathedral",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 72,
+      "key": "D minor",
+      "seed": 4410383,
+      "model": "best",
+      "duration": 133.74,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:09:21-04:00",
+      "voice": false,
+      "prompt": "Slow heavy industrial boom bap instrumental, head-nod groove, crushed distorted swung drums with a pounding mechanical kick and a cracking metallic snare, a distorted organ drone, warbly detuned analog synths, gritty guitar feedback swells, saturated fuzz bass, clanging machine percussion, bitcrushed noise textures, dark muffled top end, distorted grit in the mids, menacing, hypnotic and dusty, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 72 bpm in D minor, 135 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4410382 (boomy: 43.8% below 60 Hz (ceiling 12)); 4410381 (0.9s of near-silence (limit 0.5) and others). Seed 4410383 is the take, but it did not clear every gate: 1.7s of near-silence (limit 0.5); harsh: 4.8% above 6 kHz (ceiling 2.5).",
+      "rejected": [
+        {
+          "seed": 4410382,
+          "reason": "boomy: 43.8% below 60 Hz (ceiling 12)"
+        },
+        {
+          "seed": 4410381,
+          "reason": "0.9s of near-silence (limit 0.5); boomy: 18.4% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410383
+      ],
+      "numbers": {
+        "tempo_bpm": 72.5,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.54,
+        "silence_s": 1.65,
+        "brightness_pct": 4.78,
+        "boominess_pct": 3.08,
+        "onsets_per_s": 2.05,
+        "seam_db": -59.8
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": false,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Last Rites",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt D"
+        ],
+        "track_no": 8
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-static-cathedral/head-nod-static-cathedral.mp3",
+        "notes": "head-nod-static-cathedral/notes.md",
+        "recipe": "head-nod-static-cathedral/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.05,
+        "decoded_lufs": -16.41,
+        "failed": [
+          "1.7s of near-silence (limit 0.5)",
+          "harsh: 4.8% above 6 kHz (ceiling 2.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5897810,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-static-cathedral/head-nod-static-cathedral.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-sparks-off-the-anvil",
       "title": "Sparks Off The Anvil",
       "project": "head-nod-preview",
@@ -46651,6 +46744,7 @@ window.NOBODY_INDEX = {
         "head-nod-chain-gospel",
         "head-nod-grinder-lullaby",
         "head-nod-smokestack-sermon",
+        "head-nod-static-cathedral",
         "head-nod-scrap-metal-waltz",
         "head-nod-last-shift-out"
       ],
