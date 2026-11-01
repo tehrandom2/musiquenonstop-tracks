@@ -1,0 +1,25 @@
+{
+  "slug": "closer",
+  "title": "Closer",
+  "project": "closer-preview",
+  "description": "5 tracks, in the order they were meant to be heard.",
+  "tracks": [
+    "closer-through-the-wall",
+    "closer-two-chord-halo",
+    "closer-glass-clicks",
+    "closer-low-hum-drift",
+    "closer-rubber-moon"
+  ],
+  "cover": null,
+  "credits": [
+    {
+      "role": "asked by",
+      "name": "the owner"
+    },
+    {
+      "role": "made by",
+      "name": "nobody fm: one machine rendering locally"
+    }
+  ],
+  "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+}
