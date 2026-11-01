@@ -3,6 +3,92 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-velvet-dust",
+      "title": "Velvet Dust",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 70,
+      "key": "C# minor",
+      "seed": 4410012,
+      "model": "fast",
+      "duration": 138.91,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:49:27-04:00",
+      "voice": false,
+      "prompt": "Slow laid-back instrumental boom bap, head-nod groove, dusty swung drums with a hard crisp snare, soft ghost notes and noisy shuffling hi-hats, a crunchy bitcrushed electric piano loop chopped into short phrases, soft vibraphone answers, a short filtered horn stab with echo, deep round bass line, warm dark muffled mix, wide sample layer, an intro of keys and drums alone before the bass comes in, late-night and melancholic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 70 bpm in C# minor, 140 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410011 (0.7s of near-silence (limit 0.5) and others). Seed 4410012 is the take.",
+      "rejected": [
+        {
+          "seed": 4410011,
+          "reason": "0.7s of near-silence (limit 0.5); boomy: 16.8% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4410012
+      ],
+      "numbers": {
+        "tempo_bpm": 139.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.56,
+        "silence_s": 0.15,
+        "brightness_pct": 0.15,
+        "boominess_pct": 6.82,
+        "onsets_per_s": 2.66,
+        "seam_db": -66.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: A, Dusty Keys",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt A"
+        ],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-velvet-dust/head-nod-velvet-dust.mp3",
+        "notes": "head-nod-velvet-dust/notes.md",
+        "recipe": "head-nod-velvet-dust/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 14.63,
+        "decoded_lufs": -16.45,
+        "failed": [],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6126112,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-velvet-dust/head-nod-velvet-dust.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-soft-static",
       "title": "Soft Static",
       "project": "head-nod-preview",
@@ -45643,6 +45729,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "head-nod-velvet-dust",
         "head-nod-back-booth",
         "head-nod-slow-bloom",
         "head-nod-sidewalk-hours",
