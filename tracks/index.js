@@ -3,6 +3,94 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-blue-hour-crate",
+      "title": "Blue Hour Crate",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 71,
+      "key": "A minor",
+      "seed": 4410242,
+      "model": "fast",
+      "duration": 131.18,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:45:36-04:00",
+      "voice": false,
+      "prompt": "Dusty jazz-sample boom bap, chopped jazz guitar chords, a soft flute melody, upright-style round bass, lazy swung drums with a big reverb tail on the snare, crackly old-record texture, a breakdown without drums near the end, warm, dark and nostalgic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 71 bpm in A minor, 135 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410241 (0.7s of near-silence (limit 0.5)). Seed 4410242 is the take, but it did not clear every gate: 0.6s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4410241,
+          "reason": "0.7s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4410242
+      ],
+      "numbers": {
+        "tempo_bpm": 70.5,
+        "lufs": -16.02,
+        "lufs_target": -16.0,
+        "peak_dbfs": -2.81,
+        "silence_s": 0.55,
+        "brightness_pct": 0.4,
+        "boominess_pct": 4.49,
+        "onsets_per_s": 2.13,
+        "seam_db": -55.5
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: C, Jazz Crate",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt C"
+        ],
+        "track_no": 4
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-blue-hour-crate/head-nod-blue-hour-crate.mp3",
+        "notes": "head-nod-blue-hour-crate/notes.md",
+        "recipe": "head-nod-blue-hour-crate/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 5.99,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "0.6s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 5784830,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-blue-hour-crate/head-nod-blue-hour-crate.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-back-booth",
       "title": "Back Booth",
       "project": "head-nod-preview",
@@ -43304,6 +43392,28 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "head-nod-back-booth"
+      ],
+      "description": "10 tracks, in the order they were meant to be heard.",
+      "credits": [
+        {
+          "role": "asked by",
+          "name": "the owner"
+        },
+        {
+          "role": "made by",
+          "name": "nobody fm: one machine rendering locally"
+        }
+      ],
+      "licence": "music generated locally from text prompts, no samples or reference audio, no third-party rights claimed"
+    },
+    {
+      "slug": "head-nod-after-dark-c-jazz-crate",
+      "title": "Head Nod After Dark: C, Jazz Crate",
+      "project": "head-nod-preview",
+      "cover_400": null,
+      "cover_1400": null,
+      "tracks": [
+        "head-nod-blue-hour-crate"
       ],
       "description": "10 tracks, in the order they were meant to be heard.",
       "credits": [
