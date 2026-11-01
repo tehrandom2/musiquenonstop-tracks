@@ -3,6 +3,94 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:14:07-04:00",
   "tracks": [
     {
+      "slug": "head-nod-brushwork",
+      "title": "Brushwork",
+      "project": "head-nod-preview",
+      "idea": "slow head-nod boom bap after dark",
+      "request": "the owner's preview: forty slow boom bap instrumentals for the owner and a friend",
+      "mood": "laid back, dark and warm",
+      "bpm": 68,
+      "key": "D minor",
+      "seed": 4410212,
+      "model": "fast",
+      "duration": 140.84,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T00:47:50-04:00",
+      "voice": false,
+      "prompt": "Dusty jazz-sample boom bap, chopped soul-jazz electric piano phrases, mellow mallet melody played one or two notes at a time, upright-style round bass, lazy swung drums with a big reverb tail on the snare, crackly old-record texture, a breakdown without drums near the end, warm, dark and nostalgic, no vocals, no singing, no speech, no drops, no trap hi-hats",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: forty slow boom bap instrumentals for the owner and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 68 bpm in D minor, 145 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 2 seeds and threw away 1: 4410211 (0.8s of near-silence (limit 0.5)). Seed 4410212 is the take, but it did not clear every gate: 0.7s of near-silence (limit 0.5).",
+      "rejected": [
+        {
+          "seed": 4410211,
+          "reason": "0.8s of near-silence (limit 0.5)"
+        }
+      ],
+      "takes": [
+        4410212
+      ],
+      "numbers": {
+        "tempo_bpm": 136.0,
+        "lufs": -16.0,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.37,
+        "silence_s": 0.7,
+        "brightness_pct": 0.23,
+        "boominess_pct": 2.39,
+        "onsets_per_s": 1.89,
+        "seam_db": -5.4
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": false,
+        "brightness": true,
+        "boominess": true,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Head Nod After Dark: C, Jazz Crate",
+        "submitter": "the owner",
+        "tags": [
+          "boom bap",
+          "instrumental",
+          "preview",
+          "prompt C"
+        ],
+        "track_no": 1
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "head-nod-brushwork/head-nod-brushwork.mp3",
+        "notes": "head-nod-brushwork/notes.md",
+        "recipe": "head-nod-brushwork/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-turbo, 8 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.02,
+        "decoded_lufs": -16.44,
+        "failed": [
+          "0.7s of near-silence (limit 0.5)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6211031,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "head-nod-brushwork/head-nod-brushwork.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "head-nod-warped-postcard",
       "title": "Warped Postcard",
       "project": "head-nod-preview",
@@ -44657,6 +44745,7 @@ window.NOBODY_INDEX = {
       "cover_400": null,
       "cover_1400": null,
       "tracks": [
+        "head-nod-brushwork",
         "head-nod-last-set",
         "head-nod-blue-hour-crate",
         "head-nod-smoke-ring-theory",
