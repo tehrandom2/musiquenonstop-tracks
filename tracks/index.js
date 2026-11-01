@@ -3,6 +3,97 @@ window.NOBODY_INDEX = {
   "written": "2026-11-01T01:55:08-05:00",
   "tracks": [
     {
+      "slug": "closer-two-chord-halo",
+      "title": "Two Chord Halo",
+      "project": "closer-preview",
+      "idea": "hazy late-night downtempo, closer to the sound he likes",
+      "request": "the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend",
+      "mood": "hazy, dreamy and dark",
+      "bpm": 68,
+      "key": "C# minor",
+      "seed": 4420023,
+      "model": "best",
+      "duration": 158.22,
+      "date": "2026-11-01",
+      "rendered_at": "2026-11-01T01:54:49-05:00",
+      "voice": false,
+      "prompt": "Hazy late-night downtempo instrumental, slow dreamy half-time groove, soft distant dusty drums tucked far behind the music, a deep warm sub bass felt more than heard, a soft detuned electric piano chord loop with a gentle tape wobble, one hypnotic two-chord vamp that barely changes, heavily muffled and low-passed as if heard through a wall, warm tape haze, steady and immersive, a long slow fade at the end, no vocals, no singing, no speech, no drops, no trap hi-hats, no bright cymbals",
+      "lyrics": null,
+      "why": "You asked for \"the owner's preview: five hazy downtempo instrumentals steered toward the owner's favourite reference, for him and a friend\". The style was written by the station's writers from the owner's ask, in sound words only. So I wrote it at 68 bpm in C# minor, 160 seconds, with no voice, under the mellow gates. It is a one-shot: nothing is baked and the ending is the model's own. I rendered 3 seeds and threw away 2: 4420021 (passed, but outranked by the kept takes); 4420022 (0.6s of near-silence (limit 0.5) and others). Seed 4420023 is the take, but it did not clear every gate: boomy: 22.5% below 60 Hz (ceiling 12).",
+      "rejected": [
+        {
+          "seed": 4420021,
+          "reason": "passed, but outranked by the kept takes"
+        },
+        {
+          "seed": 4420022,
+          "reason": "0.6s of near-silence (limit 0.5); boomy: 22.8% below 60 Hz (ceiling 12)"
+        }
+      ],
+      "takes": [
+        4420023
+      ],
+      "numbers": {
+        "tempo_bpm": 134.5,
+        "lufs": -16.01,
+        "lufs_target": -16.0,
+        "peak_dbfs": -3.2,
+        "silence_s": 0.1,
+        "brightness_pct": 0.32,
+        "boominess_pct": 22.52,
+        "onsets_per_s": 2.65,
+        "seam_db": -60.3
+      },
+      "checks": {
+        "tempo": true,
+        "loudness": true,
+        "peak": true,
+        "silence": true,
+        "brightness": true,
+        "boominess": false,
+        "onsets": true,
+        "seam": true,
+        "words": null
+      },
+      "segments": {
+        "album": "Closer",
+        "submitter": "the owner",
+        "tags": [
+          "downtempo",
+          "instrumental",
+          "preview"
+        ],
+        "track_no": 2
+      },
+      "lineage": null,
+      "licence": "generated locally from a text prompt, no samples or reference audio, no third-party rights claimed",
+      "files": {
+        "mp3": "closer-two-chord-halo/closer-two-chord-halo.mp3",
+        "notes": "closer-two-chord-halo/notes.md",
+        "recipe": "closer-two-chord-halo/recipe.json"
+      },
+      "extra": {
+        "tier_model": "ACE-Step 1.5 (acestep-v15-xl-sft, 50 steps, LM None)",
+        "profile": "mellow",
+        "seam_step_x": 0.37,
+        "decoded_lufs": -16.45,
+        "failed": [
+          "boomy: 22.5% below 60 Hz (ceiling 12)"
+        ],
+        "words_not_ours": null,
+        "stripped": [],
+        "installed_samples": 6977378,
+        "loop": false,
+        "wordless": false,
+        "take_files": [
+          "closer-two-chord-halo/closer-two-chord-halo.mp3"
+        ],
+        "ears": null
+      },
+      "side": "b",
+      "audition": true
+    },
+    {
       "slug": "closer-through-the-wall",
       "title": "Through The Wall",
       "project": "closer-preview",
@@ -47097,6 +47188,7 @@ window.NOBODY_INDEX = {
       "cover_1400": null,
       "tracks": [
         "closer-through-the-wall",
+        "closer-two-chord-halo",
         "closer-glass-clicks",
         "closer-low-hum-drift",
         "closer-rubber-moon"
