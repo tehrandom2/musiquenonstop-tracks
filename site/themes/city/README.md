@@ -62,6 +62,15 @@ in the home view, and the queue is a flight plan.
   searchlights and the waypoint pillars; `state().dossier` the inspected slug, the docked and floating state, the leader, the plan.
   Nobody who built this heard it: every line here is about pictures driven by the analyser's numbers.
 
-Files: `theme.css`, `theme.js`. Fonts: Orbitron and IBM Plex Mono, both SIL Open Font License 1.1, in
+- **The visualiser module (issue #247).** `site/vis/city.js` is the city's picture as an embeddable 2D module (512 x 288, the
+  studio game projects it): the playing tower in the middle as the meter (sixteen floors, the crown on the kick, three searchlights
+  on onsets), the front row of 32 buildings as the spectrum, a far skyline drawn from the track's slug (the same track, the same
+  skyline), the street grid to a horizon the bass lights, and the wave over the street; all-zero bytes are the city asleep (a few
+  windows changing, the beacon blinking, the lights drifting low). The theme imports the same module: its `skyline()` draws the
+  card's analyser in the deck, and when the 3D city is not there (`nocity`: no WebGL, no CDN) its whole picture stands in behind
+  the glass in the air and the hidden mode, fed from the analyser's bytes by the theme's own loop. On a file URL (no module) the
+  card draws plain bars and the CSS grid stays. Never in the car view. `state().vis` says which.
+
+Files: `theme.css`, `theme.js`, and `../../vis/city.js` (the module). Fonts: Orbitron and IBM Plex Mono, both SIL Open Font License 1.1, in
 `../../vendor/` with the licences in `../../vendor/LICENSES.md`. The harness runs this theme's Chrome on
 ANGLE over SwiftShader (software WebGL).

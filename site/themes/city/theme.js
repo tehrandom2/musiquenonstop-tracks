@@ -1336,6 +1336,46 @@ function makeCityScene(THREE, P) {
 NOBODY.themes.city = (function () {
   const TH = { name: 'city', blurb: 'a city of data at night. neon, glass, bloom. fly it.' };
   const STILL = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  /* the city's visualiser module (issue #247): site/vis/city.js, the picture the studio game projects. the theme draws its card's
+     skyline with it, and when the 3D city is not there (no WebGL, no CDN: body.nocity) its whole picture stands in behind the glass
+     in the air and in the hidden mode, driven by this loop from the analyser's bytes. over http only (a file URL cannot import a
+     module); never in the car view (#220), which keeps what it had */
+  const VIS = { mod: null, loading: false, inst: null, canvas: null, raf: 0, frames: 0, freq: null, time: null, pk: new Float32Array(64) };
+  const carView = function () { return document.documentElement.dataset.view === 'car'; };
+  // the module is not even fetched while the car view is up: it loads the first time the station is drawn outside it
+  function loadVis() {
+    if (VIS.mod || VIS.loading || carView() || (ctx.fileMode && ctx.fileMode())) return;
+    VIS.loading = true;
+    try { import(new URL('vis/city.js', location.href).href).then(function (m) { VIS.mod = m; syncVis(); }, function () {}); } catch (e) {}
+  }
+  function syncVis() {
+    const want = !!VIS.mod && !!ctx && !scene && document.body.classList.contains('nocity') && !carView() &&
+      (UI.layout === 'air' || document.body.classList.contains('ui-hidden'));
+    if (want && !VIS.canvas) visStart(); else if (!want && VIS.canvas) visStop();
+  }
+  function visStart() {
+    const c = document.createElement('canvas'); c.className = 'city-vis'; c.setAttribute('aria-hidden', 'true'); c.width = VIS.mod.info.w; c.height = VIS.mod.info.h;
+    document.body.insertBefore(c, document.body.firstChild); VIS.canvas = c;
+    VIS.inst = VIS.mod.create({ sampleRate: (NOBODY.synth && NOBODY.synth.ctx && NOBODY.synth.ctx.sampleRate) || 48000, scheme: document.documentElement.dataset.phosphor === 'amber' ? 'sunset' : 'night', reducedMotion: !!(STILL && STILL.matches) });
+    if (ctx.current()) VIS.inst.setTrack(trackOf(ctx.current()));
+    const g = c.getContext('2d'), t0 = performance.now();
+    const loop = function () {
+      if (carView()) { visStop(); return; } // the car view came up: the picture goes, and comes back with the station (syncVis)
+      const an = NOBODY.synth && NOBODY.synth.analyser;
+      if (an) {
+        if (!VIS.freq || VIS.freq.length !== an.frequencyBinCount) { VIS.freq = new Uint8Array(an.frequencyBinCount); VIS.time = new Uint8Array(an.fftSize); }
+        an.getByteFrequencyData(VIS.freq); an.getByteTimeDomainData(VIS.time);
+      } else if (!VIS.freq) { VIS.freq = new Uint8Array(1024); VIS.time = new Uint8Array(2048); }
+      VIS.inst.draw(g, VIS.freq, VIS.time, (performance.now() - t0) / 1000); VIS.frames++;
+      VIS.raf = requestAnimationFrame(loop);
+    };
+    VIS.raf = requestAnimationFrame(loop);
+  }
+  function visStop() {
+    cancelAnimationFrame(VIS.raf); VIS.raf = 0;
+    if (VIS.inst) VIS.inst.destroy(); VIS.inst = null;
+    if (VIS.canvas) VIS.canvas.remove(); VIS.canvas = null;
+  }
   let ctx = null, V = null, A = null, glass = null, power = null, S = null;
   let scene = null, canvas = null, cssgrid = null, horizon = null, scanrect = null, odoRing = null, nocityTimer = 0;
   let scopeCanvas = null, scopeCtx = null, dialStrip = null, pendingView = null;
@@ -1494,6 +1534,7 @@ NOBODY.themes.city = (function () {
     if (on) { if (UI.layout !== 'air') ctx.setLayout('air'); scene.cruise(true); }
     else { scene.cruise(false); hideReadout(); }
     document.body.classList.toggle('city-cruise', !!on);
+    syncVis();
   };
 
   /* ---- lifecycle ---- */
@@ -1516,7 +1557,7 @@ NOBODY.themes.city = (function () {
     dialStrip = makeDialStrip(el('dial'));
     UI.layout = V.phone() ? 'deck' : 'air';
     buildUi();
-    buildDossier(); buildPlan(); drawPlan();
+    buildDossier(); buildPlan(); drawPlan(); loadVis();
     sceneUp();
     // without the CDN there is no scene within two seconds; the body says so and the CSS gradient carries the page (12.11)
     nocityTimer = setTimeout(function () { if (!scene) document.body.classList.add('nocity'); watchdog(); }, 2000);
@@ -1527,6 +1568,7 @@ NOBODY.themes.city = (function () {
     TH.resize();
   };
   TH.dispose = function () {
+    visStop();
     clearTimeout(nocityTimer); clearInterval(UI.watch);
     if (scene) { scene.dispose(); scene = null; }
     [canvas, cssgrid, horizon, scanrect, odoRing, UI.readout, UI.bracket, UI.marker, UI.hud, UI.flyWrap, UI.hints, UI.fallback, DS.docked && DS.docked.root, DS.card && DS.card.root, DS.leader, DS.plan].forEach(function (n) { if (n) n.remove(); });
@@ -1653,13 +1695,14 @@ NOBODY.themes.city = (function () {
   /* ---- scene hooks ---- */
   TH.catalogue = function (tracks) { if (scene) scene.setCatalogue(tracks); };
   // the beam moves at once; whether the camera follows is the transition's to say
-  TH.playing = function (slug) { if (scene) scene.setPlaying(slug, 0, false, false); };
-  TH.scheme = function () { if (scene) scene.scheme(); };
+  TH.playing = function (slug) { if (scene) scene.setPlaying(slug, 0, false, false); if (VIS.inst) VIS.inst.setTrack(trackOf(slug)); };
+  TH.scheme = function () { if (scene) scene.scheme(); if (VIS.inst) VIS.inst.setScheme(document.documentElement.dataset.phosphor === 'amber' ? 'sunset' : 'night'); };
   // the widget slot (12.0, issue #28): the city mounts nothing in the transmitter card; its signature is the scene behind it
   TH.widget = function () { return null; };
   TH.state = function () {
     const ui = { hints: UI.hints ? (UI.hints.hidden ? 'none' : UI.hintsOpen ? 'open' : 'shut') : 'none', fallback: UI.fallback && !UI.fallback.hidden ? UI.fallback.querySelector('.fb-line').textContent : null, hoverCursor: canvas ? canvas.style.cursor || '' : '' };
     ui.dossier = dsState();
+    ui.vis = { module: VIS.mod ? 'site/vis/city.js' : null, picture: !!VIS.canvas, frames: VIS.frames };
     if (!scene) return Object.assign({ widget: null, running: false, nocity: document.body.classList.contains('nocity'), layout: UI.layout }, ui);
     ui.meter = scene.meter();
     const nav = scene.nav(), w = scene.where(), r = scene.route();
@@ -1804,6 +1847,7 @@ NOBODY.themes.city = (function () {
     if (line) { if (UI.fallback.querySelector('.fb-line').textContent !== line) UI.fallback.querySelector('.fb-line').textContent = line; UI.fallback.hidden = false; }
     else if (!UI.fallback.hidden) UI.fallback.hidden = true;
     document.body.classList.toggle('city-down', !!line);
+    syncVis();
   }
   // a pointer moving over the open city is aiming: the orbit holds still under it (it turns again 3 s after the pointer rests)
   function onWindowMove(e) { UI.pointerAt = performance.now(); UI.px = e.clientX; UI.py = e.clientY; if (scene && e.target === canvas && UI.layout === 'air') scene.hold(); }
@@ -2429,46 +2473,68 @@ NOBODY.themes.city = (function () {
     const areaW = areaCols * cellW, x0 = 2 * cellW;
     g.fillStyle = c.dim; g.fillRect(0, 0, 1, H);
     if (A.mode === 'scope5') { drawScope5(g, c, x0, areaW, H); return; }
-    // the skyline (issue #240): each band a building, its windows lit up to the level, a beacon on the roof at the held peak; the
-    // lit windows change a little four times a second, as a city's do. dance (A.flip) hangs the skyline from the top
-    const per = areaW / A.bands, bw = Math.max(3, per * 0.72);
-    const grad = g.createLinearGradient(0, H, 0, 0); grad.addColorStop(0, c.cyan); grad.addColorStop(0.55, c.violet); grad.addColorStop(1, c.magenta);
-    const rows = A.rows, cellH = H / rows, tick = STILL && STILL.matches ? 0 : Math.floor(now / 250);
-    const cols = bw >= 12 ? 3 : bw >= 7 ? 2 : 1, ww = Math.max(1.5, bw / (cols * 2 + 1)), wh = Math.max(2, Math.min(4, cellH * 0.3)), step = wh * 2;
-    g.save();
-    if (A.flip) { g.translate(0, H); g.scale(1, -1); }
-    for (let b = 0; b < A.bands; b++) {
-      const v = A.vals[b];
-      const cells = Math.min(rows, Math.floor(Math.pow(v, 0.8) * (rows + 0.99)));
-      const hgt = Math.max(0, Math.pow(v, 0.8) * H);
-      if (cells > A.peaks[b]) { A.peaks[b] = cells; A.peakAt[b] = now; }
-      else if (now - A.peakAt[b] > 150 && A.peaks[b] > 0) { A.peaks[b]--; A.peakAt[b] = now; }
-      const x = x0 + b * per + (per - bw) / 2;
-      // the shell: a dark body with a lit outline, so the windows read against it
-      if (hgt > 2) {
-        g.fillStyle = 'rgba(8,11,26,0.92)'; g.fillRect(x, H - hgt, bw, hgt);
-        g.shadowColor = 'rgb(' + c.cyanRgb.replace(/ /g, ',') + ',0.6)'; g.shadowBlur = 8;
-        g.strokeStyle = grad; g.lineWidth = 1; g.strokeRect(x + 0.5, H - hgt + 0.5, bw - 1, hgt - 1);
-        g.shadowBlur = 0;
-        g.fillStyle = grad;
-        let row = 0;
-        for (let y = H - step; y > H - hgt + 2; y -= step, row++) {
-          for (let k = 0; k < cols; k++) {
-            const r = Math.sin((b * 31 + row * 7 + k * 13 + tick * 3) * 12.9898) * 43758.5453;
-            if (r - Math.floor(r) < 0.28) continue;
-            g.fillRect(x + ww * (1 + k * 2), y, ww, wh);
+    // the car view (#220) keeps exactly what it had: main's own skyline, below; everywhere else the module draws it
+    if (carView()) {
+      // the skyline (issue #240): each band a building, its windows lit up to the level, a beacon on the roof at the held peak; the
+      // lit windows change a little four times a second, as a city's do. dance (A.flip) hangs the skyline from the top
+      const per = areaW / A.bands, bw = Math.max(3, per * 0.72);
+      const grad = g.createLinearGradient(0, H, 0, 0); grad.addColorStop(0, c.cyan); grad.addColorStop(0.55, c.violet); grad.addColorStop(1, c.magenta);
+      const rows = A.rows, cellH = H / rows, tick = STILL && STILL.matches ? 0 : Math.floor(now / 250);
+      const cols = bw >= 12 ? 3 : bw >= 7 ? 2 : 1, ww = Math.max(1.5, bw / (cols * 2 + 1)), wh = Math.max(2, Math.min(4, cellH * 0.3)), step = wh * 2;
+      g.save();
+      if (A.flip) { g.translate(0, H); g.scale(1, -1); }
+      for (let b = 0; b < A.bands; b++) {
+        const v = A.vals[b];
+        const cells = Math.min(rows, Math.floor(Math.pow(v, 0.8) * (rows + 0.99)));
+        const hgt = Math.max(0, Math.pow(v, 0.8) * H);
+        if (cells > A.peaks[b]) { A.peaks[b] = cells; A.peakAt[b] = now; }
+        else if (now - A.peakAt[b] > 150 && A.peaks[b] > 0) { A.peaks[b]--; A.peakAt[b] = now; }
+        const x = x0 + b * per + (per - bw) / 2;
+        // the shell: a dark body with a lit outline, so the windows read against it
+        if (hgt > 2) {
+          g.fillStyle = 'rgba(8,11,26,0.92)'; g.fillRect(x, H - hgt, bw, hgt);
+          g.shadowColor = 'rgb(' + c.cyanRgb.replace(/ /g, ',') + ',0.6)'; g.shadowBlur = 8;
+          g.strokeStyle = grad; g.lineWidth = 1; g.strokeRect(x + 0.5, H - hgt + 0.5, bw - 1, hgt - 1);
+          g.shadowBlur = 0;
+          g.fillStyle = grad;
+          let row = 0;
+          for (let y = H - step; y > H - hgt + 2; y -= step, row++) {
+            for (let k = 0; k < cols; k++) {
+              const r = Math.sin((b * 31 + row * 7 + k * 13 + tick * 3) * 12.9898) * 43758.5453;
+              if (r - Math.floor(r) < 0.28) continue;
+              g.fillRect(x + ww * (1 + k * 2), y, ww, wh);
+            }
           }
         }
+        const pk = A.peaks[b];
+        if (pk > cells && pk <= rows) {
+          const y = H - pk * cellH;
+          g.shadowColor = 'rgb(' + c.magRgb.replace(/ /g, ',') + ',0.9)'; g.shadowBlur = 8; g.fillStyle = c.magenta;
+          g.fillRect(x + bw / 2 - 1.5, y - 3, 3, 3); g.fillRect(x + bw / 2 - 0.5, y, 1, Math.max(0, H - hgt - y));
+          g.shadowBlur = 0;
+        }
       }
-      const pk = A.peaks[b];
-      if (pk > cells && pk <= rows) {
-        const y = H - pk * cellH;
-        g.shadowColor = 'rgb(' + c.magRgb.replace(/ /g, ',') + ',0.9)'; g.shadowBlur = 8; g.fillStyle = c.magenta;
-        g.fillRect(x + bw / 2 - 1.5, y - 3, 3, 3); g.fillRect(x + bw / 2 - 0.5, y, 1, Math.max(0, H - hgt - y));
-        g.shadowBlur = 0;
+      g.restore();
+    } else {
+      // the skyline (issue #240): drawn by the same module the studio game projects (site/vis/city.js, issue #247): each band a
+      // building, its windows lit up to the level, a beacon on the roof at the held peak. dance (A.flip) hangs it from the top. on a file
+      // URL (no module), plain bars in the same colours
+      if (!VIS.mod) loadVis(); else if (!VIS.canvas) syncVis();
+      const rows = A.rows;
+      for (let b = 0; b < A.bands; b++) {
+        const cells = Math.min(rows, Math.floor(Math.pow(A.vals[b], 0.8) * (rows + 0.99)));
+        if (cells > A.peaks[b]) { A.peaks[b] = cells; A.peakAt[b] = now; }
+        else if (now - A.peakAt[b] > 150 && A.peaks[b] > 0) { A.peaks[b]--; A.peakAt[b] = now; }
+        VIS.pk[b] = A.peaks[b] > cells ? A.peaks[b] / rows : 0;
+      }
+      if (VIS.mod) VIS.mod.skyline(g, A.vals, VIS.pk, { x: x0, y: 0, w: areaW, h: H }, { scheme: document.documentElement.dataset.phosphor === 'amber' ? 'sunset' : 'night', now: now / 1000, still: !!(STILL && STILL.matches), flip: !!A.flip });
+      else {
+        const per = areaW / A.bands, bw = Math.max(2, per * 0.62);
+        const grad = g.createLinearGradient(0, H, 0, 0); grad.addColorStop(0, c.cyan); grad.addColorStop(0.55, c.violet); grad.addColorStop(1, c.magenta);
+        g.fillStyle = grad;
+        for (let b = 0; b < A.bands; b++) { const hgt = Math.pow(A.vals[b], 0.8) * H; if (hgt > 1) g.fillRect(x0 + b * per + (per - bw) / 2, A.flip ? 0 : H - hgt, bw, hgt); }
       }
     }
-    g.restore();
     g.shadowBlur = 0;
     A.baselineText(A.live);
     scopeRibbon(c);
